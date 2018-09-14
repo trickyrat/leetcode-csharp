@@ -398,6 +398,134 @@ namespace Solutions
         }
 
         /// <summary>
+        /// <para>6. ZigZag Conversion</para>
+        /// </summary>
+        /// <param name="s"></param>
+        /// <param name="numRows"></param>
+        /// <returns></returns>
+        public static string Convert(string s, int numRows)
+        {
+            if (numRows <= 1) return s;
+            StringBuilder res = new StringBuilder();
+            for (int i = 0; i < numRows; i++)
+            {
+                for (int j = 0; j < s.Length; j += 2 * numRows - 2)
+                {
+                    int index = i + j;
+                    if (index < s.Length)
+                        res.Append(s[index]);
+                    if (i == 0 || i == numRows - 1) continue;
+                    index = j + 2 * numRows - 2 - i;
+                    if (index < s.Length) res.Append(s[index]);
+
+                }
+            }
+            return res.ToString();
+        }
+        
+        /// <summary>
+        /// 7. Reverse Integer
+        /// </summary>
+        /// <param name=""></param>
+        /// <returns></returns>
+        public static int Reverse(int x)
+        {
+            int rev = 0;
+            while (x != 0)
+            {
+                int pop = x % 10;
+                x /= 10;
+                if (rev > int.MaxValue / 10 || (rev == int.MaxValue / 10 && pop > 7)) return 0;
+                if (rev < int.MinValue / 10 || (rev == int.MinValue / 10 && pop < -8)) return 0;
+                rev = rev * 10 + pop;
+            }
+            return rev;
+        }
+
+        /// <summary>
+        /// 8. String to Integer(atoi)
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
+        public static int Atoi(string str)
+        {
+            if (string.IsNullOrEmpty(str)) return 0;
+            int sign = 1;
+            int bas = 0;
+            int i = 0;
+            while (str[i] == ' ')
+                i++;
+
+            if (str[i] == '-' || str[i] == '+')
+                sign = str[i++] == '-' ? -1 : 1;
+            while (i < str.Length && str[i] >= '0' && str[i] <= '9')
+            {
+                if (bas > int.MaxValue / 10 || (bas == int.MaxValue / 10 && str[i] - '0' > 7))
+                {
+                    return (sign == 1) ? int.MaxValue : int.MinValue;
+                }
+                bas = 10 * bas + (str[i++] - '0');
+            }
+            return bas * sign;
+        }
+
+        /// <summary>
+        /// 9. Palindrome Number
+        /// </summary>
+        /// <param name="x"></param>
+        /// <returns></returns>
+        public static bool IsPalindrome(int x)
+        {
+            if (x < 0 || (x != 0 && x % 10 == 0)) return false;
+            int res = 0;
+            while (res < x)
+            {
+                res = res * 10 + x % 10;
+                x /= 10;
+            }
+            return (x == res || x == res / 10);
+            // if (x < 10) return true;
+            // int n = 0, temp = x;
+            // while (temp / 10 != 0)
+            // {
+            //     n += temp % 10;
+            //     n *= 10;
+            //     temp /= 10;
+            // }
+            // n += temp % 10;
+            // return (n == x);
+        }
+
+        /// <summary>
+        /// 10. Regular Expression Matching
+        /// </summary>
+        /// <param name="text">string input</param>
+        /// <param name="pattern">match pattern</param>
+        /// <returns></returns>
+        public static bool IsMatch(string text, string pattern)
+        {
+            bool[,] dp = new bool[text.Length + 1, pattern.Length + 1];
+            dp[text.Length, pattern.Length] = true;
+            for (int i = text.Length; i >= 0; i--)
+            {
+                for (int j = pattern.Length - 1; j >= 0; j--)
+                {
+                    bool first_match = (i < text.Length
+                        && (pattern[j] == text[i] || pattern[j] == '.'));
+                    if (j + 1 < pattern.Length && pattern[j + 1] == '*')
+                    {
+                        dp[i, j] = dp[i, j + 2] || first_match && dp[i + 1, j];
+                    }
+                    else
+                    {
+                        dp[i, j] = first_match && dp[i + 1, j + 1];
+                    }
+                }
+            }
+            return dp[0, 0];
+        }
+
+        /// <summary>
         /// <para>11. Container With Most Water</para>
         /// <para>
         /// Given n non-negative integers a1, a2, ..., an , where each represents a point
@@ -421,7 +549,65 @@ namespace Solutions
         }
 
         /// <summary>
-        /// 
+        /// 12. Integer to Roman
+        /// </summary>
+        /// <param name="num"></param>
+        /// <returns></returns>
+        public static string IntToRoma(int num)
+        {
+            string[] M = { "", "M", "MM", "MMM" };
+            string[] C = { "", "C", "CC", "CCC", "CD", "D", "DC", "DCC", "DCCC", "CM" };
+            string[] X = { "", "X", "XX", "XXX", "XL", "L", "LX", "LXX", "LXXX", "XC" };
+            string[] I = { "", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX" };
+            return M[num / 1000] + C[(num % 1000) / 100] + X[(num % 100) / 10] + I[num % 10];
+        }
+
+        /// <summary>
+        /// 13. Roman To Integer
+        /// </summary>
+        /// <param name="s"></param>
+        /// <returns></returns>
+        public static int RomanToInteger(string s)
+        {
+            Dictionary<char, int> dic = new Dictionary<char, int> { { 'I', 1 },
+                { 'V', 5 },
+                { 'X', 10 },
+                { 'L', 50 },
+                { 'C', 100 },
+                { 'D', 500 },
+                { 'M', 1000 }
+            };
+            int value = 0;
+            char prev = s[0];
+            foreach (char curr in s)
+            {
+                value += dic[curr];
+                if (dic[prev] < dic[curr])
+                {
+                    value -= dic[prev] * 2;
+                }
+                prev = curr;
+            }
+            return value;
+        }
+
+        /// <summary>
+        /// 14. Longest Common Prefix
+        /// </summary>
+        /// <param name="strs"></param>
+        /// <returns></returns>
+        public static string LongestCommonPrefix(string[] strs)
+        {
+            if (strs.Length == 0) return "";
+            string pre = strs[0];
+            for (int i = 1; i < strs.Length; i++)
+                while (strs[i].IndexOf(pre, StringComparison.Ordinal) != 0)
+                    pre = pre.Substring(0, pre.Length - 1);
+            return pre;
+        }
+
+        /// <summary>
+        /// 15. Three Sum
         /// </summary>
         /// <param name="nums"></param>
         /// <returns></returns>
@@ -489,6 +675,63 @@ namespace Solutions
                 while (i + 1 < len && nums[i + 1] == nums[i]) i++;
             }
             return res;
+        }
+
+        /// <summary>
+        /// 16. Three Sum Closest
+        /// </summary>
+        /// <param name="nums"></param>
+        /// <param name="target"></param>
+        /// <returns></returns>
+        public static int ThreeSumClosest(int[] nums, int target)
+        {
+            if (nums.Length < 3) return 0;
+            int closest = nums[0] + nums[1] + nums[2];
+            int len = nums.Length;
+            Array.Sort(nums);
+            for (int first = 0; first < len - 2; first++)
+            {
+                if (first > 0 && nums[first] == nums[first - 1])
+                    continue;
+                int second = first + 1;
+                int third = len - 1;
+                while (second < third)
+                {
+                    int currentSum = nums[first] + nums[second] + nums[third];
+                    if (currentSum == target)
+                        return currentSum;
+                    if (Math.Abs(target - currentSum) < Math.Abs(target - closest))
+                        closest = currentSum;
+                    if (currentSum > target)
+                        third--;
+                    else second++;
+                }
+            }
+            return closest;
+        }
+
+        /// <summary>
+        /// 17. Letter Combinations of a Phone Number
+        /// </summary>
+        /// <param name="digits">input digits</param>
+        /// <returns></returns>
+        public static IList<string> LetterCombinations(string digits)
+        {
+            string[] map = { "0", "1", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz" };
+            if (String.IsNullOrEmpty(digits)) return new List<string>();
+            Queue<string> ans = new Queue<string>();
+            ans.Enqueue("");
+            for (int i = 0; i < digits.Length; i++)
+            {
+                int x = digits[i] - '0';
+                while (ans.Peek().Length == i)
+                {
+                    string t = ans.Dequeue();
+                    foreach (char c in map[x])
+                        ans.Enqueue(t + c);
+                }
+            }
+            return ans.ToList();
         }
 
         public static bool ContainsDuplicate(int[] nums)
@@ -1246,35 +1489,6 @@ namespace Solutions
         }
 
         /// <summary>
-        /// Is Match
-        /// </summary>
-        /// <param name="text">string input</param>
-        /// <param name="pattern">match pattern</param>
-        /// <returns></returns>
-        public static bool IsMatch(string text, string pattern)
-        {
-            bool[,] dp = new bool[text.Length + 1, pattern.Length + 1];
-            dp[text.Length, pattern.Length] = true;
-            for (int i = text.Length; i >= 0; i--)
-            {
-                for (int j = pattern.Length - 1; j >= 0; j--)
-                {
-                    bool first_match = (i < text.Length
-                        && (pattern[j] == text[i] || pattern[j] == '.'));
-                    if (j + 1 < pattern.Length && pattern[j + 1] == '*')
-                    {
-                        dp[i, j] = dp[i, j + 2] || first_match && dp[i + 1, j];
-                    }
-                    else
-                    {
-                        dp[i, j] = first_match && dp[i + 1, j + 1];
-                    }
-                }
-            }
-            return dp[0, 0];
-        }
-
-        /// <summary>
         /// Merge K Sorted LinkedList
         /// </summary>
         /// <param name="lists">the array of lists</param>
@@ -1407,30 +1621,6 @@ namespace Solutions
         }
 
         /// <summary>
-        /// Letter Combinations
-        /// </summary>
-        /// <param name="digits">input digits</param>
-        /// <returns></returns>
-        public static IList<string> LetterCombinations(string digits)
-        {
-            string[] map = { "0", "1", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz" };
-            if (String.IsNullOrEmpty(digits)) return new List<string>();
-            Queue<string> ans = new Queue<string>();
-            ans.Enqueue("");
-            for (int i = 0; i < digits.Length; i++)
-            {
-                int x = digits[i] - '0';
-                while (ans.Peek().Length == i)
-                {
-                    string t = ans.Dequeue();
-                    foreach (char c in map[x])
-                        ans.Enqueue(t + c);
-                }
-            }
-            return ans.ToList();
-        }
-
-        /// <summary>
         /// Merge Sorted Array
         /// </summary>
         /// <param name="num1"></param>
@@ -1447,32 +1637,6 @@ namespace Solutions
                 else
                     num1[i--] = num1[p--];
             }
-        }
-
-        /// <summary>
-        /// ZigZag Conversion
-        /// </summary>
-        /// <param name="s"></param>
-        /// <param name="numRows"></param>
-        /// <returns></returns>
-        public static string Convert(string s, int numRows)
-        {
-            if (numRows <= 1) return s;
-            StringBuilder res = new StringBuilder();
-            for (int i = 0; i < numRows; i++)
-            {
-                for (int j = 0; j < s.Length; j += 2 * numRows - 2)
-                {
-                    int index = i + j;
-                    if (index < s.Length)
-                        res.Append(s[index]);
-                    if (i == 0 || i == numRows - 1) continue;
-                    index = j + 2 * numRows - 2 - i;
-                    if (index < s.Length) res.Append(s[index]);
-
-                }
-            }
-            return res.ToString();
         }
 
         /// <summary>
@@ -2137,35 +2301,6 @@ namespace Solutions
         }
 
         /// <summary>
-        /// Roman To Integer
-        /// </summary>
-        /// <param name="s"></param>
-        /// <returns></returns>
-        public static int RomanToInteger(string s)
-        {
-            Dictionary<char, int> dic = new Dictionary<char, int> { { 'I', 1 },
-                { 'V', 5 },
-                { 'X', 10 },
-                { 'L', 50 },
-                { 'C', 100 },
-                { 'D', 500 },
-                { 'M', 1000 }
-            };
-            int value = 0;
-            char prev = s[0];
-            foreach (char curr in s)
-            {
-                value += dic[curr];
-                if (dic[prev] < dic[curr])
-                {
-                    value -= dic[prev] * 2;
-                }
-                prev = curr;
-            }
-            return value;
-        }
-
-        /// <summary>
         /// Reverse Words
         /// </summary>
         /// <param name="str"></param>
@@ -2240,33 +2375,6 @@ namespace Solutions
             return island * 4 - neighbor * 2;
         }
 
-        /// <summary>
-        /// Is Palindrome
-        /// </summary>
-        /// <param name="x"></param>
-        /// <returns></returns>
-        public static bool IsPalindrome(int x)
-        {
-            if (x < 0 || (x != 0 && x % 10 == 0)) return false;
-            int res = 0;
-            while (res < x)
-            {
-                res = res * 10 + x % 10;
-                x /= 10;
-            }
-            return (x == res || x == res / 10);
-            // if (x < 10) return true;
-            // int n = 0, temp = x;
-            // while (temp / 10 != 0)
-            // {
-            //     n += temp % 10;
-            //     n *= 10;
-            //     temp /= 10;
-            // }
-            // n += temp % 10;
-            // return (n == x);
-        }
-
         public static bool IsPalindrome2(int x)
         {
             if (x < 0) return false;
@@ -2279,21 +2387,6 @@ namespace Solutions
                 x = x / 10;
             }       
             return y == tmp;
-        }
-
-        /// <summary>
-        /// Longest Common Prefix
-        /// </summary>
-        /// <param name="strs"></param>
-        /// <returns></returns>
-        public static string LongestCommonPrefix(string[] strs)
-        {
-            if (strs.Length == 0) return "";
-            string pre = strs[0];
-            for (int i = 1; i < strs.Length; i++)
-                while (strs[i].IndexOf(pre, StringComparison.Ordinal) != 0)
-                    pre = pre.Substring(0, pre.Length - 1);
-            return pre;
         }
 
         /// <summary>
@@ -2345,37 +2438,6 @@ namespace Solutions
             }
             return result;
         }
-
-
-
-        /// <summary>
-        /// Change string to integer
-        /// </summary>
-        /// <param name="str"></param>
-        /// <returns></returns>
-        public static int Atoi(string str)
-        {
-            if (string.IsNullOrEmpty(str)) return 0;
-            int sign = 1;
-            int bas = 0;
-            int i = 0;
-            while (str[i] == ' ')
-                i++;
-
-            if (str[i] == '-' || str[i] == '+')
-                sign = str[i++] == '-' ? -1 : 1;
-            while (i < str.Length && str[i] >= '0' && str[i] <= '9')
-            {
-                if (bas > int.MaxValue / 10 || (bas == int.MaxValue / 10 && str[i] - '0' > 7))
-                {
-                    return (sign == 1) ? int.MaxValue : int.MinValue;
-                }
-                bas = 10 * bas + (str[i++] - '0');
-            }
-            return bas * sign;
-        }
-
-
 
         /// <summary>
         /// Trap Rain Water
