@@ -1194,6 +1194,39 @@ namespace Solutions
         }
 
         /// <summary>
+        /// 50. Power
+        /// </summary>
+        /// <param name="x">base</param>
+        /// <param name="n">power</param>
+        /// <returns></returns>
+        public static double MyPow(double x, int n)
+        {
+            // if (n == 0) return 1;
+            // if (n == Int32.MinValue)
+            // {
+            //     x = x * x;
+            //     n = n / 2;
+            // }
+            // if (n < 0)
+            // {
+            //     n = -n;
+            //     x = 1 / x;
+            // }
+            // return (n % 2 == 0) ? MyPow(x * x, n / 2) : x * MyPow(x * x, n / 2);
+
+            double res = 1.0;
+            for (int i = n; i != 0; i /= 2)
+            {
+                if (i % 2 != 0)
+                {
+                    res *= x;
+                }
+                x *= x;
+            }
+            return n < 0 ? 1 / res : res;
+        }
+
+        /// <summary>
         /// 55. Jump Game
         /// </summary>
         /// <param name="nums"></param>
@@ -2162,6 +2195,22 @@ namespace Solutions
             return new string(ch);
         }
 
+        public static void ReverseString(char[] s)
+        {
+            int mid = s.Length / 2;
+            char ch = new char();
+            int l = 0, r = s.Length - 1;
+            while (mid != 0)
+            {
+                ch = s[r];
+                s[r] = s[l];
+                s[l] = ch;
+                l++;
+                r--;
+                mid--;
+            }
+        }
+
         /// <summary>
         /// 374. Guess Number Higher or Lower
         /// </summary>
@@ -2280,6 +2329,25 @@ namespace Solutions
                 }
             }
             return false;
+        }
+
+        /// <summary>
+        /// 709. To Lower Case
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
+        public static string ToLowerCase(string str)
+        {
+            StringBuilder sb = new StringBuilder();
+            foreach(char c in str)
+            {
+                char r = (char)(c | 32);
+                sb.Append(r);
+            }
+            return sb.ToString();
+
+            //LINQ
+            // return string.Concat(str.Select(c => c >= 'A' && c <= 'Z' ? (char)(c + 32) : c));
         }
 
         /// <summary>
@@ -2465,6 +2533,46 @@ namespace Solutions
                 }
             }
             return true;
+        }
+
+        /// <summary>
+        /// 938. Range Sum of BST
+        /// </summary>
+        /// <param name="root"></param>
+        /// <param name="L"></param>
+        /// <param name="R"></param>
+        /// <returns></returns>
+        public static int RangeSumBST(TreeNode root, int L, int R)
+        {
+            // Recursive
+            //int sum = 0;
+            //if (root == null) return sum;
+            //if (root.val > L)
+            //    sum += RangeSumBST(root.left, L, R);
+            //if (root.val < R)
+            //    sum += RangeSumBST(root.right, L, R);
+            //if (root.val >= L && root.val <= R)
+            //    sum += root.val;
+            //return sum;
+
+            // Iterative
+            int sum = 0;
+            Stack<TreeNode> stack = new Stack<TreeNode>();
+            stack.Push(root);
+            while (stack.Count > 0)
+            {
+                TreeNode currentNode = stack.Pop();
+                if (currentNode != null)
+                {
+                    if (L <= currentNode.val && currentNode.val <= R)
+                        sum += currentNode.val;
+                    if (L < currentNode.val)
+                        stack.Push(currentNode.left);
+                    if (currentNode.val < R)
+                        stack.Push(currentNode.right);
+                }
+            }
+            return sum;
         }
     }
 }

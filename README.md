@@ -1,3 +1,3 @@
 # Solutions of Leetcode with CSharp
 
-.Net Core 2.1
+.Net Core 3 preview5
