@@ -1,3 +1,3 @@
-# Solutions of Leetcode with CSharp
+# Leetcode答案使用C#语言
 
-.Net Core 3 preview5
+根据编号排序，运行环境dotnet Core 2.1

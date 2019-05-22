@@ -2284,6 +2284,44 @@ namespace Solutions
         }
 
         /// <summary>
+        /// 617. Merge Two Binary Trees
+        /// </summary>
+        public static TreeNode MergeTrees(TreeNode t1, TreeNode t2)
+        {
+            // Recursive
+            // if(t1 == null)
+            //     return t2;
+            // if(t2 == null)
+            //     return t1;
+            // t1.val += t2.val;
+            // t1.left = MergeTrees(t1.left, t2.left);
+            // t1.right = MergeTrees(t1.right, t2.right);
+            // return t1;
+            // Iterative
+            if(t1 == null)
+                return t2;
+            Stack<TreeNode[]> stack = new Stack<TreeNode[]>();
+            stack.Push(new TreeNode[]{t1, t2});
+            while (stack.Count > 0)
+            {
+                TreeNode[] t = stack.Pop();
+                if(t[0] == null || t[1] == null)
+                    continue;
+                t[0].val += t[1].val;
+                if(t[0].left == null)
+                    t[0].left = t[1].left;
+                else
+                    stack.Push(new TreeNode[]{t[0].left, t[1].left});
+                
+                if(t[0].right == null)
+                    t[0].right = t[1].right;
+                else
+                    stack.Push(new TreeNode[]{t[0].right, t[1].right});
+            }
+            return t1;
+        }
+
+        /// <summary>
         /// 679. 24 Game
         /// </summary>
         /// <param name="nums"></param>
