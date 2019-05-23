@@ -6,6 +6,25 @@ using System.Text;
 namespace Solutions
 {
     /// <summary>
+    /// Definition for a Node.
+    /// </summary>
+    public class Node
+    {
+        public int val;
+        public IList<Node> children;
+        public Node()
+        {
+            
+        }
+        public Node(int _val, IList<Node> _children)
+        {
+            val = _val;
+            children = _children;
+        }
+    }
+
+
+    /// <summary>
     /// Definition for a binary tree node.
     /// </summary>
     public class TreeNode
@@ -2238,6 +2257,35 @@ namespace Solutions
             else if (num < target) return -1;
             else return 1;
         }
+
+        /// <summary>
+        /// 429. N-ary Tree Level Order Traversal
+        /// </summary>
+        public static IList<IList<int>> LevelOrder(Node root)
+        {
+            IList<IList<int>> res = new List<IList<int>>();
+            if(root == null) return res;
+            Queue<Node> queue = new Queue<Node>();
+            queue.Enqueue(root);
+            while (queue.Any())
+            {
+                int size = queue.Count;
+                IList<int> tmp = new List<int>();
+                for(int i = 0; i < size; i++)
+                {
+                    Node curr = queue.Peek();
+                    tmp.Add(curr.val);
+                    foreach (var child in curr.children)
+                    {
+                        queue.Enqueue(child);
+                    }
+                    queue.Dequeue();
+                }
+                res.Add(tmp);
+            }
+            return res;
+        }
+
 
         /// <summary>
         /// 459. Repeated Substring Pattern
