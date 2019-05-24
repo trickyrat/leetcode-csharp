@@ -2332,6 +2332,25 @@ namespace Solutions
         }
 
         /// <summary>
+        /// 509. Fibonacci Number
+        /// </summary>
+        public static int Fib(int N)
+        {
+            if(N < 2)
+                return N;
+            int f0 = 0;
+            int f1 = 1;
+            int res = 0;
+            for(int i = 1; i < N; i++)
+            {
+                res = f0 + f1;
+                f0 = f1;
+                f1 = res;
+            }
+            return res;
+        }
+
+        /// <summary>
         /// 617. Merge Two Binary Trees
         /// </summary>
         public static TreeNode MergeTrees(TreeNode t1, TreeNode t2)
