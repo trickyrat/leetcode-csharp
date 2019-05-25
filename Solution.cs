@@ -584,7 +584,7 @@ namespace Solutions
         /// </summary>
         /// <param name="num"></param>
         /// <returns></returns>
-        public static string IntToRoma(int num)
+        public static string IntToRoman(int num)
         {
             string[] M = { "", "M", "MM", "MMM" };
             string[] C = { "", "C", "CC", "CCC", "CD", "D", "DC", "DCC", "DCCC", "CM" };
@@ -594,7 +594,7 @@ namespace Solutions
         }
 
         /// <summary>
-        /// 13. Roman To Integer
+        /// 13. Roman to Integer
         /// </summary>
         /// <param name="s"></param>
         /// <returns></returns>
