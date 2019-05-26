@@ -764,6 +764,60 @@ namespace Solutions
             }
             return ans.ToList();
         }
+
+        /// <summary>
+        /// 18. 4Sum
+        /// </summary>
+        public static IList<IList<int>> FourSum(int[] nums, int target)
+        {
+            IList<IList<int>> res = new List<IList<int>>();
+            int n = nums.Length;
+            if (n < 4)
+                return res;
+            Array.Sort(nums);
+            for (int i = 0; i < n - 3; i++)
+            {
+                if (i > 0 && nums[i] == nums[i - 1])
+                    continue;
+                if (nums[i] + nums[i + 1] + nums[i + 2] + nums[i + 3] > target)
+                    break;
+                if (nums[i] + nums[n - 3] + nums[n - 2] + nums[n - 1] < target)
+                    continue;
+                for (int j = i + 1; j < n - 2; j++)
+                {
+                    if (j > i + 1 && nums[j] == nums[j - 1]) continue;
+                    if (nums[i] + nums[j] + nums[j + 1] + nums[j + 2] > target)
+                        break;
+                    if (nums[i] + nums[j] + nums[n - 2] + nums[n - 1] < target)
+                        continue;
+                    int left = j + 1, right = n - 1;
+                    while (left < right)
+                    {
+                        int sum = nums[left] + nums[right] + nums[i] + nums[j];
+                        if (sum < target)
+                            left++;
+                        else if (sum > target)
+                            right--;
+                        else
+                        {
+                            res.Add(
+                                new List<int> { nums[i], nums[j], nums[left], nums[right] });
+                            do
+                            {
+                                left++;
+                            } while (nums[left] == nums[left - 1] && left < right);
+                            do
+                            {
+                                right--;
+                            } while (nums[right] == nums[right + 1] && left < right);
+                        }
+                    }
+                }
+            }
+            return res;
+        } 
+
+
         /// <summary>
         /// 19. Remove Nth Node From End of List
         /// </summary>
