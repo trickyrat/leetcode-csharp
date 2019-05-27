@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,7 +15,7 @@ namespace Solutions
         public IList<Node> children;
         public Node()
         {
-            
+
         }
         public Node(int _val, IList<Node> _children)
         {
@@ -800,8 +801,7 @@ namespace Solutions
                             right--;
                         else
                         {
-                            res.Add(
-                                new List<int> { nums[i], nums[j], nums[left], nums[right] });
+                            res.Add(new List<int> { nums[i], nums[j], nums[left], nums[right] });
                             do
                             {
                                 left++;
@@ -815,7 +815,7 @@ namespace Solutions
                 }
             }
             return res;
-        } 
+        }
 
 
         /// <summary>
@@ -844,7 +844,7 @@ namespace Solutions
         }
 
         /// <summary>
-        /// 20. Valid Parenthesess
+        /// 20. Valid Parentheses
         /// </summary>
         /// <param name="s"></param>
         /// <returns></returns>
@@ -1105,9 +1105,62 @@ namespace Solutions
         }
 
         /// <summary>
+        /// 34. Find First and Last Position of Element in Sorted Array
+        /// </summary>
+        public static int[] SearchRange(int[] nums, int target)
+        {
+            int[] missingResult = new int[] { -1, -1 };
+            int[] res = new int[] { 0, 0 };
+            if (nums.Length < 1)
+                return missingResult;
+            int lo = 0, hi = nums.Length - 1;
+            while (lo < hi)
+            {
+                int mid = lo + (hi - lo) / 2;
+                if (nums[mid] >= target)
+                    hi = mid;
+                else
+                    lo = mid + 1;
+            }
+            int first = nums[lo] == target ? lo : -1;
+            if (first == -1)
+                return missingResult;
+            lo = first;
+            hi = nums.Length - 1;
+            while (lo < hi)
+            {
+                int mid = lo + (hi - lo + 1) / 2;
+                if (nums[mid] <= target)
+                    lo = mid;
+                else
+                    hi = mid - 1;
+            }
+            res[0] = first;
+            res[1] = lo;
+            return res;
+        }
+
+        /// <summary>
+        /// 35. Search Insert Position
+        /// </summary>
+        public static int SearchInsert(int[] nums, int target)
+        {
+            int lo = 0, hi = nums.Length - 1;
+            while (lo < hi)
+            {
+                int mid = lo + (hi - lo) / 2;
+                if (nums[mid] < target)
+                    lo = mid + 1;
+                else
+                    hi = mid;
+            }
+            return nums[lo] < target ? lo + 1 : lo;
+        }
+
+        /// <summary>
         /// 37. Sudoku Solver 
         /// </summary>
-        public static void SolveSudoku(char[,] board) => DoSolve(board, 0, 0);
+        public static void SolveSudoku(char[][] board) => DoSolve(board, 0, 0);
         /// <summary>
         /// Do Solve
         /// </summary>
@@ -1115,21 +1168,21 @@ namespace Solutions
         /// <param name="row"></param>
         /// <param name="col"></param>
         /// <returns></returns>
-        private static bool DoSolve(char[,] board, int row, int col)
+        private static bool DoSolve(char[][] board, int row, int col)
         {
             for (int i = row; i < 9; i++, col = 0)
             {
                 for (int j = col; j < 9; j++)
                 {
-                    if (board[i, j] != '.') continue;
+                    if (board[i][j] != '.') continue;
                     for (char num = '1'; num <= '9'; num++)
                     {
                         if (IsValid(board, i, j, num))
                         {
-                            board[i, j] = num;
+                            board[i][j] = num;
                             if (DoSolve(board, i, j + 1))
                                 return true;
-                            board[i, j] = '.';
+                            board[i][j] = '.';
                         }
                     }
                     return false;
@@ -1145,15 +1198,38 @@ namespace Solutions
         /// <param name="col"></param>
         /// <param name="num"></param>
         /// <returns></returns>
-        private static bool IsValid(char[,] board, int row, int col, char num)
+        private static bool IsValid(char[][] board, int row, int col, char num)
         {
             int blkrow = (row / 3) * 3, blkcol = (col / 3) * 3;
             for (int i = 0; i < 9; i++)
             {
-                if (board[i, col] == num || board[row, i] == num || board[blkrow + i / 3, blkcol + i % 3] == num)
+                if (board[i][col] == num || board[row][i] == num || board[blkrow + i / 3][blkcol + i % 3] == num)
                     return false;
             }
             return true;
+        }
+
+        /// <summary>
+        /// 41. First Missing Positive
+        /// </summary>
+        public static int FirstMissingPositive(int[] nums)
+        {
+            int len = nums.Length;
+            for(int i = 0; i < len; i++)
+            {
+                while(nums[i] > 0 && nums[i] <= len && nums[nums[i] - 1] != nums[i])
+                    Swap(ref nums[i], ref nums[nums[i] - 1]);
+            }
+            for(int i = 0; i < len; i++)
+                if(nums[i] != i + 1)
+                    return i + 1;
+            return len + 1;
+        }
+        public static void Swap(ref int a, ref int b)
+        {
+            int tmp = a;
+            a = b;
+            b = tmp;
         }
 
         /// <summary>
@@ -1479,6 +1555,16 @@ namespace Solutions
                 else
                     num1[i--] = num1[p--];
             }
+        }
+
+        /// <summary>
+        /// 100. Same Tree
+        /// </summary>
+        public static bool IsSameTree(TreeNode p, TreeNode q)
+        {
+            if (p == null || q == null)
+                return p == q;
+            return p.val == q.val && IsSameTree(p.left, q.right) && IsSameTree(q.left, q.right);
         }
 
         /// <summary>
@@ -2313,19 +2399,28 @@ namespace Solutions
         }
 
         /// <summary>
+        /// 401. Binary Watch
+        /// </summary>
+        public static IList<string> ReadBinaryWatch(int num)
+        {
+            // TODO
+            return null;
+        }
+
+        /// <summary>
         /// 429. N-ary Tree Level Order Traversal
         /// </summary>
         public static IList<IList<int>> LevelOrder(Node root)
         {
             IList<IList<int>> res = new List<IList<int>>();
-            if(root == null) return res;
+            if (root == null) return res;
             Queue<Node> queue = new Queue<Node>();
             queue.Enqueue(root);
             while (queue.Any())
             {
                 int size = queue.Count;
                 IList<int> tmp = new List<int>();
-                for(int i = 0; i < size; i++)
+                for (int i = 0; i < size; i++)
                 {
                     Node curr = queue.Peek();
                     tmp.Add(curr.val);
@@ -2390,12 +2485,12 @@ namespace Solutions
         /// </summary>
         public static int Fib(int N)
         {
-            if(N < 2)
+            if (N < 2)
                 return N;
             int f0 = 0;
             int f1 = 1;
             int res = 0;
-            for(int i = 1; i < N; i++)
+            for (int i = 1; i < N; i++)
             {
                 res = f0 + f1;
                 f0 = f1;
@@ -2419,25 +2514,25 @@ namespace Solutions
             // t1.right = MergeTrees(t1.right, t2.right);
             // return t1;
             // Iterative
-            if(t1 == null)
+            if (t1 == null)
                 return t2;
             Stack<TreeNode[]> stack = new Stack<TreeNode[]>();
-            stack.Push(new TreeNode[]{t1, t2});
+            stack.Push(new TreeNode[] { t1, t2 });
             while (stack.Count > 0)
             {
                 TreeNode[] t = stack.Pop();
-                if(t[0] == null || t[1] == null)
+                if (t[0] == null || t[1] == null)
                     continue;
                 t[0].val += t[1].val;
-                if(t[0].left == null)
+                if (t[0].left == null)
                     t[0].left = t[1].left;
                 else
-                    stack.Push(new TreeNode[]{t[0].left, t[1].left});
-                
-                if(t[0].right == null)
+                    stack.Push(new TreeNode[] { t[0].left, t[1].left });
+
+                if (t[0].right == null)
                     t[0].right = t[1].right;
                 else
-                    stack.Push(new TreeNode[]{t[0].right, t[1].right});
+                    stack.Push(new TreeNode[] { t[0].right, t[1].right });
             }
             return t1;
         }
@@ -2498,7 +2593,7 @@ namespace Solutions
         public static string ToLowerCase(string str)
         {
             StringBuilder sb = new StringBuilder();
-            foreach(char c in str)
+            foreach (char c in str)
             {
                 char r = (char)(c | 32);
                 sb.Append(r);
@@ -2607,7 +2702,7 @@ namespace Solutions
         /// <param name="A"></param>
         /// <param name="B"></param>
         /// <returns></returns>
-        public static string[] UncommonFromSentence(string A, string B)
+        public static string[] UncommonFromSentences(string A, string B)
         {
             List<string> res = new List<string>();
             Dictionary<string, int> dic = new Dictionary<string, int>();
