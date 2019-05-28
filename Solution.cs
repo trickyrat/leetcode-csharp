@@ -1069,32 +1069,23 @@ namespace Solutions
         public static int Divide(int dividend, int divisor)
         {
             if (divisor == 0 || (dividend == Int32.MinValue && divisor == -1)) return Int32.MaxValue;
-            int sign = ((dividend < 0) ^ (divisor < 0)) ? -1 : 1;
-            int dvd = Math.Abs(dividend);
-            int dvs = Math.Abs(divisor);
+            int sign = dividend < 0 ^ divisor < 0 ? -1 : 1;
+            long dvd = Math.Abs((long)dividend);
+            long dvs = Math.Abs((long)divisor);
             int res = 0;
             while (dvd >= dvs)
             {
-                int tmp = dvs, multiple = 1;
-                // if on the condition "max / 1", tmp will overflow. 
-                // 2 ^30 << 1 = 2^31 but Int32 ranges from -2^31 to (2^31)-1
+                long tmp = dvs;
+                int multiple = 1;
                 while (dvd >= (tmp << 1))
                 {
-                    if (tmp != 1073741824)
-                    {
                         tmp <<= 1;
                         multiple <<= 1;
-                    }
-                    else
-                    {
-                        tmp = Int32.MaxValue;
-                        multiple = Int32.MaxValue;
-                    }
                 }
                 dvd -= tmp;
                 res += multiple;
             }
-            return sign == 1 ? res : -res;
+            return sign * res;
         }
 
         /// <summary>
@@ -1233,13 +1224,13 @@ namespace Solutions
         public static int FirstMissingPositive(int[] nums)
         {
             int len = nums.Length;
-            for(int i = 0; i < len; i++)
+            for (int i = 0; i < len; i++)
             {
-                while(nums[i] > 0 && nums[i] <= len && nums[nums[i] - 1] != nums[i])
+                while (nums[i] > 0 && nums[i] <= len && nums[nums[i] - 1] != nums[i])
                     Swap(ref nums[i], ref nums[nums[i] - 1]);
             }
-            for(int i = 0; i < len; i++)
-                if(nums[i] != i + 1)
+            for (int i = 0; i < len; i++)
+                if (nums[i] != i + 1)
                     return i + 1;
             return len + 1;
         }
