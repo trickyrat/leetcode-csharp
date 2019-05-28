@@ -959,6 +959,24 @@ namespace Solutions
         }
 
         /// <summary>
+        /// 22. Generate Parentheses
+        /// </summary>
+        public static IList<string> GenerateParenthesis(int n)
+        {
+            IList<string> ans = new List<string>();
+            if (n == 0)
+                ans.Add("");
+            else
+            {
+                for (int c = 0; c < n; c++)
+                    foreach (string left in GenerateParenthesis(c))
+                        foreach (string right in GenerateParenthesis(n - 1 - c))
+                            ans.Add("(" + left + ")" + right);
+            }
+            return ans;
+        }
+
+        /// <summary>
         /// 23. Merge K Sorted Lists
         /// </summary>
         /// <param name="lists">the array of lists</param>
