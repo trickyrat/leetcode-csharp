@@ -997,6 +997,26 @@ namespace Solutions
         }
 
         /// <summary>
+        /// 24. Swap Node in Pairs
+        /// </summary>
+        public static ListNode SwapPairs(ListNode head)
+        {
+            ListNode dummy = new ListNode(0);
+            dummy.next = head;
+            ListNode curr = dummy;
+            while(curr.next != null && curr.next.next != null)
+            {
+                ListNode a = curr.next;
+                ListNode b = curr.next.next;
+                a.next = b.next;
+                curr.next = b;
+                curr.next.next = a;
+                curr = curr.next.next;
+            }
+            return dummy.next;
+        }
+
+        /// <summary>
         /// 26. Remove Duplicates from Sorted Array
         /// </summary>
         /// <param name="nums"></param>
