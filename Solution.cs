@@ -1017,6 +1017,54 @@ namespace Solutions
         }
 
         /// <summary>
+        /// 25. Reverse Nodes in K Group
+        /// </summary>
+        public static ListNode ReverseKGroup(ListNode head, int k)
+        {
+            // Non-recursive
+            int n = 0;
+            for(ListNode i = head; i != null; n++, i = i.next);
+            ListNode dummy = new ListNode(0);
+            dummy.next = head;
+            for(ListNode prev = dummy, tail = head; n >= k; n -= k)
+            {
+                for(int i = 1; i < k; i++)
+                {
+                    ListNode next = tail.next.next;
+                    tail.next.next = prev.next;
+                    prev.next = tail.next;
+                    tail.next = next;
+                }
+                prev = tail;
+                tail = tail.next;
+            }
+            return dummy.next;
+            
+            // Recursive
+            // ListNode curr = head;
+            // int count = 0;
+            // while(curr!=null && count != k)
+            // {
+            //     curr = curr.next;
+            //     count++;
+            // }
+            // if(count == k)
+            // {
+            //     curr = ReverseKGroup(curr, k);
+            //     while(count-- > 0)
+            //     {
+            //         ListNode tmp = head.next;
+            //         head.next = curr;
+            //         curr = head;
+            //         head = tmp;
+            //     }
+            //     head = curr;
+            // }
+            // return head;
+        }
+
+
+        /// <summary>
         /// 26. Remove Duplicates from Sorted Array
         /// </summary>
         /// <param name="nums"></param>
