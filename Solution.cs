@@ -1017,7 +1017,7 @@ namespace Solutions
         }
 
         /// <summary>
-        /// 25. Reverse Nodes in K Group
+        /// 25. Reverse Nodes in k-Group
         /// </summary>
         public static ListNode ReverseKGroup(ListNode head, int k)
         {
@@ -1075,6 +1075,23 @@ namespace Solutions
             foreach (int n in nums)
                 if (n > nums[i - 1]) nums[i++] = n;
             return i;
+        }
+
+        /// <summary>
+        /// 27. Remove Element
+        /// </summary>
+        public static int RemoveElement(int[] nums, int val)
+        {
+            int len = nums.Length;
+            int found = 0;
+            for(int i = 0; i < len; i++)
+            {
+                if(found > 0)
+                    nums[i - found] = nums[i];
+                if(nums[i] == val)
+                    found++;
+            }
+            return len - found;
         }
 
         /// <summary>
