@@ -2677,6 +2677,22 @@ namespace Solutions
         }
 
         /// <summary>
+        /// 669. Trim a Binary Search Tree
+        /// </summary>
+        public static ListNode TrimBST(TreeNode root, int L, int R)
+        {
+            if(root == null)
+                return root;
+            if(root.val > R)
+                return TrimBST(root.left, L, R);
+            if(root.val < L)
+                return TrimBST(root.right, L, R);
+            root.left = TrimBST(root.left, L, R);
+            root.right = TrimBST(root.right, L, R);
+            return root;
+        }
+
+        /// <summary>
         /// 679. 24 Game
         /// </summary>
         /// <param name="nums"></param>
