@@ -191,15 +191,10 @@ namespace Solutions
     {
         /// <summary>
         /// 1. Two Sum
-        /// <para>Description: </para>
-        /// <para>Given an array of integers, return indices of the two numbers such that they
-        /// add up to a specific target.</para>
-        /// <para>You may assume that each input would have exactly
-        /// one solution, and you may not use the same element twice.</para>
         /// </summary>
-        /// <param name="nums">Given array</param>
-        /// <param name="target">Target number</param>
-        /// <returns>Aarry of result</returns>
+        /// <param name="nums"></param>
+        /// <param name="target"></param>
+        /// <returns></returns>
         public static int[] TwoSum(int[] nums, int target)
         {
             int[] res = new int[2];
@@ -221,12 +216,6 @@ namespace Solutions
 
         /// <summary>
         /// 2. Add Two Numbers
-        /// <para>Description: </para>
-        /// <para>You are given two non-empty linked lists representing two non-negative
-        /// integers.The digits are stored in reverse order and each of their nodes
-        /// contain a single digit.Add the two numbers and return it as a linked list.</para>
-        /// You may assume the two numbers do not contain any leading zero, except the     
-        /// number 0 itself.
         /// </summary>
         /// <param name="l1"></param>
         /// <param name="l2"></param>
@@ -271,16 +260,11 @@ namespace Solutions
 
         /// <summary>
         /// 3. Longest Substring Without Repeating Characters
-        /// Given a string, find the length of the longest substring without repeating characters.
         /// </summary>
         /// <param name="s"></param>
         /// <returns></returns>
         public static int LengthOfLongestSubstring(string s)
         {
-            // testcase: "abcabcbb" -> "abc" return 3.
-            // testcase: "bbbbb" -> "b" return 1.
-            // testcase: "pwwkew" -> "wke" return 3. Note: "pwke" is a subsequence and not a substring.
-
             // 96 ms int[]
             // int n = s.Length, ans = 0;
             // int[] index = new int[128];
@@ -325,13 +309,10 @@ namespace Solutions
 
         /// <summary>
         /// 4. Median of Two Sorted Arrays
-        /// <para>There are two sorted arrays nums1 and nums2 of size m and n respectively.
-        /// Find the median of the two sorted arrays.The overall run time complexity
-        /// should be O(log (m+n)). </para>You may assume nums1 and nums2 cannot be both empty.
         /// </summary>
-        /// <param name="A">First array</param>
-        /// <param name="B">Second array</param>
-        /// <returns>the median number</returns>
+        /// <param name="A"></param>
+        /// <param name="B"></param>
+        /// <returns></returns>
         public static double FindMedianSortedArrays(int[] A, int[] B)
         {
             int m = A.Length, n = B.Length;
@@ -374,9 +355,7 @@ namespace Solutions
         }
 
         /// <summary>
-        /// <para>5. Longest Palindromic Substring</para>
-        /// <para>Given a string s, find the longest palindromic substring in s.</para>
-        /// <para>You may assume that the maximum length of s is 1000.</para>
+        /// 5. Longest Palindromic Substring
         /// </summary>
         /// <param name="s"></param>
         /// <returns></returns>
@@ -558,12 +537,7 @@ namespace Solutions
         }
 
         /// <summary>
-        /// <para>11. Container With Most Water</para>
-        /// <para>
-        /// Given n non-negative integers a1, a2, ..., an , where each represents a point
-        /// at coordinate(i, ai).</para>
-        /// <para>n vertical lines are drawn such that the two endpoints of line i is at(i, ai) and(i, 0).</para>
-        /// <para>Find two lines, which together with x-axis forms a container, such that the container contains the most water.</para>
+        /// 11. Container With Most Water
         /// </summary>
         /// <param name="height"></param>
         /// <returns></returns>
@@ -1004,7 +978,7 @@ namespace Solutions
             ListNode dummy = new ListNode(0);
             dummy.next = head;
             ListNode curr = dummy;
-            while(curr.next != null && curr.next.next != null)
+            while (curr.next != null && curr.next.next != null)
             {
                 ListNode a = curr.next;
                 ListNode b = curr.next.next;
@@ -1023,12 +997,12 @@ namespace Solutions
         {
             // Non-recursive
             int n = 0;
-            for(ListNode i = head; i != null; n++, i = i.next);
+            for (ListNode i = head; i != null; n++, i = i.next) ;
             ListNode dummy = new ListNode(0);
             dummy.next = head;
-            for(ListNode prev = dummy, tail = head; n >= k; n -= k)
+            for (ListNode prev = dummy, tail = head; n >= k; n -= k)
             {
-                for(int i = 1; i < k; i++)
+                for (int i = 1; i < k; i++)
                 {
                     ListNode next = tail.next.next;
                     tail.next.next = prev.next;
@@ -1039,7 +1013,7 @@ namespace Solutions
                 tail = tail.next;
             }
             return dummy.next;
-            
+
             // Recursive
             // ListNode curr = head;
             // int count = 0;
@@ -1084,11 +1058,11 @@ namespace Solutions
         {
             int len = nums.Length;
             int found = 0;
-            for(int i = 0; i < len; i++)
+            for (int i = 0; i < len; i++)
             {
-                if(found > 0)
+                if (found > 0)
                     nums[i - found] = nums[i];
-                if(nums[i] == val)
+                if (nums[i] == val)
                     found++;
             }
             return len - found;
@@ -1144,7 +1118,6 @@ namespace Solutions
             return lps;
         }
 
-        // TODO: fix max/1 bug
         /// <summary>
         /// 29. Divide Two Integers
         /// </summary>
@@ -1164,13 +1137,22 @@ namespace Solutions
                 int multiple = 1;
                 while (dvd >= (tmp << 1))
                 {
-                        tmp <<= 1;
-                        multiple <<= 1;
+                    tmp <<= 1;
+                    multiple <<= 1;
                 }
                 dvd -= tmp;
                 res += multiple;
             }
             return sign * res;
+        }
+
+        /// <summary>
+        /// 30. Substring with Concatenation of All Words
+        /// </summary>
+        public static IList<int> FindSubstring(string s, string[] words)
+        {
+            // TODO
+            return null;
         }
 
         /// <summary>
@@ -1255,6 +1237,7 @@ namespace Solutions
         /// 37. Sudoku Solver 
         /// </summary>
         public static void SolveSudoku(char[][] board) => DoSolve(board, 0, 0);
+
         /// <summary>
         /// Do Solve
         /// </summary>
@@ -1268,7 +1251,8 @@ namespace Solutions
             {
                 for (int j = col; j < 9; j++)
                 {
-                    if (board[i][j] != '.') continue;
+                    if (board[i][j] != '.')
+                        continue;
                     for (char num = '1'; num <= '9'; num++)
                     {
                         if (IsValid(board, i, j, num))
@@ -1284,13 +1268,14 @@ namespace Solutions
             }
             return true;
         }
+
         /// <summary>
-        /// Is Valid
+        /// 
         /// </summary>
-        /// <param name="board"></param>
-        /// <param name="row"></param>
-        /// <param name="col"></param>
-        /// <param name="num"></param>
+        /// <param name="board">Soduku board</param>
+        /// <param name="row">row of the board</param>
+        /// <param name="col">column of the board</param>
+        /// <param name="num">character of the current position</param>
         /// <returns></returns>
         private static bool IsValid(char[][] board, int row, int col, char num)
         {
@@ -1319,7 +1304,13 @@ namespace Solutions
                     return i + 1;
             return len + 1;
         }
-        public static void Swap(ref int a, ref int b)
+
+        /// <summary>
+        /// Swap values for a and b.
+        /// </summary>
+        /// <param name="a">Integer a</param>
+        /// <param name="b">Integer b</param>
+        private static void Swap(ref int a, ref int b)
         {
             int tmp = a;
             a = b;
@@ -1575,7 +1566,8 @@ namespace Solutions
             //int[] dp = new int[n + 1];
             //dp[1] = 1;
             //dp[2] = 2;
-            //for (int i = 3; i <= n; i++) dp[i] = dp[i - 1] + dp[i - 2];
+            //for (int i = 3; i <= n; i++)
+            //  dp[i] = dp[i - 1] + dp[i - 2];
             //return dp[n];
 
             // 56ms
@@ -1596,7 +1588,8 @@ namespace Solutions
             for (int i = 0; i < rows; i++)
             {
                 // first column
-                if (matrix[i, 0] == 0) col0 = 0;
+                if (matrix[i, 0] == 0)
+                    col0 = 0;
                 for (int j = 1; j < cols; j++)
                 {
                     // if the current cell is "0" set i row and j col as "0"
@@ -1617,6 +1610,31 @@ namespace Solutions
         }
 
         /// <summary>
+        /// 74. Search a 2D Matrix
+        /// </summary>
+        public static bool SearchMatrix(int[][] matrix, int target)
+        {
+            int row = matrix.Length;
+            if(row == 0)
+                return false;
+            int col = matrix[0].Length;
+            int low = 0, high = row * col - 1;
+            while(low <= high)
+            {
+                int mid = low + (high - low) / 1;
+                int r = mid / col;
+                int c = mid % col;
+                if(matrix[r][c] > target)
+                    high = mid - 1;
+                else if(matrix[r][c] < target)
+                    low = mid + 1;
+                else
+                    return true;
+            }
+            return false;
+        }
+
+        /// <summary>
         /// 83. Remove Duplicates from Sorted List
         /// </summary>
         /// <param name="head"></param>
@@ -1626,8 +1644,10 @@ namespace Solutions
             ListNode current = head;
             while (current != null && current.next != null)
             {
-                if (current.val == current.next.val) current.next = current.next.next;
-                else current = current.next;
+                if (current.val == current.next.val)
+                    current.next = current.next.next;
+                else
+                    current = current.next;
             }
             return head;
         }
@@ -1691,8 +1711,10 @@ namespace Solutions
         }
         private static bool IsMirror(TreeNode l1, TreeNode l2)
         {
-            if (l1 == null && l2 == null) return true;
-            if (l1 == null || l2 == null) return false;
+            if (l1 == null && l2 == null) 
+                return true;
+            if (l1 == null || l2 == null)
+                return false;
             return (l1.val == l2.val)
                 && IsMirror(l1.left, l2.right)
                 && IsMirror(l1.right, l2.left);
@@ -1719,8 +1741,10 @@ namespace Solutions
                 {
                     TreeNode p = queue.Peek();
                     queue.Dequeue();
-                    if (p.left != null) queue.Enqueue(p.left);
-                    if (p.right != null) queue.Enqueue(p.right);
+                    if (p.left != null) 
+                        queue.Enqueue(p.left);
+                    if (p.right != null) 
+                        queue.Enqueue(p.right);
                 }
             }
             return res;
@@ -1734,7 +1758,8 @@ namespace Solutions
         public IList<IList<int>> LevelOrderBottom(TreeNode root)
         {
             IList<IList<int>> res = new List<IList<int>>();
-            if (root == null) return res;
+            if (root == null) 
+                return res;
             Queue<TreeNode> que = new Queue<TreeNode>();
             que.Enqueue(root);
             while (true)
@@ -1798,12 +1823,15 @@ namespace Solutions
             if (root == null) return 0;
             int leftHeight = DFSHeight(root.left);
             // when left node is null
-            if (leftHeight == -1) return -1;
+            if (leftHeight == -1) 
+                return -1;
             int rightHeight = DFSHeight(root.right);
             // when right node is null
-            if (rightHeight == -1) return -1;
+            if (rightHeight == -1) 
+                return -1;
             // balanced binary tree defination
-            if (Math.Abs(leftHeight - rightHeight) > 1) return -1;
+            if (Math.Abs(leftHeight - rightHeight) > 1) 
+                return -1;
             return Math.Max(leftHeight, rightHeight) + 1;
         }
 
@@ -1897,7 +1925,8 @@ namespace Solutions
         public static int SingleNumber(int[] nums)
         {
             int result = 0;
-            foreach (int item in nums) result ^= item;
+            foreach (int item in nums) 
+                result ^= item;
             return result;
         }
 
@@ -2016,6 +2045,22 @@ namespace Solutions
             if (nums[mid] > nums[mid + 1])
                 return Search(nums, l, mid);
             return Search(nums, mid + 1, r);
+        }
+
+        /// <summary>
+        /// 169. Majority Element
+        /// </summary>
+        public static int MajorityElement(int[] nums)
+        {
+            int count = 0;
+            int candidate = 0;
+            foreach(int num in nums)
+            {
+                if(count == 0)
+                    candidate = num;
+                count += num == candidate ? 1 : -1;
+            }
+            return candidate;
         }
 
         /// <summary>
