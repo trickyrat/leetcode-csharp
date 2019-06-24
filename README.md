@@ -1,11 +1,32 @@
-# 说明
+# Welcome to Leetcode
 
-Leetcode答案C#实现，根据题号顺序排序
+## Introduction
 
-## 运行环境
+The solutions of Leetcode problems with C#.  
+
+## Getting Started
+
+All solutions are sorted in ascending order according to the problem number.  
+
+## Build and Test
+
+- Runtime  
 
 > .Net Core 2.2
 
-## 授权协议
+- Run command  
+
+> dotnet run  
+
+## Contribute
+
+Contributions, issues and feature requests are welcome.  
+Feel free to check [issue page](https://github.com/Leetcodec/issues) if you want to contribute.
+
+## Author
+
+- Github: [@trickyrat](https://github.com/trickyrat)
+
+## License
 
 > MIT LICENSE

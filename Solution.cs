@@ -2679,7 +2679,7 @@ namespace Solutions
         /// <summary>
         /// 669. Trim a Binary Search Tree
         /// </summary>
-        public static ListNode TrimBST(TreeNode root, int L, int R)
+        public static TreeNode TrimBST(TreeNode root, int L, int R)
         {
             if(root == null)
                 return root;
