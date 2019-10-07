@@ -200,12 +200,23 @@ namespace Solutions
             int[] res = new int[2];
             Dictionary<int, int> dic = new Dictionary<int, int>();
 
+            // for (int i = 0; i < nums.Length; i++)
+            // {
+            //     if (dic.ContainsKey(target - nums[i]))
+            //     {
+            //         res[1] = i;
+            //         res[0] = dic[target - nums[i]];
+            //         break;
+            //     }
+            //     if (!dic.ContainsKey(nums[i]))
+            //         dic.Add(nums[i], i);
+            // }
             for (int i = 0; i < nums.Length; i++)
             {
-                if (dic.ContainsKey(target - nums[i]))
+                if (dic.TryGetValue(target - nums[i], out int value))
                 {
                     res[1] = i;
-                    res[0] = dic[target - nums[i]];
+                    res[0] = value;
                     break;
                 }
                 if (!dic.ContainsKey(nums[i]))
@@ -938,18 +949,32 @@ namespace Solutions
         public static IList<string> GenerateParenthesis(int n)
         {
             IList<string> ans = new List<string>();
-            if (n == 0)
-                ans.Add("");
-            else
-            {
-                for (int c = 0; c < n; c++)
-                    foreach (string left in GenerateParenthesis(c))
-                        foreach (string right in GenerateParenthesis(n - 1 - c))
-                            ans.Add("(" + left + ")" + right);
-            }
+            // if (n == 0)
+            //     ans.Add("");
+            // else
+            // {
+            //     for (int c = 0; c < n; c++)
+            //         foreach (string left in GenerateParenthesis(c))
+            //             foreach (string right in GenerateParenthesis(n - 1 - c))
+            //                 ans.Add("(" + left + ")" + right);
+            // }
+            // return ans;
+            Backtrack(ans, "", 0,0,n);
             return ans;
         }
-
+        private static void Backtrack(IList<string> list, string str, int open, int close, int n)
+        {
+            if(str.Length == n*2)
+            {
+                list.Add(str);
+                return;
+            }
+            if(open < n)
+                Backtrack(list, str+"(",open + 1, close, n);
+            if(close < open)
+                Backtrack(list, str + ")",open,close+1,n);
+        }
+    
         /// <summary>
         /// 23. Merge K Sorted Lists
         /// </summary>
