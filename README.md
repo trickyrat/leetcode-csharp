@@ -12,7 +12,7 @@ All solutions are sorted in ascending order according to the problem number.
 
 - Runtime  
 
-> .Net Core 2.2
+> .Net Core 3.0
 
 - Run command  
 
