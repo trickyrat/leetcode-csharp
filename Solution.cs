@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Solutions
+namespace Leetcode
 {
     /// <summary>
     /// Definition for a Node.
@@ -35,6 +35,38 @@ namespace Solutions
         public TreeNode right;
         public TreeNode(int x) => val = x;
     }
+
+    public class BSTIterator
+    {
+        private Stack<TreeNode> stack;
+
+        public BSTIterator(TreeNode root)
+        {
+            stack = new Stack<TreeNode>();
+            while (root != null)
+            {
+                stack.Push(root);
+                root = root.left;
+            }
+        }
+        
+        public int Next()
+        {
+            TreeNode tmp = stack.Pop();
+            TreeNode right = tmp.right;
+            while(right != null)
+            {
+                stack.Push(right);
+                right = right.left;
+            }
+            return tmp.val;
+        }
+
+        public bool HasNext()
+        {
+            return stack.Count > 0;
+        }
+    } 
 
     /// <summary>
     /// Definition for singly-linked list.
@@ -859,27 +891,24 @@ namespace Solutions
         public static ListNode MergeTwoLists(ListNode l1, ListNode l2)
         {
             // Iteratively 124ms
-            //ListNode point = new ListNode(0);
-            //ListNode head = point;
+            //ListNode dummyHead = new ListNode(0);
+            //ListNode head = dummyHead;
             //while (l1 != null && l2 != null)
             //{
             //    if (l1.val <= l2.val)
             //    {
-            //        point.next = l1;
+            //        head.next = l1;
             //        l1 = l1.next;
             //    }
             //    else
             //    {
-            //        point.next = l2;
+            //        head.next = l2;
             //        l2 = l2.next;
             //    }
-            //    point = point.next;
+            //    head = head.next;
             //}
-            //if (l1 == null)
-            //    point.next = l2;
-            //if(l2 == null)
-            //    point.next = l1;
-            //return head.next;
+            //point.next = l1 ?? l2;
+            //return dummyHead.next;
 
             // Recursively 112ms
             //if (l1 == null) return l2;
@@ -959,22 +988,22 @@ namespace Solutions
             //                 ans.Add("(" + left + ")" + right);
             // }
             // return ans;
-            Backtrack(ans, "", 0,0,n);
+            Backtrack(ans, "", 0, 0, n);
             return ans;
         }
         private static void Backtrack(IList<string> list, string str, int open, int close, int n)
         {
-            if(str.Length == n*2)
+            if (str.Length == n * 2)
             {
                 list.Add(str);
                 return;
             }
-            if(open < n)
-                Backtrack(list, str+"(",open + 1, close, n);
-            if(close < open)
-                Backtrack(list, str + ")",open,close+1,n);
+            if (open < n)
+                Backtrack(list, str + "(", open + 1, close, n);
+            if (close < open)
+                Backtrack(list, str + ")", open, close + 1, n);
         }
-    
+
         /// <summary>
         /// 23. Merge K Sorted Lists
         /// </summary>
@@ -1379,6 +1408,9 @@ namespace Solutions
             return ans;
         }
 
+        /// <summary>
+        /// 43. Multiply String
+        /// </summary>
         public string Multiply(string num1, string num2)
         {
             int m = num1.Length, n = num2.Length;
@@ -1721,6 +1753,29 @@ namespace Solutions
         }
 
         /// <summary>
+        /// 98. Validate Binary Search Tree
+        /// </summary>
+        public static bool IsValidBST(TreeNode root)
+        {
+            Stack<TreeNode> stack = new Stack<TreeNode>();
+            double inorder = -double.MaxValue;
+            while(stack.Count > 0 || root != null)
+            {
+                while(root != null)
+                {
+                    stack.Push(root);
+                    root = root.left;
+                }
+                root = stack.Pop();
+                if(root.val <= inorder) 
+                    return false;
+                inorder = root.val;
+                root = root.right;
+            }
+            return true;
+        }
+
+        /// <summary>
         /// 100. Same Tree
         /// </summary>
         public static bool IsSameTree(TreeNode p, TreeNode q)
@@ -1760,7 +1815,7 @@ namespace Solutions
         }
         private static bool IsMirror(TreeNode l1, TreeNode l2)
         {
-            if (l1 == null && l2 == null) 
+            if (l1 == null && l2 == null)
                 return true;
             if (l1 == null || l2 == null)
                 return false;
@@ -1790,9 +1845,9 @@ namespace Solutions
                 {
                     TreeNode p = queue.Peek();
                     queue.Dequeue();
-                    if (p.left != null) 
+                    if (p.left != null)
                         queue.Enqueue(p.left);
-                    if (p.right != null) 
+                    if (p.right != null)
                         queue.Enqueue(p.right);
                 }
             }
@@ -1807,7 +1862,7 @@ namespace Solutions
         public IList<IList<int>> LevelOrderBottom(TreeNode root)
         {
             IList<IList<int>> res = new List<IList<int>>();
-            if (root == null) 
+            if (root == null)
                 return res;
             Queue<TreeNode> que = new Queue<TreeNode>();
             que.Enqueue(root);
@@ -1859,6 +1914,40 @@ namespace Solutions
         }
 
         /// <summary>
+        /// 109. Convert Sorted List to Binary Search Tree
+        /// </summary>
+        public static TreeNode SortedListToBST(ListNode head)
+        {
+            int size = FindSize(head);
+            Solution.head = head;
+            return ConvertListToBST(0, size - 1);
+        }
+        private static ListNode head;
+        private static int FindSize(ListNode head)
+        {
+            ListNode ptr = head;
+            int c = 0;
+            while(ptr != null)
+            {
+                ptr = ptr.next;
+                c += 1;
+            }
+            return c;
+        }
+        private static TreeNode ConvertListToBST(int l, int r)
+        {
+            if(l > r)
+                return null;
+            int mid = (l + r) / 2;
+            TreeNode left = ConvertListToBST(l, mid - 1);
+            TreeNode node = new TreeNode(head.val);
+            node.left = left;
+            head = head.next;
+            node.right = ConvertListToBST(mid + 1, r);
+            return node;
+        }
+
+        /// <summary>
         /// 110. Balanced Binary Tree
         /// </summary>
         /// <param name="root"></param>
@@ -1872,14 +1961,14 @@ namespace Solutions
             if (root == null) return 0;
             int leftHeight = DFSHeight(root.left);
             // when left node is null
-            if (leftHeight == -1) 
+            if (leftHeight == -1)
                 return -1;
             int rightHeight = DFSHeight(root.right);
             // when right node is null
-            if (rightHeight == -1) 
+            if (rightHeight == -1)
                 return -1;
             // balanced binary tree defination
-            if (Math.Abs(leftHeight - rightHeight) > 1) 
+            if (Math.Abs(leftHeight - rightHeight) > 1)
                 return -1;
             return Math.Max(leftHeight, rightHeight) + 1;
         }
@@ -1974,7 +2063,7 @@ namespace Solutions
         public static int SingleNumber(int[] nums)
         {
             int result = 0;
-            foreach (int item in nums) 
+            foreach (int item in nums)
                 result ^= item;
             return result;
         }
@@ -2959,7 +3048,7 @@ namespace Solutions
         /// </summary>
         /// <param name="A"></param>
         /// <returns></returns>
-        public int NumSpecialEquivGroups(string[] A)
+        public static int NumSpecialEquivGroups(string[] A)
         {
             HashSet<string> seen = new HashSet<string>();
             foreach (string s in A)
