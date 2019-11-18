@@ -1542,6 +1542,45 @@ namespace Leetcode
         }
 
         /// <summary>
+        /// 54. Spiral Matrix
+        /// </summary>
+
+        public static IList<int> SpiralOrder(int[][] matrix)
+        {
+            if (matrix.Length == 0)
+                return new List<int>(){0};
+            int startRow = 0, startColumn = 0;
+            int height = matrix.Length, width = matrix[0].Length;
+            IList<int> result = new List<int>();
+            while (true)
+            {
+                if (height == 0 || width == 0) // can also use if(index == height * width) 
+                    break;
+                for (int col = startColumn; col < startColumn + width; col++)
+                    result.Add(matrix[startRow][col]);
+                startRow++;
+                height--;
+                if (height == 0 || width == 0)
+                    break;
+                for (int row = startRow; row < startRow + height; row++)
+                    result.Add(matrix[row][startColumn + width - 1]);
+                width--;
+                if (height == 0 || width == 0)
+                    break;
+                for (int col = startColumn + width - 1; col >= startColumn; col--)
+                    result.Add(matrix[startRow + height - 1][col]);
+                height--;
+                if (height == 0 || width == 0)
+                    break;
+                for (int row = startRow + height - 1; row >= startRow; row--)
+                    result.Add(matrix[row][startColumn]);
+                startColumn++;
+                width--;
+            }
+            return result;
+        }
+
+        /// <summary>
         /// 55. Jump Game
         /// </summary>
         /// <param name="nums"></param>
@@ -1567,6 +1606,46 @@ namespace Leetcode
             s = s.Trim();
             int lastIndex = s.LastIndexOf(' ') + 1;
             return s.Length - lastIndex;
+        }
+
+        /// <summary>
+        /// 59. Spiral Matrix II
+        /// </summary>
+        public static int[][] GenerateMatrix(int n)
+        {
+            if(n == 0)
+                return new []{new []{0}};
+            int startRow = 0, startColumn = 0;
+            int index = 1, height = n, width = n;
+            int[][] matrix = new int[n][];
+            for(int r = 0; r < n; r++)
+                matrix[r] = new int[n];
+            while(true)
+            {
+                if (height == 0 || width == 0)
+                    break;
+                for (int col = startColumn; col < startColumn + width; col++)
+                    matrix[startRow][col] = index++;
+                startRow++;
+                height--;
+                if (height == 0 || width == 0)
+                    break;
+                for (int row = startRow; row < startRow + height; row++)
+                    matrix[row][startColumn + width - 1] = index++;
+                width--;
+                if (height == 0 || width == 0)
+                    break;
+                for (int col = startColumn + width - 1; col >= startColumn; col--)
+                    matrix[startRow + height - 1][col] = index++;
+                height--;
+                if (height == 0 || width == 0)
+                    break;
+                for (int row = startRow + height - 1; row >= startRow; row--)
+                    matrix[row][startColumn] = index++;
+                startColumn++;
+                width--;
+            }
+            return matrix;
         }
 
         /// <summary>
@@ -2712,6 +2791,35 @@ namespace Leetcode
             return res;
         }
 
+        /// <summary>
+        /// 450. Delete Node in a BST
+        /// </summary>
+        public static TreeNode DeleteNode(TreeNode root, int key)
+        {
+            if(root == null)
+                return null;
+            if(root.val > key)
+                root.left = DeleteNode(root.left, key);
+            else if(root.val < key)
+                root.right = DeleteNode(root.right, key);
+            else
+            {
+                if(root.left == null)
+                    return root.right;
+                if(root.right == null)
+                    return root.left;
+                TreeNode minNode = FindMin(root.right);
+                root.val = minNode.val;
+                root.right = DeleteNode(root.right, root.val);
+            }
+            return root;
+        }
+        private static TreeNode FindMin(TreeNode node)
+        {
+            while(node.left != null)
+                node = node.left;
+            return node;
+        }
 
         /// <summary>
         /// 459. Repeated Substring Pattern
@@ -2876,6 +2984,61 @@ namespace Leetcode
                 }
             }
             return false;
+        }
+
+        /// <summary>
+        /// 700. Search in a Binary Search Tree
+        /// </summary>
+        public static TreeNode SearchBST(TreeNode root, int val)
+        {
+            while(root != null && root.val != val)
+            {
+                root = val < root.val ? root.left : root.right;
+            }
+            return root;
+        }
+
+        /// <summary>
+        /// 701. Insert into a Binary Search Tree
+        /// </summary>
+        public static TreeNode InsertIntoBST(TreeNode root, int val)
+        {
+            // recursive
+            // if(root == null)
+            //     return new TreeNode(val);
+            // if(val > root.val)
+            //     root.right = InsertIntoBST(root.right, val);
+            // else
+            //     root.left = InsertIntoBST(root.left, val);
+            // return root;
+            // iterative
+            if(root == null)
+                return new TreeNode(val);
+            TreeNode currentNode = root;
+            while(true)
+            {
+                if(currentNode.val >= val)
+                {
+                    if(currentNode.left != null)
+                        currentNode = currentNode.left;
+                    else 
+                    {
+                        currentNode.left = new TreeNode(val);
+                        break;
+                    }
+                }
+                else
+                {
+                    if(currentNode.right != null)
+                        currentNode = currentNode.right;
+                    else
+                    {
+                        currentNode.right = new TreeNode(val);
+                        break;
+                    }
+                }
+            }
+            return root;
         }
 
         /// <summary>
