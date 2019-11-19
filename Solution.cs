@@ -49,12 +49,12 @@ namespace Leetcode
                 root = root.left;
             }
         }
-        
+
         public int Next()
         {
             TreeNode tmp = stack.Pop();
             TreeNode right = tmp.right;
-            while(right != null)
+            while (right != null)
             {
                 stack.Push(right);
                 right = right.left;
@@ -66,7 +66,7 @@ namespace Leetcode
         {
             return stack.Count > 0;
         }
-    } 
+    }
 
     /// <summary>
     /// Definition for singly-linked list.
@@ -1415,9 +1415,9 @@ namespace Leetcode
         {
             int m = num1.Length, n = num2.Length;
             int[] pos = new int[m + n];
-            for(int i = m - 1; i >= 0; i--)
+            for (int i = m - 1; i >= 0; i--)
             {
-                for(int j = n - 1; j >= 0; j--)
+                for (int j = n - 1; j >= 0; j--)
                 {
                     int mul = (num1[i] - '0') * (num2[j] - '0');
                     int p1 = i + j, p2 = i + j + 1;
@@ -1429,7 +1429,7 @@ namespace Leetcode
             StringBuilder sb = new StringBuilder();
             foreach (int item in pos)
             {
-                if(!(sb.Length == 0 && item == 0))
+                if (!(sb.Length == 0 && item == 0))
                     sb.Append(item);
             }
             return sb.Length == 0 ? "0" : sb.ToString();
@@ -1548,7 +1548,7 @@ namespace Leetcode
         public static IList<int> SpiralOrder(int[][] matrix)
         {
             if (matrix.Length == 0)
-                return new List<int>(){0};
+                return new List<int>() { 0 };
             int startRow = 0, startColumn = 0;
             int height = matrix.Length, width = matrix[0].Length;
             IList<int> result = new List<int>();
@@ -1603,9 +1603,18 @@ namespace Leetcode
         /// <returns></returns>
         public static int LengthOfLastWord(string s)
         {
-            s = s.Trim();
-            int lastIndex = s.LastIndexOf(' ') + 1;
-            return s.Length - lastIndex;
+            // s = s.Trim();
+            // int lastIndex = s.LastIndexOf(' ') + 1;
+            // return s.Length - lastIndex;
+            int len = 0, tail = s.Length - 1;
+            while (tail >= 0 && s[tail] == ' ')
+                tail--;
+            while (tail >= 0 && s[tail] != ' ')
+            {
+                len++;
+                tail--;
+            }
+            return len;
         }
 
         /// <summary>
@@ -1613,14 +1622,14 @@ namespace Leetcode
         /// </summary>
         public static int[][] GenerateMatrix(int n)
         {
-            if(n == 0)
-                return new []{new []{0}};
+            if (n == 0)
+                return new[] { new[] { 0 } };
             int startRow = 0, startColumn = 0;
             int index = 1, height = n, width = n;
             int[][] matrix = new int[n][];
-            for(int r = 0; r < n; r++)
+            for (int r = 0; r < n; r++)
                 matrix[r] = new int[n];
-            while(true)
+            while (true)
             {
                 if (height == 0 || width == 0)
                     break;
@@ -1646,6 +1655,79 @@ namespace Leetcode
                 width--;
             }
             return matrix;
+        }
+
+        /// <summary>
+        /// 61. Rotate List
+        /// </summary>
+        public static ListNode RotateRight(ListNode head, int k)
+        {
+            if (head == null)
+                return null;
+            if (head.next == null)
+                return head;
+            ListNode oldTail = head;
+            int n;
+            for (n = 1; oldTail.next != null; n++)
+                oldTail = oldTail.next;
+            oldTail.next = head;
+            ListNode newTail = head;
+            for (int i = 0; i < n - k % n - 1; i++)
+                newTail = newTail.next;
+            ListNode newHead = newTail.next;
+            newTail.next = null;
+            return newHead;
+        }
+
+        /// <summary>
+        /// 62. Unique Paths
+        /// </summary>
+        public static int UniquePaths(int m, int n)
+        {
+            int[] dp = new int[n];
+            Array.Fill(dp, 1);
+            for (int i = 1; i < m; i++)
+                for (int j = 1; j < n; j++)
+                    dp[j] += dp[j - 1];
+            return dp[n - 1];
+        }
+
+        /// <summary
+        /// 63. Unique Paths II
+        /// </summary>
+        public static int UniquePathsWithObstacles(int[][] obstacleGrid)
+        {
+            // if(obstacleGrid[0][0] == 1)
+            //     return 0;
+            // int height = obstacleGrid.Length;
+            // int width = obstacleGrid[0].Length;
+            // obstacleGrid[0][0] = 1;
+            // for(int row = 1; row < height; row++)
+            //     obstacleGrid[row][0] = (obstacleGrid[row][0] == 0 && obstacleGrid[row - 1][0] == 1) ? 1 : 0;
+            // for(int col = 1; col < width; col++)
+            //     obstacleGrid[0][col] = (obstacleGrid[0][col] == 0 && obstacleGrid[0][col - 1] == 1) ? 1 : 0;
+            // for(int row = 1; row < height; row++)
+            //     for(int col = 1; col < width; col++)
+            //         if(obstacleGrid[row][col] == 0)
+            //             obstacleGrid[row][col] = obstacleGrid[row - 1][col] + obstacleGrid[row][col - 1];
+            //         else
+            //             obstacleGrid[row][col] = 0;
+            // return obstacleGrid[height - 1][width - 1];
+
+            int width = obstacleGrid[0].Length;
+            int[] dp = new int[width];
+            dp[0] = 1;
+            foreach (int[] row in obstacleGrid)
+            {
+                for (int j = 0; j < width; j++)
+                {
+                    if (row[j] == 1)
+                        dp[j] = 0;
+                    else if (j > 0)
+                        dp[j] += dp[j - 1];
+                }
+            }
+            return dp[width - 1];
         }
 
         /// <summary>
@@ -1775,18 +1857,18 @@ namespace Leetcode
         public static bool SearchMatrix(int[][] matrix, int target)
         {
             int row = matrix.Length;
-            if(row == 0)
+            if (row == 0)
                 return false;
             int col = matrix[0].Length;
             int low = 0, high = row * col - 1;
-            while(low <= high)
+            while (low <= high)
             {
                 int mid = low + (high - low) / 1;
                 int r = mid / col;
                 int c = mid % col;
-                if(matrix[r][c] > target)
+                if (matrix[r][c] > target)
                     high = mid - 1;
-                else if(matrix[r][c] < target)
+                else if (matrix[r][c] < target)
                     low = mid + 1;
                 else
                     return true;
@@ -1838,15 +1920,15 @@ namespace Leetcode
         {
             Stack<TreeNode> stack = new Stack<TreeNode>();
             double inorder = -double.MaxValue;
-            while(stack.Count > 0 || root != null)
+            while (stack.Count > 0 || root != null)
             {
-                while(root != null)
+                while (root != null)
                 {
                     stack.Push(root);
                     root = root.left;
                 }
                 root = stack.Pop();
-                if(root.val <= inorder) 
+                if (root.val <= inorder)
                     return false;
                 inorder = root.val;
                 root = root.right;
@@ -2006,7 +2088,7 @@ namespace Leetcode
         {
             ListNode ptr = head;
             int c = 0;
-            while(ptr != null)
+            while (ptr != null)
             {
                 ptr = ptr.next;
                 c += 1;
@@ -2015,7 +2097,7 @@ namespace Leetcode
         }
         private static TreeNode ConvertListToBST(int l, int r)
         {
-            if(l > r)
+            if (l > r)
                 return null;
             int mid = (l + r) / 2;
             TreeNode left = ConvertListToBST(l, mid - 1);
@@ -2132,6 +2214,23 @@ namespace Leetcode
                 full[i] = Math.Max(full[i - 1], empty[i - 1] - prices[i]);
             }
             return Math.Max(full[len - 1], empty[len - 1]);
+        }
+
+        /// <summary>
+        /// 125. Valid Palindrome
+        /// </summary>
+        public static bool IsPalindrome(string s)
+        {
+            for (int i = 0, j = s.Length - 1; i < j;)
+            {
+                if (!char.IsLetterOrDigit(s[i])) // skip space from head
+                    i++;
+                else if (!char.IsLetterOrDigit(s[j])) // skip space from tail
+                    j--;
+                else if (char.ToLower(s[i++]) != char.ToLower(s[j--]))
+                    return false;
+            }
+            return true;
         }
 
         /// <summary>
@@ -2271,9 +2370,9 @@ namespace Leetcode
         {
             int count = 0;
             int candidate = 0;
-            foreach(int num in nums)
+            foreach (int num in nums)
             {
-                if(count == 0)
+                if (count == 0)
                     candidate = num;
                 count += num == candidate ? 1 : -1;
             }
@@ -2796,17 +2895,17 @@ namespace Leetcode
         /// </summary>
         public static TreeNode DeleteNode(TreeNode root, int key)
         {
-            if(root == null)
+            if (root == null)
                 return null;
-            if(root.val > key)
+            if (root.val > key)
                 root.left = DeleteNode(root.left, key);
-            else if(root.val < key)
+            else if (root.val < key)
                 root.right = DeleteNode(root.right, key);
             else
             {
-                if(root.left == null)
+                if (root.left == null)
                     return root.right;
-                if(root.right == null)
+                if (root.right == null)
                     return root.left;
                 TreeNode minNode = FindMin(root.right);
                 root.val = minNode.val;
@@ -2816,7 +2915,7 @@ namespace Leetcode
         }
         private static TreeNode FindMin(TreeNode node)
         {
-            while(node.left != null)
+            while (node.left != null)
                 node = node.left;
             return node;
         }
@@ -2927,11 +3026,11 @@ namespace Leetcode
         /// </summary>
         public static TreeNode TrimBST(TreeNode root, int L, int R)
         {
-            if(root == null)
+            if (root == null)
                 return root;
-            if(root.val > R)
+            if (root.val > R)
                 return TrimBST(root.left, L, R);
-            if(root.val < L)
+            if (root.val < L)
                 return TrimBST(root.right, L, R);
             root.left = TrimBST(root.left, L, R);
             root.right = TrimBST(root.right, L, R);
@@ -2991,7 +3090,7 @@ namespace Leetcode
         /// </summary>
         public static TreeNode SearchBST(TreeNode root, int val)
         {
-            while(root != null && root.val != val)
+            while (root != null && root.val != val)
             {
                 root = val < root.val ? root.left : root.right;
             }
@@ -3012,16 +3111,16 @@ namespace Leetcode
             //     root.left = InsertIntoBST(root.left, val);
             // return root;
             // iterative
-            if(root == null)
+            if (root == null)
                 return new TreeNode(val);
             TreeNode currentNode = root;
-            while(true)
+            while (true)
             {
-                if(currentNode.val >= val)
+                if (currentNode.val >= val)
                 {
-                    if(currentNode.left != null)
+                    if (currentNode.left != null)
                         currentNode = currentNode.left;
-                    else 
+                    else
                     {
                         currentNode.left = new TreeNode(val);
                         break;
@@ -3029,7 +3128,7 @@ namespace Leetcode
                 }
                 else
                 {
-                    if(currentNode.right != null)
+                    if (currentNode.right != null)
                         currentNode = currentNode.right;
                     else
                     {
