@@ -1288,6 +1288,56 @@ namespace Leetcode
         }
 
         /// <summary>
+        /// 36. Valid Sudoku
+        /// </summary>
+        public static bool IsValidSudoku(char[][] board)
+        {
+            // Dictionary<int, int>[] rows = new Dictionary<int, int>[9]; 
+            // Dictionary<int, int>[] columns = new Dictionary<int, int>[9]; 
+            // Dictionary<int, int>[] boxes = new Dictionary<int, int>[9]; 
+
+            // for (int i = 0; i < 9; i++)
+            // {
+            //     rows[i] = new Dictionary<int, int>();
+            //     columns[i] = new Dictionary<int, int>();
+            //     boxes[i] = new Dictionary<int, int>();
+            // }
+            // for (int i = 0; i < 9; i++)
+            // {
+            //     for(int j = 0; j < 9; j++)
+            //     {
+            //         char num = board[i][j];
+            //         if(num != '.')
+            //         {
+            //             int n = (int)num;
+            //             int box_index = (i / 3) * 3 + j / 3;
+            //             rows[i][n] = rows[i].GetValueOrDefault(n, 0) + 1;
+            //             columns[j][n] = columns[j].GetValueOrDefault(n, 0) + 1;
+            //             boxes[box_index][n] = boxes[box_index].GetValueOrDefault(n, 0) + 1;
+            //             if (rows[i][n] > 1 || columns[j][n] > 1 || boxes[box_index][n] > 1)
+            //                 return false;
+            //         }
+            //     }
+            // }
+            // return true;
+
+            HashSet<string> seen = new HashSet<string>();
+            for (int i = 0; i < 9; i++)
+            {
+                for (int j = 0; j < 9; j++)
+                {
+                    char num = board[i][j];
+                    if (num != '.')
+                        if (!seen.Add(num + " in row " + i) ||
+                            !seen.Add(num + " in column " + j) ||
+                            !seen.Add(num + " in block " + i / 3 + "-" + j / 3))
+                            return false;
+                }
+            }
+            return true;
+        }
+
+        /// <summary>
         /// 37. Sudoku Solver 
         /// </summary>
         public static void SolveSudoku(char[][] board) => DoSolve(board, 0, 0);
