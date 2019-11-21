@@ -1205,8 +1205,55 @@ namespace Leetcode
         /// </summary>
         public static IList<int> FindSubstring(string s, string[] words)
         {
-            // TODO
-            return null;
+            IList<int> ret = new List<int>();
+            if (s.Length == 0 || words.Length == 0)
+                return ret;
+            int n = s.Length, size = words.Length, len = words[0].Length;
+            Dictionary<string, int> map = new Dictionary<string, int>();
+            foreach (string word in words)
+            {
+                if (map.ContainsKey(word))
+                    map[word]++;
+                else
+                    map.Add(word, 1);
+            }
+            for (int i = 0; i < len; i++)
+            {
+                int left = i, count = 0;
+                Dictionary<string, int> window = new Dictionary<string, int>();
+                for (int j = i; j + len - 1 < n; j += len)
+                {
+                    string tmp = s.Substring(j, len);
+                    if (!map.ContainsKey(tmp))
+                    {
+                        window.Clear();
+                        count = 0;
+                        left = j + len;
+                    }
+                    else
+                    {
+                        if(window.ContainsKey(tmp))
+                            window[tmp]++;
+                        else
+                            window.Add(tmp, 1);
+                        count++;
+                        while (left + len - 1 < n && window[tmp] > map[tmp])
+                        {
+                            window[s.Substring(left, len)]--;
+                            count--;
+                            left += len;
+                        }
+                        if (count == size)
+                        {
+                            ret.Add(left);
+                            window[s.Substring(left, len)]--;
+                            count--;
+                            left += len;
+                        }
+                    }
+                }
+            }
+            return ret;
         }
 
         /// <summary>
