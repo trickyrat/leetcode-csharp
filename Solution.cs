@@ -3501,5 +3501,39 @@ namespace Leetcode
             }
             return sum;
         }
+
+        /// <summary>
+        /// 1260. Shift 2D Grid
+        /// </summary>
+        public static IList<IList<int>> ShiftGrid(int[][] grid, int k)
+        {
+            int n = grid.Length, m = grid[0].Length;
+            // use array 
+            IList<IList<int>> res = new int[n][];
+            for (int r = 0; r < n; r++)
+                res[r] = new int[m];
+
+            // use list
+            // IList<IList<int>> res = new IList<List<int>>();
+            // for (int i = 0; i < n; i++)
+            // {
+            //     List<int> tmp = new List<int>();
+            //     for (int j = 0; j < m; j++)    
+            //         tmp.Add(0);
+            //     res.Add(tmp);
+            // }
+
+            k %= m * n;
+            for (int i = 0; i < n; i++)
+            {
+                for (int j = 0; j < m; j++)
+                {
+                    int index = (i * m + j + k) % (m * n);
+                    int x = index / m, y = index % m;
+                    res[x][y] = grid[i][j];
+                }
+            }
+            return res;
+        }
     }
 }
