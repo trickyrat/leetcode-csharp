@@ -1257,6 +1257,34 @@ namespace Leetcode
         }
 
         /// <summary>
+        /// 31. Next Permutation
+        /// </summary>
+        public static void NextPermutation(int[] nums)
+        {
+            int i = nums.Length - 2;
+            while (i >= 0 && nums[i + 1] <= nums[i])
+                i--;
+            if (i >= 0)
+            {
+                int j = nums.Length - 1;
+                while (j >= 0 && nums[j] <= nums[i])
+                    j--;
+                Swap(ref nums[i], ref nums[j]);
+            }
+            Reverse(nums, i + 1);
+        }
+        private static void Reverse(int[] nums, int start)
+        {
+            int i = start, j = nums.Length - 1;
+            while (i < j)
+            {
+                Swap(ref nums[i], ref nums[j]);
+                i++;
+                j--;
+            }
+        }
+
+        /// <summary>
         /// 33. Search in Rotated Sorted Array
         /// </summary>
         /// <param name="nums"></param>
@@ -1388,14 +1416,6 @@ namespace Leetcode
         /// 37. Sudoku Solver 
         /// </summary>
         public static void SolveSudoku(char[][] board) => DoSolve(board, 0, 0);
-
-        /// <summary>
-        /// Do Solve
-        /// </summary>
-        /// <param name="board"></param>
-        /// <param name="row"></param>
-        /// <param name="col"></param>
-        /// <returns></returns>
         private static bool DoSolve(char[][] board, int row, int col)
         {
             for (int i = row; i < 9; i++, col = 0)
@@ -1419,15 +1439,6 @@ namespace Leetcode
             }
             return true;
         }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="board">Soduku board</param>
-        /// <param name="row">row of the board</param>
-        /// <param name="col">column of the board</param>
-        /// <param name="num">character of the current position</param>
-        /// <returns></returns>
         private static bool IsValid(char[][] board, int row, int col, char num)
         {
             int blkrow = (row / 3) * 3, blkcol = (col / 3) * 3;
