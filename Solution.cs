@@ -1971,7 +1971,7 @@ namespace Leetcode
             int low = 0, high = row * col - 1;
             while (low <= high)
             {
-                int mid = low + (high - low) / 1;
+                int mid = low + (high - low) / 2;
                 int r = mid / col;
                 int c = mid % col;
                 if (matrix[r][c] > target)
@@ -2019,6 +2019,16 @@ namespace Leetcode
                 else
                     num1[i--] = num1[p--];
             }
+        }
+
+        /// <summary>
+        /// 94. Binary Tree Inorder Traversal
+        /// </summary>
+        /// <param name="root"></param>
+        /// <returns></returns>
+        public static IList<int> InorderTraversal(TreeNode root)
+        {
+            
         }
 
         /// <summary>
@@ -2387,6 +2397,26 @@ namespace Leetcode
                 fast = fast.next.next;
             }
             return true;
+        }
+        /// <summary>
+        /// 144. Binary Tree Preorder Traversal
+        /// </summary>
+        /// <param name="root"></param>
+        /// <returns></returns>
+        public static IList<int> PreorderTraversal(TreeNode root)
+        {
+            IList<int> res = new List<int>();
+            Stack<TreeNode> stack = new Stack<TreeNode>();
+            while(root != null)
+            {
+                res.Add(root.val);
+                if (root.right != null)
+                    stack.Push(root.right);
+                root = root.left;
+                if (root == null && stack.Count > 0)
+                    root = stack.Pop();
+            }
+            return res;
         }
 
         /// <summary>
@@ -3265,6 +3295,27 @@ namespace Leetcode
 
             //LINQ
             // return string.Concat(str.Select(c => c >= 'A' && c <= 'Z' ? (char)(c + 32) : c));
+        }
+
+        /// <summary>
+        /// 739. Daily Temperatures
+        /// </summary>
+        public static int[] DailyTemperatures(int[] T)
+        {
+            Stack<int> stack = new Stack<int>();
+            int len = T.Length;
+            int[] ans = new int[len]; 
+            for(int i = 0; i < len; i++)
+            {
+                while(stack.Count != 0 && T[i] > T[stack.Peek()])
+                {
+                    int t = stack.Peek();
+                    stack.Pop();
+                    ans[t] = i - t;
+                }
+                stack.Push(i);
+            }
+            return ans;
         }
 
         /// <summary>
