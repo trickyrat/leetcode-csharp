@@ -2028,7 +2028,41 @@ namespace Leetcode
         /// <returns></returns>
         public static IList<int> InorderTraversal(TreeNode root)
         {
-            
+            IList<int> ret = new List<int>();
+            if (root == null)
+            {
+                return ret;
+            }
+            // recursively
+            // InorderHelper(ret, root);
+
+            // iteratively
+            Stack<TreeNode> stack = new Stack<TreeNode>();
+            TreeNode curr = root;
+            while (curr != null || stack.Count > 0)
+            {
+                while (curr != null)
+                {
+                    stack.Push(curr);
+                    curr = curr.left;
+                }
+                curr = stack.Pop();
+                ret.Add(curr.val);
+                curr = curr.right;
+            }
+
+            return ret;
+        }
+
+        private static void InorderHelper(IList<int> ret, TreeNode root)
+        {
+            if(root == null)
+            {
+                return;
+            }
+            InorderHelper(ret, root.left);
+            ret.Add(root.val);
+            InorderHelper(ret, root.right);
         }
 
         /// <summary>
