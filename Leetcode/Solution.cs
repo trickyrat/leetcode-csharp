@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -1232,7 +1232,7 @@ namespace Leetcode
                     }
                     else
                     {
-                        if(window.ContainsKey(tmp))
+                        if (window.ContainsKey(tmp))
                             window[tmp]++;
                         else
                             window.Add(tmp, 1);
@@ -2056,7 +2056,7 @@ namespace Leetcode
 
         private static void InorderHelper(IList<int> ret, TreeNode root)
         {
-            if(root == null)
+            if (root == null)
             {
                 return;
             }
@@ -2441,7 +2441,7 @@ namespace Leetcode
         {
             IList<int> res = new List<int>();
             Stack<TreeNode> stack = new Stack<TreeNode>();
-            while(root != null)
+            while (root != null)
             {
                 res.Add(root.val);
                 if (root.right != null)
@@ -3338,10 +3338,10 @@ namespace Leetcode
         {
             Stack<int> stack = new Stack<int>();
             int len = T.Length;
-            int[] ans = new int[len]; 
-            for(int i = 0; i < len; i++)
+            int[] ans = new int[len];
+            for (int i = 0; i < len; i++)
             {
-                while(stack.Count != 0 && T[i] > T[stack.Peek()])
+                while (stack.Count != 0 && T[i] > T[stack.Peek()])
                 {
                     int t = stack.Peek();
                     stack.Pop();
