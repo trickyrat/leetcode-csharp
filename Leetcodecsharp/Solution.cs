@@ -3636,6 +3636,16 @@ namespace Leetcode
         }
 
         /// <summary>
+        /// 1025. Divisor Game
+        /// </summary>
+        /// <param name="N"></param>
+        /// <returns></returns>
+        public static bool DivisorGame(int N)
+        {
+            return N % 2 == 0;
+        }
+
+        /// <summary>
         /// 1260. Shift 2D Grid
         /// </summary>
         public static IList<IList<int>> ShiftGrid(int[][] grid, int k)
