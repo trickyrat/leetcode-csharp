@@ -3678,5 +3678,36 @@ namespace Leetcode
             }
             return res;
         }
+        
+        /// <summary>
+        /// Magic Index
+        /// </summary>
+        /// <param name="nums"></param>
+        /// <returns></returns>
+        public static int FindMagicIndex(int[] nums)
+        {
+            int right = nums.Length - 1;
+            int left = 0;
+            return FindMagicIndexHelper(nums, left, right);
+        }
+
+        private static int FindMagicIndexHelper(int[] nums, int left, int right)
+        {
+            if (left > right)
+            {
+                return -1;
+            }
+            int mid = (right - left) / 2 + left;
+            int leftAns = FindMagicIndexHelper(nums, left, mid - 1);
+            if (leftAns != -1)
+            {
+                return leftAns;
+            }
+            else if (nums[mid] == mid)
+            {
+                return mid;
+            }
+            return FindMagicIndexHelper(nums, mid + 1, right);
+        }
     }
 }
