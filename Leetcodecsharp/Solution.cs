@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 
 namespace Leetcode
@@ -3069,6 +3070,29 @@ namespace Leetcode
         {
             // TODO
             return null;
+        }
+
+        /// <summary>
+        /// 415. Add Strings
+        /// </summary>
+        /// <param name="num1"></param>
+        /// <param name="num2"></param>
+        /// <returns></returns>
+        public static string AddStrings(string num1, string num2)
+        {
+            int i = num1.Length - 1, j = num2.Length - 1, carry = 0;
+            StringBuilder ans = new StringBuilder();
+            while (i >= 0 || j >= 0 || carry != 0) 
+            {
+                int x = i >= 0 ? num1[i] - '0' : 0;
+                int y = j >= 0 ? num2[j] - '0' : 0;
+                int result = x + y + carry;
+                ans.Append(result % 10);
+                carry = result / 10;
+                i--;
+                j--;
+            }
+            return new string(ans.ToString().Reverse().ToArray());
         }
 
         /// <summary>
