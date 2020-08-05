@@ -1286,6 +1286,78 @@ namespace Leetcode
         }
 
         /// <summary>
+        /// 32. Longest Valid Parentheses
+        /// </summary>
+        /// <param name="s"></param>
+        /// <returns></returns>
+        public static int LongestValidParentheses(string s)
+        {
+            //int maxans = 0;
+            //int len = s.Length;
+            //int[] dp = new int[len];
+            //for (int i = 1; i < len; i++)
+            //{
+            //    if (s[i] == ')')
+            //    {
+            //        if (s[i - 1] == '(')
+            //        {
+            //            dp[i] = (i >= 2 ? dp[i - 2] : 0) + 2;
+            //        }
+            //        else if (i - dp[i - 1] > 0 && s[i - dp[i - 1] - 1] == '(')
+            //        {
+            //            dp[i] = dp[i - 1] + ((i - dp[i - 1]) >= 2 ? dp[i - dp[i - 1] - 2] : 0) + 2;
+            //        }
+            //        maxans = Math.Max(maxans, dp[i]);
+            //    }
+            //}
+            //return maxans;
+            int len = s.Length;
+            int left = 0, right = 0, maxLen = 0;
+            for (int i = 0; i < len; i++)
+            {
+                if (s[i] == '(')
+                {
+                    left++;
+                }
+                else
+                {
+                    right++;
+                }
+                if (left == right)
+                {
+                    maxLen = Math.Max(maxLen, 2 * right);
+                }
+                else if (right > left)
+                {
+                    left = right = 0;
+                }
+            }
+            left = right = 0;
+            for (int i = len - 1; i >= 0; i--)
+            {
+                if (s[i] == '(')
+                {
+                    left++;
+                }
+                else
+                {
+                    right++;
+                }
+                if (left == right)
+                {
+                    maxLen = Math.Max(maxLen, 2 * left);
+                }
+                else if (left > right)
+                {
+                    left = right = 0;
+                }
+            }
+            return maxLen;
+
+        }
+
+
+        /// <summary>
         /// 33. Search in Rotated Sorted Array
         /// </summary>
         /// <param name="nums"></param>
