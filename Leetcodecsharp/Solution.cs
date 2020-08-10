@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace Leetcode
 {
@@ -3267,6 +3268,90 @@ namespace Leetcode
                 }
             }
             return island * 4 - neighbor * 2;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="IP"></param>
+        /// <returns></returns>
+        public static string ValidIPAddress(string IP)
+        {
+            //string ipv4_chunk = "([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])";
+            //string ipv6_chunk = "([0-9a-fA-F]{1,4})";
+            //Regex ipv4Pattern = new Regex(@"^(" + ipv4_chunk + ".){3}" + ipv4_chunk + "$");
+            //Regex ipv6Pattern = new Regex(@"^(" + ipv6_chunk + ":){7}" + ipv6_chunk + "$");
+            //if(IP.Contains('.'))
+            //{
+            //    return ipv4Pattern.IsMatch(IP) ? "IPv4" : "Neither";
+            //}
+            //if(IP.Contains(':'))
+            //{
+            //    return ipv6Pattern.IsMatch(IP) ? "IPv6" : "Neither";
+            //}
+            //return "Neither";
+
+            if (IP.Count(c => c == '.') == 3)
+            {
+                return ValidIPv4(IP);
+            }
+            else if(IP.Count(c => c == ':') == 7)
+            {
+                return ValidIPv6(IP);
+            }
+            else
+            {
+                return "Neither";
+            }
+            
+        }
+        private static string ValidIPv4(string IP)
+        {
+            string[] chunks = IP.Split('.');
+            foreach (var chunk in chunks)
+            {
+                if(chunk.Length == 0 || chunk.Length > 3)
+                {
+                    return "Neither";
+                }
+                if (chunk[0] == '0' && chunk.Length != 1)
+                {
+                    return "Neither";
+                }
+                foreach (var c in chunk)
+                {
+                    if(!char.IsNumber(c))
+                    {
+                        return "Neither";
+                    }
+                }
+                if(System.Convert.ToInt32(chunk) > 255)
+                {
+                    return "Neither";
+                }
+            }
+            return "IPv4";
+        }
+        private static string ValidIPv6(string IP)
+        {
+            string[] chunks = IP.Split(':');
+            string hexDigits = "0123456789abcdefABCDEF";
+            foreach (var chunk in chunks)
+            {
+                if (chunk.Length == 0 || chunk.Length > 4)
+                {
+                    return "Neither";
+                }
+                foreach (var c in chunk)
+                {
+                    if(hexDigits.IndexOf(c) == -1)
+                    {
+                        return "Neither";
+                    }
+                }
+
+            }
+            return "IPv6";
         }
 
         /// <summary>
