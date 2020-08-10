@@ -60,5 +60,51 @@ namespace Leetcodecsharp.Test
             Assert.Equal(expected, actual);
         }
 
+        [Fact]
+        public void InvalidIPv4Test5()
+        {
+            string address = "12.12..12.12";
+            string expected = "Neither";
+            string actual = Solution.ValidIPAddress(address);
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void InvalidIPv6Test1()
+        {
+            string address = "0az:12:12:12:12:123:23:32";
+            string expected = "Neither";
+            string actual = Solution.ValidIPAddress(address);
+            Assert.Equal(expected, actual);
+        }
+
+
+        [Fact]
+        public void InvalidIPv6Test2()
+        {
+            string address = "0az:12:12:12:12:123";
+            string expected = "Neither";
+            string actual = Solution.ValidIPAddress(address);
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void InvalidIPv6Test3()
+        {
+            string address = "0a:12:12:12::123:23:0A";
+            string expected = "Neither";
+            string actual = Solution.ValidIPAddress(address);
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void InvalidIPv6Test4()
+        {
+            string address = "0a:12:12:12:12:123:23:32:11";
+            string expected = "Neither";
+            string actual = Solution.ValidIPAddress(address);
+            Assert.Equal(expected, actual);
+        }
+
     }
 }
