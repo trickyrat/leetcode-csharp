@@ -3665,6 +3665,32 @@ namespace Leetcodecsharp
         }
 
         /// <summary>
+        /// 1046. Last Stone Weight
+        /// </summary>
+        /// <param name="stones"></param>
+        /// <returns></returns>
+        public static int LastStoneWeight(List<int> stones)
+        {
+            PriorityQueue<int> pq = new PriorityQueue<int>();
+            foreach (var stone in stones)
+            {
+                pq.Push(stone);
+            }
+            while (pq.Count > 1)
+            {
+                int s1 = pq.Top();
+                pq.Pop();
+                int s2 = pq.Top();
+                pq.Pop();
+                if (s1 > s2)
+                {
+                    pq.Push(s1 - s2);
+                }
+            }
+            return pq.IsEmpty() ? 0 : pq.Top();
+        }
+
+        /// <summary>
         /// 1260. Shift 2D Grid
         /// </summary>
         public static IList<IList<int>> ShiftGrid(int[][] grid, int k)
@@ -3728,5 +3754,7 @@ namespace Leetcodecsharp
             }
             return FindMagicIndexHelper(nums, mid + 1, right);
         }
+
+       
     }
 }
