@@ -1,6 +1,4 @@
-using System;
 using Xunit;
-using Leetcode;
 
 namespace Leetcodecsharp.Test
 {

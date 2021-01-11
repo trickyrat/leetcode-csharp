@@ -1,173 +1,11 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography;
 using System.Text;
-using System.Text.RegularExpressions;
+using Leetcodecsharp.DataStructure;
 
-namespace Leetcode
+namespace Leetcodecsharp
 {
-    /// <summary>
-    /// Definition for a Node.
-    /// </summary>
-    public class Node
-    {
-        public int val;
-        public IList<Node> children;
-        public Node()
-        {
-
-        }
-        public Node(int _val, IList<Node> _children)
-        {
-            val = _val;
-            children = _children;
-        }
-    }
-
-
-    /// <summary>
-    /// Definition for a binary tree node.
-    /// </summary>
-    public class TreeNode
-    {
-        public int val;
-        public TreeNode left;
-        public TreeNode right;
-        public TreeNode(int x) => val = x;
-    }
-
-    public class BSTIterator
-    {
-        private Stack<TreeNode> stack;
-
-        public BSTIterator(TreeNode root)
-        {
-            stack = new Stack<TreeNode>();
-            while (root != null)
-            {
-                stack.Push(root);
-                root = root.left;
-            }
-        }
-
-        public int Next()
-        {
-            TreeNode tmp = stack.Pop();
-            TreeNode right = tmp.right;
-            while (right != null)
-            {
-                stack.Push(right);
-                right = right.left;
-            }
-            return tmp.val;
-        }
-
-        public bool HasNext()
-        {
-            return stack.Count > 0;
-        }
-    }
-
-    /// <summary>
-    /// Definition for singly-linked list.
-    /// </summary>
-    public class ListNode
-    {
-        public int val;
-        public ListNode next;
-
-        public ListNode(int x) => val = x;
-    }
-
-    /// <summary>
-    /// Dictionary Tree class
-    /// </summary>
-    public class Trie
-    {
-        TrieNode Root { get; set; }
-        public Trie()
-        {
-            Root = new TrieNode();
-        }
-
-        public void Insert(string word)
-        {
-            TrieNode node = Root;
-            for (int i = 0; i < word.Length; i++)
-            {
-                char currentChar = word[i];
-                if (!node.ContainsKey(currentChar))
-                {
-                    node.Put(currentChar, new TrieNode());
-                }
-                node = node.Get(currentChar);
-            }
-            node.IsEnd = true;
-        }
-
-
-        public bool Search(string word)
-        {
-            TrieNode node = SearchPrefix(word);
-            return node != null && node.IsEnd;
-        }
-        private TrieNode SearchPrefix(string word)
-        {
-            TrieNode node = Root;
-            for (int i = 0; i < word.Length; i++)
-            {
-                char currLetter = word[i];
-                if (node.ContainsKey(currLetter))
-                    node = node.Get(currLetter);
-                else
-                    return null;
-            }
-            return node;
-        }
-
-        public bool StartWith(string prefix)
-        {
-            TrieNode node = SearchPrefix(prefix);
-            return node != null;
-        }
-    }
-
-    /// <summary>
-    /// Trie Node
-    /// </summary>
-    public class TrieNode
-    {
-        public string Word { get; set; }
-        public TrieNode[] Links;
-
-        // a-z lowercase
-        private static readonly int R = 26;
-
-        public bool IsEnd { get; set; }
-
-        public TrieNode()
-        {
-            Links = new TrieNode[R];
-        }
-
-        public bool ContainsKey(char ch)
-        {
-            return Links[ch - 'a'] != null;
-        }
-
-        public TrieNode Get(char ch)
-        {
-            return Links[ch - 'a'];
-        }
-
-        public void Put(char ch, TrieNode node)
-        {
-            Links[ch - 'a'] = node;
-        }
-    }
-
     public class Codec
     {
         private static readonly char spliter = ',';
@@ -1643,7 +1481,7 @@ namespace Leetcode
             }
             return 0;
 
-            // by greedy 
+            // with greedy 
             //int jumps = 0, currEnd = 0, currFarthest = 0;
             //for (int i = 0; i < nums.Length - 1; i++)
             //{
@@ -3095,7 +2933,7 @@ namespace Leetcode
         public static void ReverseString(char[] s)
         {
             int mid = s.Length / 2;
-            char ch = new char();
+            char ch;
             int l = 0, r = s.Length - 1;
             while (mid != 0)
             {

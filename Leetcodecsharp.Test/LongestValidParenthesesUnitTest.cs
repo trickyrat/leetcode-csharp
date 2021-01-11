@@ -1,5 +1,4 @@
-﻿using Leetcode;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using Xunit;
 
 namespace Leetcodecsharp.Test

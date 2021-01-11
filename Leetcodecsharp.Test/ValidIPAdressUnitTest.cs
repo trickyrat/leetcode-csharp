@@ -1,5 +1,4 @@
-﻿using Leetcode;
-using Xunit;
+﻿using Xunit;
 
 namespace Leetcodecsharp.Test
 {
@@ -54,7 +53,7 @@ namespace Leetcodecsharp.Test
         [Fact]
         public void InvalidIPv4Test4()
         {
-            string address ="12.12.12.12.12";
+            string address = "12.12.12.12.12";
             string expected = "Neither";
             string actual = Solution.ValidIPAddress(address);
             Assert.Equal(expected, actual);
