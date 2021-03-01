@@ -1,5 +1,6 @@
 ﻿using System;
 
+
 namespace Leetcodecsharp
 {
     class Program
