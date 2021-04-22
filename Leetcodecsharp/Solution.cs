@@ -1934,6 +1934,31 @@ namespace Leetcodecsharp
         }
 
         /// <summary>
+        /// 80. Remove Duplicates from Sorted Array II
+        /// </summary>
+        /// <param name="nums"></param>
+        /// <returns></returns>
+        public static int RemoveDuplicatesV2(int[] nums)
+        {
+            int len = nums.Length;
+            if(len <= 2)
+            {
+                return len;
+            }
+            int slow = 2, fast = 2;
+            while (fast < len)
+            {
+                if(nums[slow - 2] != nums[fast])
+                {
+                    nums[slow] = nums[fast];
+                    ++slow;
+                }
+                ++fast;
+            }
+            return slow;
+        }
+
+        /// <summary>
         /// 83. Remove Duplicates from Sorted List
         /// </summary>
         /// <param name="head"></param>
