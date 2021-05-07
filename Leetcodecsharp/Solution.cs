@@ -3781,7 +3781,7 @@ namespace Leetcodecsharp
         }
 
         /// <summary>
-        /// 1486.
+        /// 1486. XOR Operation in an Array.
         /// </summary>
         /// <param name="n"></param>
         /// <param name="start"></param>
