@@ -1941,14 +1941,14 @@ namespace Leetcodecsharp
         public static int RemoveDuplicatesV2(int[] nums)
         {
             int len = nums.Length;
-            if(len <= 2)
+            if (len <= 2)
             {
                 return len;
             }
             int slow = 2, fast = 2;
             while (fast < len)
             {
-                if(nums[slow - 2] != nums[fast])
+                if (nums[slow - 2] != nums[fast])
                 {
                     nums[slow] = nums[fast];
                     ++slow;
@@ -3018,7 +3018,7 @@ namespace Leetcodecsharp
         {
             int i = num1.Length - 1, j = num2.Length - 1, carry = 0;
             StringBuilder ans = new StringBuilder();
-            while (i >= 0 || j >= 0 || carry != 0) 
+            while (i >= 0 || j >= 0 || carry != 0)
             {
                 int x = i >= 0 ? num1[i] - '0' : 0;
                 int y = j >= 0 ? num2[j] - '0' : 0;
@@ -3158,7 +3158,7 @@ namespace Leetcodecsharp
             {
                 return ValidIPv4(IP);
             }
-            else if(IP.Count(c => c == ':') == 7)
+            else if (IP.Count(c => c == ':') == 7)
             {
                 return ValidIPv6(IP);
             }
@@ -3166,14 +3166,14 @@ namespace Leetcodecsharp
             {
                 return "Neither";
             }
-            
+
         }
         private static string ValidIPv4(string IP)
         {
             string[] chunks = IP.Split('.');
             foreach (var chunk in chunks)
             {
-                if(chunk.Length == 0 || chunk.Length > 3)
+                if (chunk.Length == 0 || chunk.Length > 3)
                 {
                     return "Neither";
                 }
@@ -3183,12 +3183,12 @@ namespace Leetcodecsharp
                 }
                 foreach (var c in chunk)
                 {
-                    if(!char.IsNumber(c))
+                    if (!char.IsNumber(c))
                     {
                         return "Neither";
                     }
                 }
-                if(System.Convert.ToInt32(chunk) > 255)
+                if (System.Convert.ToInt32(chunk) > 255)
                 {
                     return "Neither";
                 }
@@ -3207,7 +3207,7 @@ namespace Leetcodecsharp
                 }
                 foreach (var c in chunk)
                 {
-                    if(hexDigits.IndexOf(c) == -1)
+                    if (hexDigits.IndexOf(c) == -1)
                     {
                         return "Neither";
                     }
@@ -3748,7 +3748,7 @@ namespace Leetcodecsharp
             }
             return res;
         }
-        
+
         /// <summary>
         /// Magic Index
         /// </summary>
@@ -3780,6 +3780,37 @@ namespace Leetcodecsharp
             return FindMagicIndexHelper(nums, mid + 1, right);
         }
 
-       
+        /// <summary>
+        /// 1486.
+        /// </summary>
+        /// <param name="n"></param>
+        /// <param name="start"></param>
+        /// <returns></returns>
+        public static int XorOperation(int n, int start)
+        {
+            // (sumXor(s - 1) ^ sumXor(s + n - 1)) * 2 + e; s = start/2, e = (0 || 1)
+            int s = start >> 1;
+            int e = n & start & 1;
+            int res = SumXor(s - 1) ^ SumXor(s + n - 1);
+            return res << 1 | e;
+        }
+
+        private static int SumXor(int n)
+        {
+            if (n % 4 == 0)
+            {
+                return n;
+            }
+            if (n % 4 == 1)
+            {
+                return 1;
+            }
+            if (n % 4 == 2)
+            {
+                return n + 1;
+            }
+            return 0;
+        }
+
     }
 }
