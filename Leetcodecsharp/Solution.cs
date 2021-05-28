@@ -3218,6 +3218,27 @@ namespace Leetcodecsharp
         }
 
         /// <summary>
+        /// 477.Total Hamming Distance
+        /// </summary>
+        /// <param name="nums"></param>
+        /// <returns></returns>
+        public static int TotalHammingDistance(int[] nums)
+        {
+            int size = nums.Length;
+            int res = 0;
+            for (int i = 0; i < 30; i++)
+            {
+                int tmp = 0;
+                foreach (var num in nums)
+                {
+                    tmp += (num >> i) & 1;
+                }
+                res += tmp * (size - tmp);
+            }
+            return res;
+        }
+
+        /// <summary>
         /// 509. Fibonacci Number
         /// </summary>
         public static int Fib(int N)
