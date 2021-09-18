@@ -2609,6 +2609,22 @@ namespace Leetcodecsharp
         }
 
         /// <summary>
+        /// 191. Number of 1 Bits
+        /// </summary>
+        /// <param name="n"></param>
+        /// <returns></returns>
+        public static int HammingWeight(uint n)
+        {
+            int res = 0;
+            while (n != 0)
+            {
+                n &= (n - 1);
+                res++;
+            }
+            return res;
+        }
+
+        /// <summary>
         /// 198. House Robber
         /// </summary>
         /// <param name="nums"></param>
@@ -2625,6 +2641,7 @@ namespace Leetcodecsharp
             //        b = Math.Max(a, b + nums[i]);
             //}
             //return Math.Max(a, b);
+
             int rob = 0;
             int notrob = 0;
             foreach (int item in nums)
@@ -3391,6 +3408,56 @@ namespace Leetcodecsharp
                 }
             }
             return root;
+        }
+
+        /// <summary>
+        /// 704. Binary Search
+        /// </summary>
+        /// <param name="nums"></param>
+        /// <param name="target"></param>
+        /// <returns></returns>
+        public static int BinarySearch(int[] nums, int target)
+        {
+            // version 1
+            //int left = 0;
+            //int right = nums.Length - 1;
+            //while (left <= right)
+            //{
+            //    int mid = left + (right - left) / 2;
+            //    if (nums[mid] > target)
+            //    {
+            //        right = mid - 1;
+            //    }
+            //    else if (nums[mid] < target)
+            //    {
+            //        left = mid + 1;
+            //    }
+            //    else
+            //    {
+            //        return mid;
+            //    }
+            //}
+            //return -1;
+
+            int left = 0;
+            int right = nums.Length;
+            while (left < right)
+            {
+                int mid = left + (right - left) / 2;
+                if (nums[mid] > target)
+                {
+                    right = mid;
+                }
+                else if (nums[mid] < target)
+                {
+                    left = mid;
+                }
+                else
+                {
+                    return mid;
+                }
+            }
+            return -1;
         }
 
         /// <summary>
