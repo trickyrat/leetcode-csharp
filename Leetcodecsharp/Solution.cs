@@ -1830,6 +1830,72 @@ namespace Leetcodecsharp
         }
 
         /// <summary>
+        /// 68. Text Justification
+        /// </summary>
+        /// <param name="words"></param>
+        /// <param name="maxWidth"></param>
+        /// <returns></returns>
+        public static IList<string> FullJustify(string[] words, int maxWidth)
+        {
+            IList<string> ans = new List<string>();
+            int right = 0, n = words.Length;
+            while (true)
+            {
+                int left = right;
+                int sumLen = 0;
+                while (right < n && sumLen + words[right].Length + right - left <= maxWidth)
+                {
+                    sumLen += words[right++].Length;
+                }
+                if(right == n)
+                {
+                    StringBuilder sb = Join(words, left, n, " ");
+                    sb.Append(Blank(maxWidth - sb.Length));
+                    ans.Add(sb.ToString());
+                    return ans;
+                }
+                int numWords = right - left;
+                int numSpaces = maxWidth - sumLen;
+                if(numWords == 1)
+                {
+                    StringBuilder sb = new StringBuilder(words[left]);
+                    sb.Append(Blank(numSpaces));
+                    ans.Add(sb.ToString());
+                    continue;
+                }
+                int avgSpaces = numSpaces / (numWords - 1);
+                int extraSpaces = numSpaces % (numWords - 1);
+                StringBuilder curr = new StringBuilder();
+                curr.Append(Join(words, left, left + extraSpaces + 1, Blank(avgSpaces + 1)));
+                curr.Append(Blank(avgSpaces));
+                curr.Append(Join(words, left + extraSpaces + 1, right, Blank(avgSpaces)));
+                ans.Add(curr.ToString());
+            }
+        }
+
+        private static string Blank(int n)
+        {
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < n; i++)
+            {
+                sb.Append(' ');
+            }
+            return sb.ToString();
+        }
+
+        private static StringBuilder Join(string[] words, int left, int right, string seperator)
+        {
+            StringBuilder sb = new StringBuilder(words[left]);
+            for (int i = left + 1; i < right; i++)
+            {
+                sb.Append(seperator);
+                sb.Append(words[i]);
+            }
+            return sb;
+        }
+
+
+        /// <summary>
         /// 69. Sqrt(x)
         /// </summary>
         /// <param name="x"></param>
@@ -1941,14 +2007,14 @@ namespace Leetcodecsharp
         public static int RemoveDuplicatesV2(int[] nums)
         {
             int len = nums.Length;
-            if(len <= 2)
+            if (len <= 2)
             {
                 return len;
             }
             int slow = 2, fast = 2;
             while (fast < len)
             {
-                if(nums[slow - 2] != nums[fast])
+                if (nums[slow - 2] != nums[fast])
                 {
                     nums[slow] = nums[fast];
                     ++slow;
@@ -3035,7 +3101,7 @@ namespace Leetcodecsharp
         {
             int i = num1.Length - 1, j = num2.Length - 1, carry = 0;
             StringBuilder ans = new StringBuilder();
-            while (i >= 0 || j >= 0 || carry != 0) 
+            while (i >= 0 || j >= 0 || carry != 0)
             {
                 int x = i >= 0 ? num1[i] - '0' : 0;
                 int y = j >= 0 ? num2[j] - '0' : 0;
@@ -3175,7 +3241,7 @@ namespace Leetcodecsharp
             {
                 return ValidIPv4(IP);
             }
-            else if(IP.Count(c => c == ':') == 7)
+            else if (IP.Count(c => c == ':') == 7)
             {
                 return ValidIPv6(IP);
             }
@@ -3183,14 +3249,14 @@ namespace Leetcodecsharp
             {
                 return "Neither";
             }
-            
+
         }
         private static string ValidIPv4(string IP)
         {
             string[] chunks = IP.Split('.');
             foreach (var chunk in chunks)
             {
-                if(chunk.Length == 0 || chunk.Length > 3)
+                if (chunk.Length == 0 || chunk.Length > 3)
                 {
                     return "Neither";
                 }
@@ -3200,12 +3266,12 @@ namespace Leetcodecsharp
                 }
                 foreach (var c in chunk)
                 {
-                    if(!char.IsNumber(c))
+                    if (!char.IsNumber(c))
                     {
                         return "Neither";
                     }
                 }
-                if(System.Convert.ToInt32(chunk) > 255)
+                if (System.Convert.ToInt32(chunk) > 255)
                 {
                     return "Neither";
                 }
@@ -3224,7 +3290,7 @@ namespace Leetcodecsharp
                 }
                 foreach (var c in chunk)
                 {
-                    if(hexDigits.IndexOf(c) == -1)
+                    if (hexDigits.IndexOf(c) == -1)
                     {
                         return "Neither";
                     }
@@ -3232,6 +3298,27 @@ namespace Leetcodecsharp
 
             }
             return "IPv6";
+        }
+
+        /// <summary>
+        /// 477.Total Hamming Distance
+        /// </summary>
+        /// <param name="nums"></param>
+        /// <returns></returns>
+        public static int TotalHammingDistance(int[] nums)
+        {
+            int size = nums.Length;
+            int res = 0;
+            for (int i = 0; i < 30; i++)
+            {
+                int tmp = 0;
+                foreach (var num in nums)
+                {
+                    tmp += (num >> i) & 1;
+                }
+                res += tmp * (size - tmp);
+            }
+            return res;
         }
 
         /// <summary>
@@ -3815,7 +3902,7 @@ namespace Leetcodecsharp
             }
             return res;
         }
-        
+
         /// <summary>
         /// Magic Index
         /// </summary>
@@ -3847,6 +3934,37 @@ namespace Leetcodecsharp
             return FindMagicIndexHelper(nums, mid + 1, right);
         }
 
-       
+        /// <summary>
+        /// 1486. XOR Operation in an Array.
+        /// </summary>
+        /// <param name="n"></param>
+        /// <param name="start"></param>
+        /// <returns></returns>
+        public static int XorOperation(int n, int start)
+        {
+            // (sumXor(s - 1) ^ sumXor(s + n - 1)) * 2 + e; s = start/2, e = (0 || 1)
+            int s = start >> 1;
+            int e = n & start & 1;
+            int res = SumXor(s - 1) ^ SumXor(s + n - 1);
+            return res << 1 | e;
+        }
+
+        private static int SumXor(int n)
+        {
+            if (n % 4 == 0)
+            {
+                return n;
+            }
+            if (n % 4 == 1)
+            {
+                return 1;
+            }
+            if (n % 4 == 2)
+            {
+                return n + 1;
+            }
+            return 0;
+        }
+
     }
 }

@@ -25,8 +25,6 @@ namespace Leetcodecsharp
             }
         }
 
-
-
         public void Push(int x)
         {
             inStack.Push(x);
