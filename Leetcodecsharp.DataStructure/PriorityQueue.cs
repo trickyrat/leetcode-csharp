@@ -6,14 +6,19 @@ namespace Leetcodecsharp.DataStructure
 {
     public class PriorityQueue<T> where T : IComparable, IComparable<T>
     {
-        private SortedSet<T> values;
+        protected SortedSet<T> Values { get; }
 
         /// <summary>
         /// Default constructor
         /// </summary>
         public PriorityQueue()
         {
-            values = new SortedSet<T>();
+            Values = new SortedSet<T>();
+        }
+
+        public PriorityQueue(IComparer<T> comparer)
+        {
+            Values = new SortedSet<T>(comparer);
         }
 
         /// <summary>
@@ -22,7 +27,7 @@ namespace Leetcodecsharp.DataStructure
         /// <param name="elements"></param>
         public PriorityQueue(IEnumerable<T> elements)
         {
-            values = new SortedSet<T>(elements);
+            Values = new SortedSet<T>(elements);
         }
 
         /// <summary>
@@ -30,45 +35,48 @@ namespace Leetcodecsharp.DataStructure
         /// </summary>
         /// <param name="comparer"></param>
         /// <param name="elements"></param>
-        public PriorityQueue(IComparer<T> comparer, IEnumerable<T> elements)
+        public PriorityQueue(IEnumerable<T> elements, IComparer<T> comparer)
         {
-            values = new SortedSet<T>(elements, comparer);
+            Values = new SortedSet<T>(elements, comparer);
         }
 
         /// <summary>
         /// Gets the number of elements in the PriorityQueue.
         /// </summary>
-        public int Count => values.Count;
+        public int Count => Values.Count;
 
         /// <summary>
         /// Returns the top element in the PriorityQueue.
         /// </summary>
         /// <returns></returns>
-        public T Top() => values.Max;
+        public T Top()
+        {
+            return Values.Max;
+        }
 
         /// <summary>
         /// Remove the element on top of the PriorityQueue.
         /// </summary>
-        public bool Pop() => values.Remove(values.Max);
+        public bool Pop() => Values.Remove(Values.Max);
 
         /// <summary>
         /// Inserts a new element to the PriorityQueue.
         /// </summary>
         /// <param name="value"></param>
         /// <returns>true if successfully, false otherwise</returns>
-        public bool Push(T value) => values.Add(value);
+        public bool Push(T value) => Values.Add(value);
 
         /// <summary>
         /// Returns whether the queue is empty.
         /// </summary>
         /// <returns>true if the queue's size is 0, faslse otherwise</returns>
-        public bool IsEmpty() => !values.Any();
+        public bool IsEmpty() => !Values.Any();
 
         /// <summary>
         /// Returns a List from a priority queue.
         /// </summary>
         /// <returns></returns>
-        public List<T> ToList() => values.ToList();
+        public List<T> ToList() => Values.ToList();
 
     }
 }
