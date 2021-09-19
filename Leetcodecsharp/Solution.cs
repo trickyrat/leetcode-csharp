@@ -3834,6 +3834,32 @@ namespace Leetcodecsharp
         }
 
         /// <summary>
+        /// 977. Squares of a Sorted Array
+        /// </summary>
+        /// <param name="nums"></param>
+        /// <returns></returns>
+        public static int[] SortedSquares(int[] nums)
+        {
+            int len = nums.Length;
+            int[] ans = new int[len];
+            for (int i = 0, j = len - 1, pos = len - 1; i <= j;)
+            {
+                if(nums[i] * nums[i] > nums[j] * nums[j])
+                {
+                    ans[pos] = nums[i] * nums[i];
+                    ++i;
+                }
+                else
+                {
+                    ans[pos] = nums[j] * nums[j];
+                    --j;
+                }
+                --pos;
+            }
+            return ans;
+        }
+
+        /// <summary>
         /// 1025. Divisor Game
         /// </summary>
         /// <param name="N"></param>
