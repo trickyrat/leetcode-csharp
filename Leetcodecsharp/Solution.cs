@@ -2576,6 +2576,34 @@ namespace Leetcodecsharp
         }
 
         /// <summary>
+        /// 167. Two Sum II - Input array is sorted
+        /// </summary>
+        /// <param name="numbers"></param>
+        /// <param name="target"></param>
+        /// <returns></returns>
+        public static int[] TwoSumII(int[] numbers, int target)
+        {
+            int left = 0, right = numbers.Length - 1;
+            while(left <right)
+            {
+                int sum = numbers[left] + numbers[right];
+                if(sum == target)
+                {
+                    return new int[] { left + 1, right + 1 };
+                }
+                else if(sum > target)
+                {
+                    right--;
+                }
+                else
+                {
+                    left++;
+                }
+            }
+            return new int[] { -1, -1 };
+        }
+
+        /// <summary>
         /// 169. Majority Element
         /// </summary>
         public static int MajorityElement(int[] nums)
@@ -2955,12 +2983,25 @@ namespace Leetcodecsharp
         /// <returns></returns>
         public static void MoveZeroes(int[] nums)
         {
-            int j = 0;
-            for (int i = 0; i < nums.Length; i++)
-                if (nums[i] != 0)
-                    nums[j++] = nums[i];
-            for (; j < nums.Length; j++)
-                nums[j] = 0;
+            //int j = 0, len = nums.Length;
+            //for (int i = 0; i < len; i++)
+            //    if (nums[i] != 0)
+            //        nums[j++] = nums[i];
+            //for (; j < len; j++)
+            //    nums[j] = 0;
+
+            int len = nums.Length, left = 0, right = 0;
+            while(right < len)
+            {
+                if(nums[right] != 0)
+                {
+                    int temp = nums[left];
+                    nums[left] = nums[right];
+                    nums[right] = temp;
+                    left++;
+                }
+                right++;
+            }
         }
 
         /// <summary>
