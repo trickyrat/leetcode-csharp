@@ -3359,6 +3359,36 @@ namespace Leetcodecsharp
         }
 
         /// <summary>
+        /// 557. Reverse Words in a String III
+        /// </summary>
+        /// <param name="s"></param>
+        /// <returns></returns>
+        public static string ReverseWords(string s) 
+        {
+            StringBuilder sb = new StringBuilder();
+            int len = s.Length;
+            int i = 0;
+            while (i < len)
+            {
+                int start = i;
+                while (i < len && s[i] != ' ')
+                {
+                    i++;
+                }
+                for (int p = start; p < i; p++)
+                {
+                    sb.Append(s[start + i - 1 - p]);
+                }
+                while (i < len && s[i] == ' ')
+                {
+                    i++;
+                    sb.Append(' ');
+                }
+            }
+            return sb.ToString();
+        }
+
+        /// <summary>
         /// 617. Merge Two Binary Trees
         /// </summary>
         public static TreeNode MergeTrees(TreeNode t1, TreeNode t2)
