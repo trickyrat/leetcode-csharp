@@ -3061,38 +3061,15 @@ namespace Leetcodecsharp
         /// </summary>
         /// <param name="s"></param>
         /// <returns></returns>
-        public static string ReverseString(string s)
-        {
-            if (s == string.Empty)
-                return String.Empty;
-            // two pointers
-            char[] ch = new char[s.Length];
-            int i = 0;
-            int j = s.Length - 1;
-            while (i <= j)
-            {
-                ch[j] = s[i];
-                ch[i] = s[j];
-                i++;
-                j--;
-            }
-            return new string(ch);
-        }
-
         public static void ReverseString(char[] s)
         {
-            int mid = s.Length / 2;
-            char ch;
-            int l = 0, r = s.Length - 1;
-            while (mid != 0)
+            int len = s.Length;
+            for (int left = 0, right = len - 1; left < right; ++left, --right)
             {
-                ch = s[r];
-                s[r] = s[l];
-                s[l] = ch;
-                l++;
-                r--;
-                mid--;
-            }
+                char temp = s[left];
+                s[left] = s[right];
+                s[right] = temp;
+            } 
         }
 
         /// <summary>
