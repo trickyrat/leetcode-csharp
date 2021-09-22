@@ -683,14 +683,13 @@ namespace Leetcodecsharp
         /// <returns></returns>
         public static ListNode RemoveNthFromEnd(ListNode head, int n)
         {
-            ListNode dummy = new ListNode(0)
-            {
-                next = head
-            };
+            ListNode dummy = new ListNode(0, head);
             ListNode first = dummy;
             ListNode second = dummy;
             for (int i = 1; i <= n + 1; i++)
+            {
                 first = first.next;
+            }   
             while (first != null)
             {
                 first = first.next;
