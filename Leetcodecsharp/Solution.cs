@@ -184,7 +184,10 @@ namespace Leetcodecsharp
                     i = Math.Max(dic[s[j]], i);
                     dic[s[j]] = j + 1;
                 }
-                else dic.Add(s[j], j + 1);
+                else
+                { 
+                    dic.Add(s[j], j + 1);
+                }
                 ans = Math.Max(ans, j - i + 1);
             }
             return ans;
@@ -209,28 +212,51 @@ namespace Leetcodecsharp
                 n = tmp;
             }
             // use binary search
-            int iMin = 0, iMax = m, halfLen = (m + n + 1) / 2;
-            while (iMin <= iMax)
+            int min = 0, max = m, halfLen = (m + n + 1) / 2;
+            while (min <= max)
             {
-                int i = (iMin + iMax) / 2;
+                int i = min + (max - min) / 2;
                 int j = halfLen - i;
-                if (i < iMax && B[j - 1] > A[i])
-                    iMin = iMin + 1;
-                else if (i > iMin && A[i - 1] > B[j])
-                    iMax = iMax - 1;
+                if (i < max && B[j - 1] > A[i])
+                {
+                    min++;
+                }  
+                else if (i > min && A[i - 1] > B[j])
+                {
+                    max--;
+                } 
                 else
                 {
                     int maxLeft = 0;
-                    if (i == 0) { maxLeft = B[j - 1]; }
-                    else if (j == 0) { maxLeft = A[i - 1]; }
-                    else { maxLeft = Math.Max(A[i - 1], B[j - 1]); }
-                    if ((m + n) % 2 == 1) { return maxLeft; }
-
+                    if (i == 0) 
+                    { 
+                        maxLeft = B[j - 1];
+                    }
+                    else if (j == 0) 
+                    { 
+                        maxLeft = A[i - 1]; 
+                    }
+                    else 
+                    { 
+                        maxLeft = Math.Max(A[i - 1], B[j - 1]);
+                    }
+                    if ((m + n) % 2 == 1) 
+                    { 
+                        return maxLeft;
+                    }
                     int minRight = 0;
-                    if (i == m) { minRight = B[j]; }
-                    else if (j == n) { minRight = A[i]; }
-                    else { minRight = Math.Min(B[j], A[i]); }
-
+                    if (i == m) 
+                    { 
+                        minRight = B[j];
+                    }
+                    else if (j == n) 
+                    {
+                        minRight = A[i];
+                    }
+                    else 
+                    { 
+                        minRight = Math.Min(B[j], A[i]);
+                    }
                     return (maxLeft + minRight) / 2.0;
                 }
             }
@@ -686,11 +712,11 @@ namespace Leetcodecsharp
             ListNode dummy = new ListNode(0, head);
             ListNode first = dummy;
             ListNode second = dummy;
-            for (int i = 1; i <= n + 1; i++)
+            for (int i = 0; i <= n; i++)
             {
                 first = first.next;
             }   
-            while (first != null)
+            while (first is not null)
             {
                 first = first.next;
                 second = second.next;

@@ -1,0 +1,54 @@
+﻿using Leetcodecsharp.DataStructure;
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+using Xunit;
+
+namespace Leetcodecsharp.Test
+{
+    public class AddTwoNumbersUnitTest
+    {
+        [Fact]
+        public void Test_Input_Same_Length_Nodes_Should_OK()
+        {
+            ListNode l1 = Utils.InitLinkedList(new List<int> { 2, 4, 3 });
+            ListNode l2 = Utils.InitLinkedList(new List<int> { 5, 6, 4 });
+            ListNode actualNode = Solution.AddTwoNumbers(l1, l2);
+            ListNode expectedNode = Utils.InitLinkedList(new List<int> { 7, 0, 8 });
+            string actual = Utils.PrintListNode(actualNode);
+            string expected = Utils.PrintListNode(expectedNode);
+            Assert.Equal(expected, actual);
+        }
+
+
+        [Fact]
+        public void Test_Input_Two_Zero_Nodes_Should_OK()
+        {
+            ListNode l1 = Utils.InitLinkedList(new List<int> { 0 });
+            ListNode l2 = Utils.InitLinkedList(new List<int> { 0 });
+            ListNode actualNode = Solution.AddTwoNumbers(l1, l2);
+            ListNode expectedNode = Utils.InitLinkedList(new List<int> { 0 });
+            string actual = Utils.PrintListNode(actualNode);
+            string expected = Utils.PrintListNode(expectedNode);
+            Assert.Equal(expected, actual);
+        }
+
+
+
+        [Fact]
+        public void Test_Input_Two_Nodes_With_Carry_Should_OK()
+        {
+            ListNode l1 = Utils.InitLinkedList(new List<int> { 9, 9, 9, 9, 9, 9, 9 });
+            ListNode l2 = Utils.InitLinkedList(new List<int> { 9, 9, 9, 9 });
+            ListNode actualNode = Solution.AddTwoNumbers(l1, l2);
+            ListNode expectedNode = Utils.InitLinkedList(new List<int> { 8, 9, 9, 9, 0, 0, 0, 1 });
+            string actual = Utils.PrintListNode(actualNode);
+            string expected = Utils.PrintListNode(expectedNode);
+            Assert.Equal(expected, actual);
+        }
+    }
+}
