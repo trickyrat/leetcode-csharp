@@ -1,7 +1,6 @@
 ﻿using Leetcodecsharp.DataStructure;
 
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 
 namespace Leetcodecsharp
@@ -10,19 +9,14 @@ namespace Leetcodecsharp
     {
         public static ListNode InitLinkedList(List<int> data)
         {
-            ListNode head = null;
-            if (data.Any())
-            {
-                 head = new ListNode(data[0]);
-            }
+            ListNode head = new ListNode(0);
             ListNode dummy = head;
-            int len = data.Count;
-            for (int i = 1; i < len; i++)
+            foreach (int item in data)
             {
-                dummy.next = new ListNode(data[i]);
+                dummy.next = new ListNode(item);
                 dummy = dummy.next;
             }
-            return head;
+            return head.next;
         }
 
         public static string PrintListNode(ListNode head)
@@ -32,7 +26,7 @@ namespace Leetcodecsharp
             {
                 sb.Append($"{head.val}");
                 head = head.next;
-                if(head is not null)
+                if (head is not null)
                 {
                     sb.Append("->");
                 }
