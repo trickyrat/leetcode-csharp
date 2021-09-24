@@ -1,61 +1,15 @@
-﻿using System;
+﻿// Licensed to the Trickyrat under one or more agreements.
+// The Trickyrat licenses this file to you under the MIT license.
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+
 using Leetcodecsharp.DataStructure;
 
 namespace Leetcodecsharp
 {
-    public class Codec
-    {
-        private static readonly char spliter = ',';
-        private static readonly string NN = "X";
-        /// <summary>
-        /// Encode a tree to single string.
-        /// </summary>
-        /// <param name="root"></param>
-        /// <returns></returns>
-        public string Serialize(TreeNode root)
-        {
-            StringBuilder sb = new StringBuilder();
-            BuildString(root, sb);
-            return sb.ToString();
-        }
-        private void BuildString(TreeNode node, StringBuilder sb)
-        {
-            if (node == null)
-                sb.Append(NN).Append(spliter);
-            else
-            {
-                sb.Append(node.val).Append(spliter);
-                BuildString(node.left, sb);
-                BuildString(node.right, sb);
-            }
-        }
-
-        public TreeNode Deserialize(string data)
-        {
-            Queue<string> nodes = new Queue<string>();
-            foreach (string item in data.Split(spliter))
-                nodes.Enqueue(item);
-            return BuildeTree(nodes);
-        }
-        private TreeNode BuildeTree(Queue<string> nodes)
-        {
-            string val = nodes.Dequeue();
-            if (val.Equals(NN)) return null;
-            else
-            {
-                TreeNode node = new TreeNode(Convert.ToInt32(val))
-                {
-                    left = BuildeTree(nodes),
-                    right = BuildeTree(nodes)
-                };
-                return node;
-            }
-        }
-    }
-
     /// <summary>
     /// Leetcode Solution Class
     /// </summary>
@@ -185,7 +139,7 @@ namespace Leetcodecsharp
                     dic[s[j]] = j + 1;
                 }
                 else
-                { 
+                {
                     dic.Add(s[j], j + 1);
                 }
                 ans = Math.Max(ans, j - i + 1);
@@ -220,41 +174,41 @@ namespace Leetcodecsharp
                 if (i < max && B[j - 1] > A[i])
                 {
                     min++;
-                }  
+                }
                 else if (i > min && A[i - 1] > B[j])
                 {
                     max--;
-                } 
+                }
                 else
                 {
                     int maxLeft = 0;
-                    if (i == 0) 
-                    { 
+                    if (i == 0)
+                    {
                         maxLeft = B[j - 1];
                     }
-                    else if (j == 0) 
-                    { 
-                        maxLeft = A[i - 1]; 
+                    else if (j == 0)
+                    {
+                        maxLeft = A[i - 1];
                     }
-                    else 
-                    { 
+                    else
+                    {
                         maxLeft = Math.Max(A[i - 1], B[j - 1]);
                     }
-                    if ((m + n) % 2 == 1) 
-                    { 
+                    if ((m + n) % 2 == 1)
+                    {
                         return maxLeft;
                     }
                     int minRight = 0;
-                    if (i == m) 
-                    { 
+                    if (i == m)
+                    {
                         minRight = B[j];
                     }
-                    else if (j == n) 
+                    else if (j == n)
                     {
                         minRight = A[i];
                     }
-                    else 
-                    { 
+                    else
+                    {
                         minRight = Math.Min(B[j], A[i]);
                     }
                     return (maxLeft + minRight) / 2.0;
@@ -715,7 +669,7 @@ namespace Leetcodecsharp
             for (int i = 0; i <= n; i++)
             {
                 first = first.next;
-            }   
+            }
             while (first is not null)
             {
                 first = first.next;
@@ -1872,7 +1826,7 @@ namespace Leetcodecsharp
                 {
                     sumLen += words[right++].Length;
                 }
-                if(right == n)
+                if (right == n)
                 {
                     StringBuilder sb = Join(words, left, n, " ");
                     sb.Append(Blank(maxWidth - sb.Length));
@@ -1881,7 +1835,7 @@ namespace Leetcodecsharp
                 }
                 int numWords = right - left;
                 int numSpaces = maxWidth - sumLen;
-                if(numWords == 1)
+                if (numWords == 1)
                 {
                     StringBuilder sb = new StringBuilder(words[left]);
                     sb.Append(Blank(numSpaces));
@@ -2283,8 +2237,7 @@ namespace Leetcodecsharp
         {
             if (start > end) return null;
             int mid = start + (end - start) / 2;
-            TreeNode root = new TreeNode(nums[mid])
-            {
+            TreeNode root = new TreeNode(nums[mid]) {
                 left = SubProcess(nums, start, mid - 1),
                 right = SubProcess(nums, mid + 1, end)
             };
@@ -2609,14 +2562,14 @@ namespace Leetcodecsharp
         public static int[] TwoSumII(int[] numbers, int target)
         {
             int left = 0, right = numbers.Length - 1;
-            while(left <right)
+            while (left < right)
             {
                 int sum = numbers[left] + numbers[right];
-                if(sum == target)
+                if (sum == target)
                 {
                     return new int[] { left + 1, right + 1 };
                 }
-                else if(sum > target)
+                else if (sum > target)
                 {
                     right--;
                 }
@@ -3016,9 +2969,9 @@ namespace Leetcodecsharp
             //    nums[j] = 0;
 
             int len = nums.Length, left = 0, right = 0;
-            while(right < len)
+            while (right < len)
             {
-                if(nums[right] != 0)
+                if (nums[right] != 0)
                 {
                     int temp = nums[left];
                     nums[left] = nums[right];
@@ -3094,7 +3047,7 @@ namespace Leetcodecsharp
                 char temp = s[left];
                 s[left] = s[right];
                 s[right] = temp;
-            } 
+            }
         }
 
         /// <summary>
@@ -3388,7 +3341,7 @@ namespace Leetcodecsharp
         /// </summary>
         /// <param name="s"></param>
         /// <returns></returns>
-        public static string ReverseWords(string s) 
+        public static string ReverseWords(string s)
         {
             StringBuilder sb = new StringBuilder();
             int len = s.Length;
@@ -3738,7 +3691,7 @@ namespace Leetcodecsharp
         public static int[][] FloodFill(int[][] image, int sr, int sc, int newColor)
         {
             int currentColor = image[sr][sc];
-            if(currentColor == newColor)
+            if (currentColor == newColor)
             {
                 return image;
             }
@@ -3753,7 +3706,7 @@ namespace Leetcodecsharp
                 for (int i = 0; i < 4; i++)
                 {
                     int mx = x + dx[i], my = y + dy[i];
-                    if(mx >= 0 && mx < n && my >= 0 && my < m && image[mx][my] == currentColor)
+                    if (mx >= 0 && mx < n && my >= 0 && my < m && image[mx][my] == currentColor)
                     {
                         queue.Enqueue(new int[] { mx, my });
                         image[mx][my] = newColor;
@@ -4020,7 +3973,7 @@ namespace Leetcodecsharp
             int[] ans = new int[len];
             for (int i = 0, j = len - 1, pos = len - 1; i <= j;)
             {
-                if(nums[i] * nums[i] > nums[j] * nums[j])
+                if (nums[i] * nums[i] > nums[j] * nums[j])
                 {
                     ans[pos] = nums[i] * nums[i];
                     ++i;
