@@ -1,7 +1,6 @@
 ﻿// Licensed to the Trickyrat under one or more agreements.
 // The Trickyrat licenses this file to you under the MIT license.
 
-using System.Diagnostics;
 using Xunit;
 
 namespace Leetcodecsharp.Test
