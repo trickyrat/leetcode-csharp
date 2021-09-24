@@ -3724,6 +3724,45 @@ namespace Leetcodecsharp
             return ans;
         }
 
+        private static int[] dx = { 1, 0, 0, -1 };
+        private static int[] dy = { 0, 1, -1, 0 };
+
+        /// <summary>
+        /// 733. Flood Fill
+        /// </summary>
+        /// <param name="image"></param>
+        /// <param name="sr"></param>
+        /// <param name="sc"></param>
+        /// <param name="newColor"></param>
+        /// <returns></returns>
+        public static int[][] FloodFill(int[][] image, int sr, int sc, int newColor)
+        {
+            int currentColor = image[sr][sc];
+            if(currentColor == newColor)
+            {
+                return image;
+            }
+            int n = image.Length, m = image[0].Length;
+            Queue<int[]> queue = new Queue<int[]>();
+            queue.Enqueue(new int[] { sr, sc });
+            image[sr][sc] = newColor;
+            while (queue.Any())
+            {
+                var pair = queue.Dequeue();
+                int x = pair[0], y = pair[1];
+                for (int i = 0; i < 4; i++)
+                {
+                    int mx = x + dx[i], my = y + dy[i];
+                    if(mx >= 0 && mx < n && my >= 0 && my < m && image[mx][my] == currentColor)
+                    {
+                        queue.Enqueue(new int[] { mx, my });
+                        image[mx][my] = newColor;
+                    }
+                }
+            }
+            return image;
+        }
+
         /// <summary>
         /// 796. Rotate String
         /// </summary>
