@@ -709,29 +709,29 @@ namespace Leetcodecsharp
         /// <returns>merged list</returns>
         public static ListNode MergeTwoLists(ListNode l1, ListNode l2)
         {
-            // Iteratively 124ms
-            //ListNode dummyHead = new ListNode(0);
-            //ListNode head = dummyHead;
-            //while (l1 != null && l2 != null)
-            //{
-            //    if (l1.val <= l2.val)
-            //    {
-            //        head.next = l1;
-            //        l1 = l1.next;
-            //    }
-            //    else
-            //    {
-            //        head.next = l2;
-            //        l2 = l2.next;
-            //    }
-            //    head = head.next;
-            //}
-            //point.next = l1 ?? l2;
-            //return dummyHead.next;
+            // Iteratively 84ms Time: O(n + m) Space: O(1) n,m: length of l1(l2)
+            ListNode dummyHead = new ListNode(0);
+            ListNode head = dummyHead;
+            while (l1 != null && l2 != null)
+            {
+                if (l1.val <= l2.val)
+                {
+                    head.next = l1;
+                    l1 = l1.next;
+                }
+                else
+                {
+                    head.next = l2;
+                    l2 = l2.next;
+                }
+                head = head.next;
+            }
+            head.next = l1 ?? l2;
+            return dummyHead.next;
 
-            // Recursively 112ms
-            //if (l1 == null) return l2;
-            //if (l2 == null) return l1;
+            // Recursively 88ms Time: O(n + m) Space: O(n + m) n,m: length of l1(l2)
+            //if (l1 == null) { return l2; }
+            //if (l2 == null) { return l1; }
             //ListNode ans = null;
             //if (l1.val < l2.val)
             //{
@@ -745,50 +745,6 @@ namespace Leetcodecsharp
             //}
             //return ans;
 
-            // use ref 108ms
-            ListNode ret = null;
-            ListNode end = null;
-            if (l1 == null) return l2;
-            if (l2 == null) return l1;
-            while (l1 != null || l2 != null)
-            {
-                if (l1 == null)
-                {
-                    end.next = l2;
-                    break;
-                }
-                if (l2 == null)
-                {
-                    end.next = l1;
-                    break;
-                }
-                if (l1.val > l2.val)
-                {
-                    Add(ref ret, ref end, l2.val);
-                    l2 = l2.next;
-                    continue;
-                }
-                else
-                {
-                    Add(ref ret, ref end, l1.val);
-                    l1 = l1.next;
-                }
-            }
-            return ret;
-        }
-        private static void Add(ref ListNode head, ref ListNode end, int val)
-        {
-            ListNode node = new ListNode(val);
-            if (end == null)
-            {
-                end = node;
-                head = node;
-            }
-            else
-            {
-                end.next = node;
-                end = end.next;
-            }
         }
 
         /// <summary>
