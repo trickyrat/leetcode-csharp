@@ -1342,6 +1342,17 @@ namespace Leetcodecsharp
         }
 
         /// <summary>
+        /// 38. Count and Say
+        /// </summary>
+        /// <param name="n"></param>
+        /// <returns></returns>
+        public static string CountAndSay(int n)
+        {
+            //TODO:
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
         /// 41. First Missing Positive
         /// </summary>
         public static int FirstMissingPositive(int[] nums)
@@ -2808,6 +2819,36 @@ namespace Leetcodecsharp
         }
 
         /// <summary>
+        /// 206. Reverse Linked List
+        /// </summary>
+        /// <param name="head"></param>
+        /// <returns></returns>
+        public static ListNode ReverseList(ListNode head)
+        {
+            // Iteratively Time: O(n) Space O(1)
+            ListNode prev = null;
+            ListNode curr = head;
+            while (curr is not null)
+            {
+                ListNode next = curr.next;
+                curr.next = prev;
+                prev = curr;
+                curr = next;
+            }
+            return prev;
+
+            // Recursively Time: O(n) Space O(n)
+            //if (head is null || head.next is null)
+            //{
+            //    return head;
+            //}
+            //ListNode newHead = ReverseList(head.next);
+            //head.next.next = head;
+            //head.next = null;
+            //return newHead;
+        }
+
+        /// <summary>
         /// 212. Word Search II
         /// </summary>
         /// <param name="board"></param>
@@ -3048,6 +3089,23 @@ namespace Leetcodecsharp
                 s[left] = s[right];
                 s[right] = temp;
             }
+        }
+
+        /// <summary>
+        /// 371. Sum of Two Integers
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <returns></returns>
+        public static int GetSum(int a, int b)
+        {
+            while (b != 0)
+            {
+                int carry = (a & b) << 1;
+                a ^= b;
+                b = carry;
+            }
+            return a;
         }
 
         /// <summary>
@@ -3530,6 +3588,49 @@ namespace Leetcodecsharp
                 }
             }
             return false;
+        }
+
+        /// <summary>
+        /// 695. Max Area of Island
+        /// </summary>
+        /// <param name="grid"></param>
+        /// <returns></returns>
+        public static int MaxAreaOfIsland(int[][] grid)
+        {
+            int ans = 0;
+            int rowLegnth = grid.Length;
+            int colLength = grid[0].Length;
+            for (int i = 0; i < rowLegnth; i++)
+            {
+                for (int j = 0; j < colLength; j++)
+                {
+                    int curr = 0;
+                    var queuei = new Queue<int>();
+                    var queuej = new Queue<int>();
+                    queuei.Enqueue(i);
+                    queuej.Enqueue(j);
+                    while (queuei.Count != 0)
+                    {
+                        int curr_i = queuei.Dequeue(), curr_j = queuej.Dequeue();
+                        if(curr_i < 0 || curr_j < 0 || curr_i == rowLegnth || curr_j == colLength || grid[curr_i][curr_j] != 1)
+                        {
+                            continue;
+                        }
+                        ++curr;
+                        grid[curr_i][curr_j] = 0;
+                        int[] di = new int[] { 0, 0, 1, -1 };
+                        int[] dj = new int[] { 1, -1, 0, 0 };
+                        for (int index = 0; index != 4; ++index)
+                        {
+                            int next_i = curr_i + di[index], next_j = curr_j + dj[index];
+                            queuei.Enqueue(next_i);
+                            queuej.Enqueue(next_j);
+                        }
+                    }
+                    ans = Math.Max(ans, curr);
+                }
+            }
+            return ans;
         }
 
         /// <summary>
