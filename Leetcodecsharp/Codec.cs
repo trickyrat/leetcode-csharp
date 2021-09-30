@@ -27,7 +27,9 @@ namespace Leetcodecsharp
         private void BuildString(TreeNode node, StringBuilder sb)
         {
             if (node == null)
-                sb.Append(NN).Append(spliter);
+            { 
+                sb.Append(NN).Append(spliter); 
+            }
             else
             {
                 sb.Append(node.val).Append(spliter);
@@ -40,16 +42,22 @@ namespace Leetcodecsharp
         {
             Queue<string> nodes = new Queue<string>();
             foreach (string item in data.Split(spliter))
+            {
                 nodes.Enqueue(item);
+            }
             return BuildeTree(nodes);
         }
         private TreeNode BuildeTree(Queue<string> nodes)
         {
             string val = nodes.Dequeue();
-            if (val.Equals(NN)) return null;
+            if (val.Equals(NN)) 
+            { 
+                return null;
+            }
             else
             {
-                TreeNode node = new TreeNode(Convert.ToInt32(val)) {
+                TreeNode node = new TreeNode(Convert.ToInt32(val)) 
+                {
                     left = BuildeTree(nodes),
                     right = BuildeTree(nodes)
                 };
