@@ -1945,6 +1945,33 @@ namespace Leetcodecsharp
             return false;
         }
 
+        //private List<int> temp = new List<int>();
+        //private List<List<int>> ans = new List<List<int>>();
+
+        public static IList<IList<int>> Combine(int n, int k)
+        {
+            List<int> temp = new List<int>();
+            IList<IList<int>> ans = new List<IList<int>>();
+            for (int i = 1; i <= k; ++i)
+            {
+                temp.Add(i);
+            }
+            temp.Add(n + 1);
+            int j = 0;
+            while (j < k)
+            {
+                ans.Add(new List<int>(temp.GetRange(0, k)));
+                j = 0;
+                while (j < k && temp[j] + 1 == temp[j + 1])
+                {
+                    temp[j] = j + 1;
+                    ++j;
+                }
+                ++temp[j];
+            }
+            return ans;
+        }
+
         /// <summary>
         /// 80. Remove Duplicates from Sorted Array II
         /// </summary>
@@ -2297,6 +2324,35 @@ namespace Leetcodecsharp
         }
 
         /// <summary>
+        /// 116. Populating Next Right Pointers in Each Node
+        /// </summary>
+        /// <param name="root"></param>
+        /// <returns></returns>
+        public static BinaryTreeNode Connect(BinaryTreeNode root)
+        {
+            if (root == null)
+            {
+                return root;
+            }
+            BinaryTreeNode leftmost = root;
+            while (leftmost.left != null)
+            {
+                BinaryTreeNode head = leftmost;
+                while (head != null)
+                {
+                    head.left.next = head.right;
+                    if (head.next != null)
+                    {
+                        head.right.next = head.next.left;
+                    }
+                    head = head.next;
+                }
+                leftmost = leftmost.left;
+            }
+            return root;
+        }
+
+        /// <summary>
         /// 118. Pascal's triangle
         /// </summary>
         /// <param name="numRows"></param>
@@ -2324,6 +2380,28 @@ namespace Leetcodecsharp
                 for (int j = 1; j < i; ++j) triangle[i][j] = triangle[i - 1][j - 1] + triangle[i - 1][j];
             }
             return triangle;
+        }
+
+        /// <summary>
+        /// 120. Triangle
+        /// </summary>
+        /// <param name="triangle"></param>
+        /// <returns></returns>
+        public static int MinimumTotal(IList<IList<int>> triangle)
+        {
+            int n = triangle.Count;
+            int[] f = new int[n];
+            f[0] = triangle[0][0];
+            for (int i = 1; i < n; ++i)
+            {
+                f[i] = f[i - 1] + triangle[i][i];
+                for (int j = i - 1; j > 0; --j)
+                {
+                    f[j] = Math.Min(f[j - 1], f[j]) + triangle[i][j];
+                }
+                f[0] += triangle[i][0];
+            }
+            return f.Min();
         }
 
         /// <summary>
@@ -3351,6 +3429,61 @@ namespace Leetcodecsharp
         }
 
         /// <summary>
+        /// 542. 01 Matrix
+        /// </summary>
+        /// <param name="mat"></param>
+        /// <returns></returns>
+        public static int[][] UpdateMatrix(int[][]  mat)
+        {
+            int m = mat.Length, n = mat[0].Length;
+            int[][] dist = new int[m][];
+            for (int i = 0; i < m; i++)
+            {
+                dist[i] = new int[n];
+                Array.Fill(dist[i], int.MaxValue / 2);
+            }
+            for (int i = 0; i < m; i++)
+            {
+                for (int j = 0; j < n; j++)
+                {
+                    if (mat[i][j] == 0)
+                    {
+                        dist[i][j] = 0;
+                    }
+                }
+            }
+            for (int i = 0; i < m; i++)
+            {
+                for (int j = 0; j < n; j++)
+                {
+                    if (i - 1 >= 0)
+                    {
+                        dist[i][j] = Math.Min(dist[i][j], dist[i - 1][j] + 1);
+                    }
+                    if (j - 1 >= 0)
+                    {
+                        dist[i][j] = Math.Min(dist[i][j], dist[i][j - 1] + 1);
+                    }
+                }
+            }
+            for (int i = m - 1; i >= 0; i--)
+            {
+                for (int j = n - 1; j >= 0; j--)
+                {
+                    if (i + 1 < m)
+                    {
+                        dist[i][j] = Math.Min(dist[i][j], dist[i + 1][j] + 1);
+                    }
+                    if (j + 1 < n)
+                    {
+                        dist[i][j] = Math.Min(dist[i][j], dist[i][j + 1] + 1);
+                    }
+                }
+            }
+            return dist;
+        }
+
+        /// <summary>
         /// 557. Reverse Words in a String III
         /// </summary>
         /// <param name="s"></param>
@@ -3774,6 +3907,43 @@ namespace Leetcodecsharp
         }
 
         /// <summary>
+        /// 784. Letter Case Permutation
+        /// </summary>
+        /// <param name="s"></param>
+        /// <returns></returns>
+        public static List<string> LetterCasePermutation(string s)
+        {
+            List<StringBuilder> ans = new List<StringBuilder>();
+            ans.Add(new StringBuilder());
+            foreach (char c in s.ToCharArray())
+            {
+                int n = ans.Count;
+                if (char.IsLetter(c))
+                {
+                    for (int i = 0; i < n; ++i)
+                    {
+                        ans.Add(new StringBuilder(ans[i].ToString()));
+                        ans[i].Append(char.ToLower(c));
+                        ans[n + i].Append(char.ToUpper(c));
+                    }
+                }
+                else
+                {
+                    for (int i = 0; i < n; i++)
+                    {
+                        ans[i].Append(c);
+                    }
+                }
+            }
+            List<string> finalans = new List<string>();
+            foreach (StringBuilder sb in ans)
+            {
+                finalans.Add(sb.ToString());
+            }
+            return finalans;
+        }
+
+        /// <summary>
         /// 796. Rotate String
         /// </summary>
         /// <param name="A"></param>
@@ -4041,6 +4211,63 @@ namespace Leetcodecsharp
                     --j;
                 }
                 --pos;
+            }
+            return ans;
+        }
+
+        private static int[] dr = new int[] { -1, 0, 1, 0 };
+        private static int[] dc = new int[] { 0, -1, 0, 1 };
+
+        /// <summary>
+        /// 994. Rotting Oranges
+        /// </summary>
+        /// <param name="grid"></param>
+        /// <returns></returns>
+        public static int OrangeRotting(int[][] grid)
+        {
+            int R = grid.Length, C = grid[0].Length;
+            Queue<int> queue = new Queue<int>();
+            Dictionary<int, int> depth = new Dictionary<int, int>();
+            for (int r = 0; r < R; ++r)
+            {
+                for (int c = 0; c < C; ++c)
+                {
+                    if (grid[r][c] == 2)
+                    {
+                        int code = r * C + c;
+                        queue.Enqueue(code);
+                        depth.Add(code, 0);
+                    }
+                }
+            }
+            int ans = 0;
+            while (queue.Count != 0)
+            {
+                int code = queue.Dequeue();
+                int r = code / C, c = code % C;
+                for (int k = 0; k < 4; k++)
+                {
+                    int nr = r + dr[k];
+                    int nc = c + dc[k];
+                    if (0 <= nr && nr < R && 0 <= nc && nc < C && grid[nr][nc] == 1)
+                    {
+                        grid[nr][nc] = 2;
+                        int ncode = nr * C + nc;
+                        queue.Enqueue(ncode);
+                        depth.Add(ncode, depth[code] + 1);
+                        ans = depth[ncode];
+                    }
+                }
+            }
+            foreach (int[] row in grid)
+            {
+                foreach (int v in row)
+                {
+                    if (v == 1)
+                    {
+                        return -1;
+                    }
+                }
             }
             return ans;
         }
