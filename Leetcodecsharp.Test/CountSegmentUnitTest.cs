@@ -5,7 +5,7 @@ using Xunit;
 
 namespace Leetcodecsharp.Test
 {
-    public class CountSegementUnitTest
+    public class CountSegmentUnitTest
     {
         [Theory]
         [InlineData("Hello, my name is John", 5)]
