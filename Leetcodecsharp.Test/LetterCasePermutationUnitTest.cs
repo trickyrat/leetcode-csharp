@@ -15,7 +15,7 @@ namespace Leetcodecsharp.Test
             List<string> actual = Solution.LetterCasePermutation("a1b2");
             List<string> expected = new List<string>
             {
-                "a1b2","a1B2","A1b2","A1B2"
+                "a1b2","A1b2","a1B2","A1B2"
             };
             Assert.Equal(expected, actual);
         }

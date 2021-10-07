@@ -36,8 +36,6 @@ namespace Leetcodecsharp.Test
             Assert.Equal(expected, actual);
         }
 
-
-
         [Fact]
         public void Test_Input_Two_Nodes_With_Carry_Should_OK()
         {

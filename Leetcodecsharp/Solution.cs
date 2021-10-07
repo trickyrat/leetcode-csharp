@@ -3231,6 +3231,24 @@ namespace Leetcodecsharp
         }
 
         /// <summary>
+        /// 434. Number of Segments in a String
+        /// </summary>
+        /// <param name="s"></param>
+        /// <returns></returns>
+        public static int CountSegments(string s)
+        {
+            int segmentCount = 0;
+            for (int i = 0; i < s.Length; i++)
+            {
+                if ((i == 0 || s[i - 1] == ' ') && s[i] != ' ')
+                {
+                    segmentCount++;
+                }
+            }
+            return segmentCount;
+        }
+
+        /// <summary>
         /// 450. Delete Node in a BST
         /// </summary>
         public static TreeNode DeleteNode(TreeNode root, int key)
