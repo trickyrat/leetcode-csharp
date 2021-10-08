@@ -7,27 +7,13 @@ namespace Leetcodecsharp.Test
 {
     public class HammingWeightUnitTest
     {
-        [Fact]
-        public void Test()
+        [Theory]
+        [InlineData(11, 3)]
+        [InlineData(128, 1)]
+        [InlineData(4294967293, 31)]
+        public void Test(uint n, int expected)
         {
-            int actual = Solution.HammingWeight(11);
-            int expected = 3;
-            Assert.Equal(expected, actual);
-        }
-
-        [Fact]
-        public void Test2()
-        {
-            int actual = Solution.HammingWeight(128);
-            int expected = 1;
-            Assert.Equal(expected, actual);
-        }
-
-        [Fact]
-        public void Test3()
-        {
-            int actual = Solution.HammingWeight(4294967293);
-            int expected = 31;
+            int actual = Solution.HammingWeight(n);
             Assert.Equal(expected, actual);
         }
     }

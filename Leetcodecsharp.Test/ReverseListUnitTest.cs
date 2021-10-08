@@ -1,11 +1,7 @@
 ﻿// Licensed to the Trickyrat under one or more agreements.
 // The Trickyrat licenses this file to you under the MIT license.
 
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 using Leetcodecsharp.DataStructure;
 
@@ -18,7 +14,7 @@ namespace Leetcodecsharp.Test
         [Fact]
         public void Test()
         {
-            ListNode head = Utils.InitLinkedList(new List<int> { 1,2,3,4,5 });
+            ListNode head = Utils.InitLinkedList(new List<int> { 1, 2, 3, 4, 5 });
             ListNode actualNodes = Solution.ReverseList(head);
             ListNode expectedNode = Utils.InitLinkedList(new List<int> { 5, 4, 3, 2, 1 });
             string actual = Utils.PrintListNode(actualNodes);

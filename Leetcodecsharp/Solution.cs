@@ -3360,7 +3360,7 @@ namespace Leetcodecsharp
         private static string ValidIPv4(string IP)
         {
             string[] chunks = IP.Split('.');
-            foreach (var chunk in chunks)
+            foreach (string chunk in chunks)
             {
                 if (chunk.Length == 0 || chunk.Length > 3)
                 {
@@ -3370,7 +3370,7 @@ namespace Leetcodecsharp
                 {
                     return "Neither";
                 }
-                foreach (var c in chunk)
+                foreach (char c in chunk)
                 {
                     if (!char.IsNumber(c))
                     {
@@ -3388,15 +3388,15 @@ namespace Leetcodecsharp
         {
             string[] chunks = IP.Split(':');
             string hexDigits = "0123456789abcdefABCDEF";
-            foreach (var chunk in chunks)
+            foreach (string chunk in chunks)
             {
                 if (chunk.Length == 0 || chunk.Length > 4)
                 {
                     return "Neither";
                 }
-                foreach (var c in chunk)
+                foreach (char c in chunk)
                 {
-                    if (hexDigits.IndexOf(c) == -1)
+                    if (!hexDigits.Contains(c))
                     {
                         return "Neither";
                     }
@@ -3418,7 +3418,7 @@ namespace Leetcodecsharp
             for (int i = 0; i < 30; i++)
             {
                 int tmp = 0;
-                foreach (var num in nums)
+                foreach (int num in nums)
                 {
                     tmp += (num >> i) & 1;
                 }

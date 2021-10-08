@@ -7,30 +7,13 @@ namespace Leetcodecsharp.Test
 {
     public class LongestValidParenthesesUnitTest
     {
-        [Fact]
-        public void Test1()
+        [Theory]
+        [InlineData("()()()(()", 6)]
+        [InlineData("(()", 2)]
+        [InlineData("()()()(())", 10)]
+        public void Test(string s, int expected)
         {
-            string s = "()()()(()";
             int actual = Solution.LongestValidParentheses(s);
-            int expected = 6;
-            Assert.Equal(expected, actual);
-        }
-
-        [Fact]
-        public void Test2()
-        {
-            string s = "(()";
-            int actual = Solution.LongestValidParentheses(s);
-            int expected = 2;
-            Assert.Equal(expected, actual);
-        }
-
-        [Fact]
-        public void Test3()
-        {
-            string s = "()()()(())";
-            int actual = Solution.LongestValidParentheses(s);
-            int expected = 10;
             Assert.Equal(expected, actual);
         }
     }

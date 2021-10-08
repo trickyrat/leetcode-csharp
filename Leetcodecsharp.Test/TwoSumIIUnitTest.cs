@@ -7,30 +7,13 @@ namespace Leetcodecsharp.Test
 {
     public class TwoSumIIUnitTest
     {
-        [Fact]
-        public void Test1()
+        [Theory]
+        [InlineData(new int[] { 2, 7, 11, 15 }, 9, new int[] { 1, 2 })]
+        [InlineData(new int[] { 2, 3, 4 }, 6, new int[] { 1, 3 })]
+        [InlineData(new int[] { -1, 0 }, -1, new int[] { 1, 2 })]
+        public void Test1(int[] numbers, int target, int[] expected)
         {
-            int[] input = { 2, 7, 11, 15 };
-            int[] actual = Solution.TwoSumII(input, 9);
-            int[] expected = { 1, 2 };
-            Assert.Equal(expected, actual);
-        }
-
-        [Fact]
-        public void Test2()
-        {
-            int[] input = { 2, 3, 4 };
-            int[] actual = Solution.TwoSumII(input, 6);
-            int[] expected = { 1, 3 };
-            Assert.Equal(expected, actual);
-        }
-
-        [Fact]
-        public void Test3()
-        {
-            int[] input = { -1, 0 };
-            int[] actual = Solution.TwoSumII(input, -1);
-            int[] expected = { 1, 2 };
+            int[] actual = Solution.TwoSumII(numbers, target);
             Assert.Equal(expected, actual);
         }
     }

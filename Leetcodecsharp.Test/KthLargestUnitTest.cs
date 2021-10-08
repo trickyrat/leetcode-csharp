@@ -7,11 +7,6 @@ namespace Leetcodecsharp.Test
 {
     public class KthLargestUnitTest
     {
-        public KthLargestUnitTest()
-        {
-
-        }
-
         [Fact]
         public void Test1()
         {

@@ -7,27 +7,13 @@ namespace Leetcodecsharp.Test
 {
     public class GetSumUnitTest
     {
-        [Fact]
-        public void Test_Without_Carry_Should_OK()
+        [Theory]
+        [InlineData(1, 2, 3)]
+        [InlineData(7, 3, 10)]
+        [InlineData(1, -2, -1)]
+        public void Test_Should_OK(int a, int b, int expected)
         {
-            int actual = Solution.GetSum(1, 2);
-            int expected = 3;
-            Assert.Equal(expected, actual);
-        }
-
-        [Fact]
-        public void Test_With_A_Carry_Should_OK()
-        {
-            int actual = Solution.GetSum(7, 3);
-            int expected = 10;
-            Assert.Equal(expected, actual);
-        }
-
-        [Fact]
-        public void Test_Input_One_Negative_Integer_Should_OK()
-        {
-            int actual = Solution.GetSum(1, -2);
-            int expected = -1;
+            int actual = Solution.GetSum(a, b);
             Assert.Equal(expected, actual);
         }
     }

@@ -7,21 +7,12 @@ namespace Leetcodecsharp.Test
 {
     public class ReverseWordsUnitTest
     {
-        [Fact]
-        public void Test1()
+        [Theory]
+        [InlineData("Let's take LeetCode contest", "s'teL ekat edoCteeL tsetnoc")]
+        [InlineData("God Ding", "doG gniD")]
+        public void Test1(string s, string expected)
         {
-            string input = "Let's take LeetCode contest";
-            string actual = Solution.ReverseWords(input);
-            string expected = "s'teL ekat edoCteeL tsetnoc";
-            Assert.Equal(expected, actual);
-        }
-
-        [Fact]
-        public void Test2()
-        {
-            string input = "God Ding";
-            string actual = Solution.ReverseWords(input);
-            string expected = "doG gniD";
+            string actual = Solution.ReverseWords(s);
             Assert.Equal(expected, actual);
         }
     }
