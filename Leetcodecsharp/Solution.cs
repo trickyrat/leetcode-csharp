@@ -1304,8 +1304,69 @@ namespace Leetcodecsharp
         /// <returns></returns>
         public static string CountAndSay(int n)
         {
-            //TODO:
-            throw new NotImplementedException();
+            if (n < 0)
+            {
+                return "-1";
+            }
+            string result = "1";
+            for (int i = 1; i < n; ++i)
+            {
+                result = Build(result);
+            }
+            return result;
+        }
+
+        private static string Build(string result)
+        {
+            StringBuilder sb = new StringBuilder();
+            int p = 0;
+            while (p < result.Length)
+            {
+                char val = result[p];
+                int count = 0;
+                while (p < result.Length && result[p] == val)
+                {
+                    p++;
+                    count++;
+                }
+                sb.Append(count);
+                sb.Append(val);
+            }
+            return sb.ToString();
+        }
+
+        /// <summary>
+        /// 39. Combination Sum
+        /// </summary>
+        /// <param name="candidates"></param>
+        /// <param name="target"></param>
+        /// <returns></returns>
+        public static IList<IList<int>> CombinationSum(int[] candidates, int target)
+        {
+            IList<IList<int>> ans = new List<IList<int>>();
+            List<int> combine = new List<int>();
+            Dfs(candidates, target, ans, combine, 0);
+            return ans;
+        }
+
+        private static void Dfs(int[] candidates, int target, IList<IList<int>> ans, List<int> combine, int idx)
+        {
+            if (idx == candidates.Length)
+            {
+                return;
+            }
+            if (target == 0)
+            {
+                ans.Add(new List<int>(combine));
+                return;
+            }
+            Dfs(candidates, target, ans, combine, idx + 1);
+            if (target - candidates[idx] >= 0)
+            {
+                combine.Add(candidates[idx]);
+                Dfs(candidates, target - candidates[idx], ans, combine, idx);
+                combine.RemoveAt(combine.Count - 1);
+            }
         }
 
         /// <summary>
@@ -3451,7 +3512,7 @@ namespace Leetcodecsharp
         /// </summary>
         /// <param name="mat"></param>
         /// <returns></returns>
-        public static int[][] UpdateMatrix(int[][]  mat)
+        public static int[][] UpdateMatrix(int[][] mat)
         {
             int m = mat.Length, n = mat[0].Length;
             int[][] dist = new int[m][];
@@ -3719,7 +3780,7 @@ namespace Leetcodecsharp
                     while (queuei.Count != 0)
                     {
                         int curr_i = queuei.Dequeue(), curr_j = queuej.Dequeue();
-                        if(curr_i < 0 || curr_j < 0 || curr_i == rowLegnth || curr_j == colLength || grid[curr_i][curr_j] != 1)
+                        if (curr_i < 0 || curr_j < 0 || curr_i == rowLegnth || curr_j == colLength || grid[curr_i][curr_j] != 1)
                         {
                             continue;
                         }
