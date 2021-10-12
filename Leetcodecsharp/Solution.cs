@@ -955,7 +955,10 @@ namespace Leetcodecsharp
         /// <returns></returns>
         public static int Divide(int dividend, int divisor)
         {
-            if (divisor == 0 || (dividend == Int32.MinValue && divisor == -1)) return Int32.MaxValue;
+            if (divisor == 0 || (dividend == int.MinValue && divisor == -1))
+            {
+                return int.MaxValue;
+            }
             int sign = dividend < 0 ^ divisor < 0 ? -1 : 1;
             long dvd = Math.Abs((long)dividend);
             long dvs = Math.Abs((long)divisor);
