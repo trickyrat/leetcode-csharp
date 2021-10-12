@@ -5,15 +5,14 @@ using Xunit;
 
 namespace Leetcodecsharp.Test
 {
-    public class LongestValidParenthesesUnitTest
+    public class CountAndSayUnitTest
     {
         [Theory]
-        [InlineData("()()()(()", 6)]
-        [InlineData("(()", 2)]
-        [InlineData("()()()(())", 10)]
-        public void Test(string s, int expected)
+        [InlineData(1, "1")]
+        [InlineData(4, "1211")]
+        public void Test(int n, string expected)
         {
-            int actual = Solution.LongestValidParentheses(s);
+            string actual = Solution.CountAndSay(n);
             Assert.Equal(expected, actual);
         }
     }

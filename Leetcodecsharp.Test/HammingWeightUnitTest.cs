@@ -5,15 +5,15 @@ using Xunit;
 
 namespace Leetcodecsharp.Test
 {
-    public class LongestValidParenthesesUnitTest
+    public class HammingWeightUnitTest
     {
         [Theory]
-        [InlineData("()()()(()", 6)]
-        [InlineData("(()", 2)]
-        [InlineData("()()()(())", 10)]
-        public void Test(string s, int expected)
+        [InlineData(11, 3)]
+        [InlineData(128, 1)]
+        [InlineData(4294967293, 31)]
+        public void Test(uint n, int expected)
         {
-            int actual = Solution.LongestValidParentheses(s);
+            int actual = Solution.HammingWeight(n);
             Assert.Equal(expected, actual);
         }
     }

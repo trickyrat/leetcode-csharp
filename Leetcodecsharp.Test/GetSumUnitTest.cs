@@ -5,15 +5,15 @@ using Xunit;
 
 namespace Leetcodecsharp.Test
 {
-    public class LongestValidParenthesesUnitTest
+    public class GetSumUnitTest
     {
         [Theory]
-        [InlineData("()()()(()", 6)]
-        [InlineData("(()", 2)]
-        [InlineData("()()()(())", 10)]
-        public void Test(string s, int expected)
+        [InlineData(1, 2, 3)]
+        [InlineData(7, 3, 10)]
+        [InlineData(1, -2, -1)]
+        public void Test_Should_OK(int a, int b, int expected)
         {
-            int actual = Solution.LongestValidParentheses(s);
+            int actual = Solution.GetSum(a, b);
             Assert.Equal(expected, actual);
         }
     }

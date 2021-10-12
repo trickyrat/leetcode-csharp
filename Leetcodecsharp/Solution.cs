@@ -1,61 +1,15 @@
-﻿using System;
+﻿// Licensed to the Trickyrat under one or more agreements.
+// The Trickyrat licenses this file to you under the MIT license.
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+
 using Leetcodecsharp.DataStructure;
 
 namespace Leetcodecsharp
 {
-    public class Codec
-    {
-        private static readonly char spliter = ',';
-        private static readonly string NN = "X";
-        /// <summary>
-        /// Encode a tree to single string.
-        /// </summary>
-        /// <param name="root"></param>
-        /// <returns></returns>
-        public string Serialize(TreeNode root)
-        {
-            StringBuilder sb = new StringBuilder();
-            BuildString(root, sb);
-            return sb.ToString();
-        }
-        private void BuildString(TreeNode node, StringBuilder sb)
-        {
-            if (node == null)
-                sb.Append(NN).Append(spliter);
-            else
-            {
-                sb.Append(node.val).Append(spliter);
-                BuildString(node.left, sb);
-                BuildString(node.right, sb);
-            }
-        }
-
-        public TreeNode Deserialize(string data)
-        {
-            Queue<string> nodes = new Queue<string>();
-            foreach (string item in data.Split(spliter))
-                nodes.Enqueue(item);
-            return BuildeTree(nodes);
-        }
-        private TreeNode BuildeTree(Queue<string> nodes)
-        {
-            string val = nodes.Dequeue();
-            if (val.Equals(NN)) return null;
-            else
-            {
-                TreeNode node = new TreeNode(Convert.ToInt32(val))
-                {
-                    left = BuildeTree(nodes),
-                    right = BuildeTree(nodes)
-                };
-                return node;
-            }
-        }
-    }
-
     /// <summary>
     /// Leetcode Solution Class
     /// </summary>
@@ -184,7 +138,10 @@ namespace Leetcodecsharp
                     i = Math.Max(dic[s[j]], i);
                     dic[s[j]] = j + 1;
                 }
-                else dic.Add(s[j], j + 1);
+                else
+                {
+                    dic.Add(s[j], j + 1);
+                }
                 ans = Math.Max(ans, j - i + 1);
             }
             return ans;
@@ -209,28 +166,51 @@ namespace Leetcodecsharp
                 n = tmp;
             }
             // use binary search
-            int iMin = 0, iMax = m, halfLen = (m + n + 1) / 2;
-            while (iMin <= iMax)
+            int min = 0, max = m, halfLen = (m + n + 1) / 2;
+            while (min <= max)
             {
-                int i = (iMin + iMax) / 2;
+                int i = min + (max - min) / 2;
                 int j = halfLen - i;
-                if (i < iMax && B[j - 1] > A[i])
-                    iMin = iMin + 1;
-                else if (i > iMin && A[i - 1] > B[j])
-                    iMax = iMax - 1;
+                if (i < max && B[j - 1] > A[i])
+                {
+                    min++;
+                }
+                else if (i > min && A[i - 1] > B[j])
+                {
+                    max--;
+                }
                 else
                 {
                     int maxLeft = 0;
-                    if (i == 0) { maxLeft = B[j - 1]; }
-                    else if (j == 0) { maxLeft = A[i - 1]; }
-                    else { maxLeft = Math.Max(A[i - 1], B[j - 1]); }
-                    if ((m + n) % 2 == 1) { return maxLeft; }
-
+                    if (i == 0)
+                    {
+                        maxLeft = B[j - 1];
+                    }
+                    else if (j == 0)
+                    {
+                        maxLeft = A[i - 1];
+                    }
+                    else
+                    {
+                        maxLeft = Math.Max(A[i - 1], B[j - 1]);
+                    }
+                    if ((m + n) % 2 == 1)
+                    {
+                        return maxLeft;
+                    }
                     int minRight = 0;
-                    if (i == m) { minRight = B[j]; }
-                    else if (j == n) { minRight = A[i]; }
-                    else { minRight = Math.Min(B[j], A[i]); }
-
+                    if (i == m)
+                    {
+                        minRight = B[j];
+                    }
+                    else if (j == n)
+                    {
+                        minRight = A[i];
+                    }
+                    else
+                    {
+                        minRight = Math.Min(B[j], A[i]);
+                    }
                     return (maxLeft + minRight) / 2.0;
                 }
             }
@@ -683,15 +663,14 @@ namespace Leetcodecsharp
         /// <returns></returns>
         public static ListNode RemoveNthFromEnd(ListNode head, int n)
         {
-            ListNode dummy = new ListNode(0)
-            {
-                next = head
-            };
+            ListNode dummy = new ListNode(0, head);
             ListNode first = dummy;
             ListNode second = dummy;
-            for (int i = 1; i <= n + 1; i++)
+            for (int i = 0; i <= n; i++)
+            {
                 first = first.next;
-            while (first != null)
+            }
+            while (first is not null)
             {
                 first = first.next;
                 second = second.next;
@@ -730,29 +709,29 @@ namespace Leetcodecsharp
         /// <returns>merged list</returns>
         public static ListNode MergeTwoLists(ListNode l1, ListNode l2)
         {
-            // Iteratively 124ms
-            //ListNode dummyHead = new ListNode(0);
-            //ListNode head = dummyHead;
-            //while (l1 != null && l2 != null)
-            //{
-            //    if (l1.val <= l2.val)
-            //    {
-            //        head.next = l1;
-            //        l1 = l1.next;
-            //    }
-            //    else
-            //    {
-            //        head.next = l2;
-            //        l2 = l2.next;
-            //    }
-            //    head = head.next;
-            //}
-            //point.next = l1 ?? l2;
-            //return dummyHead.next;
+            // Iteratively 84ms Time: O(n + m) Space: O(1) n,m: length of l1(l2)
+            ListNode dummyHead = new ListNode(0);
+            ListNode head = dummyHead;
+            while (l1 != null && l2 != null)
+            {
+                if (l1.val <= l2.val)
+                {
+                    head.next = l1;
+                    l1 = l1.next;
+                }
+                else
+                {
+                    head.next = l2;
+                    l2 = l2.next;
+                }
+                head = head.next;
+            }
+            head.next = l1 ?? l2;
+            return dummyHead.next;
 
-            // Recursively 112ms
-            //if (l1 == null) return l2;
-            //if (l2 == null) return l1;
+            // Recursively 88ms Time: O(n + m) Space: O(n + m) n,m: length of l1(l2)
+            //if (l1 == null) { return l2; }
+            //if (l2 == null) { return l1; }
             //ListNode ans = null;
             //if (l1.val < l2.val)
             //{
@@ -766,50 +745,6 @@ namespace Leetcodecsharp
             //}
             //return ans;
 
-            // use ref 108ms
-            ListNode ret = null;
-            ListNode end = null;
-            if (l1 == null) return l2;
-            if (l2 == null) return l1;
-            while (l1 != null || l2 != null)
-            {
-                if (l1 == null)
-                {
-                    end.next = l2;
-                    break;
-                }
-                if (l2 == null)
-                {
-                    end.next = l1;
-                    break;
-                }
-                if (l1.val > l2.val)
-                {
-                    Add(ref ret, ref end, l2.val);
-                    l2 = l2.next;
-                    continue;
-                }
-                else
-                {
-                    Add(ref ret, ref end, l1.val);
-                    l1 = l1.next;
-                }
-            }
-            return ret;
-        }
-        private static void Add(ref ListNode head, ref ListNode end, int val)
-        {
-            ListNode node = new ListNode(val);
-            if (end == null)
-            {
-                end = node;
-                head = node;
-            }
-            else
-            {
-                end.next = node;
-                end = end.next;
-            }
         }
 
         /// <summary>
@@ -1363,6 +1298,78 @@ namespace Leetcodecsharp
         }
 
         /// <summary>
+        /// 38. Count and Say
+        /// </summary>
+        /// <param name="n"></param>
+        /// <returns></returns>
+        public static string CountAndSay(int n)
+        {
+            if (n < 0)
+            {
+                return "-1";
+            }
+            string result = "1";
+            for (int i = 1; i < n; ++i)
+            {
+                result = Build(result);
+            }
+            return result;
+        }
+
+        private static string Build(string result)
+        {
+            StringBuilder sb = new StringBuilder();
+            int p = 0;
+            while (p < result.Length)
+            {
+                char val = result[p];
+                int count = 0;
+                while (p < result.Length && result[p] == val)
+                {
+                    p++;
+                    count++;
+                }
+                sb.Append(count);
+                sb.Append(val);
+            }
+            return sb.ToString();
+        }
+
+        /// <summary>
+        /// 39. Combination Sum
+        /// </summary>
+        /// <param name="candidates"></param>
+        /// <param name="target"></param>
+        /// <returns></returns>
+        public static IList<IList<int>> CombinationSum(int[] candidates, int target)
+        {
+            IList<IList<int>> ans = new List<IList<int>>();
+            List<int> combine = new List<int>();
+            Dfs(candidates, target, ans, combine, 0);
+            return ans;
+        }
+
+        private static void Dfs(int[] candidates, int target, IList<IList<int>> ans, List<int> combine, int idx)
+        {
+            if (idx == candidates.Length)
+            {
+                return;
+            }
+            if (target == 0)
+            {
+                ans.Add(new List<int>(combine));
+                return;
+            }
+            Dfs(candidates, target, ans, combine, idx + 1);
+            if (target - candidates[idx] >= 0)
+            {
+                combine.Add(candidates[idx]);
+                Dfs(candidates, target - candidates[idx], ans, combine, idx);
+                combine.RemoveAt(combine.Count - 1);
+            }
+        }
+
+        /// <summary>
         /// 41. First Missing Positive
         /// </summary>
         public static int FirstMissingPositive(int[] nums)
@@ -1847,7 +1854,7 @@ namespace Leetcodecsharp
                 {
                     sumLen += words[right++].Length;
                 }
-                if(right == n)
+                if (right == n)
                 {
                     StringBuilder sb = Join(words, left, n, " ");
                     sb.Append(Blank(maxWidth - sb.Length));
@@ -1856,7 +1863,7 @@ namespace Leetcodecsharp
                 }
                 int numWords = right - left;
                 int numSpaces = maxWidth - sumLen;
-                if(numWords == 1)
+                if (numWords == 1)
                 {
                     StringBuilder sb = new StringBuilder(words[left]);
                     sb.Append(Blank(numSpaces));
@@ -1997,6 +2004,33 @@ namespace Leetcodecsharp
                     return true;
             }
             return false;
+        }
+
+        //private List<int> temp = new List<int>();
+        //private List<List<int>> ans = new List<List<int>>();
+
+        public static IList<IList<int>> Combine(int n, int k)
+        {
+            List<int> temp = new List<int>();
+            IList<IList<int>> ans = new List<IList<int>>();
+            for (int i = 1; i <= k; ++i)
+            {
+                temp.Add(i);
+            }
+            temp.Add(n + 1);
+            int j = 0;
+            while (j < k)
+            {
+                ans.Add(new List<int>(temp.GetRange(0, k)));
+                j = 0;
+                while (j < k && temp[j] + 1 == temp[j + 1])
+                {
+                    temp[j] = j + 1;
+                    ++j;
+                }
+                ++temp[j];
+            }
+            return ans;
         }
 
         /// <summary>
@@ -2258,8 +2292,7 @@ namespace Leetcodecsharp
         {
             if (start > end) return null;
             int mid = start + (end - start) / 2;
-            TreeNode root = new TreeNode(nums[mid])
-            {
+            TreeNode root = new TreeNode(nums[mid]) {
                 left = SubProcess(nums, start, mid - 1),
                 right = SubProcess(nums, mid + 1, end)
             };
@@ -2352,6 +2385,35 @@ namespace Leetcodecsharp
         }
 
         /// <summary>
+        /// 116. Populating Next Right Pointers in Each Node
+        /// </summary>
+        /// <param name="root"></param>
+        /// <returns></returns>
+        public static BinaryTreeNode Connect(BinaryTreeNode root)
+        {
+            if (root == null)
+            {
+                return root;
+            }
+            BinaryTreeNode leftmost = root;
+            while (leftmost.left != null)
+            {
+                BinaryTreeNode head = leftmost;
+                while (head != null)
+                {
+                    head.left.next = head.right;
+                    if (head.next != null)
+                    {
+                        head.right.next = head.next.left;
+                    }
+                    head = head.next;
+                }
+                leftmost = leftmost.left;
+            }
+            return root;
+        }
+
+        /// <summary>
         /// 118. Pascal's triangle
         /// </summary>
         /// <param name="numRows"></param>
@@ -2379,6 +2441,28 @@ namespace Leetcodecsharp
                 for (int j = 1; j < i; ++j) triangle[i][j] = triangle[i - 1][j - 1] + triangle[i - 1][j];
             }
             return triangle;
+        }
+
+        /// <summary>
+        /// 120. Triangle
+        /// </summary>
+        /// <param name="triangle"></param>
+        /// <returns></returns>
+        public static int MinimumTotal(IList<IList<int>> triangle)
+        {
+            int n = triangle.Count;
+            int[] f = new int[n];
+            f[0] = triangle[0][0];
+            for (int i = 1; i < n; ++i)
+            {
+                f[i] = f[i - 1] + triangle[i][i];
+                for (int j = i - 1; j > 0; --j)
+                {
+                    f[j] = Math.Min(f[j - 1], f[j]) + triangle[i][j];
+                }
+                f[0] += triangle[i][0];
+            }
+            return f.Min();
         }
 
         /// <summary>
@@ -2576,6 +2660,34 @@ namespace Leetcodecsharp
         }
 
         /// <summary>
+        /// 167. Two Sum II - Input array is sorted
+        /// </summary>
+        /// <param name="numbers"></param>
+        /// <param name="target"></param>
+        /// <returns></returns>
+        public static int[] TwoSumII(int[] numbers, int target)
+        {
+            int left = 0, right = numbers.Length - 1;
+            while (left < right)
+            {
+                int sum = numbers[left] + numbers[right];
+                if (sum == target)
+                {
+                    return new int[] { left + 1, right + 1 };
+                }
+                else if (sum > target)
+                {
+                    right--;
+                }
+                else
+                {
+                    left++;
+                }
+            }
+            return new int[] { -1, -1 };
+        }
+
+        /// <summary>
         /// 169. Majority Element
         /// </summary>
         public static int MajorityElement(int[] nums)
@@ -2675,6 +2787,22 @@ namespace Leetcodecsharp
         }
 
         /// <summary>
+        /// 191. Number of 1 Bits
+        /// </summary>
+        /// <param name="n"></param>
+        /// <returns></returns>
+        public static int HammingWeight(uint n)
+        {
+            int res = 0;
+            while (n != 0)
+            {
+                n &= (n - 1);
+                res++;
+            }
+            return res;
+        }
+
+        /// <summary>
         /// 198. House Robber
         /// </summary>
         /// <param name="nums"></param>
@@ -2691,6 +2819,7 @@ namespace Leetcodecsharp
             //        b = Math.Max(a, b + nums[i]);
             //}
             //return Math.Max(a, b);
+
             int rob = 0;
             int notrob = 0;
             foreach (int item in nums)
@@ -2782,6 +2911,36 @@ namespace Leetcodecsharp
                 m1[s[i]] = m2[t[i]] = i;
             }
             return true;
+        }
+
+        /// <summary>
+        /// 206. Reverse Linked List
+        /// </summary>
+        /// <param name="head"></param>
+        /// <returns></returns>
+        public static ListNode ReverseList(ListNode head)
+        {
+            // Iteratively Time: O(n) Space O(1)
+            ListNode prev = null;
+            ListNode curr = head;
+            while (curr is not null)
+            {
+                ListNode next = curr.next;
+                curr.next = prev;
+                prev = curr;
+                curr = next;
+            }
+            return prev;
+
+            // Recursively Time: O(n) Space O(n)
+            //if (head is null || head.next is null)
+            //{
+            //    return head;
+            //}
+            //ListNode newHead = ReverseList(head.next);
+            //head.next.next = head;
+            //head.next = null;
+            //return newHead;
         }
 
         /// <summary>
@@ -2938,12 +3097,25 @@ namespace Leetcodecsharp
         /// <returns></returns>
         public static void MoveZeroes(int[] nums)
         {
-            int j = 0;
-            for (int i = 0; i < nums.Length; i++)
-                if (nums[i] != 0)
-                    nums[j++] = nums[i];
-            for (; j < nums.Length; j++)
-                nums[j] = 0;
+            //int j = 0, len = nums.Length;
+            //for (int i = 0; i < len; i++)
+            //    if (nums[i] != 0)
+            //        nums[j++] = nums[i];
+            //for (; j < len; j++)
+            //    nums[j] = 0;
+
+            int len = nums.Length, left = 0, right = 0;
+            while (right < len)
+            {
+                if (nums[right] != 0)
+                {
+                    int temp = nums[left];
+                    nums[left] = nums[right];
+                    nums[right] = temp;
+                    left++;
+                }
+                right++;
+            }
         }
 
         /// <summary>
@@ -3003,38 +3175,32 @@ namespace Leetcodecsharp
         /// </summary>
         /// <param name="s"></param>
         /// <returns></returns>
-        public static string ReverseString(string s)
-        {
-            if (s == string.Empty)
-                return String.Empty;
-            // two pointers
-            char[] ch = new char[s.Length];
-            int i = 0;
-            int j = s.Length - 1;
-            while (i <= j)
-            {
-                ch[j] = s[i];
-                ch[i] = s[j];
-                i++;
-                j--;
-            }
-            return new string(ch);
-        }
-
         public static void ReverseString(char[] s)
         {
-            int mid = s.Length / 2;
-            char ch;
-            int l = 0, r = s.Length - 1;
-            while (mid != 0)
+            int len = s.Length;
+            for (int left = 0, right = len - 1; left < right; ++left, --right)
             {
-                ch = s[r];
-                s[r] = s[l];
-                s[l] = ch;
-                l++;
-                r--;
-                mid--;
+                char temp = s[left];
+                s[left] = s[right];
+                s[right] = temp;
             }
+        }
+
+        /// <summary>
+        /// 371. Sum of Two Integers
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <returns></returns>
+        public static int GetSum(int a, int b)
+        {
+            while (b != 0)
+            {
+                int carry = (a & b) << 1;
+                a ^= b;
+                b = carry;
+            }
+            return a;
         }
 
         /// <summary>
@@ -3123,6 +3289,24 @@ namespace Leetcodecsharp
                 res.Add(tmp);
             }
             return res;
+        }
+
+        /// <summary>
+        /// 434. Number of Segments in a String
+        /// </summary>
+        /// <param name="s"></param>
+        /// <returns></returns>
+        public static int CountSegments(string s)
+        {
+            int segmentCount = 0;
+            for (int i = 0; i < s.Length; i++)
+            {
+                if ((i == 0 || s[i - 1] == ' ') && s[i] != ' ')
+                {
+                    segmentCount++;
+                }
+            }
+            return segmentCount;
         }
 
         /// <summary>
@@ -3237,7 +3421,7 @@ namespace Leetcodecsharp
         private static string ValidIPv4(string IP)
         {
             string[] chunks = IP.Split('.');
-            foreach (var chunk in chunks)
+            foreach (string chunk in chunks)
             {
                 if (chunk.Length == 0 || chunk.Length > 3)
                 {
@@ -3247,7 +3431,7 @@ namespace Leetcodecsharp
                 {
                     return "Neither";
                 }
-                foreach (var c in chunk)
+                foreach (char c in chunk)
                 {
                     if (!char.IsNumber(c))
                     {
@@ -3265,15 +3449,15 @@ namespace Leetcodecsharp
         {
             string[] chunks = IP.Split(':');
             string hexDigits = "0123456789abcdefABCDEF";
-            foreach (var chunk in chunks)
+            foreach (string chunk in chunks)
             {
                 if (chunk.Length == 0 || chunk.Length > 4)
                 {
                     return "Neither";
                 }
-                foreach (var c in chunk)
+                foreach (char c in chunk)
                 {
-                    if (hexDigits.IndexOf(c) == -1)
+                    if (!hexDigits.Contains(c))
                     {
                         return "Neither";
                     }
@@ -3295,7 +3479,7 @@ namespace Leetcodecsharp
             for (int i = 0; i < 30; i++)
             {
                 int tmp = 0;
-                foreach (var num in nums)
+                foreach (int num in nums)
                 {
                     tmp += (num >> i) & 1;
                 }
@@ -3321,6 +3505,155 @@ namespace Leetcodecsharp
                 f1 = res;
             }
             return res;
+        }
+
+        /// <summary>
+        /// 542. 01 Matrix
+        /// </summary>
+        /// <param name="mat"></param>
+        /// <returns></returns>
+        public static int[][] UpdateMatrix(int[][] mat)
+        {
+            int m = mat.Length, n = mat[0].Length;
+            int[][] dist = new int[m][];
+            for (int i = 0; i < m; i++)
+            {
+                dist[i] = new int[n];
+                Array.Fill(dist[i], int.MaxValue / 2);
+            }
+            for (int i = 0; i < m; i++)
+            {
+                for (int j = 0; j < n; j++)
+                {
+                    if (mat[i][j] == 0)
+                    {
+                        dist[i][j] = 0;
+                    }
+                }
+            }
+            for (int i = 0; i < m; i++)
+            {
+                for (int j = 0; j < n; j++)
+                {
+                    if (i - 1 >= 0)
+                    {
+                        dist[i][j] = Math.Min(dist[i][j], dist[i - 1][j] + 1);
+                    }
+                    if (j - 1 >= 0)
+                    {
+                        dist[i][j] = Math.Min(dist[i][j], dist[i][j - 1] + 1);
+                    }
+                }
+            }
+            for (int i = m - 1; i >= 0; i--)
+            {
+                for (int j = n - 1; j >= 0; j--)
+                {
+                    if (i + 1 < m)
+                    {
+                        dist[i][j] = Math.Min(dist[i][j], dist[i + 1][j] + 1);
+                    }
+                    if (j + 1 < n)
+                    {
+                        dist[i][j] = Math.Min(dist[i][j], dist[i][j + 1] + 1);
+                    }
+                }
+            }
+            return dist;
+        }
+
+        /// <summary>
+        /// 557. Reverse Words in a String III
+        /// </summary>
+        /// <param name="s"></param>
+        /// <returns></returns>
+        public static string ReverseWords(string s)
+        {
+            StringBuilder sb = new StringBuilder();
+            int len = s.Length;
+            int i = 0;
+            while (i < len)
+            {
+                int start = i;
+                while (i < len && s[i] != ' ')
+                {
+                    i++;
+                }
+                for (int p = start; p < i; p++)
+                {
+                    sb.Append(s[start + i - 1 - p]);
+                }
+                while (i < len && s[i] == ' ')
+                {
+                    i++;
+                    sb.Append(' ');
+                }
+            }
+            return sb.ToString();
+        }
+
+        /// <summary>
+        /// 567. Permutation in String
+        /// </summary>
+        /// <param name="s1"></param>
+        /// <param name="s2"></param>
+        /// <returns></returns>
+        public static bool CheckInclusion(string s1, string s2)
+        {
+            int n = s1.Length, m = s2.Length;
+            if (n > m)
+            {
+                return false;
+            }
+            int[] cnt = new int[26];
+            for (int i = 0; i < n; i++)
+            {
+                --cnt[s1[i] - 'a'];
+                ++cnt[s2[i] - 'a'];
+            }
+            int diff = 0;
+            foreach (int item in cnt)
+            {
+                if (item != 0)
+                {
+                    diff++;
+                }
+            }
+            if (diff == 0)
+            {
+                return true;
+            }
+            for (int i = n; i < m; i++)
+            {
+                int x = s2[i] - 'a', y = s2[i - n] - 'a';
+                if (x == y)
+                {
+                    continue;
+                }
+                if (cnt[x] == 0)
+                {
+                    ++diff;
+                }
+                ++cnt[x];
+                if (cnt[x] == 0)
+                {
+                    --diff;
+                }
+                if (cnt[y] == 0)
+                {
+                    ++diff;
+                }
+                --cnt[y];
+                if (cnt[y] == 0)
+                {
+                    --diff;
+                }
+                if (diff == 0)
+                {
+                    return true;
+                }
+            }
+            return false;
         }
 
         /// <summary>
@@ -3426,6 +3759,49 @@ namespace Leetcodecsharp
         }
 
         /// <summary>
+        /// 695. Max Area of Island
+        /// </summary>
+        /// <param name="grid"></param>
+        /// <returns></returns>
+        public static int MaxAreaOfIsland(int[][] grid)
+        {
+            int ans = 0;
+            int rowLegnth = grid.Length;
+            int colLength = grid[0].Length;
+            for (int i = 0; i < rowLegnth; i++)
+            {
+                for (int j = 0; j < colLength; j++)
+                {
+                    int curr = 0;
+                    var queuei = new Queue<int>();
+                    var queuej = new Queue<int>();
+                    queuei.Enqueue(i);
+                    queuej.Enqueue(j);
+                    while (queuei.Count != 0)
+                    {
+                        int curr_i = queuei.Dequeue(), curr_j = queuej.Dequeue();
+                        if (curr_i < 0 || curr_j < 0 || curr_i == rowLegnth || curr_j == colLength || grid[curr_i][curr_j] != 1)
+                        {
+                            continue;
+                        }
+                        ++curr;
+                        grid[curr_i][curr_j] = 0;
+                        int[] di = new int[] { 0, 0, 1, -1 };
+                        int[] dj = new int[] { 1, -1, 0, 0 };
+                        for (int index = 0; index != 4; ++index)
+                        {
+                            int next_i = curr_i + di[index], next_j = curr_j + dj[index];
+                            queuei.Enqueue(next_i);
+                            queuej.Enqueue(next_j);
+                        }
+                    }
+                    ans = Math.Max(ans, curr);
+                }
+            }
+            return ans;
+        }
+
+        /// <summary>
         /// 700. Search in a Binary Search Tree
         /// </summary>
         public static TreeNode SearchBST(TreeNode root, int val)
@@ -3481,6 +3857,56 @@ namespace Leetcodecsharp
         }
 
         /// <summary>
+        /// 704. Binary Search
+        /// </summary>
+        /// <param name="nums"></param>
+        /// <param name="target"></param>
+        /// <returns></returns>
+        public static int BinarySearch(int[] nums, int target)
+        {
+            // version 1
+            //int left = 0;
+            //int right = nums.Length - 1;
+            //while (left <= right)
+            //{
+            //    int mid = left + (right - left) / 2;
+            //    if (nums[mid] > target)
+            //    {
+            //        right = mid - 1;
+            //    }
+            //    else if (nums[mid] < target)
+            //    {
+            //        left = mid + 1;
+            //    }
+            //    else
+            //    {
+            //        return mid;
+            //    }
+            //}
+            //return -1;
+
+            int left = 0;
+            int right = nums.Length;
+            while (left < right)
+            {
+                int mid = left + (right - left) / 2;
+                if (nums[mid] > target)
+                {
+                    right = mid;
+                }
+                else if (nums[mid] < target)
+                {
+                    left = mid;
+                }
+                else
+                {
+                    return mid;
+                }
+            }
+            return -1;
+        }
+
+        /// <summary>
         /// 709. To Lower Case
         /// </summary>
         /// <param name="str"></param>
@@ -3518,6 +3944,82 @@ namespace Leetcodecsharp
                 stack.Push(i);
             }
             return ans;
+        }
+
+        private static int[] dx = { 1, 0, 0, -1 };
+        private static int[] dy = { 0, 1, -1, 0 };
+
+        /// <summary>
+        /// 733. Flood Fill
+        /// </summary>
+        /// <param name="image"></param>
+        /// <param name="sr"></param>
+        /// <param name="sc"></param>
+        /// <param name="newColor"></param>
+        /// <returns></returns>
+        public static int[][] FloodFill(int[][] image, int sr, int sc, int newColor)
+        {
+            int currentColor = image[sr][sc];
+            if (currentColor == newColor)
+            {
+                return image;
+            }
+            int n = image.Length, m = image[0].Length;
+            Queue<int[]> queue = new Queue<int[]>();
+            queue.Enqueue(new int[] { sr, sc });
+            image[sr][sc] = newColor;
+            while (queue.Any())
+            {
+                var pair = queue.Dequeue();
+                int x = pair[0], y = pair[1];
+                for (int i = 0; i < 4; i++)
+                {
+                    int mx = x + dx[i], my = y + dy[i];
+                    if (mx >= 0 && mx < n && my >= 0 && my < m && image[mx][my] == currentColor)
+                    {
+                        queue.Enqueue(new int[] { mx, my });
+                        image[mx][my] = newColor;
+                    }
+                }
+            }
+            return image;
+        }
+
+        /// <summary>
+        /// 784. Letter Case Permutation
+        /// </summary>
+        /// <param name="s"></param>
+        /// <returns></returns>
+        public static List<string> LetterCasePermutation(string s)
+        {
+            List<StringBuilder> ans = new List<StringBuilder>();
+            ans.Add(new StringBuilder());
+            foreach (char c in s.ToCharArray())
+            {
+                int n = ans.Count;
+                if (char.IsLetter(c))
+                {
+                    for (int i = 0; i < n; ++i)
+                    {
+                        ans.Add(new StringBuilder(ans[i].ToString()));
+                        ans[i].Append(char.ToLower(c));
+                        ans[n + i].Append(char.ToUpper(c));
+                    }
+                }
+                else
+                {
+                    for (int i = 0; i < n; i++)
+                    {
+                        ans[i].Append(c);
+                    }
+                }
+            }
+            List<string> finalans = new List<string>();
+            foreach (StringBuilder sb in ans)
+            {
+                finalans.Add(sb.ToString());
+            }
+            return finalans;
         }
 
         /// <summary>
@@ -3764,6 +4266,89 @@ namespace Leetcodecsharp
                 }
             }
             return sum;
+        }
+
+        /// <summary>
+        /// 977. Squares of a Sorted Array
+        /// </summary>
+        /// <param name="nums"></param>
+        /// <returns></returns>
+        public static int[] SortedSquares(int[] nums)
+        {
+            int len = nums.Length;
+            int[] ans = new int[len];
+            for (int i = 0, j = len - 1, pos = len - 1; i <= j;)
+            {
+                if (nums[i] * nums[i] > nums[j] * nums[j])
+                {
+                    ans[pos] = nums[i] * nums[i];
+                    ++i;
+                }
+                else
+                {
+                    ans[pos] = nums[j] * nums[j];
+                    --j;
+                }
+                --pos;
+            }
+            return ans;
+        }
+
+        private static int[] dr = new int[] { -1, 0, 1, 0 };
+        private static int[] dc = new int[] { 0, -1, 0, 1 };
+
+        /// <summary>
+        /// 994. Rotting Oranges
+        /// </summary>
+        /// <param name="grid"></param>
+        /// <returns></returns>
+        public static int OrangeRotting(int[][] grid)
+        {
+            int R = grid.Length, C = grid[0].Length;
+            Queue<int> queue = new Queue<int>();
+            Dictionary<int, int> depth = new Dictionary<int, int>();
+            for (int r = 0; r < R; ++r)
+            {
+                for (int c = 0; c < C; ++c)
+                {
+                    if (grid[r][c] == 2)
+                    {
+                        int code = r * C + c;
+                        queue.Enqueue(code);
+                        depth.Add(code, 0);
+                    }
+                }
+            }
+            int ans = 0;
+            while (queue.Count != 0)
+            {
+                int code = queue.Dequeue();
+                int r = code / C, c = code % C;
+                for (int k = 0; k < 4; k++)
+                {
+                    int nr = r + dr[k];
+                    int nc = c + dc[k];
+                    if (0 <= nr && nr < R && 0 <= nc && nc < C && grid[nr][nc] == 1)
+                    {
+                        grid[nr][nc] = 2;
+                        int ncode = nr * C + nc;
+                        queue.Enqueue(ncode);
+                        depth.Add(ncode, depth[code] + 1);
+                        ans = depth[ncode];
+                    }
+                }
+            }
+            foreach (int[] row in grid)
+            {
+                foreach (int v in row)
+                {
+                    if (v == 1)
+                    {
+                        return -1;
+                    }
+                }
+            }
+            return ans;
         }
 
         /// <summary>
