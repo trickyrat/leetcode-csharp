@@ -3244,6 +3244,34 @@ namespace Leetcodecsharp
         }
 
         /// <summary>
+        /// 412. Fizz Buzz
+        /// </summary>
+        /// <param name="n"></param>
+        /// <returns></returns>
+        public static IList<string> FizzBuzz(int n)
+        {
+            IList<string> answer = new List<string>();
+            for (int i = 1; i <= n; i++)
+            {
+                StringBuilder sb = new StringBuilder();
+                if (i % 3 == 0)
+                {
+                    sb.Append("Fizz");
+                }
+                if(i % 5 == 0)
+                {
+                    sb.Append("Buzz");
+                }
+                if(sb.Length == 0)
+                {
+                    sb.Append(i);
+                }
+                answer.Add(sb.ToString());
+            }
+            return answer;
+        }
+
+        /// <summary>
         /// 415. Add Strings
         /// </summary>
         /// <param name="num1"></param>
