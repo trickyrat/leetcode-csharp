@@ -1165,34 +1165,72 @@ namespace Leetcodecsharp
         public static int[] SearchRange(int[] nums, int target)
         {
             int[] missingResult = new int[] { -1, -1 };
-            int[] res = new int[] { 0, 0 };
-            if (nums.Length < 1)
-                return missingResult;
-            int lo = 0, hi = nums.Length - 1;
-            while (lo < hi)
+            //int[] res = new int[] { 0, 0 };
+            //if (nums.Length < 1)
+            //{
+            //    return missingResult;
+            //}
+            //int lo = 0, hi = nums.Length - 1;
+            //while (lo < hi)
+            //{
+            //    int mid = lo + (hi - lo) / 2;
+            //    if (nums[mid] >= target)
+            //    {
+            //        hi = mid;
+            //    }
+            //    else
+            //    {
+            //        lo = mid + 1;
+            //    }
+            //}
+            //int first = nums[lo] == target ? lo : -1;
+            //if (first == -1)
+            //{
+            //    return missingResult;
+            //}
+            //lo = first;
+            //hi = nums.Length - 1;
+            //while (lo < hi)
+            //{
+            //    int mid = lo + (hi - lo + 1) / 2;
+            //    if (nums[mid] <= target)
+            //    {
+            //        lo = mid;
+            //    }
+            //    else
+            //    {
+            //        hi = mid - 1;
+            //    }
+            //}
+            //res[0] = first;
+            //res[1] = lo;
+            //return res;
+            int leftIndex = BinarySearch(nums, target, true);
+            int rightIndex = BinarySearch(nums, target, false) - 1;
+            if (leftIndex <= rightIndex && rightIndex < nums.Length && nums[leftIndex] == nums[rightIndex])
             {
-                int mid = lo + (hi - lo) / 2;
-                if (nums[mid] >= target)
-                    hi = mid;
-                else
-                    lo = mid + 1;
+                return new int[] { leftIndex, rightIndex };
             }
-            int first = nums[lo] == target ? lo : -1;
-            if (first == -1)
-                return missingResult;
-            lo = first;
-            hi = nums.Length - 1;
-            while (lo < hi)
+            return missingResult;
+        }
+
+        private static int BinarySearch(int[] nums, int target, bool lower)
+        {
+            int l = 0, r = nums.Length - 1, ans = nums.Length;
+            while (l <= r)
             {
-                int mid = lo + (hi - lo + 1) / 2;
-                if (nums[mid] <= target)
-                    lo = mid;
+                int mid = l + (r - l) / 2;
+                if (nums[mid] > target || (lower && nums[mid] >= target))
+                {
+                    r = mid - 1;
+                    ans = mid;
+                }
                 else
-                    hi = mid - 1;
+                {
+                    l = mid + 1;
+                }
             }
-            res[0] = first;
-            res[1] = lo;
-            return res;
+            return ans;
         }
 
         /// <summary>
@@ -1953,6 +1991,39 @@ namespace Leetcodecsharp
         }
 
         /// <summary>
+        /// 71. Simplify Path
+        /// </summary>
+        /// <param name="path"></param>
+        /// <returns></returns>
+        public static string SimplifyPath(string path)
+        {
+            Stack<string> stack = new Stack<string>();
+            HashSet<string> skip = new HashSet<string> { "", ".", ".." };
+            foreach (string dir in path.Split('/'))
+            {
+                if (dir == ".." && stack.Count > 0)
+                {
+                    stack.Pop();
+                }
+                else if (!skip.Contains(dir))
+                {
+                    stack.Push(dir);
+                }
+
+            }
+            if (stack.Count == 0)
+            {
+                return "/";
+            }
+            StringBuilder sb = new StringBuilder();
+            while (stack.Count > 0)
+            {
+                sb.Insert(0, "/" + stack.Pop());
+            }
+            return sb.ToString();
+        }
+
+        /// <summary>
         /// 73. Set Zeroes
         /// </summary>
         /// <param name="matrix"></param>
@@ -2638,29 +2709,54 @@ namespace Leetcodecsharp
         /// <returns></returns>
         public static int FindPeakElement(int[] nums)
         {
-            // by recursion 104ms
-            // return Search(nums, 0, nums.Length - 1);
-
-            // by iteration 100ms
-            int l = 0, r = nums.Length - 1;
-            while (l < r)
+            int len = nums.Length;
+            int l = 0, r = len - 1, ans = -1;
+            while (l <= r)
             {
-                int mid = (l + r) / 2;
-                if (nums[mid] > nums[mid + 1])
-                    r = mid;
-                else
+                int mid = l + (r - l) / 2;
+                if (Compare(nums, mid - 1, mid) < 0 &&
+                    Compare(nums, mid, mid + 1) > 0)
+                {
+                    ans = mid;
+                    break;
+                }
+                if (Compare(nums, mid, mid + 1) < 0)
+                {
                     l = mid + 1;
+                }
+                else
+                {
+                    r = mid - 1;
+                }
             }
-            return l;
+            return ans;
         }
-        private static int Search(int[] nums, int l, int r)
+
+        private static int[] Get(int[] nums, int index)
         {
-            if (l == r) return l;
-            int mid = (l + r) / 2;
-            if (nums[mid] > nums[mid + 1])
-                return Search(nums, l, mid);
-            return Search(nums, mid + 1, r);
+            if (index == -1 || index == nums.Length)
+            {
+                return new int[] { 0, 0 };
+            }
+            return new int[] { 1, nums[index] };
         }
+
+        private static int Compare(int[] nums, int index1, int index2)
+        {
+            int[] num1 = Get(nums, index1);
+            int[] num2 = Get(nums, index2);
+            if (num1[0] != nums[0])
+            {
+                return num1[0] > num2[0] ? 1 : -1;
+            }
+            if (num1[1] == num2[1])
+            {
+                return 0;
+            }
+            return num1[1] > num2[1] ? 1 : -1;
+        }
+
+
 
         /// <summary>
         /// 167. Two Sum II - Input array is sorted
@@ -3258,11 +3354,11 @@ namespace Leetcodecsharp
                 {
                     sb.Append("Fizz");
                 }
-                if(i % 5 == 0)
+                if (i % 5 == 0)
                 {
                     sb.Append("Buzz");
                 }
-                if(sb.Length == 0)
+                if (sb.Length == 0)
                 {
                     sb.Append(i);
                 }
@@ -4093,16 +4189,20 @@ namespace Leetcodecsharp
         /// <returns></returns>
         public static int PeakIndexInMountainArray(int[] A)
         {
-            int left = 0, right = A.Length - 1;
-            while (left < right)
+            int l = 0, r = A.Length - 1;
+            while (l < r)
             {
-                int mid = (left + right) / 2;
+                int mid = (l + r) / 2;
                 if (A[mid] < A[mid + 1])
-                    left = mid + 1;
+                {
+                    l = mid + 1;
+                }
                 else
-                    right = mid;
+                {
+                    r = mid;
+                }
             }
-            return left;
+            return l;
         }
 
         /// <summary>
