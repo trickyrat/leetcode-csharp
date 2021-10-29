@@ -2086,22 +2086,29 @@ namespace Leetcodecsharp
         /// </summary>
         public static bool SearchMatrix(int[][] matrix, int target)
         {
-            int row = matrix.Length;
-            if (row == 0)
-                return false;
-            int col = matrix[0].Length;
-            int low = 0, high = row * col - 1;
-            while (low <= high)
+            int m = matrix.Length;
+            if (m == 0)
             {
-                int mid = low + (high - low) / 2;
-                int r = mid / col;
-                int c = mid % col;
-                if (matrix[r][c] > target)
-                    high = mid - 1;
-                else if (matrix[r][c] < target)
-                    low = mid + 1;
+                return false;
+            }
+            int n = matrix[0].Length;
+            int l = 0, r = m * n - 1;
+            while (l <= r)
+            {
+                int mid = l + (r - l) / 2;
+                int x = matrix[mid / n][mid % n];
+                if (x > target)
+                {
+                    r = mid - 1;
+                }
+                else if (x < target)
+                {
+                    l = mid + 1;
+                }
                 else
+                {
                     return true;
+                }
             }
             return false;
         }
