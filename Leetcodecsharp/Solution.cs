@@ -5417,5 +5417,32 @@ namespace Leetcodecsharp
             };
         }
 
+
+        /// <summary>
+        /// 1576.替换所有的问好
+        /// </summary>
+        /// <param name="s"></param>
+        /// <returns></returns>
+        public static string ModifyString(string s)
+        {
+            int len = s.Length;
+            char[] arr = s.ToArray();
+            for (int i = 0; i < len; i++)
+            {
+                if(arr[i] == '?')
+                {
+                    for (char ch = 'a'; ch <= 'c'; ch++)
+                    {
+                        if((i > 0 && arr[i - 1] == ch) || (i < len - 1 && arr[i + 1] == ch))
+                        {
+                            continue;
+                        }
+                        arr[i] = ch;
+                        break;
+                    }
+                }
+            }
+            return new string(arr);
+        }
     }
 }
