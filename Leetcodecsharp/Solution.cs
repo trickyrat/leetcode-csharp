@@ -2719,6 +2719,7 @@ public class Solution
                 return nums[mid + 1];
             if (nums[mid - 1] > nums[mid])
                 return nums[mid];
+                }
 
             if (nums[mid] > nums[0])
                 l = mid + 1;
@@ -3838,6 +3839,7 @@ public class Solution
                 t[0].left = t[1].left;
             else
                 stack.Push(new TreeNode[] { t[0].left, t[1].left });
+                }
 
             if (t[0].right == null)
                 t[0].right = t[1].right;
@@ -4631,6 +4633,7 @@ public class Solution
         IList<IList<int>> res = new int[n][];
         for (int r = 0; r < n; r++)
             res[r] = new int[m];
+            }
 
         // use list
         // IList<IList<int>> res = new IList<List<int>>();
