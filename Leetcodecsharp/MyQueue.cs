@@ -3,53 +3,51 @@
 
 using System.Collections.Generic;
 
-namespace Leetcodecsharp
+namespace Leetcodecsharp;
+public class MyQueue
 {
-    public class MyQueue
+    private Stack<int> inStack, outStack;
+
+
+    public MyQueue()
     {
-        private Stack<int> inStack, outStack;
+        inStack = new Stack<int>();
+        outStack = new Stack<int>();
+    }
 
-
-        public MyQueue()
+    private void In2Out()
+    {
+        while (inStack.Count != 0)
         {
-            inStack = new Stack<int>();
-            outStack = new Stack<int>();
+            outStack.Push(inStack.Pop());
         }
+    }
 
-        private void In2Out()
-        {
-            while (inStack.Count != 0)
-            {
-                outStack.Push(inStack.Pop());
-            }
-        }
+    public void Push(int x)
+    {
+        inStack.Push(x);
+    }
 
-        public void Push(int x)
+    public int Pop()
+    {
+        if (outStack.Count == 0)
         {
-            inStack.Push(x);
+            In2Out();
         }
+        return outStack.Pop();
+    }
 
-        public int Pop()
+    public int Peek()
+    {
+        if (outStack.Count == 0)
         {
-            if(outStack.Count == 0)
-            {
-                In2Out();
-            }
-            return outStack.Pop();
+            In2Out();
         }
+        return outStack.Peek();
+    }
 
-        public int Peek()
-        {
-            if(outStack.Count == 0)
-            {
-                In2Out();
-            }
-            return outStack.Peek();
-        }
-
-        public bool Empty()
-        {
-            return inStack.Count == 0 && outStack.Count == 0;
-        }
+    public bool Empty()
+    {
+        return inStack.Count == 0 && outStack.Count == 0;
     }
 }

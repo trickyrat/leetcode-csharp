@@ -6,61 +6,60 @@ using System.Text;
 
 using Leetcodecsharp.DataStructure;
 
-namespace Leetcodecsharp
+namespace Leetcodecsharp;
+
+public static class Utils
 {
-    public static class Utils
+    public static ListNode InitLinkedList(List<int> data)
     {
-        public static ListNode InitLinkedList(List<int> data)
+        ListNode head = new ListNode(0);
+        ListNode dummy = head;
+        foreach (int item in data)
         {
-            ListNode head = new ListNode(0);
-            ListNode dummy = head;
-            foreach (int item in data)
-            {
-                dummy.next = new ListNode(item);
-                dummy = dummy.next;
-            }
-            return head.next;
+            dummy.next = new ListNode(item);
+            dummy = dummy.next;
         }
+        return head.next;
+    }
 
-        public static string PrintListNode(ListNode head)
+    public static string PrintListNode(ListNode head)
+    {
+        StringBuilder sb = new StringBuilder();
+        while (head is not null)
         {
-            StringBuilder sb = new StringBuilder();
-            while (head is not null)
+            sb.Append($"{head.val}");
+            head = head.next;
+            if (head is not null)
             {
-                sb.Append($"{head.val}");
-                head = head.next;
-                if (head is not null)
-                {
-                    sb.Append("->");
-                }
+                sb.Append("->");
             }
-            return sb.ToString();
         }
+        return sb.ToString();
+    }
 
-        public static string PrintMultipleArray(int[][] array)
+    public static string PrintMultipleArray(int[][] array)
+    {
+        StringBuilder sb = new StringBuilder();
+        int row = array.Length, col = array[0].Length;
+        sb.Append('[');
+        for (int r = 0; r < row; r++)
         {
-            StringBuilder sb = new StringBuilder();
-            int row = array.Length, col = array[0].Length;
             sb.Append('[');
-            for (int r = 0; r < row; r++)
+            for (int c = 0; c < col; c++)
             {
-                sb.Append('[');
-                for (int c = 0; c < col; c++)
+                sb.Append(col);
+                if (c != col - 1)
                 {
-                    sb.Append(col);
-                    if (c != col - 1)
-                    {
-                        sb.Append(", ");
-                    }
-                }
-                sb.Append(']');
-                if (r != row - 1)
-                {
-                    sb.Append('\n');
+                    sb.Append(", ");
                 }
             }
             sb.Append(']');
-            return sb.ToString();
+            if (r != row - 1)
+            {
+                sb.Append('\n');
+            }
         }
+        sb.Append(']');
+        return sb.ToString();
     }
 }

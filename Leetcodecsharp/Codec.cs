@@ -7,63 +7,60 @@ using System.Text;
 
 using Leetcodecsharp.DataStructure;
 
-namespace Leetcodecsharp
-{
-    public class Codec
-    {
-        private static readonly char spliter = ',';
-        private static readonly string NN = "X";
-        /// <summary>
-        /// Encode a tree to single string.
-        /// </summary>
-        /// <param name="root"></param>
-        /// <returns></returns>
-        public string Serialize(TreeNode root)
-        {
-            StringBuilder sb = new StringBuilder();
-            BuildString(root, sb);
-            return sb.ToString();
-        }
-        private void BuildString(TreeNode node, StringBuilder sb)
-        {
-            if (node == null)
-            { 
-                sb.Append(NN).Append(spliter); 
-            }
-            else
-            {
-                sb.Append(node.val).Append(spliter);
-                BuildString(node.left, sb);
-                BuildString(node.right, sb);
-            }
-        }
+namespace Leetcodecsharp;
 
-        public TreeNode Deserialize(string data)
+public class Codec
+{
+    private static readonly char spliter = ',';
+    private static readonly string NN = "X";
+    /// <summary>
+    /// Encode a tree to single string.
+    /// </summary>
+    /// <param name="root"></param>
+    /// <returns></returns>
+    public string Serialize(TreeNode root)
+    {
+        StringBuilder sb = new StringBuilder();
+        BuildString(root, sb);
+        return sb.ToString();
+    }
+    private void BuildString(TreeNode node, StringBuilder sb)
+    {
+        if (node == null)
         {
-            Queue<string> nodes = new Queue<string>();
-            foreach (string item in data.Split(spliter))
-            {
-                nodes.Enqueue(item);
-            }
-            return BuildeTree(nodes);
+            sb.Append(NN).Append(spliter);
         }
-        private TreeNode BuildeTree(Queue<string> nodes)
+        else
         {
-            string val = nodes.Dequeue();
-            if (val.Equals(NN)) 
-            { 
-                return null;
-            }
-            else
-            {
-                TreeNode node = new TreeNode(Convert.ToInt32(val)) 
-                {
-                    left = BuildeTree(nodes),
-                    right = BuildeTree(nodes)
-                };
-                return node;
-            }
+            sb.Append(node.val).Append(spliter);
+            BuildString(node.left, sb);
+            BuildString(node.right, sb);
         }
     }
 
+    public TreeNode Deserialize(string data)
+    {
+        Queue<string> nodes = new Queue<string>();
+        foreach (string item in data.Split(spliter))
+        {
+            nodes.Enqueue(item);
+        }
+        return BuildeTree(nodes);
+    }
+    private TreeNode BuildeTree(Queue<string> nodes)
+    {
+        string val = nodes.Dequeue();
+        if (val.Equals(NN))
+        {
+            return null;
+        }
+        else
+        {
+            TreeNode node = new TreeNode(Convert.ToInt32(val)) {
+                left = BuildeTree(nodes),
+                right = BuildeTree(nodes)
+            };
+            return node;
+        }
+    }
 }
