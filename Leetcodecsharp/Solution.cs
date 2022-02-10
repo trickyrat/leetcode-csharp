@@ -257,18 +257,19 @@ public class Solution
             }
         }
         return s.Substring((centerIndex - 1 - maxLen) / 2, maxLen);
-    }
-    private static string PreProcess(string s)
-    {
-        int n = s.Length;
-        if (n == 0) return "^$";
-        string ret = "^";
-        for (int i = 0; i < n; i++)
+
+        string PreProcess(string s)
         {
-            ret += "#" + s.Substring(i, 1);
+            int n = s.Length;
+            if (n == 0) return "^$";
+            string ret = "^";
+            for (int i = 0; i < n; i++)
+            {
+                ret += "#" + s.Substring(i, 1);
+            }
+            ret += "#$";
+            return ret;
         }
-        ret += "#$";
-        return ret;
     }
 
     /// <summary>
@@ -765,18 +766,19 @@ public class Solution
         // return ans;
         Backtrack(ans, "", 0, 0, n);
         return ans;
-    }
-    private static void Backtrack(IList<string> list, string str, int open, int close, int n)
-    {
-        if (str.Length == n * 2)
+
+        void Backtrack(IList<string> list, string str, int open, int close, int n)
         {
-            list.Add(str);
-            return;
+            if (str.Length == n * 2)
+            {
+                list.Add(str);
+                return;
+            }
+            if (open < n)
+                Backtrack(list, str + "(", open + 1, close, n);
+            if (close < open)
+                Backtrack(list, str + ")", open, close + 1, n);
         }
-        if (open < n)
-            Backtrack(list, str + "(", open + 1, close, n);
-        if (close < open)
-            Backtrack(list, str + ")", open, close + 1, n);
     }
 
     /// <summary>
@@ -922,29 +924,25 @@ public class Solution
             }
         }
         return -1;
-    }
-    /// <summary>
-    /// KMP Process
-    /// </summary>
-    /// <param name="needle"></param>
-    /// <returns></returns>
-    private static List<int> KMPProcess(string needle)
-    {
-        int n = needle.Length;
-        List<int> lps = new List<int>();
-        for (int i = 0; i < n; i++)
-            lps.Add(0);
-        for (int i = 1, len = 0; i < n;)
+
+        List<int> KMPProcess(string needle)
         {
-            if (needle[i] == needle[len])
+            int n = needle.Length;
+            List<int> lps = new List<int>();
+            for (int i = 0; i < n; i++)
+                lps.Add(0);
+            for (int i = 1, len = 0; i < n;)
             {
-                lps[i] = ++len;
-                i++;
+                if (needle[i] == needle[len])
+                {
+                    lps[i] = ++len;
+                    i++;
+                }
+                else if (len > 0) len = lps[len - 1];
+                else lps[i++] = 0;
             }
-            else if (len > 0) len = lps[len - 1];
-            else lps[i++] = 0;
+            return lps;
         }
-        return lps;
     }
 
     /// <summary>
@@ -1047,18 +1045,19 @@ public class Solution
             int j = nums.Length - 1;
             while (j >= 0 && nums[j] <= nums[i])
                 j--;
-            Swap(ref nums[i], ref nums[j]);
+            Utils.Swap(ref nums[i], ref nums[j]);
         }
         Reverse(nums, i + 1);
-    }
-    private static void Reverse(int[] nums, int start)
-    {
-        int i = start, j = nums.Length - 1;
-        while (i < j)
+
+        void Reverse(int[] nums, int start)
         {
-            Swap(ref nums[i], ref nums[j]);
-            i++;
-            j--;
+            int i = start, j = nums.Length - 1;
+            while (i < j)
+            {
+                Utils.Swap(ref nums[i], ref nums[j]);
+                i++;
+                j--;
+            }
         }
     }
 
@@ -1238,25 +1237,25 @@ public class Solution
             return new int[] { leftIndex, rightIndex };
         }
         return missingResult;
-    }
 
-    private static int BinarySearch(int[] nums, int target, bool lower)
-    {
-        int l = 0, r = nums.Length - 1, ans = nums.Length;
-        while (l <= r)
+        int BinarySearch(int[] nums, int target, bool lower)
         {
-            int mid = l + (r - l) / 2;
-            if (nums[mid] > target || (lower && nums[mid] >= target))
+            int l = 0, r = nums.Length - 1, ans = nums.Length;
+            while (l <= r)
             {
-                r = mid - 1;
-                ans = mid;
+                int mid = l + (r - l) / 2;
+                if (nums[mid] > target || (lower && nums[mid] >= target))
+                {
+                    r = mid - 1;
+                    ans = mid;
+                }
+                else
+                {
+                    l = mid + 1;
+                }
             }
-            else
-            {
-                l = mid + 1;
-            }
+            return ans;
         }
-        return ans;
     }
 
     /// <summary>
@@ -1329,39 +1328,43 @@ public class Solution
     /// <summary>
     /// 37. Sudoku Solver 
     /// </summary>
-    public static void SolveSudoku(char[][] board) => DoSolve(board, 0, 0);
-    private static bool DoSolve(char[][] board, int row, int col)
+    public static void SolveSudoku(char[][] board)
     {
-        for (int i = row; i < 9; i++, col = 0)
+        DoSolve(board, 0, 0);
+
+        bool DoSolve(char[][] board, int row, int col)
         {
-            for (int j = col; j < 9; j++)
+            for (int i = row; i < 9; i++, col = 0)
             {
-                if (board[i][j] != '.')
-                    continue;
-                for (char num = '1'; num <= '9'; num++)
+                for (int j = col; j < 9; j++)
                 {
-                    if (IsValid(board, i, j, num))
+                    if (board[i][j] != '.')
+                        continue;
+                    for (char num = '1'; num <= '9'; num++)
                     {
-                        board[i][j] = num;
-                        if (DoSolve(board, i, j + 1))
-                            return true;
-                        board[i][j] = '.';
+                        if (IsValid(board, i, j, num))
+                        {
+                            board[i][j] = num;
+                            if (DoSolve(board, i, j + 1))
+                                return true;
+                            board[i][j] = '.';
+                        }
                     }
+                    return false;
                 }
-                return false;
             }
+            return true;
         }
-        return true;
-    }
-    private static bool IsValid(char[][] board, int row, int col, char num)
-    {
-        int blkrow = (row / 3) * 3, blkcol = (col / 3) * 3;
-        for (int i = 0; i < 9; i++)
+        bool IsValid(char[][] board, int row, int col, char num)
         {
-            if (board[i][col] == num || board[row][i] == num || board[blkrow + i / 3][blkcol + i % 3] == num)
-                return false;
+            int blkrow = (row / 3) * 3, blkcol = (col / 3) * 3;
+            for (int i = 0; i < 9; i++)
+            {
+                if (board[i][col] == num || board[row][i] == num || board[blkrow + i / 3][blkcol + i % 3] == num)
+                    return false;
+            }
+            return true;
         }
-        return true;
     }
 
     /// <summary>
@@ -1381,25 +1384,25 @@ public class Solution
             result = Build(result);
         }
         return result;
-    }
 
-    private static string Build(string result)
-    {
-        StringBuilder sb = new StringBuilder();
-        int p = 0;
-        while (p < result.Length)
+        string Build(string result)
         {
-            char val = result[p];
-            int count = 0;
-            while (p < result.Length && result[p] == val)
+            StringBuilder sb = new StringBuilder();
+            int p = 0;
+            while (p < result.Length)
             {
-                p++;
-                count++;
+                char val = result[p];
+                int count = 0;
+                while (p < result.Length && result[p] == val)
+                {
+                    p++;
+                    count++;
+                }
+                sb.Append(count);
+                sb.Append(val);
             }
-            sb.Append(count);
-            sb.Append(val);
+            return sb.ToString();
         }
-        return sb.ToString();
     }
 
     /// <summary>
@@ -1414,26 +1417,27 @@ public class Solution
         List<int> combine = new List<int>();
         Dfs(candidates, target, ans, combine, 0);
         return ans;
-    }
 
-    private static void Dfs(int[] candidates, int target, IList<IList<int>> ans, List<int> combine, int idx)
-    {
-        if (idx == candidates.Length)
+        void Dfs(int[] candidates, int target, IList<IList<int>> ans, List<int> combine, int idx)
         {
-            return;
+            if (idx == candidates.Length)
+            {
+                return;
+            }
+            if (target == 0)
+            {
+                ans.Add(new List<int>(combine));
+                return;
+            }
+            Dfs(candidates, target, ans, combine, idx + 1);
+            if (target - candidates[idx] >= 0)
+            {
+                combine.Add(candidates[idx]);
+                Dfs(candidates, target - candidates[idx], ans, combine, idx);
+                combine.RemoveAt(combine.Count - 1);
+            }
         }
-        if (target == 0)
-        {
-            ans.Add(new List<int>(combine));
-            return;
-        }
-        Dfs(candidates, target, ans, combine, idx + 1);
-        if (target - candidates[idx] >= 0)
-        {
-            combine.Add(candidates[idx]);
-            Dfs(candidates, target - candidates[idx], ans, combine, idx);
-            combine.RemoveAt(combine.Count - 1);
-        }
+
     }
 
     /// <summary>
@@ -1445,24 +1449,12 @@ public class Solution
         for (int i = 0; i < len; i++)
         {
             while (nums[i] > 0 && nums[i] <= len && nums[nums[i] - 1] != nums[i])
-                Swap(ref nums[i], ref nums[nums[i] - 1]);
+                Utils.Swap(ref nums[i], ref nums[nums[i] - 1]);
         }
         for (int i = 0; i < len; i++)
             if (nums[i] != i + 1)
                 return i + 1;
         return len + 1;
-    }
-
-    /// <summary>
-    /// Swap values for a and b.
-    /// </summary>
-    /// <param name="a">Integer a</param>
-    /// <param name="b">Integer b</param>
-    private static void Swap(ref int a, ref int b)
-    {
-        int tmp = a;
-        a = b;
-        b = tmp;
     }
 
     /// <summary>
@@ -1945,29 +1937,28 @@ public class Solution
             curr.Append(Join(words, left + extraSpaces + 1, right, Blank(avgSpaces)));
             ans.Add(curr.ToString());
         }
-    }
 
-    private static string Blank(int n)
-    {
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < n; i++)
+        string Blank(int n)
         {
-            sb.Append(' ');
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < n; i++)
+            {
+                sb.Append(' ');
+            }
+            return sb.ToString();
         }
-        return sb.ToString();
-    }
 
-    private static StringBuilder Join(string[] words, int left, int right, string seperator)
-    {
-        StringBuilder sb = new StringBuilder(words[left]);
-        for (int i = left + 1; i < right; i++)
+        StringBuilder Join(string[] words, int left, int right, string seperator)
         {
-            sb.Append(seperator);
-            sb.Append(words[i]);
+            StringBuilder sb = new StringBuilder(words[left]);
+            for (int i = left + 1; i < right; i++)
+            {
+                sb.Append(seperator);
+                sb.Append(words[i]);
+            }
+            return sb;
         }
-        return sb;
     }
-
 
     /// <summary>
     /// 69. Sqrt(x)
@@ -2106,9 +2097,12 @@ public class Solution
         return false;
     }
 
-    //private List<int> temp = new List<int>();
-    //private List<List<int>> ans = new List<List<int>>();
-
+    /// <summary>
+    /// 77.组合
+    /// </summary>
+    /// <param name="n"></param>
+    /// <param name="k"></param>
+    /// <returns></returns>
     public static IList<IList<int>> Combine(int n, int k)
     {
         List<int> temp = new List<int>();
@@ -2226,17 +2220,17 @@ public class Solution
         }
 
         return ret;
-    }
 
-    private static void InorderHelper(IList<int> ret, TreeNode root)
-    {
-        if (root == null)
+        void InorderHelper(IList<int> ret, TreeNode root)
         {
-            return;
+            if (root == null)
+            {
+                return;
+            }
+            InorderHelper(ret, root.left);
+            ret.Add(root.val);
+            InorderHelper(ret, root.right);
         }
-        InorderHelper(ret, root.left);
-        ret.Add(root.val);
-        InorderHelper(ret, root.right);
     }
 
     /// <summary>
@@ -2299,16 +2293,17 @@ public class Solution
             queue.Enqueue(t2.left);
         }
         return true;
-    }
-    private static bool IsMirror(TreeNode l1, TreeNode l2)
-    {
-        if (l1 == null && l2 == null)
-            return true;
-        if (l1 == null || l2 == null)
-            return false;
-        return (l1.val == l2.val)
-            && IsMirror(l1.left, l2.right)
-            && IsMirror(l1.right, l2.left);
+
+        bool IsMirror(TreeNode l1, TreeNode l2)
+        {
+            if (l1 == null && l2 == null)
+                return true;
+            if (l1 == null || l2 == null)
+                return false;
+            return (l1.val == l2.val)
+                && IsMirror(l1.left, l2.right)
+                && IsMirror(l1.right, l2.left);
+        }
     }
 
     /// <summary>
@@ -2387,16 +2382,17 @@ public class Solution
         //root.right = SubProcess(nums.Where((num, index) => index > mid).ToArray());
         //return root;
         return SubProcess(nums, 0, nums.Length - 1);
-    }
-    private static TreeNode SubProcess(int[] nums, int start, int end)
-    {
-        if (start > end) return null;
-        int mid = start + (end - start) / 2;
-        TreeNode root = new TreeNode(nums[mid]) {
-            left = SubProcess(nums, start, mid - 1),
-            right = SubProcess(nums, mid + 1, end)
-        };
-        return root;
+
+        TreeNode SubProcess(int[] nums, int start, int end)
+        {
+            if (start > end) return null;
+            int mid = start + (end - start) / 2;
+            TreeNode root = new TreeNode(nums[mid]) {
+                left = SubProcess(nums, start, mid - 1),
+                right = SubProcess(nums, mid + 1, end)
+            };
+            return root;
+        }
     }
 
     /// <summary>
@@ -2405,33 +2401,36 @@ public class Solution
     public static TreeNode SortedListToBST(ListNode head)
     {
         int size = FindSize(head);
-        Solution.head = head;
+        ListNode dummyHead = head;
+        //Solution.head = head;
         return ConvertListToBST(0, size - 1);
-    }
-    private static ListNode head;
-    private static int FindSize(ListNode head)
-    {
-        ListNode ptr = head;
-        int c = 0;
-        while (ptr != null)
+
+        int FindSize(ListNode head)
         {
-            ptr = ptr.next;
-            c += 1;
+            ListNode ptr = head;
+            int c = 0;
+            while (ptr != null)
+            {
+                ptr = ptr.next;
+                c += 1;
+            }
+            return c;
         }
-        return c;
+
+        TreeNode ConvertListToBST(int l, int r)
+        {
+            if (l > r)
+                return null;
+            int mid = (l + r) / 2;
+            TreeNode left = ConvertListToBST(l, mid - 1);
+            TreeNode node = new TreeNode(head.val);
+            node.left = left;
+            head = head.next;
+            node.right = ConvertListToBST(mid + 1, r);
+            return node;
+        }
     }
-    private static TreeNode ConvertListToBST(int l, int r)
-    {
-        if (l > r)
-            return null;
-        int mid = (l + r) / 2;
-        TreeNode left = ConvertListToBST(l, mid - 1);
-        TreeNode node = new TreeNode(head.val);
-        node.left = left;
-        head = head.next;
-        node.right = ConvertListToBST(mid + 1, r);
-        return node;
-    }
+    //private static ListNode head;
 
     /// <summary>
     /// 110. Balanced Binary Tree
@@ -2441,22 +2440,23 @@ public class Solution
     public static bool IsBalanced(TreeNode root)
     {
         return DFSHeight(root) != -1;
-    }
-    private static int DFSHeight(TreeNode root)
-    {
-        if (root == null) return 0;
-        int leftHeight = DFSHeight(root.left);
-        // when left node is null
-        if (leftHeight == -1)
-            return -1;
-        int rightHeight = DFSHeight(root.right);
-        // when right node is null
-        if (rightHeight == -1)
-            return -1;
-        // balanced binary tree defination
-        if (Math.Abs(leftHeight - rightHeight) > 1)
-            return -1;
-        return Math.Max(leftHeight, rightHeight) + 1;
+
+        int DFSHeight(TreeNode root)
+        {
+            if (root == null) return 0;
+            int leftHeight = DFSHeight(root.left);
+            // when left node is null
+            if (leftHeight == -1)
+                return -1;
+            int rightHeight = DFSHeight(root.right);
+            // when right node is null
+            if (rightHeight == -1)
+                return -1;
+            // balanced binary tree defination
+            if (Math.Abs(leftHeight - rightHeight) > 1)
+                return -1;
+            return Math.Max(leftHeight, rightHeight) + 1;
+        }
     }
 
     /// <summary>
@@ -2716,15 +2716,23 @@ public class Solution
         {
             int mid = l + (r - l) / 2;
             if (nums[mid] > nums[mid + 1])
+            {
                 return nums[mid + 1];
+            }
+
             if (nums[mid - 1] > nums[mid])
+            {
                 return nums[mid];
-                }
+            }
 
             if (nums[mid] > nums[0])
+            {
                 l = mid + 1;
+            }
             else
+            {
                 r = mid - 1;
+            }
         }
         return -1;
     }
@@ -2757,30 +2765,30 @@ public class Solution
             }
         }
         return ans;
-    }
 
-    private static int[] Get(int[] nums, int index)
-    {
-        if (index == -1 || index == nums.Length)
+        int[] Get(int[] nums, int index)
         {
-            return new int[] { 0, 0 };
+            if (index == -1 || index == nums.Length)
+            {
+                return new int[] { 0, 0 };
+            }
+            return new int[] { 1, nums[index] };
         }
-        return new int[] { 1, nums[index] };
-    }
 
-    private static int Compare(int[] nums, int index1, int index2)
-    {
-        int[] num1 = Get(nums, index1);
-        int[] num2 = Get(nums, index2);
-        if (num1[0] != nums[0])
+        int Compare(int[] nums, int index1, int index2)
         {
-            return num1[0] > num2[0] ? 1 : -1;
+            int[] num1 = Get(nums, index1);
+            int[] num2 = Get(nums, index2);
+            if (num1[0] != nums[0])
+            {
+                return num1[0] > num2[0] ? 1 : -1;
+            }
+            if (num1[1] == num2[1])
+            {
+                return 0;
+            }
+            return num1[1] > num2[1] ? 1 : -1;
         }
-        if (num1[1] == num2[1])
-        {
-            return 0;
-        }
-        return num1[1] > num2[1] ? 1 : -1;
     }
 
 
@@ -2875,17 +2883,18 @@ public class Solution
         Reverse(nums, 0, nums.Length - 1);
         Reverse(nums, 0, k - 1);
         Reverse(nums, k, nums.Length - 1);
-    }
-    private static void Reverse(int[] nums, int start, int end)
-    {
-        while (start < end)
+        void Reverse(int[] nums, int start, int end)
         {
-            int tmp = nums[start];
-            nums[start] = nums[end];
-            nums[end] = tmp;
-            start++;
-            end--;
+            while (start < end)
+            {
+                int tmp = nums[start];
+                nums[start] = nums[end];
+                nums[end] = tmp;
+                start++;
+                end--;
+            }
         }
+
     }
 
     /// <summary>
@@ -2973,22 +2982,18 @@ public class Solution
                 return false;
         }
         return true;
-    }
-    /// <summary>
-    /// Happy Number Squaresum
-    /// </summary>
-    /// <param name="n"></param>
-    /// <returns></returns>
-    private static int DigitSquareSum(int n)
-    {
-        int sum = 0;
-        while (n > 0)
+
+        int DigitSquareSum(int n)
         {
-            int tmp = n % 10;
-            sum += tmp * tmp;
-            n /= 10;
+            int sum = 0;
+            while (n > 0)
+            {
+                int tmp = n % 10;
+                sum += tmp * tmp;
+                n /= 10;
+            }
+            return sum;
         }
-        return sum;
     }
 
     /// <summary>
@@ -3087,56 +3092,46 @@ public class Solution
             }
         }
         return res;
-    }
-    /// <summary>
-    /// FindWords DFS
-    /// </summary>
-    /// <param name="board"></param>
-    /// <param name="i"></param>
-    /// <param name="j"></param>
-    /// <param name="p"></param>
-    /// <param name="res"></param>
-    private static void Dfs(char[,] board, int i, int j, TrieNode p, IList<string> res)
-    {
-        char c = board[i, j];
-        if (c == '#' || p.Get(c) == null) return;
-        p = p.Get(c);
-        if (p.Word != null)
-        {
-            res.Add(p.Word);
-            p.Word = null;
-        }
-        board[i, j] = '#';
-        if (i > 0) Dfs(board, i - 1, j, p, res);
-        if (j > 0) Dfs(board, i, j - 1, p, res);
-        if (i < board.GetLength(0) - 1) Dfs(board, i + 1, j, p, res);
-        if (j < board.GetLength(1) - 1) Dfs(board, i, j + 1, p, res);
-        board[i, j] = c;
-    }
-    /// <summary>
-    /// FindWords  Trie
-    /// </summary>
-    /// <param name="words"></param>
-    /// <returns></returns>
-    private static TrieNode BuildTrie(string[] words)
-    {
-        TrieNode root = new TrieNode();
-        foreach (string item in words)
-        {
-            TrieNode p = root;
-            foreach (char ch in item.ToCharArray())
-            {
-                if (p.Get(ch) == null)
-                {
-                    p.Links[ch - 'a'] = new TrieNode();
-                }
 
-                p = p.Get(ch);
+        void Dfs(char[,] board, int i, int j, TrieNode p, IList<string> res)
+        {
+            char c = board[i, j];
+            if (c == '#' || p.Get(c) == null) return;
+            p = p.Get(c);
+            if (p.Word != null)
+            {
+                res.Add(p.Word);
+                p.Word = null;
             }
-            p.Word = item;
+            board[i, j] = '#';
+            if (i > 0) Dfs(board, i - 1, j, p, res);
+            if (j > 0) Dfs(board, i, j - 1, p, res);
+            if (i < board.GetLength(0) - 1) Dfs(board, i + 1, j, p, res);
+            if (j < board.GetLength(1) - 1) Dfs(board, i, j + 1, p, res);
+            board[i, j] = c;
         }
-        return root;
+
+        TrieNode BuildTrie(string[] words)
+        {
+            TrieNode root = new TrieNode();
+            foreach (string item in words)
+            {
+                TrieNode p = root;
+                foreach (char ch in item.ToCharArray())
+                {
+                    if (p.Get(ch) == null)
+                    {
+                        p.Links[ch - 'a'] = new TrieNode();
+                    }
+
+                    p = p.Get(ch);
+                }
+                p.Word = item;
+            }
+            return root;
+        }
     }
+
 
     /// <summary>
     /// 213. House Robber II
@@ -3148,17 +3143,18 @@ public class Solution
         int n = nums.Length;
         if (n < 2) return n == 1 ? nums[0] : 0;
         return Math.Max(Robber(nums, 0, n - 2), Robber(nums, 1, n - 1));
-    }
-    private static int Robber(int[] nums, int l, int r)
-    {
-        int pre = 0, cur = 0;
-        for (int i = l; i <= r; i++)
+
+        int Robber(int[] nums, int l, int r)
         {
-            int temp = Math.Max(pre + nums[i], cur);
-            pre = cur;
-            cur = temp;
+            int pre = 0, cur = 0;
+            for (int i = l; i <= r; i++)
+            {
+                int temp = Math.Max(pre + nums[i], cur);
+                pre = cur;
+                cur = temp;
+            }
+            return cur;
         }
-        return cur;
     }
 
     /// <summary>
@@ -3201,6 +3197,30 @@ public class Solution
         foreach (char c in t)
             tables[c - 'a']--;
         return tables.All(e => e == 0);
+    }
+
+    /// <summary>
+    /// 260. Single Number III
+    /// </summary>
+    /// <param name="nums"></param>
+    /// <returns></returns>
+    public static int[] SingleNumberIII(int[] nums)
+    {
+        int xorSum = nums.Aggregate(0, (current, num) => current ^ num);
+        int lsb = (xorSum == int.MinValue ? xorSum : xorSum & (-xorSum));
+        int type1 = 0, type2 = 0;
+        foreach (int num in nums)
+        {
+            if ((num & lsb) != 0)
+            {
+                type1 ^= num;
+            }
+            else
+            {
+                type2 ^= num;
+            }
+        }
+        return new int[] { type1, type2 };
     }
 
     /// <summary>
@@ -3277,16 +3297,17 @@ public class Solution
     {
         int[] res = SubRob(root);
         return Math.Max(res[0], res[1]);
-    }
-    private static int[] SubRob(TreeNode root)
-    {
-        if (root == null) return new int[2];
-        int[] left = SubRob(root.left);
-        int[] right = SubRob(root.right);
-        int[] res = new int[2];
-        res[0] = Math.Max(left[0], left[1]) + Math.Max(right[0], right[1]);
-        res[1] = root.val + left[0] + right[0];
-        return res;
+
+        int[] SubRob(TreeNode root)
+        {
+            if (root == null) return new int[2];
+            int[] left = SubRob(root.left);
+            int[] right = SubRob(root.right);
+            int[] res = new int[2];
+            res[0] = Math.Max(left[0], left[1]) + Math.Max(right[0], right[1]);
+            res[1] = root.val + left[0] + right[0];
+            return res;
+        }
     }
 
     /// <summary>
@@ -3347,15 +3368,16 @@ public class Solution
             else left = mid + 1;
         }
         return -1;
-    }
-    private static int Guess(int num)
-    {
-        Random random = new Random();
-        int target = random.Next(1, int.MaxValue);
-        if (num > target) return 1;
-        else if (num < target) return -1;
-        else return 1;
-    }
+
+        int Guess(int num)
+        {
+            Random random = new Random();
+            int target = random.Next(1, int.MaxValue);
+            if (num > target) return 1;
+            else if (num < target) return -1;
+            else return 1;
+        }
+    } 
 
     /// <summary>
     /// 401. Binary Watch
@@ -3485,12 +3507,12 @@ public class Solution
             root.right = DeleteNode(root.right, root.val);
         }
         return root;
-    }
-    private static TreeNode FindMin(TreeNode node)
-    {
-        while (node.left != null)
-            node = node.left;
-        return node;
+        TreeNode FindMin(TreeNode node)
+        {
+            while (node.left != null)
+                node = node.left;
+            return node;
+        }
     }
 
     /// <summary>
@@ -3571,54 +3593,56 @@ public class Solution
             return "Neither";
         }
 
-    }
-    private static string ValidIPv4(string IP)
-    {
-        string[] chunks = IP.Split('.');
-        foreach (string chunk in chunks)
+        string ValidIPv4(string IP)
         {
-            if (chunk.Length == 0 || chunk.Length > 3)
+            string[] chunks = IP.Split('.');
+            foreach (string chunk in chunks)
             {
-                return "Neither";
-            }
-            if (chunk[0] == '0' && chunk.Length != 1)
-            {
-                return "Neither";
-            }
-            foreach (char c in chunk)
-            {
-                if (!char.IsNumber(c))
+                if (chunk.Length == 0 || chunk.Length > 3)
+                {
+                    return "Neither";
+                }
+                if (chunk[0] == '0' && chunk.Length != 1)
+                {
+                    return "Neither";
+                }
+                foreach (char c in chunk)
+                {
+                    if (!char.IsNumber(c))
+                    {
+                        return "Neither";
+                    }
+                }
+                if (System.Convert.ToInt32(chunk) > 255)
                 {
                     return "Neither";
                 }
             }
-            if (System.Convert.ToInt32(chunk) > 255)
-            {
-                return "Neither";
-            }
+            return "IPv4";
         }
-        return "IPv4";
-    }
-    private static string ValidIPv6(string IP)
-    {
-        string[] chunks = IP.Split(':');
-        string hexDigits = "0123456789abcdefABCDEF";
-        foreach (string chunk in chunks)
-        {
-            if (chunk.Length == 0 || chunk.Length > 4)
-            {
-                return "Neither";
-            }
-            foreach (char c in chunk)
-            {
-                if (!hexDigits.Contains(c))
-                {
-                    return "Neither";
-                }
-            }
 
+        string ValidIPv6(string IP)
+        {
+            string[] chunks = IP.Split(':');
+            string hexDigits = "0123456789abcdefABCDEF";
+            foreach (string chunk in chunks)
+            {
+                if (chunk.Length == 0 || chunk.Length > 4)
+                {
+                    return "Neither";
+                }
+                foreach (char c in chunk)
+                {
+                    if (!hexDigits.Contains(c))
+                    {
+                        return "Neither";
+                    }
+                }
+
+            }
+            return "IPv6";
         }
-        return "IPv6";
+
     }
 
     /// <summary>
@@ -3826,25 +3850,38 @@ public class Solution
         // return t1;
         // Iterative
         if (t1 == null)
+        {
             return t2;
+        }
+
         Stack<TreeNode[]> stack = new Stack<TreeNode[]>();
         stack.Push(new TreeNode[] { t1, t2 });
         while (stack.Count > 0)
         {
             TreeNode[] t = stack.Pop();
             if (t[0] == null || t[1] == null)
+            {
                 continue;
+            }
+
             t[0].val += t[1].val;
             if (t[0].left == null)
+            {
                 t[0].left = t[1].left;
+            }
             else
+            {
                 stack.Push(new TreeNode[] { t[0].left, t[1].left });
-                }
+            }
 
             if (t[0].right == null)
+            {
                 t[0].right = t[1].right;
+            }
             else
+            {
                 stack.Push(new TreeNode[] { t[0].right, t[1].right });
+            }
         }
         return t1;
     }
@@ -3876,41 +3913,42 @@ public class Solution
         foreach (int item in nums)
             A.Add(System.Convert.ToDouble(item));
         return Solve(A);
-    }
-    private static bool Solve(List<double> nums)
-    {
-        if (nums.Count == 0) return false;
-        if (nums.Count == 1) return Math.Abs(nums[0] - 24) < 1e-6;
 
-        for (int i = 0; i < nums.Count; i++)
+        bool Solve(List<double> nums)
         {
-            for (int j = 0; j < nums.Count; j++)
+            if (nums.Count == 0) return false;
+            if (nums.Count == 1) return Math.Abs(nums[0] - 24) < 1e-6;
+
+            for (int i = 0; i < nums.Count; i++)
             {
-                if (i != j)
+                for (int j = 0; j < nums.Count; j++)
                 {
-                    List<double> nums2 = new List<double>();
-                    for (int k = 0; k < nums.Count; k++)
+                    if (i != j)
                     {
-                        if (k != i && k != j) nums2.Add(nums[k]);
-                    }
-                    for (int k = 0; k < 4; k++)
-                    {
-                        if (k < 2 && j > i) continue;
-                        if (k == 0) nums2.Add(nums[i] + nums[j]);
-                        if (k == 1) nums2.Add(nums[i] * nums[j]);
-                        if (k == 2) nums2.Add(nums[i] - nums[j]);
-                        if (k == 3)
+                        List<double> nums2 = new List<double>();
+                        for (int k = 0; k < nums.Count; k++)
                         {
-                            if (nums[j] != 0) nums2.Add(nums[i] / nums[j]);
-                            else continue;
+                            if (k != i && k != j) nums2.Add(nums[k]);
                         }
-                        if (Solve(nums2)) return true;
-                        nums2.Remove(nums2.Count - 1);
+                        for (int k = 0; k < 4; k++)
+                        {
+                            if (k < 2 && j > i) continue;
+                            if (k == 0) nums2.Add(nums[i] + nums[j]);
+                            if (k == 1) nums2.Add(nums[i] * nums[j]);
+                            if (k == 2) nums2.Add(nums[i] - nums[j]);
+                            if (k == 3)
+                            {
+                                if (nums[j] != 0) nums2.Add(nums[i] / nums[j]);
+                                else continue;
+                            }
+                            if (Solve(nums2)) return true;
+                            nums2.Remove(nums2.Count - 1);
+                        }
                     }
                 }
             }
+            return false;
         }
-        return false;
     }
 
     /// <summary>
@@ -4101,8 +4139,6 @@ public class Solution
         return ans;
     }
 
-    private static int[] dx = { 1, 0, 0, -1 };
-    private static int[] dy = { 0, 1, -1, 0 };
 
     /// <summary>
     /// 733. Flood Fill
@@ -4114,6 +4150,8 @@ public class Solution
     /// <returns></returns>
     public static int[][] FloodFill(int[][] image, int sr, int sc, int newColor)
     {
+        int[] dx = { 1, 0, 0, -1 };
+        int[] dy = { 0, 1, -1, 0 };
         int currentColor = image[sr][sc];
         if (currentColor == newColor)
         {
@@ -4239,6 +4277,72 @@ public class Solution
             ans[i] = Math.Min(ans[i], prev - i);
         }
         return ans;
+    }
+
+    /// <summary>
+    /// 844. Backspace String Compare 
+    /// </summary>
+    /// <param name="s"></param>
+    /// <param name="t"></param>
+    /// <returns></returns>
+    public static bool BackspaceCompare(string s, string t)
+    {
+        int i = s.Length - 1, j = t.Length - 1;
+        int skipS = 0, skipT = 0;
+        while (i >= 0 || j >= 0)
+        {
+            while (i >= 0)
+            {
+                if (s[i] == '#')
+                {
+                    skipS++;
+                    i--;
+                }
+                else if (skipS > 0)
+                {
+                    skipS--;
+                    i--;
+                }
+                else
+                {
+                    break;
+                }
+            }
+            while (j >= 0)
+            {
+                if (t[j] == '#')
+                {
+                    skipT++;
+                    j--;
+                }
+                else if (skipT > 0)
+                {
+                    skipT--;
+                    j--;
+                }
+                else
+                {
+                    break;
+                }
+            }
+            if (i >= 0 && j >= 0)
+            {
+                if (s[i] != t[j])
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                if (i >= 0 || j >= 0)
+                {
+                    return false;
+                }
+            }
+            i--;
+            j--;
+        }
+        return true;
     }
 
     /// <summary>
@@ -4530,9 +4634,6 @@ public class Solution
         return ans;
     }
 
-    private static int[] dr = new int[] { -1, 0, 1, 0 };
-    private static int[] dc = new int[] { 0, -1, 0, 1 };
-
     /// <summary>
     /// 994. Rotting Oranges
     /// </summary>
@@ -4540,6 +4641,8 @@ public class Solution
     /// <returns></returns>
     public static int OrangeRotting(int[][] grid)
     {
+        int[] dr = new int[] { -1, 0, 1, 0 };
+        int[] dc = new int[] { 0, -1, 0, 1 };
         int R = grid.Length, C = grid[0].Length;
         Queue<int> queue = new Queue<int>();
         Dictionary<int, int> depth = new Dictionary<int, int>();
@@ -4632,8 +4735,9 @@ public class Solution
         // use array 
         IList<IList<int>> res = new int[n][];
         for (int r = 0; r < n; r++)
+        {
             res[r] = new int[m];
-            }
+        }
 
         // use list
         // IList<IList<int>> res = new IList<List<int>>();
@@ -4659,6 +4763,33 @@ public class Solution
     }
 
     /// <summary>
+    /// 1447.最简分数
+    /// </summary>
+    /// <param name="n"></param>
+    /// <returns></returns>
+    public static IList<string> SimplifiedFractions(int n)
+    {
+        IList<string> res = new List<string>();
+        for (int denominator = 2; denominator <= n; ++denominator)
+        {
+            for (int numerator = 1; numerator < denominator; ++numerator)
+            {
+                if(GCD(numerator, denominator) == 1) 
+                {
+                    res.Add(numerator + "/" + denominator);
+                }
+            }
+        }
+        return res;
+
+        int GCD(int a, int b)
+        {
+            return b != 0 ? GCD(b, a % b) : a;
+        }
+    }
+
+
+    /// <summary>
     /// Magic Index
     /// </summary>
     /// <param name="nums"></param>
@@ -4668,25 +4799,25 @@ public class Solution
         int right = nums.Length - 1;
         int left = 0;
         return FindMagicIndexHelper(nums, left, right);
-    }
 
-    private static int FindMagicIndexHelper(int[] nums, int left, int right)
-    {
-        if (left > right)
+        int FindMagicIndexHelper(int[] nums, int left, int right)
         {
-            return -1;
+            if (left > right)
+            {
+                return -1;
+            }
+            int mid = (right - left) / 2 + left;
+            int leftAns = FindMagicIndexHelper(nums, left, mid - 1);
+            if (leftAns != -1)
+            {
+                return leftAns;
+            }
+            else if (nums[mid] == mid)
+            {
+                return mid;
+            }
+            return FindMagicIndexHelper(nums, mid + 1, right);
         }
-        int mid = (right - left) / 2 + left;
-        int leftAns = FindMagicIndexHelper(nums, left, mid - 1);
-        if (leftAns != -1)
-        {
-            return leftAns;
-        }
-        else if (nums[mid] == mid)
-        {
-            return mid;
-        }
-        return FindMagicIndexHelper(nums, mid + 1, right);
     }
 
     /// <summary>
@@ -4702,23 +4833,23 @@ public class Solution
         int e = n & start & 1;
         int res = SumXor(s - 1) ^ SumXor(s + n - 1);
         return res << 1 | e;
-    }
 
-    private static int SumXor(int n)
-    {
-        if (n % 4 == 0)
+        int SumXor(int n)
         {
-            return n;
+            if (n % 4 == 0)
+            {
+                return n;
+            }
+            if (n % 4 == 1)
+            {
+                return 1;
+            }
+            if (n % 4 == 2)
+            {
+                return n + 1;
+            }
+            return 0;
         }
-        if (n % 4 == 1)
-        {
-            return 1;
-        }
-        if (n % 4 == 2)
-        {
-            return n + 1;
-        }
-        return 0;
     }
 
     /// <summary>

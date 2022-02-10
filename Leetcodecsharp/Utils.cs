@@ -10,6 +10,14 @@ namespace Leetcodecsharp;
 
 public static class Utils
 {
+
+    public static void Swap(ref int a, ref int b)
+    {
+        int temp = a;
+        a = b;
+        b = temp;
+    }
+
     public static ListNode InitLinkedList(List<int> data)
     {
         ListNode head = new ListNode(0);
