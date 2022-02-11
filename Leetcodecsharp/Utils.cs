@@ -1,6 +1,7 @@
 ﻿// Licensed to the Trickyrat under one or more agreements.
 // The Trickyrat licenses this file to you under the MIT license.
 
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -18,7 +19,7 @@ public static class Utils
         b = temp;
     }
 
-    public static ListNode InitLinkedList(List<int> data)
+    public static ListNode InitLinkedList(IEnumerable<int> data)
     {
         ListNode head = new ListNode(0);
         ListNode dummy = head;
@@ -69,5 +70,12 @@ public static class Utils
         }
         sb.Append(']');
         return sb.ToString();
+    }
+
+    public static void Swap<T>(T[] array, int index1, int index2)
+    {
+        T temp = array[index1];
+        array[index1] = array[index2];
+        array[index2] = temp;
     }
 }

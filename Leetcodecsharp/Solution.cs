@@ -3182,6 +3182,63 @@ public class Solution
     /// <returns></returns>
     public static bool IsPowerOfTwo(int n) => n > 0 && (n & (n - 1)) == 0;
 
+
+    /// <summary>
+    /// 234.回文链表
+    /// </summary>
+    /// <param name="head"></param>
+    /// <returns></returns>
+    public static bool IsPalindrome(ListNode head)
+    {
+        if (head == null)
+        {
+            return true;
+        }
+        ListNode firstHalfEnd  = EndOfFirstHalf(head);
+        ListNode secondHalfStart = ReverseList(firstHalfEnd.next);
+        ListNode p1 = head;
+        ListNode p2 = secondHalfStart;
+        bool res = true;
+        while (res && p2 != null)
+        {
+            if(p1.val != p2.val)
+            {
+                return false;
+            }
+            p1 = p1.next;
+            p2 = p2.next;
+        }
+
+        firstHalfEnd.next = ReverseList(secondHalfStart);
+        return res;
+
+        ListNode ReverseList(ListNode head)
+        {
+            ListNode prev = null;
+            ListNode curr = head;
+            while (curr != null)
+            {
+                ListNode tmp = curr.next;
+                curr.next = prev;
+                prev = curr;
+                curr = tmp;
+            }
+            return prev;
+        }
+
+        ListNode EndOfFirstHalf(ListNode head)
+        {
+            ListNode fast = head;
+            ListNode slow = head;
+            while (fast.next != null && fast.next.next != null)
+            {
+                fast = fast.next.next;
+                slow = slow.next;
+            }
+            return slow;
+        }
+    }
+
     /// <summary>
     /// 242. Valid Anagram
     /// </summary>
@@ -3190,12 +3247,22 @@ public class Solution
     /// <returns></returns>
     public static bool IsAnagram(string s, string t)
     {
-        if (s.Length != t.Length) return false;
+        if (s.Length != t.Length)
+        {
+            return false;
+        }
+
         int[] tables = new int[26];
         foreach (char c in s)
+        {
             tables[c - 'a']++;
+        }
+
         foreach (char c in t)
+        {
             tables[c - 'a']--;
+        }
+
         return tables.All(e => e == 0);
     }
 
@@ -3255,9 +3322,7 @@ public class Solution
         {
             if (nums[right] != 0)
             {
-                int temp = nums[left];
-                nums[left] = nums[right];
-                nums[right] = temp;
+                Utils.Swap(nums, left, right);
                 left++;
             }
             right++;
@@ -3327,9 +3392,7 @@ public class Solution
         int len = s.Length;
         for (int left = 0, right = len - 1; left < right; ++left, --right)
         {
-            char temp = s[left];
-            s[left] = s[right];
-            s[right] = temp;
+            Utils.Swap(s, left, right);
         }
     }
 
@@ -3382,10 +3445,28 @@ public class Solution
     /// <summary>
     /// 401. Binary Watch
     /// </summary>
-    public static IList<string> ReadBinaryWatch(int num)
+    public static IList<string> ReadBinaryWatch(int turnedOn)
     {
-        // TODO
-        return null;
+        IList<string> ans = new List<string>();
+        for (int i = 0; i < 1024; ++i)
+        {
+            int h = i >> 6, m = i & 63;
+            if(h < 12 && m < 60 && BitCount(i) == turnedOn)
+            {
+                ans.Add(h + ":" + (m < 10 ? "0" : "") + m);
+            }
+        }
+        return ans;
+
+        int BitCount(int i)
+        {
+            i = i - ((i >> 1) & 0x55555555);
+            i = (i & 0x33333333) + ((i >> 2) & 0x33333333);
+            i = (i + (i >> 4)) & 0x0f0f0f0f;
+            i = i + (i >> 8);
+            i = i + (i >> 16);
+            return i & 0x3f;
+        }
     }
 
     /// <summary>
@@ -3892,11 +3973,20 @@ public class Solution
     public static TreeNode TrimBST(TreeNode root, int L, int R)
     {
         if (root == null)
+        {
             return root;
+        }
+
         if (root.val > R)
+        {
             return TrimBST(root.left, L, R);
+        }
+
         if (root.val < L)
+        {
             return TrimBST(root.right, L, R);
+        }
+
         root.left = TrimBST(root.left, L, R);
         root.right = TrimBST(root.right, L, R);
         return root;
@@ -3961,31 +4051,31 @@ public class Solution
         int ans = 0;
         int rowLegnth = grid.Length;
         int colLength = grid[0].Length;
-        for (int i = 0; i < rowLegnth; i++)
+        int[] di = new int[] { 0, 0, 1, -1 };
+        int[] dj = new int[] { 1, -1, 0, 0 };
+        for (int row = 0; row < rowLegnth; row++)
         {
-            for (int j = 0; j < colLength; j++)
+            for (int col = 0; col < colLength; col++)
             {
                 int curr = 0;
-                var queuei = new Queue<int>();
-                var queuej = new Queue<int>();
-                queuei.Enqueue(i);
-                queuej.Enqueue(j);
-                while (queuei.Count != 0)
+                var queueRow = new Queue<int>();
+                var queueCol = new Queue<int>();
+                queueRow.Enqueue(row);
+                queueCol.Enqueue(col);
+                while (queueRow.Count != 0)
                 {
-                    int curr_i = queuei.Dequeue(), curr_j = queuej.Dequeue();
-                    if (curr_i < 0 || curr_j < 0 || curr_i == rowLegnth || curr_j == colLength || grid[curr_i][curr_j] != 1)
+                    int currRow = queueRow.Dequeue(), currCol = queueCol.Dequeue();
+                    if (currRow < 0 || currCol < 0 || currRow == rowLegnth || currCol == colLength || grid[currRow][currCol] != 1)
                     {
                         continue;
                     }
                     ++curr;
-                    grid[curr_i][curr_j] = 0;
-                    int[] di = new int[] { 0, 0, 1, -1 };
-                    int[] dj = new int[] { 1, -1, 0, 0 };
+                    grid[currRow][currCol] = 0;
                     for (int index = 0; index != 4; ++index)
                     {
-                        int next_i = curr_i + di[index], next_j = curr_j + dj[index];
-                        queuei.Enqueue(next_i);
-                        queuej.Enqueue(next_j);
+                        int next_i = currRow + di[index], next_j = currCol + dj[index];
+                        queueRow.Enqueue(next_i);
+                        queueCol.Enqueue(next_j);
                     }
                 }
                 ans = Math.Max(ans, curr);
@@ -4114,7 +4204,7 @@ public class Solution
         }
         return sb.ToString();
 
-        //LINQ
+        // LINQ
         // return string.Concat(str.Select(c => c >= 'A' && c <= 'Z' ? (char)(c + 32) : c));
     }
 
