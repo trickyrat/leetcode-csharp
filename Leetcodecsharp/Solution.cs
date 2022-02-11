@@ -4853,6 +4853,24 @@ public class Solution
     }
 
     /// <summary>
+    /// 1984.学生分数的最小差值
+    /// </summary>
+    /// <param name="nums"></param>
+    /// <param name="k"></param>
+    /// <returns></returns>
+    public static int MinimumDifference(int[] nums, int k)
+    {
+        int n = nums.Length;
+        Array.Sort(nums);
+        int res = int.MaxValue;
+        for (int i = 0; i + k - 1 < n; ++i)
+        {
+            res = Math.Min(res, nums[i + k - 1] - nums[i]);
+        }
+        return res;
+    }
+
+    /// <summary>
     /// 1995. 统计特殊四元组 
     /// </summary>
     /// <param name="nums"></param>
