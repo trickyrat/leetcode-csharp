@@ -3767,6 +3767,29 @@ public class Solution
     }
 
     /// <summary>
+    /// 540.有序数组中的单一元素
+    /// </summary>
+    /// <param name="nums"></param>
+    /// <returns></returns>
+    public static int SingleNonDuplicate(int[] nums)
+    {
+        int low = 0, high = nums.Length - 1;
+        while (low < high)
+        {
+            int mid = (high - low) / 2 + low;
+            if(nums[mid] == nums[mid ^ 1])
+            {
+                low = mid + 1;
+            }
+            else
+            {
+                high = mid;
+            }
+        }
+        return nums[low];
+    }
+
+    /// <summary>
     /// 542. 01 Matrix
     /// </summary>
     /// <param name="mat"></param>
