@@ -4876,6 +4876,39 @@ public class Solution
     }
 
     /// <summary>
+    /// 1380.矩阵中的幸运数
+    /// </summary>
+    /// <param name="matrix"></param>
+    /// <returns></returns>
+    public static IList<int> LuckyNumbers(int[][] matrix)
+    {
+        int m = matrix.Length, n = matrix[0].Length;
+        int[] minRow = new int[m];
+        Array.Fill(minRow, int.MaxValue);
+        int[] maxCol = new int[n];
+        for (int i = 0; i < m; i++)
+        {
+            for (int j = 0; j < n; j++)
+            {
+                minRow[i] = Math.Min(minRow[i], matrix[i][j]);
+                maxCol[j] = Math.Max(maxCol[j], matrix[i][j]);
+            }
+        }
+        IList<int> res = new List<int>();
+        for (int i = 0; i < m; i++)
+        {
+            for (int j = 0; j < n; j++)
+            {
+                if (matrix[i][j] == minRow[i] && matrix[i][j] == maxCol[j])
+                {
+                    res.Add(matrix[i][j]);
+                }
+            }
+        }
+        return res;
+    }
+
+    /// <summary>
     /// 1447.最简分数
     /// </summary>
     /// <param name="n"></param>
@@ -4903,7 +4936,7 @@ public class Solution
 
 
     /// <summary>
-    /// Magic Index
+    /// 面试题 08.03. 魔术索引
     /// </summary>
     /// <param name="nums"></param>
     /// <returns></returns>
