@@ -4999,6 +4999,16 @@ public class Solution
     }
 
     /// <summary>
+    /// 1791. 找出星型图的中心节点
+    /// </summary>
+    /// <param name="edges"></param>
+    /// <returns></returns>
+    public static int FindCenter(int[][] edges)
+    {
+        return edges[0][0] == edges[1][0] || edges[0][0] == edges[1][1] ? edges[0][0] : edges[0][1];
+    }
+
+    /// <summary>
     /// 1984.学生分数的最小差值
     /// </summary>
     /// <param name="nums"></param>
