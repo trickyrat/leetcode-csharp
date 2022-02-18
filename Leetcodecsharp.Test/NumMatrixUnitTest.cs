@@ -7,39 +7,24 @@ namespace Leetcodecsharp.Test
 {
     public class NumMatrixUnitTest
     {
-        private int[][] matrix =
-                        {
-                new int[5]{ 3,0,1,4,2},
-                new int[5]{ 5,6,3,2,1},
-                new int[5]{ 1,2,0,1,5},
-                new int[5]{ 4,1,0,1,7},
-                new int[5]{ 1,0,3,0,5},
-            };
 
-        [Fact]
-        public void TestMethod1()
+        private readonly int[][] matrix =
         {
-            NumMatrix nm = new NumMatrix(matrix);
-            int actual = nm.SumRange(2, 1, 4, 3);
-            int expected = 8;
-            Assert.Equal(expected, actual);
-        }
+            new int[5]{ 3,0,1,4,2},
+            new int[5]{ 5,6,3,2,1},
+            new int[5]{ 1,2,0,1,5},
+            new int[5]{ 4,1,0,1,7},
+            new int[5]{ 1,0,3,0,5},
+        };
 
-        [Fact]
-        public void TestMethod2()
+        [Theory]
+        [InlineData(new int[] { 2, 1, 4, 3 }, 8)]
+        [InlineData(new int[] { 1, 1, 2, 2 }, 11)]
+        [InlineData(new int[] { 1, 2, 2, 4 }, 12)]
+        public void Test(int[] points, int expected)
         {
-            NumMatrix nm = new NumMatrix(matrix);
-            int actual = nm.SumRange(1, 1, 2, 2);
-            int expected = 11;
-            Assert.Equal(expected, actual);
-        }
-
-        [Fact]
-        public void TestMethod3()
-        {
-            NumMatrix nm = new NumMatrix(matrix);
-            int actual = nm.SumRange(1, 2, 2, 4);
-            int expected = 12;
+            NumMatrix nm = new(matrix);
+            int actual = nm.SumRange(points[0], points[1], points[2], points[3]);
             Assert.Equal(expected, actual);
         }
     }

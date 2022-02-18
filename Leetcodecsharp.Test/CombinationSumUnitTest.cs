@@ -9,59 +9,86 @@ namespace Leetcodecsharp.Test
 {
     public class CombinationSumUnitTest
     {
-        [Fact]
-        public void Test1()
+        public static IEnumerable<object[]> GetData()
         {
-            var actual = Solution.CombinationSum(new int[] { 2, 3, 6, 7 }, 7);
-            IList<IList<int>> expected = new List<IList<int>>
+            yield return new object[]
             {
-                new List<int>{ 7},
-                new List<int>{ 2,2,3},
+                new CombinationSumData
+                {
+                    Candidates = new int[] { 2, 3, 6, 7 },
+                    Target = 7,
+                    Expected = new List<IList<int>>
+                    {
+                        new List<int>{ 7 },
+                        new List<int>{ 2, 2, 3},
+                    }
+                }
             };
-            Assert.Equal(expected, actual);
+            yield return new object[]
+            {
+                new CombinationSumData
+                {
+                    Candidates = new int[] { 2 },
+                    Target = 1,
+                    Expected = new List<IList<int>>()
+                }
+            };
+            yield return new object[]
+            {
+                new CombinationSumData
+                {
+                    Candidates = new int[] { 2, 3, 5 },
+                    Target = 8,
+                    Expected = new List<IList<int>>
+                    {
+                        new List<int>{ 3, 5 },
+                        new List<int>{ 2, 3, 3 },
+                        new List<int>{ 2, 2, 2, 2 },
+                    }
+                }
+            };
+            yield return new object[]
+            {
+                new CombinationSumData
+                {
+                    Candidates = new int[] { 1 },
+                    Target = 1,
+                    Expected = new List<IList<int>>
+                    {
+                        new List<int>{ 1 },
+                    }
+                }
+            };
+            yield return new object[]
+            {
+                new CombinationSumData
+                {
+                    Candidates = new int[] { 1 },
+                    Target = 2,
+                    Expected = new List<IList<int>>
+                    {
+                        new List<int>{ 1, 1 },
+                    }
+                }
+            };
         }
 
-        [Fact]
-        public void Test2()
+        internal class CombinationSumData
         {
-            var actual = Solution.CombinationSum(new int[] { 2 }, 1);
-            IList<IList<int>> expected = new List<IList<int>>();
-            Assert.Equal(expected, actual);
+            public int[] Candidates { get; set; }
+            public int Target { get; set; }
+
+            public IList<IList<int>> Expected { get; set; }
+
         }
 
-        [Fact]
-        public void Test3()
-        {
-            var actual = Solution.CombinationSum(new int[] { 2, 3, 5 }, 8);
-            IList<IList<int>> expected = new List<IList<int>>
-            {
-                new List<int>{ 3,5},
-                new List<int>{ 2,3,3},
-                new List<int>{ 2,2,2,2},
-            };
-            Assert.Equal(expected, actual);
-        }
 
-        [Fact]
-        public void Test4()
+        [Theory]
+        [MemberData(nameof(GetData))]
+        private void Test1(CombinationSumData input)
         {
-            var actual = Solution.CombinationSum(new int[] { 1 }, 1);
-            IList<IList<int>> expected = new List<IList<int>>
-            {
-                new List<int>{ 1},
-            };
-            Assert.Equal(expected, actual);
-        }
-
-        [Fact]
-        public void Test5()
-        {
-            var actual = Solution.CombinationSum(new int[] { 1 }, 2);
-            IList<IList<int>> expected = new List<IList<int>>
-            {
-                new List<int>{ 1, 1},
-            };
-            Assert.Equal(expected, actual);
+            var actual = Solution.CombinationSum(input.Candidates, input.Target);
+            Assert.Equal(input.Expected, actual);
         }
     }
 }

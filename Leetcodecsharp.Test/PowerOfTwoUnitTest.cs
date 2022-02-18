@@ -11,7 +11,7 @@ namespace Leetcodecsharp.Test
         [InlineData(1)]
         [InlineData(16)]
         [InlineData(4)]
-        public void Test(int num)
+        public void Should_Return_TrueTests(int num)
         {
             Assert.True(Solution.IsPowerOfTwo(num));
         }
@@ -19,7 +19,7 @@ namespace Leetcodecsharp.Test
 
         [Theory]
         [InlineData(3)]
-        public void Test2(int num)
+        public void Should_Return_FalseTests(int num)
         {
             Assert.False(Solution.IsPowerOfTwo(num));
         }

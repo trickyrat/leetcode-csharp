@@ -9,46 +9,43 @@ namespace Leetcodecsharp.Test
 {
     public class LuckyNumbersUnitTest
     {
-        [Fact]
-        public void Test1()
+        public static IEnumerable<object[]> GetMatrix()
         {
-            int[][] matrix = new int[][]
+            yield return new object[]
             {
-                new int[] { 3, 7, 8 },
-                new int[] { 9, 11, 13 },
-                new int[] { 15, 16, 17 },
+                (new int[][]
+                {
+                    new int[] { 3, 7, 8 },
+                    new int[] { 9, 11, 13 },
+                    new int[] { 15, 16, 17 },
+                }, new List<int> { 15 })
             };
-            List<int> expected = new List<int> { 15 };
-            List<int> actual = Solution.LuckyNumbers(matrix).ToList();
-            Assert.Equal(expected, actual);
+            yield return new object[]
+            {
+                (new int[][]
+                {
+                    new int[] { 1, 10, 4, 2 },
+                    new int[] { 9, 3, 8, 7 },
+                    new int[] { 15, 16, 17, 12 },
+                }, new List<int> { 12 })
+            };
+            yield return new object[]
+            {
+                (new int[][]
+                {
+                    new int[] { 7, 8 },
+                    new int[] { 1, 2 },
+                }, new List<int> { 7 })
+            };
         }
 
-        [Fact]
-        public void Test2()
-        {
-            int[][] matrix = new int[][]
-            {
-                new int[] { 1, 10, 4, 2 },
-                new int[] { 9, 3, 8, 7 },
-                new int[] { 15, 16, 17, 12 },
-            };
-            List<int> expected = new List<int> { 12 };
-            List<int> actual = Solution.LuckyNumbers(matrix).ToList();
-            Assert.Equal(expected, actual);
-        }
 
-
-        [Fact]
-        public void Test3()
+        [Theory]
+        [MemberData(nameof(GetMatrix))]
+        public void Test1((int[][] matrix, List<int> expected) input)
         {
-            int[][] matrix = new int[][]
-            {
-                new int[] { 7, 8 },
-                new int[] { 1, 2 },
-            };
-            List<int> expected = new List<int> { 7 };
-            List<int> actual = Solution.LuckyNumbers(matrix).ToList();
-            Assert.Equal(expected, actual);
+            List<int> actual = Solution.LuckyNumbers(input.matrix).ToList();
+            Assert.Equal(input.expected, actual);
         }
     }
 }
