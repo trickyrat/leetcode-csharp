@@ -18,20 +18,22 @@ namespace Leetcodecsharp.Test
         [Fact]
         public void Test()
         {
-            TreeNode actual = Solution.SortedArrayToBST(new int[] { -10, -3, 0, 5, 9 });
-            TreeNode expected = new TreeNode(0) 
+            TreeNode actualNode = Solution.SortedArrayToBST(new int[] { -10, -3, 0, 5, 9 });
+            TreeNode expectedNode = new TreeNode(0) 
             {
-                left = new TreeNode(-3) 
+                left = new TreeNode(-10) 
                 {
-                    left = new TreeNode(-10),
-                    right = null
+                    left = null,
+                    right = new TreeNode(-3)
                 },
-                right = new TreeNode(9) 
+                right = new TreeNode(5) 
                 {
-                    left = new TreeNode(5),
-                    right = null
+                    left = null,
+                    right = new TreeNode(9)
                 }
             };
+            List<int> actual = Utils.PreorderTraversal(actualNode);
+            List<int> expected = Utils.PreorderTraversal(expectedNode);
             Assert.Equal(expected, actual);
         }
     }

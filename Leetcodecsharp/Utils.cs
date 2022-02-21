@@ -19,7 +19,7 @@ public static class Utils
         b = temp;
     }
 
-    public static ListNode InitLinkedList(IEnumerable<int> data)
+    public static ListNode GenerateLinkedList(IEnumerable<int> data)
     {
         ListNode head = new ListNode(0);
         ListNode dummy = head;
@@ -31,22 +31,22 @@ public static class Utils
         return head.next;
     }
 
-    public static string PrintListNode(ListNode head)
+    public static string ConvertListNodeToString(ListNode head)
     {
         StringBuilder sb = new StringBuilder();
         while (head is not null)
         {
             sb.Append($"{head.val}");
-            head = head.next;
-            if (head is not null)
+            if (head.next is not null)
             {
-                sb.Append("->");
+                sb.Append("->");     
             }
+            head = head.next;
         }
         return sb.ToString();
     }
 
-    public static string PrintMultipleArray(int[][] array)
+    public static string ConvertMultiDimensionalArrayToString(int[][] array)
     {
         StringBuilder sb = new StringBuilder();
         int row = array.Length, col = array[0].Length;
@@ -77,5 +77,23 @@ public static class Utils
         T temp = array[index1];
         array[index1] = array[index2];
         array[index2] = temp;
+    }
+
+    public static List<int> PreorderTraversal(TreeNode root)
+    {
+        List<int> res = new List<int>();
+        Stack<TreeNode> stack = new Stack<TreeNode>();
+        while (root != null)
+        {
+            res.Add(root.val);
+            if (root.right != null)
+                stack.Push(root.right);
+            root = root.left;
+            if (root == null && stack.Count > 0)
+            {
+                root = stack.Pop();
+            }
+        }
+        return res;
     }
 }

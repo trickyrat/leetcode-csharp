@@ -14,12 +14,12 @@ namespace Leetcodecsharp.Test
         [Fact]
         public void Test_Input_Contains_Same_Values_Should_Ok()
         {
-            ListNode l1 = Utils.InitLinkedList(new List<int> { 1, 2, 4 });
-            ListNode l2 = Utils.InitLinkedList(new List<int> { 1, 3, 4 });
+            ListNode l1 = Utils.GenerateLinkedList(new List<int> { 1, 2, 4 });
+            ListNode l2 = Utils.GenerateLinkedList(new List<int> { 1, 3, 4 });
             ListNode actualNode = Solution.MergeTwoLists(l1, l2);
-            ListNode expectedNode = Utils.InitLinkedList(new List<int> { 1, 1, 2, 3, 4, 4 });
-            string actual = Utils.PrintListNode(actualNode);
-            string expected = Utils.PrintListNode(expectedNode);
+            ListNode expectedNode = Utils.GenerateLinkedList(new List<int> { 1, 1, 2, 3, 4, 4 });
+            string actual = Utils.ConvertListNodeToString(actualNode);
+            string expected = Utils.ConvertListNodeToString(expectedNode);
             Assert.Equal(expected, actual);
         }
 
@@ -31,8 +31,8 @@ namespace Leetcodecsharp.Test
         {
             ListNode actualNode = Solution.MergeTwoLists(l1, l2);
             ListNode expectedNode = null;
-            string actual = Utils.PrintListNode(actualNode);
-            string expected = Utils.PrintListNode(expectedNode);
+            string actual = Utils.ConvertListNodeToString(actualNode);
+            string expected = Utils.ConvertListNodeToString(expectedNode);
             Assert.Equal(expected, actual);
         }
 
@@ -40,11 +40,11 @@ namespace Leetcodecsharp.Test
         public void Test_Input_One_Empty_Node_Should_Ok()
         {
             ListNode l1 = null;
-            ListNode l2 = Utils.InitLinkedList(new List<int> { 0 });
+            ListNode l2 = Utils.GenerateLinkedList(new List<int> { 0 });
             ListNode actualNode = Solution.MergeTwoLists(l1, l2);
-            ListNode expectedNode = Utils.InitLinkedList(new List<int> { 0 });
-            string actual = Utils.PrintListNode(actualNode);
-            string expected = Utils.PrintListNode(expectedNode);
+            ListNode expectedNode = Utils.GenerateLinkedList(new List<int> { 0 });
+            string actual = Utils.ConvertListNodeToString(actualNode);
+            string expected = Utils.ConvertListNodeToString(expectedNode);
             Assert.Equal(expected, actual);
         }
     }

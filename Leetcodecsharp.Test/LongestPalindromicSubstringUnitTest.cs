@@ -9,7 +9,7 @@ namespace Leetcodecsharp.Test
     {
         [Theory]
         [InlineData("babad", new string[] { "bab", "aba" })]
-        [InlineData("cbbd", new string[] { "b" })]
+        [InlineData("cbbd", new string[] { "bb" })]
         public void Test(string input, string[] expected)
         {
             string actual = Solution.LongestPalindrome(input);
