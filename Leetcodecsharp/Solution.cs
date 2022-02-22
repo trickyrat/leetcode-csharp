@@ -4720,6 +4720,38 @@ public class Solution
         return A;
     }
 
+    /// <summary>
+    /// 917.仅仅反转字母
+    /// </summary>
+    /// <param name="s"></param>
+    /// <returns></returns>
+    public static string ReverseOnlyLetters(string s)
+    {
+        char[] letters = s.ToCharArray();
+        int l = 0, r = s.Length - 1;
+        while (true)
+        {
+            while (l < r && !char.IsLetter(s[l]))
+            {
+                l++;
+            }
+            while (r > l && !char.IsLetter(s[r]))
+            {
+                r--;
+            }
+            if (l >= r)
+            {
+                break;  
+            }
+            //char tmp = letters[l];
+            //letters[l] = letters[r];
+            //letters[r] = tmp;
+            Utils.Swap(letters, l, r);
+            l++;
+            r--;
+        }
+        return new string(letters);
+    }
 
     /// <summary>
     /// 938. Range Sum of BST
