@@ -3767,6 +3767,23 @@ public class Solution
     }
 
     /// <summary>
+    /// 537.复数乘法
+    /// </summary>
+    /// <param name="num1"></param>
+    /// <param name="num2"></param>
+    /// <returns></returns>
+    public static string ComplexNumberMultiply(string num1, string num2)
+    {
+        string[] complex1 = num1.Split(new char[2] { '+', 'i' });
+        string[] complex2 = num2.Split(new char[2] { '+', 'i' });
+        int real1 = int.Parse(complex1[0]);
+        int real2 = int.Parse(complex2[0]);
+        int imag1 = int.Parse(complex1[1]);
+        int imag2 = int.Parse(complex2[1]);
+        return $"{real1 * real2 - imag1 * imag2}+{real1 * imag2 + imag1 * real2}i";
+    }
+
+    /// <summary>
     /// 540.有序数组中的单一元素
     /// </summary>
     /// <param name="nums"></param>
