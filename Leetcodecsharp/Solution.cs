@@ -5151,4 +5151,26 @@ public class Solution
         return ans;
     }
 
+    /// <summary>
+    /// 2016.增量元素之间的最大差值
+    /// </summary>
+    /// <param name="nums"></param>
+    /// <returns></returns>
+    public static int MaximumDifference(int[] nums)
+    {
+        int n = nums.Length;
+        int ans = -1, premin = nums[0];
+        for (int i = 1; i < n; i++)
+        {
+            if(nums[i]>premin)
+            {
+                ans = Math.Max(ans, nums[i] - premin);
+            }
+            else
+            {
+                premin = nums[i];
+            }
+        }
+        return ans;
+    }
 }
