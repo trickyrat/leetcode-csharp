@@ -3862,6 +3862,35 @@ public class Solution
     }
 
     /// <summary>
+    /// 553.最优除法
+    /// </summary>
+    /// <param name="nums"></param>
+    /// <returns></returns>
+    public static string OptimalDivision(int[] nums)
+    {
+        int n = nums.Length;
+        if (n == 1)
+        {
+            return nums[0].ToString();
+        }
+        if (n == 2)
+        {
+            return $"{nums[0]}/{nums[1]}";
+        }
+        StringBuilder res = new StringBuilder();
+        res.Append(nums[0]);
+        res.Append("/(");
+        res.Append(nums[1]);
+        for (int i = 2; i < n; i++)
+        {
+            res.Append('/');
+            res.Append(nums[i]);
+        }
+        res.Append(')');
+        return res.ToString();
+    }
+
+    /// <summary>
     /// 557. Reverse Words in a String III
     /// </summary>
     /// <param name="s"></param>
