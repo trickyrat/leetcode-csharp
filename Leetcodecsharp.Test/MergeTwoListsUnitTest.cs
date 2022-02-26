@@ -11,40 +11,35 @@ namespace Leetcodecsharp.Test
 {
     public class MergeTwoListsUnitTest
     {
-        [Fact]
-        public void Test_Input_Contains_Same_Values_Should_Ok()
+        public static IEnumerable<object[]> GetData()
         {
-            ListNode l1 = Utils.GenerateLinkedList(new List<int> { 1, 2, 4 });
-            ListNode l2 = Utils.GenerateLinkedList(new List<int> { 1, 3, 4 });
-            ListNode actualNode = Solution.MergeTwoLists(l1, l2);
-            ListNode expectedNode = Utils.GenerateLinkedList(new List<int> { 1, 1, 2, 3, 4, 4 });
-            string actual = Utils.ConvertListNodeToString(actualNode);
-            string expected = Utils.ConvertListNodeToString(expectedNode);
-            Assert.Equal(expected, actual);
+            yield return new object[]
+            {
+                Utils.GenerateLinkedList(new List<int> { 1, 2, 4 }),
+                Utils.GenerateLinkedList(new List<int> { 1, 3, 4 }),
+                new List<int> { 1, 1, 2, 3, 4, 4 }
+            };
+            yield return new object[]
+             {
+                  null,
+                  null,
+                  new List<int>()
+             };
+            yield return new object[]
+            {
+                   null,
+                   Utils.GenerateLinkedList(new List<int> { 0 }),
+                   new List<int>{ 0 }
+            };
         }
-
 
 
         [Theory]
-        [InlineData(null, null)]
-        public void Test_Input_Two_Empty_Nodes_Should_Ok(ListNode l1, ListNode l2)
+        [MemberData(nameof(GetData))]
+        public void Test(ListNode l1, ListNode l2, List<int> expected)
         {
             ListNode actualNode = Solution.MergeTwoLists(l1, l2);
-            ListNode expectedNode = null;
-            string actual = Utils.ConvertListNodeToString(actualNode);
-            string expected = Utils.ConvertListNodeToString(expectedNode);
-            Assert.Equal(expected, actual);
-        }
-
-        [Fact]
-        public void Test_Input_One_Empty_Node_Should_Ok()
-        {
-            ListNode l1 = null;
-            ListNode l2 = Utils.GenerateLinkedList(new List<int> { 0 });
-            ListNode actualNode = Solution.MergeTwoLists(l1, l2);
-            ListNode expectedNode = Utils.GenerateLinkedList(new List<int> { 0 });
-            string actual = Utils.ConvertListNodeToString(actualNode);
-            string expected = Utils.ConvertListNodeToString(expectedNode);
+            List<int> actual = Utils.ConvertListNodeToList(actualNode);
             Assert.Equal(expected, actual);
         }
     }

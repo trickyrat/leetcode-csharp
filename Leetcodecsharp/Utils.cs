@@ -46,6 +46,17 @@ public static class Utils
         return sb.ToString();
     }
 
+    public static List<int> ConvertListNodeToList(ListNode head)
+    {
+        List<int> res = new List<int>();
+        while (head is not null)
+        {
+            res.Add(head.val);
+            head = head.next;
+        }
+        return res;
+    }
+
     public static string ConvertMultiDimensionalArrayToString(int[][] array)
     {
         StringBuilder sb = new StringBuilder();
