@@ -5181,6 +5181,29 @@ public class Solution
     }
 
     /// <summary>
+    /// 2006.差的绝对值为k的数对数目
+    /// </summary>
+    /// <param name="nums"></param>
+    /// <param name="k"></param>
+    /// <returns></returns>
+    public static int CountKDifference(int[] nums, int k)
+    {
+        int ans = 0, n = nums.Length;
+        Dictionary<int, int> cnt = new Dictionary<int, int>();
+        for (int j = 0; j < n; j++)
+        {
+            ans += (cnt.ContainsKey(nums[j] - k) ? cnt[nums[j] - k] : 0) 
+                + (cnt.ContainsKey(nums[j] + k) ? cnt[nums[j] + k] : 0);
+            if(!cnt.ContainsKey(nums[j]))
+            {
+                cnt.Add(nums[j], 0);
+            }
+            ++cnt[nums[j]];
+        }
+        return ans;
+    }
+
+    /// <summary>
     /// 2016.增量元素之间的最大差值
     /// </summary>
     /// <param name="nums"></param>
