@@ -12,11 +12,12 @@ All solutions are sorted in ascending order according to the problem number.
 
 - Runtime  
 
-> .Net 5
+> .Net 6
 
 - Run command  
 
-> dotnet run  
+> cd Leetcodecsharp.Test  
+> dotnet test  
 
 ## Contribute
 
