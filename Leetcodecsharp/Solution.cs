@@ -2485,6 +2485,37 @@ public class Solution
     }
 
     /// <summary>
+    /// 113. 路径总和
+    /// </summary>
+    /// <param name="root"></param>
+    /// <param name="targetSum"></param>
+    /// <returns></returns>
+    public static IList<IList<int>> PathSum(TreeNode root, int targetSum)
+    {
+        IList<IList<int>> res = new List<IList<int>>();
+        IList<int> path = new List<int>();
+        Dfs(root, targetSum);
+        return res;
+
+        void Dfs(TreeNode root, int targetSum)
+        {
+            if (root is null)
+            {
+                return;
+            }
+            path.Add(root.val);
+            targetSum -= root.val;
+            if (root.left is null && root.right is null && targetSum == 0)
+            {
+                res.Add(new List<int>(path));
+            }
+            Dfs(root.left, targetSum);
+            Dfs(root.right, targetSum);
+            path.RemoveAt(path.Count - 1);
+        }
+    }
+
+    /// <summary>
     /// 116. Populating Next Right Pointers in Each Node
     /// </summary>
     /// <param name="root"></param>
