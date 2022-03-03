@@ -3298,6 +3298,16 @@ public class Solution
     }
 
     /// <summary>
+    /// 258.各位相加
+    /// </summary>
+    /// <param name="num"></param>
+    /// <returns></returns>
+    public static int AddDigits(int num)
+    {
+        return (num - 1) % 9 + 1;
+    }
+
+    /// <summary>
     /// 260. Single Number III
     /// </summary>
     /// <param name="nums"></param>
