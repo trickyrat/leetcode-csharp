@@ -11,7 +11,7 @@ namespace Leetcodecsharp.Test
     {
         public static IEnumerable<object[]> GetData()
         {
-            yield return new object[] 
+            yield return new object[]
             {
                 new int[][]
                 {

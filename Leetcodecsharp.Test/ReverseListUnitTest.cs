@@ -13,7 +13,7 @@ namespace Leetcodecsharp.Test
     {
         public static IEnumerable<object[]> GetNodes()
         {
-            yield return new object[] 
+            yield return new object[]
             {
                 Utils.GenerateLinkedList(new List<int> { 1, 2, 3, 4, 5 }),
                 Utils.GenerateLinkedList(new List<int> { 5, 4, 3, 2, 1 })

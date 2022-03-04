@@ -1,10 +1,8 @@
 ﻿// Licensed to the Trickyrat under one or more agreements.
 // The Trickyrat licenses this file to you under the MIT license.
 
-using Leetcodecsharp.DataStructure;
-
 using System.Collections.Generic;
-
+using Leetcodecsharp.DataStructure;
 using Xunit;
 
 namespace Leetcodecsharp.Test
@@ -14,7 +12,7 @@ namespace Leetcodecsharp.Test
 
         public static IEnumerable<object[]> GetData()
         {
-            yield return new object[] 
+            yield return new object[]
             {
                 Utils.GenerateLinkedList(new List<int> { 2, 4, 3 }),
                 Utils.GenerateLinkedList(new List<int> { 5, 6, 4 }),

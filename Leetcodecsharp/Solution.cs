@@ -26,17 +26,6 @@ public class Solution
         int[] res = new int[2];
         Dictionary<int, int> dic = new Dictionary<int, int>();
 
-        // for (int i = 0; i < nums.Length; i++)
-        // {
-        //     if (dic.ContainsKey(target - nums[i]))
-        //     {
-        //         res[1] = i;
-        //         res[0] = dic[target - nums[i]];
-        //         break;
-        //     }
-        //     if (!dic.ContainsKey(nums[i]))
-        //         dic.Add(nums[i], i);
-        // }
         for (int i = 0; i < nums.Length; i++)
         {
             if (dic.TryGetValue(target - nums[i], out int value))
@@ -655,7 +644,6 @@ public class Solution
         return res;
     }
 
-
     /// <summary>
     /// 19. Remove Nth Node From End of List
     /// </summary>
@@ -867,7 +855,6 @@ public class Solution
         // }
         // return head;
     }
-
 
     /// <summary>
     /// 26. Remove Duplicates from Sorted Array
@@ -1131,7 +1118,6 @@ public class Solution
         return maxLen;
 
     }
-
 
     /// <summary>
     /// 33. Search in Rotated Sorted Array
@@ -2430,7 +2416,6 @@ public class Solution
             return node;
         }
     }
-    //private static ListNode head;
 
     /// <summary>
     /// 110. Balanced Binary Tree
@@ -2822,8 +2807,6 @@ public class Solution
         }
     }
 
-
-
     /// <summary>
     /// 167. Two Sum II - Input array is sorted
     /// </summary>
@@ -3163,7 +3146,6 @@ public class Solution
         }
     }
 
-
     /// <summary>
     /// 213. House Robber II
     /// </summary>
@@ -3213,7 +3195,6 @@ public class Solution
     /// <returns></returns>
     public static bool IsPowerOfTwo(int n) => n > 0 && (n & (n - 1)) == 0;
 
-
     /// <summary>
     /// 234.回文链表
     /// </summary>
@@ -3225,14 +3206,14 @@ public class Solution
         {
             return true;
         }
-        ListNode firstHalfEnd  = EndOfFirstHalf(head);
+        ListNode firstHalfEnd = EndOfFirstHalf(head);
         ListNode secondHalfStart = ReverseList(firstHalfEnd.next);
         ListNode p1 = head;
         ListNode p2 = secondHalfStart;
         bool res = true;
         while (res && p2 != null)
         {
-            if(p1.val != p2.val)
+            if (p1.val != p2.val)
             {
                 return false;
             }
@@ -3481,7 +3462,7 @@ public class Solution
             else if (num < target) return -1;
             else return 1;
         }
-    } 
+    }
 
     /// <summary>
     /// 401. Binary Watch
@@ -3492,7 +3473,7 @@ public class Solution
         for (int i = 0; i < 1024; ++i)
         {
             int h = i >> 6, m = i & 63;
-            if(h < 12 && m < 60 && BitCount(i) == turnedOn)
+            if (h < 12 && m < 60 && BitCount(i) == turnedOn)
             {
                 ans.Add(h + ":" + (m < 10 ? "0" : "") + m);
             }
@@ -3835,7 +3816,7 @@ public class Solution
         while (low < high)
         {
             int mid = (high - low) / 2 + low;
-            if(nums[mid] == nums[mid ^ 1])
+            if (nums[mid] == nums[mid ^ 1])
             {
                 low = mid + 1;
             }
@@ -4828,7 +4809,7 @@ public class Solution
             }
             if (l >= r)
             {
-                break;  
+                break;
             }
             //char tmp = letters[l];
             //letters[l] = letters[r];
@@ -5079,7 +5060,7 @@ public class Solution
         {
             for (int numerator = 1; numerator < denominator; ++numerator)
             {
-                if(GCD(numerator, denominator) == 1) 
+                if (GCD(numerator, denominator) == 1)
                 {
                     res.Add(numerator + "/" + denominator);
                 }
@@ -5233,9 +5214,9 @@ public class Solution
         Dictionary<int, int> cnt = new Dictionary<int, int>();
         for (int j = 0; j < n; j++)
         {
-            ans += (cnt.ContainsKey(nums[j] - k) ? cnt[nums[j] - k] : 0) 
+            ans += (cnt.ContainsKey(nums[j] - k) ? cnt[nums[j] - k] : 0)
                 + (cnt.ContainsKey(nums[j] + k) ? cnt[nums[j] + k] : 0);
-            if(!cnt.ContainsKey(nums[j]))
+            if (!cnt.ContainsKey(nums[j]))
             {
                 cnt.Add(nums[j], 0);
             }
@@ -5255,7 +5236,7 @@ public class Solution
         int ans = -1, premin = nums[0];
         for (int i = 1; i < n; i++)
         {
-            if(nums[i]>premin)
+            if (nums[i] > premin)
             {
                 ans = Math.Max(ans, nums[i] - premin);
             }

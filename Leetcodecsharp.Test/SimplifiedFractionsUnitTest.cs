@@ -14,7 +14,7 @@ namespace Leetcodecsharp.Test
     public class SimplifiedFractionsUnitTest
     {
         [Theory]
-        [InlineData(2, new string[] {"1/2"})]
+        [InlineData(2, new string[] { "1/2" })]
         public void Test(int n, string[] expected)
         {
             IList<string> list = Solution.SimplifiedFractions(n);

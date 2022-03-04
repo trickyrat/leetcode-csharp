@@ -3,6 +3,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 using Leetcodecsharp.DataStructure;
@@ -39,7 +40,7 @@ public static class Utils
             sb.Append($"{head.val}");
             if (head.next is not null)
             {
-                sb.Append("->");     
+                sb.Append("->");
             }
             head = head.next;
         }
@@ -106,5 +107,67 @@ public static class Utils
             }
         }
         return res;
+    }
+
+    public static TreeNode CreateTreeNodeWithBFS(string data)
+    {
+        string[] nums = data.Split(',');
+        if (nums[0] == "null")
+        {
+            return null;
+        }
+        TreeNode root = new TreeNode(Convert.ToInt32(nums[0]));
+        Queue<TreeNode> queue = new Queue<TreeNode>();
+        queue.Enqueue(root);
+        int cursor = 1;
+        while (cursor < nums.Length)
+        {
+            TreeNode node = queue.Dequeue();
+            string leftValue = nums[cursor];
+            string rightValue = nums[cursor + 1];
+            if (leftValue != "null")
+            {
+                TreeNode left = new TreeNode(Convert.ToInt32(leftValue));
+                if (node is not null)
+                {
+                    node.left = left;
+                }
+                queue.Enqueue(left);
+            }
+            if (rightValue != "null")
+            {
+                TreeNode right = new TreeNode(Convert.ToInt32(rightValue));
+                if (node is not null)
+                {
+                    node.right = right;
+                }
+                queue.Enqueue(right);
+            }
+            cursor += 2;
+        }
+        return root;
+    }
+
+    public static TreeNode CreateTreeNodeWithDFS(string data)
+    {
+        List<string> list = data.Split(',').ToList();
+        return DFS(list);
+        TreeNode DFS(List<string> dataList)
+        {
+            if (!dataList.Any())
+            {
+                return null;
+            }
+            if (dataList[0] == "null")
+            {
+                dataList.RemoveAt(0);
+                return null;
+            }
+            TreeNode root = new TreeNode(Convert.ToInt32(dataList[0]));
+            dataList.RemoveAt(0);
+            root.left = DFS(dataList);
+            root.right = DFS(dataList);
+            return root;
+        }
     }
 }
