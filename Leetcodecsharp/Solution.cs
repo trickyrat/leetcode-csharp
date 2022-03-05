@@ -3789,6 +3789,17 @@ public class Solution
     }
 
     /// <summary>
+    /// 521.最长特殊序列
+    /// </summary>
+    /// <param name="a"></param>
+    /// <param name="b"></param>
+    /// <returns></returns>
+    public static int FindLUSLength(string a, string b)
+    {
+        return a == b ? -1 : Math.Max(a.Length, b.Length);
+    }
+
+    /// <summary>
     /// 537.复数乘法
     /// </summary>
     /// <param name="num1"></param>
