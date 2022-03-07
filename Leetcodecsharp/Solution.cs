@@ -3769,6 +3769,32 @@ public class Solution
         return res;
     }
 
+    public static string ConvertToBase7(int num)
+    {
+        if(num == 0)
+        {
+            return "0";
+        }
+        bool negative = num < 0;
+        num = Math.Abs(num);
+        StringBuilder digits = new StringBuilder();
+        while (num > 0)
+        {
+            digits.Append(num % 7);
+            num /= 7;
+        }
+        if(negative)
+        {
+            digits.Append('-');
+        }
+        string res = digits.ToString();
+        return string.Create(res.Length, res, (chars, state) => 
+        {
+            state.AsSpan().CopyTo(chars);
+            chars.Reverse();
+        });
+    }
+
     /// <summary>
     /// 509. Fibonacci Number
     /// </summary>
