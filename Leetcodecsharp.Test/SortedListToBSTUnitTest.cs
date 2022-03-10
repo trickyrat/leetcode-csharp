@@ -15,9 +15,9 @@ namespace Leetcodecsharp.Test
         public void Test()
         {
             TreeNode actualNode = Solution.SortedArrayToBST(new int[] { -10, -3, 0, 5, 9 });
-            TreeNode expectedNode = Utils.CreateTreeNodeWithBFS("0,-10,5,null,-3,null,9");
-            List<int> actual = Utils.PreorderTraversal(actualNode);
-            List<int> expected = Utils.PreorderTraversal(expectedNode);
+            TreeNode expectedNode = Utilities.CreateTreeNodeWithBFS("0,-10,5,null,-3,null,9");
+            List<int> actual = Utilities.PreorderTraversal(actualNode);
+            List<int> expected = Utilities.PreorderTraversal(expectedNode);
             Assert.Equal(expected, actual);
         }
     }

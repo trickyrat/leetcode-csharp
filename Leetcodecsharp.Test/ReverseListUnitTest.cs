@@ -15,13 +15,13 @@ namespace Leetcodecsharp.Test
         {
             yield return new object[]
             {
-                Utils.GenerateLinkedList(new List<int> { 1, 2, 3, 4, 5 }),
-                Utils.GenerateLinkedList(new List<int> { 5, 4, 3, 2, 1 })
+                Utilities.CreateListNode(new List<int> { 1, 2, 3, 4, 5 }),
+                Utilities.CreateListNode(new List<int> { 5, 4, 3, 2, 1 })
             };
             yield return new object[]
             {
-                Utils.GenerateLinkedList(new List<int> { 1, 2 }),
-                Utils.GenerateLinkedList(new List<int> { 2, 1 })
+                Utilities.CreateListNode(new List<int> { 1, 2 }),
+                Utilities.CreateListNode(new List<int> { 2, 1 })
             };
             yield return new object[]
             {
@@ -36,8 +36,8 @@ namespace Leetcodecsharp.Test
         public void Test(ListNode head, ListNode expectedNode)
         {
             ListNode actualNode = Solution.ReverseList(head);
-            string actual = Utils.ConvertListNodeToString(actualNode);
-            string expected = Utils.ConvertListNodeToString(expectedNode);
+            string actual = Utilities.ConvertListNodeToString(actualNode);
+            string expected = Utilities.ConvertListNodeToString(expectedNode);
             Assert.Equal(expected, actual);
         }
     }

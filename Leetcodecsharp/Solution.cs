@@ -1032,7 +1032,7 @@ public class Solution
             int j = nums.Length - 1;
             while (j >= 0 && nums[j] <= nums[i])
                 j--;
-            Utils.Swap(ref nums[i], ref nums[j]);
+            Utilities.Swap(ref nums[i], ref nums[j]);
         }
         Reverse(nums, i + 1);
 
@@ -1041,7 +1041,7 @@ public class Solution
             int i = start, j = nums.Length - 1;
             while (i < j)
             {
-                Utils.Swap(ref nums[i], ref nums[j]);
+                Utilities.Swap(ref nums[i], ref nums[j]);
                 i++;
                 j--;
             }
@@ -1435,7 +1435,7 @@ public class Solution
         for (int i = 0; i < len; i++)
         {
             while (nums[i] > 0 && nums[i] <= len && nums[nums[i] - 1] != nums[i])
-                Utils.Swap(ref nums[i], ref nums[nums[i] - 1]);
+                Utilities.Swap(ref nums[i], ref nums[nums[i] - 1]);
         }
         for (int i = 0; i < len; i++)
             if (nums[i] != i + 1)
@@ -3344,7 +3344,7 @@ public class Solution
         {
             if (nums[right] != 0)
             {
-                Utils.Swap(nums, left, right);
+                Utilities.Swap(nums, left, right);
                 left++;
             }
             right++;
@@ -3414,7 +3414,7 @@ public class Solution
         int len = s.Length;
         for (int left = 0, right = len - 1; left < right; ++left, --right)
         {
-            Utils.Swap(s, left, right);
+            Utilities.Swap(s, left, right);
         }
     }
 
@@ -4041,6 +4041,30 @@ public class Solution
             }
         }
         return false;
+    }
+
+    /// <summary>
+    /// 589.N叉树的前序遍历
+    /// </summary>
+    /// <param name="root"></param>
+    /// <returns></returns>
+    public static IList<int> PreOrder(Node root)
+    {
+        IList<int> ans = new List<int>();
+        DFS(root);
+        return ans;
+        void DFS(Node node)
+        {
+            if (node is null)
+            {
+                return;
+            }
+            ans.Add(node.val);
+            foreach (Node ch in node.children)
+            {
+                DFS(ch);
+            }
+        }
     }
 
     /// <summary>
@@ -4851,7 +4875,7 @@ public class Solution
             //char tmp = letters[l];
             //letters[l] = letters[r];
             //letters[r] = tmp;
-            Utils.Swap(letters, l, r);
+            Utilities.Swap(letters, l, r);
             l++;
             r--;
         }

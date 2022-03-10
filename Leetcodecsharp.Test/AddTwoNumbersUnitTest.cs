@@ -14,31 +14,30 @@ namespace Leetcodecsharp.Test
         {
             yield return new object[]
             {
-                Utils.GenerateLinkedList(new List<int> { 2, 4, 3 }),
-                Utils.GenerateLinkedList(new List<int> { 5, 6, 4 }),
-                new List<int> {  7, 0, 8  }
+                Utilities.CreateListNode(new List<int> { 2, 4, 3 }),
+                Utilities.CreateListNode(new List<int> { 5, 6, 4 }),
+                Utilities.CreateListNode(new List<int> {  7, 0, 8 })
             };
             yield return new object[]
             {
-                Utils.GenerateLinkedList(new List<int> { 0 }),
-                Utils.GenerateLinkedList(new List<int> { 0 }),
-                new List<int> {  0  }
+                Utilities.CreateListNode(new List<int> { 0 }),
+                Utilities.CreateListNode(new List<int> { 0 }),
+                Utilities.CreateListNode(new List<int> { 0 })
             };
             yield return new object[]
             {
-                Utils.GenerateLinkedList(new List<int> { 9, 9, 9, 9, 9, 9, 9 }),
-                Utils.GenerateLinkedList(new List<int> { 9, 9, 9, 9 }),
-                new List<int> { 8, 9, 9, 9, 0, 0, 0, 1 }
+                Utilities.CreateListNode(new List<int> { 9, 9, 9, 9, 9, 9, 9 }),
+                Utilities.CreateListNode(new List<int> { 9, 9, 9, 9 }),
+                Utilities.CreateListNode(new List<int> { 8, 9, 9, 9, 0, 0, 0, 1 })
             };
         }
 
         [Theory]
         [MemberData(nameof(GetData))]
-        public void Test(ListNode l1, ListNode l2, List<int> expected)
+        public void Test(ListNode l1, ListNode l2, ListNode expected)
         {
-            ListNode actualNode = Solution.AddTwoNumbers(l1, l2);
-            List<int> actual = Utils.ConvertListNodeToList(actualNode);
-            Assert.Equal(expected, actual);
+            ListNode actual = Solution.AddTwoNumbers(l1, l2);
+            Assert.True(expected.Equals(actual));
         }
     }
 }

@@ -9,27 +9,27 @@ namespace Leetcodecsharp.Test
 {
     public class MiddleNodeUnitTest
     {
-        [Fact]
-        public void Test_Input_Even_Data_Should_OK()
+
+        public static IEnumerable<object[]> GetData()
         {
-            ListNode input = Utils.GenerateLinkedList(new List<int> { 1, 2, 3, 4, 5, 6 });
-            ListNode actualNode = Solution.MiddleNode(input);
-            string actual = Utils.ConvertListNodeToString(actualNode);
-            ListNode expectedNode = Utils.GenerateLinkedList(new List<int> { 4, 5, 6 });
-            string expected = Utils.ConvertListNodeToString(expectedNode);
-            Assert.Equal(expected, actual);
+            yield return new object[] 
+            {
+                Utilities.CreateListNode(new List<int> { 1, 2, 3, 4, 5, 6 }),
+                Utilities.CreateListNode(new List<int> { 4, 5, 6 })
+            };
+            yield return new object[]
+            {
+                Utilities.CreateListNode(new List<int> { 1, 2, 3, 4, 5,  }),
+                Utilities.CreateListNode(new List<int> { 3, 4, 5 })
+            };
         }
 
-
-        [Fact]
-        public void Test_Input_Odd_Data_Should_OK()
+        [Theory]
+        [MemberData(nameof(GetData))]
+        public void Test_Input_Even_Data_Should_OK(ListNode input, ListNode expected)
         {
-            ListNode input = Utils.GenerateLinkedList(new List<int> { 1, 2, 3, 4, 5 });
-            ListNode actualNode = Solution.MiddleNode(input);
-            string actual = Utils.ConvertListNodeToString(actualNode);
-            ListNode expectedNode = Utils.GenerateLinkedList(new List<int> { 3, 4, 5 });
-            string expected = Utils.ConvertListNodeToString(expectedNode);
-            Assert.Equal(expected, actual);
+            ListNode actual = Solution.MiddleNode(input);
+            Assert.True(expected.Equals(actual));
         }
     }
 }

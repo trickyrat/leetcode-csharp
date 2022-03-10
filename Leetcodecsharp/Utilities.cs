@@ -10,7 +10,7 @@ using Leetcodecsharp.DataStructure;
 
 namespace Leetcodecsharp;
 
-public static class Utils
+public static class Utilities
 {
 
     public static void Swap(ref int a, ref int b)
@@ -20,7 +20,7 @@ public static class Utils
         b = temp;
     }
 
-    public static ListNode GenerateLinkedList(IEnumerable<int> data)
+    public static ListNode CreateListNode(IEnumerable<int> data)
     {
         ListNode head = new ListNode(0);
         ListNode dummy = head;

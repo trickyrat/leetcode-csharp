@@ -9,36 +9,35 @@ namespace Leetcodecsharp.Test
 {
     public class RemoveNthFromEndUnitTest
     {
-        [Fact]
-        public void Test_Input_Normal_Nodes_Should_OK()
+
+        public static IEnumerable<object[]> GetData()
         {
-            ListNode head = Utils.GenerateLinkedList(new List<int> { 1, 2, 3, 4, 5 });
-            ListNode actualNode = Solution.RemoveNthFromEnd(head, 2);
-            string actual = Utils.ConvertListNodeToString(actualNode);
-            ListNode expectedNode = Utils.GenerateLinkedList(new List<int> { 1, 2, 3, 5 });
-            string expected = Utils.ConvertListNodeToString(expectedNode);
-            Assert.Equal(expected, actual);
+            yield return new object[]
+            {
+                Utilities.CreateListNode(new List<int> { 1, 2, 3, 4, 5 }),
+                2,
+                Utilities.CreateListNode(new List<int> { 1, 2, 3, 5 })
+            };
+            yield return new object[]
+            {
+                Utilities.CreateListNode(new List<int> { 1 }),
+                1,
+                Utilities.CreateListNode(new List<int> { })
+            };
+            yield return new object[]
+            {
+                Utilities.CreateListNode(new List<int> { 1, 2 }),
+                1,
+                Utilities.CreateListNode(new List<int> { 1 })
+            };
+
         }
 
-        [Fact]
-        public void Test_Input_Only_One_Node_And_Remove_It_Should_OK()
+        [Theory]
+        [MemberData(nameof(GetData))]
+        public void Test_Input_Normal_Nodes_Should_OK(ListNode input, int n , ListNode expected)
         {
-            ListNode head = Utils.GenerateLinkedList(new List<int> { 1 });
-            ListNode actualNode = Solution.RemoveNthFromEnd(head, 1);
-            string actual = Utils.ConvertListNodeToString(actualNode);
-            ListNode expectedNode = Utils.GenerateLinkedList(new List<int> { });
-            string expected = Utils.ConvertListNodeToString(expectedNode);
-            Assert.Equal(expected, actual);
-        }
-
-        [Fact]
-        public void Test_Input_Two_Nodes_Should_OK()
-        {
-            ListNode head = Utils.GenerateLinkedList(new List<int> { 1, 2 });
-            ListNode actualNode = Solution.RemoveNthFromEnd(head, 1);
-            string actual = Utils.ConvertListNodeToString(actualNode);
-            ListNode expectedNode = Utils.GenerateLinkedList(new List<int> { 1 });
-            string expected = Utils.ConvertListNodeToString(expectedNode);
+            ListNode actual = Solution.RemoveNthFromEnd(input, n);
             Assert.Equal(expected, actual);
         }
     }

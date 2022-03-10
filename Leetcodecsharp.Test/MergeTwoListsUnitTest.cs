@@ -15,8 +15,8 @@ namespace Leetcodecsharp.Test
         {
             yield return new object[]
             {
-                Utils.GenerateLinkedList(new List<int> { 1, 2, 4 }),
-                Utils.GenerateLinkedList(new List<int> { 1, 3, 4 }),
+                Utilities.CreateListNode(new List<int> { 1, 2, 4 }),
+                Utilities.CreateListNode(new List<int> { 1, 3, 4 }),
                 new List<int> { 1, 1, 2, 3, 4, 4 }
             };
             yield return new object[]
@@ -28,7 +28,7 @@ namespace Leetcodecsharp.Test
             yield return new object[]
             {
                    null,
-                   Utils.GenerateLinkedList(new List<int> { 0 }),
+                   Utilities.CreateListNode(new List<int> { 0 }),
                    new List<int>{ 0 }
             };
         }
@@ -39,7 +39,7 @@ namespace Leetcodecsharp.Test
         public void Test(ListNode l1, ListNode l2, List<int> expected)
         {
             ListNode actualNode = Solution.MergeTwoLists(l1, l2);
-            List<int> actual = Utils.ConvertListNodeToList(actualNode);
+            List<int> actual = Utilities.ConvertListNodeToList(actualNode);
             Assert.Equal(expected, actual);
         }
     }

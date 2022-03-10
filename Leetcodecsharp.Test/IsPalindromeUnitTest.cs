@@ -14,7 +14,7 @@ namespace Leetcodecsharp.Test
         [InlineData(new int[] { 1, 2 }, false)]
         public void Test(int[] nums, bool expected)
         {
-            ListNode head = Utils.GenerateLinkedList(nums);
+            ListNode head = Utilities.CreateListNode(nums);
             bool actual = Solution.IsPalindrome(head);
             Assert.Equal(expected, actual);
         }
