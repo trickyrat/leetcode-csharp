@@ -4068,6 +4068,30 @@ public class Solution
     }
 
     /// <summary>
+    /// 590.N叉树的后序遍历
+    /// </summary>
+    /// <param name="root"></param>
+    /// <returns></returns>
+    public static IList<int> PostOrder(Node root)
+    {
+        IList<int> ans = new List<int>();
+        DFS(root);
+        return ans;
+        void DFS(Node node)
+        {
+            if (node is null)
+            {
+                return;
+            }
+            foreach (Node ch in node.children)
+            {
+                DFS(ch);
+            }
+            ans.Add(node.val);
+        }
+    }
+
+    /// <summary>
     /// 617. Merge Two Binary Trees
     /// </summary>
     public static TreeNode MergeTrees(TreeNode t1, TreeNode t2)
