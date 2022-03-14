@@ -3769,6 +3769,11 @@ public class Solution
         return res;
     }
 
+    /// <summary>
+    /// 504.7进制数
+    /// </summary>
+    /// <param name="num"></param>
+    /// <returns></returns>
     public static string ConvertToBase7(int num)
     {
         if(num == 0)
@@ -5368,6 +5373,37 @@ public class Solution
             }
         }
         return ans;
+    }
+
+    /// <summary>
+    /// 2044. 统计按位或能得到最大值的子集数目
+    /// </summary>
+    /// <param name="nums"></param>
+    /// <returns></returns>
+    public static int CountMaxOrSubsets(int[] nums)
+    {
+        int maxOr = 0, cnt = 0;
+        DFS(0, 0);
+        return cnt;
+        void DFS(int pos, int orVal)
+        {
+            if (pos == nums.Length)
+            {
+                if(orVal > maxOr) 
+                {
+                    maxOr = orVal;
+                    cnt = 1;
+                }
+                else if (orVal == maxOr)
+                {
+                    cnt++;
+                }
+                return;
+            }
+            DFS(pos + 1, orVal | nums[pos]);
+            DFS(pos + 1, orVal);
+           
+        }
     }
 
     /// <summary>
