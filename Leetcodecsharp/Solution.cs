@@ -1249,16 +1249,20 @@ public class Solution
     /// </summary>
     public static int SearchInsert(int[] nums, int target)
     {
-        int lo = 0, hi = nums.Length - 1;
-        while (lo < hi)
+        int left = 0, right = nums.Length - 1;
+        while (left < right)
         {
-            int mid = lo + (hi - lo) / 2;
+            int mid = left + (right - left) / 2;
             if (nums[mid] < target)
-                lo = mid + 1;
+            {
+                left = mid + 1;
+            }
             else
-                hi = mid;
+            {
+                right = mid;
+            }
         }
-        return nums[lo] < target ? lo + 1 : lo;
+        return nums[left] < target ? left + 1 : left;
     }
 
     /// <summary>
