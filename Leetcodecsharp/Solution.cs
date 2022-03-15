@@ -5294,6 +5294,26 @@ public class Solution
     }
 
     /// <summary>
+    /// 1991.找到数组中间位置
+    /// </summary>
+    /// <param name="nums"></param>
+    /// <returns></returns>
+    public static int PivotIndex(int[] nums)
+    {
+        int total = nums.Sum();
+        int sum = 0;
+        for (int i = 0; i < nums.Length; i++)
+        {
+            if ((2 * sum + nums[i]) == total)
+            {
+                return i;
+            }
+            sum += nums[i];
+        }
+        return -1;
+    }
+
+    /// <summary>
     /// 1995. 统计特殊四元组 
     /// </summary>
     /// <param name="nums"></param>
