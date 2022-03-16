@@ -1620,7 +1620,6 @@ public class Solution
     /// <summary>
     /// 54. Spiral Matrix
     /// </summary>
-
     public static IList<int> SpiralOrder(int[][] matrix)
     {
         if (matrix.Length == 0)
@@ -4451,7 +4450,6 @@ public class Solution
         return ans;
     }
 
-
     /// <summary>
     /// 733. Flood Fill
     /// </summary>
@@ -5111,6 +5109,49 @@ public class Solution
     }
 
     /// <summary>
+    /// 1249
+    /// </summary>
+    /// <param name="s"></param>
+    /// <returns></returns>
+    public static string MinRemoveToMakeValid(string s)
+    {
+        StringBuilder sb = new StringBuilder();
+        int openSeen = 0;
+        int balance = 0;
+        foreach (char c in s)
+        {
+            if (c == '(')
+            {
+                openSeen++;
+                balance++;
+            }
+            if (c == ')')
+            {
+                if (balance == 0)
+                {
+                    continue;
+                }
+                balance--;
+            }
+            sb.Append(c);
+        }
+        StringBuilder res = new StringBuilder();
+        int openToKeep = openSeen - balance;
+        for (int i = 0; i < sb.Length; i++)
+        {
+            char c = sb[i];
+            if (c == '(')
+            {
+                openToKeep--;
+                if (openToKeep < 0)
+                { continue; }
+            }
+            res.Append(c);
+        }
+        return res.ToString();
+    }
+
+    /// <summary>
     /// 1260. Shift 2D Grid
     /// </summary>
     public static IList<IList<int>> ShiftGrid(int[][] grid, int k)
@@ -5204,7 +5245,6 @@ public class Solution
             return b != 0 ? GCD(b, a % b) : a;
         }
     }
-
 
     /// <summary>
     /// 面试题 08.03. 魔术索引
