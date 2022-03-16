@@ -1672,6 +1672,37 @@ public class Solution
     }
 
     /// <summary>
+    /// 56.合并区间
+    /// </summary>
+    /// <param name="intervals"></param>
+    /// <returns></returns>
+    public static int[][] Merge(int[][] intervals)
+    {
+        if (intervals.Length == 0)
+        {
+            return new int[0][];
+        }
+        Array.Sort(intervals, (l, r) => {
+            return l[0] - r[0];
+        });
+        List<int[]> merged = new List<int[]>();
+        for (int i = 0; i < intervals.Length; i++)
+        {
+            int n = merged.Count;
+            int L = intervals[i][0], R = intervals[i][1];
+            if (n == 0 || merged[n - 1][1] < L)
+            {
+                merged.Add(new int[] { L, R });
+            }
+            else
+            {
+                merged[n - 1][1] = Math.Max(merged[n - 1][1], R);
+            }
+        }
+        return merged.ToArray();
+    }
+
+    /// <summary>
     /// 58. Length Of Last Word
     /// </summary>
     /// <param name="s"></param>
