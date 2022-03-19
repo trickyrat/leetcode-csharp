@@ -2,9 +2,9 @@
 // The Trickyrat licenses this file to you under the MIT license.
 
 using System;
-using Leetcodecsharp.DataStructure;
+using Leetcode.DataStructure;
 
-namespace Leetcodecsharp;
+namespace Leetcode;
 
 public class RandomNode
 {

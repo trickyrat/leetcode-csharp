@@ -2,12 +2,10 @@
 // The Trickyrat licenses this file to you under the MIT license.
 
 using System.Collections.Generic;
-
-using Leetcodecsharp.DataStructure;
-
+using Leetcode.DataStructure;
 using Xunit;
 
-namespace Leetcodecsharp.Test
+namespace Leetcode.Test
 {
     public class MergeTwoListsUnitTest
     {

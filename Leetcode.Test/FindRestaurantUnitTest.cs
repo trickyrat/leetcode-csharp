@@ -3,7 +3,7 @@
 
 using Xunit;
 
-namespace Leetcodecsharp.Test;
+namespace Leetcode.Test;
 
 public class FindRestaurantUnitTest
 {

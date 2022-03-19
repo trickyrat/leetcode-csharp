@@ -5,10 +5,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Leetcode.DataStructure;
 
-using Leetcodecsharp.DataStructure;
-
-namespace Leetcodecsharp;
+namespace Leetcode;
 
 public static class Utilities
 {
@@ -112,6 +111,44 @@ public static class Utilities
     public static TreeNode CreateTreeNodeWithBFS(string data)
     {
         string[] nums = data.Split(',');
+        if (nums[0] == "null")
+        {
+            return null;
+        }
+        TreeNode root = new TreeNode(Convert.ToInt32(nums[0]));
+        Queue<TreeNode> queue = new Queue<TreeNode>();
+        queue.Enqueue(root);
+        int cursor = 1;
+        while (cursor < nums.Length)
+        {
+            TreeNode node = queue.Dequeue();
+            string leftValue = nums[cursor];
+            string rightValue = nums[cursor + 1];
+            if (leftValue != "null")
+            {
+                TreeNode left = new TreeNode(Convert.ToInt32(leftValue));
+                if (node is not null)
+                {
+                    node.left = left;
+                }
+                queue.Enqueue(left);
+            }
+            if (rightValue != "null")
+            {
+                TreeNode right = new TreeNode(Convert.ToInt32(rightValue));
+                if (node is not null)
+                {
+                    node.right = right;
+                }
+                queue.Enqueue(right);
+            }
+            cursor += 2;
+        }
+        return root;
+    }
+
+    public static TreeNode CreateTreeNodeWithBFS(List<int?> data)
+    {
         if (nums[0] == "null")
         {
             return null;

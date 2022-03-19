@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Xunit;
 
-namespace Leetcodecsharp.Test
+namespace Leetcode.Test
 {
     public class LuckyNumbersUnitTest
     {

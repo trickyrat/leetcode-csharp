@@ -5,10 +5,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Leetcode.DataStructure;
 
-using Leetcodecsharp.DataStructure;
-
-namespace Leetcodecsharp;
+namespace Leetcode;
 
 /// <summary>
 /// Leetcode Solution Class
@@ -174,7 +173,7 @@ public class Solution
             }
             else
             {
-                int maxLeft = 0;
+                int maxLeft;
                 if (i == 0)
                 {
                     maxLeft = B[j - 1];
@@ -191,7 +190,7 @@ public class Solution
                 {
                     return maxLeft;
                 }
-                int minRight = 0;
+                int minRight;
                 if (i == m)
                 {
                     minRight = B[j];
@@ -807,7 +806,7 @@ public class Solution
     public static bool IsValid(string s)
     {
         Stack<char> stack = new Stack<char>();
-        foreach (char item in s.ToCharArray())
+        foreach (char item in s)
         {
             switch (item)
             {
@@ -1433,7 +1432,7 @@ public class Solution
         int rightIndex = BinarySearch(nums, target, false) - 1;
         if (leftIndex <= rightIndex && rightIndex < nums.Length && nums[leftIndex] == nums[rightIndex])
         {
-            return new int[] { leftIndex, rightIndex };
+            return new[] { leftIndex, rightIndex };
         }
         return missingResult;
 
@@ -1982,7 +1981,7 @@ public class Solution
             int l = t[0], r = t[1];
             if (n == 0 || merged[n - 1][1] < l)
             {
-                merged.Add(new int[] { l, r });
+                merged.Add(new[] { l, r });
             }
             else
             {
@@ -2620,16 +2619,16 @@ public class Solution
 
         return ret;
 
-        void InorderHelper(IList<int> data, TreeNode node)
-        {
-            if (node == null)
-            {
-                return;
-            }
-            InorderHelper(data, node.left);
-            data.Add(node.val);
-            InorderHelper(data, node.right);
-        }
+        // void InorderHelper(IList<int> data, TreeNode node)
+        // {
+        //     if (node == null)
+        //     {
+        //         return;
+        //     }
+        //     InorderHelper(data, node.left);
+        //     data.Add(node.val);
+        //     InorderHelper(data, node.right);
+        // }
     }
 
     /// <summary>
@@ -2711,22 +2710,22 @@ public class Solution
         }
         return true;
 
-        bool IsMirror(TreeNode l1, TreeNode l2)
-        {
-            if (l1 == null && l2 == null)
-            {
-                return true;
-            }
-
-            if (l1 == null || l2 == null)
-            {
-                return false;
-            }
-
-            return (l1.val == l2.val)
-                   && IsMirror(l1.left, l2.right)
-                   && IsMirror(l1.right, l2.left);
-        }
+        // bool IsMirror(TreeNode l1, TreeNode l2)
+        // {
+        //     if (l1 == null && l2 == null)
+        //     {
+        //         return true;
+        //     }
+        //
+        //     if (l1 == null || l2 == null)
+        //     {
+        //         return false;
+        //     }
+        //
+        //     return (l1.val == l2.val)
+        //            && IsMirror(l1.left, l2.right)
+        //            && IsMirror(l1.right, l2.left);
+        // }
     }
 
     /// <summary>
@@ -3002,19 +3001,19 @@ public class Solution
             return null;
         }
         BinaryTreeNode leftmost = root;
-        while (leftmost.left != null)
+        while (leftmost.Left != null)
         {
             BinaryTreeNode head = leftmost;
             while (head != null)
             {
-                head.left.next = head.right;
-                if (head.next != null)
+                head.Left.Next = head.Right;
+                if (head.Next != null)
                 {
-                    head.right.next = head.next.left;
+                    head.Right.Next = head.Next.Left;
                 }
-                head = head.next;
+                head = head.Next;
             }
-            leftmost = leftmost.left;
+            leftmost = leftmost.Left;
         }
         return root;
     }
@@ -3313,9 +3312,9 @@ public class Solution
         {
             if (index == -1 || index == data.Length)
             {
-                return new int[] { 0, 0 };
+                return new[] { 0, 0 };
             }
-            return new int[] { 1, data[index] };
+            return new[] { 1, data[index] };
         }
 
         int Compare(int[] data, int index1, int index2)
@@ -3359,7 +3358,7 @@ public class Solution
                 left++;
             }
         }
-        return new int[] { -1, -1 };
+        return new[] { -1, -1 };
     }
 
     /// <summary>
@@ -3708,7 +3707,7 @@ public class Solution
             foreach (string item in wordData)
             {
                 TrieNode p = node;
-                foreach (char ch in item.ToCharArray())
+                foreach (char ch in item)
                 {
                     if (p.Get(ch) == null)
                     {
@@ -3895,7 +3894,7 @@ public class Solution
                 type2 ^= num;
             }
         }
-        return new int[] { type1, type2 };
+        return new[] { type1, type2 };
     }
 
     /// <summary>
@@ -4532,8 +4531,8 @@ public class Solution
     /// <returns></returns>
     public static string ComplexNumberMultiply(string num1, string num2)
     {
-        string[] complex1 = num1.Split(new char[2] { '+', 'i' });
-        string[] complex2 = num2.Split(new char[2] { '+', 'i' });
+        string[] complex1 = num1.Split('+', 'i');
+        string[] complex2 = num2.Split('+', 'i');
         int real1 = int.Parse(complex1[0]);
         int real2 = int.Parse(complex2[0]);
         int imag1 = int.Parse(complex1[1]);
@@ -4743,9 +4742,9 @@ public class Solution
     public static IList<int> PreOrder(Node root)
     {
         IList<int> ans = new List<int>();
-        DFS(root);
+        Dfs(root);
         return ans;
-        void DFS(Node node)
+        void Dfs(Node node)
         {
             if (node is null)
             {
@@ -4754,7 +4753,7 @@ public class Solution
             ans.Add(node.val);
             foreach (Node ch in node.children)
             {
-                DFS(ch);
+                Dfs(ch);
             }
         }
     }
@@ -4767,9 +4766,9 @@ public class Solution
     public static IList<int> PostOrder(Node root)
     {
         IList<int> ans = new List<int>();
-        DFS(root);
+        Dfs(root);
         return ans;
-        void DFS(Node node)
+        void Dfs(Node node)
         {
             if (node is null)
             {
@@ -4777,7 +4776,7 @@ public class Solution
             }
             foreach (Node ch in node.children)
             {
-                DFS(ch);
+                Dfs(ch);
             }
             ans.Add(node.val);
         }
@@ -4843,7 +4842,7 @@ public class Solution
         }
 
         Stack<TreeNode[]> stack = new Stack<TreeNode[]>();
-        stack.Push(new TreeNode[] { t1, t2 });
+        stack.Push(new[] { t1, t2 });
         while (stack.Count > 0)
         {
             TreeNode[] t = stack.Pop();
@@ -4859,7 +4858,7 @@ public class Solution
             }
             else
             {
-                stack.Push(new TreeNode[] { t[0].left, t[1].left });
+                stack.Push(new[] { t[0].left, t[1].left });
             }
 
             if (t[0].right == null)
@@ -4868,7 +4867,7 @@ public class Solution
             }
             else
             {
-                stack.Push(new TreeNode[] { t[0].right, t[1].right });
+                stack.Push(new[] { t[0].right, t[1].right });
             }
         }
         return t1;
@@ -4928,7 +4927,7 @@ public class Solution
                         continue;
                     }
 
-                    List<double> nums2 = data.Where((t, k) => k != i && k != j).ToList();
+                    List<double> nums2 = data.Where((_, k) => k != i && k != j).ToList();
                     for (int k = 0; k < 4; k++)
                     {
                         switch (k)
@@ -5177,7 +5176,7 @@ public class Solution
         }
         int n = image.Length, m = image[0].Length;
         Queue<int[]> queue = new Queue<int[]>();
-        queue.Enqueue(new int[] { sr, sc });
+        queue.Enqueue(new[] { sr, sc });
         image[sr][sc] = newColor;
         while (queue.Any())
         {
@@ -5191,7 +5190,7 @@ public class Solution
                     continue;
                 }
 
-                queue.Enqueue(new int[] { mx, my });
+                queue.Enqueue(new[] { mx, my });
                 image[mx][my] = newColor;
             }
         }
@@ -5205,9 +5204,8 @@ public class Solution
     /// <returns></returns>
     public static List<string> LetterCasePermutation(string s)
     {
-        List<StringBuilder> ans = new List<StringBuilder>();
-        ans.Add(new StringBuilder());
-        foreach (char c in s.ToCharArray())
+        List<StringBuilder> ans = new List<StringBuilder> {new StringBuilder()};
+        foreach (char c in s)
         {
             int n = ans.Count;
             if (char.IsLetter(c))

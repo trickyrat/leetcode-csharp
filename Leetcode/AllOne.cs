@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Leetcodecsharp;
+namespace Leetcode;
 
     public class AllOne
 {

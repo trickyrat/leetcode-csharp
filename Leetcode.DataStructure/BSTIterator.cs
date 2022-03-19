@@ -3,7 +3,7 @@
 
 using System.Collections.Generic;
 
-namespace Leetcodecsharp.DataStructure;
+namespace Leetcode.DataStructure;
 
 public class BSTIterator
 {

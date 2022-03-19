@@ -1,28 +1,28 @@
 ﻿// Licensed to the Trickyrat under one or more agreements.
 // The Trickyrat licenses this file to you under the MIT license.
 
-namespace Leetcodecsharp.DataStructure;
+namespace Leetcode.DataStructure;
 
 public class BinaryTreeNode
 {
-    public int val;
-    public BinaryTreeNode left;
-    public BinaryTreeNode right;
-    public BinaryTreeNode next;
+    public int Val { get; set; }
+    public BinaryTreeNode Left { get; set; }
+    public BinaryTreeNode Right { get; set; }
+    public BinaryTreeNode Next { get; set; }
 
     public BinaryTreeNode() { }
 
-    public BinaryTreeNode(int _val)
+    public BinaryTreeNode(int val)
     {
-        val = _val;
+        Val = val;
     }
 
-    public BinaryTreeNode(int _val, BinaryTreeNode _left, BinaryTreeNode _right, BinaryTreeNode _next)
+    public BinaryTreeNode(int val, BinaryTreeNode left, BinaryTreeNode right, BinaryTreeNode next)
     {
-        val = _val;
-        left = _left;
-        right = _right;
-        next = _next;
+        Val = val;
+        Left = left;
+        Right = right;
+        Next = next;
     }
 
 }

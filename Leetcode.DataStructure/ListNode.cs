@@ -4,7 +4,7 @@
 using System;
 using System.Text;
 
-namespace Leetcodecsharp.DataStructure;
+namespace Leetcode.DataStructure;
 
 /// <summary>
 /// Definition for singly-linked list.

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 using Xunit;
 
-namespace Leetcodecsharp.Test
+namespace Leetcode.Test
 {
     public class FizzBuzzUnitTest
     {

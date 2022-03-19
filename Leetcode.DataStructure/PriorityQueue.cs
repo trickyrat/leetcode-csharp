@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Leetcodecsharp.DataStructure;
+namespace Leetcode.DataStructure;
 
 public class PriorityQueue<T> where T : IComparable, IComparable<T>
 {

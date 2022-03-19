@@ -3,7 +3,7 @@
 
 using System.Collections.Generic;
 
-namespace Leetcodecsharp;
+namespace Leetcode;
 public class MyQueue
 {
     private Stack<int> inStack, outStack;
