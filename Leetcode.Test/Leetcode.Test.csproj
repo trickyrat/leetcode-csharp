@@ -4,6 +4,8 @@
     <TargetFramework>net6.0</TargetFramework>
 
     <IsPackable>false</IsPackable>
+
+    <RootNamespace>Leetcodecsharp.Test</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
@@ -20,8 +22,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Leetcodecsharp.DataStructure\Leetcodecsharp.DataStructure.csproj" />
-    <ProjectReference Include="..\Leetcodecsharp\Leetcodecsharp.csproj" />
+    <ProjectReference Include="..\Leetcode.DataStructure\Leetcode.DataStructure.csproj" />
+    <ProjectReference Include="..\Leetcode\Leetcode.csproj" />
   </ItemGroup>
 
 </Project>
