@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Leetcodecsharp;
 
-    public class AllOne
+public class AllOne
 {
     AllOneNode Root { get; set; }
     Dictionary<string, AllOneNode> Nodes { get; set; }
@@ -67,7 +67,7 @@ namespace Leetcodecsharp;
             AllOneNode prev = curr.Prev;
             if (prev == Root || prev.Count < curr.Count - 1)
             {
-                Nodes[key] = curr.Prev.Insert(new AllOneNode(key, prev.Count - 1));
+                Nodes[key] = curr.Prev.Insert(new AllOneNode(key, curr.Count - 1));
             }
             else
             {

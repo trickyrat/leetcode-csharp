@@ -4461,24 +4461,29 @@ public class Solution
     }
 
     /// <summary>
-    /// 739. Daily Temperatures
+    /// 720. Longest Word in Dictionary
     /// </summary>
-    public static int[] DailyTemperatures(int[] T)
+    /// <param name="words"></param>
+    /// <returns></returns>
+    public static string LongestWord(string[] words)
     {
-        Stack<int> stack = new Stack<int>();
-        int len = T.Length;
-        int[] ans = new int[len];
-        for (int i = 0; i < len; i++)
+        Trie trie = new Trie();
+        foreach (string word in words)
         {
-            while (stack.Count != 0 && T[i] > T[stack.Peek()])
-            {
-                int t = stack.Peek();
-                stack.Pop();
-                ans[t] = i - t;
-            }
-            stack.Push(i);
+            trie.Insert(word);
         }
-        return ans;
+        string longest = string.Empty;
+        foreach (string word in words)
+        {
+            if(trie.Search(word))
+            {
+                if(word.Length > longest.Length || (word.Length == longest.Length && word.CompareTo(longest) < 0))
+                {
+                    longest = word;
+                }
+            }
+        }
+        return longest;
     }
 
     /// <summary>
@@ -4517,6 +4522,27 @@ public class Solution
             }
         }
         return image;
+    }
+
+    /// <summary>
+    /// 739. Daily Temperatures
+    /// </summary>
+    public static int[] DailyTemperatures(int[] T)
+    {
+        Stack<int> stack = new Stack<int>();
+        int len = T.Length;
+        int[] ans = new int[len];
+        for (int i = 0; i < len; i++)
+        {
+            while (stack.Count != 0 && T[i] > T[stack.Peek()])
+            {
+                int t = stack.Peek();
+                stack.Pop();
+                ans[t] = i - t;
+            }
+            stack.Push(i);
+        }
+        return ans;
     }
 
     /// <summary>

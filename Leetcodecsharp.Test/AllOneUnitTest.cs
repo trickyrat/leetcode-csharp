@@ -30,5 +30,24 @@ namespace Leetcodecsharp.Test
             Assert.Equal("leet", actualMinKey2);
         }
 
+
+
+        [Fact]
+        public void SingleTest2()
+        {
+            AllOne allOne = new AllOne();
+            allOne.Inc("a");
+            allOne.Inc("b");
+            allOne.Inc("b");
+            allOne.Inc("b");
+            allOne.Inc("b");
+            allOne.Dec("b");
+            allOne.Dec("b");
+            string actualMaxKey1 = allOne.GetMaxKey();
+            string actualMinKey1 = allOne.GetMinKey();
+            Assert.Equal("b", actualMaxKey1);
+            Assert.Equal("a", actualMinKey1);
+        }
+
     }
 }
