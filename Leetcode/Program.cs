@@ -10,7 +10,6 @@ class Program
     static void Main(string[] args)
     {
         Console.WriteLine("Hello World!");
-        Utilities.CreateTreeNodeWithBFS("1,2,3,4");
     }
 }
 

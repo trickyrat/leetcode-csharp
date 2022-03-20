@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+
 using Leetcode.DataStructure;
 
 namespace Leetcode;
@@ -222,7 +223,7 @@ public class Solution
         int C = 0, R = 0;
         for (int i = 1; i < n - 1; i++)
         {
-            int mirror = 2 * C - i; 
+            int mirror = 2 * C - i;
             P[i] = (R > 1) ? Math.Min(R - i, P[mirror]) : 0;
             while (T[i + 1 + P[i]] == T[i - 1 - P[i]])
             {
@@ -477,8 +478,8 @@ public class Solution
     /// <returns></returns>
     public static int RomanToInteger(string s)
     {
-        Dictionary<char, int> dic = new Dictionary<char, int> 
-        { 
+        Dictionary<char, int> dic = new Dictionary<char, int>
+        {
             { 'I', 1 },
             { 'V', 5 },
             { 'X', 10 },
@@ -820,14 +821,14 @@ public class Solution
                     stack.Push(']');
                     break;
                 default:
-                {
-                    if (stack.Count == 0 || stack.Pop() != item)
                     {
-                        return false;
-                    }
+                        if (stack.Count == 0 || stack.Pop() != item)
+                        {
+                            return false;
+                        }
 
-                    break;
-                }
+                        break;
+                    }
             }
         }
         return stack.Count == 0;
@@ -859,7 +860,7 @@ public class Solution
         }
         head.next = l1 ?? l2;
         return dummyHead.next;
-        
+
         //if (l1 == null) { return l2; }
         //if (l2 == null) { return l1; }
         //ListNode ans = null;
@@ -940,8 +941,7 @@ public class Solution
     /// </summary>
     public static ListNode SwapPairs(ListNode head)
     {
-        ListNode dummy = new ListNode(0) 
-        {
+        ListNode dummy = new ListNode(0) {
             next = head
         };
         ListNode curr = dummy;
@@ -970,8 +970,7 @@ public class Solution
             i = i.next;
         }
 
-        ListNode dummy = new ListNode(0) 
-        {
+        ListNode dummy = new ListNode(0) {
             next = head
         };
         for (ListNode prev = dummy, tail = head; n >= k; n -= k)
@@ -1583,7 +1582,7 @@ public class Solution
         }
         DoSolve(board, 0, 0);
 
-        
+
     }
 
     /// <summary>
@@ -2874,8 +2873,7 @@ public class Solution
 
             int mid = (l + r) / 2;
             TreeNode left = ConvertListToBST(l, mid - 1);
-            TreeNode node = new TreeNode(head.val) 
-            {
+            TreeNode node = new TreeNode(head.val) {
                 left = left
             };
             head = head.next;
@@ -4466,7 +4464,7 @@ public class Solution
     /// <returns></returns>
     public static string ConvertToBase7(int num)
     {
-        if(num == 0)
+        if (num == 0)
         {
             return "0";
         }
@@ -4478,13 +4476,12 @@ public class Solution
             digits.Append(num % 7);
             num /= 7;
         }
-        if(negative)
+        if (negative)
         {
             digits.Append('-');
         }
         string res = digits.ToString();
-        return string.Create(res.Length, res, (chars, state) => 
-        {
+        return string.Create(res.Length, res, (chars, state) => {
             state.AsSpan().CopyTo(chars);
             chars.Reverse();
         });
@@ -5151,9 +5148,9 @@ public class Solution
         string longest = string.Empty;
         foreach (string word in words)
         {
-            if(trie.Search(word))
+            if (trie.Search(word))
             {
-                if(word.Length > longest.Length || (word.Length == longest.Length && word.CompareTo(longest) < 0))
+                if (word.Length > longest.Length || (word.Length == longest.Length && word.CompareTo(longest) < 0))
                 {
                     longest = word;
                 }
@@ -5230,7 +5227,7 @@ public class Solution
     /// <returns></returns>
     public static List<string> LetterCasePermutation(string s)
     {
-        List<StringBuilder> ans = new List<StringBuilder> {new StringBuilder()};
+        List<StringBuilder> ans = new List<StringBuilder> { new StringBuilder() };
         foreach (char c in s)
         {
             int n = ans.Count;
@@ -6221,7 +6218,7 @@ public class Solution
         {
             if (pos == nums.Length)
             {
-                if(orVal > maxOr) 
+                if (orVal > maxOr)
                 {
                     maxOr = orVal;
                     cnt = 1;
@@ -6234,7 +6231,7 @@ public class Solution
             }
             Dfs(pos + 1, orVal | nums[pos]);
             Dfs(pos + 1, orVal);
-           
+
         }
     }
 
@@ -6251,7 +6248,7 @@ public class Solution
         int sum = 0;
         for (int i = 0; i < n; i++)
         {
-            if(s[i]=='*')
+            if (s[i] == '*')
             {
                 sum++;
             }
@@ -6260,7 +6257,7 @@ public class Solution
         int[] left = new int[n];
         for (int i = 0, l = -1; i < n; i++)
         {
-            if(s[i] == '|')
+            if (s[i] == '|')
             {
                 l = i;
             }
@@ -6283,5 +6280,26 @@ public class Solution
             ans[i] = x == -1 || y == -1 || x >= y ? 0 : preSum[y] - preSum[x];
         }
         return ans;
+    }
+
+
+    /// <summary>
+    /// 面试题 01.07. Rotate Matrix LCCI
+    /// </summary>
+    /// <param name="matrix"></param>
+    public static void Rotate(int[][] matrix)
+    {
+        int n = matrix.Length;
+        for (int i = 0; i < n; i++)
+        {
+            for (int j = 0; j < i; j++)
+            {
+                (matrix[i][j], matrix[j][i]) = (matrix[j][i], matrix[i][j]);
+            }
+        }
+        for (int i = 0; i < n; i++)
+        {
+            matrix[i] = matrix[i].Reverse().ToArray();
+        }
     }
 }

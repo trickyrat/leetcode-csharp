@@ -149,31 +149,31 @@ public static class Utilities
 
     public static TreeNode CreateTreeNodeWithBFS(List<int?> data)
     {
-        if (nums[0] == "null")
+        if (data[0] == null)
         {
             return null;
         }
-        TreeNode root = new TreeNode(Convert.ToInt32(nums[0]));
+        TreeNode root = new TreeNode(Convert.ToInt32(data[0]));
         Queue<TreeNode> queue = new Queue<TreeNode>();
         queue.Enqueue(root);
         int cursor = 1;
-        while (cursor < nums.Length)
+        while (cursor < data.Count)
         {
             TreeNode node = queue.Dequeue();
-            string leftValue = nums[cursor];
-            string rightValue = nums[cursor + 1];
-            if (leftValue != "null")
+            //string leftValue = data[cursor];
+            //string rightValue = data[cursor + 1];
+            if (data[cursor] != null)
             {
-                TreeNode left = new TreeNode(Convert.ToInt32(leftValue));
+                TreeNode left = new TreeNode(data[cursor].Value);
                 if (node is not null)
                 {
                     node.left = left;
                 }
                 queue.Enqueue(left);
             }
-            if (rightValue != "null")
+            if (data[cursor + 1] != null)
             {
-                TreeNode right = new TreeNode(Convert.ToInt32(rightValue));
+                TreeNode right = new TreeNode(data[cursor + 1].Value);
                 if (node is not null)
                 {
                     node.right = right;
