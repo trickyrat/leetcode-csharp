@@ -122,20 +122,26 @@ public static class Utilities
         while (cursor < nums.Length)
         {
             TreeNode node = queue.Dequeue();
-            string leftValue = nums[cursor];
-            string rightValue = nums[cursor + 1];
-            if (leftValue != "null")
+            if (cursor > nums.Length - 1 || nums[cursor] == "null")
             {
-                TreeNode left = new TreeNode(Convert.ToInt32(leftValue));
+                node.left = null;
+            }
+            else
+            {
+                TreeNode left = new TreeNode(Convert.ToInt32(nums[cursor]));
                 if (node is not null)
                 {
                     node.left = left;
                 }
                 queue.Enqueue(left);
             }
-            if (rightValue != "null")
+            if (cursor + 1 > nums.Length - 1 || nums[cursor + 1] == null)
             {
-                TreeNode right = new TreeNode(Convert.ToInt32(rightValue));
+                node.right = null;
+            }
+            else
+            {
+                TreeNode right = new TreeNode(Convert.ToInt32(nums[cursor + 1]));
                 if (node is not null)
                 {
                     node.right = right;
@@ -147,33 +153,40 @@ public static class Utilities
         return root;
     }
 
-    public static TreeNode CreateTreeNodeWithBFS(List<int?> data)
+    public static TreeNode CreateTreeNodeWithBFS(List<int?> nums)
     {
-        if (data[0] == null)
+        if (nums[0] == null)
         {
             return null;
         }
-        TreeNode root = new TreeNode(Convert.ToInt32(data[0]));
+        TreeNode root = new TreeNode(nums[0].Value);
         Queue<TreeNode> queue = new Queue<TreeNode>();
         queue.Enqueue(root);
         int cursor = 1;
-        while (cursor < data.Count)
+        while (cursor < nums.Count)
         {
             TreeNode node = queue.Dequeue();
-            //string leftValue = data[cursor];
-            //string rightValue = data[cursor + 1];
-            if (data[cursor] != null)
+
+            if (cursor > nums.Count - 1 || nums[cursor] == null)
             {
-                TreeNode left = new TreeNode(data[cursor].Value);
+                node.left = null;
+            }
+            else
+            {
+                TreeNode left = new TreeNode(nums[cursor].Value);
                 if (node is not null)
                 {
                     node.left = left;
                 }
                 queue.Enqueue(left);
             }
-            if (data[cursor + 1] != null)
+            if (cursor + 1 > nums.Count - 1 || nums[cursor + 1] == null)
             {
-                TreeNode right = new TreeNode(data[cursor + 1].Value);
+                node.right = null;
+            }
+            else
+            {
+                TreeNode right = new TreeNode(nums[cursor + 1].Value);
                 if (node is not null)
                 {
                     node.right = right;
@@ -182,6 +195,7 @@ public static class Utilities
             }
             cursor += 2;
         }
+
         return root;
     }
 

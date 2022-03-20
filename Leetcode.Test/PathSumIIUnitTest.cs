@@ -13,13 +13,13 @@ namespace Leetcode.Test
         {
             yield return new object[]
             {
-               Utilities.CreateTreeNodeWithBFS("1,2,3"),
+               Utilities.CreateTreeNodeWithBFS(new List<int?>{1,2,3 }),
                5,
                new List<List<int>>()
             };
             yield return new object[]
             {
-                Utilities.CreateTreeNodeWithBFS("5,4,8,11,null,13,4,7,2,null,null,5,1"),
+                Utilities.CreateTreeNodeWithBFS(new List<int?>{5,4,8,11,null,13,4,7,2,null,null,5,1 }),
                 22,
                 new List<List<int>>()
                 {
