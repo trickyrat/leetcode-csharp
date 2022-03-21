@@ -4871,6 +4871,71 @@ public class Solution
     }
 
     /// <summary>
+    /// 653.两数之和 IV
+    /// </summary>
+    /// <param name="root"></param>
+    /// <param name="k"></param>
+    /// <returns></returns>
+
+    public static bool FindTarget(TreeNode root, int k)
+    {
+        TreeNode GetLeft(Stack<TreeNode> stack)
+        {
+            TreeNode root = stack.Pop();
+            TreeNode node = root.right;
+            while (node != null)
+            {
+                stack.Push(node);
+                node = node.left;
+            }
+            return root;
+        }
+
+        TreeNode GetRight(Stack<TreeNode> stack)
+        {
+            TreeNode root = stack.Pop();
+            TreeNode node = root.left;
+            while (node != null)
+            {
+                stack.Push(node);
+                node = node.right;
+            }
+            return root;
+        }
+        TreeNode left = root, right = root;
+        Stack<TreeNode> leftStack = new Stack<TreeNode>();
+        Stack<TreeNode> rightStack = new Stack<TreeNode>();
+        leftStack.Push(left);
+        while (left.left != null)
+        {
+            leftStack.Push(left.left);
+            left = left.left;
+        }
+        rightStack.Push(right);
+        while (right.right != null)
+        {
+            rightStack.Push(right.right);
+            right = right.right;
+        }
+        while (left != right)
+        {
+            if(left.val + right.val == k)
+            {
+                return true;
+            }
+            if(left.val + right.val < k)
+            {
+                left = GetLeft(leftStack);
+            }
+            else
+            {
+                right = GetRight(rightStack);
+            }
+        }
+        return false;
+    }
+
+    /// <summary>
     /// 669. Trim a Binary Search Tree
     /// </summary>
     public static TreeNode TrimBST(TreeNode root, int L, int R)

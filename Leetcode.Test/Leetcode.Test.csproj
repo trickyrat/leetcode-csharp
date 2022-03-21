@@ -5,7 +5,7 @@
 
     <IsPackable>false</IsPackable>
 
-    <RootNamespace>Leetcodecsharp.Test</RootNamespace>
+    <RootNamespace>Leetcode.Test</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
