@@ -2414,14 +2414,14 @@ public class Solution
     /// 73. Set Zeroes
     /// </summary>
     /// <param name="matrix"></param>
-    public static void SetZeroes(int[,] matrix)
+    public static void SetZeroes(int[][] matrix)
     {
-        int col0 = 1, rows = matrix.GetLength(0), cols = matrix.GetLength(1);
+        int col0 = 1, rows = matrix.Length, cols = matrix[0].Length;
         // top-down
         for (int i = 0; i < rows; i++)
         {
             // first column
-            if (matrix[i, 0] == 0)
+            if (matrix[i][0] == 0)
             {
                 col0 = 0;
             }
@@ -2429,9 +2429,9 @@ public class Solution
             for (int j = 1; j < cols; j++)
             {
                 // if the current cell is "0" set i row and j col as "0"
-                if (matrix[i, j] == 0)
+                if (matrix[i][j] == 0)
                 {
-                    matrix[i, 0] = matrix[0, j] = 0;
+                    matrix[i][0] = matrix[0][j] = 0;
                 }
             }
         }
@@ -2440,14 +2440,14 @@ public class Solution
         {
             for (int j = cols - 1; j >= 1; j--)
             {
-                if (matrix[i, 0] == 0 || matrix[0, j] == 0)
+                if (matrix[i][0] == 0 || matrix[0][j] == 0)
                 {
-                    matrix[i, j] = 0;
+                    matrix[i][j] = 0;
                 }
             }
             if (col0 == 0)
             {
-                matrix[i, 0] = 0;
+                matrix[i][0] = 0;
             }
         }
     }
