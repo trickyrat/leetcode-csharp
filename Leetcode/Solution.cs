@@ -4458,6 +4458,52 @@ public class Solution
     }
 
     /// <summary>
+    /// 498.对角线遍历
+    /// </summary>
+    /// <param name="matrix"></param>
+    /// <returns></returns>
+    public static int[] FindDiagonalOrder(int[][] matrix)
+    {
+        if (matrix == null || matrix.Length == 0)
+        {
+            return Array.Empty<int>();
+        }
+
+        int N = matrix.Length;
+        int M = matrix[0].Length;
+        int row = 0, col = 0;
+        int direction = 1;
+        int[] res = new int[N * M];
+        int r = 0;
+        while (row < N && col < M)
+        {
+            res[r++] = matrix[row][col];
+            int newRow = row + (direction == 1 ? -1 : 1);
+            int newCol = col + (direction == 1 ? 1 : -1);
+            if (newRow < 0 || newRow == N || newCol < 0 || newCol == M)
+            {
+                if (direction == 1)
+                {
+                    row += (col == M - 1 ? 1 : 0);
+                    col += (col < M - 1 ? 1 : 0);
+                }
+                else
+                {
+                    col += (row == N - 1 ? 1 : 0);
+                    row += (row < N - 1 ? 1 : 0);
+                }
+                direction = 1 - direction;
+            }
+            else
+            {
+                row = newRow;
+                col = newCol;
+            }
+        }
+        return res;
+    }
+
+    /// <summary>
     /// 504.7进制数
     /// </summary>
     /// <param name="num"></param>
