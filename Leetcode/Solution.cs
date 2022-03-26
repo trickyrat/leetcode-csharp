@@ -5072,6 +5072,41 @@ public class Solution
     }
 
     /// <summary>
+    /// 682.棒球比赛
+    /// </summary>
+    /// <param name="ops"></param>
+    /// <returns></returns>
+    public static int CalPoints(string[] ops)
+    {
+        int ret = 0;
+        List<int> points = new List<int>();
+        foreach (string op in ops)
+        {
+            int n = points.Count;
+            switch (op[0])
+            {
+                case '+':
+                    ret += points[n - 1] + points[n - 2];
+                    points.Add(points[n - 1] + points[n - 2]);
+                    break;
+                case 'D':
+                    ret += 2 * points[n - 1];
+                    points.Add(2 * points[n - 1]);
+                    break;
+                case 'C':
+                    ret -= points[n - 1];
+                    points.RemoveAt(n - 1);
+                    break;
+                default:
+                    ret += int.Parse(op);
+                    points.Add(int.Parse(op));
+                    break;
+            }
+        }
+        return ret;
+    }
+
+    /// <summary>
     /// 695. Max Area of Island
     /// </summary>
     /// <param name="grid"></param>
