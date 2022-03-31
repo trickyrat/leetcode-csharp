@@ -3941,21 +3941,19 @@ public class Solution
     /// <returns></returns>
     public static int FindDuplicate(int[] nums)
     {
-        int slow = nums[0];
-        int fast = nums[0];
+        int slow = 0, fast = 0;
         do
         {
             slow = nums[slow];
             fast = nums[nums[fast]];
         } while (slow != fast);
-        int ptr1 = nums[0];
-        int ptr2 = slow;
-        while (ptr1 != ptr2)
+        slow = 0;
+        while (slow != fast)
         {
-            ptr1 = nums[ptr1];
-            ptr2 = nums[ptr2];
+            slow = nums[slow];
+            fast = nums[fast];
         }
-        return ptr1;
+        return slow;
     }
 
     /// <summary>
@@ -5303,6 +5301,39 @@ public class Solution
             }
         }
         return longest;
+    }
+
+    /// <summary>
+    /// 728.自除数
+    /// </summary>
+    /// <param name="left"></param>
+    /// <param name=""></param>
+    /// <returns></returns>
+    public static IList<int> SelfDividingNumbers(int left, int right)
+    {
+        bool IsSelfDividing(int num)
+        {
+            int tmp = num;
+            while (tmp > 0)
+            {
+                int digit = tmp % 10;
+                if (digit == 0 || num % digit != 0)
+                {
+                    return false;
+                }
+                tmp /= 10;
+            }
+            return true;
+        }
+        IList<int> ans = new List<int>();
+        for (int i = left; i <= right; i++)
+        {
+            if (IsSelfDividing(i))
+            {
+                ans.Add(i);
+            }
+        }
+        return ans;
     }
 
     /// <summary>

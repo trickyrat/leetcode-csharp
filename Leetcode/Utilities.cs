@@ -129,7 +129,7 @@ public static class Utilities
                 }
                 queue.Enqueue(left);
             }
-            if (cursor + 1 > nums.Length - 1 || nums[cursor + 1] == null)
+            if (cursor + 1 > nums.Length - 1 || nums[cursor + 1] == "null")
             {
                 node.right = null;
             }
