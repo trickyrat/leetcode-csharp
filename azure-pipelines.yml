@@ -20,22 +20,32 @@ steps:
 - task: NuGetCommand@2
   inputs:
     restoreSolution: '$(solution)'
+
 - task: UseDotNet@2
   inputs:
     packageType: 'sdk'
-    version: '.Net 6`1'
-    includePreviewVersions: true
-# .NET Desktop
-# - task: DotNetCoreCLI@2
-#   inputs:
-#     command: 'build'
+    version: '6.0.x'
+
 - task: VSBuild@1
   inputs:
     solution: '$(solution)'
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
 
-- task: VSTest@2
+- task: UseDotNetCli
   inputs:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
+
+- task: DotNetCoreCLI@2
+  inputs:
+    command: test
+    projects: '**/*.Test/*.csproj'
+    arguments: '--configuration $(buildConfiguration) --collect:"Code coverage" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=cobertura'
+    publishTestResults: true
+
+- task: PublishCodeCoverageResults@1
+  displayName: 'Publish code coverage report'
+  inputs:
+    codeCoverageTool: 'Cobertura'
+    summaryFileLocation: '$(Agent.TempDirectory)/**/coverage.cobertura.xml'
