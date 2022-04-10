@@ -2414,14 +2414,14 @@ public class Solution
     /// 73. Set Zeroes
     /// </summary>
     /// <param name="matrix"></param>
-    public static void SetZeroes(int[,] matrix)
+    public static void SetZeroes(int[][] matrix)
     {
-        int col0 = 1, rows = matrix.GetLength(0), cols = matrix.GetLength(1);
+        int col0 = 1, rows = matrix.Length, cols = matrix[0].Length;
         // top-down
         for (int i = 0; i < rows; i++)
         {
             // first column
-            if (matrix[i, 0] == 0)
+            if (matrix[i][0] == 0)
             {
                 col0 = 0;
             }
@@ -2429,9 +2429,9 @@ public class Solution
             for (int j = 1; j < cols; j++)
             {
                 // if the current cell is "0" set i row and j col as "0"
-                if (matrix[i, j] == 0)
+                if (matrix[i][j] == 0)
                 {
-                    matrix[i, 0] = matrix[0, j] = 0;
+                    matrix[i][0] = matrix[0][j] = 0;
                 }
             }
         }
@@ -2440,14 +2440,14 @@ public class Solution
         {
             for (int j = cols - 1; j >= 1; j--)
             {
-                if (matrix[i, 0] == 0 || matrix[0, j] == 0)
+                if (matrix[i][0] == 0 || matrix[0][j] == 0)
                 {
-                    matrix[i, j] = 0;
+                    matrix[i][j] = 0;
                 }
             }
             if (col0 == 0)
             {
-                matrix[i, 0] = 0;
+                matrix[i][0] = 0;
             }
         }
     }
@@ -3941,21 +3941,19 @@ public class Solution
     /// <returns></returns>
     public static int FindDuplicate(int[] nums)
     {
-        int slow = nums[0];
-        int fast = nums[0];
+        int slow = 0, fast = 0;
         do
         {
             slow = nums[slow];
             fast = nums[nums[fast]];
         } while (slow != fast);
-        int ptr1 = nums[0];
-        int ptr2 = slow;
-        while (ptr1 != ptr2)
+        slow = 0;
+        while (slow != fast)
         {
-            ptr1 = nums[ptr1];
-            ptr2 = nums[ptr2];
+            slow = nums[slow];
+            fast = nums[fast];
         }
-        return ptr1;
+        return slow;
     }
 
     /// <summary>
@@ -4453,6 +4451,52 @@ public class Solution
         {
             int tmp = nums.Sum(num => (num >> i) & 1);
             res += tmp * (size - tmp);
+        }
+        return res;
+    }
+
+    /// <summary>
+    /// 498.对角线遍历
+    /// </summary>
+    /// <param name="matrix"></param>
+    /// <returns></returns>
+    public static int[] FindDiagonalOrder(int[][] matrix)
+    {
+        if (matrix == null || matrix.Length == 0)
+        {
+            return Array.Empty<int>();
+        }
+
+        int N = matrix.Length;
+        int M = matrix[0].Length;
+        int row = 0, col = 0;
+        int direction = 1;
+        int[] res = new int[N * M];
+        int r = 0;
+        while (row < N && col < M)
+        {
+            res[r++] = matrix[row][col];
+            int newRow = row + (direction == 1 ? -1 : 1);
+            int newCol = col + (direction == 1 ? 1 : -1);
+            if (newRow < 0 || newRow == N || newCol < 0 || newCol == M)
+            {
+                if (direction == 1)
+                {
+                    row += (col == M - 1 ? 1 : 0);
+                    col += (col < M - 1 ? 1 : 0);
+                }
+                else
+                {
+                    col += (row == N - 1 ? 1 : 0);
+                    row += (row < N - 1 ? 1 : 0);
+                }
+                direction = 1 - direction;
+            }
+            else
+            {
+                row = newRow;
+                col = newCol;
+            }
         }
         return res;
     }
@@ -5026,6 +5070,41 @@ public class Solution
     }
 
     /// <summary>
+    /// 682.棒球比赛
+    /// </summary>
+    /// <param name="ops"></param>
+    /// <returns></returns>
+    public static int CalPoints(string[] ops)
+    {
+        int ret = 0;
+        List<int> points = new List<int>();
+        foreach (string op in ops)
+        {
+            int n = points.Count;
+            switch (op[0])
+            {
+                case '+':
+                    ret += points[n - 1] + points[n - 2];
+                    points.Add(points[n - 1] + points[n - 2]);
+                    break;
+                case 'D':
+                    ret += 2 * points[n - 1];
+                    points.Add(2 * points[n - 1]);
+                    break;
+                case 'C':
+                    ret -= points[n - 1];
+                    points.RemoveAt(n - 1);
+                    break;
+                default:
+                    ret += int.Parse(op);
+                    points.Add(int.Parse(op));
+                    break;
+            }
+        }
+        return ret;
+    }
+
+    /// <summary>
     /// 695. Max Area of Island
     /// </summary>
     /// <param name="grid"></param>
@@ -5222,6 +5301,39 @@ public class Solution
             }
         }
         return longest;
+    }
+
+    /// <summary>
+    /// 728.自除数
+    /// </summary>
+    /// <param name="left"></param>
+    /// <param name=""></param>
+    /// <returns></returns>
+    public static IList<int> SelfDividingNumbers(int left, int right)
+    {
+        bool IsSelfDividing(int num)
+        {
+            int tmp = num;
+            while (tmp > 0)
+            {
+                int digit = tmp % 10;
+                if (digit == 0 || num % digit != 0)
+                {
+                    return false;
+                }
+                tmp /= 10;
+            }
+            return true;
+        }
+        IList<int> ans = new List<int>();
+        for (int i = left; i <= right; i++)
+        {
+            if (IsSelfDividing(i))
+            {
+                ans.Add(i);
+            }
+        }
+        return ans;
     }
 
     /// <summary>

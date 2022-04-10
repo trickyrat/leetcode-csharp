@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+
 using Leetcode.DataStructure;
 
 namespace Leetcode;
@@ -12,11 +13,9 @@ namespace Leetcode;
 public static class Utilities
 {
 
-    public static void Swap(ref int a, ref int b)
+    public static void Swap<T>(ref T a, ref T b)
     {
-        int temp = a;
-        a = b;
-        b = temp;
+        (b, a) = (a, b);
     }
 
     public static ListNode CreateListNode(IEnumerable<int> data)
@@ -60,21 +59,18 @@ public static class Utilities
     public static string ConvertMultiDimensionalArrayToString(int[][] array)
     {
         StringBuilder sb = new StringBuilder();
-        int row = array.Length, col = array[0].Length;
+        int n = array.Length;
         sb.Append('[');
-        for (int r = 0; r < row; r++)
+        for (int i = 0; i < n; i++)
         {
-            sb.Append('[');
-            for (int c = 0; c < col; c++)
+            if (i != 0)
             {
-                sb.Append(col);
-                if (c != col - 1)
-                {
-                    sb.Append(", ");
-                }
+                sb.Append(' ');
             }
+            sb.Append('[');
+            sb.Append(string.Join(',', array[i]));
             sb.Append(']');
-            if (r != row - 1)
+            if (i != n - 1)
             {
                 sb.Append('\n');
             }
@@ -85,9 +81,7 @@ public static class Utilities
 
     public static void Swap<T>(T[] array, int index1, int index2)
     {
-        T temp = array[index1];
-        array[index1] = array[index2];
-        array[index2] = temp;
+        (array[index2], array[index1]) = (array[index1], array[index2]);
     }
 
     public static List<int> PreorderTraversal(TreeNode root)
@@ -135,7 +129,7 @@ public static class Utilities
                 }
                 queue.Enqueue(left);
             }
-            if (cursor + 1 > nums.Length - 1 || nums[cursor + 1] == null)
+            if (cursor + 1 > nums.Length - 1 || nums[cursor + 1] == "null")
             {
                 node.right = null;
             }
