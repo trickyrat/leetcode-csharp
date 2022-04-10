@@ -5329,6 +5329,27 @@ public class Solution
     }
 
     /// <summary>
+    /// 804.唯一摩尔斯密码词
+    /// </summary>
+    /// <param name="words"></param>
+    /// <returns></returns>
+    public static int UniqueMorseRepresentations(string[] words)
+    {
+        string[] morse = new string[] { ".-", "-...", "-.-.", "-..", ".", "..-.", "--.", "....", "..", ".---", "-.-", ".-..", "--", "-.", "---", ".--.", "--.-", ".-.", "...", "-", "..-", "...-", ".--", "-..-", "-.--", "--.." };
+        HashSet<string> seen = new HashSet<string>();
+        foreach (string word in words)
+        {
+            StringBuilder code = new StringBuilder();
+            foreach (char c in word)
+            {
+                code.Append(morse[c - 'a']);
+            }
+            seen.Add(code.ToString());
+        }
+        return seen.Count;
+    }
+
+    /// <summary>
     /// 807. Max Increase to Keep City Skyline
     /// </summary>
     /// <param name="grid"></param>
