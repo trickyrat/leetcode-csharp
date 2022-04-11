@@ -5486,6 +5486,29 @@ public class Solution
     }
 
     /// <summary>
+    /// 806. 写字符串需要的行数
+    /// </summary>
+    /// <param name="widths"></param>
+    /// <param name="s"></param>
+    /// <returns></returns>
+    public static int[] NumberOfLines(int[] widths, string s)
+    {
+        const int MAX_WIDTH = 100;
+        int lines = 1, width = 0;
+        for (int i = 0; i < s.Length; i++)
+        {
+            int need = widths[s[i] - 'a'];
+            width += need;
+            if(width > MAX_WIDTH)
+            {
+                lines++;
+                width = need;
+            }
+        }
+        return new int[] { lines, width };
+    }
+
+    /// <summary>
     /// 807. Max Increase to Keep City Skyline
     /// </summary>
     /// <param name="grid"></param>
