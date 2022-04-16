@@ -476,7 +476,7 @@ public class Solution
     /// </summary>
     /// <param name="s"></param>
     /// <returns></returns>
-    public static int RomanToInteger(string s)
+    public static int RomanToInt(string s)
     {
         Dictionary<char, int> dic = new Dictionary<char, int>
         {
