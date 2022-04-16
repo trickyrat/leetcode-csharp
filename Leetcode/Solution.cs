@@ -6320,6 +6320,16 @@ public class Solution
     }
 
     /// <summary>
+    /// 1672. 最富有客户的资产总量
+    /// </summary>
+    /// <param name="accounts"></param>
+    /// <returns></returns>
+    public static int MaximumWealth(int[][] accounts)
+    {
+        return accounts.Max(x => x.Sum());
+    }
+
+    /// <summary>
     /// 1791. 找出星型图的中心节点
     /// </summary>
     /// <param name="edges"></param>
