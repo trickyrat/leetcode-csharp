@@ -5540,6 +5540,62 @@ public class Solution
     }
 
     /// <summary>
+    /// 819. 最常见的单词
+    /// </summary>
+    /// <param name="paragraph"></param>
+    /// <param name="banned"></param>
+    /// <returns></returns>
+    public static string MostCommonWord(string paragraph, string[] banned)
+    {
+        HashSet<string> bannedSet = new HashSet<string>();
+        foreach (string word in banned)
+        {
+            bannedSet.Add(word);
+        }
+
+        int maxFrequency = 0;
+        Dictionary<string, int> frequencies = new Dictionary<string, int>();
+        StringBuilder sb = new StringBuilder();
+        int len = paragraph.Length;
+        for (int i = 0; i <= len; i++)
+        {
+            if (i < len && char.IsLetter(paragraph[i]))
+            {
+                sb.Append(char.ToLower(paragraph[i]));
+            }
+            else if (sb.Length > 0)
+            {
+                string word = sb.ToString();
+                if (!bannedSet.Contains(word))
+                {
+                    if(!frequencies.ContainsKey(word))
+                    {
+                        frequencies.Add(word, 1);
+                    }
+                    else
+                    {
+                        frequencies[word]++;
+                    }
+                    maxFrequency = Math.Max(maxFrequency, frequencies[word]);
+                }
+                sb.Clear();
+            }
+        }
+
+        string mostCommon = "";
+        foreach ((string word, int frequency) in frequencies)
+        {
+            if (frequency == maxFrequency)
+            {
+                mostCommon = word;
+                break;
+            }
+        }
+
+        return mostCommon;
+    }
+
+    /// <summary>
     /// 821. Shortest Distance to a Character
     /// </summary>
     /// <param name="S"></param>
