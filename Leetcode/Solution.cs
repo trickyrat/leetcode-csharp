@@ -4093,6 +4093,34 @@ public class Solution
     }
 
     /// <summary>
+    /// 386. 字典序排数
+    /// </summary>
+    /// <param name="n"></param>
+    /// <returns></returns>
+    public static IList<int> LexicalOrder(int n)
+    {
+        IList<int> list = new List<int>(n);
+        int num = 1;
+        for (int i = 0; i < n; i++)
+        {
+            list.Add(num);
+            if (num * 10 <= n)
+            {
+                num *= 10;
+            }
+            else
+            {
+                while (num % 10 == 9 || num + 1 > n)
+                {
+                    num /= 10;
+                }
+                num++;
+            }
+        }
+        return list;
+    }
+
+    /// <summary>
     /// 393. UTF-8 Validation
     /// </summary>
     /// <param name="data"></param>
