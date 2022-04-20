@@ -5657,6 +5657,35 @@ public class Solution
     }
 
     /// <summary>
+    /// 824. 山羊拉丁文
+    /// </summary>
+    /// <param name="sentence"></param>
+    /// <returns></returns>
+    public static string ToGoatLatin(string sentence)
+    {
+        HashSet<char> vowels = new HashSet<char> { 'a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U' };
+        if (sentence.Length == 0)
+        {
+            return string.Empty;
+        }
+        StringBuilder sb = new StringBuilder("a");
+        string[] words = sentence.Split(' ');
+        for (int i = 0; i < words.Length; i++)
+        {
+            if(vowels.Contains(words[i][0]))
+            {
+                words[i] = words[i] + "ma" + sb.ToString();
+            }
+            else
+            {
+                words[i] = words[i][1..^0] + words[i][0] + "ma" + sb.ToString();
+            }
+            sb.Append('a');
+        }
+        return string.Join(" ", words);
+    }
+
+    /// <summary>
     /// 838.推多米诺
     /// </summary>
     /// <param name="dominoes"></param>
