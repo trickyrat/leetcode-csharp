@@ -147,15 +147,15 @@ public class Solution
     /// <summary>
     /// 4. Median of Two Sorted Arrays
     /// </summary>
-    /// <param name="A"></param>
-    /// <param name="B"></param>
+    /// <param name="nums1"></param>
+    /// <param name="nums2"></param>
     /// <returns></returns>
-    public static double FindMedianSortedArrays(int[] A, int[] B)
+    public static double FindMedianSortedArrays(int[] nums1, int[] nums2)
     {
-        int m = A.Length, n = B.Length;
+        int m = nums1.Length, n = nums2.Length;
         if (m > n)
         {
-            (A, B) = (B, A);
+            (nums1, nums2) = (nums2, nums1);
             (m, n) = (n, m);
         }
         // use binary search
@@ -164,11 +164,11 @@ public class Solution
         {
             int i = min + (max - min) / 2;
             int j = halfLen - i;
-            if (i < max && B[j - 1] > A[i])
+            if (i < max && nums2[j - 1] > nums1[i])
             {
                 min++;
             }
-            else if (i > min && A[i - 1] > B[j])
+            else if (i > min && nums1[i - 1] > nums2[j])
             {
                 max--;
             }
@@ -177,15 +177,15 @@ public class Solution
                 int maxLeft;
                 if (i == 0)
                 {
-                    maxLeft = B[j - 1];
+                    maxLeft = nums2[j - 1];
                 }
                 else if (j == 0)
                 {
-                    maxLeft = A[i - 1];
+                    maxLeft = nums1[i - 1];
                 }
                 else
                 {
-                    maxLeft = Math.Max(A[i - 1], B[j - 1]);
+                    maxLeft = Math.Max(nums1[i - 1], nums2[j - 1]);
                 }
                 if ((m + n) % 2 == 1)
                 {
@@ -194,15 +194,15 @@ public class Solution
                 int minRight;
                 if (i == m)
                 {
-                    minRight = B[j];
+                    minRight = nums2[j];
                 }
                 else if (j == n)
                 {
-                    minRight = A[i];
+                    minRight = nums1[i];
                 }
                 else
                 {
-                    minRight = Math.Min(B[j], A[i]);
+                    minRight = Math.Min(nums2[j], nums1[i]);
                 }
                 return (maxLeft + minRight) / 2.0;
             }
