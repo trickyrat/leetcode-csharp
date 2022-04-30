@@ -5,20 +5,21 @@ using Xunit;
 
 namespace Leetcode.Test;
 
-public class AddStringsUnitTest
+public class SmallestRangeIUnitTest
 {
     private readonly Solution _solution;
-    public AddStringsUnitTest()
+
+    public SmallestRangeIUnitTest()
     {
         _solution = new Solution();
     }
     [Theory]
-    [InlineData("1345", "8656", "10001")]
-    [InlineData("245", "356", "601")]
-    [InlineData("999", "1231", "2230")]
-    public void AddStringsTest1(string num1, string num2, string expected)
+    [InlineData(new int[] { 1 }, 0, 0)]
+    [InlineData(new int[] { 0, 10 }, 2, 6)]
+    [InlineData(new int[] { 1, 3, 6 }, 3, 0)]
+    public void Test(int[] nums, int k, int expected)
     {
-        string actual = _solution.AddStrings(num1, num2);
+        int actual = _solution.SmallestRangeI(nums, k);
         Assert.Equal(expected, actual);
     }
 }

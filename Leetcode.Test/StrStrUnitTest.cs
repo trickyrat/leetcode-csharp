@@ -5,22 +5,24 @@ using Xunit;
 
 namespace Leetcode.Test
 {
-    public class AddDigitsUnitTest
+    public class StrStrUnitTest
     {
         private readonly Solution _solution;
-        public AddDigitsUnitTest()
+
+        public StrStrUnitTest()
         {
             _solution = new Solution();
         }
 
+
         [Theory]
-        [InlineData(38, 2)]
-        [InlineData(0, 0)]
-        [InlineData(int.MaxValue, 1)]
-        public void MultipleDataTest(int input, int expected)
+        [InlineData("hello", "ll", 2)]
+        [InlineData("aaaaa", "bba", -1)]
+        public void MultipleDataTest(string haystack, string needle, int expected)
         {
-            int actual = _solution.AddDigits(input);
+            int actual = _solution.StrStr(haystack, needle);
             Assert.Equal(expected, actual);
         }
+
     }
 }

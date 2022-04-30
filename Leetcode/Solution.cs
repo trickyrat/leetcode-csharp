@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+
 using Leetcode.DataStructure;
 
 namespace Leetcode;
@@ -154,7 +155,7 @@ public class Solution
     /// <param name="nums1"></param>
     /// <param name="nums2"></param>
     /// <returns></returns>
-    public static double FindMedianSortedArrays(int[] nums1, int[] nums2)
+    public double FindMedianSortedArrays(int[] nums1, int[] nums2)
     {
         int m = nums1.Length, n = nums2.Length;
         if (m > n)
@@ -483,10 +484,10 @@ public class Solution
     /// <returns></returns>
     public string IntToRoman(int num)
     {
-        string[] M = {"", "M", "MM", "MMM"};
-        string[] C = {"", "C", "CC", "CCC", "CD", "D", "DC", "DCC", "DCCC", "CM"};
-        string[] X = {"", "X", "XX", "XXX", "XL", "L", "LX", "LXX", "LXXX", "XC"};
-        string[] I = {"", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX"};
+        string[] M = { "", "M", "MM", "MMM" };
+        string[] C = { "", "C", "CC", "CCC", "CD", "D", "DC", "DCC", "DCCC", "CM" };
+        string[] X = { "", "X", "XX", "XXX", "XL", "L", "LX", "LXX", "LXXX", "XC" };
+        string[] I = { "", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX" };
         return M[num / 1000] + C[(num % 1000) / 100] + X[(num % 100) / 10] + I[num % 10];
     }
 
@@ -616,7 +617,7 @@ public class Solution
                 }
                 else
                 {
-                    List<int> tmp = new List<int> {nums[i], nums[left], nums[right]};
+                    List<int> tmp = new List<int> { nums[i], nums[left], nums[right] };
                     res.Add(tmp);
                     while (left < right && nums[left] < tmp[1])
                     {
@@ -698,7 +699,7 @@ public class Solution
     /// <returns></returns>
     public IList<string> LetterCombinations(string digits)
     {
-        string[] map = {"0", "1", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
+        string[] map = { "0", "1", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz" };
         if (string.IsNullOrEmpty(digits))
         {
             return new List<string>();
@@ -783,7 +784,7 @@ public class Solution
                     }
                     else
                     {
-                        res.Add(new List<int> {nums[i], nums[j], nums[left], nums[right]});
+                        res.Add(new List<int> { nums[i], nums[j], nums[left], nums[right] });
                         do
                         {
                             left++;
@@ -849,14 +850,14 @@ public class Solution
                     stack.Push(']');
                     break;
                 default:
-                {
-                    if (stack.Count == 0 || stack.Pop() != item)
                     {
-                        return false;
-                    }
+                        if (stack.Count == 0 || stack.Pop() != item)
+                        {
+                            return false;
+                        }
 
-                    break;
-                }
+                        break;
+                    }
             }
         }
 
@@ -1177,8 +1178,8 @@ public class Solution
         }
 
         int sign = dividend < 0 ^ divisor < 0 ? -1 : 1;
-        long dvd = Math.Abs((long) dividend);
-        long dvs = Math.Abs((long) divisor);
+        long dvd = Math.Abs((long)dividend);
+        long dvs = Math.Abs((long)divisor);
         int res = 0;
         while (dvd >= dvs)
         {
@@ -1438,7 +1439,7 @@ public class Solution
     /// </summary>
     public int[] SearchRange(int[] nums, int target)
     {
-        int[] missingResult = new int[] {-1, -1};
+        int[] missingResult = new int[] { -1, -1 };
         //int[] res = new int[] { 0, 0 };
         //if (nums.Length < 1)
         //{
@@ -1483,7 +1484,7 @@ public class Solution
         int rightIndex = BinarySearch(nums, target, false) - 1;
         if (leftIndex <= rightIndex && rightIndex < nums.Length && nums[leftIndex] == nums[rightIndex])
         {
-            return new[] {leftIndex, rightIndex};
+            return new[] { leftIndex, rightIndex };
         }
 
         return missingResult;
@@ -1959,7 +1960,7 @@ public class Solution
     {
         if (matrix.Length == 0)
         {
-            return new List<int>() {0};
+            return new List<int>() { 0 };
         }
 
         int startRow = 0, startColumn = 0;
@@ -2057,7 +2058,7 @@ public class Solution
             int l = t[0], r = t[1];
             if (n == 0 || merged[n - 1][1] < l)
             {
-                merged.Add(new[] {l, r});
+                merged.Add(new[] { l, r });
             }
             else
             {
@@ -2100,7 +2101,7 @@ public class Solution
     {
         if (n == 0)
         {
-            return new[] {new[] {0}};
+            return new[] { new[] { 0 } };
         }
 
         int startRow = 0, startColumn = 0;
@@ -2478,7 +2479,7 @@ public class Solution
     public string SimplifyPath(string path)
     {
         Stack<string> stack = new Stack<string>();
-        HashSet<string> skip = new HashSet<string> {"", ".", ".."};
+        HashSet<string> skip = new HashSet<string> { "", ".", ".." };
         foreach (string dir in path.Split('/'))
         {
             if (dir == ".." && stack.Count > 0)
@@ -3442,10 +3443,10 @@ public class Solution
         {
             if (index == -1 || index == data.Length)
             {
-                return new[] {0, 0};
+                return new[] { 0, 0 };
             }
 
-            return new[] {1, data[index]};
+            return new[] { 1, data[index] };
         }
 
         int Compare(int[] data, int index1, int index2)
@@ -3480,7 +3481,7 @@ public class Solution
             int sum = numbers[left] + numbers[right];
             if (sum == target)
             {
-                return new int[] {left + 1, right + 1};
+                return new int[] { left + 1, right + 1 };
             }
             else if (sum > target)
             {
@@ -3492,7 +3493,7 @@ public class Solution
             }
         }
 
-        return new[] {-1, -1};
+        return new[] { -1, -1 };
     }
 
     /// <summary>
@@ -4049,7 +4050,7 @@ public class Solution
             }
         }
 
-        return new[] {type1, type2};
+        return new[] { type1, type2 };
     }
 
     /// <summary>
@@ -5182,7 +5183,7 @@ public class Solution
         }
 
         Stack<TreeNode[]> stack = new Stack<TreeNode[]>();
-        stack.Push(new[] {t1, t2});
+        stack.Push(new[] { t1, t2 });
         while (stack.Count > 0)
         {
             TreeNode[] t = stack.Pop();
@@ -5198,7 +5199,7 @@ public class Solution
             }
             else
             {
-                stack.Push(new[] {t[0].left, t[1].left});
+                stack.Push(new[] { t[0].left, t[1].left });
             }
 
             if (t[0].right == null)
@@ -5207,7 +5208,7 @@ public class Solution
             }
             else
             {
-                stack.Push(new[] {t[0].right, t[1].right});
+                stack.Push(new[] { t[0].right, t[1].right });
             }
         }
 
@@ -5422,8 +5423,8 @@ public class Solution
         int ans = 0;
         int rowLength = grid.Length;
         int colLength = grid[0].Length;
-        int[] di = new int[] {0, 0, 1, -1};
-        int[] dj = new int[] {1, -1, 0, 0};
+        int[] di = new int[] { 0, 0, 1, -1 };
+        int[] dj = new int[] { 1, -1, 0, 0 };
         for (int row = 0; row < rowLength; row++)
         {
             for (int col = 0; col < colLength; col++)
@@ -5582,7 +5583,7 @@ public class Solution
     public string ToLowerCase(string str)
     {
         StringBuilder sb = new StringBuilder();
-        foreach (char r in str.Select(c => (char) (c | 32)))
+        foreach (char r in str.Select(c => (char)(c | 32)))
         {
             sb.Append(r);
         }
@@ -5622,10 +5623,10 @@ public class Solution
     }
 
     /// <summary>
-    /// 728.自除数
+    /// 728. Self Dividing Numbers
     /// </summary>
     /// <param name="left"></param>
-    /// <param name=""></param>
+    /// <param name="right"></param>
     /// <returns></returns>
     public IList<int> SelfDividingNumbers(int left, int right)
     {
@@ -5668,8 +5669,8 @@ public class Solution
     /// <returns></returns>
     public int[][] FloodFill(int[][] image, int sr, int sc, int newColor)
     {
-        int[] dx = {1, 0, 0, -1};
-        int[] dy = {0, 1, -1, 0};
+        int[] dx = { 1, 0, 0, -1 };
+        int[] dy = { 0, 1, -1, 0 };
         int currentColor = image[sr][sc];
         if (currentColor == newColor)
         {
@@ -5678,7 +5679,7 @@ public class Solution
 
         int n = image.Length, m = image[0].Length;
         Queue<int[]> queue = new Queue<int[]>();
-        queue.Enqueue(new[] {sr, sc});
+        queue.Enqueue(new[] { sr, sc });
         image[sr][sc] = newColor;
         while (queue.Any())
         {
@@ -5692,7 +5693,7 @@ public class Solution
                     continue;
                 }
 
-                queue.Enqueue(new[] {mx, my});
+                queue.Enqueue(new[] { mx, my });
                 image[mx][my] = newColor;
             }
         }
@@ -5730,7 +5731,7 @@ public class Solution
     /// <returns></returns>
     public List<string> LetterCasePermutation(string s)
     {
-        List<StringBuilder> ans = new List<StringBuilder> {new StringBuilder()};
+        List<StringBuilder> ans = new List<StringBuilder> { new StringBuilder() };
         foreach (char c in s)
         {
             int n = ans.Count;
@@ -5767,7 +5768,7 @@ public class Solution
     }
 
     /// <summary>
-    /// 804.唯一摩尔斯密码词
+    /// 804. Unique Morse Code Words
     /// </summary>
     /// <param name="words"></param>
     /// <returns></returns>
@@ -5793,27 +5794,27 @@ public class Solution
     }
 
     /// <summary>
-    /// 806. 写字符串需要的行数
+    /// 806. Number of Lines To Write String
     /// </summary>
     /// <param name="widths"></param>
     /// <param name="s"></param>
     /// <returns></returns>
     public int[] NumberOfLines(int[] widths, string s)
     {
-        const int MAX_WIDTH = 100;
+        const int maxWidth = 100;
         int lines = 1, width = 0;
         for (int i = 0; i < s.Length; i++)
         {
             int need = widths[s[i] - 'a'];
             width += need;
-            if (width > MAX_WIDTH)
+            if (width > maxWidth)
             {
                 lines++;
                 width = need;
             }
         }
 
-        return new int[] {lines, width};
+        return new int[] { lines, width };
     }
 
     /// <summary>
@@ -5848,7 +5849,7 @@ public class Solution
     }
 
     /// <summary>
-    /// 819. 最常见的单词
+    /// 819. Most Common Word
     /// </summary>
     /// <param name="paragraph"></param>
     /// <param name="banned"></param>
@@ -5908,17 +5909,17 @@ public class Solution
     /// <summary>
     /// 821. Shortest Distance to a Character
     /// </summary>
-    /// <param name="S"></param>
-    /// <param name="C"></param>
+    /// <param name="s"></param>
+    /// <param name="c"></param>
     /// <returns></returns>
-    public int[] ShortestToChar(string S, char C)
+    public int[] ShortestToChar(string s, char c)
     {
-        int n = S.Length;
+        int n = s.Length;
         int[] ans = new int[n];
         int prev = int.MinValue / 2;
         for (int i = 0; i < n; i++)
         {
-            if (S[i] == C)
+            if (s[i] == c)
             {
                 prev = i;
             }
@@ -5929,7 +5930,7 @@ public class Solution
         prev = int.MaxValue / 2;
         for (int i = n - 1; i >= 0; i--)
         {
-            if (S[i] == C)
+            if (s[i] == c)
             {
                 prev = i;
             }
@@ -5947,7 +5948,7 @@ public class Solution
     /// <returns></returns>
     public string ToGoatLatin(string sentence)
     {
-        HashSet<char> vowels = new HashSet<char> {'a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U'};
+        HashSet<char> vowels = new HashSet<char> { 'a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U' };
         if (sentence.Length == 0)
         {
             return string.Empty;
@@ -6140,15 +6141,15 @@ public class Solution
     /// <summary>
     /// 852. Peak Index in a Mountain Array
     /// </summary>
-    /// <param name="A"></param>
+    /// <param name="nums"></param>
     /// <returns></returns>
-    public int PeakIndexInMountainArray(int[] A)
+    public int PeakIndexInMountainArray(int[] nums)
     {
-        int l = 0, r = A.Length - 1;
+        int l = 0, r = nums.Length - 1;
         while (l < r)
         {
             int mid = (l + r) / 2;
-            if (A[mid] < A[mid + 1])
+            if (nums[mid] < nums[mid + 1])
             {
                 l = mid + 1;
             }
@@ -6211,13 +6212,13 @@ public class Solution
     /// <summary>
     /// 884. Uncommon Words from Two Sentences.
     /// </summary>
-    /// <param name="A"></param>
-    /// <param name="B"></param>
+    /// <param name="s1"></param>
+    /// <param name="s2"></param>
     /// <returns></returns>
-    public string[] UncommonFromSentences(string A, string B)
+    public string[] UncommonFromSentences(string s1, string s2)
     {
         Dictionary<string, int> dic = new Dictionary<string, int>();
-        foreach (string word in A.Split(' '))
+        foreach (string word in s1.Split(' '))
         {
             if (dic.ContainsKey(word))
             {
@@ -6229,7 +6230,7 @@ public class Solution
             }
         }
 
-        foreach (string word in B.Split(' '))
+        foreach (string word in s2.Split(' '))
         {
             if (dic.ContainsKey(word))
             {
@@ -6341,7 +6342,7 @@ public class Solution
             {
                 right--;
             }
-            if(left < right)
+            if (left < right)
             {
                 (nums[left], nums[right]) = (nums[right], nums[left]);
                 left++;
@@ -6349,6 +6350,19 @@ public class Solution
             }
         }
         return nums;
+    }
+
+    /// <summary>
+    /// 908. Smallest Range I
+    /// </summary>
+    /// <param name="nums"></param>
+    /// <param name="k"></param>
+    /// <returns></returns>
+    public int SmallestRangeI(int[] nums, int k)
+    {
+        int min = nums.Min();
+        int max = nums.Max();
+        return max - min <= 2 * k ? 0 : max - min - 2 * k;
     }
 
     /// <summary>
@@ -6474,8 +6488,8 @@ public class Solution
     /// <returns></returns>
     public int OrangeRotting(int[][] grid)
     {
-        int[] dr = new int[] {-1, 0, 1, 0};
-        int[] dc = new int[] {0, -1, 0, 1};
+        int[] dr = new int[] { -1, 0, 1, 0 };
+        int[] dc = new int[] { 0, -1, 0, 1 };
         int rowLength = grid.Length, colLength = grid[0].Length;
         Queue<int> queue = new Queue<int>();
         Dictionary<int, int> depth = new Dictionary<int, int>();

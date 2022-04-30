@@ -2,7 +2,9 @@
 // The Trickyrat licenses this file to you under the MIT license.
 
 using System.Collections.Generic;
+
 using Leetcode.DataStructure;
+
 using Xunit;
 
 namespace Leetcode.Test
@@ -11,13 +13,13 @@ namespace Leetcode.Test
     {
         public static IEnumerable<object[]> GetData()
         {
-            yield return new object[] 
+            yield return new object[]
             {
                 new BinaryTreeNode(),
                 new BinaryTreeNode()
             };
         }
-        
+
         [Theory]
         [MemberData(nameof(GetData))]
         public void Test(BinaryTreeNode input, BinaryTreeNode expected)

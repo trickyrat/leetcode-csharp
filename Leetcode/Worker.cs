@@ -4,18 +4,19 @@
 using System;
 using System.Threading;
 using System.Threading.Tasks;
+
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
 namespace Leetcode;
 
-public class Worker: BackgroundService
+public class Worker : BackgroundService
 {
     private readonly ILogger _logger;
     private readonly IHost _host;
 
     public Worker(ILogger<Worker> logger
-    ,IHost host)
+    , IHost host)
     {
         _logger = logger;
         _host = host;

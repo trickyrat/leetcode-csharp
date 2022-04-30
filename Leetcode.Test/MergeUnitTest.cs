@@ -1,11 +1,7 @@
 ﻿// Licensed to the Trickyrat under one or more agreements.
 // The Trickyrat licenses this file to you under the MIT license.
 
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 using Xunit;
 
@@ -13,7 +9,7 @@ namespace Leetcode.Test
 {
     public class MergeUnitTest
     {
-        public static IEnumerable<object[]> GetData() 
+        public static IEnumerable<object[]> GetData()
         {
             yield return new object[]
             {

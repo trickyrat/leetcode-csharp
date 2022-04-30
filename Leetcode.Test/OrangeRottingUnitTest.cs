@@ -1,11 +1,7 @@
 ﻿// Licensed to the Trickyrat under one or more agreements.
 // The Trickyrat licenses this file to you under the MIT license.
 
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 using Xunit;
 
@@ -34,7 +30,7 @@ namespace Leetcode.Test
                 0
             };
         }
-        
+
         [Theory]
         [MemberData(nameof(GetData))]
         public void Test(int[][] grid, int expected)

@@ -2,7 +2,9 @@
 // The Trickyrat licenses this file to you under the MIT license.
 
 using System.Collections.Generic;
+
 using Leetcode.DataStructure;
+
 using Xunit;
 
 namespace Leetcode.Test
@@ -12,7 +14,7 @@ namespace Leetcode.Test
 
         public static IEnumerable<object[]> GetData()
         {
-            yield return new object[] 
+            yield return new object[]
             {
                 Utilities.CreateListNode(new List<int> { 1, 2, 3, 4, 5, 6 }),
                 Utilities.CreateListNode(new List<int> { 4, 5, 6 })

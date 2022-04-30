@@ -4,8 +4,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Leetcodecsharp
 {
@@ -25,7 +23,7 @@ namespace Leetcodecsharp
 
         public bool Insert(int val)
         {
-            if(Indices.ContainsKey(val))
+            if (Indices.ContainsKey(val))
             {
                 return false;
             }
@@ -36,7 +34,7 @@ namespace Leetcodecsharp
 
         public bool Remove(int val)
         {
-            if(!Indices.ContainsKey(val))
+            if (!Indices.ContainsKey(val))
             {
                 return false;
             }

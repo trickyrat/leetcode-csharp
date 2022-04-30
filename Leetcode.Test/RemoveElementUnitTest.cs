@@ -5,21 +5,22 @@ using Xunit;
 
 namespace Leetcode.Test
 {
-    public class AddDigitsUnitTest
+    public class RemoveElementUnitTest
     {
         private readonly Solution _solution;
-        public AddDigitsUnitTest()
+
+        public RemoveElementUnitTest()
         {
             _solution = new Solution();
         }
 
+
         [Theory]
-        [InlineData(38, 2)]
-        [InlineData(0, 0)]
-        [InlineData(int.MaxValue, 1)]
-        public void MultipleDataTest(int input, int expected)
+        [InlineData(new int[] { 3, 2, 2, 3 }, 3, 2)]
+        [InlineData(new int[] { 0, 1, 2, 2, 3, 0, 4, 2 }, 2, 5)]
+        public void MultipleDataTest(int[] nums, int value, int expected)
         {
-            int actual = _solution.AddDigits(input);
+            int actual = _solution.RemoveElement(nums, value);
             Assert.Equal(expected, actual);
         }
     }

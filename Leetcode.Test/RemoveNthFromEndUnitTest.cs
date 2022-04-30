@@ -2,7 +2,9 @@
 // The Trickyrat licenses this file to you under the MIT license.
 
 using System.Collections.Generic;
+
 using Leetcode.DataStructure;
+
 using Xunit;
 
 namespace Leetcode.Test
@@ -35,7 +37,7 @@ namespace Leetcode.Test
 
         [Theory]
         [MemberData(nameof(GetData))]
-        public void Test_Input_Normal_Nodes_Should_OK(ListNode input, int n , ListNode expected)
+        public void Test_Input_Normal_Nodes_Should_OK(ListNode input, int n, ListNode expected)
         {
             Solution solution = new Solution();
             ListNode actual = solution.RemoveNthFromEnd(input, n);

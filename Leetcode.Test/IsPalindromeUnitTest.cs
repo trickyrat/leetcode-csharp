@@ -2,6 +2,7 @@
 // The Trickyrat licenses this file to you under the MIT license.
 
 using Leetcode.DataStructure;
+
 using Xunit;
 
 namespace Leetcode.Test

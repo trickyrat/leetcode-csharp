@@ -9,7 +9,7 @@ namespace Leetcode.Test
     {
 
         [Theory]
-        [InlineData(new string[] { "flower","flow","flight" }, "fl")]
+        [InlineData(new string[] { "flower", "flow", "flight" }, "fl")]
         [InlineData(new string[] { "dog", "racecar", "car" }, "")]
         public void MultipleDataTest(string[] strs, string expected)
         {
