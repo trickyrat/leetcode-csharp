@@ -13,8 +13,9 @@ namespace Leetcode.Test
         [InlineData(new int[] { 1, 2 }, false)]
         public void Test(int[] nums, bool expected)
         {
+            Solution solution = new Solution();
             ListNode head = Utilities.CreateListNode(nums);
-            bool actual = Solution.IsPalindrome(head);
+            bool actual = solution.IsPalindrome(head);
             Assert.Equal(expected, actual);
         }
     }

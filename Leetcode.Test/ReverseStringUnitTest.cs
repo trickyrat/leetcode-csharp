@@ -12,7 +12,8 @@ namespace Leetcode.Test
         [InlineData(new char[] { 'H', 'a', 'n', 'n', 'a', 'h' }, new char[] { 'h', 'a', 'n', 'n', 'a', 'H' })]
         public void Test(char[] actual, char[] expected)
         {
-            Solution.ReverseString(actual);
+            Solution solution = new Solution();
+            solution.ReverseString(actual);
             Assert.Equal(expected, actual);
         }
     }

@@ -12,7 +12,8 @@ namespace Leetcode.Test
         [InlineData(new int[] { 1, 2 }, new int[] { 3, 4 }, 2.50000)]
         public void MultipleDataTest(int[] A, int[] B, double expected)
         {
-            double actual = Solution.FindMedianSortedArrays(A, B);
+            Solution solution = new Solution();
+            double actual = solution.FindMedianSortedArrays(A, B);
             Assert.Equal(expected, actual);
         }
     }

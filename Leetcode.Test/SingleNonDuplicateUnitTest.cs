@@ -12,7 +12,8 @@ namespace Leetcode.Test
         [InlineData(new int[] { 3, 3, 7, 7, 10, 11, 11 }, 10)]
         public void Test(int[] nums, int expected)
         {
-            int actual = Solution.SingleNonDuplicate(nums);
+            Solution solution = new Solution();
+            int actual = solution.SingleNonDuplicate(nums);
             Assert.Equal(expected, actual);
         }
     }

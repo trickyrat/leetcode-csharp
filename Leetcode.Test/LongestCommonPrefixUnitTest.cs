@@ -13,7 +13,8 @@ namespace Leetcode.Test
         [InlineData(new string[] { "dog", "racecar", "car" }, "")]
         public void MultipleDataTest(string[] strs, string expected)
         {
-            string actual = Solution.LongestCommonPrefix(strs);
+            Solution solution = new Solution();
+            string actual = solution.LongestCommonPrefix(strs);
             Assert.Equal(expected, actual);
         }
 

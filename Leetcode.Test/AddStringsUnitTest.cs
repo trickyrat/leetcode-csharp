@@ -13,7 +13,8 @@ public class AddStringsUnitTest
     [InlineData("999", "1231", "2230")]
     public void AddStringsTest1(string num1, string num2, string expected)
     {
-        string actual = Solution.AddStrings(num1, num2);
+        Solution solution = new Solution();
+        string actual = solution.AddStrings(num1, num2);
         Assert.Equal(expected, actual);
     }
 }

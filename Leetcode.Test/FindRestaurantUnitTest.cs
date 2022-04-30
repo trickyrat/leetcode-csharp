@@ -12,7 +12,8 @@ public class FindRestaurantUnitTest
     [InlineData(new string[]{"Shogun", "Tapioca Express", "Burger King", "KFC"},new string[]{"KFC", "Shogun", "Burger King"}, new string[]{"Shogun"})]
     public void Test(string[] list1, string[] list2, string[] expect)
     {
-        string[] actual = Solution.FindRestaurant(list1, list2);
+        Solution solution = new Solution();
+        string[] actual = solution.FindRestaurant(list1, list2);
         Assert.Equal(expect, actual);
     }
 }

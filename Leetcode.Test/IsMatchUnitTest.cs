@@ -20,7 +20,8 @@ namespace Leetcode.Test
         [InlineData("ab", ".*", true)]
         public void MultipleDataTest(string s, string p, bool expected)
         {
-            bool actual = Solution.IsMatch(s, p);
+            Solution solution = new Solution();
+            bool actual = solution.IsMatch(s, p);
             Assert.Equal(expected, actual);
         }
     }

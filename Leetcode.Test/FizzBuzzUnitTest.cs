@@ -19,7 +19,8 @@ namespace Leetcode.Test
         [InlineData(15, new string[] { "1", "2", "Fizz", "4", "Buzz", "Fizz", "7", "8", "Fizz", "Buzz", "11", "Fizz", "13", "14", "FizzBuzz" })]
         public void Test(int n, IList<string> expected)
         {
-            IList<string> actual = Solution.FizzBuzz(n);
+            Solution solution = new Solution();
+            IList<string> actual = solution.FizzBuzz(n);
             Assert.Equal(expected, actual);
         }
     }

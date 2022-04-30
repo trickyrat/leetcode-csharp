@@ -14,7 +14,8 @@ namespace Leetcode.Test
         [InlineData("/a/./b/../../c/", "/c")]
         public void Test(string path, string expected)
         {
-            string actual = Solution.SimplifyPath(path);
+            Solution solution = new Solution();
+            string actual = solution.SimplifyPath(path);
             Assert.Equal(expected, actual);
         }
     }

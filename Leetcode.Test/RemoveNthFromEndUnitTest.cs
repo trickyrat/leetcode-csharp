@@ -37,7 +37,8 @@ namespace Leetcode.Test
         [MemberData(nameof(GetData))]
         public void Test_Input_Normal_Nodes_Should_OK(ListNode input, int n , ListNode expected)
         {
-            ListNode actual = Solution.RemoveNthFromEnd(input, n);
+            Solution solution = new Solution();
+            ListNode actual = solution.RemoveNthFromEnd(input, n);
             Assert.Equal(expected, actual);
         }
     }

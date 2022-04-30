@@ -14,7 +14,8 @@ namespace Leetcode.Test
         [InlineData(10, false)]
         public void MultipleDataTest(int input, bool expected)
         {
-            bool actual = Solution.IsPalindrome(input);
+            Solution solution = new Solution();
+            bool actual = solution.IsPalindrome(input);
             Assert.Equal(expected, actual);
         }
     }

@@ -10,8 +10,9 @@ namespace Leetcode.Test
         [Fact]
         public void SingleTest()
         {
+            Solution solution = new Solution();
             int[] nums = { 1000, 100, 10, 2 };
-            string actual = Solution.OptimalDivision(nums);
+            string actual = solution.OptimalDivision(nums);
             string expected = "1000/(100/10/2)";
             Assert.Equal(actual, expected);
         }

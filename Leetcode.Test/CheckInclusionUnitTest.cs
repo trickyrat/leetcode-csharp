@@ -12,7 +12,8 @@ namespace Leetcode.Test
         [InlineData("ab", "eidboaoo", false)]
         public void Test_Should_Return_True(string s1, string s2, bool expected)
         {
-            bool actual = Solution.CheckInclusion(s1, s2);
+            Solution solution = new Solution();
+            bool actual = solution.CheckInclusion(s1, s2);
             Assert.Equal(expected, actual);
         }
     }

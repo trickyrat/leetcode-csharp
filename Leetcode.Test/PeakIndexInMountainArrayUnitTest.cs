@@ -14,7 +14,8 @@ namespace Leetcode.Test
         [InlineData(new int[] { 0, 10, 5, 2 }, 1)]
         public void Test(int[] arr, int expected)
         {
-            int actual = Solution.PeakIndexInMountainArray(arr);
+            Solution solution = new Solution();
+            int actual = solution.PeakIndexInMountainArray(arr);
             Assert.Equal(expected, actual);
         }
     }

@@ -12,7 +12,8 @@ namespace Leetcode.Test
         [InlineData("God Ding", "doG gniD")]
         public void Test1(string s, string expected)
         {
-            string actual = Solution.ReverseWords(s);
+            Solution solution = new Solution();
+            string actual = solution.ReverseWords(s);
             Assert.Equal(expected, actual);
         }
     }

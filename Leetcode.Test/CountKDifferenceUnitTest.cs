@@ -14,7 +14,8 @@ namespace Leetcode.Test
         [InlineData(new int[] { 3, 2, 1, 5, 4 }, 2, 3)]
         public void MultipleDataTest(int[] nums, int k, int expected)
         {
-            int actual = Solution.CountKDifference(nums, k);
+            Solution solution = new Solution();
+            int actual = solution.CountKDifference(nums, k);
             Assert.Equal(expected, actual);
         }
     }

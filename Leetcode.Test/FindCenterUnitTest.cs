@@ -38,7 +38,8 @@ namespace Leetcode.Test
         [MemberData(nameof(GetEdges))]
         public void Test((int[][] edges, int expected) input)
         {
-            int actual = Solution.FindCenter(input.edges);
+            Solution solution = new Solution();
+            int actual = solution.FindCenter(input.edges);
             Assert.Equal(input.expected, actual);
         }
     }

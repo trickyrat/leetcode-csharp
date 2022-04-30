@@ -19,7 +19,8 @@ namespace Leetcode.Test
         [InlineData(new string[] { "1" }, 1)]
         public void Test(string[] input, int expected)
         {
-            int actual = Solution.CalPoints(input);
+            Solution solution = new Solution();
+            int actual = solution.CalPoints(input);
             Assert.Equal(expected, actual);
         }
     }

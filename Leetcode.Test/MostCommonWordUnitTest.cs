@@ -11,7 +11,8 @@ public class MostCommonWordUnitTest
     [InlineData("Bob hit a ball, the hit BALL flew far after it was hit.", new string[]{"hit"}, "ball")]
     public void Test(string paragraph, string[] banned, string expected)
     {
-        string actual = Solution.MostCommonWord(paragraph, banned);
+        Solution solution = new Solution();
+        string actual = solution.MostCommonWord(paragraph, banned);
         Assert.Equal(expected, actual);
     }
     

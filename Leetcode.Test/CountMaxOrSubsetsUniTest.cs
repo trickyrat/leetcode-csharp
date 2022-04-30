@@ -14,7 +14,8 @@ namespace Leetcode.Test
         [InlineData(new int[] { 3, 2, 1, 5 }, 6)]
         public void MultipleDataTest(int[] input, int expect)
         {
-            int actual = Solution.CountMaxOrSubsets(input);
+            Solution solution = new Solution();
+            int actual = solution.CountMaxOrSubsets(input);
             Assert.Equal(expect, actual);
         }
     }

@@ -13,7 +13,8 @@ namespace Leetcode.Test
         [InlineData(new int[] { 2, 2, 1, 1, 1, 2, 2 }, 2)]
         public void MultipleDataTest(int[] nums, int expected)
         {
-            int actual = Solution.MajorityElement(nums);
+            Solution solution = new Solution();
+            int actual = solution.MajorityElement(nums);
             Assert.Equal(expected, actual);
         }
     }

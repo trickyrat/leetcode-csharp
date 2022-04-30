@@ -16,7 +16,8 @@ namespace Leetcode.Test
         [InlineData("{[]}", true)]
         public void MultipleDataTest(string s, bool expected)
         {
-            bool actual = Solution.IsValid(s);
+            Solution solution = new Solution();
+            bool actual = solution.IsValid(s);
             Assert.Equal(expected, actual);
         }
     }

@@ -14,7 +14,8 @@ namespace Leetcode.Test
         [InlineData(2, new int[] { 1, 2 })]
         public void MultipleDataTest(int n, IList<int> expected)
         {
-            IList<int> actual = Solution.LexicalOrder(n);
+            Solution solution = new Solution();
+            IList<int> actual = solution.LexicalOrder(n);
             Assert.Equal(expected, actual);
         }
     }

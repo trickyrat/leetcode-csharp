@@ -23,7 +23,8 @@ namespace Leetcode.Test
             new int[] { 2, 4 })]
         public void MultipleDataTest(int[] widths, string s, int[] expected)
         {
-            var actual = Solution.NumberOfLines(widths, s);
+            Solution solution = new Solution();
+            var actual = solution.NumberOfLines(widths, s);
             Assert.Equal(expected, actual);
         }
 

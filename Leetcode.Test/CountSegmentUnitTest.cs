@@ -14,7 +14,8 @@ namespace Leetcode.Test
         [InlineData("", 0)]
         public void Test(string s, int count)
         {
-            int actual = Solution.CountSegments(s);
+            Solution solution = new Solution();
+            int actual = solution.CountSegments(s);
             int expected = count;
             Assert.Equal(expected, actual);
         }

@@ -87,7 +87,8 @@ namespace Leetcode.Test
         [MemberData(nameof(GetData))]
         private void Test1(CombinationSumData input)
         {
-            var actual = Solution.CombinationSum(input.Candidates, input.Target);
+            Solution solution = new Solution();
+            var actual = solution.CombinationSum(input.Candidates, input.Target);
             Assert.Equal(input.Expected, actual);
         }
     }

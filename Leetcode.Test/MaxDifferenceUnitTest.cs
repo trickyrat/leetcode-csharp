@@ -14,7 +14,8 @@ namespace Leetcode.Test
         [InlineData(new int[] { 1, 5, 2, 10 }, 9)]
         public void Test(int[] input, int expected)
         {
-            int actual = Solution.MaximumDifference(input);
+            Solution solution = new Solution();
+            int actual = solution.MaximumDifference(input);
             Assert.Equal(expected, actual);
         }
     }

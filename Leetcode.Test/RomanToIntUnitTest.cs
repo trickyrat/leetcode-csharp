@@ -15,7 +15,8 @@ namespace Leetcode.Test
         [InlineData("MCMXCIV", 1994)]
         public void MultipleDataTest(string s, int expected)
         {
-            int actual = Solution.RomanToInt(s);
+            Solution solution = new Solution();
+            int actual = solution.RomanToInt(s);
             Assert.Equal(expected, actual);
         }
     }

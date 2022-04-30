@@ -8,20 +8,15 @@ namespace Leetcode.Test
     public class PowerOfTwoUnitTest
     {
         [Theory]
-        [InlineData(1)]
-        [InlineData(16)]
-        [InlineData(4)]
-        public void Should_Return_TrueTests(int num)
+        [InlineData(1, true)]
+        [InlineData(16, true)]
+        [InlineData(4, true)]
+        [InlineData(3, false)]
+        public void Test(int num, bool expected)
         {
-            Assert.True(Solution.IsPowerOfTwo(num));
-        }
-
-
-        [Theory]
-        [InlineData(3)]
-        public void Should_Return_FalseTests(int num)
-        {
-            Assert.False(Solution.IsPowerOfTwo(num));
+            Solution solution = new Solution();
+            bool actual = solution.IsPowerOfTwo(num);
+            Assert.Equal(expected, actual);
         }
     }
 }

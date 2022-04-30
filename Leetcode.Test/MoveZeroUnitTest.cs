@@ -12,7 +12,8 @@ namespace Leetcode.Test
         [InlineData(new int[] { 0 }, new int[] { 0 })]
         public void Test(int[] nums, int[] expected)
         {
-            Solution.MoveZeroes(nums);
+            Solution solution = new Solution();
+            solution.MoveZeroes(nums);
             Assert.Equal(expected, nums);
         }
     }

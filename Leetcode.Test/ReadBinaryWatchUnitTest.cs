@@ -15,7 +15,8 @@ namespace Leetcode.Test
         [InlineData(9, new string[] { })]
         public void Test(int turnedOn, string[] expected)
         {
-            IList<string> actual = Solution.ReadBinaryWatch(turnedOn);
+            Solution solution = new Solution();
+            IList<string> actual = solution.ReadBinaryWatch(turnedOn);
             Assert.Equal(expected.ToList(), actual);
         }
     }

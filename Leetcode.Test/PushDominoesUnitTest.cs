@@ -12,7 +12,8 @@ namespace Leetcode.Test
         [InlineData(".L.R...LR..L..", "LL.RR.LLRRLL..")]
         public void Test(string input, string expected)
         {
-            string actual = Solution.PushDominoes(input);
+            Solution solution = new Solution();
+            string actual = solution.PushDominoes(input);
             Assert.Equal(expected, actual);
         }
     }

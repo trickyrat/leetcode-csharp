@@ -9,7 +9,6 @@ namespace Leetcode.Test
 {
     public class AddTwoNumbersUnitTest
     {
-
         public static IEnumerable<object[]> GetData()
         {
             yield return new object[]
@@ -36,7 +35,8 @@ namespace Leetcode.Test
         [MemberData(nameof(GetData))]
         public void Test(ListNode l1, ListNode l2, ListNode expected)
         {
-            ListNode actual = Solution.AddTwoNumbers(l1, l2);
+            Solution solution = new Solution();
+            ListNode actual = solution.AddTwoNumbers(l1, l2);
             Assert.True(expected.Equals(actual));
         }
     }

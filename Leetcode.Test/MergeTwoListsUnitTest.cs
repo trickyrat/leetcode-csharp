@@ -36,7 +36,8 @@ namespace Leetcode.Test
         [MemberData(nameof(GetData))]
         public void Test(ListNode l1, ListNode l2, List<int> expected)
         {
-            ListNode actualNode = Solution.MergeTwoLists(l1, l2);
+            Solution solution = new Solution();
+            ListNode actualNode = solution.MergeTwoLists(l1, l2);
             List<int> actual = Utilities.ConvertListNodeToList(actualNode);
             Assert.Equal(expected, actual);
         }

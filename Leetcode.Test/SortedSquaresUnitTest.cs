@@ -14,7 +14,8 @@ namespace Leetcode.Test
         [InlineData(new int[] { -7, -3, 2, 3, 11 }, new int[] { 4, 9, 9, 49, 121 })]
         public void Test_Should_Ok(int[] nums, int[] expected)
         {
-            int[] actual = Solution.SortedSquares(nums);
+            Solution solution = new Solution();
+            int[] actual = solution.SortedSquares(nums);
             Assert.Equal(expected, actual);
         }
     }

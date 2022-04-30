@@ -46,7 +46,8 @@ namespace Leetcode.Test
         [MemberData(nameof(GetData))]
         public void MultipleDataTest(int[][] accounts, int expected)
         {
-            int actual = Solution.MaximumWealth(accounts);
+            Solution solution = new Solution();
+            int actual = solution.MaximumWealth(accounts);
             Assert.Equal(expected, actual);
         }
     }

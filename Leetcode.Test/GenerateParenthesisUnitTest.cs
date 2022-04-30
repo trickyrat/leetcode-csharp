@@ -19,7 +19,8 @@ namespace Leetcode.Test
         [InlineData(1, new string[] { "()"})]
         public void MultipleDataTest(int n, string[] expected)
         {
-            string[] actual = Solution.GenerateParenthesis(n).ToArray();
+            Solution solution = new Solution();
+            string[] actual = solution.GenerateParenthesis(n).ToArray();
             Assert.Equal(expected, actual);
         }
     }

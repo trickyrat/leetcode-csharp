@@ -33,7 +33,8 @@ namespace Leetcode.Test
         [MemberData(nameof(GetNodes))]
         public void Test(ListNode head, ListNode expectedNode)
         {
-            ListNode actualNode = Solution.ReverseList(head);
+            Solution solution = new Solution();
+            ListNode actualNode = solution.ReverseList(head);
             string actual = Utilities.ConvertListNodeToString(actualNode);
             string expected = Utilities.ConvertListNodeToString(expectedNode);
             Assert.Equal(expected, actual);

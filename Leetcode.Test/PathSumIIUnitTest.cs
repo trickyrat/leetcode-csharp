@@ -33,7 +33,8 @@ namespace Leetcode.Test
         [MemberData(nameof(GetData))]
         public void Test(TreeNode input, int targetNum, IList<List<int>> expected)
         {
-            IList<IList<int>> actual = Solution.PathSum(input, targetNum);
+            Solution solution = new Solution();
+            IList<IList<int>> actual = solution.PathSum(input, targetNum);
             Assert.Equal(expected, actual);
         }
     }

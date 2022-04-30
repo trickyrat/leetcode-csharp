@@ -40,7 +40,8 @@ namespace Leetcode.Test
         [MemberData(nameof(GetData))]
         public void MultipleDataTest(int[][] matrix, int[] expected)
         {
-            int[] actual = Solution.FindDiagonalOrder(matrix);
+            Solution solution = new Solution();
+            int[] actual = solution.FindDiagonalOrder(matrix);
             Assert.Equal(expected, actual);
         }
     }

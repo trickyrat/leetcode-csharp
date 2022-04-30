@@ -18,7 +18,8 @@ namespace Leetcode.Test
         [InlineData(47, 85, new int[] { 48,55,66,77 })]
         public void MultipleDataTest(int left, int right, int[] expected)
         {
-            IList<int> actual = Solution.SelfDividingNumbers(left, right);
+            Solution solution = new Solution();
+            IList<int> actual = solution.SelfDividingNumbers(left, right);
             Assert.Equal(expected, actual.ToArray());
         }
 

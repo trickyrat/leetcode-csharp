@@ -13,7 +13,8 @@ namespace Leetcode.Test
         [InlineData("1+-1i", "1+-1i", "0+-2i")]
         public void MultipleDataTest(string num1, string num2, string expected)
         {
-            string actual = Solution.ComplexNumberMultiply(num1, num2);
+            Solution solution = new Solution();
+            string actual = solution.ComplexNumberMultiply(num1, num2);
             Assert.Equal(expected, actual);
         }
     }

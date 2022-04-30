@@ -12,7 +12,8 @@ namespace Leetcode.Test
         [InlineData(new int[] { 1, 1 }, 1)]
         public void MultipleDataTest(int[] height, int expected)
         {
-            int actual = Solution.MaxArea(height);
+            Solution solution = new Solution();
+            int actual = solution.MaxArea(height);
             Assert.Equal(expected, actual);
         }
     }

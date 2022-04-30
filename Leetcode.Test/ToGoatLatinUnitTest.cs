@@ -14,7 +14,8 @@ namespace Leetcode.Test
         [InlineData("The quick brown fox jumped over the lazy dog", "heTmaa uickqmaaa rownbmaaaa oxfmaaaaa umpedjmaaaaaa overmaaaaaaa hetmaaaaaaaa azylmaaaaaaaaa ogdmaaaaaaaaaa")]
         public void MultipleDataTest(string sentence, string expected)
         {
-            string actual = Solution.ToGoatLatin(sentence);
+            Solution solution = new Solution();
+            string actual = solution.ToGoatLatin(sentence);
             Assert.Equal(expected, actual);
         }
     }

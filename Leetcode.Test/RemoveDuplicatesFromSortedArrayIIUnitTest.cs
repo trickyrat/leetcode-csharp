@@ -13,7 +13,8 @@ namespace Leetcode.Test
         [InlineData(new int[] { 0, 0, 1, 1, 1, 1, 2, 3, 3 }, 7)]
         public void Test(int[] nums, int expected)
         {
-            var actual = Solution.RemoveDuplicatesV2(nums);
+            Solution solution = new Solution();
+            var actual = solution.RemoveDuplicatesV2(nums);
             Assert.Equal(expected, actual);
         }
     }

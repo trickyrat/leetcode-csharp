@@ -14,7 +14,8 @@ namespace Leetcode.Test
         [InlineData("a#c", "b", false)]
         public void Test(string s, string t, bool expected)
         {
-            bool actual = Solution.BackspaceCompare(s, t);
+            Solution solution = new Solution();
+            bool actual = solution.BackspaceCompare(s, t);
             Assert.Equal(expected, actual);
         }
     }

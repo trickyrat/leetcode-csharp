@@ -41,7 +41,8 @@ namespace Leetcode.Test
         [MemberData(nameof(GetData))]
         public void MultipleDataTest(int[] nums, int target, IList<IList<int>> expected)
         {
-            var actual = Solution.FourSum(nums, target);
+            Solution solution = new Solution();
+            var actual = solution.FourSum(nums, target);
             Assert.Equal(expected, actual);
         }
 

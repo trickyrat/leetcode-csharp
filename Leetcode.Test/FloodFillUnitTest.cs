@@ -52,7 +52,8 @@ namespace Leetcode.Test
         [MemberData(nameof(GetData))]
         public void Test(int[][] input, int sr, int sc, int newColor, int[][] expected)
         {
-            int[][] actual = Solution.FloodFill(input, sr, sc, newColor);
+            Solution solution = new Solution();
+            int[][] actual = solution.FloodFill(input, sr, sc, newColor);
             Assert.Equal(expected, actual);
         }
     }

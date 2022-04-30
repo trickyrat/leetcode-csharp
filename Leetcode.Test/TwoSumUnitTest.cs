@@ -12,7 +12,8 @@ namespace Leetcode.Test
         [InlineData(new int[] { -1, 1, 1, 3, 5 }, 2, new int[] { 1, 2 })]
         public void TwoSumTest1(int[] nums, int target, int[] expected)
         {
-            int[] actual = Solution.TwoSum(nums, target);
+            Solution solution = new Solution();
+            int[] actual = solution.TwoSum(nums, target);
             Assert.Equal(expected, actual);
         }
 

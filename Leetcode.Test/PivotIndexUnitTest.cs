@@ -20,7 +20,8 @@ namespace Leetcode.Test
         [InlineData(new int[] { 2, 5 }, -1)]
         public void MultipleDataTest(int[] nums, int expect)
         {
-            int actual = Solution.PivotIndex(nums);
+            Solution solution = new Solution();
+            int actual = solution.PivotIndex(nums);
             Assert.Equal(expect, actual);
         }
     }

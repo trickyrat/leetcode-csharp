@@ -15,7 +15,8 @@ namespace Leetcode.Test
         [InlineData(0, 0)]
         public void MultipleDataTest(int input, int expected)
         {
-            int actual = Solution.Reverse(input);
+            Solution solution = new Solution();
+            int actual = solution.Reverse(input);
             Assert.Equal(expected, actual);
         }
     }

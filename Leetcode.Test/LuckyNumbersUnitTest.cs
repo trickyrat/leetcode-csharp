@@ -44,7 +44,8 @@ namespace Leetcode.Test
         [MemberData(nameof(GetMatrix))]
         public void Test1((int[][] matrix, List<int> expected) input)
         {
-            List<int> actual = Solution.LuckyNumbers(input.matrix).ToList();
+            Solution solution = new Solution();
+            List<int> actual = solution.LuckyNumbers(input.matrix).ToList();
             Assert.Equal(input.expected, actual);
         }
     }

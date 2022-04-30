@@ -49,7 +49,8 @@ namespace Leetcode.Test
         [MemberData(nameof(GetData))]
         public void MultipleDataTest(int[][] input, int[][] expected)
         {
-            int[][] actual = Solution.Merge(input);
+            Solution solution = new Solution();
+            int[][] actual = solution.Merge(input);
             Assert.Equal(expected, actual);
         }
     }

@@ -36,7 +36,8 @@ namespace Leetcode.Test
         [MemberData(nameof(GetData))]
         public void MultipleDataTest(int[][] input, int[][] expected)
         {
-            Solution.SetZeroes(input);
+            Solution solution = new Solution();
+            solution.SetZeroes(input);
             Assert.Equal(input, expected);
         }
     }

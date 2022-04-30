@@ -13,7 +13,8 @@ namespace Leetcode.Test
         [InlineData("()()()(())", 10)]
         public void Test(string s, int expected)
         {
-            int actual = Solution.LongestValidParentheses(s);
+            Solution solution = new Solution();
+            int actual = solution.LongestValidParentheses(s);
             Assert.Equal(expected, actual);
         }
     }

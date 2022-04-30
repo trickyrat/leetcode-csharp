@@ -12,7 +12,8 @@ namespace Leetcode.Test
         [InlineData(new int[] { 1, 2, 1, 3, 5, 6, 4 }, 5)]
         public void Test(int[] arr, int expected)
         {
-            int actual = Solution.FindPeakElement(arr);
+            Solution solution = new Solution();
+            int actual = solution.FindPeakElement(arr);
             Assert.Equal(expected, actual);
         }
     }

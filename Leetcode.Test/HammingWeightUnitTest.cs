@@ -13,7 +13,8 @@ namespace Leetcode.Test
         [InlineData(4294967293, 31)]
         public void Test(uint n, int expected)
         {
-            int actual = Solution.HammingWeight(n);
+            Solution solution = new Solution();
+            int actual = solution.HammingWeight(n);
             Assert.Equal(expected, actual);
         }
     }

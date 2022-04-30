@@ -12,7 +12,8 @@ namespace Leetcode.Test
         [InlineData(4, "1211")]
         public void Test(int n, string expected)
         {
-            string actual = Solution.CountAndSay(n);
+            Solution solution = new Solution();
+            string actual = solution.CountAndSay(n);
             Assert.Equal(expected, actual);
         }
     }

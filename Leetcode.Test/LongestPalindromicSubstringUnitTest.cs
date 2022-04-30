@@ -12,7 +12,8 @@ namespace Leetcode.Test
         [InlineData("cbbd", new string[] { "bb" })]
         public void Test(string input, string[] expected)
         {
-            string actual = Solution.LongestPalindrome(input);
+            Solution solution = new Solution();
+            string actual = solution.LongestPalindrome(input);
             Assert.Contains(actual, expected);
         }
     }

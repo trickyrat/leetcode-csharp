@@ -13,7 +13,8 @@ namespace Leetcode.Test
         [InlineData("A", 1, "A")]
         public void Test(string s, int numRows, string expected)
         {
-            string actual = Solution.Convert(s, numRows);
+            Solution solution = new Solution();
+            string actual = solution.Convert(s, numRows);
             Assert.Equal(expected, actual);
         }
     }

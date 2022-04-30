@@ -22,7 +22,8 @@ public class ValidIPAdressUnitTest
     [InlineData("0a:12:12:12::123:23:0A", "Neither")]
     public void Test(string address, string expected)
     {
-        string actual = Solution.ValidIPAddress(address);
+        Solution solution = new Solution();
+        string actual = solution.ValidIPAddress(address);
         Assert.Equal(expected, actual);
     }
 

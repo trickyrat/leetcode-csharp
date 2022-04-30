@@ -43,7 +43,8 @@ namespace Leetcode.Test
         [MemberData(nameof(GetData))]
         public void MultipleDataTest(int[] nums, IList<IList<int>> expected)
         {
-            var actual = Solution.ThreeSum(nums);
+            Solution solution = new Solution();
+            var actual = solution.ThreeSum(nums);
             Assert.Equal(expected, actual);
         }
     }

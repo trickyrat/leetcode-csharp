@@ -17,7 +17,8 @@ namespace Leetcode.Test
         [InlineData(2, new string[] { "1/2" })]
         public void Test(int n, string[] expected)
         {
-            IList<string> list = Solution.SimplifiedFractions(n);
+            Solution solution = new Solution();
+            IList<string> list = solution.SimplifiedFractions(n);
             var actual = list.ToArray();
             Assert.Equal(expected, actual);
         }

@@ -12,7 +12,8 @@ namespace Leetcode.Test
         [InlineData(0, 1)]
         public void MultipleDataTest(int n, int expected)
         {
-            int actual = Solution.CountNumbersWithUniqueDigits(n);
+            Solution solution = new Solution();
+            int actual = solution.CountNumbersWithUniqueDigits(n);
             Assert.Equal(expected, actual);
         }
     }

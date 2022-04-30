@@ -13,7 +13,8 @@ namespace Leetcode.Test
         [InlineData(new int[] { }, 0, new int[] { -1, -1 })]
         public void Test(int[] nums, int target, int[] expected)
         {
-            int[] actual = Solution.SearchRange(nums, target);
+            Solution solution = new Solution();
+            int[] actual = solution.SearchRange(nums, target);
             Assert.Equal(expected, actual);
         }
     }

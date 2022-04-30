@@ -13,7 +13,8 @@ namespace Leetcode.Test
         [InlineData("4193 with words", 4193)]
         public void MultipleDataTest(string input, int expected)
         {
-            int actual = Solution.Atoi(input);
+            Solution solution = new Solution();
+            int actual = solution.Atoi(input);
             Assert.Equal(expected, actual);
         }
     }

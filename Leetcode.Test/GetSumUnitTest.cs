@@ -13,7 +13,8 @@ namespace Leetcode.Test
         [InlineData(1, -2, -1)]
         public void Test_Should_OK(int a, int b, int expected)
         {
-            int actual = Solution.GetSum(a, b);
+            Solution solution = new Solution();
+            int actual = solution.GetSum(a, b);
             Assert.Equal(expected, actual);
         }
     }

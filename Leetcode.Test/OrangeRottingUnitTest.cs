@@ -13,29 +13,34 @@ namespace Leetcode.Test
 {
     public class OrangeRottingUnitTest
     {
-        [Fact]
-        public void Test()
+        public static IEnumerable<object[]> GetData()
         {
-            int[][] grid = new int[3][]
+            yield return new object[]
             {
-                new int[] { 2, 1, 1 },
-                new int[] { 1, 1, 0 },
-                new int[] { 0, 1, 1 }
+                new int[][]
+                {
+                    new int[] { 2, 1, 1 },
+                    new int[] { 1, 1, 0 },
+                    new int[] { 0, 1, 1 }
+                },
+                4
             };
-            int actual = Solution.OrangeRotting(grid);
-            int expected = 4;
-            Assert.Equal(expected, actual);
+            yield return new object[]
+            {
+                new int[][]
+                {
+                    new int[] { 0, 2 }
+                },
+                0
+            };
         }
-
-        [Fact]
-        public void ZeroResult_Test()
+        
+        [Theory]
+        [MemberData(nameof(GetData))]
+        public void Test(int[][] grid, int expected)
         {
-            int[][] grid = new int[1][]
-            {
-                new int[] { 0, 2 }
-            };
-            int actual = Solution.OrangeRotting(grid);
-            int expected = 0;
+            Solution solution = new Solution();
+            int actual = solution.OrangeRotting(grid);
             Assert.Equal(expected, actual);
         }
     }

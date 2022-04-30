@@ -43,7 +43,8 @@ namespace Leetcode.Test
         [MemberData(nameof(GetData))]
         public void Test(string s, int[][] queries, int[] expected)
         {
-            int[] actual = Solution.PlatesBetweenCandles(s, queries);
+            Solution solution = new Solution();
+            int[] actual = solution.PlatesBetweenCandles(s, queries);
             Assert.Equal(expected, actual);
         }
     }

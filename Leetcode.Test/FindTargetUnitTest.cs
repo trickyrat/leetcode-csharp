@@ -33,7 +33,8 @@ namespace Leetcode.Test
         [MemberData(nameof(GetData))]
         public void Test(TreeNode root, int target, bool expected)
         {
-            bool actual = Solution.FindTarget(root, target);
+            Solution solution = new Solution();
+            bool actual = solution.FindTarget(root, target);
             Assert.Equal(expected, actual);
         }
     }

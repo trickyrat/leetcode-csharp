@@ -16,7 +16,8 @@ namespace Leetcode.Test
         [InlineData(new int[] { 1, 2, 3, 4, 4 }, 4)]
         public void MagicIndexTest1(int[] nums, int expected)
         {
-            int actual = Solution.FindMagicIndex(nums);
+            Solution solution = new Solution();
+            int actual = solution.FindMagicIndex(nums);
             Assert.Equal(expected, actual);
         }
     }

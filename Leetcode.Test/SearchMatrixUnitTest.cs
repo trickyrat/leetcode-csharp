@@ -13,30 +13,39 @@ namespace Leetcode.Test
 {
     public class SearchMatrixUnitTest
     {
-        [Fact]
-        public void Test_Target_Exists()
+        public static IEnumerable<object[]> GetData()
         {
-            int[][] matrix = new int[3][]
+            yield return new object[]
             {
-                new int[] {1,3,5,7 },
-                new int[] {10,11,16,20 },
-                new int[] {23,30,34,60 }
+                new int[][]
+                {
+                    new int[] {1,3,5,7 },
+                    new int[] {10,11,16,20 },
+                    new int[] {23,30,34,60 }
+                },
+                3,
+                true
             };
-            bool actual = Solution.SearchMatrix(matrix, 3);
-            Assert.True(actual);
+            yield return new object[]
+            {
+                new int[][]
+                {
+                    new int[] {1,3,5,7 },
+                    new int[] {10,11,16,20 },
+                    new int[] {23,30,34,60 }
+                },
+                13,
+                false
+            };
         }
 
-        [Fact]
-        public void Test_Target_Not_Exists()
+        [Theory]
+        [MemberData(nameof(GetData))]
+        public void Test(int[][] matrix, int target, bool expected)
         {
-            int[][] matrix = new int[3][]
-            {
-                new int[] {1,3,5,7 },
-                new int[] {10,11,16,20 },
-                new int[] {23,30,34,60 }
-            };
-            bool actual = Solution.SearchMatrix(matrix, 13);
-            Assert.False(actual);
+            Solution solution = new Solution();
+            bool actual = solution.SearchMatrix(matrix, target);
+            Assert.Equal(expected, actual);
         }
     }
 }

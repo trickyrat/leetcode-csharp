@@ -14,7 +14,8 @@ namespace Leetcode.Test
         [InlineData(1, 1, 1)]
         public void Test(int dividend, int divisor, int expected)
         {
-            int actual = Solution.Divide(dividend, divisor);
+            Solution solution = new Solution();
+            int actual = solution.Divide(dividend, divisor);
             Assert.Equal(expected, actual);
         }
     }

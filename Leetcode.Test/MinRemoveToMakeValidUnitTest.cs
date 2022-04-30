@@ -14,7 +14,8 @@ namespace Leetcode.Test
         [InlineData("))((", "")]
         public void MultipleDataTest(string testInput, string expected)
         {
-            string actual = Solution.MinRemoveToMakeValid(testInput);
+            Solution solution = new Solution();
+            string actual = solution.MinRemoveToMakeValid(testInput);
             Assert.Equal(expected, actual);
         }
     }

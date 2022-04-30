@@ -12,7 +12,8 @@ namespace Leetcode.Test
         [InlineData(new string[] { "a" }, 1)]
         public void MultipleDataTest(string[] words, int expected)
         {
-            int actual = Solution.UniqueMorseRepresentations(words);
+            Solution solution = new Solution();
+            int actual = solution.UniqueMorseRepresentations(words);
             Assert.Equal(expected, actual);
         }
     }

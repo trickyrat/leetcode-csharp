@@ -14,7 +14,8 @@ namespace Leetcode.Test
         [InlineData("", 0)]
         public void Test_Input_Palindromic_Alphas_Should_OK(string s, int expected)
         {
-            int actual = Solution.LengthOfLongestSubstring(s);
+            Solution solution = new Solution();
+            int actual = solution.LengthOfLongestSubstring(s);
             Assert.Equal(expected, actual);
         }
     }

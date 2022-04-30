@@ -12,7 +12,8 @@ namespace Leetcode.Test
         [InlineData(-7, "-10")]
         public void MultipleDataTest(int input, string expected)
         {
-            string actual = Solution.ConvertToBase7(input);
+            Solution solution = new Solution();
+            string actual = solution.ConvertToBase7(input);
             Assert.Equal(expected, actual);
         }
     }

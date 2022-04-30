@@ -40,7 +40,8 @@ namespace Leetcode.Test
         [MemberData(nameof(GetData))]
         public void MultipleDataTest(ListNode[] lists, ListNode expected)
         {
-            var actual = Solution.MergeKLists(lists);
+            Solution solution = new Solution();
+            var actual = solution.MergeKLists(lists);
             Assert.Equal(expected, actual);
         }
     }

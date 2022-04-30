@@ -13,7 +13,8 @@ namespace Leetcode.Test
         [InlineData("aaa", "aaa", -1)]
         public void MultipleDataTest(string a, string b, int expected)
         {
-            int actual = Solution.FindLUSLength(a, b);
+            Solution solution = new Solution();
+            int actual = solution.FindLUSLength(a, b);
             Assert.Equal(expected, actual);
         }
     }

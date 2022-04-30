@@ -13,7 +13,8 @@ namespace Leetcode.Test
         [InlineData("2", new string[] { "a", "b", "c" })]
         public void MultipleDataTest(string digits, string[] expected)
         {
-            var actual = Solution.LetterCombinations(digits);
+            Solution solution = new Solution();
+            var actual = solution.LetterCombinations(digits);
             Assert.Equal(expected, actual);
         }
     }

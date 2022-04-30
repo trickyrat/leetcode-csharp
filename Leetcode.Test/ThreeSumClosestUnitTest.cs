@@ -13,7 +13,8 @@ namespace Leetcode.Test
         [InlineData(new int[] { 0, 0, 0 }, 1, 0)]
         public void MultipleDataTest(int[] nums, int target, int expected)
         {
-            int actual = Solution.ThreeSumClosest(nums, target);
+            Solution solution = new Solution();
+            int actual = solution.ThreeSumClosest(nums, target);
             Assert.Equal(expected, actual);
         }
 

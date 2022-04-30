@@ -28,7 +28,8 @@ namespace Leetcode.Test
         [MemberData(nameof(GetData))]
         public void Test_Input_Even_Data_Should_OK(ListNode input, ListNode expected)
         {
-            ListNode actual = Solution.MiddleNode(input);
+            Solution solution = new Solution();
+            ListNode actual = solution.MiddleNode(input);
             Assert.True(expected.Equals(actual));
         }
     }

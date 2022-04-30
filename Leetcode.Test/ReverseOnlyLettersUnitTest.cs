@@ -13,7 +13,8 @@ namespace Leetcode.Test
         [InlineData("Test1ng-Leet=code-Q!", "Qedo1ct-eeLg=ntse-T!")]
         public void Test(string s, string expected)
         {
-            string actual = Solution.ReverseOnlyLetters(s);
+            Solution solution = new Solution();
+            string actual = solution.ReverseOnlyLetters(s);
             Assert.Equal(expected, actual);
         }
     }
