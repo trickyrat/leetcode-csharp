@@ -6302,14 +6302,14 @@ public class Solution
     /// <summary>
     /// 896. Monotonic Array
     /// </summary>
-    /// <param name="A"></param>
+    /// <param name="nums"></param>
     /// <returns><c>true</c> if and only if the given array A is monotonic; otherwise, <c>false</c></returns>
-    public bool IsMonotonic(int[] A)
+    public bool IsMonotonic(int[] nums)
     {
         int store = 0;
-        for (int i = 0; i < A.Length - 1; i++)
+        for (int i = 0; i < nums.Length - 1; i++)
         {
-            int c = A[i].CompareTo(A[i + 1]);
+            int c = nums[i].CompareTo(nums[i + 1]);
             if (c == 0)
             {
                 continue;
@@ -6662,6 +6662,58 @@ public class Solution
     }
 
     /// <summary>
+    /// 1305. All Elements in Two Binary Search Trees
+    /// </summary>
+    /// <param name="root1"></param>
+    /// <param name="root2"></param>
+    /// <returns></returns>
+    public IList<int> GetAllElements(TreeNode root1, TreeNode root2)
+    {
+        void Inorder(TreeNode node, IList<int> res)
+        {
+            if (node != null)
+            {
+                Inorder(node.left, res);
+                res.Add((node.val));
+                Inorder(node.right, res);
+            }
+        }
+
+        IList<int> nums1 = new List<int>();
+        IList<int> nums2 = new List<int>();
+        Inorder(root1, nums1);
+        Inorder(root2, nums2);
+        IList<int> merged = new List<int>();
+        int p1 = 0, p2 = 0;
+        while (true)
+        {
+            if (p1 == nums1.Count)
+            {
+                while (p2 < nums2.Count)
+                {
+                    merged.Add(nums2[p2++]);
+                }
+
+                break;
+            }
+
+            if (p2 == nums1.Count)
+            {
+                while (p1 < nums1.Count)
+                {
+                    merged.Add(nums1[p1++]);
+                }
+
+                break;
+            }
+
+            merged.Add(nums1[p1] < nums2[p2] ? nums1[p1++] : nums2[p2++]);
+        }
+
+        return merged;
+    }
+    
+    /// <summary>
     /// 1380.矩阵中的幸运数
     /// </summary>
     /// <param name="matrix"></param>
@@ -6795,6 +6847,22 @@ public class Solution
     public int FindCenter(int[][] edges)
     {
         return edges[0][0] == edges[1][0] || edges[0][0] == edges[1][1] ? edges[0][0] : edges[0][1];
+    }
+
+    /// <summary>
+    /// 1823. Find the Winner of the Circular Game
+    /// </summary>
+    /// <param name="n"></param>
+    /// <param name="k"></param>
+    /// <returns></returns>
+    public int FindTheWinner(int n, int k)
+    {
+        int winner = 1;
+        for (int i = 2; i <= n; i++)
+        {
+            winner = (k + winner - 1) % i + 1;
+        }
+        return winner;
     }
 
     /// <summary>
