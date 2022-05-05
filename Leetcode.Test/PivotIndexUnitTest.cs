@@ -9,9 +9,9 @@ namespace Leetcode.Test
     {
 
         [Theory]
-        [InlineData(new int[] { 2, 3, -1, 8, 4 }, 3)]
-        [InlineData(new int[] { 1, -1, 4 }, 2)]
-        [InlineData(new int[] { 2, 5 }, -1)]
+        [InlineData(new int[] { 1, 7, 3, 6, 5, 6 }, 3)]
+        [InlineData(new int[] { 1, 2, 3 }, -1)]
+        [InlineData(new int[] { 2, 1, -1 }, 0)]
         public void MultipleDataTest(int[] nums, int expect)
         {
             Solution solution = new Solution();

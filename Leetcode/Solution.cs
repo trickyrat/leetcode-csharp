@@ -5623,6 +5623,26 @@ public class Solution
     }
 
     /// <summary>
+    /// 724. Find Pivot Index
+    /// </summary>
+    /// <param name="nums"></param>
+    /// <returns></returns>
+    public int PivotIndex(int[] nums)
+    {
+        int total = nums.Sum();
+        int sum = 0;
+        for (int i = 0; i < nums.Length; i++)
+        {
+            if (2 * sum + nums[i] == total)
+            {
+                return i;
+            }
+            sum += nums[i];
+        }
+        return -1;
+    }
+
+    /// <summary>
     /// 728. Self Dividing Numbers
     /// </summary>
     /// <param name="left"></param>
@@ -6889,7 +6909,7 @@ public class Solution
     /// </summary>
     /// <param name="nums"></param>
     /// <returns></returns>
-    public int PivotIndex(int[] nums)
+    public int FindMiddleIndex(int[] nums)
     {
         int total = nums.Sum();
         int sum = 0;
