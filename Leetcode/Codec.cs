@@ -1,9 +1,7 @@
 ﻿// Licensed to the Trickyrat under one or more agreements.
 // The Trickyrat licenses this file to you under the MIT license.
 
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 using Leetcode.DataStructure;
 
@@ -11,8 +9,6 @@ namespace Leetcode;
 
 public class Codec
 {
-    private static readonly char spliter = ',';
-    private static readonly string NN = "X";
     /// <summary>
     /// Encode a tree to single string.
     /// </summary>
@@ -20,47 +16,46 @@ public class Codec
     /// <returns></returns>
     public string Serialize(TreeNode root)
     {
-        StringBuilder sb = new StringBuilder();
-        BuildString(root, sb);
-        return sb.ToString();
+        IList<int> list = new List<int>();
+        PostOrder(root, list);
+        return string.Join(",", list);
     }
-    private void BuildString(TreeNode node, StringBuilder sb)
-    {
-        if (node == null)
-        {
-            sb.Append(NN).Append(spliter);
-        }
-        else
-        {
-            sb.Append(node.val).Append(spliter);
-            BuildString(node.left, sb);
-            BuildString(node.right, sb);
-        }
-    }
-
     public TreeNode Deserialize(string data)
     {
-        Queue<string> nodes = new Queue<string>();
-        foreach (string item in data.Split(spliter))
-        {
-            nodes.Enqueue(item);
-        }
-        return BuildeTree(nodes);
-    }
-    private TreeNode BuildeTree(Queue<string> nodes)
-    {
-        string val = nodes.Dequeue();
-        if (val.Equals(NN))
+        if (data.Length == 0)
         {
             return null;
         }
-        else
+        string[] nums = data.Split(',');
+        Stack<int> stack = new Stack<int>();
+        foreach (string num in nums)
         {
-            TreeNode node = new TreeNode(Convert.ToInt32(val)) {
-                left = BuildeTree(nodes),
-                right = BuildeTree(nodes)
-            };
-            return node;
+            stack.Push(int.Parse(num));
         }
+        return Build(int.MinValue, int.MaxValue, stack);
+    }
+
+    private void PostOrder(TreeNode root, IList<int> list)
+    {
+        if (root is null)
+        {
+            return;
+        }
+        PostOrder(root.left, list);
+        PostOrder(root.right, list);
+        list.Add(root.val);
+    }
+
+    private TreeNode Build(int lower, int upper, Stack<int> stack)
+    {
+        if (stack.Count == 0 || stack.Peek() < lower || stack.Peek() > upper)
+        {
+            return null;
+        }
+        int val = stack.Pop();
+        TreeNode root = new TreeNode(val);
+        root.right = Build(val, upper, stack);
+        root.left = Build(lower, val, stack);
+        return root;
     }
 }
