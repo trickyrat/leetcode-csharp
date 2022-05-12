@@ -6491,6 +6491,30 @@ public class Solution
     }
 
     /// <summary>
+    /// 944. Delete Columns to Make Sorted
+    /// </summary>
+    /// <param name="strs"></param>
+    /// <returns></returns>
+    public int MinDeletionSize(string[] strs)
+    {
+        int row = strs.Length;
+        int col = strs[0].Length;
+        int ans = 0;
+        for (int j = 0; j < col; j++)
+        {
+            for (int i = 1; i < row; i++)
+            {
+                if (strs[i - 1][j] > strs[i][j])
+                {
+                    ans++;
+                    break;
+                }
+            }
+        }
+        return ans;
+    }
+
+    /// <summary>
     /// 977. Squares of a Sorted Array
     /// </summary>
     /// <param name="nums"></param>
