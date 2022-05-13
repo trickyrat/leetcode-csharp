@@ -27,8 +27,8 @@ public class Worker : BackgroundService
     {
         while (!stoppingToken.IsCancellationRequested)
         {
-            _logger.LogInformation("Worker running at: {time}", DateTime.Now);
-            await _host.StopAsync();
+            _logger.LogInformation($"Worker running at: {DateTime.Now}" );
+            await _host.StopAsync(stoppingToken);
         }
     }
 }
