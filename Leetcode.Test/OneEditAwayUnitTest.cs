@@ -7,11 +7,11 @@ namespace Leetcode.Test
 {
     public class OneEditAwayUnitTest
     {
-        private readonly Solution _solution;
+        private readonly InterviewSolution _solution;
 
         public OneEditAwayUnitTest()
         {
-            _solution = new Solution();
+            _solution = new InterviewSolution();
         }
 
 
