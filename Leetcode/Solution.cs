@@ -6539,6 +6539,46 @@ public class Solution
     }
 
     /// <summary>
+    /// 953. Verifying an Alien Dictionary
+    /// </summary>
+    /// <param name="words"></param>
+    /// <param name="order"></param>
+    /// <returns></returns>
+    public bool IsAlienSorted(string[] words, string order)
+    {
+        int[] index = new int[26];
+        for (int i = 0; i < order.Length; ++i)
+        {
+            index[order[i] - 'a'] = i;
+        }
+        for (int i = 1; i < words.Length; ++i)
+        {
+            bool valid = false;
+            for (int j = 0; j < words[i - 1].Length && j < words[i].Length; ++j)
+            {
+                int prev = index[words[i - 1][j] - 'a'];
+                int curr = index[words[i][j] - 'a'];
+                if (prev < curr)
+                {
+                    valid = true;
+                    break;
+                } else if (prev > curr)
+                {
+                    return false;
+                }
+            }
+            if (!valid)
+            {
+                if (words[i - 1].Length > words[i].Length)
+                {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    /// <summary>
     /// 977. Squares of a Sorted Array
     /// </summary>
     /// <param name="nums"></param>
