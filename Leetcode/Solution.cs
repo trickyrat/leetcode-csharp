@@ -6579,6 +6579,24 @@ public class Solution
     }
 
     /// <summary>
+    /// 961. N-Repeated Element in Size 2N Array
+    /// </summary>
+    /// <param name="nums"></param>
+    /// <returns></returns>
+    public int RepeatedNTimes(int[] nums)
+    {
+        ISet<int> found = new HashSet<int>();
+        foreach (int num in nums)
+        {
+            if (!found.Add(num))
+            {
+                return num;
+            }
+        }
+        return -1;
+    }
+
+    /// <summary>
     /// 977. Squares of a Sorted Array
     /// </summary>
     /// <param name="nums"></param>
