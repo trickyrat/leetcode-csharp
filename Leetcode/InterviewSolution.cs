@@ -89,5 +89,34 @@ namespace Leetcode
                 matrix[i] = matrix[i].Reverse().ToArray();
             }
         }
+
+        /// <summary>
+        /// 面试题 08.03. 魔术索引
+        /// </summary>
+        /// <param name="nums"></param>
+        /// <returns></returns>
+        public int FindMagicIndex(int[] nums)
+        {
+            int right = nums.Length - 1;
+            const int left = 0;
+            return FindMagicIndexHelper(nums, left, right);
+
+            int FindMagicIndexHelper(int[] data, int leftIndex, int rightIndex)
+            {
+                if (leftIndex > rightIndex)
+                {
+                    return -1;
+                }
+
+                int mid = (rightIndex - leftIndex) / 2 + leftIndex;
+                int leftAns = FindMagicIndexHelper(data, leftIndex, mid - 1);
+                if (leftAns != -1)
+                {
+                    return leftAns;
+                }
+
+                return data[mid] == mid ? mid : FindMagicIndexHelper(data, mid + 1, rightIndex);
+            }
+        }
     }
 }

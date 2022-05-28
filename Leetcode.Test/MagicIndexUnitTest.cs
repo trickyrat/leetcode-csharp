@@ -7,6 +7,11 @@ namespace Leetcode.Test
 {
     public class MagicIndexUnitTest
     {
+        private readonly InterviewSolution _solution;
+        public MagicIndexUnitTest()
+        {
+            _solution = new InterviewSolution();
+        }
 
         [Theory]
         [InlineData(new int[] { 0, 1, 2, 3, 4 }, 0)]
@@ -16,8 +21,7 @@ namespace Leetcode.Test
         [InlineData(new int[] { 1, 2, 3, 4, 4 }, 4)]
         public void MagicIndexTest1(int[] nums, int expected)
         {
-            Solution solution = new Solution();
-            int actual = solution.FindMagicIndex(nums);
+            int actual = _solution.FindMagicIndex(nums);
             Assert.Equal(expected, actual);
         }
     }
