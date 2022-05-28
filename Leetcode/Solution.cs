@@ -3521,6 +3521,28 @@ public class Solution
     }
 
     /// <summary>
+    /// 168. Excel Sheet Column Title
+    /// </summary>
+    /// <param name="columnNumber"></param>
+    /// <returns></returns>
+    public string ConvertToTitle(int columnNumber)
+    {
+        StringBuilder sb = new StringBuilder();
+        while (columnNumber != 0)
+        {
+            columnNumber--;
+            sb.Append((char)(columnNumber % 26 + 'A'));
+            columnNumber /= 26;
+        }
+        StringBuilder columnTitle = new StringBuilder();
+        for (int i = sb.Length - 1; i >= 0; i--)
+        {
+            columnTitle.Append(sb[i]);
+        }
+        return columnTitle.ToString();
+    }
+
+    /// <summary>
     /// 169. Majority Element
     /// </summary>
     public int MajorityElement(int[] nums)
@@ -4649,31 +4671,17 @@ public class Solution
     /// <summary>
     /// 468. Valid IP Address
     /// </summary>
-    /// <param name="IP"></param>
+    /// <param name="queryIP"></param>
     /// <returns></returns>
-    public string ValidIPAddress(string IP)
+    public string ValidIPAddress(string queryIP)
     {
-        //string ipv4_chunk = "([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])";
-        //string ipv6_chunk = "([0-9a-fA-F]{1,4})";
-        //Regex ipv4Pattern = new Regex(@"^(" + ipv4_chunk + ".){3}" + ipv4_chunk + "$");
-        //Regex ipv6Pattern = new Regex(@"^(" + ipv6_chunk + ":){7}" + ipv6_chunk + "$");
-        //if(IP.Contains('.'))
-        //{
-        //    return ipv4Pattern.IsMatch(IP) ? "IPv4" : "Neither";
-        //}
-        //if(IP.Contains(':'))
-        //{
-        //    return ipv6Pattern.IsMatch(IP) ? "IPv6" : "Neither";
-        //}
-        //return "Neither";
-
-        if (IP.Count(c => c == '.') == 3)
+        if (queryIP.Count(c => c == '.') == 3)
         {
-            return ValidIPv4(IP);
+            return ValidIPv4(queryIP);
         }
-        else if (IP.Count(c => c == ':') == 7)
+        else if (queryIP.Count(c => c == ':') == 7)
         {
-            return ValidIPv6(IP);
+            return ValidIPv6(queryIP);
         }
         else
         {
@@ -6562,7 +6570,8 @@ public class Solution
                 {
                     valid = true;
                     break;
-                } else if (prev > curr)
+                }
+                else if (prev > curr)
                 {
                     return false;
                 }
@@ -6855,7 +6864,7 @@ public class Solution
 
         return merged;
     }
-    
+
     /// <summary>
     /// 1380.矩阵中的幸运数
     /// </summary>
