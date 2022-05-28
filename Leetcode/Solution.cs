@@ -6954,6 +6954,24 @@ public class Solution
     }
 
     /// <summary>
+    /// 1491. Average Salary Excluding the Minimum and Maximum Salary
+    /// </summary>
+    /// <param name="salary"></param>
+    /// <returns></returns>
+    public double Average(int[] salary)
+    {
+        int min = int.MaxValue, max = int.MinValue;
+        int sum = 0;
+        foreach (int item in salary)
+        {
+            sum += item;
+            max = Math.Max(max, item);
+            min = Math.Min(min, item);
+        }
+        return (sum - max - min) / (salary.Length - 2);
+    }
+
+    /// <summary>
     /// 1523. Count Odd Numbers in an Interval Range
     /// </summary>
     /// <param name="low"></param>
