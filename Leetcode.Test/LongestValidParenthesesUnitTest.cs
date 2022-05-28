@@ -3,19 +3,23 @@
 
 using Xunit;
 
-namespace Leetcode.Test
+namespace Leetcode.Test;
+
+public class LongestValidParenthesesUnitTest
 {
-    public class LongestValidParenthesesUnitTest
+    private readonly Solution _solution;
+    public LongestValidParenthesesUnitTest()
     {
-        [Theory]
-        [InlineData("()()()(()", 6)]
-        [InlineData("(()", 2)]
-        [InlineData("()()()(())", 10)]
-        public void Test(string s, int expected)
-        {
-            Solution solution = new Solution();
-            int actual = solution.LongestValidParentheses(s);
-            Assert.Equal(expected, actual);
-        }
+        _solution = new Solution();
+    }
+    [Theory]
+    [InlineData("()()()(()", 6)]
+    [InlineData("(()", 2)]
+    [InlineData("()()()(())", 10)]
+    public void Test(string s, int expected)
+    {
+        
+        int actual = _solution.LongestValidParentheses(s);
+        Assert.Equal(expected, actual);
     }
 }

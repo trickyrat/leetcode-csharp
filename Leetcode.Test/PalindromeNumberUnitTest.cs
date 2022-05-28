@@ -3,20 +3,23 @@
 
 using Xunit;
 
-namespace Leetcode.Test
-{
-    public class PalindromeNumberUnitTest
-    {
+namespace Leetcode.Test;
 
-        [Theory]
-        [InlineData(121, true)]
-        [InlineData(-121, false)]
-        [InlineData(10, false)]
-        public void MultipleDataTest(int input, bool expected)
-        {
-            Solution solution = new Solution();
-            bool actual = solution.IsPalindrome(input);
-            Assert.Equal(expected, actual);
-        }
+public class PalindromeNumberUnitTest
+{
+    private readonly Solution _solution;
+    public PalindromeNumberUnitTest()
+    {
+        _solution = new Solution();
+    }
+    [Theory]
+    [InlineData(121, true)]
+    [InlineData(-121, false)]
+    [InlineData(10, false)]
+    public void MultipleDataTest(int input, bool expected)
+    {
+        
+        bool actual = _solution.IsPalindrome(input);
+        Assert.Equal(expected, actual);
     }
 }

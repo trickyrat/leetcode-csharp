@@ -7,40 +7,39 @@ using Leetcode.DataStructure;
 
 using Xunit;
 
-namespace Leetcode.Test
+namespace Leetcode.Test;
+
+public class ReverseKGroupUnitTest
 {
-    public class ReverseKGroupUnitTest
+    private readonly Solution _solution;
+
+    public ReverseKGroupUnitTest()
     {
-        private readonly Solution _solution;
+        _solution = new Solution();
+    }
 
-        public ReverseKGroupUnitTest()
+    public static IEnumerable<object[]> GetData()
+    {
+        yield return new object[]
         {
-            _solution = new Solution();
-        }
-
-        public static IEnumerable<object[]> GetData()
+            Utilities.CreateListNode(new int[]{ 1,2,3,4,5}),
+            2,
+            Utilities.CreateListNode(new int[]{ 2,1,4,3,5}),
+        };
+        yield return new object[]
         {
-            yield return new object[]
-            {
-                Utilities.CreateListNode(new int[]{ 1,2,3,4,5}),
-                2,
-                Utilities.CreateListNode(new int[]{ 2,1,4,3,5}),
-            };
-            yield return new object[]
-            {
-                Utilities.CreateListNode(new int[]{ 1,2,3,4,5}),
-                3,
-                Utilities.CreateListNode(new int[]{ 3,2,1,4,5}),
-            };
-        }
+            Utilities.CreateListNode(new int[]{ 1,2,3,4,5}),
+            3,
+            Utilities.CreateListNode(new int[]{ 3,2,1,4,5}),
+        };
+    }
 
 
-        [Theory]
-        [MemberData(nameof(GetData))]
-        public void MultipleDataTest(ListNode head, int k, ListNode expected)
-        {
-            ListNode actual = _solution.ReverseKGroup(head, k);
-            Assert.Equal(expected, actual);
-        }
+    [Theory]
+    [MemberData(nameof(GetData))]
+    public void MultipleDataTest(ListNode head, int k, ListNode expected)
+    {
+        ListNode actual = _solution.ReverseKGroup(head, k);
+        Assert.Equal(expected, actual);
     }
 }

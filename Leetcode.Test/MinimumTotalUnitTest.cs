@@ -5,24 +5,27 @@ using System.Collections.Generic;
 
 using Xunit;
 
-namespace Leetcode.Test
+namespace Leetcode.Test;
+
+public class MinimumTotalUnitTest
 {
-    public class MinimumTotalUnitTest
+    private readonly Solution _solution;
+    public MinimumTotalUnitTest()
     {
-        [Fact]
-        public void Test()
+        _solution = new Solution();
+    }
+    [Fact]
+    public void Test()
+    {
+        IList<IList<int>> data = new List<IList<int>>
         {
-            Solution solution = new Solution();
-            IList<IList<int>> data = new List<IList<int>>
-            {
-                new List<int>{ 2},
-                new List<int>{ 3,4},
-                new List<int>{ 6,5,7},
-                new List<int>{ 4,1,8,3},
-            };
-            int actual = solution.MinimumTotal(data);
-            int expected = 11;
-            Assert.Equal(expected, actual);
-        }
+            new List<int>{ 2 },
+            new List<int>{ 3, 4 },
+            new List<int>{ 6, 5, 7 },
+            new List<int>{ 4, 1, 8, 3 },
+        };
+        int actual = _solution.MinimumTotal(data);
+        int expected = 11;
+        Assert.Equal(expected, actual);
     }
 }

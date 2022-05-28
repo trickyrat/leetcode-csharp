@@ -3,21 +3,26 @@
 
 using Xunit;
 
-namespace Leetcode.Test
+namespace Leetcode.Test;
+
+public class RomanToIntUnittest
 {
-    public class RomanToIntUnittest
+    private readonly Solution _solution;
+    public RomanToIntUnittest()
     {
-        [Theory]
-        [InlineData("III", 3)]
-        [InlineData("IV", 4)]
-        [InlineData("IX", 9)]
-        [InlineData("LVIII", 58)]
-        [InlineData("MCMXCIV", 1994)]
-        public void MultipleDataTest(string s, int expected)
-        {
-            Solution solution = new Solution();
-            int actual = solution.RomanToInt(s);
-            Assert.Equal(expected, actual);
-        }
+        _solution = new Solution();
+    }
+
+    [Theory]
+    [InlineData("III", 3)]
+    [InlineData("IV", 4)]
+    [InlineData("IX", 9)]
+    [InlineData("LVIII", 58)]
+    [InlineData("MCMXCIV", 1994)]
+    public void MultipleDataTest(string s, int expected)
+    {
+        
+        int actual = _solution.RomanToInt(s);
+        Assert.Equal(expected, actual);
     }
 }

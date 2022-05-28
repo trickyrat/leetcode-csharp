@@ -3,19 +3,23 @@
 
 using Xunit;
 
-namespace Leetcode.Test
+namespace Leetcode.Test;
+
+public class LetterCombinationsUnitTest
 {
-    public class LetterCombinationsUnitTest
+    private readonly Solution _solution;
+    public LetterCombinationsUnitTest()
     {
-        [Theory]
-        [InlineData("23", new string[] { "ad", "ae", "af", "bd", "be", "bf", "cd", "ce", "cf" })]
-        [InlineData("", new string[] { })]
-        [InlineData("2", new string[] { "a", "b", "c" })]
-        public void MultipleDataTest(string digits, string[] expected)
-        {
-            Solution solution = new Solution();
-            var actual = solution.LetterCombinations(digits);
-            Assert.Equal(expected, actual);
-        }
+        _solution = new Solution();
+    }
+    [Theory]
+    [InlineData("23", new string[] { "ad", "ae", "af", "bd", "be", "bf", "cd", "ce", "cf" })]
+    [InlineData("", new string[] { })]
+    [InlineData("2", new string[] { "a", "b", "c" })]
+    public void MultipleDataTest(string digits, string[] expected)
+    {
+        
+        var actual = _solution.LetterCombinations(digits);
+        Assert.Equal(expected, actual);
     }
 }

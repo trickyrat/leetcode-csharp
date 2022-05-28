@@ -6,18 +6,23 @@ using System.Linq;
 
 using Xunit;
 
-namespace Leetcode.Test
+namespace Leetcode.Test;
+
+public class SimplifiedFractionsUnitTest
 {
-    public class SimplifiedFractionsUnitTest
+    private readonly Solution _solution;
+    public SimplifiedFractionsUnitTest()
     {
-        [Theory]
-        [InlineData(2, new string[] { "1/2" })]
-        public void Test(int n, string[] expected)
-        {
-            Solution solution = new Solution();
-            IList<string> list = solution.SimplifiedFractions(n);
-            var actual = list.ToArray();
-            Assert.Equal(expected, actual);
-        }
+        _solution = new Solution();
+
+    }
+    [Theory]
+    [InlineData(2, new string[] { "1/2" })]
+    public void Test(int n, string[] expected)
+    {
+        
+        IList<string> list = _solution.SimplifiedFractions(n);
+        var actual = list.ToArray();
+        Assert.Equal(expected, actual);
     }
 }

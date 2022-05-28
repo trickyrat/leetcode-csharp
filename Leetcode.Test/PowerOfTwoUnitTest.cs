@@ -3,20 +3,24 @@
 
 using Xunit;
 
-namespace Leetcode.Test
+namespace Leetcode.Test;
+
+public class PowerOfTwoUnitTest
 {
-    public class PowerOfTwoUnitTest
+    private readonly Solution _solution;
+    public PowerOfTwoUnitTest()
     {
-        [Theory]
-        [InlineData(1, true)]
-        [InlineData(16, true)]
-        [InlineData(4, true)]
-        [InlineData(3, false)]
-        public void Test(int num, bool expected)
-        {
-            Solution solution = new Solution();
-            bool actual = solution.IsPowerOfTwo(num);
-            Assert.Equal(expected, actual);
-        }
+        _solution = new Solution();
+    }
+    [Theory]
+    [InlineData(1, true)]
+    [InlineData(16, true)]
+    [InlineData(4, true)]
+    [InlineData(3, false)]
+    public void Test(int num, bool expected)
+    {
+        
+        bool actual = _solution.IsPowerOfTwo(num);
+        Assert.Equal(expected, actual);
     }
 }

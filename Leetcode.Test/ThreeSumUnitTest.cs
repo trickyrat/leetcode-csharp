@@ -5,43 +5,48 @@ using System.Collections.Generic;
 
 using Xunit;
 
-namespace Leetcode.Test
+namespace Leetcode.Test;
+
+public class ThreeSumUnitTest
 {
-    public class ThreeSumUnitTest
+    private readonly Solution _solution;
+
+    public ThreeSumUnitTest()
     {
-        public static IEnumerable<object[]> GetData()
+        _solution = new Solution();
+    }
+    public static IEnumerable<object[]> GetData()
+    {
+        yield return new object[]
         {
-            yield return new object[]
+            new int[] { -1, 0, 1, 2, -1, -4 },
+            new int[][]
             {
-                new int[] { -1, 0, 1, 2, -1, -4 },
-                new int[][]
-                {
-                    new int[] { -1, -1, 2 },
-                    new int[] { -1, 0, 1 }
-                }
-            };
+                new int[] { -1, -1, 2 },
+                new int[] { -1, 0, 1 }
+            }
+        };
 
-            yield return new object[]
-            {
-                new int[]{ },
-                new int[][]{}
-            };
-
-            yield return new object[]
-            {
-                new int[] { 0 },
-                new int[][]{}
-            };
-        }
-
-
-        [Theory]
-        [MemberData(nameof(GetData))]
-        public void MultipleDataTest(int[] nums, IList<IList<int>> expected)
+        yield return new object[]
         {
-            Solution solution = new Solution();
-            var actual = solution.ThreeSum(nums);
-            Assert.Equal(expected, actual);
-        }
+            new int[]{ },
+            new int[][]{}
+        };
+
+        yield return new object[]
+        {
+            new int[] { 0 },
+            new int[][]{}
+        };
+    }
+
+
+    [Theory]
+    [MemberData(nameof(GetData))]
+    public void MultipleDataTest(int[] nums, IList<IList<int>> expected)
+    {
+        
+        var actual = _solution.ThreeSum(nums);
+        Assert.Equal(expected, actual);
     }
 }

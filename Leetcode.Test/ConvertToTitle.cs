@@ -3,25 +3,24 @@
 
 using Xunit;
 
-namespace Leetcode.Test
+namespace Leetcode.Test;
+
+public class ConvertToTitle
 {
-    public class ConvertToTitle
+    private readonly Solution _solution;
+
+    public ConvertToTitle()
     {
-        private readonly Solution _solution;
+        _solution = new Solution();
+    }
 
-        public ConvertToTitle()
-        {
-            _solution = new Solution();
-        }
-
-        [Theory]
-        [InlineData(1, "A")]
-        [InlineData(28, "AB")]
-        [InlineData(701, "ZY")]
-        public void MultipleDataTest(int columnNumber, string expected)
-        {
-            string actual = _solution.ConvertToTitle(columnNumber);
-            Assert.Equal(expected, actual);
-        }
+    [Theory]
+    [InlineData(1, "A")]
+    [InlineData(28, "AB")]
+    [InlineData(701, "ZY")]
+    public void MultipleDataTest(int columnNumber, string expected)
+    {
+        string actual = _solution.ConvertToTitle(columnNumber);
+        Assert.Equal(expected, actual);
     }
 }

@@ -3,28 +3,27 @@
 
 using Xunit;
 
-namespace Leetcode.Test
+namespace Leetcode.Test;
+
+public class MinDeletionSizeUnitTest
 {
-    public class MinDeletionSizeUnitTest
+
+    private readonly Solution _solution;
+
+    public MinDeletionSizeUnitTest()
     {
-
-        private readonly Solution solution;
-
-        public MinDeletionSizeUnitTest()
-        {
-            solution = new Solution();
-        }
-
-
-        [Theory]
-        [InlineData(new string[] { "cba", "daf", "ghi" }, 1)]
-        [InlineData(new string[] { "a", "b" }, 0)]
-        [InlineData(new string[] { "zyx", "wvu", "tsr" }, 3)]
-        public void MultipleDataTest(string[] strs, int expected)
-        {
-            int actual = solution.MinDeletionSize(strs);
-            Assert.Equal(expected, actual);
-        }
-
+        _solution = new Solution();
     }
+
+
+    [Theory]
+    [InlineData(new string[] { "cba", "daf", "ghi" }, 1)]
+    [InlineData(new string[] { "a", "b" }, 0)]
+    [InlineData(new string[] { "zyx", "wvu", "tsr" }, 3)]
+    public void MultipleDataTest(string[] strs, int expected)
+    {
+        int actual = _solution.MinDeletionSize(strs);
+        Assert.Equal(expected, actual);
+    }
+
 }

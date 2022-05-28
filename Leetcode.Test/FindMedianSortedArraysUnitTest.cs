@@ -3,18 +3,23 @@
 
 using Xunit;
 
-namespace Leetcode.Test
+namespace Leetcode.Test;
+
+public class FindMedianSortedArraysUnitTest
 {
-    public class FindMedianSortedArraysUnitTest
+
+    private readonly Solution _solution;
+    public FindMedianSortedArraysUnitTest()
     {
-        [Theory]
-        [InlineData(new int[] { 1, 3 }, new int[] { 2 }, 2.00000)]
-        [InlineData(new int[] { 1, 2 }, new int[] { 3, 4 }, 2.50000)]
-        public void MultipleDataTest(int[] A, int[] B, double expected)
-        {
-            Solution solution = new Solution();
-            double actual = solution.FindMedianSortedArrays(A, B);
-            Assert.Equal(expected, actual);
-        }
+        _solution = new Solution();
+    }
+    [Theory]
+    [InlineData(new int[] { 1, 3 }, new int[] { 2 }, 2.00000)]
+    [InlineData(new int[] { 1, 2 }, new int[] { 3, 4 }, 2.50000)]
+    public void MultipleDataTest(int[] A, int[] B, double expected)
+    {
+        
+        double actual = _solution.FindMedianSortedArrays(A, B);
+        Assert.Equal(expected, actual);
     }
 }

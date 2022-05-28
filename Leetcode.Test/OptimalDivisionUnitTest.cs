@@ -3,19 +3,24 @@
 
 using Xunit;
 
-namespace Leetcode.Test
-{
-    public class OptimalDivisionUnitTest
-    {
-        [Fact]
-        public void SingleTest()
-        {
-            Solution solution = new Solution();
-            int[] nums = { 1000, 100, 10, 2 };
-            string actual = solution.OptimalDivision(nums);
-            string expected = "1000/(100/10/2)";
-            Assert.Equal(actual, expected);
-        }
+namespace Leetcode.Test;
 
+public class OptimalDivisionUnitTest
+{
+    private readonly Solution _solution;
+
+    public OptimalDivisionUnitTest()
+    {
+        _solution = new Solution();
     }
+
+    [Fact]
+    public void SingleTest()
+    {
+        int[] nums = { 1000, 100, 10, 2 };
+        string actual = _solution.OptimalDivision(nums);
+        string expected = "1000/(100/10/2)";
+        Assert.Equal(actual, expected);
+    }
+
 }

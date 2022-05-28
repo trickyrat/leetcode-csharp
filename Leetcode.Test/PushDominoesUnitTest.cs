@@ -3,18 +3,22 @@
 
 using Xunit;
 
-namespace Leetcode.Test
+namespace Leetcode.Test;
+
+public class PushDominoesUnitTest
 {
-    public class PushDominoesUnitTest
+    private readonly Solution _solution;
+    public PushDominoesUnitTest()
     {
-        [Theory]
-        [InlineData("RR.L", "RR.L")]
-        [InlineData(".L.R...LR..L..", "LL.RR.LLRRLL..")]
-        public void Test(string input, string expected)
-        {
-            Solution solution = new Solution();
-            string actual = solution.PushDominoes(input);
-            Assert.Equal(expected, actual);
-        }
+        _solution = new Solution();
+    }
+    [Theory]
+    [InlineData("RR.L", "RR.L")]
+    [InlineData(".L.R...LR..L..", "LL.RR.LLRRLL..")]
+    public void Test(string input, string expected)
+    {
+        
+        string actual = _solution.PushDominoes(input);
+        Assert.Equal(expected, actual);
     }
 }

@@ -3,18 +3,22 @@
 
 using Xunit;
 
-namespace Leetcode.Test
+namespace Leetcode.Test;
+
+public class LongestPalindromicSubstringUnitTest
 {
-    public class LongestPalindromicSubstringUnitTest
+    private readonly Solution _solution;
+    public LongestPalindromicSubstringUnitTest()
     {
-        [Theory]
-        [InlineData("babad", new string[] { "bab", "aba" })]
-        [InlineData("cbbd", new string[] { "bb" })]
-        public void Test(string input, string[] expected)
-        {
-            Solution solution = new Solution();
-            string actual = solution.LongestPalindrome(input);
-            Assert.Contains(actual, expected);
-        }
+        _solution = new Solution();
+    }
+    [Theory]
+    [InlineData("babad", new string[] { "bab", "aba" })]
+    [InlineData("cbbd", new string[] { "bb" })]
+    public void Test(string input, string[] expected)
+    {
+        
+        string actual = _solution.LongestPalindrome(input);
+        Assert.Contains(actual, expected);
     }
 }

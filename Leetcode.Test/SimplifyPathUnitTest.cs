@@ -3,20 +3,24 @@
 
 using Xunit;
 
-namespace Leetcode.Test
+namespace Leetcode.Test;
+
+public class SimplifyPathUnitTest
 {
-    public class SimplifyPathUnitTest
+    private readonly Solution _solution;
+    public SimplifyPathUnitTest()
     {
-        [Theory]
-        [InlineData("/home/", "/home")]
-        [InlineData("/../", "/")]
-        [InlineData("/home//foo/", "/home/foo")]
-        [InlineData("/a/./b/../../c/", "/c")]
-        public void Test(string path, string expected)
-        {
-            Solution solution = new Solution();
-            string actual = solution.SimplifyPath(path);
-            Assert.Equal(expected, actual);
-        }
+        _solution = new Solution();
+    }
+    [Theory]
+    [InlineData("/home/", "/home")]
+    [InlineData("/../", "/")]
+    [InlineData("/home//foo/", "/home/foo")]
+    [InlineData("/a/./b/../../c/", "/c")]
+    public void Test(string path, string expected)
+    {
+
+        string actual = _solution.SimplifyPath(path);
+        Assert.Equal(expected, actual);
     }
 }

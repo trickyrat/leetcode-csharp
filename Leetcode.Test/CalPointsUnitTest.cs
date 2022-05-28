@@ -3,19 +3,23 @@
 
 using Xunit;
 
-namespace Leetcode.Test
+namespace Leetcode.Test;
+
+public class CalPointsUnitTest
 {
-    public class CalPointsUnitTest
+    private readonly Solution _solution;
+    public CalPointsUnitTest()
     {
-        [Theory]
-        [InlineData(new string[] { "5", "2", "C", "D", "+" }, 30)]
-        [InlineData(new string[] { "5", "-2", "4", "C", "D", "9", "+", "+" }, 27)]
-        [InlineData(new string[] { "1" }, 1)]
-        public void Test(string[] input, int expected)
-        {
-            Solution solution = new Solution();
-            int actual = solution.CalPoints(input);
-            Assert.Equal(expected, actual);
-        }
+        _solution = new Solution();
+    }
+
+    [Theory]
+    [InlineData(new string[] { "5", "2", "C", "D", "+" }, 30)]
+    [InlineData(new string[] { "5", "-2", "4", "C", "D", "9", "+", "+" }, 27)]
+    [InlineData(new string[] { "1" }, 1)]
+    public void Test(string[] input, int expected)
+    {
+        int actual = _solution.CalPoints(input);
+        Assert.Equal(expected, actual);
     }
 }

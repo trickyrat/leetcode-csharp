@@ -3,18 +3,23 @@
 
 using Xunit;
 
-namespace Leetcode.Test
+namespace Leetcode.Test;
+
+public class ReverseStringUnitTest
 {
-    public class ReverseStringUnitTest
+    private readonly Solution _solution;
+
+    public ReverseStringUnitTest()
     {
-        [Theory]
-        [InlineData(new char[] { 'h', 'e', 'l', 'l', 'o' }, new char[] { 'o', 'l', 'l', 'e', 'h' })]
-        [InlineData(new char[] { 'H', 'a', 'n', 'n', 'a', 'h' }, new char[] { 'h', 'a', 'n', 'n', 'a', 'H' })]
-        public void Test(char[] actual, char[] expected)
-        {
-            Solution solution = new Solution();
-            solution.ReverseString(actual);
-            Assert.Equal(expected, actual);
-        }
+        _solution = new Solution();
+    }
+    [Theory]
+    [InlineData(new char[] { 'h', 'e', 'l', 'l', 'o' }, new char[] { 'o', 'l', 'l', 'e', 'h' })]
+    [InlineData(new char[] { 'H', 'a', 'n', 'n', 'a', 'h' }, new char[] { 'h', 'a', 'n', 'n', 'a', 'H' })]
+    public void Test(char[] actual, char[] expected)
+    {
+        
+        _solution.ReverseString(actual);
+        Assert.Equal(expected, actual);
     }
 }

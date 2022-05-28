@@ -3,19 +3,23 @@
 
 using Xunit;
 
-namespace Leetcode.Test
+namespace Leetcode.Test;
+
+public class SearchRangeUnitTest
 {
-    public class SearchRangeUnitTest
+    private readonly Solution _solution;
+    public SearchRangeUnitTest()
     {
-        [Theory]
-        [InlineData(new int[] { 5, 7, 7, 8, 8, 10 }, 8, new int[] { 3, 4 })]
-        [InlineData(new int[] { 5, 7, 7, 8, 8, 10 }, 6, new int[] { -1, -1 })]
-        [InlineData(new int[] { }, 0, new int[] { -1, -1 })]
-        public void Test(int[] nums, int target, int[] expected)
-        {
-            Solution solution = new Solution();
-            int[] actual = solution.SearchRange(nums, target);
-            Assert.Equal(expected, actual);
-        }
+        _solution = new Solution();
+    }
+    [Theory]
+    [InlineData(new int[] { 5, 7, 7, 8, 8, 10 }, 8, new int[] { 3, 4 })]
+    [InlineData(new int[] { 5, 7, 7, 8, 8, 10 }, 6, new int[] { -1, -1 })]
+    [InlineData(new int[] { }, 0, new int[] { -1, -1 })]
+    public void Test(int[] nums, int target, int[] expected)
+    {
+        
+        int[] actual = _solution.SearchRange(nums, target);
+        Assert.Equal(expected, actual);
     }
 }

@@ -3,25 +3,24 @@
 
 using Xunit;
 
-namespace Leetcode.Test
+namespace Leetcode.Test;
+
+public class AverageUnitTest
 {
-    public class AverageUnitTest
+    private readonly Solution _solution;
+
+    public AverageUnitTest()
     {
-        private readonly Solution _solution;
-
-        public AverageUnitTest()
-        {
-            _solution = new Solution();
-        }
-
-        [Theory]
-        [InlineData(new int[] { 4000, 3000, 1000, 2000 }, 2500.00000)]
-        [InlineData(new int[] { 1000, 2000, 3000 }, 2000.00000)]
-        public void MultipleDataTest(int[] salary, double expected)
-        {
-            double actual = _solution.Average(salary);
-            Assert.Equal(expected, actual);
-        }
-
+        _solution = new Solution();
     }
+
+    [Theory]
+    [InlineData(new int[] { 4000, 3000, 1000, 2000 }, 2500.00000)]
+    [InlineData(new int[] { 1000, 2000, 3000 }, 2000.00000)]
+    public void MultipleDataTest(int[] salary, double expected)
+    {
+        double actual = _solution.Average(salary);
+        Assert.Equal(expected, actual);
+    }
+
 }

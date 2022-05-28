@@ -3,18 +3,23 @@
 
 using Xunit;
 
-namespace Leetcode.Test
+namespace Leetcode.Test;
+
+public class CountNumbersWithUniqueDigitsUnitTest
 {
-    public class CountNumbersWithUniqueDigitsUnitTest
+    private readonly Solution _solution;
+
+    public CountNumbersWithUniqueDigitsUnitTest()
     {
-        [Theory]
-        [InlineData(2, 91)]
-        [InlineData(0, 1)]
-        public void MultipleDataTest(int n, int expected)
-        {
-            Solution solution = new Solution();
-            int actual = solution.CountNumbersWithUniqueDigits(n);
-            Assert.Equal(expected, actual);
-        }
+        _solution = new Solution();
+    }
+
+    [Theory]
+    [InlineData(2, 91)]
+    [InlineData(0, 1)]
+    public void MultipleDataTest(int n, int expected)
+    {
+        int actual = _solution.CountNumbersWithUniqueDigits(n);
+        Assert.Equal(expected, actual);
     }
 }

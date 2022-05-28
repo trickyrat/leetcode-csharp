@@ -3,20 +3,24 @@
 
 using Xunit;
 
-namespace Leetcode.Test
+namespace Leetcode.Test;
+
+public class ToGoatLatinUnitTest
 {
-    public class ToGoatLatinUnitTest
+    private readonly Solution _solution;
+    public ToGoatLatinUnitTest()
     {
+        _solution = new Solution();
+    }
 
 
-        [Theory]
-        [InlineData("I speak Goat Latin", "Imaa peaksmaaa oatGmaaaa atinLmaaaaa")]
-        [InlineData("The quick brown fox jumped over the lazy dog", "heTmaa uickqmaaa rownbmaaaa oxfmaaaaa umpedjmaaaaaa overmaaaaaaa hetmaaaaaaaa azylmaaaaaaaaa ogdmaaaaaaaaaa")]
-        public void MultipleDataTest(string sentence, string expected)
-        {
-            Solution solution = new Solution();
-            string actual = solution.ToGoatLatin(sentence);
-            Assert.Equal(expected, actual);
-        }
+    [Theory]
+    [InlineData("I speak Goat Latin", "Imaa peaksmaaa oatGmaaaa atinLmaaaaa")]
+    [InlineData("The quick brown fox jumped over the lazy dog", "heTmaa uickqmaaa rownbmaaaa oxfmaaaaa umpedjmaaaaaa overmaaaaaaa hetmaaaaaaaa azylmaaaaaaaaa ogdmaaaaaaaaaa")]
+    public void MultipleDataTest(string sentence, string expected)
+    {
+        
+        string actual = _solution.ToGoatLatin(sentence);
+        Assert.Equal(expected, actual);
     }
 }

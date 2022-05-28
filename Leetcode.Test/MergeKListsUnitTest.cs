@@ -7,42 +7,46 @@ using Leetcode.DataStructure;
 
 using Xunit;
 
-namespace Leetcode.Test
+namespace Leetcode.Test;
+
+public class MergeKListsUnitTest
 {
-    public class MergeKListsUnitTest
+    private readonly Solution _solution;
+    public MergeKListsUnitTest()
     {
-        public static IEnumerable<object[]> GetData()
+        _solution = new Solution();
+    }
+    public static IEnumerable<object[]> GetData()
+    {
+        yield return new object[]
         {
-            yield return new object[]
+            new ListNode[]
             {
-                new ListNode[]
-                {
-                    Utilities.CreateListNode(new int[]{ 1,4,5}),
-                    Utilities.CreateListNode(new int[]{ 1,3,4}),
-                    Utilities.CreateListNode(new int[]{ 2, 6})
-                },
-                Utilities.CreateListNode(new int[]{ 1, 1, 2, 3, 4, 4, 5, 6 })
-            };
-            yield return new object[]
-            {
-                new ListNode[]{},
-                null
-            };
-            yield return new object[]
-            {
-                new ListNode[]{null},
-                null
-            };
-        }
+                Utilities.CreateListNode(new int[]{ 1,4,5}),
+                Utilities.CreateListNode(new int[]{ 1,3,4}),
+                Utilities.CreateListNode(new int[]{ 2, 6})
+            },
+            Utilities.CreateListNode(new int[]{ 1, 1, 2, 3, 4, 4, 5, 6 })
+        };
+        yield return new object[]
+        {
+            new ListNode[]{},
+            null
+        };
+        yield return new object[]
+        {
+            new ListNode[]{null},
+            null
+        };
+    }
 
 
-        [Theory]
-        [MemberData(nameof(GetData))]
-        public void MultipleDataTest(ListNode[] lists, ListNode expected)
-        {
-            Solution solution = new Solution();
-            var actual = solution.MergeKLists(lists);
-            Assert.Equal(expected, actual);
-        }
+    [Theory]
+    [MemberData(nameof(GetData))]
+    public void MultipleDataTest(ListNode[] lists, ListNode expected)
+    {
+        
+        var actual = _solution.MergeKLists(lists);
+        Assert.Equal(expected, actual);
     }
 }

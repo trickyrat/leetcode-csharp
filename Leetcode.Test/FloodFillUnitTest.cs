@@ -5,56 +5,60 @@ using System.Collections.Generic;
 
 using Xunit;
 
-namespace Leetcode.Test
+namespace Leetcode.Test;
+
+public class FloodFillUnitTest
 {
-    public class FloodFillUnitTest
+    private readonly Solution _solution;
+    public FloodFillUnitTest()
     {
-        public static IEnumerable<object[]> GetData()
+        _solution = new Solution();
+    }
+    public static IEnumerable<object[]> GetData()
+    {
+        yield return new object[]
         {
-            yield return new object[]
+            new int[][]
             {
-                new int[][]
-                {
-                    new int[] { 1, 1, 1 },
-                    new int[] { 1, 1, 0 },
-                    new int[] { 1, 0, 1 },
-                },
-                1,
-                1,
-                2,
-                new int[][]
-                {
-                    new int[] { 2, 2, 2 },
-                    new int[] { 2, 2, 0 },
-                    new int[] { 2, 0, 1 },
-                }
-            };
-            yield return new object[]
+                new int[] { 1, 1, 1 },
+                new int[] { 1, 1, 0 },
+                new int[] { 1, 0, 1 },
+            },
+            1,
+            1,
+            2,
+            new int[][]
             {
-                new int[][]
-                {
-                    new int[] { 0, 0, 0 },
-                    new int[] { 0, 0, 0 }
-                },
-                0,
-                0,
-                2,
-                new int[][]
-                {
-                    new int[] { 2, 2, 2 },
-                    new int[] { 2, 2, 2 }
-                }
-            };
-        }
+                new int[] { 2, 2, 2 },
+                new int[] { 2, 2, 0 },
+                new int[] { 2, 0, 1 },
+            }
+        };
+        yield return new object[]
+        {
+            new int[][]
+            {
+                new int[] { 0, 0, 0 },
+                new int[] { 0, 0, 0 }
+            },
+            0,
+            0,
+            2,
+            new int[][]
+            {
+                new int[] { 2, 2, 2 },
+                new int[] { 2, 2, 2 }
+            }
+        };
+    }
 
 
-        [Theory]
-        [MemberData(nameof(GetData))]
-        public void Test(int[][] input, int sr, int sc, int newColor, int[][] expected)
-        {
-            Solution solution = new Solution();
-            int[][] actual = solution.FloodFill(input, sr, sc, newColor);
-            Assert.Equal(expected, actual);
-        }
+    [Theory]
+    [MemberData(nameof(GetData))]
+    public void Test(int[][] input, int sr, int sc, int newColor, int[][] expected)
+    {
+        
+        int[][] actual = _solution.FloodFill(input, sr, sc, newColor);
+        Assert.Equal(expected, actual);
     }
 }

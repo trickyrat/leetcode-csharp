@@ -5,19 +5,23 @@ using Leetcode.DataStructure;
 
 using Xunit;
 
-namespace Leetcode.Test
+namespace Leetcode.Test;
+
+public class IsPalindromeUnitTest
 {
-    public class IsPalindromeUnitTest
+    private readonly Solution _solution;
+    public IsPalindromeUnitTest()
     {
-        [Theory]
-        [InlineData(new int[] { 1, 2, 2, 1 }, true)]
-        [InlineData(new int[] { 1, 2 }, false)]
-        public void Test(int[] nums, bool expected)
-        {
-            Solution solution = new Solution();
-            ListNode head = Utilities.CreateListNode(nums);
-            bool actual = solution.IsPalindrome(head);
-            Assert.Equal(expected, actual);
-        }
+        _solution = new Solution();
+    }
+    [Theory]
+    [InlineData(new int[] { 1, 2, 2, 1 }, true)]
+    [InlineData(new int[] { 1, 2 }, false)]
+    public void Test(int[] nums, bool expected)
+    {
+        
+        ListNode head = Utilities.CreateListNode(nums);
+        bool actual = _solution.IsPalindrome(head);
+        Assert.Equal(expected, actual);
     }
 }

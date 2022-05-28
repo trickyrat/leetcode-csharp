@@ -3,24 +3,23 @@
 
 using Xunit;
 
-namespace Leetcode.Test
+namespace Leetcode.Test;
+
+public class FindClosestUnitTest
 {
-    public class FindClosestUnitTest
+
+    private readonly InterviewSolution _solution;
+
+    public FindClosestUnitTest()
     {
+        _solution = new InterviewSolution();
+    }
 
-        private readonly InterviewSolution _solution;
-
-        public FindClosestUnitTest()
-        {
-            _solution = new InterviewSolution();
-        }
-
-        [Theory]
-        [InlineData(new string[] { "I", "am", "a", "student", "from", "a", "university", "in", "a", "city" }, "a", "student", 1)]
-        public void MultipleDataTest(string[] words, string word1, string word2, int expected)
-        {
-            int actual = _solution.FindClosest(words, word1, word2);
-            Assert.Equal(expected, actual);
-        }
+    [Theory]
+    [InlineData(new string[] { "I", "am", "a", "student", "from", "a", "university", "in", "a", "city" }, "a", "student", 1)]
+    public void MultipleDataTest(string[] words, string word1, string word2, int expected)
+    {
+        int actual = _solution.FindClosest(words, word1, word2);
+        Assert.Equal(expected, actual);
     }
 }

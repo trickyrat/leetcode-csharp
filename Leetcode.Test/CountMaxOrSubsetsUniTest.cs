@@ -3,20 +3,24 @@
 
 using Xunit;
 
-namespace Leetcode.Test
-{
-    public class CountMaxOrSubsetsUniTest
-    {
+namespace Leetcode.Test;
 
-        [Theory]
-        [InlineData(new int[] { 3, 1 }, 2)]
-        [InlineData(new int[] { 2, 2, 2 }, 7)]
-        [InlineData(new int[] { 3, 2, 1, 5 }, 6)]
-        public void MultipleDataTest(int[] input, int expect)
-        {
-            Solution solution = new Solution();
-            int actual = solution.CountMaxOrSubsets(input);
-            Assert.Equal(expect, actual);
-        }
+public class CountMaxOrSubsetsUniTest
+{
+    private readonly Solution _solution;
+
+    public CountMaxOrSubsetsUniTest()
+    {
+        _solution = new Solution();
+    }
+
+    [Theory]
+    [InlineData(new int[] { 3, 1 }, 2)]
+    [InlineData(new int[] { 2, 2, 2 }, 7)]
+    [InlineData(new int[] { 3, 2, 1, 5 }, 6)]
+    public void MultipleDataTest(int[] input, int expect)
+    {
+        int actual = _solution.CountMaxOrSubsets(input);
+        Assert.Equal(expect, actual);
     }
 }

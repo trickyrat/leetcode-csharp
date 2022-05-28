@@ -3,21 +3,20 @@
 
 using Xunit;
 
-namespace Leetcode.Test
+namespace Leetcode.Test;
+
+public class MinStackUnitTest
 {
-    public class MinStackUnitTest
+    [Fact]
+    public void Test()
     {
-        [Fact]
-        public void Test()
-        {
-            MinStack min = new MinStack();
-            min.Push(-2);
-            min.Push(0);
-            min.Push(-3);
-            Assert.Equal(-3, min.GetMin());
-            min.Pop();
-            Assert.Equal(0, min.Top());
-            Assert.Equal(-2, min.GetMin());
-        }
+        MinStack min = new MinStack();
+        min.Push(-2);
+        min.Push(0);
+        min.Push(-3);
+        Assert.Equal(-3, min.GetMin());
+        min.Pop();
+        Assert.Equal(0, min.Top());
+        Assert.Equal(-2, min.GetMin());
     }
 }

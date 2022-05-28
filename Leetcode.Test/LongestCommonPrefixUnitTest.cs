@@ -3,20 +3,23 @@
 
 using Xunit;
 
-namespace Leetcode.Test
+namespace Leetcode.Test;
+
+public class LongestCommonPrefixUnitTest
 {
-    public class LongestCommonPrefixUnitTest
+    private readonly Solution _solution;
+    public LongestCommonPrefixUnitTest()
     {
-
-        [Theory]
-        [InlineData(new string[] { "flower", "flow", "flight" }, "fl")]
-        [InlineData(new string[] { "dog", "racecar", "car" }, "")]
-        public void MultipleDataTest(string[] strs, string expected)
-        {
-            Solution solution = new Solution();
-            string actual = solution.LongestCommonPrefix(strs);
-            Assert.Equal(expected, actual);
-        }
-
+        _solution = new Solution();
     }
+    [Theory]
+    [InlineData(new string[] { "flower", "flow", "flight" }, "fl")]
+    [InlineData(new string[] { "dog", "racecar", "car" }, "")]
+    public void MultipleDataTest(string[] strs, string expected)
+    {
+        
+        string actual = _solution.LongestCommonPrefix(strs);
+        Assert.Equal(expected, actual);
+    }
+
 }

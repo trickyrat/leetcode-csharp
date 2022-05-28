@@ -3,18 +3,22 @@
 
 using Xunit;
 
-namespace Leetcode.Test
+namespace Leetcode.Test;
+
+public class SingleNonDuplicateUnitTest
 {
-    public class SingleNonDuplicateUnitTest
+    private readonly Solution _solution;
+    public SingleNonDuplicateUnitTest()
     {
-        [Theory]
-        [InlineData(new int[] { 1, 1, 2, 3, 3, 4, 4, 8, 8 }, 2)]
-        [InlineData(new int[] { 3, 3, 7, 7, 10, 11, 11 }, 10)]
-        public void Test(int[] nums, int expected)
-        {
-            Solution solution = new Solution();
-            int actual = solution.SingleNonDuplicate(nums);
-            Assert.Equal(expected, actual);
-        }
+        _solution = new Solution();
+    }
+    [Theory]
+    [InlineData(new int[] { 1, 1, 2, 3, 3, 4, 4, 8, 8 }, 2)]
+    [InlineData(new int[] { 3, 3, 7, 7, 10, 11, 11 }, 10)]
+    public void Test(int[] nums, int expected)
+    {
+        
+        int actual = _solution.SingleNonDuplicate(nums);
+        Assert.Equal(expected, actual);
     }
 }

@@ -7,35 +7,38 @@ using Leetcode.DataStructure;
 
 using Xunit;
 
-namespace Leetcode.Test
+namespace Leetcode.Test;
+
+public class FindTargetUnitTest
 {
-    public class FindTargetUnitTest
+    private readonly Solution _solution;
+    public FindTargetUnitTest()
     {
-
-        public static IEnumerable<object[]> GetData()
+        _solution = new Solution();
+    }
+    public static IEnumerable<object[]> GetData()
+    {
+        yield return new object[]
         {
-            yield return new object[]
-            {
-                Utilities.CreateTreeNodeWithBFS(new List<int?>{ 5, 3, 6, 2, 4, null, 7 }),
-                9,
-                true
-            };
-            yield return new object[]
-            {
-                Utilities.CreateTreeNodeWithBFS(new List<int?>{ 5, 3, 6, 2, 4, null, 7 }),
-                28,
-                false
-            };
-        }
-
-
-        [Theory]
-        [MemberData(nameof(GetData))]
-        public void Test(TreeNode root, int target, bool expected)
+            Utilities.CreateTreeNodeWithBFS(new List<int?>{ 5, 3, 6, 2, 4, null, 7 }),
+            9,
+            true
+        };
+        yield return new object[]
         {
-            Solution solution = new Solution();
-            bool actual = solution.FindTarget(root, target);
-            Assert.Equal(expected, actual);
-        }
+            Utilities.CreateTreeNodeWithBFS(new List<int?>{ 5, 3, 6, 2, 4, null, 7 }),
+            28,
+            false
+        };
+    }
+
+
+    [Theory]
+    [MemberData(nameof(GetData))]
+    public void Test(TreeNode root, int target, bool expected)
+    {
+        
+        bool actual = _solution.FindTarget(root, target);
+        Assert.Equal(expected, actual);
     }
 }

@@ -3,18 +3,23 @@
 
 using Xunit;
 
-namespace Leetcode.Test
+namespace Leetcode.Test;
+
+public class CountAndSayUnitTest
 {
-    public class CountAndSayUnitTest
+    private readonly Solution _solution;
+
+    public CountAndSayUnitTest()
     {
-        [Theory]
-        [InlineData(1, "1")]
-        [InlineData(4, "1211")]
-        public void Test(int n, string expected)
-        {
-            Solution solution = new Solution();
-            string actual = solution.CountAndSay(n);
-            Assert.Equal(expected, actual);
-        }
+        _solution = new Solution();
+    }
+
+    [Theory]
+    [InlineData(1, "1")]
+    [InlineData(4, "1211")]
+    public void Test(int n, string expected)
+    {
+        string actual = _solution.CountAndSay(n);
+        Assert.Equal(expected, actual);
     }
 }

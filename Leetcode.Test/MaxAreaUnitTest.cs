@@ -3,18 +3,22 @@
 
 using Xunit;
 
-namespace Leetcode.Test
+namespace Leetcode.Test;
+
+public class MaxAreaUnitTest
 {
-    public class MaxAreaUnitTest
+    private readonly Solution _solution;
+    public MaxAreaUnitTest()
     {
-        [Theory]
-        [InlineData(new int[] { 1, 8, 6, 2, 5, 4, 8, 3, 7 }, 49)]
-        [InlineData(new int[] { 1, 1 }, 1)]
-        public void MultipleDataTest(int[] height, int expected)
-        {
-            Solution solution = new Solution();
-            int actual = solution.MaxArea(height);
-            Assert.Equal(expected, actual);
-        }
+        _solution = new Solution();
+    }
+    [Theory]
+    [InlineData(new int[] { 1, 8, 6, 2, 5, 4, 8, 3, 7 }, 49)]
+    [InlineData(new int[] { 1, 1 }, 1)]
+    public void MultipleDataTest(int[] height, int expected)
+    {
+        
+        int actual = _solution.MaxArea(height);
+        Assert.Equal(expected, actual);
     }
 }

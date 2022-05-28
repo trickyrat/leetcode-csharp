@@ -3,18 +3,22 @@
 
 using Xunit;
 
-namespace Leetcode.Test
+namespace Leetcode.Test;
+
+public class ReverseWordsUnitTest
 {
-    public class ReverseWordsUnitTest
+    private readonly Solution _solution;
+    public ReverseWordsUnitTest()
     {
-        [Theory]
-        [InlineData("Let's take LeetCode contest", "s'teL ekat edoCteeL tsetnoc")]
-        [InlineData("God Ding", "doG gniD")]
-        public void Test1(string s, string expected)
-        {
-            Solution solution = new Solution();
-            string actual = solution.ReverseWords(s);
-            Assert.Equal(expected, actual);
-        }
+        _solution = new Solution();
+    }
+    [Theory]
+    [InlineData("Let's take LeetCode contest", "s'teL ekat edoCteeL tsetnoc")]
+    [InlineData("God Ding", "doG gniD")]
+    public void Test1(string s, string expected)
+    {
+        
+        string actual = _solution.ReverseWords(s);
+        Assert.Equal(expected, actual);
     }
 }

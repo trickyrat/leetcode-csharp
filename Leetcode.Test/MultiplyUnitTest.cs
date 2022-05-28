@@ -3,25 +3,24 @@
 
 using Xunit;
 
-namespace Leetcode.Test
+namespace Leetcode.Test;
+
+public class MultiplyUnitTest
 {
-    public class MultiplyUnitTest
+    private readonly Solution _solution;
+
+    public MultiplyUnitTest()
     {
-        private readonly Solution _solution;
-
-        public MultiplyUnitTest()
-        {
-            _solution = new Solution();
-        }
-
-        [Theory]
-        [InlineData("2", "3", "6")]
-        [InlineData("123", "456", "56088")]
-        public void MultipleDataTest(string num1, string num2, string expected)
-        {
-            string actual = _solution.Multiply(num1, num2);
-            Assert.Equal(expected, actual);
-        }
-
+        _solution = new Solution();
     }
+
+    [Theory]
+    [InlineData("2", "3", "6")]
+    [InlineData("123", "456", "56088")]
+    public void MultipleDataTest(string num1, string num2, string expected)
+    {
+        string actual = _solution.Multiply(num1, num2);
+        Assert.Equal(expected, actual);
+    }
+
 }

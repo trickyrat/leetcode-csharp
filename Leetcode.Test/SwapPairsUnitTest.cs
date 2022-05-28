@@ -7,43 +7,42 @@ using Leetcode.DataStructure;
 
 using Xunit;
 
-namespace Leetcode.Test
+namespace Leetcode.Test;
+
+public class SwapPairsUnitTest
 {
-    public class SwapPairsUnitTest
+    private readonly Solution _solution;
+
+    public SwapPairsUnitTest()
     {
-        private readonly Solution _solution;
+        _solution = new Solution();
+    }
 
-        public SwapPairsUnitTest()
+    public static IEnumerable<object[]> GetData()
+    {
+        yield return new object[]
         {
-            _solution = new Solution();
-        }
-
-        public static IEnumerable<object[]> GetData()
+            Utilities.CreateListNode(new int[]{ 1, 2, 3, 4}),
+            Utilities.CreateListNode(new int[]{ 2, 1, 4, 3})
+        };
+        yield return new object[]
         {
-            yield return new object[]
-            {
-                Utilities.CreateListNode(new int[]{ 1, 2, 3, 4}),
-                Utilities.CreateListNode(new int[]{ 2, 1, 4, 3})
-            };
-            yield return new object[]
-            {
-                Utilities.CreateListNode(new int[]{ }),
-                Utilities.CreateListNode(new int[]{ })
-            };
-            yield return new object[]
-            {
-                Utilities.CreateListNode(new int[]{ 1 }),
-                Utilities.CreateListNode(new int[]{ 1 })
-            };
-        }
-
-
-        [Theory]
-        [MemberData(nameof(GetData))]
-        public void MultipleDataTest(ListNode head, ListNode expected)
+            Utilities.CreateListNode(new int[]{ }),
+            Utilities.CreateListNode(new int[]{ })
+        };
+        yield return new object[]
         {
-            ListNode actual = _solution.SwapPairs(head);
-            Assert.Equal(expected, actual);
-        }
+            Utilities.CreateListNode(new int[]{ 1 }),
+            Utilities.CreateListNode(new int[]{ 1 })
+        };
+    }
+
+
+    [Theory]
+    [MemberData(nameof(GetData))]
+    public void MultipleDataTest(ListNode head, ListNode expected)
+    {
+        ListNode actual = _solution.SwapPairs(head);
+        Assert.Equal(expected, actual);
     }
 }

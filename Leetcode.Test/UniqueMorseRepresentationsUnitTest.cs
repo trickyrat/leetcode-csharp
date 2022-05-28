@@ -3,18 +3,23 @@
 
 using Xunit;
 
-namespace Leetcode.Test
+namespace Leetcode.Test;
+
+public class UniqueMorseRepresentationsUnitTest
+
 {
-    public class UniqueMorseRepresentationsUnitTest
+    private readonly Solution _solution;
+    public UniqueMorseRepresentationsUnitTest()
     {
-        [Theory]
-        [InlineData(new string[] { "gin", "zen", "gig", "msg" }, 2)]
-        [InlineData(new string[] { "a" }, 1)]
-        public void MultipleDataTest(string[] words, int expected)
-        {
-            Solution solution = new Solution();
-            int actual = solution.UniqueMorseRepresentations(words);
-            Assert.Equal(expected, actual);
-        }
+        _solution = new Solution();
+    }
+
+    [Theory]
+    [InlineData(new string[] { "gin", "zen", "gig", "msg" }, 2)]
+    [InlineData(new string[] { "a" }, 1)]
+    public void MultipleDataTest(string[] words, int expected)
+    {
+        int actual = _solution.UniqueMorseRepresentations(words);
+        Assert.Equal(expected, actual);
     }
 }

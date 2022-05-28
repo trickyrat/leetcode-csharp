@@ -5,19 +5,22 @@ using System.Linq;
 
 using Xunit;
 
-namespace Leetcode.Test
-{
-    public class GenerateParenthesisUnitTest
-    {
+namespace Leetcode.Test;
 
-        [Theory]
-        [InlineData(3, new string[] { "((()))", "(()())", "(())()", "()(())", "()()()" })]
-        [InlineData(1, new string[] { "()" })]
-        public void MultipleDataTest(int n, string[] expected)
-        {
-            Solution solution = new Solution();
-            string[] actual = solution.GenerateParenthesis(n).ToArray();
-            Assert.Equal(expected, actual);
-        }
+public class GenerateParenthesisUnitTest
+{
+    private readonly Solution _solution;
+    public GenerateParenthesisUnitTest()
+    {
+        _solution = new Solution();
+    }
+    [Theory]
+    [InlineData(3, new string[] { "((()))", "(()())", "(())()", "()(())", "()()()" })]
+    [InlineData(1, new string[] { "()" })]
+    public void MultipleDataTest(int n, string[] expected)
+    {
+        
+        string[] actual = _solution.GenerateParenthesis(n).ToArray();
+        Assert.Equal(expected, actual);
     }
 }

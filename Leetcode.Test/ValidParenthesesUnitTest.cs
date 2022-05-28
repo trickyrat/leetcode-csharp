@@ -3,22 +3,26 @@
 
 using Xunit;
 
-namespace Leetcode.Test
-{
-    public class ValidParenthesesUnitTest
-    {
+namespace Leetcode.Test;
 
-        [Theory]
-        [InlineData("()", true)]
-        [InlineData("()[]{}", true)]
-        [InlineData("(]", false)]
-        [InlineData("([)]", false)]
-        [InlineData("{[]}", true)]
-        public void MultipleDataTest(string s, bool expected)
-        {
-            Solution solution = new Solution();
-            bool actual = solution.IsValid(s);
-            Assert.Equal(expected, actual);
-        }
+public class ValidParenthesesUnitTest
+{
+    private readonly Solution _solution;
+
+    public ValidParenthesesUnitTest()
+    {
+        _solution = new Solution();
+    }
+
+    [Theory]
+    [InlineData("()", true)]
+    [InlineData("()[]{}", true)]
+    [InlineData("(]", false)]
+    [InlineData("([)]", false)]
+    [InlineData("{[]}", true)]
+    public void MultipleDataTest(string s, bool expected)
+    {
+        bool actual = _solution.IsValid(s);
+        Assert.Equal(expected, actual);
     }
 }

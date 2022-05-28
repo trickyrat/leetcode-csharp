@@ -7,13 +7,19 @@ namespace Leetcode.Test;
 
 public class FindRestaurantUnitTest
 {
+    private readonly Solution _solution;
+
+    public FindRestaurantUnitTest()
+    {
+        _solution = new Solution();
+    }
     [Theory]
     [InlineData(new string[] { "Shogun", "Tapioca Express", "Burger King", "KFC" }, new string[] { "Piatti", "The Grill at Torrey Pines", "Hungry Hunter Steakhouse", "Shogun" }, new string[] { "Shogun" })]
     [InlineData(new string[] { "Shogun", "Tapioca Express", "Burger King", "KFC" }, new string[] { "KFC", "Shogun", "Burger King" }, new string[] { "Shogun" })]
     public void Test(string[] list1, string[] list2, string[] expect)
     {
-        Solution solution = new Solution();
-        string[] actual = solution.FindRestaurant(list1, list2);
+        
+        string[] actual = _solution.FindRestaurant(list1, list2);
         Assert.Equal(expect, actual);
     }
 }

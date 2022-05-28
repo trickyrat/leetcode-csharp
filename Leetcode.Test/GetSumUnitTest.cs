@@ -3,19 +3,23 @@
 
 using Xunit;
 
-namespace Leetcode.Test
+namespace Leetcode.Test;
+
+public class GetSumUnitTest
 {
-    public class GetSumUnitTest
+    private readonly Solution _solution;
+    public GetSumUnitTest()
     {
-        [Theory]
-        [InlineData(1, 2, 3)]
-        [InlineData(7, 3, 10)]
-        [InlineData(1, -2, -1)]
-        public void Test_Should_OK(int a, int b, int expected)
-        {
-            Solution solution = new Solution();
-            int actual = solution.GetSum(a, b);
-            Assert.Equal(expected, actual);
-        }
+        _solution = new Solution();
+    }
+    [Theory]
+    [InlineData(1, 2, 3)]
+    [InlineData(7, 3, 10)]
+    [InlineData(1, -2, -1)]
+    public void Test_Should_OK(int a, int b, int expected)
+    {
+        
+        int actual = _solution.GetSum(a, b);
+        Assert.Equal(expected, actual);
     }
 }

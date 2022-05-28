@@ -3,19 +3,22 @@
 
 using Xunit;
 
-namespace Leetcode.Test
+namespace Leetcode.Test;
+
+public class AtoiUnitTest
 {
-    public class AtoiUnitTest
+    private readonly Solution _solution;
+    public AtoiUnitTest()
     {
-        [Theory]
-        [InlineData("42", 42)]
-        [InlineData("   -42", -42)]
-        [InlineData("4193 with words", 4193)]
-        public void MultipleDataTest(string input, int expected)
-        {
-            Solution solution = new Solution();
-            int actual = solution.Atoi(input);
-            Assert.Equal(expected, actual);
-        }
+        _solution = new Solution();
+    }
+    [Theory]
+    [InlineData("42", 42)]
+    [InlineData("   -42", -42)]
+    [InlineData("4193 with words", 4193)]
+    public void MultipleDataTest(string input, int expected)
+    {
+        int actual = _solution.Atoi(input);
+        Assert.Equal(expected, actual);
     }
 }

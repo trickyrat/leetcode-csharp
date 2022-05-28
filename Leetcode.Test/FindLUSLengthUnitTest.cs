@@ -3,19 +3,24 @@
 
 using Xunit;
 
-namespace Leetcode.Test
+namespace Leetcode.Test;
+
+public class FindLUSLengthUnitTest
 {
-    public class FindLUSLengthUnitTest
+    private readonly Solution _solution;
+
+    public FindLUSLengthUnitTest()
     {
-        [Theory]
-        [InlineData("aba", "cdc", 3)]
-        [InlineData("aaa", "bbb", 3)]
-        [InlineData("aaa", "aaa", -1)]
-        public void MultipleDataTest(string a, string b, int expected)
-        {
-            Solution solution = new Solution();
-            int actual = solution.FindLUSLength(a, b);
-            Assert.Equal(expected, actual);
-        }
+        _solution = new Solution();
+    }
+
+    [Theory]
+    [InlineData("aba", "cdc", 3)]
+    [InlineData("aaa", "bbb", 3)]
+    [InlineData("aaa", "aaa", -1)]
+    public void MultipleDataTest(string a, string b, int expected)
+    {
+        int actual = _solution.FindLUSLength(a, b);
+        Assert.Equal(expected, actual);
     }
 }

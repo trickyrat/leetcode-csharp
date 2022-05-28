@@ -3,21 +3,25 @@
 
 using Xunit;
 
-namespace Leetcode.Test
+namespace Leetcode.Test;
+
+public class CountSegmentUnitTest
 {
-    public class CountSegmentUnitTest
+    private readonly Solution _solution;
+
+    public CountSegmentUnitTest()
     {
-        [Theory]
-        [InlineData("Hello, my name is John", 5)]
-        [InlineData("Hello", 1)]
-        [InlineData("love live! mu'sic forever", 4)]
-        [InlineData("", 0)]
-        public void Test(string s, int count)
-        {
-            Solution solution = new Solution();
-            int actual = solution.CountSegments(s);
-            int expected = count;
-            Assert.Equal(expected, actual);
-        }
+        _solution = new Solution();
+    }
+
+    [Theory]
+    [InlineData("Hello, my name is John", 5)]
+    [InlineData("Hello", 1)]
+    [InlineData("love live! mu'sic forever", 4)]
+    [InlineData("", 0)]
+    public void Test(string s, int expected)
+    {
+        int actual = _solution.CountSegments(s);
+        Assert.Equal(expected, actual);
     }
 }

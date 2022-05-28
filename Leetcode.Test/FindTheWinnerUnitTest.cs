@@ -3,25 +3,24 @@
 
 using Xunit;
 
-namespace Leetcode.Test
+namespace Leetcode.Test;
+
+public class FindTheWinnerUnitTest
 {
-    public class FindTheWinnerUnitTest
+    private readonly Solution _solution;
+
+    public FindTheWinnerUnitTest()
     {
-        private readonly Solution solution;
-
-        public FindTheWinnerUnitTest()
-        {
-            solution = new Solution();
-        }
-
-        [Theory]
-        [InlineData(5, 2, 3)]
-        [InlineData(6, 5, 1)]
-        public void MultipleDataTest(int n, int k, int expected)
-        {
-            int actual = solution.FindTheWinner(n, k);
-            Assert.Equal(expected, actual);
-        }
-
+        _solution = new Solution();
     }
+
+    [Theory]
+    [InlineData(5, 2, 3)]
+    [InlineData(6, 5, 1)]
+    public void MultipleDataTest(int n, int k, int expected)
+    {
+        int actual = _solution.FindTheWinner(n, k);
+        Assert.Equal(expected, actual);
+    }
+
 }

@@ -3,25 +3,24 @@
 
 using Xunit;
 
-namespace Leetcode.Test
+namespace Leetcode.Test;
+
+public class RemoveDuplicatesUnitTest
 {
-    public class RemoveDuplicatesUnitTest
+    private readonly Solution _solution;
+
+    public RemoveDuplicatesUnitTest()
     {
-        private readonly Solution _solution;
-
-        public RemoveDuplicatesUnitTest()
-        {
-            _solution = new Solution();
-        }
+        _solution = new Solution();
+    }
 
 
-        [Theory]
-        [InlineData(new int[] { 1, 1, 2 }, 2)]
-        [InlineData(new int[] { 0, 0, 1, 1, 1, 2, 2, 3, 3, 4 }, 5)]
-        public void MultipleDataTest(int[] nums, int expected)
-        {
-            int actual = _solution.RemoveDuplicates(nums);
-            Assert.Equal(expected, actual);
-        }
+    [Theory]
+    [InlineData(new int[] { 1, 1, 2 }, 2)]
+    [InlineData(new int[] { 0, 0, 1, 1, 1, 2, 2, 3, 3, 4 }, 5)]
+    public void MultipleDataTest(int[] nums, int expected)
+    {
+        int actual = _solution.RemoveDuplicates(nums);
+        Assert.Equal(expected, actual);
     }
 }

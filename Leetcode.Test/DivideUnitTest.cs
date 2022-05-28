@@ -3,20 +3,25 @@
 
 using Xunit;
 
-namespace Leetcode.Test
+namespace Leetcode.Test;
+
+public class DivideUnitTest
 {
-    public class DivideUnitTest
+    private readonly Solution _solution;
+
+    public DivideUnitTest()
     {
-        [Theory]
-        [InlineData(10, 3, 3)]
-        [InlineData(7, -3, -2)]
-        [InlineData(0, 1, 0)]
-        [InlineData(1, 1, 1)]
-        public void Test(int dividend, int divisor, int expected)
-        {
-            Solution solution = new Solution();
-            int actual = solution.Divide(dividend, divisor);
-            Assert.Equal(expected, actual);
-        }
+        _solution = new Solution();
+    }
+
+    [Theory]
+    [InlineData(10, 3, 3)]
+    [InlineData(7, -3, -2)]
+    [InlineData(0, 1, 0)]
+    [InlineData(1, 1, 1)]
+    public void Test(int dividend, int divisor, int expected)
+    {
+        int actual = _solution.Divide(dividend, divisor);
+        Assert.Equal(expected, actual);
     }
 }

@@ -3,21 +3,24 @@
 
 using Xunit;
 
-namespace Leetcode.Test
+namespace Leetcode.Test;
+
+public class ThreeSumClosestUnitTest
 {
-    public class ThreeSumClosestUnitTest
+    private readonly Solution _solution;
+    public ThreeSumClosestUnitTest()
     {
-
-        [Theory]
-        [InlineData(new int[] { -1, 2, 1, -4 }, 1, 2)]
-        [InlineData(new int[] { 0, 0, 0 }, 1, 0)]
-        public void MultipleDataTest(int[] nums, int target, int expected)
-        {
-            Solution solution = new Solution();
-            int actual = solution.ThreeSumClosest(nums, target);
-            Assert.Equal(expected, actual);
-        }
-
-
+        _solution = new Solution();
     }
+    [Theory]
+    [InlineData(new int[] { -1, 2, 1, -4 }, 1, 2)]
+    [InlineData(new int[] { 0, 0, 0 }, 1, 0)]
+    public void MultipleDataTest(int[] nums, int target, int expected)
+    {
+        
+        int actual = _solution.ThreeSumClosest(nums, target);
+        Assert.Equal(expected, actual);
+    }
+
+
 }

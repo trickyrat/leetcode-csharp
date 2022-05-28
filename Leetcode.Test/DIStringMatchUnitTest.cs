@@ -3,25 +3,24 @@
 
 using Xunit;
 
-namespace Leetcode.Test
+namespace Leetcode.Test;
+
+public class DIStringMatchUnitTest
 {
-    public class DIStringMatchUnitTest
+    private readonly Solution _solution;
+
+    public DIStringMatchUnitTest()
     {
-        private readonly Solution solution;
+        _solution = new Solution();
+    }
 
-        public DIStringMatchUnitTest()
-        {
-            solution = new Solution();
-        }
-
-        [Theory]
-        [InlineData("IDID", new int[] { 0, 4, 1, 3, 2 })]
-        [InlineData("III", new int[] { 0, 1, 2, 3 })]
-        [InlineData("DDI", new int[] { 3, 2, 0, 1 })]
-        public void MultipleDataTest(string s, int[] expected)
-        {
-            int[] actual = solution.DIStringMatch(s);
-            Assert.Equal(expected, actual);
-        }
+    [Theory]
+    [InlineData("IDID", new int[] { 0, 4, 1, 3, 2 })]
+    [InlineData("III", new int[] { 0, 1, 2, 3 })]
+    [InlineData("DDI", new int[] { 3, 2, 0, 1 })]
+    public void MultipleDataTest(string s, int[] expected)
+    {
+        int[] actual = _solution.DIStringMatch(s);
+        Assert.Equal(expected, actual);
     }
 }

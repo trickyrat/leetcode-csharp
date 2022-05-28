@@ -3,19 +3,23 @@
 
 using Xunit;
 
-namespace Leetcode.Test
+namespace Leetcode.Test;
+
+public class ReverseOnlyLettersUnitTest
 {
-    public class ReverseOnlyLettersUnitTest
+    private readonly Solution _solution;
+    public ReverseOnlyLettersUnitTest()
     {
-        [Theory]
-        [InlineData("ab-cd", "dc-ba")]
-        [InlineData("a-bC-dEf-ghIj", "j-Ih-gfE-dCba")]
-        [InlineData("Test1ng-Leet=code-Q!", "Qedo1ct-eeLg=ntse-T!")]
-        public void Test(string s, string expected)
-        {
-            Solution solution = new Solution();
-            string actual = solution.ReverseOnlyLetters(s);
-            Assert.Equal(expected, actual);
-        }
+        _solution = new Solution();
+    }
+    [Theory]
+    [InlineData("ab-cd", "dc-ba")]
+    [InlineData("a-bC-dEf-ghIj", "j-Ih-gfE-dCba")]
+    [InlineData("Test1ng-Leet=code-Q!", "Qedo1ct-eeLg=ntse-T!")]
+    public void Test(string s, string expected)
+    {
+        
+        string actual = _solution.ReverseOnlyLetters(s);
+        Assert.Equal(expected, actual);
     }
 }

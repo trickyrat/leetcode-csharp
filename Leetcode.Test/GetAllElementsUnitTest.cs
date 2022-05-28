@@ -7,40 +7,39 @@ using Leetcode.DataStructure;
 
 using Xunit;
 
-namespace Leetcode.Test
+namespace Leetcode.Test;
+
+public class GetAllElementsUnitTest
 {
-    public class GetAllElementsUnitTest
+    public static IEnumerable<object[]> GetData()
     {
-        public static IEnumerable<object[]> GetData()
+        yield return new object[]
         {
-            yield return new object[]
-            {
-                Utilities.CreateTreeNodeWithBFS(new List<int?> { 2, 1, 4 }),
-                Utilities.CreateTreeNodeWithBFS(new List<int?> { 1, 0, 3 }),
-                new List<int> { 0, 1, 1, 2, 3, 4 }
-            };
-            yield return new object[]
-            {
-                Utilities.CreateTreeNodeWithBFS(new List<int?> { 1, null, 8 }),
-                Utilities.CreateTreeNodeWithBFS(new List<int?> { 8, 1 }),
-                new List<int> { 1, 1, 8, 8 }
-            };
-        }
-
-        private readonly Solution solution;
-
-        public GetAllElementsUnitTest()
+            Utilities.CreateTreeNodeWithBFS(new List<int?> { 2, 1, 4 }),
+            Utilities.CreateTreeNodeWithBFS(new List<int?> { 1, 0, 3 }),
+            new List<int> { 0, 1, 1, 2, 3, 4 }
+        };
+        yield return new object[]
         {
-            solution = new Solution();
-        }
+            Utilities.CreateTreeNodeWithBFS(new List<int?> { 1, null, 8 }),
+            Utilities.CreateTreeNodeWithBFS(new List<int?> { 8, 1 }),
+            new List<int> { 1, 1, 8, 8 }
+        };
+    }
+
+    private readonly Solution _solution;
+
+    public GetAllElementsUnitTest()
+    {
+        _solution = new Solution();
+    }
 
 
-        [Theory]
-        [MemberData(nameof(GetData))]
-        public void MultipleDataTest(TreeNode root1, TreeNode root2, IList<int> expected)
-        {
-            IList<int> actual = solution.GetAllElements(root1, root2);
-            Assert.Equal(expected, expected);
-        }
+    [Theory]
+    [MemberData(nameof(GetData))]
+    public void MultipleDataTest(TreeNode root1, TreeNode root2, IList<int> expected)
+    {
+        IList<int> actual = _solution.GetAllElements(root1, root2);
+        Assert.Equal(expected, expected);
     }
 }

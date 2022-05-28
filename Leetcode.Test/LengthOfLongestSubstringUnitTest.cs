@@ -3,20 +3,24 @@
 
 using Xunit;
 
-namespace Leetcode.Test
+namespace Leetcode.Test;
+
+public class LengthOfLongestSubstringUnitTest
 {
-    public class LengthOfLongestSubstringUnitTest
+    private readonly Solution _solution;
+    public LengthOfLongestSubstringUnitTest()
     {
-        [Theory]
-        [InlineData("abcabcbb", 3)]
-        [InlineData("bbbbb", 1)]
-        [InlineData("pwwkew", 3)]
-        [InlineData("", 0)]
-        public void Test_Input_Palindromic_Alphas_Should_OK(string s, int expected)
-        {
-            Solution solution = new Solution();
-            int actual = solution.LengthOfLongestSubstring(s);
-            Assert.Equal(expected, actual);
-        }
+        _solution = new Solution();
+    }
+    [Theory]
+    [InlineData("abcabcbb", 3)]
+    [InlineData("bbbbb", 1)]
+    [InlineData("pwwkew", 3)]
+    [InlineData("", 0)]
+    public void Test_Input_Palindromic_Alphas_Should_OK(string s, int expected)
+    {
+        
+        int actual = _solution.LengthOfLongestSubstring(s);
+        Assert.Equal(expected, actual);
     }
 }

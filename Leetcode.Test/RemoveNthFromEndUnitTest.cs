@@ -7,41 +7,45 @@ using Leetcode.DataStructure;
 
 using Xunit;
 
-namespace Leetcode.Test
+namespace Leetcode.Test;
+
+public class RemoveNthFromEndUnitTest
 {
-    public class RemoveNthFromEndUnitTest
+    private readonly Solution _solution;
+    public RemoveNthFromEndUnitTest()
     {
+        _solution = new Solution();
+    }
 
-        public static IEnumerable<object[]> GetData()
+    public static IEnumerable<object[]> GetData()
+    {
+        yield return new object[]
         {
-            yield return new object[]
-            {
-                Utilities.CreateListNode(new List<int> { 1, 2, 3, 4, 5 }),
-                2,
-                Utilities.CreateListNode(new List<int> { 1, 2, 3, 5 })
-            };
-            yield return new object[]
-            {
-                Utilities.CreateListNode(new List<int> { 1 }),
-                1,
-                Utilities.CreateListNode(new List<int> { })
-            };
-            yield return new object[]
-            {
-                Utilities.CreateListNode(new List<int> { 1, 2 }),
-                1,
-                Utilities.CreateListNode(new List<int> { 1 })
-            };
-
-        }
-
-        [Theory]
-        [MemberData(nameof(GetData))]
-        public void Test_Input_Normal_Nodes_Should_OK(ListNode input, int n, ListNode expected)
+            Utilities.CreateListNode(new List<int> { 1, 2, 3, 4, 5 }),
+            2,
+            Utilities.CreateListNode(new List<int> { 1, 2, 3, 5 })
+        };
+        yield return new object[]
         {
-            Solution solution = new Solution();
-            ListNode actual = solution.RemoveNthFromEnd(input, n);
-            Assert.Equal(expected, actual);
-        }
+            Utilities.CreateListNode(new List<int> { 1 }),
+            1,
+            Utilities.CreateListNode(new List<int> { })
+        };
+        yield return new object[]
+        {
+            Utilities.CreateListNode(new List<int> { 1, 2 }),
+            1,
+            Utilities.CreateListNode(new List<int> { 1 })
+        };
+
+    }
+
+    [Theory]
+    [MemberData(nameof(GetData))]
+    public void Test_Input_Normal_Nodes_Should_OK(ListNode input, int n, ListNode expected)
+    {
+        
+        ListNode actual = _solution.RemoveNthFromEnd(input, n);
+        Assert.Equal(expected, actual);
     }
 }

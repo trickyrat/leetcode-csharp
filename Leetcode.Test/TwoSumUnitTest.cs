@@ -3,20 +3,25 @@
 
 using Xunit;
 
-namespace Leetcode.Test
+namespace Leetcode.Test;
+
+public class TwoSumUnitTest
 {
-    public class TwoSumUnitTest
+    private readonly Solution _solution;
+
+    public TwoSumUnitTest()
     {
-        [Theory]
-        [InlineData(new int[] { 0, 1, 1, 3, 5 }, 2, new int[] { 1, 2 })]
-        [InlineData(new int[] { -1, 1, 1, 3, 5 }, 2, new int[] { 1, 2 })]
-        public void TwoSumTest1(int[] nums, int target, int[] expected)
-        {
-            Solution solution = new Solution();
-            int[] actual = solution.TwoSum(nums, target);
-            Assert.Equal(expected, actual);
-        }
-
-
+        _solution = new Solution();
     }
+
+    [Theory]
+    [InlineData(new int[] { 0, 1, 1, 3, 5 }, 2, new int[] { 1, 2 })]
+    [InlineData(new int[] { -1, 1, 1, 3, 5 }, 2, new int[] { 1, 2 })]
+    public void TwoSumTest1(int[] nums, int target, int[] expected)
+    {
+        int[] actual = _solution.TwoSum(nums, target);
+        Assert.Equal(expected, actual);
+    }
+
+
 }

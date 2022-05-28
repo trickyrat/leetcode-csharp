@@ -3,20 +3,24 @@
 
 using Xunit;
 
-namespace Leetcode.Test
+namespace Leetcode.Test;
+
+public class BackspaceCompareUnitTest
 {
-    public class BackspaceCompareUnitTest
+    private readonly Solution _solution;
+    public BackspaceCompareUnitTest()
     {
-        [Theory]
-        [InlineData("ab#c", "ad#c", true)]
-        [InlineData("ab##", "c#d#", true)]
-        [InlineData("a##c", "#a#c", true)]
-        [InlineData("a#c", "b", false)]
-        public void Test(string s, string t, bool expected)
-        {
-            Solution solution = new Solution();
-            bool actual = solution.BackspaceCompare(s, t);
-            Assert.Equal(expected, actual);
-        }
+        _solution = new Solution();
+    }
+
+    [Theory]
+    [InlineData("ab#c", "ad#c", true)]
+    [InlineData("ab##", "c#d#", true)]
+    [InlineData("a##c", "#a#c", true)]
+    [InlineData("a#c", "b", false)]
+    public void Test(string s, string t, bool expected)
+    {
+        bool actual = _solution.BackspaceCompare(s, t);
+        Assert.Equal(expected, actual);
     }
 }

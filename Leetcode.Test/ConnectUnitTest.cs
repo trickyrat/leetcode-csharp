@@ -7,26 +7,30 @@ using Leetcode.DataStructure;
 
 using Xunit;
 
-namespace Leetcode.Test
-{
-    public class ConnectUnitTest
-    {
-        public static IEnumerable<object[]> GetData()
-        {
-            yield return new object[]
-            {
-                new BinaryTreeNode(),
-                new BinaryTreeNode()
-            };
-        }
+namespace Leetcode.Test;
 
-        [Theory]
-        [MemberData(nameof(GetData))]
-        public void Test(BinaryTreeNode input, BinaryTreeNode expected)
+public class ConnectUnitTest
+{
+    private readonly Solution _solution;
+
+    public ConnectUnitTest()
+    {
+        _solution = new Solution();
+    }
+    public static IEnumerable<object[]> GetData()
+    {
+        yield return new object[]
         {
-            Solution solution = new Solution();
-            var actual = solution.Connect(input);
-            //Assert.Equal(expected, actual);
-        }
+            new BinaryTreeNode(),
+            new BinaryTreeNode()
+        };
+    }
+
+    [Theory]
+    [MemberData(nameof(GetData))]
+    public void Test(BinaryTreeNode input, BinaryTreeNode expected)
+    {
+        var actual = _solution.Connect(input);
+        //Assert.Equal(expected, actual);
     }
 }

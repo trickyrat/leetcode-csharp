@@ -5,20 +5,22 @@ using System.Collections.Generic;
 
 using Xunit;
 
-namespace Leetcode.Test
+namespace Leetcode.Test;
+
+public class LetterCasePermutationUnitTest
 {
-    public class LetterCasePermutationUnitTest
+    private readonly Solution _solution;
+    public LetterCasePermutationUnitTest()
     {
-        [Fact]
-        public void Test()
-        {
-            Solution solution = new Solution();
-            List<string> actual = solution.LetterCasePermutation("a1b2");
-            List<string> expected = new List<string>
-            {
-                "a1b2","A1b2","a1B2","A1B2"
-            };
-            Assert.Equal(expected, actual);
-        }
+        _solution = new Solution();
+    }
+
+    [Theory]
+    [InlineData("a1b2", new string[] { "a1b2", "A1b2", "a1B2", "A1B2" })]
+    [InlineData("3z4", new string[] { "3z4", "3Z4" })]
+    public void Test(string input, string[] expected)
+    {
+        List<string> actual = _solution.LetterCasePermutation(input);
+        Assert.Equal(expected, actual);
     }
 }
