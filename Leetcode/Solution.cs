@@ -3521,6 +3521,28 @@ public class Solution
     }
 
     /// <summary>
+    /// 168. Excel Sheet Column Title
+    /// </summary>
+    /// <param name="columnNumber"></param>
+    /// <returns></returns>
+    public string ConvertToTitle(int columnNumber)
+    {
+        StringBuilder sb = new StringBuilder();
+        while (columnNumber != 0)
+        {
+            columnNumber--;
+            sb.Append((char)(columnNumber % 26 + 'A'));
+            columnNumber /= 26;
+        }
+        StringBuilder columnTitle = new StringBuilder();
+        for (int i = sb.Length - 1; i >= 0; i--)
+        {
+            columnTitle.Append(sb[i]);
+        }
+        return columnTitle.ToString();
+    }
+
+    /// <summary>
     /// 169. Majority Element
     /// </summary>
     public int MajorityElement(int[] nums)
@@ -4688,31 +4710,17 @@ public class Solution
     /// <summary>
     /// 468. Valid IP Address
     /// </summary>
-    /// <param name="IP"></param>
+    /// <param name="queryIP"></param>
     /// <returns></returns>
-    public string ValidIPAddress(string IP)
+    public string ValidIPAddress(string queryIP)
     {
-        //string ipv4_chunk = "([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])";
-        //string ipv6_chunk = "([0-9a-fA-F]{1,4})";
-        //Regex ipv4Pattern = new Regex(@"^(" + ipv4_chunk + ".){3}" + ipv4_chunk + "$");
-        //Regex ipv6Pattern = new Regex(@"^(" + ipv6_chunk + ":){7}" + ipv6_chunk + "$");
-        //if(IP.Contains('.'))
-        //{
-        //    return ipv4Pattern.IsMatch(IP) ? "IPv4" : "Neither";
-        //}
-        //if(IP.Contains(':'))
-        //{
-        //    return ipv6Pattern.IsMatch(IP) ? "IPv6" : "Neither";
-        //}
-        //return "Neither";
-
-        if (IP.Count(c => c == '.') == 3)
+        if (queryIP.Count(c => c == '.') == 3)
         {
-            return ValidIPv4(IP);
+            return ValidIPv4(queryIP);
         }
-        else if (IP.Count(c => c == ':') == 7)
+        else if (queryIP.Count(c => c == ':') == 7)
         {
-            return ValidIPv6(IP);
+            return ValidIPv6(queryIP);
         }
         else
         {
@@ -6601,7 +6609,8 @@ public class Solution
                 {
                     valid = true;
                     break;
-                } else if (prev > curr)
+                }
+                else if (prev > curr)
                 {
                     return false;
                 }
@@ -6615,6 +6624,24 @@ public class Solution
             }
         }
         return true;
+    }
+
+    /// <summary>
+    /// 961. N-Repeated Element in Size 2N Array
+    /// </summary>
+    /// <param name="nums"></param>
+    /// <returns></returns>
+    public int RepeatedNTimes(int[] nums)
+    {
+        ISet<int> found = new HashSet<int>();
+        foreach (int num in nums)
+        {
+            if (!found.Add(num))
+            {
+                return num;
+            }
+        }
+        return -1;
     }
 
     /// <summary>
@@ -6876,7 +6903,7 @@ public class Solution
 
         return merged;
     }
-    
+
     /// <summary>
     /// 1380.矩阵中的幸运数
     /// </summary>
@@ -6939,34 +6966,6 @@ public class Solution
         }
     }
 
-    /// <summary>
-    /// 面试题 08.03. 魔术索引
-    /// </summary>
-    /// <param name="nums"></param>
-    /// <returns></returns>
-    public int FindMagicIndex(int[] nums)
-    {
-        int right = nums.Length - 1;
-        const int left = 0;
-        return FindMagicIndexHelper(nums, left, right);
-
-        int FindMagicIndexHelper(int[] data, int leftIndex, int rightIndex)
-        {
-            if (leftIndex > rightIndex)
-            {
-                return -1;
-            }
-
-            int mid = (rightIndex - leftIndex) / 2 + leftIndex;
-            int leftAns = FindMagicIndexHelper(data, leftIndex, mid - 1);
-            if (leftAns != -1)
-            {
-                return leftAns;
-            }
-
-            return data[mid] == mid ? mid : FindMagicIndexHelper(data, mid + 1, rightIndex);
-        }
-    }
 
     /// <summary>
     /// 1486. XOR Operation in an Array.
@@ -6991,6 +6990,39 @@ public class Solution
                 _ => 0
             };
         }
+    }
+
+    /// <summary>
+    /// 1491. Average Salary Excluding the Minimum and Maximum Salary
+    /// </summary>
+    /// <param name="salary"></param>
+    /// <returns></returns>
+    public double Average(int[] salary)
+    {
+        int min = int.MaxValue, max = int.MinValue;
+        int sum = 0;
+        foreach (int item in salary)
+        {
+            sum += item;
+            max = Math.Max(max, item);
+            min = Math.Min(min, item);
+        }
+        return (sum - max - min) / (salary.Length - 2);
+    }
+
+    /// <summary>
+    /// 1523. Count Odd Numbers in an Interval Range
+    /// </summary>
+    /// <param name="low"></param>
+    /// <param name="high"></param>
+    /// <returns></returns>
+    public int CountOdds(int low, int high)
+    {
+        int PreSum(int num)
+        {
+            return (num + 1) >> 1;
+        }
+        return PreSum(high) - PreSum(low - 1);
     }
 
     /// <summary>
