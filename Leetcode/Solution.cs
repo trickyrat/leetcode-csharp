@@ -4613,6 +4613,19 @@ public class Solution
     }
 
     /// <summary>
+    /// 462. Minimum Moves to Equal Array Elements II
+    /// </summary>
+    /// <param name="nums"></param>
+    /// <returns></returns>
+    public int MinMove2(int[] nums)
+    {
+        Array.Sort(nums);
+        int n = nums.Length;
+        int mid = nums[n / 2];
+        return nums.Sum(x => Math.Abs(x - mid));
+    }
+
+    /// <summary>
     /// 463. IsLand Perimeter
     /// </summary>
     /// <param name="grid"></param>
@@ -4646,6 +4659,32 @@ public class Solution
         return island * 4 - neighbor * 2;
     }
 
+    /// <summary>
+    /// 467. Unique Substrings in Wraparound String
+    /// </summary>
+    /// <param name="p"></param>
+    /// <returns></returns>
+    public int FindSubstringInWraparoundString(string p)
+    {
+        int[] dp = new int[26];
+        int k = 0;
+        for (int i = 0; i < p.Length; ++i)
+        {
+            if (i > 0 && (p[i] - p[i - 1] + 26) % 26 == 1)
+            {
+                ++k;
+            }
+            else
+            {
+                k = 1;
+            }
+
+            dp[p[i] - 'a'] = Math.Max(dp[p[i] - 'a'], k);
+        }
+
+        return dp.Sum();
+    }
+    
     /// <summary>
     /// 468. Valid IP Address
     /// </summary>

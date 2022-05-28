@@ -2,6 +2,7 @@
 // The Trickyrat licenses this file to you under the MIT license.
 
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Leetcode
@@ -88,6 +89,36 @@ namespace Leetcode
             {
                 matrix[i] = matrix[i].Reverse().ToArray();
             }
+        }
+
+        /// <summary>
+        /// 面试题 17.11. Find Closest LCCI
+        /// </summary>
+        /// <param name="words"></param>
+        /// <param name="word1"></param>
+        /// <param name="word2"></param>
+        /// <returns></returns>
+        public int FindClosest(string[] words, string word1, string word2)
+        {
+            int ans = words.Length;
+            int index1 = -1, index2 = -1;
+            for (int i = 0; i < words.Length; i++)
+            {
+                string word = words[i];
+                if(word == word1)
+                {
+                    index1 = i;
+                }
+                else if(word == word2)
+                {
+                    index2 = i;
+                }
+                if(index1 >= 0 && index2 >= 0)
+                {
+                    ans = Math.Min(ans, Math.Abs(index1 - index2));
+                }
+            }
+            return ans;
         }
     }
 }

@@ -215,4 +215,26 @@ public static class Utilities
             return root;
         }
     }
+
+    public static TreeNode CreateTreeNodeWithDFS(List<int?> nums)
+    {
+        return DFS(nums);
+        TreeNode DFS(List<int?> dataList)
+        {
+            if (!dataList.Any())
+            {
+                return null;
+            }
+            if (dataList[0] is null)
+            {
+                dataList.RemoveAt(0);
+                return null;
+            }
+            TreeNode root = new TreeNode(dataList[0].Value);
+            dataList.RemoveAt(0);
+            root.left = DFS(dataList);
+            root.right = DFS(dataList);
+            return root;
+        }
+    }
 }
