@@ -7306,4 +7306,46 @@ public class Solution
         return ans;
     }
 
+    /// <summary>
+    /// 6078. Rearrange Characters to Make Target String
+    /// </summary>
+    /// <param name="s"></param>
+    /// <param name="target"></param>
+    /// <returns></returns>
+    public int RearrageCharacters(string s, string target)
+    {
+        Dictionary<char, int> sDic = new Dictionary<char, int>();
+        Dictionary<char, int> targetDic = new Dictionary<char, int>();
+        foreach (char ch in s)
+        {
+            if (sDic.ContainsKey(ch))
+            {
+                sDic[ch]++;
+            }
+            else
+            {
+                sDic.Add(ch, 1);
+            }
+        }
+        foreach (char ch in target)
+        {
+            if (targetDic.ContainsKey(ch))
+            {
+                targetDic[ch]++;
+            }
+            else
+            {
+                targetDic.Add(ch, 1);
+            }
+        }
+        int ans = int.MaxValue;
+        foreach (char ch in target)
+        {
+            int sValue = 0;
+            sDic.TryGetValue(ch, out sValue);
+            ans = Math.Min(ans, sValue / targetDic[ch]);
+        }
+        return ans;
+    }
+
 }
