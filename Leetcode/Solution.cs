@@ -1978,6 +1978,22 @@ public class Solution
     }
 
     /// <summary>
+    /// 53. Maximum Subarray
+    /// </summary>
+    /// <param name="nums"></param>
+    /// <returns></returns>
+    public int MaxSubArray(int[] nums)
+    {
+        int pre = 0, maxAns = nums[0];
+        foreach (int num in nums)
+        {
+            pre = Math.Max(pre + num, num);
+            maxAns = Math.Max(maxAns, pre);
+        }
+        return maxAns;
+    }
+
+    /// <summary>
     /// 54. Spiral Matrix
     /// </summary>
     public IList<int> SpiralOrder(int[][] matrix)
@@ -3953,18 +3969,14 @@ public class Solution
     /// <returns></returns>
     public bool ContainsDuplicate(int[] nums)
     {
-        Array.IndexOf(nums, 1);
-        Dictionary<int, int> dic = new Dictionary<int, int>();
+        ISet<int> set = new HashSet<int>();
         foreach (int item in nums)
         {
-            if (dic.ContainsKey(item))
+            if (!set.Add(item))
             {
                 return true;
             }
-
-            dic.Add(item, 1);
         }
-
         return false;
     }
 
