@@ -6760,6 +6760,29 @@ public class Solution
     }
 
     /// <summary>
+    /// 1022. Sum of Root To Leaf Binary Numbers
+    /// </summary>
+    /// <param name="root"></param>
+    /// <returns></returns>
+    public int SumRootToLeaf(TreeNode root)
+    {
+        int DFS(TreeNode node, int val)
+        {
+            if(node is null)
+            {
+                return 0;
+            }
+            val = (val << 1) | node.val;
+            if(node.left is null && node.right is null)
+            {
+                return val;
+            }
+            return DFS(node.left, val) + DFS(node.right, val);
+        }
+        return DFS(root, 0);
+    }
+
+    /// <summary>
     /// 1025. Divisor Game
     /// </summary>
     /// <param name="N"></param>
@@ -6995,7 +7018,6 @@ public class Solution
             return b != 0 ? Gcd(b, a % b) : a;
         }
     }
-
 
     /// <summary>
     /// 1486. XOR Operation in an Array.
