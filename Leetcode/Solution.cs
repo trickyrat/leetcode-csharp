@@ -7106,6 +7106,32 @@ public class Solution
     }
 
     /// <summary>
+    /// 1779. Find Nearest Point That Has the Same X or Y Coordinate
+    /// </summary>
+    /// <param name="x"></param>
+    /// <param name="y"></param>
+    /// <param name="points"></param>
+    /// <returns></returns>
+    public int NearestValidPoint(int x, int y, int[][] points)
+    {
+        int minDistance = int.MaxValue;
+        int ans = -1;
+        for (int i = 0; i < points.Length; i++)
+        {
+            if (points[i][0] == x || points[i][1] == y)
+            {
+                int distance = Math.Abs(points[i][0] - x) + Math.Abs(points[i][1] - y);
+                if (distance < minDistance)
+                {
+                    minDistance = distance;
+                    ans = i;
+                }
+            }
+        }
+        return ans;
+    }
+
+    /// <summary>
     /// 1791. 找出星型图的中心节点
     /// </summary>
     /// <param name="edges"></param>
