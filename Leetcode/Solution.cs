@@ -436,8 +436,7 @@ public class Solution
         {
             for (int j = pattern.Length - 1; j >= 0; j--)
             {
-                bool firstMatch = (i < text.Length
-                                   && (pattern[j] == text[i] || pattern[j] == '.'));
+                bool firstMatch = i < text.Length && (pattern[j] == text[i] || pattern[j] == '.');
                 if (j + 1 < pattern.Length && pattern[j + 1] == '*')
                 {
                     dp[i, j] = dp[i, j + 2] || firstMatch && dp[i + 1, j];
@@ -3611,38 +3610,41 @@ public class Solution
     /// </summary>
     /// <param name="dungeon">map</param>
     /// <returns></returns>
-    public int CalculateMinimumHP(int[,] dungeon)
+    public int CalculateMinimumHP(int[][] dungeon)
     {
-        if (dungeon == null || dungeon.GetLength(0) == 0 || dungeon.GetLength(1) == 0)
+        int m = dungeon.Length;
+        int n = dungeon[0].Length;
+        if (m == 0 || n == 0)
         {
             return 0;
         }
-
-        int m = dungeon.GetLength(0);
-        int n = dungeon.GetLength(1);
-        int[,] health = new int[m, n];
-        health[m - 1, n - 1] = Math.Max(1 - dungeon[m - 1, n - 1], 1);
+        int[][] health = new int[m][];
+        for(int i = 0; i < m; ++i)
+        {
+            health[i] = new int[n];
+        }
+        health[m - 1][n - 1] = Math.Max(1 - dungeon[m - 1][n - 1], 1);
         for (int i = m - 2; i >= 0; i--)
         {
-            health[i, n - 1] = Math.Max(health[i + 1, n - 1] - dungeon[i, n - 1], 1);
+            health[i][n - 1] = Math.Max(health[i + 1][n - 1] - dungeon[i][n - 1], 1);
         }
 
         for (int j = n - 2; j >= 0; j--)
         {
-            health[m - 1, j] = Math.Max(health[m - 1, j + 1] - dungeon[m - 1, j], 1);
+            health[m - 1][j] = Math.Max(health[m - 1][j + 1] - dungeon[m - 1][j], 1);
         }
 
         for (int i = m - 2; i >= 0; i--)
         {
             for (int j = n - 2; j >= 0; j--)
             {
-                int down = Math.Max(health[i + 1, j] - dungeon[i, j], 1);
-                int right = Math.Max(health[i, j + 1] - dungeon[i, j], 1);
-                health[i, j] = Math.Min(right, down);
+                int down = Math.Max(health[i + 1][j] - dungeon[i][j], 1);
+                int right = Math.Max(health[i][j + 1] - dungeon[i][j], 1);
+                health[i][j] = Math.Min(right, down);
             }
         }
 
-        return health[0, 0];
+        return health[0][0];
     }
 
     /// <summary>
@@ -3875,23 +3877,13 @@ public class Solution
     /// <param name="board"></param>
     /// <param name="words"></param>
     /// <returns></returns>
-    public IList<string> FindWords(char[,] board, string[] words)
+    public IList<string> FindWords(char[][] board, string[] words)
     {
-        IList<string> res = new List<string>();
-        TrieNode root = BuildTrie(words);
-        for (int i = 0; i < board.GetLength(0); i++)
+        void Dfs(char[][] dataBoard, int i, int j, TrieNode p, IList<string> list)
         {
-            for (int j = 0; j < board.GetLength(1); j++)
-            {
-                Dfs(board, i, j, root, res);
-            }
-        }
-
-        return res;
-
-        void Dfs(char[,] dataBoard, int i, int j, TrieNode p, IList<string> list)
-        {
-            char c = dataBoard[i, j];
+            char c = dataBoard[i][j];
+            int m = dataBoard.Length;
+            int n = dataBoard[0].Length;
             if (c == '#' || p.Get(c) == null)
             {
                 return;
@@ -3904,7 +3896,7 @@ public class Solution
                 p.Word = null;
             }
 
-            dataBoard[i, j] = '#';
+            dataBoard[i][j] = '#';
             if (i > 0)
             {
                 Dfs(dataBoard, i - 1, j, p, list);
@@ -3915,17 +3907,17 @@ public class Solution
                 Dfs(dataBoard, i, j - 1, p, list);
             }
 
-            if (i < dataBoard.GetLength(0) - 1)
+            if (i < m - 1)
             {
                 Dfs(dataBoard, i + 1, j, p, list);
             }
 
-            if (j < dataBoard.GetLength(1) - 1)
+            if (j < n - 1)
             {
                 Dfs(dataBoard, i, j + 1, p, list);
             }
 
-            dataBoard[i, j] = c;
+            dataBoard[i][j] = c;
         }
 
         TrieNode BuildTrie(string[] wordData)
@@ -3949,6 +3941,19 @@ public class Solution
 
             return node;
         }
+
+        IList<string> res = new List<string>();
+        TrieNode root = BuildTrie(words);
+        int m = board.Length, n = board[0].Length;
+        for (int i = 0; i < m; i++)
+        {
+            for (int j = 0; j < n; j++)
+            {
+                Dfs(board, i, j, root, res);
+            }
+        }
+
+        return res;
     }
 
     /// <summary>
@@ -4161,7 +4166,7 @@ public class Solution
         {
             if (nums[right] != 0)
             {
-                Utilities.Swap(nums, left, right);
+                (nums[left], nums[right]) = (nums[right], nums[left]);
                 left++;
             }
 
