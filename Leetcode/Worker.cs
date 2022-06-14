@@ -14,6 +14,7 @@ public class Worker : BackgroundService
 {
     private readonly ILogger _logger;
     private readonly IHost _host;
+    private int _exitCode = 0;
 
     public Worker(ILogger<Worker> logger
     , IHost host)
@@ -25,9 +26,20 @@ public class Worker : BackgroundService
 
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
-        while (!stoppingToken.IsCancellationRequested)
+        try
         {
-            _logger.LogInformation($"Worker running at: {DateTime.Now}" );
+            _logger.LogInformation($"Worker running at: {DateTime.Now}");
+            // Add your service here
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError("Exception: {0}", ex.Message);
+            _exitCode = -1;
+            throw;
+        }
+        finally 
+        {
+            Environment.ExitCode = _exitCode;    
             await _host.StopAsync(stoppingToken);
         }
     }
