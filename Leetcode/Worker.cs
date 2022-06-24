@@ -28,7 +28,7 @@ public class Worker : BackgroundService
     {
         try
         {
-            _logger.LogInformation($"Worker running at: {DateTime.Now}");
+            _logger.LogInformation("Worker running at: {Now}", DateTime.Now);
             // Add your service here
         }
         catch (Exception ex)
