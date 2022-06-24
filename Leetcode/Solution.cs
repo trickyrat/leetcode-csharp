@@ -1726,6 +1726,59 @@ public class Solution
     }
 
     /// <summary>
+    /// 40. Combination Sum II
+    /// </summary>
+    /// <param name="candidates"></param>
+    /// <param name="target"></param>
+    /// <returns></returns>
+    public IList<IList<int>> CombinationSum2(int[] candidates, int target)
+    {
+        List<int[]> freq = new List<int[]>();
+        IList<IList<int>> ans = new List<IList<int>>();
+        List<int> sequence = new List<int>();
+
+        Array.Sort(candidates);
+        foreach (int num in candidates)
+        {
+            int size = freq.Count;
+            if (freq.Count == 0 || num != freq[size - 1][0])
+            {
+                freq.Add(new int[] { num, 1 });
+            }
+            else
+            {
+                ++freq[size - 1][1];
+            }
+        }
+        DFS(0, target);
+        return ans;
+
+        void DFS(int pos, int rest)
+        {
+            if (rest == 0)
+            {
+                ans.Add(new List<int>(sequence));
+                return;
+            }
+            if (pos == freq.Count || rest < freq[pos][0])
+            {
+                return;
+            }
+            DFS(pos + 1, rest);
+            int most = Math.Min(rest / freq[pos][0], freq[pos][1]);
+            for (int i = 1; i <= most; i++)
+            {
+                sequence.Add(freq[pos][0]);
+                DFS(pos + 1, rest - i * freq[pos][0]);
+            }
+            for (int i = 1; i <= most; i++)
+            {
+                sequence.RemoveAt(sequence.Count - 1);
+            }
+        }
+    }
+
+    /// <summary>
     /// 41. First Missing Positive
     /// </summary>
     public int FirstMissingPositive(int[] nums)
