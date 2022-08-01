@@ -7034,6 +7034,20 @@ public class Solution
     }
 
     /// <summary>
+    /// 1374. Generate a String With Characters That Have Odd Counts
+    /// </summary>
+    /// <param name="n"></param>
+    /// <returns></returns>
+    public string GenerateTheString(int n)
+    {
+        if (n % 2 == 0)
+        {
+            return new string('a', n - 1) + "b";
+        }
+        return new string('a', n);
+    }
+
+    /// <summary>
     /// 1380.矩阵中的幸运数
     /// </summary>
     /// <param name="matrix"></param>
