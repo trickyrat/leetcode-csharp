@@ -7083,6 +7083,29 @@ public class Solution
     }
 
     /// <summary>
+    /// 1403. Minimum Subsequence in Non-Increasing Order
+    /// </summary>
+    /// <param name="nums"></param>
+    /// <returns></returns>
+    public IList<int> MinSubsequence(int[] nums)
+    {
+        Array.Sort(nums);
+        int total = nums.Sum();
+        IList<int> ans = new List<int>();
+        int curr = 0;
+        for (int i = nums.Length - 1; i >= 0; --i)
+        {
+            curr += nums[i];
+            ans.Add(nums[i]);
+            if(total - curr < curr)
+            {
+                break;
+            }
+        }
+        return ans;
+    }
+
+    /// <summary>
     /// 1447.最简分数
     /// </summary>
     /// <param name="n"></param>
