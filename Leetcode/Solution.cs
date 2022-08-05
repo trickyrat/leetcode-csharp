@@ -5375,6 +5375,36 @@ public class Solution
     }
 
     /// <summary>
+    /// 623. Add One Row to Tree
+    /// </summary>
+    /// <param name="root"></param>
+    /// <param name="val"></param>
+    /// <param name="depth"></param>
+    /// <returns></returns>
+    public TreeNode AddOneRow(TreeNode root, int val, int depth)
+    {
+        if (root is null)
+        {
+            return null;
+        }
+        if (depth == 1)
+        {
+            return new TreeNode(val, root, null);
+        }
+        if (depth == 2)
+        {
+            root.left = new TreeNode(val, root.left, null);
+            root.right = new TreeNode(val, null, root.right);
+        }
+        else
+        {
+            root.left = AddOneRow(root.left, val, depth - 1);
+            root.right = AddOneRow(root.right, val, depth - 1);
+        }
+        return root;
+    }
+
+    /// <summary>
     /// 653.两数之和 IV
     /// </summary>
     /// <param name="root"></param>
