@@ -7136,6 +7136,28 @@ public class Solution
     }
 
     /// <summary>
+    /// 1408. String Matching in an Array
+    /// </summary>
+    /// <param name="words"></param>
+    /// <returns></returns>
+    public IList<string> StringMatching(string[] words)
+    {
+        IList<string> res = new List<string>();
+        for (int i = 0; i < words.Length; i++)
+        {
+            for (int j = 0; j < words.Length; j++)
+            {
+                if (i != j && words[j].Contains(words[i]))
+                {
+                    res.Add(words[i]);
+                    break;
+                }
+            }
+        }
+        return res;
+    }
+
+    /// <summary>
     /// 1447.最简分数
     /// </summary>
     /// <param name="n"></param>
