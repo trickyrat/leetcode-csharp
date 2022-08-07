@@ -5405,6 +5405,45 @@ public class Solution
     }
 
     /// <summary>
+    /// 636. Exclusive Time of Functions
+    /// </summary>
+    /// <param name="n"></param>
+    /// <param name="logs"></param>
+    /// <returns></returns>
+    public int[] ExclusiveTime(int n, IList<string> logs)
+    {
+        Stack<int[]> stack = new Stack<int[]>();
+        int[] res = new int[n];
+        const string startCommand = "start";
+        foreach (string log in logs)
+        {
+            int firstColonIndex = log.IndexOf(':');
+            int lastColonIndex = log.LastIndexOf(':');
+            int index = int.Parse(log.Substring(0, firstColonIndex));
+            string type = log.Substring(firstColonIndex + 1, lastColonIndex - firstColonIndex - 1);
+            int timestamp = int.Parse(log.Substring(lastColonIndex + 1));
+            if (type == startCommand)
+            {
+                if (stack.Count > 0)
+                {
+                    res[stack.Peek()[0]] += timestamp - stack.Peek()[1];
+                }
+                stack.Push(new int[]{index, timestamp});
+            } 
+            else
+            {
+                int[] pair = stack.Pop();
+                res[pair[0]] += timestamp - pair[1] + 1;
+                if (stack.Count > 0)
+                {
+                    stack.Peek()[1] = timestamp + 1;
+                }
+            }
+        }
+        return res;
+    }
+
+    /// <summary>
     /// 653.两数之和 IV
     /// </summary>
     /// <param name="root"></param>
