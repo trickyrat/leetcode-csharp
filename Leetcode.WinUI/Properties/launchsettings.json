@@ -1,0 +1,10 @@
+﻿{
+    "profiles": {
+      "Leetcode.WinUI (Package)": {
+        "commandName": "MsixPackage"
+      },
+      "Leetcode.WinUI (Unpackaged)": {
+        "commandName": "Project"
+      }
+    }
+}
