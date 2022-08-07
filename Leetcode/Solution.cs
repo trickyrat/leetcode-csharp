@@ -5417,12 +5417,10 @@ public class Solution
         const string startCommand = "start";
         foreach (string log in logs)
         {
-            int firstColonIndex = log.IndexOf(':');
-            int lastColonIndex = log.LastIndexOf(':');
-            int index = int.Parse(log.Substring(0, firstColonIndex));
-            string type = log.Substring(firstColonIndex + 1, lastColonIndex - firstColonIndex - 1);
-            int timestamp = int.Parse(log.Substring(lastColonIndex + 1));
-            if (type == startCommand)
+            string[] data = log.Split(':');
+            int index = int.Parse(data[0]);
+            int timestamp = int.Parse(data[2]);
+            if (data[1] == startCommand)
             {
                 if (stack.Count > 0)
                 {
