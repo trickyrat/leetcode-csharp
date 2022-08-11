@@ -7195,6 +7195,42 @@ public class Solution
     }
 
     /// <summary>
+    /// 1417. Reformat The String
+    /// </summary>
+    /// <param name="s"></param>
+    /// <returns></returns>
+    public string Reformat(string s)
+    {
+        int sumDigit = 0;
+        foreach (char c in s)
+        {
+            if (char.IsDigit(c))
+            {
+                sumDigit++;
+            }
+        }
+        int sumAlpha = s.Length - sumDigit;
+        if(Math.Abs(sumDigit - sumAlpha) > 1)
+        {
+            return string.Empty;
+        }
+        bool flag = sumDigit > sumAlpha;
+        char[] arr = s.ToCharArray();
+        for (int i = 0, j = 1; i < arr.Length; i += 2)
+        {
+            if (char.IsDigit(arr[i]) != flag)
+            {
+                while (char.IsDigit(arr[j]) != flag)
+                {
+                    j += 2;
+                }
+                (arr[i], arr[j]) = (arr[j], arr[i]);
+            }
+        }
+        return new string(arr);
+    }
+
+    /// <summary>
     /// 1447.最简分数
     /// </summary>
     /// <param name="n"></param>
