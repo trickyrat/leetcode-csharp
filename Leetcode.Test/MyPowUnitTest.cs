@@ -22,7 +22,7 @@ public class MyPowUnitTest
     public void MultipleDataTest(double x, int n, double expected)
     {
         var actual = _solution.MyPow(x, n);
-        Assert.Equal(expected, actual);
+        Assert.Equal((decimal)expected, (decimal)actual);
     }
 }
 
