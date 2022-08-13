@@ -2002,31 +2002,23 @@ public class Solution
     /// <returns></returns>
     public double MyPow(double x, int n)
     {
-        // if (n == 0) return 1;
-        // if (n == Int32.MinValue)
-        // {
-        //     x = x * x;
-        //     n = n / 2;
-        // }
-        // if (n < 0)
-        // {
-        //     n = -n;
-        //     x = 1 / x;
-        // }
-        // return (n % 2 == 0) ? MyPow(x * x, n / 2) : x * MyPow(x * x, n / 2);
-
-        double res = 1.0;
-        for (int i = n; i != 0; i /= 2)
+        double QuickMul(double x, long N)
         {
-            if (i % 2 != 0)
+            double ans = 1.0d;
+            double x_contribute = x;
+            while (N > 0)
             {
-                res *= x;
+                if (N % 2 == 1)
+                {
+                    ans *= x_contribute;
+                }
+                x_contribute *= x_contribute;
+                N /= 2;
             }
-
-            x *= x;
+            return ans;
         }
-
-        return n < 0 ? 1 / res : res;
+        long N = n;
+        return N >= 0 ? QuickMul(x, N) : 1.0 / QuickMul(x, -N);
     }
 
     /// <summary>
@@ -5230,7 +5222,7 @@ public class Solution
     }
 
     /// <summary>
-    /// 589.N叉树的前序遍历
+    /// 589. N-ary Tree Preorder Traversal
     /// </summary>
     /// <param name="root"></param>
     /// <returns></returns>
@@ -5256,7 +5248,7 @@ public class Solution
     }
 
     /// <summary>
-    /// 590.N叉树的后序遍历
+    /// 590. N-ary Tree Postorder Traversal
     /// </summary>
     /// <param name="root"></param>
     /// <returns></returns>
