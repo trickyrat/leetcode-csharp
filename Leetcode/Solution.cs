@@ -5505,6 +5505,33 @@ public class Solution
     }
 
     /// <summary>
+    /// 654. Maximum Binary Tree
+    /// </summary>
+    /// <param name="nums"></param>
+    /// <returns></returns>
+    public TreeNode ConstructMaximumBinaryTree(int[] nums)
+    {
+        int n = nums.Length;
+        List<int> stack = new List<int>();
+        TreeNode[] trees = new TreeNode[n];
+        for (int i = 0; i < n; i++)
+        {
+            trees[i] = new TreeNode(nums[i]);
+            while (stack.Count > 0 && nums[i] > nums[stack[stack.Count - 1]])
+            {
+                trees[i].left = trees[stack[stack.Count - 1]];
+                stack.RemoveAt(stack.Count - 1);
+            }
+            if (stack.Count > 0)
+            {
+                trees[stack[stack.Count - 1]].right = trees[i];
+            }
+            stack.Add(i);
+        }
+        return trees[stack[0]];
+    }
+
+    /// <summary>
     /// 669. Trim a Binary Search Tree
     /// </summary>
     public TreeNode TrimBST(TreeNode root, int L, int R)
