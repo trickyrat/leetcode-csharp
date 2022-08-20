@@ -7277,6 +7277,48 @@ public class Solution
     }
 
     /// <summary>
+    /// 1455. Check If a Word Occurs As a Prefix of Any Word in a Sentence
+    /// </summary>
+    /// <param name="sentence"></param>
+    /// <param name="searchWord"></param>
+    /// <returns></returns>
+    public int IsPrefixOfWord(string sentence, string searchWord)
+    {
+        bool IsPrefix(string input, int start, int end, string target)
+        {
+            for (int i = 0; i < target.Length; i++)
+            {
+                if (start + i >= end || input[start + i] != target[i])
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        int n = sentence.Length, index = 1, start = 0, end = 0;
+        while (start < n)
+        {
+            while (end < n && sentence[end] != ' ')
+            {
+                end++;
+            }
+
+            if (IsPrefix(sentence, start, end, searchWord))
+            {
+                return index;
+            }
+
+            index++;
+            end++;
+            start = end;
+        }
+
+        return -1;
+    }
+
+    /// <summary>
     /// 1486. XOR Operation in an Array.
     /// </summary>
     /// <param name="n"></param>
