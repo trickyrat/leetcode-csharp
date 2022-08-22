@@ -2002,31 +2002,23 @@ public class Solution
     /// <returns></returns>
     public double MyPow(double x, int n)
     {
-        // if (n == 0) return 1;
-        // if (n == Int32.MinValue)
-        // {
-        //     x = x * x;
-        //     n = n / 2;
-        // }
-        // if (n < 0)
-        // {
-        //     n = -n;
-        //     x = 1 / x;
-        // }
-        // return (n % 2 == 0) ? MyPow(x * x, n / 2) : x * MyPow(x * x, n / 2);
-
-        double res = 1.0;
-        for (int i = n; i != 0; i /= 2)
+        double QuickMul(double x, long N)
         {
-            if (i % 2 != 0)
+            double ans = 1.0d;
+            double x_contribute = x;
+            while (N > 0)
             {
-                res *= x;
+                if (N % 2 == 1)
+                {
+                    ans *= x_contribute;
+                }
+                x_contribute *= x_contribute;
+                N /= 2;
             }
-
-            x *= x;
+            return ans;
         }
-
-        return n < 0 ? 1 / res : res;
+        long N = n;
+        return N >= 0 ? QuickMul(x, N) : 1.0 / QuickMul(x, -N);
     }
 
     /// <summary>
@@ -5230,7 +5222,7 @@ public class Solution
     }
 
     /// <summary>
-    /// 589.N叉树的前序遍历
+    /// 589. N-ary Tree Preorder Traversal
     /// </summary>
     /// <param name="root"></param>
     /// <returns></returns>
@@ -5256,7 +5248,7 @@ public class Solution
     }
 
     /// <summary>
-    /// 590.N叉树的后序遍历
+    /// 590. N-ary Tree Postorder Traversal
     /// </summary>
     /// <param name="root"></param>
     /// <returns></returns>
@@ -5510,6 +5502,33 @@ public class Solution
         }
 
         return false;
+    }
+
+    /// <summary>
+    /// 654. Maximum Binary Tree
+    /// </summary>
+    /// <param name="nums"></param>
+    /// <returns></returns>
+    public TreeNode ConstructMaximumBinaryTree(int[] nums)
+    {
+        int n = nums.Length;
+        List<int> stack = new List<int>();
+        TreeNode[] trees = new TreeNode[n];
+        for (int i = 0; i < n; i++)
+        {
+            trees[i] = new TreeNode(nums[i]);
+            while (stack.Count > 0 && nums[i] > nums[stack[stack.Count - 1]])
+            {
+                trees[i].left = trees[stack[stack.Count - 1]];
+                stack.RemoveAt(stack.Count - 1);
+            }
+            if (stack.Count > 0)
+            {
+                trees[stack[stack.Count - 1]].right = trees[i];
+            }
+            stack.Add(i);
+        }
+        return trees[stack[0]];
     }
 
     /// <summary>
@@ -7195,6 +7214,42 @@ public class Solution
     }
 
     /// <summary>
+    /// 1417. Reformat The String
+    /// </summary>
+    /// <param name="s"></param>
+    /// <returns></returns>
+    public string Reformat(string s)
+    {
+        int sumDigit = 0;
+        foreach (char c in s)
+        {
+            if (char.IsDigit(c))
+            {
+                sumDigit++;
+            }
+        }
+        int sumAlpha = s.Length - sumDigit;
+        if(Math.Abs(sumDigit - sumAlpha) > 1)
+        {
+            return string.Empty;
+        }
+        bool flag = sumDigit > sumAlpha;
+        char[] arr = s.ToCharArray();
+        for (int i = 0, j = 1; i < arr.Length; i += 2)
+        {
+            if (char.IsDigit(arr[i]) != flag)
+            {
+                while (char.IsDigit(arr[j]) != flag)
+                {
+                    j += 2;
+                }
+                (arr[i], arr[j]) = (arr[j], arr[i]);
+            }
+        }
+        return new string(arr);
+    }
+
+    /// <summary>
     /// 1447.最简分数
     /// </summary>
     /// <param name="n"></param>
@@ -7219,6 +7274,48 @@ public class Solution
         {
             return b != 0 ? Gcd(b, a % b) : a;
         }
+    }
+
+    /// <summary>
+    /// 1455. Check If a Word Occurs As a Prefix of Any Word in a Sentence
+    /// </summary>
+    /// <param name="sentence"></param>
+    /// <param name="searchWord"></param>
+    /// <returns></returns>
+    public int IsPrefixOfWord(string sentence, string searchWord)
+    {
+        bool IsPrefix(string input, int start, int end, string target)
+        {
+            for (int i = 0; i < target.Length; i++)
+            {
+                if (start + i >= end || input[start + i] != target[i])
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        int n = sentence.Length, index = 1, start = 0, end = 0;
+        while (start < n)
+        {
+            while (end < n && sentence[end] != ' ')
+            {
+                end++;
+            }
+
+            if (IsPrefix(sentence, start, end, searchWord))
+            {
+                return index;
+            }
+
+            index++;
+            end++;
+            start = end;
+        }
+
+        return -1;
     }
 
     /// <summary>

@@ -24,7 +24,7 @@ public class Worker : BackgroundService
     }
 
 
-    protected override async Task ExecuteAsync(CancellationToken stoppingToken)
+    protected async override Task ExecuteAsync(CancellationToken stoppingToken)
     {
         try
         {
