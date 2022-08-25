@@ -974,7 +974,8 @@ public class Solution
     /// </summary>
     public ListNode SwapPairs(ListNode head)
     {
-        ListNode dummy = new ListNode(0) {
+        ListNode dummy = new ListNode(0)
+        {
             next = head
         };
         ListNode curr = dummy;
@@ -1004,7 +1005,8 @@ public class Solution
             i = i.next;
         }
 
-        ListNode dummy = new ListNode(0) {
+        ListNode dummy = new ListNode(0)
+        {
             next = head
         };
         for (ListNode prev = dummy, tail = head; n >= k; n -= k)
@@ -2123,7 +2125,7 @@ public class Solution
     }
 
     /// <summary>
-    /// 56.合并区间
+    /// 56. Merge Intervals
     /// </summary>
     /// <param name="intervals"></param>
     /// <returns></returns>
@@ -2670,7 +2672,7 @@ public class Solution
     }
 
     /// <summary>
-    /// 77.组合
+    /// 77. Combinations
     /// </summary>
     /// <param name="n"></param>
     /// <param name="k"></param>
@@ -3031,7 +3033,8 @@ public class Solution
             }
 
             int mid = start + (end - start) / 2;
-            TreeNode root = new TreeNode(data[mid]) {
+            TreeNode root = new TreeNode(data[mid])
+            {
                 left = SubProcess(data, start, mid - 1),
                 right = SubProcess(data, mid + 1, end)
             };
@@ -3071,7 +3074,8 @@ public class Solution
 
             int mid = (l + r) / 2;
             TreeNode left = ConvertListToBST(l, mid - 1);
-            TreeNode node = new TreeNode(head.val) {
+            TreeNode node = new TreeNode(head.val)
+            {
                 left = left
             };
             head = head.next;
@@ -3155,7 +3159,7 @@ public class Solution
     }
 
     /// <summary>
-    /// 113. 路径总和
+    /// 113. Path Sum II
     /// </summary>
     /// <param name="root"></param>
     /// <param name="targetSum"></param>
@@ -3664,7 +3668,7 @@ public class Solution
             return 0;
         }
         int[][] health = new int[m][];
-        for(int i = 0; i < m; ++i)
+        for (int i = 0; i < m; ++i)
         {
             health[i] = new int[n];
         }
@@ -4059,7 +4063,7 @@ public class Solution
     }
 
     /// <summary>
-    /// 234.回文链表
+    /// 234.Palindrome Linked List
     /// </summary>
     /// <param name="head"></param>
     /// <returns></returns>
@@ -4145,7 +4149,7 @@ public class Solution
     }
 
     /// <summary>
-    /// 258.各位相加
+    /// 258. Add Digits
     /// </summary>
     /// <param name="num"></param>
     /// <returns></returns>
@@ -4294,7 +4298,7 @@ public class Solution
     }
 
     /// <summary>
-    /// 357. 统计各位数字都不同的数字个数
+    /// 357. Count Numbers with Unique Digits
     /// </summary>
     /// <param name="n"></param>
     /// <returns></returns>
@@ -4385,7 +4389,7 @@ public class Solution
     }
 
     /// <summary>
-    /// 386. 字典序排数
+    /// 386. Lexicographical Numbers
     /// </summary>
     /// <param name="n"></param>
     /// <returns></returns>
@@ -4477,7 +4481,7 @@ public class Solution
     }
 
     /// <summary>
-    /// 396. 旋转函数
+    /// 396. Rotate Function
     /// </summary>
     /// <param name="nums"></param>
     /// <returns></returns>
@@ -4786,7 +4790,7 @@ public class Solution
 
         return dp.Sum();
     }
-    
+
     /// <summary>
     /// 468. Valid IP Address
     /// </summary>
@@ -4876,7 +4880,7 @@ public class Solution
     }
 
     /// <summary>
-    /// 498.对角线遍历
+    /// 498. Diagonal Traverse
     /// </summary>
     /// <param name="matrix"></param>
     /// <returns></returns>
@@ -4924,7 +4928,7 @@ public class Solution
     }
 
     /// <summary>
-    /// 504.7进制数
+    /// 504. Base 7
     /// </summary>
     /// <param name="num"></param>
     /// <returns></returns>
@@ -4950,7 +4954,8 @@ public class Solution
         }
 
         string res = digits.ToString();
-        return string.Create(res.Length, res, (chars, state) => {
+        return string.Create(res.Length, res, (chars, state) =>
+        {
             state.AsSpan().CopyTo(chars);
             chars.Reverse();
         });
@@ -4980,7 +4985,7 @@ public class Solution
     }
 
     /// <summary>
-    /// 521.最长特殊序列
+    /// 521. Longest Uncommon Subsequence I
     /// </summary>
     /// <param name="a"></param>
     /// <param name="b"></param>
@@ -4991,7 +4996,7 @@ public class Solution
     }
 
     /// <summary>
-    /// 537.复数乘法
+    /// 537. Complex Number Multiplication
     /// </summary>
     /// <param name="num1"></param>
     /// <param name="num2"></param>
@@ -5008,7 +5013,7 @@ public class Solution
     }
 
     /// <summary>
-    /// 540.有序数组中的单一元素
+    /// 540. Single Element in a Sorted Array
     /// </summary>
     /// <param name="nums"></param>
     /// <returns></returns>
@@ -5093,7 +5098,7 @@ public class Solution
     }
 
     /// <summary>
-    /// 553.最优除法
+    /// 553. Optimal Division
     /// </summary>
     /// <param name="nums"></param>
     /// <returns></returns>
@@ -5275,7 +5280,7 @@ public class Solution
     }
 
     /// <summary>
-    /// 599.两个列表的最小索引和
+    /// 599. Minimum Index Sum of Two Lists
     /// </summary>
     /// <param name="list1"></param>
     /// <param name="list2"></param>
@@ -5418,8 +5423,8 @@ public class Solution
                 {
                     res[stack.Peek()[0]] += timestamp - stack.Peek()[1];
                 }
-                stack.Push(new int[]{index, timestamp});
-            } 
+                stack.Push(new int[] { index, timestamp });
+            }
             else
             {
                 int[] pair = stack.Pop();
@@ -5434,7 +5439,7 @@ public class Solution
     }
 
     /// <summary>
-    /// 653.两数之和 IV
+    /// 653. Two Sum IV
     /// </summary>
     /// <param name="root"></param>
     /// <param name="k"></param>
@@ -5532,6 +5537,53 @@ public class Solution
     }
 
     /// <summary>
+    /// 658. Find K Closest Elements
+    /// </summary>
+    /// <param name="arr"></param>
+    /// <param name="k"></param>
+    /// <param name="x"></param>
+    /// <returns></returns>
+    public IList<int> FindClosestElements(int[] arr, int k, int x)
+    {
+        int BinarySearch(int[] nums, int target)
+        {
+            int low = 0, high = nums.Length - 1;
+            while (low < high)
+            {
+                int mid = low + (high - low) / 2;
+                if (nums[mid] >= target)
+                {
+                    high = mid;
+                }
+                else
+                {
+                    low = mid + 1;
+                }
+            }
+            return low;
+        }
+        int right = BinarySearch(arr, x);
+        int left = right - 1;
+        int n = arr.Length;
+        while (k-- > 0)
+        {
+            if (left < 0)
+            {
+                right++;
+            }
+            else if (right >= n || x - arr[left] <= arr[right] - x)
+            {
+                left--;
+            }
+            else
+            {
+                right++;
+            }
+        }
+        return arr[(left + 1)..right];
+    }
+
+    /// <summary>
     /// 669. Trim a Binary Search Tree
     /// </summary>
     public TreeNode TrimBST(TreeNode root, int L, int R)
@@ -5623,7 +5675,7 @@ public class Solution
     }
 
     /// <summary>
-    /// 682.棒球比赛
+    /// 682. Baseball Game
     /// </summary>
     /// <param name="ops"></param>
     /// <returns></returns>
@@ -6207,7 +6259,7 @@ public class Solution
     }
 
     /// <summary>
-    /// 824. 山羊拉丁文
+    /// 824. Goat Latin
     /// </summary>
     /// <param name="sentence"></param>
     /// <returns></returns>
@@ -6239,7 +6291,7 @@ public class Solution
     }
 
     /// <summary>
-    /// 838.推多米诺
+    /// 838. Push Dominoes
     /// </summary>
     /// <param name="dominoes"></param>
     /// <returns></returns>
@@ -6352,7 +6404,7 @@ public class Solution
     }
 
     /// <summary>
-    /// 846. 一手顺子
+    /// 846. Hand of Straights
     /// </summary>
     /// <param name="hand"></param>
     /// <param name="groupSize"></param>
@@ -6631,7 +6683,7 @@ public class Solution
     }
 
     /// <summary>
-    /// 917.仅仅反转字母
+    /// 917. Reverse Only Letters
     /// </summary>
     /// <param name="s"></param>
     /// <returns></returns>
@@ -6930,12 +6982,12 @@ public class Solution
     {
         int DFS(TreeNode node, int val)
         {
-            if(node is null)
+            if (node is null)
             {
                 return 0;
             }
             val = (val << 1) | node.val;
-            if(node.left is null && node.right is null)
+            if (node.left is null && node.right is null)
             {
                 return val;
             }
@@ -7134,7 +7186,7 @@ public class Solution
     }
 
     /// <summary>
-    /// 1380.矩阵中的幸运数
+    /// 1380. Lucky Numbers in a Matrix
     /// </summary>
     /// <param name="matrix"></param>
     /// <returns></returns>
@@ -7183,7 +7235,7 @@ public class Solution
         {
             curr += nums[i];
             ans.Add(nums[i]);
-            if(total - curr < curr)
+            if (total - curr < curr)
             {
                 break;
             }
@@ -7229,7 +7281,7 @@ public class Solution
             }
         }
         int sumAlpha = s.Length - sumDigit;
-        if(Math.Abs(sumDigit - sumAlpha) > 1)
+        if (Math.Abs(sumDigit - sumAlpha) > 1)
         {
             return string.Empty;
         }
@@ -7250,7 +7302,7 @@ public class Solution
     }
 
     /// <summary>
-    /// 1447.最简分数
+    /// 1447. Simplified Fractions
     /// </summary>
     /// <param name="n"></param>
     /// <returns></returns>
@@ -7334,7 +7386,8 @@ public class Solution
 
         int SumXor(int num)
         {
-            return (num % 4) switch {
+            return (num % 4) switch
+            {
                 0 => num,
                 1 => 1,
                 2 => num + 1,
@@ -7377,7 +7430,7 @@ public class Solution
     }
 
     /// <summary>
-    /// 1672. 最富有客户的资产总量
+    /// 1672. Richest Customer Wealth
     /// </summary>
     /// <param name="accounts"></param>
     /// <returns></returns>
@@ -7413,7 +7466,7 @@ public class Solution
     }
 
     /// <summary>
-    /// 1791. 找出星型图的中心节点
+    /// 1791. Find Center of Star Graph
     /// </summary>
     /// <param name="edges"></param>
     /// <returns></returns>
@@ -7439,7 +7492,7 @@ public class Solution
     }
 
     /// <summary>
-    /// 1984.学生分数的最小差值
+    /// 1984. Minimum Difference Between Highest and Lowest of K Scores
     /// </summary>
     /// <param name="nums"></param>
     /// <param name="k"></param>
@@ -7458,7 +7511,7 @@ public class Solution
     }
 
     /// <summary>
-    /// 1991.找到数组中间位置
+    /// 1991. Find the Middle Index in Array
     /// </summary>
     /// <param name="nums"></param>
     /// <returns></returns>
@@ -7480,7 +7533,7 @@ public class Solution
     }
 
     /// <summary>
-    /// 1995. 统计特殊四元组 
+    /// 1995. Count Special Quadruplets 
     /// </summary>
     /// <param name="nums"></param>
     /// <returns></returns>
@@ -7518,7 +7571,7 @@ public class Solution
     }
 
     /// <summary>
-    /// 2006.差的绝对值为k的数对数目
+    /// 2006. Count Number of Pairs With Absolute Difference K
     /// </summary>
     /// <param name="nums"></param>
     /// <param name="k"></param>
@@ -7543,7 +7596,7 @@ public class Solution
     }
 
     /// <summary>
-    /// 2016.增量元素之间的最大差值
+    /// 2016. Maximum Difference Between Increasing Elements
     /// </summary>
     /// <param name="nums"></param>
     /// <returns></returns>
@@ -7567,7 +7620,7 @@ public class Solution
     }
 
     /// <summary>
-    /// 2044. 统计按位或能得到最大值的子集数目
+    /// 2044. Count Number of Maximum Bitwise-OR Subsets
     /// </summary>
     /// <param name="nums"></param>
     /// <returns></returns>
@@ -7600,7 +7653,7 @@ public class Solution
     }
 
     /// <summary>
-    /// 2055.蜡烛之间的盘子
+    /// 2055. Plates Between Candles
     /// </summary>
     /// <param name="s"></param>
     /// <param name="queries"></param>
