@@ -21,17 +21,17 @@ public class AddOneRowUnitTest
     {
         yield return new object[]
         {
-            Utilities.CreateTreeNodeWithBFS(new List<int?>{ 4,2,6,3,1,5}),
+            Utilities.CreateTreeNodeIteratively(new List<int?>{ 4,2,6,3,1,5}),
             1,
             2,
-            Utilities.CreateTreeNodeWithBFS(new List<int?>{ 4,1,1,2,null,null,6,3,1,5})
+            Utilities.CreateTreeNodeIteratively(new List<int?>{ 4,1,1,2,null,null,6,3,1,5})
         };
         yield return new object[]
         {
-            Utilities.CreateTreeNodeWithBFS(new List<int?>{4,2,null,3,1}),
+            Utilities.CreateTreeNodeIteratively(new List<int?>{4,2,null,3,1}),
             1,
             3,
-            Utilities.CreateTreeNodeWithBFS(new List<int?>{4,2,null,1,1,3,null,null,1 })
+            Utilities.CreateTreeNodeIteratively(new List<int?>{4,2,null,1,1,3,null,null,1 })
         };
     }
 

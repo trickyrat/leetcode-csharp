@@ -2,13 +2,15 @@
 // The Trickyrat licenses this file to you under the MIT license.
 
 using System;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Leetcode.DataStructure;
 
 /// <summary>
 /// Definition for singly-linked list.
 /// </summary>
-public class ListNode : IEquatable<ListNode>
+public class ListNode
 {
     public int val;
     public ListNode next;
@@ -20,10 +22,14 @@ public class ListNode : IEquatable<ListNode>
         this.next = next;
     }
 
-    public bool Equals(ListNode other)
+}
+
+public class ListNodeComparer : IEqualityComparer<ListNode>
+{
+    public bool Equals(ListNode x, ListNode y)
     {
-        var sentinel1 = this;
-        var sentinel2 = other;
+        var sentinel1 = x;
+        var sentinel2 = y;
         while (sentinel1 is not null && sentinel2 is not null)
         {
             if (sentinel1.val != sentinel2.val)
@@ -35,4 +41,6 @@ public class ListNode : IEquatable<ListNode>
         }
         return true;
     }
+    public int GetHashCode([DisallowNull] ListNode obj) => throw new NotImplementedException();
 }
+

@@ -43,6 +43,6 @@ public class AddTwoNumbersUnitTest
     public void Test(ListNode l1, ListNode l2, ListNode expected)
     {
         ListNode actual = _solution.AddTwoNumbers(l1, l2);
-        Assert.True(expected.Equals(actual));
+        Assert.Equal(expected, actual, new ListNodeComparer());
     }
 }

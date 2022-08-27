@@ -26,12 +26,12 @@ public class ConstructMaximumBinaryTreeUnitTest
         yield return new object[]
         {
             new int[]{ 3, 2, 1, 6, 0, 5 },
-            Utilities.CreateTreeNodeWithBFS(new List<int?> { 6, 3, 5, null, 2, 0, null, null, 1 })
+            Utilities.CreateTreeNodeIteratively(new List<int?> { 6, 3, 5, null, 2, 0, null, null, 1 })
         };
         yield return new object[]
         {
             new int[]{ 3, 2, 1 },
-            Utilities.CreateTreeNodeWithBFS(new List<int?> { 3,null,2,null,1 })
+            Utilities.CreateTreeNodeIteratively(new List<int?> { 3,null,2,null,1 })
         };
     }
 
