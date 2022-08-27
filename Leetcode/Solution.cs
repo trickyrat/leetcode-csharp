@@ -5584,6 +5584,29 @@ public class Solution
     }
 
     /// <summary>
+    /// 662. Maximum Width of Binary Tree
+    /// </summary>
+    /// <param name="root"></param>
+    /// <returns></returns>
+    public int WidthOfBinaryTree(TreeNode root)
+    {
+        Dictionary<int, int> levelMin = new Dictionary<int, int>();
+        int DFS(TreeNode node, int depth, int index)
+        {
+            if (node is null)
+            {
+                return 0;
+            }
+            levelMin.TryAdd(depth, index);
+            return Math.Max(index - levelMin[depth] + 1, 
+                Math.Max(
+                    DFS(node.left, depth + 1, index * 2), 
+                    DFS(node.right, depth + 1, index * 2 + 1)));
+        }
+        return DFS(root, 1, 1);
+    }
+
+    /// <summary>
     /// 669. Trim a Binary Search Tree
     /// </summary>
     public TreeNode TrimBST(TreeNode root, int L, int R)
