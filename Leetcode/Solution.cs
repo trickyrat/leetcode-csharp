@@ -6097,6 +6097,43 @@ public class Solution
     }
 
     /// <summary>
+    /// 793. Preimage Size of Factorial Zeroes Function
+    /// </summary>
+    /// <param name="k"></param>
+    /// <returns></returns>
+    public int PreimageSizeFZF(int k)
+    {
+        long Zeta(long x)
+        {
+            long res = 0;
+            while (x != 0)
+            {
+                res += x / 5;
+                x /= 5;
+            }
+            return res;
+        }
+        long Nx(int k)
+        {
+            long left = 0, right = 5L * k;
+            while (left <= right)
+            {
+                long mid = (left + right) / 2;
+                if (Zeta(mid) < k)
+                {
+                    left = mid + 1;
+                }
+                else
+                {
+                    right = mid - 1;
+                }
+            }
+            return right + 1;
+        }
+        return (int)(Nx(k + 1) - Nx(k));
+    }
+
+    /// <summary>
     /// 796. Rotate String
     /// </summary>
     /// <param name="A"></param>
