@@ -157,8 +157,8 @@ public static class Utilities
                 return null;
             }
             TreeNode root = new TreeNode(data[index].Value);
-            root.left = CreateNode(nums, 2 * index + 1);
-            root.right = CreateNode(nums, 2 * index + 2);
+            root.left = CreateNode(data, 2 * index + 1);
+            root.right = CreateNode(data, 2 * index + 2);
             return root;
         }
         return CreateNode(nums, 0);
