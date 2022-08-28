@@ -15,8 +15,8 @@ public class CodecUnitTest
     {
         yield return new object[]
         {
-            Utilities.CreateTreeNodeWithBFS(new List<int?> { 2, 1, 3 }),
-            Utilities.CreateTreeNodeWithBFS(new List<int?> { 2, 1, 3 })
+            Utilities.CreateTreeNodeIteratively(new List<int?> { 2, 1, 3 }),
+            Utilities.CreateTreeNodeIteratively(new List<int?> { 2, 1, 3 })
         };
         yield return new object[]
        {

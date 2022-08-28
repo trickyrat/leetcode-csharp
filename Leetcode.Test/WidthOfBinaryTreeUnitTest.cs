@@ -8,37 +8,41 @@ using Leetcode.DataStructure;
 using Xunit;
 
 namespace Leetcode.Test;
-
-public class FindTargetUnitTest
+public class WidthOfBinaryTreeUnitTest
 {
     private readonly Solution _solution;
-    public FindTargetUnitTest()
+
+    public WidthOfBinaryTreeUnitTest()
     {
         _solution = new Solution();
     }
+
     public static IEnumerable<object[]> GetData()
     {
         yield return new object[]
         {
-            Utilities.CreateTreeNodeIteratively(new List<int?>{ 5, 3, 6, 2, 4, null, 7 }),
-            9,
-            true
+            Utilities.CreateTreeNodeIteratively(new List<int?>{ 1,3,2,5,3,null,9}),
+            4
         };
         yield return new object[]
-        {
-            Utilities.CreateTreeNodeIteratively(new List<int?>{ 5, 3, 6, 2, 4, null, 7 }),
-            28,
-            false
-        };
+       {
+            Utilities.CreateTreeNodeIteratively(new List<int?>{ 1,3,2,5,null,null,9,6,null,7}),
+            7
+       };
+        yield return new object[]
+       {
+            Utilities.CreateTreeNodeIteratively(new List<int?>{ 1,3,2,5}),
+            2
+       };
     }
-
 
     [Theory]
     [MemberData(nameof(GetData))]
-    public void Test(TreeNode root, int target, bool expected)
+    public void MultipleDataTest(TreeNode root, int expected)
     {
-        
-        bool actual = _solution.FindTarget(root, target);
+        var actual = _solution.WidthOfBinaryTree(root);
         Assert.Equal(expected, actual);
     }
 }
+
+

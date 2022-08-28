@@ -46,6 +46,6 @@ public class RemoveNthFromEndUnitTest
     {
         
         ListNode actual = _solution.RemoveNthFromEnd(input, n);
-        Assert.Equal(expected, actual);
+        Assert.Equal(expected, actual, new ListNodeComparer());
     }
 }

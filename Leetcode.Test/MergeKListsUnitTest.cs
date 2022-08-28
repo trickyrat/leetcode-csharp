@@ -45,8 +45,7 @@ public class MergeKListsUnitTest
     [MemberData(nameof(GetData))]
     public void MultipleDataTest(ListNode[] lists, ListNode expected)
     {
-        
         var actual = _solution.MergeKLists(lists);
-        Assert.Equal(expected, actual);
+        Assert.Equal(expected, actual, new ListNodeComparer());
     }
 }

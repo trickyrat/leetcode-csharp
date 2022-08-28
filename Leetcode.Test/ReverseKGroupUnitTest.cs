@@ -40,6 +40,6 @@ public class ReverseKGroupUnitTest
     public void MultipleDataTest(ListNode head, int k, ListNode expected)
     {
         ListNode actual = _solution.ReverseKGroup(head, k);
-        Assert.Equal(expected, actual);
+        Assert.Equal(expected, actual, new ListNodeComparer());
     }
 }

@@ -35,8 +35,7 @@ public class MiddleNodeUnitTest
     [MemberData(nameof(GetData))]
     public void Test_Input_Even_Data_Should_OK(ListNode input, ListNode expected)
     {
-        
         ListNode actual = _solution.MiddleNode(input);
-        Assert.True(expected.Equals(actual));
+        Assert.Equal(expected, actual, new ListNodeComparer());
     }
 }

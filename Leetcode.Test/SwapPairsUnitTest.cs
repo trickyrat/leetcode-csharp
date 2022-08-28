@@ -43,6 +43,6 @@ public class SwapPairsUnitTest
     public void MultipleDataTest(ListNode head, ListNode expected)
     {
         ListNode actual = _solution.SwapPairs(head);
-        Assert.Equal(expected, actual);
+        Assert.Equal(expected, actual, new ListNodeComparer());
     }
 }
