@@ -7431,6 +7431,24 @@ public class Solution
     }
 
     /// <summary>
+    /// 1470. Shuffle the Array
+    /// </summary>
+    /// <param name="nums"></param>
+    /// <param name="n"></param>
+    /// <returns></returns>
+    public int[] Shuffle(int[] nums, int n)
+    {
+        int[] res = new int[n * 2];
+        for (int i = 0; i < n; ++i)
+        {
+            res[2 * i] = nums[i];
+            res[2 * i + 1] = nums[i + n];
+        }
+
+        return res;
+    }
+
+    /// <summary>
     /// 1486. XOR Operation in an Array.
     /// </summary>
     /// <param name="n"></param>
