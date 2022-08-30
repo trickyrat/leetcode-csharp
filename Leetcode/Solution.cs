@@ -7034,6 +7034,38 @@ public class Solution
     }
 
     /// <summary>
+    /// 998. Maximum Binary Tree II
+    /// </summary>
+    /// <param name="root"></param>
+    /// <param name="val"></param>
+    /// <returns></returns>
+    public TreeNode InsertIntoMaxTree(TreeNode root, int val)
+    {
+        TreeNode parent = null;
+        TreeNode curr = root;
+        while (curr != null)
+        {
+            if (val > curr.val)
+            {
+                if (parent is null)
+                {
+                    return new TreeNode(val, root, null);
+                }
+                TreeNode node = new TreeNode(val, curr, null);
+                parent.right = node;
+                return root;
+            }
+            else
+            {
+                parent = curr;
+                curr = curr.right;
+            }
+        }
+        parent.right = new TreeNode(val);
+        return root;
+    }
+
+    /// <summary>
     /// 1022. Sum of Root To Leaf Binary Numbers
     /// </summary>
     /// <param name="root"></param>
