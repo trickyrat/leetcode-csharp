@@ -7503,6 +7503,30 @@ public class Solution
     }
 
     /// <summary>
+    /// 1475. Final Prices With a Special Discount in a Shop
+    /// </summary>
+    /// <param name="prices"></param>
+    /// <returns></returns>
+    public int[] FinalPrices(int[] prices)
+    {
+        int n = prices.Length;
+        int[] res = new int[n];
+        Stack<int> stack = new Stack<int>();
+        for (int i = n - 1; i >= 0; --i)
+        {
+            while (stack.Count > 0 && stack.Peek() > prices[i])
+            {
+                stack.Pop();
+            }
+
+            res[i] = stack.Count == 0 ? prices[i] : prices[i] - stack.Peek();
+            stack.Push(prices[i]);
+        }
+
+        return res;
+    }
+
+    /// <summary>
     /// 1486. XOR Operation in an Array.
     /// </summary>
     /// <param name="n"></param>
