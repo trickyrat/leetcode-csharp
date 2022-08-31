@@ -6872,6 +6872,28 @@ public class Solution
     }
 
     /// <summary>
+    /// 946. Validate Stack Sequences
+    /// </summary>
+    /// <param name="pushed"></param>
+    /// <param name="popped"></param>
+    /// <returns></returns>
+    public bool ValidateStackSequences(int[] pushed, int[] popped)
+    {
+        Stack<int> stack = new Stack<int>();
+        int n = pushed.Length;
+        for (int i = 0, j = 0; i < n; ++i)
+        {
+            stack.Push(pushed[i]);
+            while (stack.Count > 0 && stack.Peek() == popped[j])
+            {
+                stack.Pop();
+                ++j;
+            }
+        }
+        return stack.Count == 0;
+    }
+
+    /// <summary>
     /// 953. Verifying an Alien Dictionary
     /// </summary>
     /// <param name="words"></param>
@@ -7031,6 +7053,38 @@ public class Solution
         }
 
         return ans;
+    }
+
+    /// <summary>
+    /// 998. Maximum Binary Tree II
+    /// </summary>
+    /// <param name="root"></param>
+    /// <param name="val"></param>
+    /// <returns></returns>
+    public TreeNode InsertIntoMaxTree(TreeNode root, int val)
+    {
+        TreeNode parent = null;
+        TreeNode curr = root;
+        while (curr != null)
+        {
+            if (val > curr.val)
+            {
+                if (parent is null)
+                {
+                    return new TreeNode(val, root, null);
+                }
+                TreeNode node = new TreeNode(val, curr, null);
+                parent.right = node;
+                return root;
+            }
+            else
+            {
+                parent = curr;
+                curr = curr.right;
+            }
+        }
+        parent.right = new TreeNode(val);
+        return root;
     }
 
     /// <summary>
@@ -7428,6 +7482,24 @@ public class Solution
         }
 
         return -1;
+    }
+
+    /// <summary>
+    /// 1470. Shuffle the Array
+    /// </summary>
+    /// <param name="nums"></param>
+    /// <param name="n"></param>
+    /// <returns></returns>
+    public int[] Shuffle(int[] nums, int n)
+    {
+        int[] res = new int[n * 2];
+        for (int i = 0; i < n; ++i)
+        {
+            res[2 * i] = nums[i];
+            res[2 * i + 1] = nums[i + n];
+        }
+
+        return res;
     }
 
     /// <summary>
