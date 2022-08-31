@@ -6872,6 +6872,28 @@ public class Solution
     }
 
     /// <summary>
+    /// 946. Validate Stack Sequences
+    /// </summary>
+    /// <param name="pushed"></param>
+    /// <param name="popped"></param>
+    /// <returns></returns>
+    public bool ValidateStackSequences(int[] pushed, int[] popped)
+    {
+        Stack<int> stack = new Stack<int>();
+        int n = pushed.Length;
+        for (int i = 0, j = 0; i < n; ++i)
+        {
+            stack.Push(pushed[i]);
+            while (stack.Count > 0 && stack.Peek() == popped[j])
+            {
+                stack.Pop();
+                ++j;
+            }
+        }
+        return stack.Count == 0;
+    }
+
+    /// <summary>
     /// 953. Verifying an Alien Dictionary
     /// </summary>
     /// <param name="words"></param>

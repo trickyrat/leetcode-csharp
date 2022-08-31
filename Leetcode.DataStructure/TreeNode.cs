@@ -44,24 +44,20 @@ public class TreeNodeComparer : IEqualityComparer<TreeNode>
         {
             TreeNode node1 = q1.Dequeue();
             TreeNode node2 = q2.Dequeue();
-            if(node1.val != node2.val)
+            if (node1.val != node2.val)
             {
                 return false;
             }
             TreeNode left1 = node1.left, right1 = node1.right, left2 = node2.left, right2 = node2.right;
-            if(left1 is null ^ left2 is  null)
+            if ((left1 is null ^ left2 is null) || (right1 is null ^ right2 is null))
             {
                 return false;
             }
-            if(right1 is null ^ right2 is null)
-            {
-                return false;
-            }
-            if(left1 is not null)
+            if (left1 is not null)
             {
                 q1.Enqueue(left1);
             }
-            if(right1 is not null)
+            if (right1 is not null)
             {
                 q1.Enqueue(right1);
             }
