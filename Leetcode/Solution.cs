@@ -5439,6 +5439,26 @@ public class Solution
     }
 
     /// <summary>
+    /// 646. Maximum Length of Pair Chain
+    /// </summary>
+    /// <param name="pairs"></param>
+    /// <returns></returns>
+    public int FindLongestChain(int[][] pairs)
+    {
+        Array.Sort(pairs, (a, b) => a[1] - b[1]);
+        int curr = int.MinValue, res = 0;
+        foreach (int[] pair in pairs)
+        {
+            if (curr < pair[0])
+            {
+                curr = pair[1];
+                res++;
+            }
+        }
+        return res;
+    }
+
+    /// <summary>
     /// 653. Two Sum IV
     /// </summary>
     /// <param name="root"></param>
