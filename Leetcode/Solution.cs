@@ -5734,6 +5734,37 @@ public class Solution
     }
 
     /// <summary>
+    /// 687. Longest Univalue Path
+    /// </summary>
+    /// <param name="root"></param>
+    /// <returns></returns>
+    public int LongestUnivaluePath(TreeNode root)
+    {
+        int res = 0;
+        int DFS(TreeNode node)
+        {
+            if (node is null)
+            {
+                return 0;
+            }
+            int left = DFS(node.left), right = DFS(node.right);
+            int left1 = 0, right1 = 0;
+            if (node.left is not null && node.left.val == node.val)
+            {
+                left1 = left + 1;
+            }
+            if (node.right is not null && node.right.val == node.val)
+            {
+                right1 = right + 1;
+            }
+            res = Math.Max(res, left1 + right1);
+            return Math.Max(left1, right1);
+        }
+        DFS(root);
+        return res;
+    }
+
+    /// <summary>
     /// 695. Max Area of Island
     /// </summary>
     /// <param name="grid"></param>
