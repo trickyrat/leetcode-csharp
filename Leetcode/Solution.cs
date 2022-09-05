@@ -5459,6 +5459,41 @@ public class Solution
     }
 
     /// <summary>
+    /// 652. Find Duplicate Subtrees
+    /// </summary>
+    /// <param name="root"></param>
+    /// <returns></returns>
+    public IList<TreeNode> FindDuplicateSubtrees(TreeNode root)
+    {
+        Dictionary<string, (TreeNode, int)> seen = new Dictionary<string, (TreeNode, int)>();
+        HashSet<TreeNode> repeat = new HashSet<TreeNode>();
+        int index = 0;
+        int DFS(TreeNode node)
+        {
+            if(node is null)
+            {
+                return 0;
+            }
+            (int, int, int) triple = (node.val, DFS(node.left), DFS(node.right));
+            string key = triple.ToString();
+            if (seen.ContainsKey(key))
+            {
+                (TreeNode, int) pair = seen[key];
+                repeat.Add(pair.Item1);
+                return pair.Item2;
+            }
+            else
+            {
+                seen.Add(key, (node, ++index));
+                return index;
+            }
+        }
+
+        DFS(root);
+        return new List<TreeNode>(repeat);
+    }
+
+    /// <summary>
     /// 653. Two Sum IV
     /// </summary>
     /// <param name="root"></param>
