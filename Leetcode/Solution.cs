@@ -7637,6 +7637,50 @@ public class Solution
     }
 
     /// <summary>
+    /// 1582. Special Positions in a Binary Matrix
+    /// </summary>
+    /// <param name="mat"></param>
+    /// <returns></returns>
+    public int NumSpecial(int[][] mat)
+    {
+        int row = mat.Length, col = mat[0].Length;
+        for (int i = 0; i < row; i++)
+        {
+            int count = 0;
+            for (int j = 0; j < col; j++)
+            {
+                if (mat[i][j] == 1)
+                {
+                    count++;
+                }
+            }
+            if(i ==  0)
+            {
+                count--;
+            }
+            if(count > 0)
+            {
+                for (int j = 0; j < col; j++)
+                {
+                    if (mat[i][j] == 1)
+                    {
+                        mat[0][j] += count;
+                    }
+                }
+            }
+        }
+        int sum = 0;
+        foreach (var item in mat[0])
+        {
+            if (item == 1)
+            {
+                sum++;
+            }
+        }
+        return sum;
+    }
+
+    /// <summary>
     /// 1672. Richest Customer Wealth
     /// </summary>
     /// <param name="accounts"></param>
