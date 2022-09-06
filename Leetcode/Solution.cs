@@ -7746,6 +7746,60 @@ public class Solution
     }
 
     /// <summary>
+    /// 1592. Rearrange Spaces Between Words
+    /// </summary>
+    /// <param name="text"></param>
+    /// <returns></returns>
+    public string ReorderSpaces(string text)
+    {
+        int n = text.Length;
+        int whitespceCount = n;
+        string[] words = text.Trim().Split(" ");
+        int wordCount = 0;
+        foreach (string word in words)
+        {
+            if (word.Length > 0)
+            {
+                whitespceCount -= word.Length;
+                wordCount++;
+            }
+        }
+        StringBuilder sb = new StringBuilder();
+        if (words.Length == 1)
+        {
+            sb.Append(words[0]);
+            for (int i = 0; i < whitespceCount; ++i)
+            {
+                sb.Append(' ');
+            }
+            return sb.ToString();
+        }
+
+        int spacePerCount = whitespceCount / (wordCount - 1);
+        int restSpaceCount = whitespceCount % (wordCount - 1);
+        for (int i = 0; i < words.Length; i++)
+        {
+            if (words[i].Length == 0)
+            {
+                continue;
+            }
+            if (sb.Length > 0)
+            {
+                for (int j = 0; j < spacePerCount; ++j)
+                {
+                    sb.Append(' ');
+                }
+            }
+            sb.Append(words[i]);
+        }
+        for (int i = 0; i < restSpaceCount; ++i)
+        {
+            sb.Append(' ');
+        }
+        return sb.ToString();
+    }
+
+    /// <summary>
     /// 1672. Richest Customer Wealth
     /// </summary>
     /// <param name="accounts"></param>
