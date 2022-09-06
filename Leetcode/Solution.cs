@@ -6437,6 +6437,36 @@ public class Solution
     }
 
     /// <summary>
+    /// 828. Count Unique Characters of All Substrings of a Given String
+    /// </summary>
+    /// <param name="s"></param>
+    /// <returns></returns>
+    public int UniqueLetterString(string s)
+    {
+        Dictionary<char, IList<int>> index = new Dictionary<char, IList<int>>();
+        for (int i = 0; i < s.Length; i++)
+        {
+            char c = s[i];
+            if (!index.ContainsKey(c))
+            {
+                index.Add(c, new List<int> { -1 });
+            }
+            index[c].Add(i);
+        }
+        int res = 0;
+        foreach (var pair in index)
+        {
+            var list = pair.Value;
+            list.Add(s.Length);
+            for (int i = 1; i < list.Count - 1; i++)
+            {
+                res += (list[i] - list[i - 1]) * (list[i + 1] - list[i]);
+            }
+        }
+        return res;
+    }
+
+    /// <summary>
     /// 838. Push Dominoes
     /// </summary>
     /// <param name="dominoes"></param>
