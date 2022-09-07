@@ -5662,6 +5662,33 @@ public class Solution
     }
 
     /// <summary>
+    /// 667. Beautiful Arrangement II
+    /// </summary>
+    /// <param name="n"></param>
+    /// <param name="k"></param>
+    /// <returns></returns>
+    public int[] ConstructArray(int n, int k)
+    {
+        int[] res = new int[n];
+        int index = 0;
+        for (int i = 1; i < n - k; ++i)
+        {
+            res[index++] = i;
+        }
+
+        for (int i = n - k, j = n; i <= j; ++i, --j)
+        {
+            res[index++] = i;
+            if (i != j)
+            {
+                res[index++] = j;
+            }
+        }
+
+        return res;
+    }
+    
+    /// <summary>
     /// 669. Trim a Binary Search Tree
     /// </summary>
     public TreeNode TrimBST(TreeNode root, int L, int R)
