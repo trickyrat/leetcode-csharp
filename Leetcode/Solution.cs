@@ -7827,6 +7827,36 @@ public class Solution
     }
 
     /// <summary>
+    /// 1598. Crawler Log Folder
+    /// </summary>
+    /// <param name="logs"></param>
+    /// <returns></returns>
+    public int MinOperations(string[] logs)
+    {
+        int depth = 0;
+        foreach (var log in logs)
+        {
+            if (log == "./")
+            {
+                continue;
+            } 
+            else if (log == "../")
+            {
+                if (depth > 0)
+                {
+                    depth--;
+                }
+            }
+            else
+            {
+                depth++;
+            }
+        }
+
+        return depth;
+    }
+
+    /// <summary>
     /// 1672. Richest Customer Wealth
     /// </summary>
     /// <param name="accounts"></param>
