@@ -5691,25 +5691,66 @@ public class Solution
     /// <summary>
     /// 669. Trim a Binary Search Tree
     /// </summary>
-    public TreeNode TrimBST(TreeNode root, int L, int R)
+    public TreeNode TrimBST(TreeNode root, int low, int high)
     {
-        if (root == null)
+        // recursively
+        //if (root == null)
+        //{
+        //    return null;
+        //}
+
+        //if (root.val > high)
+        //{
+        //    return TrimBST(root.left, low, high);
+        //}
+
+        //if (root.val < low)
+        //{
+        //    return TrimBST(root.right, low, high);
+        //}
+
+        //root.left = TrimBST(root.left, low, high);
+        //root.right = TrimBST(root.right, low, high);
+        //return root;
+
+        // iteratively
+        while (root is not null && (root.val < low || root.val > high))
+        {
+            if (root.val < low)
+            {
+                root = root.right;
+            }
+            else
+            {
+                root = root.left;
+            }
+        }
+        if (root is null)
         {
             return null;
         }
-
-        if (root.val > R)
+        for (TreeNode node = root; node.left is not null;)
         {
-            return TrimBST(root.left, L, R);
+            if (node.left.val < low)
+            {
+                node.left = node.left.right;
+            }
+            else
+            {
+                node = node.left;
+            }
         }
-
-        if (root.val < L)
+        for (TreeNode node = root; node.right is not null;)
         {
-            return TrimBST(root.right, L, R);
+            if (node.right.val > high)
+            {
+                node.right = node.right.left;
+            }
+            else
+            {
+                node = node.right;
+            }
         }
-
-        root.left = TrimBST(root.left, L, R);
-        root.right = TrimBST(root.right, L, R);
         return root;
     }
 

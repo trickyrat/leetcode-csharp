@@ -60,19 +60,12 @@ public class UtilitiesUnitTest
 
     [Theory]
     [MemberData(nameof(GetTreeNodeData))]
-    public void Test_CreateTreeNodeItratively_Should_OK(List<int?> nums, TreeNode expected)
+    public void Test_CreateTreeNode_Should_OK(List<int?> nums, TreeNode expected)
     {
-        var actual = Utilities.CreateTreeNodeIteratively(nums);
+        var actual = Utilities.CreateTreeNode(nums);
         Assert.Equal(expected, actual, new TreeNodeComparer());
     }
 
-    [Theory]
-    [MemberData(nameof(GetTreeNodeData))]
-    public void Test_CreateTreeNodeRecursively_Should_OK(List<int?> nums, TreeNode expected)
-    {
-        var actual = Utilities.CreateTreeNodeRecursively(nums);
-        Assert.Equal(expected, actual, new TreeNodeComparer());
-    }
 
     [Theory]
     [MemberData(nameof(GetMatrixData))]

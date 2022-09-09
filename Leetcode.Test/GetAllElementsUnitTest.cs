@@ -15,14 +15,14 @@ public class GetAllElementsUnitTest
     {
         yield return new object[]
         {
-            Utilities.CreateTreeNodeIteratively(new List<int?> { 2, 1, 4 }),
-            Utilities.CreateTreeNodeIteratively(new List<int?> { 1, 0, 3 }),
+            Utilities.CreateTreeNode(new List<int?> { 2, 1, 4 }),
+            Utilities.CreateTreeNode(new List<int?> { 1, 0, 3 }),
             new List<int> { 0, 1, 1, 2, 3, 4 }
         };
         yield return new object[]
         {
-            Utilities.CreateTreeNodeIteratively(new List<int?> { 1, null, 8 }),
-            Utilities.CreateTreeNodeIteratively(new List<int?> { 8, 1 }),
+            Utilities.CreateTreeNode(new List<int?> { 1, null, 8 }),
+            Utilities.CreateTreeNode(new List<int?> { 8, 1 }),
             new List<int> { 1, 1, 8, 8 }
         };
     }

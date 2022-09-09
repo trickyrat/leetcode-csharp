@@ -100,7 +100,7 @@ public static class Utilities
         return res;
     }
 
-    public static TreeNode CreateTreeNodeIteratively(List<int?> nums)
+    public static TreeNode CreateTreeNode(List<int?> nums)
     {
         if (nums[0] == null)
         {
@@ -145,43 +145,5 @@ public static class Utilities
         }
 
         return root;
-    }
-
-    public static TreeNode CreateTreeNodeRecursively(List<int?> nums)
-    {
-        TreeNode CreateNode(List<int?> data, int index)
-        {
-            if (index >= data.Count || data[index] is null)
-            {
-                return null;
-            }
-            TreeNode root = new TreeNode(data[index].Value);
-            root.left = CreateNode(data, 2 * index + 1);
-            root.right = CreateNode(data, 2 * index + 2);
-            return root;
-        }
-        return CreateNode(nums, 0);
-    }
-
-    public static TreeNode CreateTreeNodeWithDFS(List<int?> nums)
-    {
-        TreeNode DFS(List<int?> dataList)
-        {
-            if (!dataList.Any())
-            {
-                return null;
-            }
-            if (dataList[0] is null)
-            {
-                dataList.RemoveAt(0);
-                return null;
-            }
-            TreeNode root = new TreeNode(dataList[0].Value);
-            dataList.RemoveAt(0);
-            root.left = DFS(dataList);
-            root.right = DFS(dataList);
-            return root;
-        }
-        return DFS(nums);
     }
 }

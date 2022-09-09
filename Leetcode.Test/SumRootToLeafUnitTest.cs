@@ -15,12 +15,12 @@ namespace Leetcode.Test
         {
             yield return new object[]
             {
-                Utilities.CreateTreeNodeIteratively(new List<int?>{ 1,0,1,0,1,0,1}),
+                Utilities.CreateTreeNode(new List<int?>{ 1,0,1,0,1,0,1}),
                 22
             };
             yield return new object[]
             {
-                Utilities.CreateTreeNodeIteratively(new List<int?>{ 0 }),
+                Utilities.CreateTreeNode(new List<int?>{ 0 }),
                 0
             };
         }
