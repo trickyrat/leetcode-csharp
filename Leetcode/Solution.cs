@@ -6724,6 +6724,47 @@ public class Solution
     }
 
     /// <summary>
+    /// 857. Minimum Cost to Hire K Workers
+    /// </summary>
+    /// <param name="quality"></param>
+    /// <param name="wage"></param>
+    /// <param name="k"></param>
+    /// <returns></returns>
+    public double MinCostToHireWorkers(int[] quality, int[] wage, int k)
+    {
+        int n = quality.Length;
+        int[] hire = new int[n];
+        for (int i = 0; i < n; i++)
+        {
+            hire[i] = i;
+        }
+        Array.Sort(hire, (a, b) =>
+        {
+            return quality[b] * wage[a] - quality[a] * wage[b];
+        });
+        double res = 1e9;
+        double totalQuality = 0.0d;
+        PriorityQueue<int, int> queue = new PriorityQueue<int, int>();
+        for (int i = 0; i < k - 1; i++)
+        {
+            totalQuality += quality[hire[i]];
+            queue.Enqueue(quality[hire[i]], -quality[hire[i]]);
+        }
+
+        for (int i = k - 1; i < n; i++)
+        {
+            int index = hire[i];
+            totalQuality += quality[index];
+            queue.Enqueue(quality[index], -quality[index]);
+            double totalCost = ((double)wage[index] / quality[index]) * totalQuality;
+            res = Math.Min(res, totalCost);
+            totalQuality -= queue.Dequeue();
+        }
+
+        return res;
+    }
+
+    /// <summary>
     /// 876. Middle of the Linked List
     /// </summary>
     /// <param name="head"></param>
