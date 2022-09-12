@@ -7939,6 +7939,25 @@ public class Solution
     }
 
     /// <summary>
+    /// 1608. Special Array With X Elements Greater Than or Equal X
+    /// </summary>
+    /// <param name="nums"></param>
+    /// <returns></returns>
+    public int SpecialArray(int[] nums)
+    {
+        Array.Sort(nums, (a, b) => b - a);
+        int n = nums.Length;
+        for (int i = 1; i <= n; i++)
+        {
+            if (nums[i - 1] >= i && (i == n || nums[i] < i))
+            {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    /// <summary>
     /// 1672. Richest Customer Wealth
     /// </summary>
     /// <param name="accounts"></param>
