@@ -5755,6 +5755,37 @@ public class Solution
     }
 
     /// <summary>
+    /// 670. Maximum Swap
+    /// </summary>
+    /// <param name="num"></param>
+    /// <returns></returns>
+    public int MaximumSwap(int num)
+    {
+        char[] chars = num.ToString().ToCharArray();
+        int n = chars.Length;
+        int maxIndex = n - 1, index1 = -1, index2 = -1;
+        for (int i = n - 1; i >= 0; i--)
+        {
+            if (chars[i] > chars[maxIndex])
+            {
+                maxIndex = i;
+            } 
+            else if (chars[i] < chars[maxIndex])
+            {
+                index1 = i;
+                index2 = maxIndex;
+            } 
+        }
+
+        if (index1 >= 0)
+        {
+            (chars[index1], chars[index2]) = (chars[index2], chars[index1]);
+            return int.Parse(new string(chars));
+        }
+        return num;
+    }
+
+    /// <summary>
     /// 679. 24 Game
     /// </summary>
     /// <param name="nums"></param>
