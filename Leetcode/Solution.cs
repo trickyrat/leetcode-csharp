@@ -5786,6 +5786,46 @@ public class Solution
     }
 
     /// <summary>
+    /// 672. Bulb Switcher II
+    /// </summary>
+    /// <param name="n"></param>
+    /// <param name="presses"></param>
+    /// <returns></returns>
+    public int FlipLights(int n, int presses)
+    {
+        HashSet<int> seen = new HashSet<int>();
+        for (int i = 0; i < 1 << 4; i++)
+        {
+            int[] pressArray = new int[4];
+            for (int j = 0; j < 4; j++)
+            {
+                pressArray[j] = i >> j & 1;
+            }
+
+            int sum = pressArray.Sum();
+            if (sum % 2 == presses % 2 && sum <= presses)
+            {
+                int status = pressArray[0] ^ pressArray[1] ^ pressArray[3];
+                if (n >= 2)
+                {
+                    status |= (pressArray[0] ^ pressArray[1]) << 1;
+                }
+                if (n >= 3)
+                {
+                    status |= (pressArray[0] ^ pressArray[2]) << 2;
+                }
+                if (n >= 4)
+                {
+                    status |= status << 3;
+                }
+                seen.Add(status);
+            }
+        }
+
+        return seen.Count;
+    }
+
+    /// <summary>
     /// 679. 24 Game
     /// </summary>
     /// <param name="nums"></param>
