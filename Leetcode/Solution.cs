@@ -7989,6 +7989,23 @@ public class Solution
     }
 
     /// <summary>
+    /// 1619. Mean of Array After Removing Some Elements
+    /// </summary>
+    /// <param name="arr"></param>
+    /// <returns></returns>
+    public double TrimMean(int[] arr)
+    {
+        int n = arr.Length;
+        Array.Sort(arr);
+        int sum = 0;
+        for (int i = n/20; i < 19*n/20; i++)
+        {
+            sum += arr[i];
+        }
+        return sum / (0.9 * n);
+    }
+
+    /// <summary>
     /// 1672. Richest Customer Wealth
     /// </summary>
     /// <param name="accounts"></param>
