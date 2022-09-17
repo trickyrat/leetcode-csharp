@@ -8027,6 +8027,31 @@ public class Solution
         }
         return -1;
     }
+    
+    /// <summary>
+    /// 1624. Largest Substring Between Two Equal Characters
+    /// </summary>
+    /// <param name="s"></param>
+    /// <returns></returns>
+    public int MaxLengthBetweenEqualCharacters(string s)
+    {
+        int n = s.Length;
+        var dic = new Dictionary<char, int>();
+        int res = -1;
+        for (int i = 0; i < n; i++)
+        {
+            if (!dic.ContainsKey(s[i]))
+            {
+                dic.Add(s[i], i);
+            }
+            else
+            {
+                res = Math.Max(res, i - dic[s[i]] - 1);
+            }
+        }
+
+        return res;
+    }
 
     /// <summary>
     /// 1619. Mean of Array After Removing Some Elements
