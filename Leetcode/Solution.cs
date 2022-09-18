@@ -8027,7 +8027,24 @@ public class Solution
         }
         return -1;
     }
-    
+
+    /// <summary>
+    /// 1619. Mean of Array After Removing Some Elements
+    /// </summary>
+    /// <param name="arr"></param>
+    /// <returns></returns>
+    public double TrimMean(int[] arr)
+    {
+        int n = arr.Length;
+        Array.Sort(arr);
+        int sum = 0;
+        for (int i = n/20; i < 19*n/20; i++)
+        {
+            sum += arr[i];
+        }
+        return sum / (0.9 * n);
+    }
+
     /// <summary>
     /// 1624. Largest Substring Between Two Equal Characters
     /// </summary>
@@ -8054,20 +8071,24 @@ public class Solution
     }
 
     /// <summary>
-    /// 1619. Mean of Array After Removing Some Elements
+    /// 1636. Sort Array by Increasing Frequency
     /// </summary>
-    /// <param name="arr"></param>
+    /// <param name="nums"></param>
     /// <returns></returns>
-    public double TrimMean(int[] arr)
+    public int[] FrequencySort(int[] nums)
     {
-        int n = arr.Length;
-        Array.Sort(arr);
-        int sum = 0;
-        for (int i = n/20; i < 19*n/20; i++)
+        var count = new Dictionary<int, int>();
+        foreach (var num in nums)
         {
-            sum += arr[i];
+            count.TryAdd(num, 0);
+            count[num]++;
         }
-        return sum / (0.9 * n);
+        Array.Sort(nums, (a, b) =>
+        {
+            int count1 = count[a], count2 = count[b];
+            return count1 != count2 ? count1 - count2 : b - a;
+        });
+        return nums;
     }
 
     /// <summary>
