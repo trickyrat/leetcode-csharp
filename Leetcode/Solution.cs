@@ -6006,6 +6006,60 @@ public class Solution
     }
 
     /// <summary>
+    /// 698. Partition to K Equal Sum Subsets
+    /// </summary>
+    /// <param name="nums"></param>
+    /// <param name="k"></param>
+    /// <returns></returns>
+    public bool CanPartitionKSubsets(int[] nums, int k)
+    {
+        int sum = nums.Sum();
+        if (sum % k != 0)
+        {
+            return false;
+        }
+
+        int average = sum / k;
+        Array.Sort(nums);
+        int len = nums.Length;
+        if (nums[len - 1] > average)
+        {
+            return false;
+        }
+
+        bool[] dp = new bool[1 << len];
+        int[] currSum = new int[1 << len];
+        dp[0] = true;
+        for (int i = 0; i < 1 << len; i++)
+        {
+            if (!dp[i])
+            {
+                continue;
+            }
+
+            for (int j = 0; j < len; j++)
+            {
+                if (currSum[i] + nums[j] > average)
+                {
+                    break;
+                }
+
+                if (((i >> j) & 1) == 0)
+                {
+                    int next = i | (1 << j);
+                    if (!dp[next])
+                    {
+                        currSum[next] = (currSum[i] + nums[j]) % average;
+                        dp[next] = true;
+                    }
+                }
+            }
+        }
+
+        return dp[(1 << len) - 1];
+    }
+    
+    /// <summary>
     /// 700. Search in a Binary Search Tree
     /// </summary>
     public TreeNode SearchBST(TreeNode root, int val)
