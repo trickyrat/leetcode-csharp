@@ -71,6 +71,35 @@ public class InterviewSolution
     }
 
     /// <summary>
+    /// 面试题 01.02. Check Permutation LCCI
+    /// </summary>
+    /// <param name="s1"></param>
+    /// <param name="s2"></param>
+    /// <returns></returns>
+    public bool CheckPermutation(string s1, string s2)
+    {
+        int len1 = s1.Length, len2 = s2.Length;
+        if(len1 != len2)
+        {
+            return false;
+        }
+        int[] map = new int[128];
+        for (int i = 0; i < len1; i++)
+        {
+            map[s1[i]]++;
+        }
+        for (int i = 0; i < len2; i++)
+        {
+            map[s2[i]]--;
+            if (map[s2[i]] < 0)
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /// <summary>
     /// 面试题 01.07. Rotate Matrix LCCI
     /// </summary>
     /// <param name="matrix"></param>
