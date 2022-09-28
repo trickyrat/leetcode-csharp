@@ -92,6 +92,17 @@ public class InterviewSolution
     }
 
     /// <summary>
+    /// 面试题 01.09. String Rotation LCCI
+    /// </summary>
+    /// <param name="s1"></param>
+    /// <param name="s2"></param>
+    /// <returns></returns>
+    public bool IsFlippedString(string s1, string s2)
+    {
+        return s1.Length == s2.Length && (s1 + s1).Contains(s2);
+    }
+
+    /// <summary>
     /// 面试题 08.03. Magic Index LCCI
     /// </summary>
     /// <param name="nums"></param>
