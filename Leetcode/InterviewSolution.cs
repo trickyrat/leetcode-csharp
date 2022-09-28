@@ -92,7 +92,7 @@ public class InterviewSolution
     }
 
     /// <summary>
-    /// 面试题 08.03. 魔术索引
+    /// 面试题 08.03. Magic Index LCCI
     /// </summary>
     /// <param name="nums"></param>
     /// <returns></returns>
