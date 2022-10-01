@@ -8156,6 +8156,50 @@ public class Solution
     }
 
     /// <summary>
+    /// 1694. Reformat Phone Number
+    /// </summary>
+    /// <param name="number"></param>
+    /// <returns></returns>
+    public string ReformatNumber(string number)
+    {
+        StringBuilder sb = new StringBuilder();
+        foreach (var ch in number)
+        {
+            if (char.IsDigit(ch))
+            {
+                sb.Append(ch);
+            }
+        }
+
+        string digits = sb.ToString();
+        int n = digits.Length;
+        int pt = 0;
+        StringBuilder res = new StringBuilder();
+        while (n > 0)
+        {
+            if (n > 4)
+            {
+                res.Append(digits.Substring(pt, 3) + '-');
+                pt += 3;
+                n -= 3;
+            }
+            else
+            {
+                if (n == 4)
+                {
+                    res.Append(digits.Substring(pt, 2) + "-" + digits.Substring(pt + 2, 2));
+                }
+                else
+                {
+                    res.Append(digits.Substring(pt, n));
+                }
+                break;
+            }
+        }
+        return res.ToString();
+    }
+
+    /// <summary>
     /// 1779. Find Nearest Point That Has the Same X or Y Coordinate
     /// </summary>
     /// <param name="x"></param>
