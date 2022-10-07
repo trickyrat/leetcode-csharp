@@ -6344,6 +6344,60 @@ public class Solution
     }
 
     /// <summary>
+    /// 777. Swap Adjacent in LR String
+    /// </summary>
+    /// <param name="start"></param>
+    /// <param name="end"></param>
+    /// <returns></returns>
+    public bool CanTransform(string start, string end)
+    {
+        int n = start.Length;
+        int i = 0, j = 0;
+        while (i < n && j < n)
+        {
+            while (i < n && start[i] == 'X')
+            {
+                i++;
+            }
+            while (j < n && end[j] == 'X')
+            {
+                j++;
+            }
+            if (i < n && j < n)
+            {
+                char c = start[i];
+                if (c != end[j])
+                {
+                    return false;
+                }
+                if ((c == 'L' && i < j) || (c == 'R' && i > j))
+                {
+                    return false;
+                }
+                i++;
+                j++;
+            }
+        }
+        while (i < n)
+        {
+            if (start[i] != 'X')
+            {
+                return false;
+            }
+            i++;
+        }
+        while (j < n)
+        {
+            if (end[j] != 'X')
+            {
+                return false;
+            }
+            j++;
+        }
+        return true;
+    }
+
+    /// <summary>
     /// 784. Letter Case Permutation
     /// </summary>
     /// <param name="s"></param>
