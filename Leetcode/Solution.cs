@@ -8280,6 +8280,13 @@ public class Solution
     }
 
     /// <summary>
+    /// 1784. Check if Binary String Has at Most One Segment of Ones
+    /// </summary>
+    /// <param name="s"></param>
+    /// <returns></returns>
+    public bool CheckOnesSegment(string s) => !s.Contains("01");
+
+    /// <summary>
     /// 1791. Find Center of Star Graph
     /// </summary>
     /// <param name="edges"></param>
