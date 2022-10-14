@@ -7582,6 +7582,22 @@ public class Solution
         return sum;
     }
 
+    public int DistinctSubseqII(string s)
+    {
+        int mod = 1000000007;
+        int[] alphas = new int[26];
+        int n = s.Length, res = 0;
+        for (int i = 0; i < n; i++)
+        {
+            int index = s[i] - 'a';
+            int prev = alphas[index];
+            alphas[index] = (res + 1) % mod;
+            res = ((res + alphas[index] - prev) % mod + mod) % mod;
+        }
+
+        return res;
+    }
+    
     /// <summary>
     /// 942. DI String Match
     /// </summary>
