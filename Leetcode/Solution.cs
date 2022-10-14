@@ -7184,6 +7184,38 @@ public class Solution
     }
 
     /// <summary>
+    /// 921. Minimum Add to Make Parentheses Valid
+    /// </summary>
+    /// <param name="s"></param>
+    /// <returns></returns>
+    public int MinAddToMakeValid(string s)
+    {
+        int res = 0, leftCount = 0;
+        int n = s.Length;
+        for (int i = 0; i < n; i++)
+        {
+            char c = s[i];
+            if (c == '(')
+            {
+                leftCount++;
+            } 
+            else
+            {
+                if (leftCount > 0)
+                {
+                    leftCount--;
+                }
+                else
+                {
+                    res++;
+                }
+            }
+        }
+        res += leftCount;
+        return res;
+    }
+
+    /// <summary>
     /// 938. Range Sum of BST
     /// </summary>
     /// <param name="root"></param>
