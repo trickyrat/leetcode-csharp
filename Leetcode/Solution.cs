@@ -8539,6 +8539,30 @@ public class Solution
     }
 
     /// <summary>
+    /// 1800. Maximum Ascending Subarray Sum
+    /// </summary>
+    /// <param name="nums"></param>
+    /// <returns></returns>
+    public int MaxAscendingSum(int[] nums)
+    {
+        int res = 0;
+        int i = 0;
+        int n = nums.Length;
+        while (i < n)
+        {
+            int currSum = nums[i++];
+            while (i < n && nums[i] > nums[i-1])
+            {
+                currSum += nums[i++];
+            }
+
+            res = Math.Max(res, currSum);
+        }
+
+        return res;
+    }
+    
+    /// <summary>
     /// 1823. Find the Winner of the Circular Game
     /// </summary>
     /// <param name="n"></param>
