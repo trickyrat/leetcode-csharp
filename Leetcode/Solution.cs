@@ -5,7 +5,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
 using Leetcode.DataStructure;
 
 namespace Leetcode;
@@ -483,10 +482,10 @@ public class Solution
     /// <returns></returns>
     public string IntToRoman(int num)
     {
-        string[] M = { "", "M", "MM", "MMM" };
-        string[] C = { "", "C", "CC", "CCC", "CD", "D", "DC", "DCC", "DCCC", "CM" };
-        string[] X = { "", "X", "XX", "XXX", "XL", "L", "LX", "LXX", "LXXX", "XC" };
-        string[] I = { "", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX" };
+        string[] M = {"", "M", "MM", "MMM"};
+        string[] C = {"", "C", "CC", "CCC", "CD", "D", "DC", "DCC", "DCCC", "CM"};
+        string[] X = {"", "X", "XX", "XXX", "XL", "L", "LX", "LXX", "LXXX", "XC"};
+        string[] I = {"", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX"};
         return M[num / 1000] + C[(num % 1000) / 100] + X[(num % 100) / 10] + I[num % 10];
     }
 
@@ -497,7 +496,8 @@ public class Solution
     /// <returns></returns>
     public int RomanToInt(string s)
     {
-        Dictionary<char, int> dic = new Dictionary<char, int> {
+        Dictionary<char, int> dic = new Dictionary<char, int>
+        {
             {'I', 1},
             {'V', 5},
             {'X', 10},
@@ -616,7 +616,7 @@ public class Solution
                 }
                 else
                 {
-                    List<int> tmp = new List<int> { nums[i], nums[left], nums[right] };
+                    List<int> tmp = new List<int> {nums[i], nums[left], nums[right]};
                     res.Add(tmp);
                     while (left < right && nums[left] < tmp[1])
                     {
@@ -698,7 +698,7 @@ public class Solution
     /// <returns></returns>
     public IList<string> LetterCombinations(string digits)
     {
-        string[] map = { "0", "1", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz" };
+        string[] map = {"0", "1", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
         if (string.IsNullOrEmpty(digits))
         {
             return new List<string>();
@@ -783,7 +783,7 @@ public class Solution
                     }
                     else
                     {
-                        res.Add(new List<int> { nums[i], nums[j], nums[left], nums[right] });
+                        res.Add(new List<int> {nums[i], nums[j], nums[left], nums[right]});
                         do
                         {
                             left++;
@@ -849,14 +849,14 @@ public class Solution
                     stack.Push(']');
                     break;
                 default:
+                {
+                    if (stack.Count == 0 || stack.Pop() != item)
                     {
-                        if (stack.Count == 0 || stack.Pop() != item)
-                        {
-                            return false;
-                        }
-
-                        break;
+                        return false;
                     }
+
+                    break;
+                }
             }
         }
 
@@ -1440,7 +1440,7 @@ public class Solution
     /// </summary>
     public int[] SearchRange(int[] nums, int target)
     {
-        int[] missingResult = new int[] { -1, -1 };
+        int[] missingResult = new int[] {-1, -1};
         //int[] res = new int[] { 0, 0 };
         //if (nums.Length < 1)
         //{
@@ -1485,7 +1485,7 @@ public class Solution
         int rightIndex = BinarySearch(nums, target, false) - 1;
         if (leftIndex <= rightIndex && rightIndex < nums.Length && nums[leftIndex] == nums[rightIndex])
         {
-            return new[] { leftIndex, rightIndex };
+            return new[] {leftIndex, rightIndex};
         }
 
         return missingResult;
@@ -1745,13 +1745,14 @@ public class Solution
             int size = freq.Count;
             if (freq.Count == 0 || num != freq[size - 1][0])
             {
-                freq.Add(new int[] { num, 1 });
+                freq.Add(new int[] {num, 1});
             }
             else
             {
                 ++freq[size - 1][1];
             }
         }
+
         DFS(0, target);
         return ans;
 
@@ -1762,10 +1763,12 @@ public class Solution
                 ans.Add(new List<int>(sequence));
                 return;
             }
+
             if (pos == freq.Count || rest < freq[pos][0])
             {
                 return;
             }
+
             DFS(pos + 1, rest);
             int most = Math.Min(rest / freq[pos][0], freq[pos][1]);
             for (int i = 1; i <= most; i++)
@@ -1773,6 +1776,7 @@ public class Solution
                 sequence.Add(freq[pos][0]);
                 DFS(pos + 1, rest - i * freq[pos][0]);
             }
+
             for (int i = 1; i <= most; i++)
             {
                 sequence.RemoveAt(sequence.Count - 1);
@@ -2014,11 +2018,14 @@ public class Solution
                 {
                     ans *= x_contribute;
                 }
+
                 x_contribute *= x_contribute;
                 N /= 2;
             }
+
             return ans;
         }
+
         long N = n;
         return N >= 0 ? QuickMul(x, N) : 1.0 / QuickMul(x, -N);
     }
@@ -2036,6 +2043,7 @@ public class Solution
             pre = Math.Max(pre + num, num);
             maxAns = Math.Max(maxAns, pre);
         }
+
         return maxAns;
     }
 
@@ -2046,7 +2054,7 @@ public class Solution
     {
         if (matrix.Length == 0)
         {
-            return new List<int>() { 0 };
+            return new List<int>() {0};
         }
 
         int startRow = 0, startColumn = 0;
@@ -2144,7 +2152,7 @@ public class Solution
             int l = t[0], r = t[1];
             if (n == 0 || merged[n - 1][1] < l)
             {
-                merged.Add(new[] { l, r });
+                merged.Add(new[] {l, r});
             }
             else
             {
@@ -2187,7 +2195,7 @@ public class Solution
     {
         if (n == 0)
         {
-            return new[] { new[] { 0 } };
+            return new[] {new[] {0}};
         }
 
         int startRow = 0, startColumn = 0;
@@ -2565,7 +2573,7 @@ public class Solution
     public string SimplifyPath(string path)
     {
         Stack<string> stack = new Stack<string>();
-        HashSet<string> skip = new HashSet<string> { "", ".", ".." };
+        HashSet<string> skip = new HashSet<string> {"", ".", ".."};
         foreach (string dir in path.Split('/'))
         {
             if (dir == ".." && stack.Count > 0)
@@ -3531,10 +3539,10 @@ public class Solution
         {
             if (index == -1 || index == data.Length)
             {
-                return new[] { 0, 0 };
+                return new[] {0, 0};
             }
 
-            return new[] { 1, data[index] };
+            return new[] {1, data[index]};
         }
 
         int Compare(int[] data, int index1, int index2)
@@ -3569,7 +3577,7 @@ public class Solution
             int sum = numbers[left] + numbers[right];
             if (sum == target)
             {
-                return new int[] { left + 1, right + 1 };
+                return new int[] {left + 1, right + 1};
             }
             else if (sum > target)
             {
@@ -3581,7 +3589,7 @@ public class Solution
             }
         }
 
-        return new[] { -1, -1 };
+        return new[] {-1, -1};
     }
 
     /// <summary>
@@ -3598,11 +3606,13 @@ public class Solution
             sb.Append((char)(columnNumber % 26 + 'A'));
             columnNumber /= 26;
         }
+
         StringBuilder columnTitle = new StringBuilder();
         for (int i = sb.Length - 1; i >= 0; i--)
         {
             columnTitle.Append(sb[i]);
         }
+
         return columnTitle.ToString();
     }
 
@@ -3641,6 +3651,7 @@ public class Solution
             number += k * multiple;
             multiple *= 26;
         }
+
         return number;
     }
 
@@ -3667,11 +3678,13 @@ public class Solution
         {
             return 0;
         }
+
         int[][] health = new int[m][];
         for (int i = 0; i < m; ++i)
         {
             health[i] = new int[n];
         }
+
         health[m - 1][n - 1] = Math.Max(1 - dungeon[m - 1][n - 1], 1);
         for (int i = m - 2; i >= 0; i--)
         {
@@ -4049,6 +4062,7 @@ public class Solution
                 return true;
             }
         }
+
         return false;
     }
 
@@ -4180,7 +4194,7 @@ public class Solution
             }
         }
 
-        return new[] { type1, type2 };
+        return new[] {type1, type2};
     }
 
     /// <summary>
@@ -5339,7 +5353,7 @@ public class Solution
         }
 
         Stack<TreeNode[]> stack = new Stack<TreeNode[]>();
-        stack.Push(new[] { t1, t2 });
+        stack.Push(new[] {t1, t2});
         while (stack.Count > 0)
         {
             TreeNode[] t = stack.Pop();
@@ -5355,7 +5369,7 @@ public class Solution
             }
             else
             {
-                stack.Push(new[] { t[0].left, t[1].left });
+                stack.Push(new[] {t[0].left, t[1].left});
             }
 
             if (t[0].right == null)
@@ -5364,7 +5378,7 @@ public class Solution
             }
             else
             {
-                stack.Push(new[] { t[0].right, t[1].right });
+                stack.Push(new[] {t[0].right, t[1].right});
             }
         }
 
@@ -5384,10 +5398,12 @@ public class Solution
         {
             return null;
         }
+
         if (depth == 1)
         {
             return new TreeNode(val, root, null);
         }
+
         if (depth == 2)
         {
             root.left = new TreeNode(val, root.left, null);
@@ -5398,6 +5414,7 @@ public class Solution
             root.left = AddOneRow(root.left, val, depth - 1);
             root.right = AddOneRow(root.right, val, depth - 1);
         }
+
         return root;
     }
 
@@ -5423,7 +5440,8 @@ public class Solution
                 {
                     res[stack.Peek()[0]] += timestamp - stack.Peek()[1];
                 }
-                stack.Push(new int[] { index, timestamp });
+
+                stack.Push(new int[] {index, timestamp});
             }
             else
             {
@@ -5435,6 +5453,7 @@ public class Solution
                 }
             }
         }
+
         return res;
     }
 
@@ -5455,6 +5474,7 @@ public class Solution
                 res++;
             }
         }
+
         return res;
     }
 
@@ -5468,12 +5488,14 @@ public class Solution
         Dictionary<string, (TreeNode, int)> seen = new Dictionary<string, (TreeNode, int)>();
         HashSet<TreeNode> repeat = new HashSet<TreeNode>();
         int index = 0;
+
         int DFS(TreeNode node)
         {
-            if(node is null)
+            if (node is null)
             {
                 return 0;
             }
+
             (int, int, int) triple = (node.val, DFS(node.left), DFS(node.right));
             string key = triple.ToString();
             if (seen.ContainsKey(key))
@@ -5582,12 +5604,15 @@ public class Solution
                 trees[i].left = trees[stack[stack.Count - 1]];
                 stack.RemoveAt(stack.Count - 1);
             }
+
             if (stack.Count > 0)
             {
                 trees[stack[stack.Count - 1]].right = trees[i];
             }
+
             stack.Add(i);
         }
+
         return trees[stack[0]];
     }
 
@@ -5615,8 +5640,10 @@ public class Solution
                     low = mid + 1;
                 }
             }
+
             return low;
         }
+
         int right = BinarySearch(arr, x);
         int left = right - 1;
         int n = arr.Length;
@@ -5635,6 +5662,7 @@ public class Solution
                 right++;
             }
         }
+
         return arr[(left + 1)..right];
     }
 
@@ -5646,18 +5674,21 @@ public class Solution
     public int WidthOfBinaryTree(TreeNode root)
     {
         Dictionary<int, int> levelMin = new Dictionary<int, int>();
+
         int DFS(TreeNode node, int depth, int index)
         {
             if (node is null)
             {
                 return 0;
             }
+
             levelMin.TryAdd(depth, index);
-            return Math.Max(index - levelMin[depth] + 1, 
+            return Math.Max(index - levelMin[depth] + 1,
                 Math.Max(
-                    DFS(node.left, depth + 1, index * 2), 
+                    DFS(node.left, depth + 1, index * 2),
                     DFS(node.right, depth + 1, index * 2 + 1)));
         }
+
         return DFS(root, 1, 1);
     }
 
@@ -5687,7 +5718,7 @@ public class Solution
 
         return res;
     }
-    
+
     /// <summary>
     /// 669. Trim a Binary Search Tree
     /// </summary>
@@ -5725,10 +5756,12 @@ public class Solution
                 root = root.left;
             }
         }
+
         if (root is null)
         {
             return null;
         }
+
         for (TreeNode node = root; node.left is not null;)
         {
             if (node.left.val < low)
@@ -5740,6 +5773,7 @@ public class Solution
                 node = node.left;
             }
         }
+
         for (TreeNode node = root; node.right is not null;)
         {
             if (node.right.val > high)
@@ -5751,6 +5785,7 @@ public class Solution
                 node = node.right;
             }
         }
+
         return root;
     }
 
@@ -5769,12 +5804,12 @@ public class Solution
             if (chars[i] > chars[maxIndex])
             {
                 maxIndex = i;
-            } 
+            }
             else if (chars[i] < chars[maxIndex])
             {
                 index1 = i;
                 index2 = maxIndex;
-            } 
+            }
         }
 
         if (index1 >= 0)
@@ -5782,6 +5817,7 @@ public class Solution
             (chars[index1], chars[index2]) = (chars[index2], chars[index1]);
             return int.Parse(new string(chars));
         }
+
         return num;
     }
 
@@ -5810,14 +5846,17 @@ public class Solution
                 {
                     status |= (pressArray[0] ^ pressArray[1]) << 1;
                 }
+
                 if (n >= 3)
                 {
                     status |= (pressArray[0] ^ pressArray[2]) << 2;
                 }
+
                 if (n >= 4)
                 {
                     status |= status << 3;
                 }
+
                 seen.Add(status);
             }
         }
@@ -5935,25 +5974,30 @@ public class Solution
     public int LongestUnivaluePath(TreeNode root)
     {
         int res = 0;
+
         int DFS(TreeNode node)
         {
             if (node is null)
             {
                 return 0;
             }
+
             int left = DFS(node.left), right = DFS(node.right);
             int left1 = 0, right1 = 0;
             if (node.left is not null && node.left.val == node.val)
             {
                 left1 = left + 1;
             }
+
             if (node.right is not null && node.right.val == node.val)
             {
                 right1 = right + 1;
             }
+
             res = Math.Max(res, left1 + right1);
             return Math.Max(left1, right1);
         }
+
         DFS(root);
         return res;
     }
@@ -5968,8 +6012,8 @@ public class Solution
         int ans = 0;
         int rowLength = grid.Length;
         int colLength = grid[0].Length;
-        int[] di = new int[] { 0, 0, 1, -1 };
-        int[] dj = new int[] { 1, -1, 0, 0 };
+        int[] di = new int[] {0, 0, 1, -1};
+        int[] dj = new int[] {1, -1, 0, 0};
         for (int row = 0; row < rowLength; row++)
         {
             for (int col = 0; col < colLength; col++)
@@ -6058,7 +6102,7 @@ public class Solution
 
         return dp[(1 << len) - 1];
     }
-    
+
     /// <summary>
     /// 700. Search in a Binary Search Tree
     /// </summary>
@@ -6236,8 +6280,10 @@ public class Solution
             {
                 return i;
             }
+
             sum += nums[i];
         }
+
         return -1;
     }
 
@@ -6288,8 +6334,8 @@ public class Solution
     /// <returns></returns>
     public int[][] FloodFill(int[][] image, int sr, int sc, int newColor)
     {
-        int[] dx = { 1, 0, 0, -1 };
-        int[] dy = { 0, 1, -1, 0 };
+        int[] dx = {1, 0, 0, -1};
+        int[] dy = {0, 1, -1, 0};
         int currentColor = image[sr][sc];
         if (currentColor == newColor)
         {
@@ -6298,7 +6344,7 @@ public class Solution
 
         int n = image.Length, m = image[0].Length;
         Queue<int[]> queue = new Queue<int[]>();
-        queue.Enqueue(new[] { sr, sc });
+        queue.Enqueue(new[] {sr, sc});
         image[sr][sc] = newColor;
         while (queue.Any())
         {
@@ -6312,7 +6358,7 @@ public class Solution
                     continue;
                 }
 
-                queue.Enqueue(new[] { mx, my });
+                queue.Enqueue(new[] {mx, my});
                 image[mx][my] = newColor;
             }
         }
@@ -6359,10 +6405,12 @@ public class Solution
             {
                 i++;
             }
+
             while (j < n && end[j] == 'X')
             {
                 j++;
             }
+
             if (i < n && j < n)
             {
                 char c = start[i];
@@ -6370,30 +6418,37 @@ public class Solution
                 {
                     return false;
                 }
+
                 if ((c == 'L' && i < j) || (c == 'R' && i > j))
                 {
                     return false;
                 }
+
                 i++;
                 j++;
             }
         }
+
         while (i < n)
         {
             if (start[i] != 'X')
             {
                 return false;
             }
+
             i++;
         }
+
         while (j < n)
         {
             if (end[j] != 'X')
             {
                 return false;
             }
+
             j++;
         }
+
         return true;
     }
 
@@ -6404,7 +6459,7 @@ public class Solution
     /// <returns></returns>
     public List<string> LetterCasePermutation(string s)
     {
-        List<StringBuilder> ans = new List<StringBuilder> { new StringBuilder() };
+        List<StringBuilder> ans = new List<StringBuilder> {new StringBuilder()};
         foreach (char c in s)
         {
             int n = ans.Count;
@@ -6444,8 +6499,10 @@ public class Solution
                 res += x / 5;
                 x /= 5;
             }
+
             return res;
         }
+
         long Nx(int k)
         {
             long left = 0, right = 5L * k;
@@ -6461,8 +6518,10 @@ public class Solution
                     right = mid - 1;
                 }
             }
+
             return right + 1;
         }
+
         return (int)(Nx(k + 1) - Nx(k));
     }
 
@@ -6484,7 +6543,8 @@ public class Solution
     /// <returns></returns>
     public int UniqueMorseRepresentations(string[] words)
     {
-        string[] morse = new string[] {
+        string[] morse = new string[]
+        {
             ".-", "-...", "-.-.", "-..", ".", "..-.", "--.", "....", "..", ".---", "-.-", ".-..", "--", "-.", "---",
             ".--.", "--.-", ".-.", "...", "-", "..-", "...-", ".--", "-..-", "-.--", "--.."
         };
@@ -6524,7 +6584,7 @@ public class Solution
             }
         }
 
-        return new int[] { lines, width };
+        return new int[] {lines, width};
     }
 
     /// <summary>
@@ -6701,7 +6761,7 @@ public class Solution
     /// <returns></returns>
     public string ToGoatLatin(string sentence)
     {
-        HashSet<char> vowels = new HashSet<char> { 'a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U' };
+        HashSet<char> vowels = new HashSet<char> {'a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U'};
         if (sentence.Length == 0)
         {
             return string.Empty;
@@ -6739,10 +6799,12 @@ public class Solution
             char c = s[i];
             if (!index.ContainsKey(c))
             {
-                index.Add(c, new List<int> { -1 });
+                index.Add(c, new List<int> {-1});
             }
+
             index[c].Add(i);
         }
+
         int res = 0;
         foreach (var pair in index)
         {
@@ -6753,6 +6815,7 @@ public class Solution
                 res += (list[i] - list[i - 1]) * (list[i + 1] - list[i]);
             }
         }
+
         return res;
     }
 
@@ -6960,6 +7023,7 @@ public class Solution
         {
             hire[i] = i;
         }
+
         Array.Sort(hire, (a, b) =>
         {
             return quality[b] * wage[a] - quality[a] * wage[b];
@@ -7162,10 +7226,12 @@ public class Solution
             {
                 left++;
             }
+
             while (left < right && nums[right] % 2 == 1)
             {
                 right--;
             }
+
             if (left < right)
             {
                 (nums[left], nums[right]) = (nums[right], nums[left]);
@@ -7173,6 +7239,7 @@ public class Solution
                 right--;
             }
         }
+
         return nums;
     }
 
@@ -7241,7 +7308,7 @@ public class Solution
             if (c == '(')
             {
                 leftCount++;
-            } 
+            }
             else
             {
                 if (leftCount > 0)
@@ -7254,8 +7321,70 @@ public class Solution
                 }
             }
         }
+
         res += leftCount;
         return res;
+    }
+
+    /// <summary>
+    /// 927. Three Equal Parts
+    /// </summary>
+    /// <param name="arr"></param>
+    /// <returns></returns>
+    public int[] ThreeEqualParts(int[] arr)
+    {
+        int sum = arr.Sum();
+        if (sum % 3 != 0)
+        {
+            return new int[] {-1, -1};
+        }
+
+        if (sum == 0)
+        {
+            return new int[] {0, 2};
+        }
+
+        int partial = sum / 3;
+        int first = 0, second = 0, third = 0, curr = 0;
+        for (int i = 0; i < arr.Length; i++)
+        {
+            if (arr[i] == 1)
+            {
+                if (curr == 0)
+                {
+                    first = i;
+                }
+                else if (curr == partial)
+                {
+                    second = i;
+                }
+                else if (curr == 2 * partial)
+                {
+                    third = i;
+                }
+
+                curr++;
+            }
+        }
+
+        int len = arr.Length - third;
+        if (first + len <= second && second + len <= third)
+        {
+            int i = 0;
+            while (third + i < arr.Length)
+            {
+                if (arr[first + i] != arr[second + i] || arr[first + i] != arr[third + i])
+                {
+                    return new int[] {-1, -1};
+                }
+
+                i++;
+            }
+
+            return new int[] {first + len - 1, second + len};
+        }
+
+        return new[] {-1, -1};
     }
 
     /// <summary>
@@ -7322,6 +7451,7 @@ public class Solution
         {
             perm[i] = s[i] == 'I' ? lo++ : hi--;
         }
+
         perm[n] = lo;
         return perm;
     }
@@ -7347,6 +7477,7 @@ public class Solution
                 }
             }
         }
+
         return ans;
     }
 
@@ -7369,6 +7500,7 @@ public class Solution
                 ++j;
             }
         }
+
         return stack.Count == 0;
     }
 
@@ -7385,6 +7517,7 @@ public class Solution
         {
             index[order[i] - 'a'] = i;
         }
+
         for (int i = 1; i < words.Length; ++i)
         {
             bool valid = false;
@@ -7402,6 +7535,7 @@ public class Solution
                     return false;
                 }
             }
+
             if (!valid)
             {
                 if (words[i - 1].Length > words[i].Length)
@@ -7410,6 +7544,7 @@ public class Solution
                 }
             }
         }
+
         return true;
     }
 
@@ -7428,6 +7563,7 @@ public class Solution
                 return num;
             }
         }
+
         return -1;
     }
 
@@ -7446,6 +7582,7 @@ public class Solution
                 return nums[i - 2] + nums[i - 1] + nums[i];
             }
         }
+
         return 0;
     }
 
@@ -7484,8 +7621,8 @@ public class Solution
     /// <returns></returns>
     public int OrangeRotting(int[][] grid)
     {
-        int[] dr = new int[] { -1, 0, 1, 0 };
-        int[] dc = new int[] { 0, -1, 0, 1 };
+        int[] dr = new int[] {-1, 0, 1, 0};
+        int[] dc = new int[] {0, -1, 0, 1};
         int rowLength = grid.Length, colLength = grid[0].Length;
         Queue<int> queue = new Queue<int>();
         Dictionary<int, int> depth = new Dictionary<int, int>();
@@ -7552,6 +7689,7 @@ public class Solution
                 {
                     return new TreeNode(val, root, null);
                 }
+
                 TreeNode node = new TreeNode(val, curr, null);
                 parent.right = node;
                 return root;
@@ -7562,6 +7700,7 @@ public class Solution
                 curr = curr.right;
             }
         }
+
         parent.right = new TreeNode(val);
         return root;
     }
@@ -7579,13 +7718,16 @@ public class Solution
             {
                 return 0;
             }
+
             val = (val << 1) | node.val;
             if (node.left is null && node.right is null)
             {
                 return val;
             }
+
             return DFS(node.left, val) + DFS(node.right, val);
         }
+
         return DFS(root, 0);
     }
 
@@ -7775,6 +7917,7 @@ public class Solution
         {
             return new string('a', n - 1) + "b";
         }
+
         return new string('a', n);
     }
 
@@ -7833,6 +7976,7 @@ public class Solution
                 break;
             }
         }
+
         return ans;
     }
 
@@ -7855,6 +7999,7 @@ public class Solution
                 }
             }
         }
+
         return res;
     }
 
@@ -7873,11 +8018,13 @@ public class Solution
                 sumDigit++;
             }
         }
+
         int sumAlpha = s.Length - sumDigit;
         if (Math.Abs(sumDigit - sumAlpha) > 1)
         {
             return string.Empty;
         }
+
         bool flag = sumDigit > sumAlpha;
         char[] arr = s.ToCharArray();
         for (int i = 0, j = 1; i < arr.Length; i += 2)
@@ -7888,9 +8035,11 @@ public class Solution
                 {
                     j += 2;
                 }
+
                 (arr[i], arr[j]) = (arr[j], arr[i]);
             }
         }
+
         return new string(arr);
     }
 
@@ -8046,6 +8195,7 @@ public class Solution
             max = Math.Max(max, item);
             min = Math.Min(min, item);
         }
+
         return (sum - max - min) / (salary.Length - 2);
     }
 
@@ -8061,6 +8211,7 @@ public class Solution
         {
             return (num + 1) >> 1;
         }
+
         return PreSum(high) - PreSum(low - 1);
     }
 
@@ -8082,11 +8233,13 @@ public class Solution
                     count++;
                 }
             }
-            if(i ==  0)
+
+            if (i == 0)
             {
                 count--;
             }
-            if(count > 0)
+
+            if (count > 0)
             {
                 for (int j = 0; j < col; j++)
                 {
@@ -8097,6 +8250,7 @@ public class Solution
                 }
             }
         }
+
         int sum = 0;
         foreach (var item in mat[0])
         {
@@ -8105,6 +8259,7 @@ public class Solution
                 sum++;
             }
         }
+
         return sum;
     }
 
@@ -8127,6 +8282,7 @@ public class Solution
                 wordCount++;
             }
         }
+
         StringBuilder sb = new StringBuilder();
         if (words.Length == 1)
         {
@@ -8135,6 +8291,7 @@ public class Solution
             {
                 sb.Append(' ');
             }
+
             return sb.ToString();
         }
 
@@ -8146,6 +8303,7 @@ public class Solution
             {
                 continue;
             }
+
             if (sb.Length > 0)
             {
                 for (int j = 0; j < spacePerCount; ++j)
@@ -8153,12 +8311,15 @@ public class Solution
                     sb.Append(' ');
                 }
             }
+
             sb.Append(words[i]);
         }
+
         for (int i = 0; i < restSpaceCount; ++i)
         {
             sb.Append(' ');
         }
+
         return sb.ToString();
     }
 
@@ -8175,7 +8336,7 @@ public class Solution
             if (log == "./")
             {
                 continue;
-            } 
+            }
             else if (log == "../")
             {
                 if (depth > 0)
@@ -8208,6 +8369,7 @@ public class Solution
                 return i;
             }
         }
+
         return -1;
     }
 
@@ -8221,10 +8383,11 @@ public class Solution
         int n = arr.Length;
         Array.Sort(arr);
         int sum = 0;
-        for (int i = n/20; i < 19*n/20; i++)
+        for (int i = n / 20; i < 19 * n / 20; i++)
         {
             sum += arr[i];
         }
+
         return sum / (0.9 * n);
     }
 
@@ -8266,6 +8429,7 @@ public class Solution
             count.TryAdd(num, 0);
             count[num]++;
         }
+
         Array.Sort(nums, (a, b) =>
         {
             int count1 = count[a], count2 = count[b];
@@ -8322,9 +8486,11 @@ public class Solution
                 {
                     res.Append(digits.Substring(pt, n));
                 }
+
                 break;
             }
         }
+
         return res.ToString();
     }
 
@@ -8351,6 +8517,7 @@ public class Solution
                 }
             }
         }
+
         return ans;
     }
 
@@ -8384,6 +8551,7 @@ public class Solution
         {
             winner = (k + winner - 1) % i + 1;
         }
+
         return winner;
     }
 
@@ -8623,6 +8791,7 @@ public class Solution
                 sDic.Add(ch, 1);
             }
         }
+
         foreach (char ch in target)
         {
             if (targetDic.ContainsKey(ch))
@@ -8634,6 +8803,7 @@ public class Solution
                 targetDic.Add(ch, 1);
             }
         }
+
         int ans = int.MaxValue;
         foreach (char ch in target)
         {
@@ -8641,7 +8811,7 @@ public class Solution
             sDic.TryGetValue(ch, out sValue);
             ans = Math.Min(ans, sValue / targetDic[ch]);
         }
+
         return ans;
     }
-
 }
