@@ -7051,6 +7051,44 @@ public class Solution
     }
 
     /// <summary>
+    /// 870. Advantage Shuffle
+    /// </summary>
+    /// <param name="nums1"></param>
+    /// <param name="nums2"></param>
+    /// <returns></returns>
+    public int[] AdvantageCount(int[] nums1, int[] nums2)
+    {
+        int n = nums1.Length;
+        int[] index1 = new int[n];
+        int[] index2 = new int[n];
+        for (int i = 0; i < n; i++)
+        {
+            index1[i] = i;
+            index2[i] = i;
+        }
+        Array.Sort(index1, (i, j) => nums1[i] - nums1[j]);
+        Array.Sort(index2, (i, j) => nums2[i] - nums2[j]);
+
+        int[] res = new int[n];
+        int left = 0, right = n - 1;
+        for (int i = 0; i < n; i++)
+        {
+            if (nums1[index1[i]] > nums2[index2[left]])
+            {
+                res[index2[left]] = nums1[index1[i]];
+                left++;
+            }
+            else
+            {
+                res[index2[right]] = nums1[index1[i]];
+                right--;
+            }
+        }
+
+        return res;
+    }
+    
+    /// <summary>
     /// 876. Middle of the Linked List
     /// </summary>
     /// <param name="head"></param>
