@@ -7009,6 +7009,26 @@ public class Solution
     }
 
     /// <summary>
+    /// 856. Score of Parentheses
+    /// </summary>
+    /// <param name="s"></param>
+    /// <returns></returns>
+    public int ScoreOfParentheses(string s)
+    {
+        int bal = 0, n = s.Length, res = 0;
+        for (int i = 0; i < n; i++)
+        {
+            bal += (s[i] == '(' ? 1 : -1);
+            if (s[i] == ')' && s[i - 1] == '(')
+            {
+                res += 1 << bal;
+            }
+        }
+
+        return res;
+    }
+    
+    /// <summary>
     /// 857. Minimum Cost to Hire K Workers
     /// </summary>
     /// <param name="quality"></param>
