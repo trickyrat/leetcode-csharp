@@ -6390,6 +6390,26 @@ public class Solution
     }
 
     /// <summary>
+    /// 769. Max Chunks To Make Sorted
+    /// </summary>
+    /// <param name="arr"></param>
+    /// <returns></returns>
+    public int MaxChunksToSorted(int[] arr)
+    {
+        int m = 0, res = 0;
+        for (int i = 0; i < arr.Length; i++)
+        {
+            m = Math.Max(m, arr[i]);
+            if (m == i)
+            {
+                res++;
+            }
+        }
+
+        return res++;
+    }
+    
+    /// <summary>
     /// 777. Swap Adjacent in LR String
     /// </summary>
     /// <param name="start"></param>
