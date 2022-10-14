@@ -6691,6 +6691,43 @@ public class Solution
     }
 
     /// <summary>
+    /// 1790. Check if One String Swap Can Make Strings Equal
+    /// </summary>
+    /// <param name="head"></param>
+    /// <param name="nums"></param>
+    /// <returns></returns>
+    public int NumComponents(ListNode head, int[] nums)
+    {
+        ISet<int> numsSet = new HashSet<int>();
+        foreach (var num in nums)
+        {
+            numsSet.Add(num);
+        }
+
+        bool inSet = false;
+        int res = 0;
+        while (head is not null)
+        {
+            if (numsSet.Contains(head.val))
+            {
+                if (!inSet)
+                {
+                    inSet = true;
+                    res++;
+                }
+            }
+            else
+            {
+                inSet = false;
+            }
+
+            head = head.next;
+        }
+
+        return res;
+    }
+    
+    /// <summary>
     /// 819. Most Common Word
     /// </summary>
     /// <param name="paragraph"></param>
@@ -8615,6 +8652,12 @@ public class Solution
     /// <returns></returns>
     public bool CheckOnesSegment(string s) => !s.Contains("01");
 
+    /// <summary>
+    /// 1790. Check if One String Swap Can Make Strings Equal
+    /// </summary>
+    /// <param name="s1"></param>
+    /// <param name="s2"></param>
+    /// <returns></returns>
     public bool AreAlmostEqual(string s1, string s2)
     {
         int n = s1.Length;
