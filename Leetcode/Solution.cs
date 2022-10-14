@@ -6559,6 +6559,49 @@ public class Solution
     }
 
     /// <summary>
+    /// 811. Subdomain Visit Count
+    /// </summary>
+    /// <param name="cpdomains"></param>
+    /// <returns></returns>
+    public IList<string> SubdomainVisit(string[] cpdomains)
+    {
+        IList<string> res = new List<string>();
+        Dictionary<string, int> counts = new Dictionary<string, int>();
+        foreach (string cpdomain in cpdomains)
+        {
+            int space = cpdomain.IndexOf(' ');
+            int count = int.Parse(cpdomain.Substring(0, space));
+            string domain = cpdomain.Substring(space + 1);
+            if (!counts.ContainsKey(domain))
+            {
+                counts.Add(domain, 0);
+            }
+
+            counts[domain] += count;
+            for (int i = 0; i < domain.Length; i++)
+            {
+                if (domain[i] == '.')
+                {
+                    string subdomain = domain.Substring(i + 1);
+                    if (!counts.ContainsKey(subdomain))
+                    {
+                        counts.Add(subdomain, 0);
+                    }
+
+                    counts[subdomain] += count;
+                }
+            }
+        }
+
+        foreach (var pair in counts)
+        {
+            res.Add(pair.Value + " " + pair.Key);
+        }
+
+        return res;
+    }
+
+    /// <summary>
     /// 819. Most Common Word
     /// </summary>
     /// <param name="paragraph"></param>
