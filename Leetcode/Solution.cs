@@ -8204,6 +8204,30 @@ public class Solution
     }
 
     /// <summary>
+    /// 1441. Build an Array With Stack Operations
+    /// </summary>
+    /// <param name="target"></param>
+    /// <param name="n"></param>
+    /// <returns></returns>
+    public IList<string> BuildArray(int[] target, int n)
+    {
+        IList<string> res = new List<string>();
+        int prev = 0;
+        foreach (var number in target)
+        {
+            for (int i = 0; i < number - prev - 1; i++)
+            {
+                res.Add("Push");
+                res.Add("Pop");
+            }
+            res.Add("Push");
+            prev = number;
+        }
+
+        return res;
+    } 
+    
+    /// <summary>
     /// 1447. Simplified Fractions
     /// </summary>
     /// <param name="n"></param>
