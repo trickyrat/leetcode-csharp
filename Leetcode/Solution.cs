@@ -7278,6 +7278,56 @@ public class Solution
     }
 
     /// <summary>
+    /// 886. Possible Bipartition
+    /// </summary>
+    /// <param name="n"></param>
+    /// <param name="dislikes"></param>
+    /// <returns></returns>
+    public bool PossibleBipartition(int n, int[][] dislikes)
+    {
+        bool DFS(int curr, int nowColor, int[] color, IList<int>[] group)
+        {
+            color[curr] = nowColor;
+            foreach (var next in group[curr])
+            {
+                if (color[next] != 0 && color[next] == color[curr])
+                {
+                    return false;
+                }
+                if (color[next] == 0 && !DFS(next, 3 ^ nowColor, color, group))
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        int[] color = new int[n + 1];
+        IList<int>[] group = new IList<int>[n + 1];
+        for (int i = 0; i <= n; i++)
+        {
+            group[i] = new List<int>();
+        }
+
+        foreach (int[] p in dislikes)
+        {
+            group[p[0]].Add(p[1]);
+            group[p[1]].Add(p[0]);
+        }
+
+        for (int i = 1; i <= n; i++)
+        {
+            if (color[i] == 0 && !DFS(i, 1, color, group))
+            {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    /// <summary>
     /// 892. Surface Area of 3D Shapes
     /// </summary>
     /// <param name="grid"></param>
