@@ -8757,6 +8757,34 @@ public class Solution
     }
 
     /// <summary>
+    /// 904. Fruit Into Baskets
+    /// </summary>
+    /// <param name="students"></param>
+    /// <param name="sandwiches"></param>
+    /// <returns></returns>
+    public int CountStudents(int[] students, int[] sandwiches)
+    {
+        int square = students.Sum();
+        int circular = students.Length - square;
+        for (int i = 0; i < sandwiches.Length; i++)
+        {
+            if (sandwiches[i] == 0 && circular > 0)
+            {
+                circular--;
+            }
+            else if (sandwiches[i] == 1 && square > 0)
+            {
+                square--;
+            }
+            else
+            {
+                break;
+            }
+        }
+        return square + circular;
+    }
+
+    /// <summary>
     /// 1779. Find Nearest Point That Has the Same X or Y Coordinate
     /// </summary>
     /// <param name="x"></param>
