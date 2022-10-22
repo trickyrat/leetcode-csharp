@@ -6473,6 +6473,24 @@ public class Solution
     }
 
     /// <summary>
+    /// 779. K-th Symbol in Grammar
+    /// </summary>
+    /// <param name="n"></param>
+    /// <param name="k"></param>
+    /// <returns></returns>
+    public int KthGrammar(int n, int k)
+    {
+        k--;
+        int res = 0;
+        while (k > 0)
+        {
+            k &= k - 1;
+            res ^= 1;
+        }
+        return res;
+    }
+
+    /// <summary>
     /// 784. Letter Case Permutation
     /// </summary>
     /// <param name="s"></param>
@@ -6711,7 +6729,7 @@ public class Solution
     }
 
     /// <summary>
-    /// 1790. Check if One String Swap Can Make Strings Equal
+    /// 817. Linked List Components
     /// </summary>
     /// <param name="head"></param>
     /// <param name="nums"></param>
