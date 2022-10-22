@@ -7409,6 +7409,34 @@ public class Solution
     }
 
     /// <summary>
+    /// 904. Fruit Into Baskets
+    /// </summary>
+    /// <param name="fruit"></param>
+    /// <returns></returns>
+    public int TotalFruit(int[] fruits)
+    {
+        int n = fruits.Length;
+        Dictionary<int, int> counter = new Dictionary<int, int>();
+        int left = 0, res = 0;
+        for(int right = 0; right < n; ++right)
+        {
+            counter.TryAdd(fruits[right], 0);
+            ++counter[fruits[right]];
+            while (counter.Count > 2)
+            {
+                --counter[fruits[left]];
+                if (counter[fruits[left]] == 0)
+                {
+                    counter.Remove(fruits[left]);
+                }
+                ++left;
+            }
+            res = Math.Max(res, right - left + 1);
+        }
+        return res;
+    }
+
+    /// <summary>
     /// 905. Sort Array By Parity
     /// </summary>
     public int[] SortArrayByParity(int[] nums)
