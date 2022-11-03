@@ -8775,7 +8775,7 @@ public class Solution
     }
 
     /// <summary>
-    /// 904. Fruit Into Baskets
+    /// 1700. Number of Students Unable to Eat Lunch
     /// </summary>
     /// <param name="students"></param>
     /// <param name="sandwiches"></param>
@@ -8802,6 +8802,33 @@ public class Solution
         return square + circular;
     }
 
+    /// <summary>
+    /// 1768. Merge Strings Alternately
+    /// </summary>
+    /// <param name="word1"></param>
+    /// <param name="word2"></param>
+    /// <returns></returns>
+    public string MergeAlternately(string word1, string word2)
+    {
+        int m = word1.Length, n = word2.Length;
+        int i = 0, j = 0;
+        StringBuilder sb = new StringBuilder();
+        while (i < m || j < n)
+        {
+            if (i < m)
+            {
+                sb.Append(word1[i++]);
+            }
+
+            if (j < n)
+            {
+                sb.Append(word2[j++]);
+            }
+        }
+
+        return sb.ToString();
+    }
+    
     /// <summary>
     /// 1779. Find Nearest Point That Has the Same X or Y Coordinate
     /// </summary>
