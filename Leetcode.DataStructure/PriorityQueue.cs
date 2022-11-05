@@ -72,7 +72,7 @@ public class PriorityQueue<T> where T : IComparable, IComparable<T>
     /// <summary>
     /// Returns whether the queue is empty.
     /// </summary>
-    /// <returns>true if the queue's size is 0, faslse otherwise</returns>
+    /// <returns>true if the queue's size is 0, false otherwise</returns>
     public bool IsEmpty() => !Values.Any();
 
     /// <summary>
