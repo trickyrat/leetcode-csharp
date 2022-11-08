@@ -7497,6 +7497,27 @@ public class Solution
     }
 
     /// <summary>
+    /// 915. Partition Array into Disjoint Intervals
+    /// </summary>
+    /// <param name="nums"></param>
+    /// <returns></returns>
+    public int PartitionDisjoint(int[] nums)
+    {
+        int n = nums.Length;
+        int leftPos = nums[0], leftMax = 0, curr = 0;
+        for (int i = 1; i < n - 1; i++)
+        {
+            curr = Math.Max(curr, leftMax);
+            if (nums[i] < leftMax)
+            {
+                leftMax = curr;
+                leftPos = i;
+            }
+        }
+        return leftPos + 1;
+    }
+
+    /// <summary>
     /// 917. Reverse Only Letters
     /// </summary>
     /// <param name="s"></param>
