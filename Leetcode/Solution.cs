@@ -7504,10 +7504,10 @@ public class Solution
     public int PartitionDisjoint(int[] nums)
     {
         int n = nums.Length;
-        int leftPos = nums[0], leftMax = 0, curr = 0;
+        int leftMax = nums[0], leftPos = 0, curr = nums[0];
         for (int i = 1; i < n - 1; i++)
         {
-            curr = Math.Max(curr, leftMax);
+            curr = Math.Max(curr, nums[i]);
             if (nums[i] < leftMax)
             {
                 leftMax = curr;
@@ -7646,6 +7646,71 @@ public class Solution
         }
 
         return new[] {-1, -1};
+    }
+
+    /// <summary>
+    /// 934. Shortest Bridge
+    /// </summary>
+    /// <param name="grid"></param>
+    /// <returns></returns>
+    public int ShortestBridge(int[][] grid)
+    {
+        void DFS(int x, int y, int[][] grid, Queue<(int, int)> queue)
+        {
+            if (x < 0 || y < 0 || x >= grid.Length || y >= grid[0].Length || grid[x][y] != 1)
+            {
+                return;
+            }
+            queue.Enqueue((x, y));
+            grid[x][y] = -1;
+            DFS(x - 1, y, grid, queue);
+            DFS(x + 1, y, grid, queue);
+            DFS(x, y - 1, grid, queue);
+            DFS(x, y + 1, grid, queue);
+        }
+
+        int n = grid.Length;
+        int[][] dirs = { new int[] { -1, 0 }, new int[] { 1, 0 }, new int[] { 0, 1 }, new int[] { 0, -1 } };
+        for (int i = 0; i < n; i++)
+        {
+            for (int j = 0; j < n; j++)
+            {
+                if (grid[i][j] == 1)
+                {
+                    Queue<(int, int)> queue = new Queue<(int, int)>();
+                    DFS(i, j, grid, queue);
+                    int step = 0;
+                    while (queue.Count > 0)
+                    {
+                        int size = queue.Count;
+                        for (int k = 0; k < size; k++)
+                        {
+                            var cell = queue.Dequeue();
+                            int x = cell.Item1, y = cell.Item2;
+                            for (int d = 0; d < 4; d++)
+                            {
+                                int nx = x + dirs[d][0];
+                                int ny = y + dirs[d][1];
+                                if (nx >= 0 && ny >= 0 && nx < n && ny < n)
+                                {
+                                    if (grid[nx][ny] == 0)
+                                    {
+                                        queue.Enqueue((nx, ny));
+                                        grid[nx][ny] = -1;
+                                    }
+                                    else if (grid[nx][ny] == 1)
+                                    {
+                                        return step;
+                                    }
+                                }
+                            }
+                        }
+                        step++;
+                    }
+                }
+            }
+        }
+        return 0;
     }
 
     /// <summary>
