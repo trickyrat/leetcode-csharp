@@ -9082,6 +9082,24 @@ public class Solution
     }
 
     /// <summary>
+    /// 1827. Minimum Operations to Make the Array Increasing
+    /// </summary>
+    /// <param name="nums"></param>
+    /// <returns></returns>
+    public int MinOperations(int[] nums)
+    {
+        int prev = nums[0] - 1;
+        int res = 0;
+        foreach (var num in nums)
+        {
+            prev = Math.Max(prev + 1, num);
+            res += prev - num;
+        }
+
+        return res;
+    }
+
+    /// <summary>
     /// 1984. Minimum Difference Between Highest and Lowest of K Scores
     /// </summary>
     /// <param name="nums"></param>
