@@ -3,6 +3,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using Leetcode.DataStructure;
@@ -9097,6 +9098,35 @@ public class Solution
         }
 
         return res;
+    }
+    
+    /// <summary>
+    /// 1945. Sum of Digits of String After Convert
+    /// </summary>
+    /// <param name="s"></param>
+    /// <param name="k"></param>
+    /// <returns></returns>
+    public int GetLucky(string s, int k)
+    {
+        StringBuilder sb = new StringBuilder();
+        foreach (var ch in s)
+        {
+            sb.Append(ch - 'a' + 1);
+        }
+
+        string digits = sb.ToString();
+        for (int i = 1; i <= k && digits.Length > 1; i++)
+        {
+            int sum = 0;
+            foreach (var ch in digits)
+            {
+                sum += ch - '0';
+            }
+
+            digits = sum.ToString();
+        }
+
+        return int.Parse(digits);
     }
 
     /// <summary>
