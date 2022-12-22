@@ -5,7 +5,7 @@ using Xunit;
 
 using static System.Net.WebRequestMethods;
 
-namespace Leetcode.Test.SolutionTests;
+namespace LeetCode.Test.SolutionTests;
 public class TrimMeanUnitTest
 {
     private readonly Solution _solution;

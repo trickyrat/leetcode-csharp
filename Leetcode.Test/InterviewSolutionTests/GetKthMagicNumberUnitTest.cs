@@ -3,7 +3,7 @@
 
 using Xunit;
 
-namespace Leetcode.Test.InterviewSolutionTests;
+namespace LeetCode.Test.InterviewSolutionTests;
 public class GetKthMagicNumberUnitTest
 {
     private readonly InterviewSolution _solution;

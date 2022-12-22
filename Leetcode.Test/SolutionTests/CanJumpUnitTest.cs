@@ -3,7 +3,7 @@
 
 using Xunit;
 
-namespace Leetcode.Test.SolutionTests;
+namespace LeetCode.Test.SolutionTests;
 public class CanJumpUnitTest
 {
     private readonly Solution _solution;

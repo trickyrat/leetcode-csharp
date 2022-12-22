@@ -4,7 +4,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Leetcode;
+namespace LeetCode;
 public class MinStack
 {
     public Stack<int> Min { get; protected set; }

@@ -4,7 +4,7 @@
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 
-namespace Leetcode.DataStructure;
+namespace LeetCode.DataStructure;
 
 /// <summary>
 /// Definition for a binary tree node.

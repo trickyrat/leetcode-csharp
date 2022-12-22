@@ -3,9 +3,9 @@
 
 using System.Collections.Generic;
 
-using Leetcode.DataStructure;
+using LeetCode.DataStructure;
 
-namespace Leetcode;
+namespace LeetCode;
 
 public class Codec
 {

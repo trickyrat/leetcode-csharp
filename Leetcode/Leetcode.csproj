@@ -3,11 +3,11 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>net7.0</TargetFramework>
-    <RootNamespace>Leetcode</RootNamespace>
+    <RootNamespace>LeetCode</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Leetcode.DataStructure\Leetcode.DataStructure.csproj" />
+    <ProjectReference Include="..\LeetCode.DataStructure\LeetCode.DataStructure.csproj" />
   </ItemGroup>
 
   <ItemGroup>

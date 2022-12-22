@@ -1,4 +1,4 @@
-﻿namespace Leetcode.Infrastructure;
+﻿namespace LeetCode.Infrastructure;
 
 public class Class1
 {

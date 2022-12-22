@@ -3,7 +3,7 @@
 
 using System.IO;
 
-using Leetcode;
+using LeetCode;
 
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;

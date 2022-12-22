@@ -7,7 +7,7 @@ using Leetcodecsharp;
 
 using Xunit;
 
-namespace Leetcode.Test.SolutionTests;
+namespace LeetCode.Test.SolutionTests;
 
 public class RandomizedSetUnitTest
 {

@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 
-using Leetcode.DataStructure;
+using LeetCode.DataStructure;
 
 using Xunit;
 
-namespace Leetcode.Test.SolutionTests;
+namespace LeetCode.Test.SolutionTests;
 public class UtilitiesUnitTest
 {
 

@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 using Xunit;
 
-namespace Leetcode.Test.SolutionTests;
+namespace LeetCode.Test.SolutionTests;
 public class FindClosestElementsUnitTest
 {
     private readonly Solution _solution;

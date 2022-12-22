@@ -3,15 +3,14 @@
 
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 using System.Text;
-using Leetcode.DataStructure;
+using LeetCode.DataStructure;
 
-namespace Leetcode;
+namespace LeetCode;
 
 /// <summary>
-/// Leetcode Solution Class
+/// LeetCode Solution Class
 /// </summary>
 public class Solution
 {

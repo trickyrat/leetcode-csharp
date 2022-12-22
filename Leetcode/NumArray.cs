@@ -1,9 +1,9 @@
 ﻿// Licensed to the Trickyrat under one or more agreements.
 // The Trickyrat licenses this file to you under the MIT license.
 
-namespace Leetcode;
+namespace LeetCode;
 /// <summary>
-/// Leetcode 303 Number Array
+/// LeetCode 303 Number Array
 /// </summary>
 public class NumArray
 {

@@ -7,11 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using Leetcode.DataStructure;
+using LeetCode.DataStructure;
 
 using Xunit;
 
-namespace Leetcode.Test.SolutionTests;
+namespace LeetCode.Test.SolutionTests;
 public class ConstructMaximumBinaryTreeUnitTest
 {
     private readonly Solution _solution;

@@ -5,7 +5,7 @@ using System;
 
 using Xunit;
 
-namespace Leetcode.Test.SolutionTests;
+namespace LeetCode.Test.SolutionTests;
 public class MyPowUnitTest
 {
     private readonly Solution _solution;

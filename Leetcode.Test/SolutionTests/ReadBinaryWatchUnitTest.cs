@@ -6,7 +6,7 @@ using System.Linq;
 
 using Xunit;
 
-namespace Leetcode.Test.SolutionTests;
+namespace LeetCode.Test.SolutionTests;
 
 public class ReadBinaryWatchUnitTest
 {
