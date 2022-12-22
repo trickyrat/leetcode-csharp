@@ -9234,6 +9234,16 @@ public class Solution
     }
 
     /// <summary>
+    /// 2011. Final Value of Variable After Performing Operations
+    /// </summary>
+    /// <param name="operations"></param>
+    /// <returns></returns>
+    public int FinalValueAfterOperations(string[] operations)
+    {
+        return operations.Select(op => op[1] == '+' ? 1 : -1).Sum();
+    }
+    
+    /// <summary>
     /// 2016. Maximum Difference Between Increasing Elements
     /// </summary>
     /// <param name="nums"></param>
