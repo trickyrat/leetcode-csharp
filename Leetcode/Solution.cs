@@ -9267,6 +9267,26 @@ public class Solution
     }
 
     /// <summary>
+    /// 2027. Minimum Moves to Convert String
+    /// </summary>
+    /// <param name="s"></param>
+    /// <returns></returns>
+    public int MinimumMoves(string s)
+    {
+        int res = 0;
+        int count = -1;
+        for(int i = 0; i < s.Length; i++)
+        {
+            if (s[i] == 'X' && i > count)
+            {
+                res++;
+                count = i + 2;
+            }
+        }
+        return res;
+    }
+
+    /// <summary>
     /// 2044. Count Number of Maximum Bitwise-OR Subsets
     /// </summary>
     /// <param name="nums"></param>
