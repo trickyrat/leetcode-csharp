@@ -8935,6 +8935,30 @@ public class Solution
     }
 
     /// <summary>
+    /// 1750. Minimum Length of String After Deleting Similar Ends
+    /// </summary>
+    /// <param name="s"></param>
+    /// <returns></returns>
+    public int MinimumLength(string s)
+    {
+        int n = s.Length;
+        int left = 0, right = n - 1;
+        while (left < right && s[left] == s[right])
+        {
+            char c = s[left];
+            while (left <= right && s[left] == c)
+            {
+                left++;
+            }
+            while (left <= right && s[right] == c)
+            {
+                right--;
+            }
+        }
+        return right - left + 1;
+    }
+
+    /// <summary>
     /// 1768. Merge Strings Alternately
     /// </summary>
     /// <param name="word1"></param>
