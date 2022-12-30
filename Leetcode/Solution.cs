@@ -9311,6 +9311,46 @@ public class Solution
     }
 
     /// <summary>
+    /// 2032. Two Out of Three
+    /// </summary>
+    /// <param name="nums1"></param>
+    /// <param name="nums2"></param>
+    /// <param name="nums3"></param>
+    /// <returns></returns>
+    public IList<int> TwoOutOfThree(int[] nums1, int[] nums2, int[] nums3)
+    {
+        Dictionary<int, int> dic = new();
+        foreach (var num in nums1)
+        {
+            dic.TryAdd(num, 1);
+        }
+
+        foreach (var num in nums2)
+        {
+            dic.TryAdd(num, 0);
+            dic[num] |= 2;
+        }
+
+        foreach (var num in nums3)
+        {
+            dic.TryAdd(num, 0);
+            dic[num] |= 4;
+        }
+
+        IList<int> res = new List<int>();
+        foreach (var pair in dic)
+        {
+            int k = pair.Key, v = pair.Value;
+            if ((v & (v - 1)) != 0)
+            {
+                res.Add(k);
+            }
+        }
+
+        return res;
+    }
+
+    /// <summary>
     /// 2044. Count Number of Maximum Bitwise-OR Subsets
     /// </summary>
     /// <param name="nums"></param>

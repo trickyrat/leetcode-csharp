@@ -3,8 +3,6 @@
 
 using Xunit;
 
-using static System.Net.WebRequestMethods;
-
 namespace LeetCode.Test.SolutionTests;
 public class TrimMeanUnitTest
 {
