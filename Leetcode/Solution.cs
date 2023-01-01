@@ -9451,6 +9451,27 @@ public class Solution
     }
 
     /// <summary>
+    /// 2351. First Letter to Appear Twice
+    /// </summary>
+    /// <param name="s"></param>
+    /// <returns></returns>
+    public char RepeatedCharacter(string s)
+    {
+        int[] map = new int[26];
+        foreach (char c in s)
+        {
+            int index = c - 'a';
+            if (map[index] > 0)
+            {
+                return c;
+            }
+            map[index]++;
+        }
+
+        return ' ';
+    }
+
+    /// <summary>
     /// 6078. Rearrange Characters to Make Target String
     /// </summary>
     /// <param name="s"></param>
