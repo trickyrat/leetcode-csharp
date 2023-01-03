@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
-    <RootNamespace>LeetCode.DataStructure</RootNamespace>
+    <RootNamespace>LeetCodecsharp.DataStructure</RootNamespace>
   </PropertyGroup>
 
 </Project>

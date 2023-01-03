@@ -1,8 +1,8 @@
-# Welcome to Leetcode
+# Welcome to LeetCodecsharp
 
 ## Introduction
 
-The solutions of Leetcode problems with C#.  
+The solutions of LeetCode problems with C#.  
 
 ## Getting Started
 
@@ -12,17 +12,17 @@ All solutions are sorted in ascending order according to the problem number.
 
 - Runtime  
 
-> .Net 6
+> .Net 7
 
 - Run command  
 
-> cd Leetcodecsharp.Test  
+> cd LeetCodecsharp.Test  
 > dotnet test  
 
 ## Contribute
 
 Contributions, issues and feature requests are welcome.  
-Feel free to check [issue page](https://github.com/Leetcodec/issues) if you want to contribute.
+Feel free to check [issue page](https://github.com/Leetcodecsharp/issues) if you want to contribute.
 
 ## Author
 

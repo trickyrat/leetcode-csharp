@@ -3,18 +3,18 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31717.71
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leetcode", "Leetcode\Leetcode.csproj", "{97439122-5DCB-4303-9B1E-DB5B9E49D067}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LeetCodecsharp", "LeetCodecsharp\LeetCodecsharp.csproj", "{97439122-5DCB-4303-9B1E-DB5B9E49D067}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leetcode.Test", "Leetcode.Test\Leetcode.Test.csproj", "{6C3E993F-7A94-4C71-9EE0-A21D330726EC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LeetCodecsharp.Test", "LeetCodecsharp.Test\LeetCodecsharp.Test.csproj", "{6C3E993F-7A94-4C71-9EE0-A21D330726EC}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leetcode.DataStructure", "Leetcode.DataStructure\Leetcode.DataStructure.csproj", "{A8AFF516-48AA-4D0D-BCA0-BE0A438D87F8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LeetCodecsharp.DataStructure", "LeetCodecsharp.DataStructure\LeetCodecsharp.DataStructure.csproj", "{A8AFF516-48AA-4D0D-BCA0-BE0A438D87F8}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{DE17C021-2880-48C4-817A-70B054823DB7}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leetcode.Infrastructure", "Leetcode.Infrastructure\Leetcode.Infrastructure.csproj", "{B3E0C81D-5387-4D54-A949-141D8744F177}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LeetCodecsharp.Infrastructure", "LeetCodecsharp.Infrastructure\LeetCodecsharp.Infrastructure.csproj", "{B3E0C81D-5387-4D54-A949-141D8744F177}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
