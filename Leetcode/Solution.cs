@@ -9364,6 +9364,38 @@ public class Solution
     }
 
     /// <summary>
+    /// 2042. Check if Numbers Are Ascending in a Sentence
+    /// </summary>
+    /// <param name="s"></param>
+    /// <returns></returns>
+    public bool AreNumberAscending(string s)
+    {
+        int prev = 0, pos = 0;
+        while (pos < s.Length)
+        {
+            if (char.IsDigit(s[pos]))
+            {
+                int curr = 0;
+                while (pos < s.Length && char.IsDigit(s[pos]))
+                {
+                    curr = curr * 10 + s[pos] - '0';
+                    pos++;
+                }
+                if (curr <= prev)
+                {
+                    return false;
+                }
+                prev = curr;
+            }
+            else
+            {
+                pos++;
+            }
+        }
+        return true;
+    }
+
+    /// <summary>
     /// 2044. Count Number of Maximum Bitwise-OR Subsets
     /// </summary>
     /// <param name="nums"></param>
