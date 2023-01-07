@@ -9581,6 +9581,11 @@ public class Solution
 
         return res - 1;
     }
+
+    public int PrefixCount(string[] words, string pref)
+    {
+        return words.Where(x => x.StartsWith(pref)).Count();
+    }
     
     /// <summary>
     /// 2351. First Letter to Appear Twice
