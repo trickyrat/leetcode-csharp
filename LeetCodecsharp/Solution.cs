@@ -9087,6 +9087,44 @@ public class Solution
 
         return res;
     }
+
+    /// <summary>
+    /// 1802. Maximum Value at a Given Index in a Bounded Array
+    /// </summary>
+    /// <param name="n"></param>
+    /// <param name="index"></param>
+    /// <param name="maxSum"></param>
+    /// <returns></returns>
+    public int MaxValue(int n, int index, int maxSum)
+    {
+        double left = index;
+        double right = n - index - 1;
+        if (left > right) {
+            double temp = left;
+            left = right;
+            right = temp;
+        }
+
+        double upper = ((left + 1) * (left + 1) - 3 * (left + 1)) / 2 + left + 1 + (left + 1) + ((left + 1) * (left + 1) - 3 * (left + 1)) / 2 + right + 1;
+        if (upper >= maxSum) {
+            double a = 1;
+            double b = -2;
+            double c = left + right + 2 - maxSum;
+            return (int) Math.Floor((-b + Math.Sqrt(b * b - 4 * a * c)) / (2 * a));
+        }
+
+        upper = (2 * (right + 1) - left - 1) * left / 2 + (right + 1) + ((right + 1) * (right + 1) - 3 * (right + 1)) / 2 + right + 1;
+        if (upper >= maxSum) {
+            double a = 1.0 / 2;
+            double b = left + 1 - 3.0 / 2;
+            double c = right + 1 + (-left - 1) * left / 2 - maxSum;
+            return (int) Math.Floor((-b + Math.Sqrt(b * b - 4 * a * c)) / (2 * a));
+        } else {
+            double a = left + right + 1;;
+            double b = (-left * left - left - right * right - right) / 2 - maxSum;
+            return (int) Math.Floor(-b / a);
+        }
+    }
     
     /// <summary>
     /// 1823. Find the Winner of the Circular Game
