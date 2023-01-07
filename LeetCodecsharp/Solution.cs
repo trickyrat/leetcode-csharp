@@ -9521,6 +9521,33 @@ public class Solution
     }
 
     /// <summary>
+    /// 2180. Count Integers With Even Digit Sum
+    /// </summary>
+    /// <param name="num"></param>
+    /// <returns></returns>
+    public int CountEven(int num)
+    {
+        int y = num / 10, x = num % 10;
+        int res = y * 5, ySum = 0;
+        while (y > 0)
+        {
+            ySum += y % 10;
+            y /= 10;
+        }
+
+        if (ySum % 2 == 0)
+        {
+            res += x / 2 + 1;
+        }
+        else
+        {
+            res += (x + 1) / 2;
+        }
+
+        return res - 1;
+    }
+    
+    /// <summary>
     /// 2351. First Letter to Appear Twice
     /// </summary>
     /// <param name="s"></param>
