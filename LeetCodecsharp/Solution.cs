@@ -8851,6 +8851,41 @@ public class Solution
     }
 
     /// <summary>
+    /// 1658. Minimum Operations to Reduce X to Zero
+    /// </summary>
+    /// <param name="nums"></param>
+    /// <param name="x"></param>
+    /// <returns></returns>
+    public int MinOperations(int[] nums, int x)
+    {
+        int n = nums.Length;
+        int sum = nums.Sum();
+
+        if (sum < x) {
+            return -1;
+        }
+
+        int right = 0;
+        int leftSum = 0, rightSum = sum;
+        int res = n + 1;
+
+        for (int left = -1; left < n; ++left) {
+            if (left != -1) {
+                leftSum += nums[left];
+            }
+            while (right < n && leftSum + rightSum > x) {
+                rightSum -= nums[right];
+                ++right;
+            }
+            if (leftSum + rightSum == x) {
+                res = Math.Min(res, (left + 1) + (n - right));
+            }
+        }
+
+        return res > n ? -1 : res;
+    }
+
+    /// <summary>
     /// 1672. Richest Customer Wealth
     /// </summary>
     /// <param name="accounts"></param>
