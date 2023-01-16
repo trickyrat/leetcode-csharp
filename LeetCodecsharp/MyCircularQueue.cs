@@ -1,4 +1,4 @@
-﻿namespace LeetCode;
+﻿namespace LeetCodecsharp;
 public class MyCircularQueue
 {
     private int _front;

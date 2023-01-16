@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using LeetCode.DataStructure;
 
-namespace LeetCode;
+namespace LeetCodecsharp;
 
 /// <summary>
 /// LeetCode Solution Class

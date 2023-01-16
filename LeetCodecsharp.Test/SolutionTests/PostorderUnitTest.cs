@@ -11,7 +11,7 @@ using LeetCode.DataStructure;
 
 using Xunit;
 
-namespace LeetCode.Test.SolutionTests;
+namespace LeetCodecsharp.Test.SolutionTests;
 public class PostorderUnitTest
 {
     private readonly Solution _solution;

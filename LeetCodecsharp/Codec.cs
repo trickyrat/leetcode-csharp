@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 using LeetCode.DataStructure;
 
-namespace LeetCode;
+namespace LeetCodecsharp;
 
 public class Codec
 {

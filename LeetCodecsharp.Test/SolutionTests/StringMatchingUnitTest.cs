@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 using Xunit;
 
-namespace LeetCode.Test.SolutionTests;
+namespace LeetCodecsharp.Test.SolutionTests;
 public class StringMatchingUnitTest
 {
     private readonly Solution _solution;

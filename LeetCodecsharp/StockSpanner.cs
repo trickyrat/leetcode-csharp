@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace LeetCode;
+namespace LeetCodecsharp;
 public class StockSpanner
 {
     public int Index

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 using Xunit;
 
-namespace LeetCode.Test.SolutionTests;
+namespace LeetCodecsharp.Test.SolutionTests;
 public class FindLongestChainUnitTest
 {
     private readonly Solution _solution;

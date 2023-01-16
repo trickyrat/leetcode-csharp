@@ -1,7 +1,7 @@
 ﻿using System;
 using Xunit;
 
-namespace LeetCode.Test.SolutionTests;
+namespace LeetCodecsharp.Test.SolutionTests;
 
 public class MinCostToHireWorkersUnitTest
 {

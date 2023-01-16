@@ -7,7 +7,7 @@ using System.Text;
 
 using LeetCode.DataStructure;
 
-namespace LeetCode;
+namespace LeetCodecsharp;
 
 public static class Utilities
 {

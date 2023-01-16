@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
-namespace LeetCode;
+namespace LeetCodecsharp;
 
 public class Worker : BackgroundService
 {

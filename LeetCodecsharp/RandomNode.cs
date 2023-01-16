@@ -5,7 +5,7 @@ using System;
 
 using LeetCode.DataStructure;
 
-namespace LeetCode;
+namespace LeetCodecsharp;
 
 public class RandomNode
 {

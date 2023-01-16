@@ -3,7 +3,7 @@
 
 using Xunit;
 
-namespace LeetCode.Test.SolutionTests;
+namespace LeetCodecsharp.Test.SolutionTests;
 public class CanTransformUnitTest
 {
     private readonly Solution _solution;
