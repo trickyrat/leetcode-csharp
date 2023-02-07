@@ -1,7 +1,7 @@
 ﻿// Licensed to the Trickyrat under one or more agreements.
 // The Trickyrat licenses this file to you under the MIT license.
 
-namespace LeetCode.DataStructure;
+namespace LeetCodecsharp.DataStructure;
 
 /// <summary>
 /// Dictionary Tree class

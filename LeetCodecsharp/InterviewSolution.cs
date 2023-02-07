@@ -2,7 +2,6 @@
 // The Trickyrat licenses this file to you under the MIT license.
 
 using System;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace LeetCodecsharp;
@@ -79,7 +78,7 @@ public class InterviewSolution
     public bool CheckPermutation(string s1, string s2)
     {
         int len1 = s1.Length, len2 = s2.Length;
-        if(len1 != len2)
+        if (len1 != len2)
         {
             return false;
         }
@@ -204,15 +203,15 @@ public class InterviewSolution
         for (int i = 0; i < words.Length; i++)
         {
             string word = words[i];
-            if(word == word1)
+            if (word == word1)
             {
                 index1 = i;
             }
-            else if(word == word2)
+            else if (word == word2)
             {
                 index2 = i;
             }
-            if(index1 >= 0 && index2 >= 0)
+            if (index1 >= 0 && index2 >= 0)
             {
                 ans = Math.Min(ans, Math.Abs(index1 - index2));
             }

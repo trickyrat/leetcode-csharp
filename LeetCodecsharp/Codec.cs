@@ -3,7 +3,7 @@
 
 using System.Collections.Generic;
 
-using LeetCode.DataStructure;
+using LeetCodecsharp.DataStructure;
 
 namespace LeetCodecsharp;
 

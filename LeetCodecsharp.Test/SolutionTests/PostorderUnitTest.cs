@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using LeetCode.DataStructure;
+using LeetCodecsharp.DataStructure;
 
 using Xunit;
 

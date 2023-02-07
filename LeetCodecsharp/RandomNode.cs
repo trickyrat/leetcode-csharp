@@ -3,7 +3,7 @@
 
 using System;
 
-using LeetCode.DataStructure;
+using LeetCodecsharp.DataStructure;
 
 namespace LeetCodecsharp;
 

@@ -3,7 +3,7 @@
 
 using System.Collections.Generic;
 
-namespace LeetCode.DataStructure;
+namespace LeetCodecsharp.DataStructure;
 
 /// <summary>
 /// Definition for a Node.

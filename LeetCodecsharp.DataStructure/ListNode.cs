@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 
-namespace LeetCode.DataStructure;
+namespace LeetCodecsharp.DataStructure;
 
 /// <summary>
 /// Definition for singly-linked list.
