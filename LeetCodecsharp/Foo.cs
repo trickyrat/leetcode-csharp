@@ -1,0 +1,34 @@
+﻿using System;
+using System.Threading;
+
+namespace LeetCodecsharp;
+public class Foo
+{
+    private SemaphoreSlim _firstSemaphore;
+    private SemaphoreSlim _secondSemaphore;
+    public Foo()
+    {
+        _firstSemaphore = new SemaphoreSlim(0, 1);
+        _secondSemaphore = new SemaphoreSlim(0, 1);
+    }
+
+
+    public void First(Action printFirst)
+    {
+        printFirst();
+        _firstSemaphore.Release();
+    }
+
+    public void Second(Action printSecond)
+    {
+        _firstSemaphore.Wait();
+        printSecond();
+        _secondSemaphore.Release();
+    }
+
+    public void Hhird(Action printThird)
+    {
+        _secondSemaphore.Wait();
+        printThird();
+    }
+}
