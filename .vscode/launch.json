@@ -9,9 +9,9 @@
       "type": "coreclr",
       "request": "launch",
       "preLaunchTask": "build",
-      "program": "${workspaceFolder}/Leetcode/bin/Debug/net6.0/Leetcode.dll",
+      "program": "${workspaceFolder}/LeetCodecsharp/bin/Debug/net7.0/LeetCodecsharp.dll",
       "args": [],
-      "cwd": "${workspaceFolder}/Leetcode",
+      "cwd": "${workspaceFolder}/LeetCodecsharp",
       "console": "internalConsole",
       "stopAtEntry": false
     },
