@@ -4701,6 +4701,22 @@ public class Solution
     }
 
     /// <summary>
+    /// 453. Minimum Moves to Equal Array Elements
+    /// </summary>
+    /// <param name="nums"></param>
+    /// <returns></returns>
+    public int MinMoves(int[] nums)
+    {
+        int min = nums.Min();
+        int res = 0;
+        foreach (var num in nums)
+        {
+            res += num - min;
+        }
+        return res;
+    }
+
+    /// <summary>
     /// 459. Repeated Substring Pattern
     /// </summary>
     /// <param name="s">input string</param>
