@@ -5709,6 +5709,35 @@ public class Solution
     }
 
     /// <summary>
+    /// 665. Non-decreasing Array
+    /// </summary>
+    /// <param name="nums"></param>
+    /// <returns></returns>
+    public bool CheckPossibility(int[] nums)
+    {
+        int n = nums.Length, count = 0;
+        for (int i = 0; i < n - 1; i++)
+        {
+            int x = nums[i], y = nums[i + 1];
+            if (x > y)
+            {
+                count++;
+                if (count > 1)
+                {
+                    return false;
+                }
+
+                if (i > 0 && y < nums[i - 1])
+                {
+                    nums[i + 1] = x;
+                }
+            }
+        }
+
+        return true;
+    }
+
+    /// <summary>
     /// 667. Beautiful Arrangement II
     /// </summary>
     /// <param name="n"></param>
