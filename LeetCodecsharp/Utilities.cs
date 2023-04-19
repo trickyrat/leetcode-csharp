@@ -2,7 +2,6 @@
 // The Trickyrat licenses this file to you under the MIT license.
 
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 
 using LeetCodecsharp.DataStructure;
@@ -31,21 +30,6 @@ public static class Utilities
             dummy = dummy.next;
         }
         return head.next;
-    }
-
-    public static string ConvertListNodeToString(ListNode head)
-    {
-        StringBuilder sb = new StringBuilder();
-        while (head is not null)
-        {
-            sb.Append($"{head.val}");
-            if (head.next is not null)
-            {
-                sb.Append("->");
-            }
-            head = head.next;
-        }
-        return sb.ToString();
     }
 
     public static List<int> ConvertListNodeToList(ListNode head)

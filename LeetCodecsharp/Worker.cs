@@ -4,7 +4,6 @@
 using System;
 using System.Threading;
 using System.Threading.Tasks;
-
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
@@ -37,9 +36,9 @@ public class Worker : BackgroundService
             _exitCode = -1;
             throw;
         }
-        finally 
+        finally
         {
-            Environment.ExitCode = _exitCode;    
+            Environment.ExitCode = _exitCode;
             await _host.StopAsync(stoppingToken);
         }
     }

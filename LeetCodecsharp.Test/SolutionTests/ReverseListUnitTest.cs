@@ -40,10 +40,9 @@ public class ReverseListUnitTest
     [MemberData(nameof(GetNodes))]
     public void Test(ListNode head, ListNode expectedNode)
     {
-
         var actualNode = _solution.ReverseList(head);
-        var actual = Utilities.ConvertListNodeToString(actualNode);
-        var expected = Utilities.ConvertListNodeToString(expectedNode);
+        var actual = actualNode?.ToString();
+        var expected = expectedNode?.ToString();
         Assert.Equal(expected, actual);
     }
 }
