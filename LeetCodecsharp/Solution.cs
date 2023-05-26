@@ -8157,6 +8157,60 @@ public class Solution
     }
 
     /// <summary>
+    /// 1091. Shortest Path in Binary Matrix
+    /// </summary>
+    /// <param name="grid"></param>
+    /// <returns></returns>
+    public int ShortestPathBinaryMatrix(int[][] grid)
+    {
+        if (grid[0][0] == 1)
+        {
+            return -1;
+        }
+
+        var n = grid.Length;
+        var dist = new int[n][];
+        for (var i = 0; i < n; i++)
+        {
+            dist[i] = new int[n];
+            Array.Fill(dist[i], int.MaxValue);
+        }
+
+        var queue = new Queue<(int, int)>();
+        queue.Enqueue((0,0));
+        dist[0][0] = 1;
+        while (queue.Count > 0)
+        {
+            var (x, y) = queue.Dequeue();
+            if (x == n - 1 && y == n - 1)
+            {
+                return dist[x][y];
+            }
+
+            for (var dx = -1; dx < 2; dx++)
+            {
+                for (var dy = -1; dy < 2; dy++)
+                {
+                    if (x + dx < 0 || x + dx >= n || y + dy < 0 || y + dy >= n)
+                    {
+                        continue;
+                    }
+
+                    if (grid[x + dx][y + dy] == 1 || dist[x + dx][y + dy] <= dist[x][y] + 1)
+                    {
+                        continue;
+                    }
+
+                    dist[x + dx][y + dy] = dist[x][y] + 1;
+                    queue.Enqueue((x + dx, y + dy));
+                }
+            }
+        }
+
+        return -1;
+    }
+
+    /// <summary>
     /// 1235. Maximum Profit in Job Scheduling
     /// </summary>
     /// <param name="startTime"></param>

@@ -1,0 +1,55 @@
+﻿using System.Collections.Generic;
+using Xunit;
+
+namespace LeetCodecsharp.Test.SolutionTests;
+
+public class ShortestPathBinaryMatrixUnitTest
+{
+    private readonly Solution _solution;
+
+    public ShortestPathBinaryMatrixUnitTest()
+    {
+        _solution = new Solution();
+    }
+
+    public static IEnumerable<object[]> GetData()
+    {
+        yield return new object[]
+        {
+            new int[][]
+            {
+                new int[]{ 0, 1 },
+                new int[]{ 1, 0 }
+            },
+            2
+        };
+        yield return new object[]
+        {
+            new int[][]
+            {
+                new int[]{ 0, 0, 0 },
+                new int[]{ 1, 1, 0 },
+                new int[]{ 1, 1, 0 }
+            },
+            4
+        };
+        yield return new object[]
+        {
+            new int[][]
+            {
+                new int[]{ 1, 0, 0 },
+                new int[]{ 1, 1, 0 },
+                new int[]{ 1, 1, 0 }
+            },
+            -1
+        };
+    }
+
+    [Theory]
+    [MemberData(nameof(GetData))]
+    public void MultipleDataTest(int[][] grid, int expected)
+    {
+        var actual = _solution.ShortestPathBinaryMatrix(grid);
+        Assert.Equal(expected, actual);
+    }
+}
