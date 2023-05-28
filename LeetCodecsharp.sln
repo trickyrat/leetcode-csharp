@@ -10,9 +10,6 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LeetCodecsharp.DataStructure", "LeetCodecsharp.DataStructure\LeetCodecsharp.DataStructure.csproj", "{A8AFF516-48AA-4D0D-BCA0-BE0A438D87F8}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{DE17C021-2880-48C4-817A-70B054823DB7}"
-	ProjectSection(SolutionItems) = preProject
-		.editorconfig = .editorconfig
-	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LeetCodecsharp.Infrastructure", "LeetCodecsharp.Infrastructure\LeetCodecsharp.Infrastructure.csproj", "{B3E0C81D-5387-4D54-A949-141D8744F177}"
 EndProject
