@@ -7,8 +7,14 @@ using System.Collections.Generic;
 namespace LeetCodecsharp;
 public class MinStack
 {
-    public Stack<int> Min { get; protected set; }
-    public Stack<int> X { get; protected set; }
+    public Stack<int> Min
+    {
+        get; protected set;
+    }
+    public Stack<int> X
+    {
+        get; protected set;
+    }
 
     public MinStack()
     {

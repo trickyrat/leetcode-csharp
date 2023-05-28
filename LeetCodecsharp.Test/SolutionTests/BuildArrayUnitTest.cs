@@ -1,4 +1,8 @@
-﻿using System.Collections.Generic;
+﻿// Licensed to the Trickyrat under one or more agreements.
+// The Trickyrat licenses this file to you under the MIT license.
+
+using System.Collections.Generic;
+
 using Xunit;
 
 namespace LeetCodecsharp.Test.SolutionTests;
@@ -13,9 +17,9 @@ public class BuildArrayUnitTest
     }
 
     [Theory]
-    [InlineData(new int[] {1, 3}, 3, new string[] {"Push", "Push", "Pop", "Push"})]
-    [InlineData(new int[] {1, 2, 3}, 3, new string[] {"Push", "Push", "Push"})]
-    [InlineData(new int[] {1, 2}, 4, new string[] {"Push", "Push"})]
+    [InlineData(new int[] { 1, 3 }, 3, new string[] { "Push", "Push", "Pop", "Push" })]
+    [InlineData(new int[] { 1, 2, 3 }, 3, new string[] { "Push", "Push", "Push" })]
+    [InlineData(new int[] { 1, 2 }, 4, new string[] { "Push", "Push" })]
     public void Test(int[] targets, int n, IList<string> expected)
     {
         var actual = _solution.BuildArray(targets, n);

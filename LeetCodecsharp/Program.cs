@@ -14,14 +14,16 @@ using Serilog;
 
 
 await Host.CreateDefaultBuilder(args)
-    .ConfigureAppConfiguration((builder) => {
+    .ConfigureAppConfiguration((builder) =>
+    {
         builder.SetBasePath(Directory.GetCurrentDirectory());
         builder.AddJsonFile("appsettings.json", false);
     })
-    .ConfigureServices(services => {
+    .ConfigureServices(services =>
+    {
         services.AddHostedService<Worker>();
     })
-    .UseSerilog((context, logger) => 
+    .UseSerilog((context, logger) =>
     {
         logger.ReadFrom.Configuration(context.Configuration);
     })

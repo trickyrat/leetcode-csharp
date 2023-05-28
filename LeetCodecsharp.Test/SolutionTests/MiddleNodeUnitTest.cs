@@ -21,13 +21,13 @@ public class MiddleNodeUnitTest
     {
         yield return new object[]
         {
-            Utilities.CreateListNode(new List<int> { 1, 2, 3, 4, 5, 6 }),
-            Utilities.CreateListNode(new List<int> { 4, 5, 6 })
+            Util.CreateListNode(new List<int> { 1, 2, 3, 4, 5, 6 }),
+            Util.CreateListNode(new List<int> { 4, 5, 6 })
         };
         yield return new object[]
         {
-            Utilities.CreateListNode(new List<int> { 1, 2, 3, 4, 5,  }),
-            Utilities.CreateListNode(new List<int> { 3, 4, 5 })
+            Util.CreateListNode(new List<int> { 1, 2, 3, 4, 5,  }),
+            Util.CreateListNode(new List<int> { 3, 4, 5 })
         };
     }
 

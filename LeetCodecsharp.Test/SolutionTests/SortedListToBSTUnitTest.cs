@@ -3,8 +3,6 @@
 
 using System.Collections.Generic;
 
-using LeetCodecsharp.DataStructure;
-
 using Xunit;
 
 namespace LeetCodecsharp.Test.SolutionTests;
@@ -21,9 +19,9 @@ public class SortedListToBSTUnitTest
     {
 
         var actualNode = _solution.SortedArrayToBST(new int[] { -10, -3, 0, 5, 9 });
-        var expectedNode = Utilities.CreateTreeNode(new List<int?> { 0, -10, 5, null, -3, null, 9 });
-        var actual = Utilities.PreorderTraversal(actualNode);
-        var expected = Utilities.PreorderTraversal(expectedNode);
+        var expectedNode = Util.CreateTreeNode(new List<int?> { 0, -10, 5, null, -3, null, 9 });
+        var actual = Util.PreorderTraversal(actualNode);
+        var expected = Util.PreorderTraversal(expectedNode);
         Assert.Equal(expected, actual);
     }
 }

@@ -1,4 +1,7 @@
-﻿using System.Collections.Generic;
+﻿// Licensed to the Trickyrat under one or more agreements.
+// The Trickyrat licenses this file to you under the MIT license.
+
+using System.Collections.Generic;
 
 namespace LeetCodecsharp;
 
@@ -48,7 +51,7 @@ public class ExamRoom
             if (Seats.Contains(p.first) && Seats.Contains(p.second)
                 && Seats.GetViewBetween(p.first + 1, Seats.Max).Min == p.second)
             {
-                int d = p.second - p.first;
+                var d = p.second - p.first;
                 if (d / 2 < right || d / 2 <= left)
                 {
                     break;

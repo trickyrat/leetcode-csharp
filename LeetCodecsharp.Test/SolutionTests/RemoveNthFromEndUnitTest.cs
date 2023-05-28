@@ -21,21 +21,21 @@ public class RemoveNthFromEndUnitTest
     {
         yield return new object[]
         {
-            Utilities.CreateListNode(new List<int> { 1, 2, 3, 4, 5 }),
+            Util.CreateListNode(new List<int> { 1, 2, 3, 4, 5 }),
             2,
-            Utilities.CreateListNode(new List<int> { 1, 2, 3, 5 })
+            Util.CreateListNode(new List<int> { 1, 2, 3, 5 })
         };
         yield return new object[]
         {
-            Utilities.CreateListNode(new List<int> { 1 }),
+            Util.CreateListNode(new List<int> { 1 }),
             1,
-            Utilities.CreateListNode(new List<int> { })
+            Util.CreateListNode(new List<int> { })
         };
         yield return new object[]
         {
-            Utilities.CreateListNode(new List<int> { 1, 2 }),
+            Util.CreateListNode(new List<int> { 1, 2 }),
             1,
-            Utilities.CreateListNode(new List<int> { 1 })
+            Util.CreateListNode(new List<int> { 1 })
         };
 
     }

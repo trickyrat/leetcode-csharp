@@ -20,21 +20,21 @@ public class AddTwoNumbersUnitTest
     {
         yield return new object[]
         {
-            Utilities.CreateListNode(new List<int> { 2, 4, 3 }),
-            Utilities.CreateListNode(new List<int> { 5, 6, 4 }),
-            Utilities.CreateListNode(new List<int> {  7, 0, 8 })
+            Util.CreateListNode(new List<int> { 2, 4, 3 }),
+            Util.CreateListNode(new List<int> { 5, 6, 4 }),
+            Util.CreateListNode(new List<int> {  7, 0, 8 })
         };
         yield return new object[]
         {
-            Utilities.CreateListNode(new List<int> { 0 }),
-            Utilities.CreateListNode(new List<int> { 0 }),
-            Utilities.CreateListNode(new List<int> { 0 })
+            Util.CreateListNode(new List<int> { 0 }),
+            Util.CreateListNode(new List<int> { 0 }),
+            Util.CreateListNode(new List<int> { 0 })
         };
         yield return new object[]
         {
-            Utilities.CreateListNode(new List<int> { 9, 9, 9, 9, 9, 9, 9 }),
-            Utilities.CreateListNode(new List<int> { 9, 9, 9, 9 }),
-            Utilities.CreateListNode(new List<int> { 8, 9, 9, 9, 0, 0, 0, 1 })
+            Util.CreateListNode(new List<int> { 9, 9, 9, 9, 9, 9, 9 }),
+            Util.CreateListNode(new List<int> { 9, 9, 9, 9 }),
+            Util.CreateListNode(new List<int> { 8, 9, 9, 9, 0, 0, 0, 1 })
         };
     }
 

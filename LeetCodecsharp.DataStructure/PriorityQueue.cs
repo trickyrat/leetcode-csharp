@@ -9,7 +9,10 @@ namespace LeetCodecsharp.DataStructure;
 
 public class PriorityQueue<T> where T : IComparable, IComparable<T>
 {
-    protected SortedSet<T> Values { get; }
+    protected SortedSet<T> Values
+    {
+        get;
+    }
 
     /// <summary>
     /// Default constructor

@@ -10,9 +10,9 @@ public class NumArray
     private int[] sum;
     public NumArray(int[] nums)
     {
-        int len = nums.Length;
+        var len = nums.Length;
         sum = new int[len + 1];
-        for (int i = 0; i < len; i++)
+        for (var i = 0; i < len; i++)
         {
             sum[i + 1] = sum[i] + nums[i];
         }

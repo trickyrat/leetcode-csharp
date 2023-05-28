@@ -1,4 +1,7 @@
-﻿using Xunit;
+﻿// Licensed to the Trickyrat under one or more agreements.
+// The Trickyrat licenses this file to you under the MIT license.
+
+using Xunit;
 
 namespace LeetCodecsharp.Test.SolutionTests;
 
@@ -10,7 +13,7 @@ public class MaxValueUnitTest
     {
         _solution = new Solution();
     }
-    
+
     [Theory]
     [InlineData(4, 2, 6, 2)]
     [InlineData(6, 1, 10, 3)]

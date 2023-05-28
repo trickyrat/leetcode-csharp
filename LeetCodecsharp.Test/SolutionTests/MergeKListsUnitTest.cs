@@ -22,11 +22,11 @@ public class MergeKListsUnitTest
         {
             new ListNode[]
             {
-                Utilities.CreateListNode(new int[]{ 1,4,5}),
-                Utilities.CreateListNode(new int[]{ 1,3,4}),
-                Utilities.CreateListNode(new int[]{ 2, 6})
+                Util.CreateListNode(new int[]{ 1,4,5}),
+                Util.CreateListNode(new int[]{ 1,3,4}),
+                Util.CreateListNode(new int[]{ 2, 6})
             },
-            Utilities.CreateListNode(new int[]{ 1, 1, 2, 3, 4, 4, 5, 6 })
+            Util.CreateListNode(new int[]{ 1, 1, 2, 3, 4, 4, 5, 6 })
         };
         yield return new object[]
         {

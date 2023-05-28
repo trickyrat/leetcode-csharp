@@ -26,9 +26,9 @@ public class Codec
         {
             return null;
         }
-        string[] nums = data.Split(',');
-        Stack<int> stack = new Stack<int>();
-        foreach (string num in nums)
+        var nums = data.Split(',');
+        var stack = new Stack<int>();
+        foreach (var num in nums)
         {
             stack.Push(int.Parse(num));
         }
@@ -52,8 +52,8 @@ public class Codec
         {
             return null;
         }
-        int val = stack.Pop();
-        TreeNode root = new TreeNode(val);
+        var val = stack.Pop();
+        var root = new TreeNode(val);
         root.right = Build(val, upper, stack);
         root.left = Build(lower, val, stack);
         return root;

@@ -20,8 +20,8 @@ public class MergeTwoListsUnitTest
     {
         yield return new object[]
         {
-            Utilities.CreateListNode(new List<int> { 1, 2, 4 }),
-            Utilities.CreateListNode(new List<int> { 1, 3, 4 }),
+            Util.CreateListNode(new List<int> { 1, 2, 4 }),
+            Util.CreateListNode(new List<int> { 1, 3, 4 }),
             new List<int> { 1, 1, 2, 3, 4, 4 }
         };
         yield return new object[]
@@ -33,7 +33,7 @@ public class MergeTwoListsUnitTest
         yield return new object[]
         {
                null,
-               Utilities.CreateListNode(new List<int> { 0 }),
+               Util.CreateListNode(new List<int> { 0 }),
                new List<int>{ 0 }
         };
     }
@@ -45,7 +45,7 @@ public class MergeTwoListsUnitTest
     {
 
         var actualNode = _solution.MergeTwoLists(l1, l2);
-        var actual = Utilities.ConvertListNodeToList(actualNode);
+        var actual = Util.ConvertListNodeToList(actualNode);
         Assert.Equal(expected, actual);
     }
 }

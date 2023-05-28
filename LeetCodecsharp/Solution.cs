@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+
 using LeetCodecsharp.DataStructure;
 
 namespace LeetCodecsharp;
@@ -22,12 +23,12 @@ public class Solution
     /// <returns></returns>
     public int[] TwoSum(int[] nums, int target)
     {
-        int[] res = new int[2];
-        Dictionary<int, int> dic = new Dictionary<int, int>();
+        var res = new int[2];
+        var dic = new Dictionary<int, int>();
 
-        for (int i = 0; i < nums.Length; i++)
+        for (var i = 0; i < nums.Length; i++)
         {
-            if (dic.TryGetValue(target - nums[i], out int value))
+            if (dic.TryGetValue(target - nums[i], out var value))
             {
                 res[1] = i;
                 res[0] = value;
@@ -52,19 +53,19 @@ public class Solution
     public ListNode AddTwoNumbers(ListNode l1, ListNode l2)
     {
         // 116ms
-        ListNode dummyHead = new ListNode(0);
+        var dummyHead = new ListNode(0);
         if (l1 == null && l2 == null)
         {
             return dummyHead;
         }
 
-        int carry = 0;
-        ListNode curr = dummyHead;
+        var carry = 0;
+        var curr = dummyHead;
         while (l1 != null || l2 != null)
         {
-            int num1 = l1?.val ?? 0;
-            int num2 = l2?.val ?? 0;
-            int sum = num1 + num2 + carry;
+            var num1 = l1?.val ?? 0;
+            var num2 = l2?.val ?? 0;
+            var sum = num1 + num2 + carry;
             curr.next = new ListNode(sum % 10);
             curr = curr.next;
             carry = sum / 10;
@@ -129,7 +130,7 @@ public class Solution
 
         // 100ms Dictionary<char, int>
         int n = s.Length, ans = 0;
-        Dictionary<char, int> dic = new Dictionary<char, int>();
+        var dic = new Dictionary<char, int>();
         for (int j = 0, i = 0; j < n; j++)
         {
             if (dic.ContainsKey(s[j]))
@@ -167,8 +168,8 @@ public class Solution
         int min = 0, max = m, halfLen = (m + n + 1) / 2;
         while (min <= max)
         {
-            int i = min + (max - min) / 2;
-            int j = halfLen - i;
+            var i = min + (max - min) / 2;
+            var j = halfLen - i;
             if (i < max && nums2[j - 1] > nums1[i])
             {
                 min++;
@@ -226,13 +227,13 @@ public class Solution
     /// <returns></returns>
     public string LongestPalindrome(string s)
     {
-        string T = PreProcess(s);
-        int n = T.Length;
-        int[] P = new int[n];
+        var T = PreProcess(s);
+        var n = T.Length;
+        var P = new int[n];
         int C = 0, R = 0;
-        for (int i = 1; i < n - 1; i++)
+        for (var i = 1; i < n - 1; i++)
         {
-            int mirror = 2 * C - i;
+            var mirror = 2 * C - i;
             P[i] = (R > 1) ? Math.Min(R - i, P[mirror]) : 0;
             while (T[i + 1 + P[i]] == T[i - 1 - P[i]])
             {
@@ -249,9 +250,9 @@ public class Solution
         }
 
         // Find the maximum element in P
-        int maxLen = 0;
-        int centerIndex = 0;
-        for (int i = 1; i < n - 1; i++)
+        var maxLen = 0;
+        var centerIndex = 0;
+        for (var i = 1; i < n - 1; i++)
         {
             if (P[i] <= maxLen)
             {
@@ -266,14 +267,14 @@ public class Solution
 
         string PreProcess(string input)
         {
-            int len = input.Length;
+            var len = input.Length;
             if (len == 0)
             {
                 return "^$";
             }
 
-            string ret = "^";
-            for (int i = 0; i < len; i++)
+            var ret = "^";
+            for (var i = 0; i < len; i++)
             {
                 ret += string.Concat("#", input.AsSpan(i, 1));
             }
@@ -296,12 +297,12 @@ public class Solution
             return s;
         }
 
-        StringBuilder res = new StringBuilder();
-        for (int i = 0; i < numRows; i++)
+        var res = new StringBuilder();
+        for (var i = 0; i < numRows; i++)
         {
-            for (int j = 0; j < s.Length; j += 2 * numRows - 2)
+            for (var j = 0; j < s.Length; j += 2 * numRows - 2)
             {
-                int index = i + j;
+                var index = i + j;
                 if (index < s.Length)
                 {
                     res.Append(s[index]);
@@ -330,10 +331,10 @@ public class Solution
     /// <returns></returns>
     public int Reverse(int x)
     {
-        int rev = 0;
+        var rev = 0;
         while (x != 0)
         {
-            int pop = x % 10;
+            var pop = x % 10;
             x /= 10;
             switch (rev)
             {
@@ -363,9 +364,9 @@ public class Solution
             return 0;
         }
 
-        int sign = 1;
-        int bas = 0;
-        int i = 0;
+        var sign = 1;
+        var bas = 0;
+        var i = 0;
         while (str[i] == ' ')
         {
             i++;
@@ -401,7 +402,7 @@ public class Solution
             return false;
         }
 
-        int res = 0;
+        var res = 0;
         while (res < x)
         {
             res = res * 10 + x % 10;
@@ -429,13 +430,13 @@ public class Solution
     /// <returns></returns>
     public bool IsMatch(string text, string pattern)
     {
-        bool[,] dp = new bool[text.Length + 1, pattern.Length + 1];
+        var dp = new bool[text.Length + 1, pattern.Length + 1];
         dp[text.Length, pattern.Length] = true;
-        for (int i = text.Length; i >= 0; i--)
+        for (var i = text.Length; i >= 0; i--)
         {
-            for (int j = pattern.Length - 1; j >= 0; j--)
+            for (var j = pattern.Length - 1; j >= 0; j--)
             {
-                bool firstMatch = i < text.Length && (pattern[j] == text[i] || pattern[j] == '.');
+                var firstMatch = i < text.Length && (pattern[j] == text[i] || pattern[j] == '.');
                 if (j + 1 < pattern.Length && pattern[j + 1] == '*')
                 {
                     dp[i, j] = dp[i, j + 2] || firstMatch && dp[i + 1, j];
@@ -457,7 +458,7 @@ public class Solution
     /// <returns></returns>
     public int MaxArea(int[] height)
     {
-        int maxArea = 0;
+        var maxArea = 0;
         int left = 0, right = height.Length - 1;
         while (left < right)
         {
@@ -482,10 +483,10 @@ public class Solution
     /// <returns></returns>
     public string IntToRoman(int num)
     {
-        string[] M = {"", "M", "MM", "MMM"};
-        string[] C = {"", "C", "CC", "CCC", "CD", "D", "DC", "DCC", "DCCC", "CM"};
-        string[] X = {"", "X", "XX", "XXX", "XL", "L", "LX", "LXX", "LXXX", "XC"};
-        string[] I = {"", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX"};
+        string[] M = { "", "M", "MM", "MMM" };
+        string[] C = { "", "C", "CC", "CCC", "CD", "D", "DC", "DCC", "DCCC", "CM" };
+        string[] X = { "", "X", "XX", "XXX", "XL", "L", "LX", "LXX", "LXXX", "XC" };
+        string[] I = { "", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX" };
         return M[num / 1000] + C[(num % 1000) / 100] + X[(num % 100) / 10] + I[num % 10];
     }
 
@@ -496,7 +497,7 @@ public class Solution
     /// <returns></returns>
     public int RomanToInt(string s)
     {
-        Dictionary<char, int> dic = new Dictionary<char, int>
+        var dic = new Dictionary<char, int>
         {
             {'I', 1},
             {'V', 5},
@@ -506,9 +507,9 @@ public class Solution
             {'D', 500},
             {'M', 1000}
         };
-        int value = 0;
-        char prev = s[0];
-        foreach (char curr in s)
+        var value = 0;
+        var prev = s[0];
+        foreach (var curr in s)
         {
             value += dic[curr];
             if (dic[prev] < dic[curr])
@@ -534,8 +535,8 @@ public class Solution
             return "";
         }
 
-        string pre = strs[0];
-        for (int i = 1; i < strs.Length; i++)
+        var pre = strs[0];
+        for (var i = 1; i < strs.Length; i++)
         {
             while (strs[i].IndexOf(pre, StringComparison.Ordinal) != 0)
             {
@@ -554,7 +555,7 @@ public class Solution
     public IList<IList<int>> ThreeSum(int[] nums)
     {
         Array.Sort(nums);
-        List<IList<int>> res = new List<IList<int>>();
+        var res = new List<IList<int>>();
         //for (int i = 0; i < nums.Length - 2; i++)
         //{
         //    if (i == 0 || (i > 0 && nums[i] != nums[i - 1]))
@@ -592,12 +593,12 @@ public class Solution
         //    }
         //}
 
-        int len = nums.Length;
-        for (int i = 0; i < len; i++)
+        var len = nums.Length;
+        for (var i = 0; i < len; i++)
         {
-            int target = -nums[i];
-            int left = i + 1;
-            int right = len - 1;
+            var target = -nums[i];
+            var left = i + 1;
+            var right = len - 1;
             if (target < 0)
             {
                 break;
@@ -605,7 +606,7 @@ public class Solution
 
             while (left < right)
             {
-                int sum = nums[left] + nums[right];
+                var sum = nums[left] + nums[right];
                 if (sum < target)
                 {
                     left++;
@@ -616,7 +617,7 @@ public class Solution
                 }
                 else
                 {
-                    List<int> tmp = new List<int> {nums[i], nums[left], nums[right]};
+                    var tmp = new List<int> { nums[i], nums[left], nums[right] };
                     res.Add(tmp);
                     while (left < right && nums[left] < tmp[1])
                     {
@@ -652,21 +653,21 @@ public class Solution
             return 0;
         }
 
-        int closest = nums[0] + nums[1] + nums[2];
-        int len = nums.Length;
+        var closest = nums[0] + nums[1] + nums[2];
+        var len = nums.Length;
         Array.Sort(nums);
-        for (int first = 0; first < len - 2; first++)
+        for (var first = 0; first < len - 2; first++)
         {
             if (first > 0 && nums[first] == nums[first - 1])
             {
                 continue;
             }
 
-            int second = first + 1;
-            int third = len - 1;
+            var second = first + 1;
+            var third = len - 1;
             while (second < third)
             {
-                int currentSum = nums[first] + nums[second] + nums[third];
+                var currentSum = nums[first] + nums[second] + nums[third];
                 if (currentSum == target)
                 {
                     return currentSum;
@@ -698,21 +699,21 @@ public class Solution
     /// <returns></returns>
     public IList<string> LetterCombinations(string digits)
     {
-        string[] map = {"0", "1", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
+        string[] map = { "0", "1", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz" };
         if (string.IsNullOrEmpty(digits))
         {
             return new List<string>();
         }
 
-        Queue<string> ans = new Queue<string>();
+        var ans = new Queue<string>();
         ans.Enqueue("");
-        for (int i = 0; i < digits.Length; i++)
+        for (var i = 0; i < digits.Length; i++)
         {
-            int x = digits[i] - '0';
+            var x = digits[i] - '0';
             while (ans.Peek().Length == i)
             {
-                string t = ans.Dequeue();
-                foreach (char c in map[x])
+                var t = ans.Dequeue();
+                foreach (var c in map[x])
                 {
                     ans.Enqueue(t + c);
                 }
@@ -728,14 +729,14 @@ public class Solution
     public IList<IList<int>> FourSum(int[] nums, int target)
     {
         IList<IList<int>> res = new List<IList<int>>();
-        int n = nums.Length;
+        var n = nums.Length;
         if (n < 4)
         {
             return res;
         }
 
         Array.Sort(nums);
-        for (int i = 0; i < n - 3; i++)
+        for (var i = 0; i < n - 3; i++)
         {
             if (i > 0 && nums[i] == nums[i - 1])
             {
@@ -752,7 +753,7 @@ public class Solution
                 continue;
             }
 
-            for (int j = i + 1; j < n - 2; j++)
+            for (var j = i + 1; j < n - 2; j++)
             {
                 if (j > i + 1 && nums[j] == nums[j - 1])
                 {
@@ -772,7 +773,7 @@ public class Solution
                 int left = j + 1, right = n - 1;
                 while (left < right)
                 {
-                    int sum = nums[left] + nums[right] + nums[i] + nums[j];
+                    var sum = nums[left] + nums[right] + nums[i] + nums[j];
                     if (sum < target)
                     {
                         left++;
@@ -783,7 +784,7 @@ public class Solution
                     }
                     else
                     {
-                        res.Add(new List<int> {nums[i], nums[j], nums[left], nums[right]});
+                        res.Add(new List<int> { nums[i], nums[j], nums[left], nums[right] });
                         do
                         {
                             left++;
@@ -809,10 +810,10 @@ public class Solution
     /// <returns></returns>
     public ListNode RemoveNthFromEnd(ListNode head, int n)
     {
-        ListNode dummy = new ListNode(0, head);
-        ListNode first = dummy;
-        ListNode second = dummy;
-        for (int i = 0; i <= n; i++)
+        var dummy = new ListNode(0, head);
+        var first = dummy;
+        var second = dummy;
+        for (var i = 0; i <= n; i++)
         {
             first = first.next;
         }
@@ -834,8 +835,8 @@ public class Solution
     /// <returns></returns>
     public bool IsValid(string s)
     {
-        Stack<char> stack = new Stack<char>();
-        foreach (char item in s)
+        var stack = new Stack<char>();
+        foreach (var item in s)
         {
             switch (item)
             {
@@ -849,14 +850,14 @@ public class Solution
                     stack.Push(']');
                     break;
                 default:
-                {
-                    if (stack.Count == 0 || stack.Pop() != item)
                     {
-                        return false;
-                    }
+                        if (stack.Count == 0 || stack.Pop() != item)
+                        {
+                            return false;
+                        }
 
-                    break;
-                }
+                        break;
+                    }
             }
         }
 
@@ -871,8 +872,8 @@ public class Solution
     /// <returns>merged list</returns>
     public ListNode MergeTwoLists(ListNode l1, ListNode l2)
     {
-        ListNode dummyHead = new ListNode(0);
-        ListNode head = dummyHead;
+        var dummyHead = new ListNode(0);
+        var head = dummyHead;
         while (l1 != null && l2 != null)
         {
             if (l1.val <= l2.val)
@@ -954,11 +955,11 @@ public class Solution
     /// <returns>merged list</returns>
     public ListNode MergeKLists(ListNode[] lists)
     {
-        int len = lists.Length;
-        int interval = 1;
+        var len = lists.Length;
+        var interval = 1;
         while (interval < len)
         {
-            for (int i = 0; i < len - interval; i += interval * 2)
+            for (var i = 0; i < len - interval; i += interval * 2)
             {
                 lists[i] = MergeTwoLists(lists[i], lists[i + interval]);
             }
@@ -974,15 +975,15 @@ public class Solution
     /// </summary>
     public ListNode SwapPairs(ListNode head)
     {
-        ListNode dummy = new ListNode(0)
+        var dummy = new ListNode(0)
         {
             next = head
         };
-        ListNode curr = dummy;
+        var curr = dummy;
         while (curr.next?.next != null)
         {
-            ListNode a = curr.next;
-            ListNode b = curr.next.next;
+            var a = curr.next;
+            var b = curr.next.next;
             a.next = b.next;
             curr.next = b;
             curr.next.next = a;
@@ -998,22 +999,22 @@ public class Solution
     public ListNode ReverseKGroup(ListNode head, int k)
     {
         // Non-recursive
-        int n = 0;
-        for (ListNode i = head; i != null;)
+        var n = 0;
+        for (var i = head; i != null;)
         {
             n++;
             i = i.next;
         }
 
-        ListNode dummy = new ListNode(0)
+        var dummy = new ListNode(0)
         {
             next = head
         };
         for (ListNode prev = dummy, tail = head; n >= k; n -= k)
         {
-            for (int i = 1; i < k; i++)
+            for (var i = 1; i < k; i++)
             {
-                ListNode next = tail.next.next;
+                var next = tail.next.next;
                 tail.next.next = prev.next;
                 prev.next = tail.next;
                 tail.next = next;
@@ -1055,8 +1056,8 @@ public class Solution
     /// <returns></returns>
     public int RemoveDuplicates(int[] nums)
     {
-        int i = nums.Length > 0 ? 1 : 0;
-        foreach (int n in nums)
+        var i = nums.Length > 0 ? 1 : 0;
+        foreach (var n in nums)
         {
             if (n > nums[i - 1])
             {
@@ -1072,9 +1073,9 @@ public class Solution
     /// </summary>
     public int RemoveElement(int[] nums, int val)
     {
-        int len = nums.Length;
-        int found = 0;
-        for (int i = 0; i < len; i++)
+        var len = nums.Length;
+        var found = 0;
+        for (var i = 0; i < len; i++)
         {
             if (found > 0)
             {
@@ -1104,7 +1105,7 @@ public class Solution
             return 0;
         }
 
-        List<int> lps = KMPProcess(needle);
+        var lps = KMPProcess(needle);
         for (int i = 0, j = 0; i < m;)
         {
             if (haystack[i] == needle[j])
@@ -1137,9 +1138,9 @@ public class Solution
 
         List<int> KMPProcess(string s)
         {
-            int n = needle.Length;
-            List<int> lps = new List<int>();
-            for (int i = 0; i < n; i++)
+            var n = needle.Length;
+            var lps = new List<int>();
+            for (var i = 0; i < n; i++)
             {
                 lps.Add(0);
             }
@@ -1178,14 +1179,14 @@ public class Solution
             return int.MaxValue;
         }
 
-        int sign = dividend < 0 ^ divisor < 0 ? -1 : 1;
-        long dvd = Math.Abs((long)dividend);
-        long dvs = Math.Abs((long)divisor);
-        int res = 0;
+        var sign = dividend < 0 ^ divisor < 0 ? -1 : 1;
+        var dvd = Math.Abs((long)dividend);
+        var dvs = Math.Abs((long)divisor);
+        var res = 0;
         while (dvd >= dvs)
         {
-            long tmp = dvs;
-            int multiple = 1;
+            var tmp = dvs;
+            var multiple = 1;
             while (dvd >= (tmp << 1))
             {
                 tmp <<= 1;
@@ -1211,8 +1212,8 @@ public class Solution
         }
 
         int n = s.Length, size = words.Length, len = words[0].Length;
-        Dictionary<string, int> map = new Dictionary<string, int>();
-        foreach (string word in words)
+        var map = new Dictionary<string, int>();
+        foreach (var word in words)
         {
             if (map.ContainsKey(word))
             {
@@ -1224,13 +1225,13 @@ public class Solution
             }
         }
 
-        for (int i = 0; i < len; i++)
+        for (var i = 0; i < len; i++)
         {
             int left = i, count = 0;
-            Dictionary<string, int> window = new Dictionary<string, int>();
-            for (int j = i; j + len - 1 < n; j += len)
+            var window = new Dictionary<string, int>();
+            for (var j = i; j + len - 1 < n; j += len)
             {
-                string tmp = s.Substring(j, len);
+                var tmp = s.Substring(j, len);
                 if (!map.ContainsKey(tmp))
                 {
                     window.Clear();
@@ -1277,7 +1278,7 @@ public class Solution
     /// </summary>
     public void NextPermutation(int[] nums)
     {
-        int i = nums.Length - 2;
+        var i = nums.Length - 2;
         while (i >= 0 && nums[i + 1] <= nums[i])
         {
             i--;
@@ -1285,13 +1286,13 @@ public class Solution
 
         if (i >= 0)
         {
-            int j = nums.Length - 1;
+            var j = nums.Length - 1;
             while (j >= 0 && nums[j] <= nums[i])
             {
                 j--;
             }
 
-            Utilities.Swap(ref nums[i], ref nums[j]);
+            Util.Swap(ref nums[i], ref nums[j]);
         }
 
         Reverse(nums, i + 1);
@@ -1301,7 +1302,7 @@ public class Solution
             int i = start, j = data.Length - 1;
             while (i < j)
             {
-                Utilities.Swap(ref data[i], ref data[j]);
+                Util.Swap(ref data[i], ref data[j]);
                 i++;
                 j--;
             }
@@ -1334,9 +1335,9 @@ public class Solution
         //    }
         //}
         //return maxans;
-        int len = s.Length;
+        var len = s.Length;
         int left = 0, right = 0, maxLen = 0;
-        for (int i = 0; i < len; i++)
+        for (var i = 0; i < len; i++)
         {
             if (s[i] == '(')
             {
@@ -1358,7 +1359,7 @@ public class Solution
         }
 
         left = right = 0;
-        for (int i = len - 1; i >= 0; i--)
+        for (var i = len - 1; i >= 0; i--)
         {
             if (s[i] == '(')
             {
@@ -1390,7 +1391,7 @@ public class Solution
     /// <returns></returns>
     public int Search(int[] nums, int target)
     {
-        int n = nums.Length;
+        var n = nums.Length;
         switch (n)
         {
             case 0:
@@ -1402,7 +1403,7 @@ public class Solution
         int l = 0, r = n - 1;
         while (l <= r)
         {
-            int mid = (l + r) / 2;
+            var mid = (l + r) / 2;
             if (nums[mid] == target)
             {
                 return mid;
@@ -1440,7 +1441,7 @@ public class Solution
     /// </summary>
     public int[] SearchRange(int[] nums, int target)
     {
-        int[] missingResult = new int[] {-1, -1};
+        var missingResult = new int[] { -1, -1 };
         //int[] res = new int[] { 0, 0 };
         //if (nums.Length < 1)
         //{
@@ -1481,11 +1482,11 @@ public class Solution
         //res[0] = first;
         //res[1] = lo;
         //return res;
-        int leftIndex = BinarySearch(nums, target, true);
-        int rightIndex = BinarySearch(nums, target, false) - 1;
+        var leftIndex = BinarySearch(nums, target, true);
+        var rightIndex = BinarySearch(nums, target, false) - 1;
         if (leftIndex <= rightIndex && rightIndex < nums.Length && nums[leftIndex] == nums[rightIndex])
         {
-            return new[] {leftIndex, rightIndex};
+            return new[] { leftIndex, rightIndex };
         }
 
         return missingResult;
@@ -1495,7 +1496,7 @@ public class Solution
             int l = 0, r = nums.Length - 1, ans = nums.Length;
             while (l <= r)
             {
-                int mid = l + (r - l) / 2;
+                var mid = l + (r - l) / 2;
                 if (nums[mid] > target || (lower && nums[mid] >= target))
                 {
                     r = mid - 1;
@@ -1519,7 +1520,7 @@ public class Solution
         int left = 0, right = nums.Length - 1;
         while (left < right)
         {
-            int mid = left + (right - left) / 2;
+            var mid = left + (right - left) / 2;
             if (nums[mid] < target)
             {
                 left = mid + 1;
@@ -1567,12 +1568,12 @@ public class Solution
         // }
         // return true;
 
-        HashSet<string> seen = new HashSet<string>();
-        for (int i = 0; i < 9; i++)
+        var seen = new HashSet<string>();
+        for (var i = 0; i < 9; i++)
         {
-            for (int j = 0; j < 9; j++)
+            for (var j = 0; j < 9; j++)
             {
-                char num = board[i][j];
+                var num = board[i][j];
                 if (num == '.')
                 {
                     continue;
@@ -1597,16 +1598,16 @@ public class Solution
     {
         bool DoSolve(char[][] dataBoard, int row, int col)
         {
-            for (int i = row; i < 9; i++, col = 0)
+            for (var i = row; i < 9; i++, col = 0)
             {
-                for (int j = col; j < 9; j++)
+                for (var j = col; j < 9; j++)
                 {
                     if (dataBoard[i][j] != '.')
                     {
                         continue;
                     }
 
-                    for (char num = '1'; num <= '9'; num++)
+                    for (var num = '1'; num <= '9'; num++)
                     {
                         if (!IsValid(dataBoard, i, j, num))
                         {
@@ -1632,7 +1633,7 @@ public class Solution
         bool IsValid(char[][] dataBoard, int row, int col, char num)
         {
             int blkRow = (row / 3) * 3, blkCol = (col / 3) * 3;
-            for (int i = 0; i < 9; i++)
+            for (var i = 0; i < 9; i++)
             {
                 if (dataBoard[i][col] == num || dataBoard[row][i] == num ||
                     dataBoard[blkRow + i / 3][blkCol + i % 3] == num)
@@ -1659,8 +1660,8 @@ public class Solution
             return "-1";
         }
 
-        string result = "1";
-        for (int i = 1; i < n; ++i)
+        var result = "1";
+        for (var i = 1; i < n; ++i)
         {
             result = Build(result);
         }
@@ -1669,12 +1670,12 @@ public class Solution
 
         string Build(string s)
         {
-            StringBuilder sb = new StringBuilder();
-            int p = 0;
+            var sb = new StringBuilder();
+            var p = 0;
             while (p < s.Length)
             {
-                char val = s[p];
-                int count = 0;
+                var val = s[p];
+                var count = 0;
                 while (p < s.Length && s[p] == val)
                 {
                     p++;
@@ -1698,7 +1699,7 @@ public class Solution
     public IList<IList<int>> CombinationSum(int[] candidates, int target)
     {
         IList<IList<int>> ans = new List<IList<int>>();
-        List<int> combine = new List<int>();
+        var combine = new List<int>();
         Dfs(candidates, target, ans, combine, 0);
         return ans;
 
@@ -1735,17 +1736,17 @@ public class Solution
     /// <returns></returns>
     public IList<IList<int>> CombinationSum2(int[] candidates, int target)
     {
-        List<int[]> freq = new List<int[]>();
+        var freq = new List<int[]>();
         IList<IList<int>> ans = new List<IList<int>>();
-        List<int> sequence = new List<int>();
+        var sequence = new List<int>();
 
         Array.Sort(candidates);
-        foreach (int num in candidates)
+        foreach (var num in candidates)
         {
-            int size = freq.Count;
+            var size = freq.Count;
             if (freq.Count == 0 || num != freq[size - 1][0])
             {
-                freq.Add(new int[] {num, 1});
+                freq.Add(new int[] { num, 1 });
             }
             else
             {
@@ -1770,14 +1771,14 @@ public class Solution
             }
 
             DFS(pos + 1, rest);
-            int most = Math.Min(rest / freq[pos][0], freq[pos][1]);
-            for (int i = 1; i <= most; i++)
+            var most = Math.Min(rest / freq[pos][0], freq[pos][1]);
+            for (var i = 1; i <= most; i++)
             {
                 sequence.Add(freq[pos][0]);
                 DFS(pos + 1, rest - i * freq[pos][0]);
             }
 
-            for (int i = 1; i <= most; i++)
+            for (var i = 1; i <= most; i++)
             {
                 sequence.RemoveAt(sequence.Count - 1);
             }
@@ -1789,16 +1790,16 @@ public class Solution
     /// </summary>
     public int FirstMissingPositive(int[] nums)
     {
-        int len = nums.Length;
-        for (int i = 0; i < len; i++)
+        var len = nums.Length;
+        for (var i = 0; i < len; i++)
         {
             while (nums[i] > 0 && nums[i] <= len && nums[nums[i] - 1] != nums[i])
             {
-                Utilities.Swap(ref nums[i], ref nums[nums[i] - 1]);
+                Util.Swap(ref nums[i], ref nums[nums[i] - 1]);
             }
         }
 
-        for (int i = 0; i < len; i++)
+        for (var i = 0; i < len; i++)
         {
             if (nums[i] != i + 1)
             {
@@ -1823,7 +1824,7 @@ public class Solution
 
         int l = 0, r = height.Length - 1;
         int lMax = 0, rMax = 0;
-        int ans = 0;
+        var ans = 0;
         while (l < r)
         {
             if (l >= r)
@@ -1868,21 +1869,21 @@ public class Solution
     public string Multiply(string num1, string num2)
     {
         int m = num1.Length, n = num2.Length;
-        int[] pos = new int[m + n];
-        for (int i = m - 1; i >= 0; i--)
+        var pos = new int[m + n];
+        for (var i = m - 1; i >= 0; i--)
         {
-            for (int j = n - 1; j >= 0; j--)
+            for (var j = n - 1; j >= 0; j--)
             {
-                int mul = (num1[i] - '0') * (num2[j] - '0');
+                var mul = (num1[i] - '0') * (num2[j] - '0');
                 int p1 = i + j, p2 = i + j + 1;
-                int sum = mul + pos[p2];
+                var sum = mul + pos[p2];
                 pos[p1] += sum / 10;
                 pos[p2] = (sum) % 10;
             }
         }
 
-        StringBuilder sb = new StringBuilder();
-        foreach (int item in pos)
+        var sb = new StringBuilder();
+        foreach (var item in pos)
         {
             if (!(sb.Length == 0 && item == 0))
             {
@@ -1900,16 +1901,16 @@ public class Solution
     /// <returns></returns>
     public int Jump(int[] nums)
     {
-        int n = nums.Length;
+        var n = nums.Length;
         if (n < 2)
         {
             return 0;
         }
 
-        int level = 0;
-        int currentMax = 0;
-        int i = 0;
-        int nextMax = 0;
+        var level = 0;
+        var currentMax = 0;
+        var i = 0;
+        var nextMax = 0;
         while (currentMax - i + 1 > 0)
         {
             level++;
@@ -1951,17 +1952,17 @@ public class Solution
     public IList<IList<int>> Permute(int[] nums)
     {
         IList<IList<int>> res = new List<IList<int>>();
-        Queue<IList<int>> q = new Queue<IList<int>>();
+        var q = new Queue<IList<int>>();
         q.Enqueue(new List<int>());
-        foreach (int t in nums)
+        foreach (var t in nums)
         {
-            int size = q.Count;
+            var size = q.Count;
             while (size-- > 0)
             {
-                IList<int> list = q.Dequeue();
-                for (int j = 0; j <= list.Count; j++)
+                var list = q.Dequeue();
+                for (var j = 0; j <= list.Count; j++)
                 {
-                    List<int> tmp = new List<int>(list);
+                    var tmp = new List<int>(list);
                     tmp.Insert(j, t);
                     q.Enqueue(tmp);
                 }
@@ -1982,18 +1983,18 @@ public class Solution
     /// <param name="nums"></param>
     public void Rotate(int[][] nums)
     {
-        int n = nums.Length;
-        for (int i = 0; i < n / 2; i++)
+        var n = nums.Length;
+        for (var i = 0; i < n / 2; i++)
         {
-            for (int j = 0; j < n; j++)
+            for (var j = 0; j < n; j++)
             {
                 (nums[i][j], nums[n - i - 1][j]) = (nums[n - i - 1][j], nums[i][j]);
             }
         }
 
-        for (int i = 0; i < n; i++)
+        for (var i = 0; i < n; i++)
         {
-            for (int j = 0; j < i; j++)
+            for (var j = 0; j < i; j++)
             {
                 (nums[i][j], nums[j][i]) = (nums[j][i], nums[i][j]);
             }
@@ -2010,8 +2011,8 @@ public class Solution
     {
         double QuickMul(double x, long N)
         {
-            double ans = 1.0d;
-            double x_contribute = x;
+            var ans = 1.0d;
+            var x_contribute = x;
             while (N > 0)
             {
                 if (N % 2 == 1)
@@ -2038,7 +2039,7 @@ public class Solution
     public int MaxSubArray(int[] nums)
     {
         int pre = 0, maxAns = nums[0];
-        foreach (int num in nums)
+        foreach (var num in nums)
         {
             pre = Math.Max(pre + num, num);
             maxAns = Math.Max(maxAns, pre);
@@ -2054,7 +2055,7 @@ public class Solution
     {
         if (matrix.Length == 0)
         {
-            return new List<int>() {0};
+            return new List<int>() { 0 };
         }
 
         int startRow = 0, startColumn = 0;
@@ -2067,7 +2068,7 @@ public class Solution
                 break;
             }
 
-            for (int col = startColumn; col < startColumn + width; col++)
+            for (var col = startColumn; col < startColumn + width; col++)
             {
                 result.Add(matrix[startRow][col]);
             }
@@ -2079,7 +2080,7 @@ public class Solution
                 break;
             }
 
-            for (int row = startRow; row < startRow + height; row++)
+            for (var row = startRow; row < startRow + height; row++)
             {
                 result.Add(matrix[row][startColumn + width - 1]);
             }
@@ -2090,7 +2091,7 @@ public class Solution
                 break;
             }
 
-            for (int col = startColumn + width - 1; col >= startColumn; col--)
+            for (var col = startColumn + width - 1; col >= startColumn; col--)
             {
                 result.Add(matrix[startRow + height - 1][col]);
             }
@@ -2101,7 +2102,7 @@ public class Solution
                 break;
             }
 
-            for (int row = startRow + height - 1; row >= startRow; row--)
+            for (var row = startRow + height - 1; row >= startRow; row--)
             {
                 result.Add(matrix[row][startColumn]);
             }
@@ -2120,8 +2121,8 @@ public class Solution
     /// <returns></returns>
     public bool CanJump(int[] nums)
     {
-        int lastPos = nums.Length - 1;
-        for (int i = nums.Length - 1; i >= 0; i--)
+        var lastPos = nums.Length - 1;
+        for (var i = nums.Length - 1; i >= 0; i--)
         {
             if (i + nums[i] >= lastPos)
             {
@@ -2145,14 +2146,14 @@ public class Solution
         }
 
         Array.Sort(intervals, (l, r) => l[0] - r[0]);
-        List<int[]> merged = new List<int[]>();
-        foreach (int[] t in intervals)
+        var merged = new List<int[]>();
+        foreach (var t in intervals)
         {
-            int n = merged.Count;
+            var n = merged.Count;
             int l = t[0], r = t[1];
             if (n == 0 || merged[n - 1][1] < l)
             {
-                merged.Add(new[] {l, r});
+                merged.Add(new[] { l, r });
             }
             else
             {
@@ -2195,13 +2196,13 @@ public class Solution
     {
         if (n == 0)
         {
-            return new[] {new[] {0}};
+            return new[] { new[] { 0 } };
         }
 
         int startRow = 0, startColumn = 0;
         int index = 1, height = n, width = n;
-        int[][] matrix = new int[n][];
-        for (int r = 0; r < n; r++)
+        var matrix = new int[n][];
+        for (var r = 0; r < n; r++)
         {
             matrix[r] = new int[n];
         }
@@ -2213,7 +2214,7 @@ public class Solution
                 break;
             }
 
-            for (int col = startColumn; col < startColumn + width; col++)
+            for (var col = startColumn; col < startColumn + width; col++)
             {
                 matrix[startRow][col] = index++;
             }
@@ -2225,7 +2226,7 @@ public class Solution
                 break;
             }
 
-            for (int row = startRow; row < startRow + height; row++)
+            for (var row = startRow; row < startRow + height; row++)
             {
                 matrix[row][startColumn + width - 1] = index++;
             }
@@ -2236,7 +2237,7 @@ public class Solution
                 break;
             }
 
-            for (int col = startColumn + width - 1; col >= startColumn; col--)
+            for (var col = startColumn + width - 1; col >= startColumn; col--)
             {
                 matrix[startRow + height - 1][col] = index++;
             }
@@ -2247,7 +2248,7 @@ public class Solution
                 break;
             }
 
-            for (int row = startRow + height - 1; row >= startRow; row--)
+            for (var row = startRow + height - 1; row >= startRow; row--)
             {
                 matrix[row][startColumn] = index++;
             }
@@ -2264,17 +2265,12 @@ public class Solution
     /// </summary>
     public ListNode RotateRight(ListNode head, int k)
     {
-        if (head == null)
-        {
-            return null;
-        }
-
-        if (head.next == null)
+        if (head == null || k == 0 || head.next == null)
         {
             return head;
         }
 
-        ListNode oldTail = head;
+        var oldTail = head;
         int n;
         for (n = 1; oldTail.next != null; n++)
         {
@@ -2282,13 +2278,13 @@ public class Solution
         }
 
         oldTail.next = head;
-        ListNode newTail = head;
-        for (int i = 0; i < n - k % n - 1; i++)
+        var newTail = head;
+        for (var i = 0; i < n - k % n - 1; i++)
         {
             newTail = newTail.next;
         }
 
-        ListNode newHead = newTail.next;
+        var newHead = newTail.next;
         newTail.next = null;
         return newHead;
     }
@@ -2298,11 +2294,11 @@ public class Solution
     /// </summary>
     public int UniquePaths(int m, int n)
     {
-        int[] dp = new int[n];
+        var dp = new int[n];
         Array.Fill(dp, 1);
-        for (int i = 1; i < m; i++)
+        for (var i = 1; i < m; i++)
         {
-            for (int j = 1; j < n; j++)
+            for (var j = 1; j < n; j++)
             {
                 dp[j] += dp[j - 1];
             }
@@ -2333,12 +2329,12 @@ public class Solution
         //             obstacleGrid[row][col] = 0;
         // return obstacleGrid[height - 1][width - 1];
 
-        int width = obstacleGrid[0].Length;
-        int[] dp = new int[width];
+        var width = obstacleGrid[0].Length;
+        var dp = new int[width];
         dp[0] = 1;
-        foreach (int[] row in obstacleGrid)
+        foreach (var row in obstacleGrid)
         {
-            for (int j = 0; j < width; j++)
+            for (var j = 0; j < width; j++)
             {
                 if (row[j] == 1)
                 {
@@ -2361,28 +2357,28 @@ public class Solution
     /// <returns></returns>
     public int MinPathSum(int[][] grid)
     {
-        int width = grid[0].Length;
-        int height = grid.Length;
-        int[][] dp = new int[height][];
-        for (int i = 0; i < height; i++)
+        var width = grid[0].Length;
+        var height = grid.Length;
+        var dp = new int[height][];
+        for (var i = 0; i < height; i++)
         {
             dp[i] = new int[width];
         }
 
         dp[0][0] = grid[0][0];
-        for (int i = 1; i < width; i++)
+        for (var i = 1; i < width; i++)
         {
             dp[0][i] = dp[0][i - 1] + grid[0][i];
         }
 
-        for (int i = 1; i < height; i++)
+        for (var i = 1; i < height; i++)
         {
             dp[i][0] = dp[i - 1][0] + grid[i][0];
         }
 
-        for (int i = 1; i < height; i++)
+        for (var i = 1; i < height; i++)
         {
-            for (int j = 1; j < width; j++)
+            for (var j = 1; j < width; j++)
             {
                 dp[i][j] = Math.Min(dp[i - 1][j], dp[i][j - 1]) + grid[i][j];
             }
@@ -2398,8 +2394,8 @@ public class Solution
     /// <returns></returns>
     public int[] PlusOne(int[] digits)
     {
-        int n = digits.Length;
-        for (int i = n - 1; i >= 0; i--)
+        var n = digits.Length;
+        for (var i = n - 1; i >= 0; i--)
         {
             if (digits[i] < 9)
             {
@@ -2410,7 +2406,7 @@ public class Solution
             digits[i] = 0;
         }
 
-        int[] newNumber = new int[n + 1];
+        var newNumber = new int[n + 1];
         newNumber[0] = 1;
         return newNumber;
     }
@@ -2423,7 +2419,7 @@ public class Solution
     /// <returns></returns>
     public string AddBinary(string a, string b)
     {
-        string s = "";
+        var s = "";
         int c = 0, i = a.Length - 1, j = b.Length - 1;
         while (i >= 0 || j >= 0 || c == 1)
         {
@@ -2448,8 +2444,8 @@ public class Solution
         int right = 0, n = words.Length;
         while (true)
         {
-            int left = right;
-            int sumLen = 0;
+            var left = right;
+            var sumLen = 0;
             while (right < n && sumLen + words[right].Length + right - left <= maxWidth)
             {
                 sumLen += words[right++].Length;
@@ -2457,25 +2453,25 @@ public class Solution
 
             if (right == n)
             {
-                StringBuilder sb = Join(words, left, n, " ");
+                var sb = Join(words, left, n, " ");
                 sb.Append(Blank(maxWidth - sb.Length));
                 ans.Add(sb.ToString());
                 return ans;
             }
 
-            int numWords = right - left;
-            int numSpaces = maxWidth - sumLen;
+            var numWords = right - left;
+            var numSpaces = maxWidth - sumLen;
             if (numWords == 1)
             {
-                StringBuilder sb = new StringBuilder(words[left]);
+                var sb = new StringBuilder(words[left]);
                 sb.Append(Blank(numSpaces));
                 ans.Add(sb.ToString());
                 continue;
             }
 
-            int avgSpaces = numSpaces / (numWords - 1);
-            int extraSpaces = numSpaces % (numWords - 1);
-            StringBuilder curr = new StringBuilder();
+            var avgSpaces = numSpaces / (numWords - 1);
+            var extraSpaces = numSpaces % (numWords - 1);
+            var curr = new StringBuilder();
             curr.Append(Join(words, left, left + extraSpaces + 1, Blank(avgSpaces + 1)));
             curr.Append(Blank(avgSpaces));
             curr.Append(Join(words, left + extraSpaces + 1, right, Blank(avgSpaces)));
@@ -2484,8 +2480,8 @@ public class Solution
 
         string Blank(int n)
         {
-            StringBuilder sb = new StringBuilder();
-            for (int i = 0; i < n; i++)
+            var sb = new StringBuilder();
+            for (var i = 0; i < n; i++)
             {
                 sb.Append(' ');
             }
@@ -2495,8 +2491,8 @@ public class Solution
 
         StringBuilder Join(string[] words, int left, int right, string seperator)
         {
-            StringBuilder sb = new StringBuilder(words[left]);
-            for (int i = left + 1; i < right; i++)
+            var sb = new StringBuilder(words[left]);
+            for (var i = left + 1; i < right; i++)
             {
                 sb.Append(seperator);
                 sb.Append(words[i]);
@@ -2521,7 +2517,7 @@ public class Solution
         int left = 1, right = x;
         while (left <= right)
         {
-            int mid = left + (right - left) / 2;
+            var mid = left + (right - left) / 2;
             if (mid == x / mid)
             {
                 return mid;
@@ -2572,9 +2568,9 @@ public class Solution
     /// <returns></returns>
     public string SimplifyPath(string path)
     {
-        Stack<string> stack = new Stack<string>();
-        HashSet<string> skip = new HashSet<string> {"", ".", ".."};
-        foreach (string dir in path.Split('/'))
+        var stack = new Stack<string>();
+        var skip = new HashSet<string> { "", ".", ".." };
+        foreach (var dir in path.Split('/'))
         {
             if (dir == ".." && stack.Count > 0)
             {
@@ -2591,7 +2587,7 @@ public class Solution
             return "/";
         }
 
-        StringBuilder sb = new StringBuilder();
+        var sb = new StringBuilder();
         while (stack.Count > 0)
         {
             sb.Insert(0, "/" + stack.Pop());
@@ -2608,7 +2604,7 @@ public class Solution
     {
         int col0 = 1, rows = matrix.Length, cols = matrix[0].Length;
         // top-down
-        for (int i = 0; i < rows; i++)
+        for (var i = 0; i < rows; i++)
         {
             // first column
             if (matrix[i][0] == 0)
@@ -2616,7 +2612,7 @@ public class Solution
                 col0 = 0;
             }
 
-            for (int j = 1; j < cols; j++)
+            for (var j = 1; j < cols; j++)
             {
                 // if the current cell is "0" set i row and j col as "0"
                 if (matrix[i][j] == 0)
@@ -2627,9 +2623,9 @@ public class Solution
         }
 
         // bottom-up
-        for (int i = rows - 1; i >= 0; i--)
+        for (var i = rows - 1; i >= 0; i--)
         {
-            for (int j = cols - 1; j >= 1; j--)
+            for (var j = cols - 1; j >= 1; j--)
             {
                 if (matrix[i][0] == 0 || matrix[0][j] == 0)
                 {
@@ -2649,19 +2645,19 @@ public class Solution
     /// </summary>
     public bool SearchMatrix(int[][] matrix, int target)
     {
-        int row = matrix.Length;
+        var row = matrix.Length;
         if (row == 0)
         {
             return false;
         }
 
-        int col = matrix[0].Length;
+        var col = matrix[0].Length;
         int low = 0, high = row * col - 1;
         while (low <= high)
         {
-            int mid = low + (high - low) / 2;
-            int r = mid / col;
-            int c = mid % col;
+            var mid = low + (high - low) / 2;
+            var r = mid / col;
+            var c = mid % col;
             if (matrix[r][c] > target)
             {
                 high = mid - 1;
@@ -2687,15 +2683,15 @@ public class Solution
     /// <returns></returns>
     public IList<IList<int>> Combine(int n, int k)
     {
-        List<int> temp = new List<int>();
+        var temp = new List<int>();
         IList<IList<int>> ans = new List<IList<int>>();
-        for (int i = 1; i <= k; ++i)
+        for (var i = 1; i <= k; ++i)
         {
             temp.Add(i);
         }
 
         temp.Add(n + 1);
-        int j = 0;
+        var j = 0;
         while (j < k)
         {
             ans.Add(new List<int>(temp.GetRange(0, k)));
@@ -2719,7 +2715,7 @@ public class Solution
     /// <returns></returns>
     public int RemoveDuplicatesV2(int[] nums)
     {
-        int len = nums.Length;
+        var len = nums.Length;
         if (len <= 2)
         {
             return len;
@@ -2747,7 +2743,7 @@ public class Solution
     /// <returns></returns>
     public ListNode DeleteDuplicates(ListNode head)
     {
-        ListNode current = head;
+        var current = head;
         while (current?.next != null)
         {
             if (current.val == current.next.val)
@@ -2802,8 +2798,8 @@ public class Solution
         // InorderHelper(ret, root);
 
         // iteratively
-        Stack<TreeNode> stack = new Stack<TreeNode>();
-        TreeNode curr = root;
+        var stack = new Stack<TreeNode>();
+        var curr = root;
         while (curr != null || stack.Count > 0)
         {
             while (curr != null)
@@ -2836,8 +2832,8 @@ public class Solution
     /// </summary>
     public bool IsValidBST(TreeNode root)
     {
-        Stack<TreeNode> stack = new Stack<TreeNode>();
-        double inorder = -double.MaxValue;
+        var stack = new Stack<TreeNode>();
+        var inorder = -double.MaxValue;
         while (stack.Count > 0 || root != null)
         {
             while (root != null)
@@ -2883,13 +2879,13 @@ public class Solution
         // return IsMirror(root, root);
 
         // 104ms by iteration
-        Queue<TreeNode> queue = new Queue<TreeNode>();
+        var queue = new Queue<TreeNode>();
         queue.Enqueue(root);
         queue.Enqueue(root);
         while (queue.Count > 0)
         {
-            TreeNode t1 = queue.Dequeue();
-            TreeNode t2 = queue.Dequeue();
+            var t1 = queue.Dequeue();
+            var t2 = queue.Dequeue();
             if (t1 == null & t2 == null)
             {
                 continue;
@@ -2946,15 +2942,15 @@ public class Solution
             return 0;
         }
 
-        int res = 0;
-        Queue<TreeNode> queue = new Queue<TreeNode>();
+        var res = 0;
+        var queue = new Queue<TreeNode>();
         queue.Enqueue(root);
         while (queue.Count > 0)
         {
             res++;
             for (int i = 0, n = queue.Count; i < n; i++)
             {
-                TreeNode p = queue.Peek();
+                var p = queue.Peek();
                 queue.Dequeue();
                 if (p.left != null)
                 {
@@ -2984,20 +2980,20 @@ public class Solution
             return res;
         }
 
-        Queue<TreeNode> que = new Queue<TreeNode>();
+        var que = new Queue<TreeNode>();
         que.Enqueue(root);
         while (true)
         {
-            int nodeCount = que.Count;
+            var nodeCount = que.Count;
             if (nodeCount == 0)
             {
                 break;
             }
 
-            List<int> subList = new List<int>();
+            var subList = new List<int>();
             while (nodeCount > 0)
             {
-                TreeNode dataNode = que.Dequeue();
+                var dataNode = que.Dequeue();
                 subList.Add(dataNode.val);
                 if (dataNode.left != null)
                 {
@@ -3040,8 +3036,8 @@ public class Solution
                 return null;
             }
 
-            int mid = start + (end - start) / 2;
-            TreeNode root = new TreeNode(data[mid])
+            var mid = start + (end - start) / 2;
+            var root = new TreeNode(data[mid])
             {
                 left = SubProcess(data, start, mid - 1),
                 right = SubProcess(data, mid + 1, end)
@@ -3055,15 +3051,15 @@ public class Solution
     /// </summary>
     public TreeNode SortedListToBST(ListNode head)
     {
-        int size = FindSize(head);
-        ListNode dummyHead = head;
+        var size = FindSize(head);
+        var dummyHead = head;
         //Solution.head = head;
         return ConvertListToBST(0, size - 1);
 
         int FindSize(ListNode node)
         {
-            ListNode ptr = node;
-            int c = 0;
+            var ptr = node;
+            var c = 0;
             while (ptr != null)
             {
                 ptr = ptr.next;
@@ -3080,9 +3076,9 @@ public class Solution
                 return null;
             }
 
-            int mid = (l + r) / 2;
-            TreeNode left = ConvertListToBST(l, mid - 1);
-            TreeNode node = new TreeNode(head.val)
+            var mid = (l + r) / 2;
+            var left = ConvertListToBST(l, mid - 1);
+            var node = new TreeNode(head.val)
             {
                 left = left
             };
@@ -3108,13 +3104,13 @@ public class Solution
                 return 0;
             }
 
-            int leftHeight = DFS(node.left);
+            var leftHeight = DFS(node.left);
             if (leftHeight == -1)
             {
                 return -1;
             }
 
-            int rightHeight = DFS(node.right);
+            var rightHeight = DFS(node.right);
             if (rightHeight == -1)
             {
                 return -1;
@@ -3211,10 +3207,10 @@ public class Solution
             return null;
         }
 
-        BinaryTreeNode leftmost = root;
+        var leftmost = root;
         while (leftmost.Left != null)
         {
-            BinaryTreeNode head = leftmost;
+            var head = leftmost;
             while (head != null)
             {
                 head.Left.Next = head.Right;
@@ -3252,16 +3248,16 @@ public class Solution
         //    row.Add(1);
         //    triangle.Add(row);
         //}
-        for (int i = 0; i < numRows; ++i)
+        for (var i = 0; i < numRows; ++i)
         {
             IList<int> row = new List<int>();
-            for (int r = 1; r <= i + 1; r++)
+            for (var r = 1; r <= i + 1; r++)
             {
                 row.Add(1);
             }
 
             triangle.Add(row);
-            for (int j = 1; j < i; ++j)
+            for (var j = 1; j < i; ++j)
             {
                 triangle[i][j] = triangle[i - 1][j - 1] + triangle[i - 1][j];
             }
@@ -3277,13 +3273,13 @@ public class Solution
     /// <returns></returns>
     public int MinimumTotal(IList<IList<int>> triangle)
     {
-        int n = triangle.Count;
-        int[] f = new int[n];
+        var n = triangle.Count;
+        var f = new int[n];
         f[0] = triangle[0][0];
-        for (int i = 1; i < n; ++i)
+        for (var i = 1; i < n; ++i)
         {
             f[i] = f[i - 1] + triangle[i][i];
-            for (int j = i - 1; j > 0; --j)
+            for (var j = i - 1; j > 0; --j)
             {
                 f[j] = Math.Min(f[j - 1], f[j]) + triangle[i][j];
             }
@@ -3307,17 +3303,17 @@ public class Solution
         //    if (prices[i] > prices[i - 1])
         //        total += prices[i] - prices[i - 1];
         //return total;
-        int len = prices.Length;
+        var len = prices.Length;
         if (len < 1)
         {
             return 0;
         }
 
-        int[] full = new int[len];
-        int[] empty = new int[len];
+        var full = new int[len];
+        var empty = new int[len];
         empty[0] = 0;
         full[0] = prices[0] * -1;
-        for (int i = 1; i < len; i++)
+        for (var i = 1; i < len; i++)
         {
             empty[i] = Math.Max(empty[i - 1], full[i - 1] + prices[i]);
             full[i] = Math.Max(full[i - 1], empty[i - 1] - prices[i]);
@@ -3368,7 +3364,7 @@ public class Solution
     public int SingleNumberII(int[] A)
     {
         int ones = 0, twos = 0;
-        foreach (int t in A)
+        foreach (var t in A)
         {
             ones = (ones ^ t) & ~twos;
             twos = (twos ^ t) & ~ones;
@@ -3389,8 +3385,8 @@ public class Solution
             return false;
         }
 
-        ListNode slow = head;
-        ListNode fast = head.next;
+        var slow = head;
+        var fast = head.next;
         while (slow != fast)
         {
             if (fast?.next == null)
@@ -3413,7 +3409,7 @@ public class Solution
     public IList<int> PreorderTraversal(TreeNode root)
     {
         IList<int> res = new List<int>();
-        Stack<TreeNode> stack = new Stack<TreeNode>();
+        var stack = new Stack<TreeNode>();
         while (root != null)
         {
             res.Add(root.val);
@@ -3454,8 +3450,8 @@ public class Solution
 
         prev.next = null;
 
-        ListNode l1 = SortList(head);
-        ListNode l2 = SortList(left);
+        var l1 = SortList(head);
+        var l2 = SortList(left);
 
         return MergeTwoLists(l1, l2);
     }
@@ -3480,7 +3476,7 @@ public class Solution
 
         while (r >= l)
         {
-            int mid = l + (r - l) / 2;
+            var mid = l + (r - l) / 2;
             if (nums[mid] > nums[mid + 1])
             {
                 return nums[mid + 1];
@@ -3511,11 +3507,11 @@ public class Solution
     /// <returns></returns>
     public int FindPeakElement(int[] nums)
     {
-        int len = nums.Length;
+        var len = nums.Length;
         int l = 0, r = len - 1, ans = -1;
         while (l <= r)
         {
-            int mid = l + (r - l) / 2;
+            var mid = l + (r - l) / 2;
             if (Compare(nums, mid - 1, mid) < 0 &&
                 Compare(nums, mid, mid + 1) > 0)
             {
@@ -3539,16 +3535,16 @@ public class Solution
         {
             if (index == -1 || index == data.Length)
             {
-                return new[] {0, 0};
+                return new[] { 0, 0 };
             }
 
-            return new[] {1, data[index]};
+            return new[] { 1, data[index] };
         }
 
         int Compare(int[] data, int index1, int index2)
         {
-            int[] num1 = Get(data, index1);
-            int[] num2 = Get(data, index2);
+            var num1 = Get(data, index1);
+            var num2 = Get(data, index2);
             if (num1[0] != data[0])
             {
                 return num1[0] > num2[0] ? 1 : -1;
@@ -3574,10 +3570,10 @@ public class Solution
         int left = 0, right = numbers.Length - 1;
         while (left < right)
         {
-            int sum = numbers[left] + numbers[right];
+            var sum = numbers[left] + numbers[right];
             if (sum == target)
             {
-                return new int[] {left + 1, right + 1};
+                return new int[] { left + 1, right + 1 };
             }
             else if (sum > target)
             {
@@ -3589,7 +3585,7 @@ public class Solution
             }
         }
 
-        return new[] {-1, -1};
+        return new[] { -1, -1 };
     }
 
     /// <summary>
@@ -3599,7 +3595,7 @@ public class Solution
     /// <returns></returns>
     public string ConvertToTitle(int columnNumber)
     {
-        StringBuilder sb = new StringBuilder();
+        var sb = new StringBuilder();
         while (columnNumber != 0)
         {
             columnNumber--;
@@ -3607,8 +3603,8 @@ public class Solution
             columnNumber /= 26;
         }
 
-        StringBuilder columnTitle = new StringBuilder();
-        for (int i = sb.Length - 1; i >= 0; i--)
+        var columnTitle = new StringBuilder();
+        for (var i = sb.Length - 1; i >= 0; i--)
         {
             columnTitle.Append(sb[i]);
         }
@@ -3621,9 +3617,9 @@ public class Solution
     /// </summary>
     public int MajorityElement(int[] nums)
     {
-        int count = 0;
-        int candidate = 0;
-        foreach (int num in nums)
+        var count = 0;
+        var candidate = 0;
+        foreach (var num in nums)
         {
             if (count == 0)
             {
@@ -3643,11 +3639,11 @@ public class Solution
     /// <returns></returns>
     public int TitleToNumber(string columnTitle)
     {
-        int number = 0;
-        int multiple = 1;
-        for (int i = columnTitle.Length - 1; i >= 0; --i)
+        var number = 0;
+        var multiple = 1;
+        for (var i = columnTitle.Length - 1; i >= 0; --i)
         {
-            int k = columnTitle[i] - 'A' + 1;
+            var k = columnTitle[i] - 'A' + 1;
             number += k * multiple;
             multiple *= 26;
         }
@@ -3672,36 +3668,36 @@ public class Solution
     /// <returns></returns>
     public int CalculateMinimumHP(int[][] dungeon)
     {
-        int m = dungeon.Length;
-        int n = dungeon[0].Length;
+        var m = dungeon.Length;
+        var n = dungeon[0].Length;
         if (m == 0 || n == 0)
         {
             return 0;
         }
 
-        int[][] health = new int[m][];
-        for (int i = 0; i < m; ++i)
+        var health = new int[m][];
+        for (var i = 0; i < m; ++i)
         {
             health[i] = new int[n];
         }
 
         health[m - 1][n - 1] = Math.Max(1 - dungeon[m - 1][n - 1], 1);
-        for (int i = m - 2; i >= 0; i--)
+        for (var i = m - 2; i >= 0; i--)
         {
             health[i][n - 1] = Math.Max(health[i + 1][n - 1] - dungeon[i][n - 1], 1);
         }
 
-        for (int j = n - 2; j >= 0; j--)
+        for (var j = n - 2; j >= 0; j--)
         {
             health[m - 1][j] = Math.Max(health[m - 1][j + 1] - dungeon[m - 1][j], 1);
         }
 
-        for (int i = m - 2; i >= 0; i--)
+        for (var i = m - 2; i >= 0; i--)
         {
-            for (int j = n - 2; j >= 0; j--)
+            for (var j = n - 2; j >= 0; j--)
             {
-                int down = Math.Max(health[i + 1][j] - dungeon[i][j], 1);
-                int right = Math.Max(health[i][j + 1] - dungeon[i][j], 1);
+                var down = Math.Max(health[i + 1][j] - dungeon[i][j], 1);
+                var right = Math.Max(health[i][j + 1] - dungeon[i][j], 1);
                 health[i][j] = Math.Min(right, down);
             }
         }
@@ -3763,7 +3759,7 @@ public class Solution
     /// <returns></returns>
     public int HammingWeight(uint n)
     {
-        int res = 0;
+        var res = 0;
         while (n != 0)
         {
             n &= (n - 1);
@@ -3791,11 +3787,11 @@ public class Solution
         //}
         //return Math.Max(a, b);
 
-        int rob = 0;
-        int notRob = 0;
-        foreach (int item in nums)
+        var rob = 0;
+        var notRob = 0;
+        foreach (var item in nums)
         {
-            int current = notRob + item;
+            var current = notRob + item;
             notRob = Math.Max(notRob, rob);
             rob = current;
         }
@@ -3825,10 +3821,10 @@ public class Solution
 
         int DigitSquareSum(int num)
         {
-            int sum = 0;
+            var sum = 0;
             while (num > 0)
             {
-                int tmp = num % 10;
+                var tmp = num % 10;
                 sum += tmp * tmp;
                 num /= 10;
             }
@@ -3849,16 +3845,16 @@ public class Solution
             return 0;
         }
 
-        bool[] f = new bool[n];
-        int count = n / 2;
-        for (int i = 3; i * i < n; i += 2)
+        var f = new bool[n];
+        var count = n / 2;
+        for (var i = 3; i * i < n; i += 2)
         {
             if (f[i])
             {
                 continue;
             }
 
-            for (int j = i * i; j < n; j += 2 * i)
+            for (var j = i * i; j < n; j += 2 * i)
             {
                 if (f[j])
                 {
@@ -3881,15 +3877,15 @@ public class Solution
     /// <returns></returns>
     public bool IsIsomorphic(string s, string t)
     {
-        int[] m1 = new int[256];
-        int[] m2 = new int[256];
-        int n = s.Length;
-        for (int i = 0; i < 256; i++)
+        var m1 = new int[256];
+        var m2 = new int[256];
+        var n = s.Length;
+        for (var i = 0; i < 256; i++)
         {
             m1[i] = m2[i] = -1;
         }
 
-        for (int i = 0; i < n; i++)
+        for (var i = 0; i < n; i++)
         {
             if (m1[s[i]] != m2[t[i]])
             {
@@ -3911,10 +3907,10 @@ public class Solution
     {
         // Iteratively Time: O(n) Space O(1)
         ListNode prev = null;
-        ListNode curr = head;
+        var curr = head;
         while (curr is not null)
         {
-            ListNode next = curr.next;
+            var next = curr.next;
             curr.next = prev;
             prev = curr;
             curr = next;
@@ -3943,9 +3939,9 @@ public class Solution
     {
         void Dfs(char[][] dataBoard, int i, int j, TrieNode p, IList<string> list)
         {
-            char c = dataBoard[i][j];
-            int m = dataBoard.Length;
-            int n = dataBoard[0].Length;
+            var c = dataBoard[i][j];
+            var m = dataBoard.Length;
+            var n = dataBoard[0].Length;
             if (c == '#' || p.Get(c) == null)
             {
                 return;
@@ -3984,11 +3980,11 @@ public class Solution
 
         TrieNode BuildTrie(string[] wordData)
         {
-            TrieNode node = new TrieNode();
-            foreach (string item in wordData)
+            var node = new TrieNode();
+            foreach (var item in wordData)
             {
-                TrieNode p = node;
-                foreach (char ch in item)
+                var p = node;
+                foreach (var ch in item)
                 {
                     if (p.Get(ch) == null)
                     {
@@ -4005,11 +4001,11 @@ public class Solution
         }
 
         IList<string> res = new List<string>();
-        TrieNode root = BuildTrie(words);
+        var root = BuildTrie(words);
         int m = board.Length, n = board[0].Length;
-        for (int i = 0; i < m; i++)
+        for (var i = 0; i < m; i++)
         {
-            for (int j = 0; j < n; j++)
+            for (var j = 0; j < n; j++)
             {
                 Dfs(board, i, j, root, res);
             }
@@ -4025,7 +4021,7 @@ public class Solution
     /// <returns></returns>
     public int RobII(int[] nums)
     {
-        int n = nums.Length;
+        var n = nums.Length;
         if (n < 2)
         {
             return n == 1 ? nums[0] : 0;
@@ -4036,9 +4032,9 @@ public class Solution
         int Robber(int[] data, int l, int r)
         {
             int pre = 0, cur = 0;
-            for (int i = l; i <= r; i++)
+            for (var i = l; i <= r; i++)
             {
-                int temp = Math.Max(pre + data[i], cur);
+                var temp = Math.Max(pre + data[i], cur);
                 pre = cur;
                 cur = temp;
             }
@@ -4055,7 +4051,7 @@ public class Solution
     public bool ContainsDuplicate(int[] nums)
     {
         ISet<int> set = new HashSet<int>();
-        foreach (int item in nums)
+        foreach (var item in nums)
         {
             if (!set.Add(item))
             {
@@ -4088,10 +4084,10 @@ public class Solution
             return true;
         }
 
-        ListNode firstHalfEnd = EndOfFirstHalf(head);
-        ListNode secondHalfStart = ReverseList(firstHalfEnd.next);
-        ListNode p1 = head;
-        ListNode p2 = secondHalfStart;
+        var firstHalfEnd = EndOfFirstHalf(head);
+        var secondHalfStart = ReverseList(firstHalfEnd.next);
+        var p1 = head;
+        var p2 = secondHalfStart;
         while (p2 != null)
         {
             if (p1.val != p2.val)
@@ -4109,10 +4105,10 @@ public class Solution
         ListNode ReverseList(ListNode node)
         {
             ListNode prev = null;
-            ListNode curr = node;
+            var curr = node;
             while (curr != null)
             {
-                ListNode tmp = curr.next;
+                var tmp = curr.next;
                 curr.next = prev;
                 prev = curr;
                 curr = tmp;
@@ -4123,8 +4119,8 @@ public class Solution
 
         ListNode EndOfFirstHalf(ListNode node)
         {
-            ListNode fast = node;
-            ListNode slow = node;
+            var fast = node;
+            var slow = node;
             while (fast.next?.next != null)
             {
                 fast = fast.next.next;
@@ -4148,13 +4144,13 @@ public class Solution
             return false;
         }
 
-        int[] tables = new int[26];
-        foreach (char c in s)
+        var tables = new int[26];
+        foreach (var c in s)
         {
             tables[c - 'a']++;
         }
 
-        foreach (char c in t)
+        foreach (var c in t)
         {
             tables[c - 'a']--;
         }
@@ -4179,10 +4175,10 @@ public class Solution
     /// <returns></returns>
     public int[] SingleNumberIII(int[] nums)
     {
-        int xorSum = nums.Aggregate(0, (current, num) => current ^ num);
-        int lsb = (xorSum == int.MinValue ? xorSum : xorSum & (-xorSum));
+        var xorSum = nums.Aggregate(0, (current, num) => current ^ num);
+        var lsb = (xorSum == int.MinValue ? xorSum : xorSum & (-xorSum));
         int type1 = 0, type2 = 0;
-        foreach (int num in nums)
+        foreach (var num in nums)
         {
             if ((num & lsb) != 0)
             {
@@ -4194,7 +4190,7 @@ public class Solution
             }
         }
 
-        return new[] {type1, type2};
+        return new[] { type1, type2 };
     }
 
     /// <summary>
@@ -4204,9 +4200,9 @@ public class Solution
     /// <returns></returns>
     public int MissingNumber(int[] nums)
     {
-        int len = nums.Length;
-        int sum = len * (len + 1) / 2;
-        int actual = nums.Sum();
+        var len = nums.Length;
+        var sum = len * (len + 1) / 2;
+        var actual = nums.Sum();
         return sum - actual;
     }
 
@@ -4268,7 +4264,7 @@ public class Solution
     /// <returns></returns>
     public int RobIII(TreeNode root)
     {
-        int[] res = SubRob(root);
+        var res = SubRob(root);
         return Math.Max(res[0], res[1]);
 
         int[] SubRob(TreeNode node)
@@ -4278,9 +4274,9 @@ public class Solution
                 return new int[2];
             }
 
-            int[] left = SubRob(node.left);
-            int[] right = SubRob(node.right);
-            int[] ret = new int[2];
+            var left = SubRob(node.left);
+            var right = SubRob(node.right);
+            var ret = new int[2];
             ret[0] = Math.Max(left[0], left[1]) + Math.Max(right[0], right[1]);
             ret[1] = node.val + left[0] + right[0];
             return ret;
@@ -4304,10 +4300,10 @@ public class Solution
     /// <returns></returns>
     public void ReverseString(char[] s)
     {
-        int len = s.Length;
+        var len = s.Length;
         for (int left = 0, right = len - 1; left < right; ++left, --right)
         {
-            Utilities.Swap(s, left, right);
+            Util.Swap(s, left, right);
         }
     }
 
@@ -4329,7 +4325,7 @@ public class Solution
         }
 
         int res = 10, cur = 9;
-        for (int i = 0; i < n - 1; i++)
+        for (var i = 0; i < n - 1; i++)
         {
             cur *= 9 - i;
             res += cur;
@@ -4348,7 +4344,7 @@ public class Solution
     {
         while (b != 0)
         {
-            int carry = (a & b) << 1;
+            var carry = (a & b) << 1;
             a ^= b;
             b = carry;
         }
@@ -4366,8 +4362,8 @@ public class Solution
         int left = 1, right = n;
         while (left <= right)
         {
-            int mid = left + (right - left) / 2;
-            int res = Guess(mid);
+            var mid = left + (right - left) / 2;
+            var res = Guess(mid);
             switch (res)
             {
                 case 0:
@@ -4385,8 +4381,8 @@ public class Solution
 
         int Guess(int num)
         {
-            Random random = new Random();
-            int target = random.Next(1, int.MaxValue);
+            var random = new Random();
+            var target = random.Next(1, int.MaxValue);
             if (num > target)
             {
                 return 1;
@@ -4410,8 +4406,8 @@ public class Solution
     public IList<int> LexicalOrder(int n)
     {
         IList<int> list = new List<int>(n);
-        int num = 1;
-        for (int i = 0; i < n; i++)
+        var num = 1;
+        for (var i = 0; i < n; i++)
         {
             list.Add(num);
             if (num * 10 <= n)
@@ -4441,18 +4437,18 @@ public class Solution
     {
         const int mask1 = 1 << 7;
         const int mask2 = (1 << 7) + (1 << 6);
-        int m = data.Length;
-        int index = 0;
+        var m = data.Length;
+        var index = 0;
         while (index < m)
         {
-            int num = data[index];
-            int n = GetBytes(num);
+            var num = data[index];
+            var n = GetBytes(num);
             if (n < 0 || index + n > m)
             {
                 return false;
             }
 
-            for (int i = 1; i < n; i++)
+            for (var i = 1; i < n; i++)
             {
                 if (!IsValid((data[index + i])))
                 {
@@ -4472,8 +4468,8 @@ public class Solution
                 return 1;
             }
 
-            int n = 0;
-            int mask = mask1;
+            var n = 0;
+            var mask = mask1;
             while ((num & mask) != 0)
             {
                 n++;
@@ -4501,20 +4497,20 @@ public class Solution
     /// <returns></returns>
     public int MaxRotateFunction(int[] nums)
     {
-        int n = nums.Length;
+        var n = nums.Length;
         if (n <= 1)
         {
             return 0;
         }
 
         int f = 0, numSum = nums.Sum();
-        for (int i = 0; i < n; i++)
+        for (var i = 0; i < n; i++)
         {
             f += i * nums[i];
         }
 
-        int ans = f;
-        for (int i = n - 1; i > 0; i--)
+        var ans = f;
+        for (var i = n - 1; i > 0; i--)
         {
             f += numSum - n * nums[i];
             ans = Math.Max(ans, f);
@@ -4529,7 +4525,7 @@ public class Solution
     public IList<string> ReadBinaryWatch(int turnedOn)
     {
         IList<string> ans = new List<string>();
-        for (int i = 0; i < 1024; ++i)
+        for (var i = 0; i < 1024; ++i)
         {
             int h = i >> 6, m = i & 63;
             if (h < 12 && m < 60 && BitCount(i) == turnedOn)
@@ -4559,9 +4555,9 @@ public class Solution
     public IList<string> FizzBuzz(int n)
     {
         IList<string> answer = new List<string>();
-        for (int i = 1; i <= n; i++)
+        for (var i = 1; i <= n; i++)
         {
-            StringBuilder sb = new StringBuilder();
+            var sb = new StringBuilder();
             if (i % 3 == 0)
             {
                 sb.Append("Fizz");
@@ -4592,12 +4588,12 @@ public class Solution
     public string AddStrings(string num1, string num2)
     {
         int i = num1.Length - 1, j = num2.Length - 1, carry = 0;
-        StringBuilder ans = new StringBuilder();
+        var ans = new StringBuilder();
         while (i >= 0 || j >= 0 || carry != 0)
         {
-            int x = i >= 0 ? num1[i] - '0' : 0;
-            int y = j >= 0 ? num2[j] - '0' : 0;
-            int result = x + y + carry;
+            var x = i >= 0 ? num1[i] - '0' : 0;
+            var y = j >= 0 ? num2[j] - '0' : 0;
+            var result = x + y + carry;
             ans.Append(result % 10);
             carry = result / 10;
             i--;
@@ -4618,17 +4614,17 @@ public class Solution
             return res;
         }
 
-        Queue<Node> queue = new Queue<Node>();
+        var queue = new Queue<Node>();
         queue.Enqueue(root);
         while (queue.Any())
         {
-            int size = queue.Count;
+            var size = queue.Count;
             IList<int> tmp = new List<int>();
-            for (int i = 0; i < size; i++)
+            for (var i = 0; i < size; i++)
             {
-                Node curr = queue.Peek();
+                var curr = queue.Peek();
                 tmp.Add(curr.val);
-                foreach (Node child in curr.children)
+                foreach (var child in curr.children)
                 {
                     queue.Enqueue(child);
                 }
@@ -4682,7 +4678,7 @@ public class Solution
                 return root.left;
             }
 
-            TreeNode minNode = FindMin(root.right);
+            var minNode = FindMin(root.right);
             root.val = minNode.val;
             root.right = DeleteNode(root.right, root.val);
         }
@@ -4707,8 +4703,8 @@ public class Solution
     /// <returns></returns>
     public int MinMoves(int[] nums)
     {
-        int min = nums.Min();
-        int res = 0;
+        var min = nums.Min();
+        var res = 0;
         foreach (var num in nums)
         {
             res += num - min;
@@ -4723,9 +4719,9 @@ public class Solution
     /// <returns></returns>
     public bool RepeatedSubstring(string s)
     {
-        int n = s.Length;
-        StringBuilder sb = new StringBuilder();
-        for (int i = 1; i <= n / 2; i++)
+        var n = s.Length;
+        var sb = new StringBuilder();
+        for (var i = 1; i <= n / 2; i++)
         {
             if (n % i != 0)
             {
@@ -4733,7 +4729,7 @@ public class Solution
             }
 
             sb.Clear();
-            string sub = s[..i];
+            var sub = s[..i];
             while (sb.Length < n)
             {
                 sb.Append(sub);
@@ -4756,8 +4752,8 @@ public class Solution
     public int MinMove2(int[] nums)
     {
         Array.Sort(nums);
-        int n = nums.Length;
-        int mid = nums[n / 2];
+        var n = nums.Length;
+        var mid = nums[n / 2];
         return nums.Sum(x => Math.Abs(x - mid));
     }
 
@@ -4768,11 +4764,11 @@ public class Solution
     /// <returns></returns>
     public int IsLandPerimeter(int[,] grid)
     {
-        int island = 0;
-        int neighbor = 0;
-        for (int i = 0; i < grid.Length; i++)
+        var island = 0;
+        var neighbor = 0;
+        for (var i = 0; i < grid.Length; i++)
         {
-            for (int j = 0; j < grid.GetLength(1) - 1; j++)
+            for (var j = 0; j < grid.GetLength(1) - 1; j++)
             {
                 if (grid[i, j] != 1)
                 {
@@ -4802,9 +4798,9 @@ public class Solution
     /// <returns></returns>
     public int FindSubstringInWraparoundString(string p)
     {
-        int[] dp = new int[26];
-        int k = 0;
-        for (int i = 0; i < p.Length; ++i)
+        var dp = new int[26];
+        var k = 0;
+        for (var i = 0; i < p.Length; ++i)
         {
             if (i > 0 && (p[i] - p[i - 1] + 26) % 26 == 1)
             {
@@ -4843,8 +4839,8 @@ public class Solution
 
         string ValidIPv4(string IP)
         {
-            string[] chunks = IP.Split('.');
-            foreach (string chunk in chunks)
+            var chunks = IP.Split('.');
+            foreach (var chunk in chunks)
             {
                 if (chunk.Length is 0 or > 3)
                 {
@@ -4872,9 +4868,9 @@ public class Solution
 
         string ValidIPv6(string IP)
         {
-            string[] chunks = IP.Split(':');
+            var chunks = IP.Split(':');
             const string hexDigits = "0123456789abcdefABCDEF";
-            foreach (string chunk in chunks)
+            foreach (var chunk in chunks)
             {
                 if (chunk.Length is 0 or > 4)
                 {
@@ -4898,11 +4894,11 @@ public class Solution
     /// <returns></returns>
     public int TotalHammingDistance(int[] nums)
     {
-        int size = nums.Length;
-        int res = 0;
-        for (int i = 0; i < 30; i++)
+        var size = nums.Length;
+        var res = 0;
+        for (var i = 0; i < 30; i++)
         {
-            int tmp = nums.Sum(num => (num >> i) & 1);
+            var tmp = nums.Sum(num => (num >> i) & 1);
             res += tmp * (size - tmp);
         }
 
@@ -4921,17 +4917,17 @@ public class Solution
             return Array.Empty<int>();
         }
 
-        int N = matrix.Length;
-        int M = matrix[0].Length;
+        var N = matrix.Length;
+        var M = matrix[0].Length;
         int row = 0, col = 0;
-        int direction = 1;
-        int[] res = new int[N * M];
-        int r = 0;
+        var direction = 1;
+        var res = new int[N * M];
+        var r = 0;
         while (row < N && col < M)
         {
             res[r++] = matrix[row][col];
-            int newRow = row + (direction == 1 ? -1 : 1);
-            int newCol = col + (direction == 1 ? 1 : -1);
+            var newRow = row + (direction == 1 ? -1 : 1);
+            var newCol = col + (direction == 1 ? 1 : -1);
             if (newRow < 0 || newRow == N || newCol < 0 || newCol == M)
             {
                 if (direction == 1)
@@ -4969,9 +4965,9 @@ public class Solution
             return "0";
         }
 
-        bool negative = num < 0;
+        var negative = num < 0;
         num = Math.Abs(num);
-        StringBuilder digits = new StringBuilder();
+        var digits = new StringBuilder();
         while (num > 0)
         {
             digits.Append(num % 7);
@@ -4983,7 +4979,7 @@ public class Solution
             digits.Append('-');
         }
 
-        string res = digits.ToString();
+        var res = digits.ToString();
         return string.Create(res.Length, res, (chars, state) =>
         {
             state.AsSpan().CopyTo(chars);
@@ -5001,10 +4997,10 @@ public class Solution
             return N;
         }
 
-        int f0 = 0;
-        int f1 = 1;
-        int res = 0;
-        for (int i = 1; i < N; i++)
+        var f0 = 0;
+        var f1 = 1;
+        var res = 0;
+        for (var i = 1; i < N; i++)
         {
             res = f0 + f1;
             f0 = f1;
@@ -5033,12 +5029,12 @@ public class Solution
     /// <returns></returns>
     public string ComplexNumberMultiply(string num1, string num2)
     {
-        string[] complex1 = num1.Split('+', 'i');
-        string[] complex2 = num2.Split('+', 'i');
-        int real1 = int.Parse(complex1[0]);
-        int real2 = int.Parse(complex2[0]);
-        int imag1 = int.Parse(complex1[1]);
-        int imag2 = int.Parse(complex2[1]);
+        var complex1 = num1.Split('+', 'i');
+        var complex2 = num2.Split('+', 'i');
+        var real1 = int.Parse(complex1[0]);
+        var real2 = int.Parse(complex2[0]);
+        var imag1 = int.Parse(complex1[1]);
+        var imag2 = int.Parse(complex2[1]);
         return $"{real1 * real2 - imag1 * imag2}+{real1 * imag2 + imag1 * real2}i";
     }
 
@@ -5052,7 +5048,7 @@ public class Solution
         int low = 0, high = nums.Length - 1;
         while (low < high)
         {
-            int mid = (high - low) / 2 + low;
+            var mid = (high - low) / 2 + low;
             if (nums[mid] == nums[mid ^ 1])
             {
                 low = mid + 1;
@@ -5074,16 +5070,16 @@ public class Solution
     public int[][] UpdateMatrix(int[][] mat)
     {
         int m = mat.Length, n = mat[0].Length;
-        int[][] dist = new int[m][];
-        for (int i = 0; i < m; i++)
+        var dist = new int[m][];
+        for (var i = 0; i < m; i++)
         {
             dist[i] = new int[n];
             Array.Fill(dist[i], int.MaxValue / 2);
         }
 
-        for (int i = 0; i < m; i++)
+        for (var i = 0; i < m; i++)
         {
-            for (int j = 0; j < n; j++)
+            for (var j = 0; j < n; j++)
             {
                 if (mat[i][j] == 0)
                 {
@@ -5092,9 +5088,9 @@ public class Solution
             }
         }
 
-        for (int i = 0; i < m; i++)
+        for (var i = 0; i < m; i++)
         {
-            for (int j = 0; j < n; j++)
+            for (var j = 0; j < n; j++)
             {
                 if (i - 1 >= 0)
                 {
@@ -5108,9 +5104,9 @@ public class Solution
             }
         }
 
-        for (int i = m - 1; i >= 0; i--)
+        for (var i = m - 1; i >= 0; i--)
         {
-            for (int j = n - 1; j >= 0; j--)
+            for (var j = n - 1; j >= 0; j--)
             {
                 if (i + 1 < m)
                 {
@@ -5134,7 +5130,7 @@ public class Solution
     /// <returns></returns>
     public string OptimalDivision(int[] nums)
     {
-        int n = nums.Length;
+        var n = nums.Length;
         switch (n)
         {
             case 1:
@@ -5143,11 +5139,11 @@ public class Solution
                 return $"{nums[0]}/{nums[1]}";
         }
 
-        StringBuilder res = new StringBuilder();
+        var res = new StringBuilder();
         res.Append(nums[0]);
         res.Append("/(");
         res.Append(nums[1]);
-        for (int i = 2; i < n; i++)
+        for (var i = 2; i < n; i++)
         {
             res.Append('/');
             res.Append(nums[i]);
@@ -5164,18 +5160,18 @@ public class Solution
     /// <returns></returns>
     public string ReverseWords(string s)
     {
-        StringBuilder sb = new StringBuilder();
-        int len = s.Length;
-        int i = 0;
+        var sb = new StringBuilder();
+        var len = s.Length;
+        var i = 0;
         while (i < len)
         {
-            int start = i;
+            var start = i;
             while (i < len && s[i] != ' ')
             {
                 i++;
             }
 
-            for (int p = start; p < i; p++)
+            for (var p = start; p < i; p++)
             {
                 sb.Append(s[start + i - 1 - p]);
             }
@@ -5204,20 +5200,20 @@ public class Solution
             return false;
         }
 
-        int[] cnt = new int[26];
-        for (int i = 0; i < n; i++)
+        var cnt = new int[26];
+        for (var i = 0; i < n; i++)
         {
             --cnt[s1[i] - 'a'];
             ++cnt[s2[i] - 'a'];
         }
 
-        int diff = cnt.Count(item => item != 0);
+        var diff = cnt.Count(item => item != 0);
         if (diff == 0)
         {
             return true;
         }
 
-        for (int i = n; i < m; i++)
+        for (var i = n; i < m; i++)
         {
             int x = s2[i] - 'a', y = s2[i - n] - 'a';
             if (x == y)
@@ -5275,7 +5271,7 @@ public class Solution
             }
 
             ans.Add(node.val);
-            foreach (Node ch in node.children)
+            foreach (var ch in node.children)
             {
                 Dfs(ch);
             }
@@ -5300,7 +5296,7 @@ public class Solution
                 return;
             }
 
-            foreach (Node ch in node.children)
+            foreach (var ch in node.children)
             {
                 Dfs(ch);
             }
@@ -5317,22 +5313,22 @@ public class Solution
     /// <returns></returns>
     public string[] FindRestaurant(string[] list1, string[] list2)
     {
-        Dictionary<string, int> index = new Dictionary<string, int>();
-        for (int i = 0; i < list1.Length; i++)
+        var index = new Dictionary<string, int>();
+        for (var i = 0; i < list1.Length; i++)
         {
             index.Add(list1[i], i);
         }
 
         IList<string> ret = new List<string>();
-        int indexSum = int.MaxValue;
-        for (int i = 0; i < list2.Length; i++)
+        var indexSum = int.MaxValue;
+        for (var i = 0; i < list2.Length; i++)
         {
             if (!index.ContainsKey(list2[i]))
             {
                 continue;
             }
 
-            int j = index[list2[i]];
+            var j = index[list2[i]];
             if (i + j < indexSum)
             {
                 ret.Clear();
@@ -5368,11 +5364,11 @@ public class Solution
             return t2;
         }
 
-        Stack<TreeNode[]> stack = new Stack<TreeNode[]>();
-        stack.Push(new[] {t1, t2});
+        var stack = new Stack<TreeNode[]>();
+        stack.Push(new[] { t1, t2 });
         while (stack.Count > 0)
         {
-            TreeNode[] t = stack.Pop();
+            var t = stack.Pop();
             if (t[0] == null || t[1] == null)
             {
                 continue;
@@ -5385,7 +5381,7 @@ public class Solution
             }
             else
             {
-                stack.Push(new[] {t[0].left, t[1].left});
+                stack.Push(new[] { t[0].left, t[1].left });
             }
 
             if (t[0].right == null)
@@ -5394,7 +5390,7 @@ public class Solution
             }
             else
             {
-                stack.Push(new[] {t[0].right, t[1].right});
+                stack.Push(new[] { t[0].right, t[1].right });
             }
         }
 
@@ -5442,14 +5438,14 @@ public class Solution
     /// <returns></returns>
     public int[] ExclusiveTime(int n, IList<string> logs)
     {
-        Stack<int[]> stack = new Stack<int[]>();
-        int[] res = new int[n];
+        var stack = new Stack<int[]>();
+        var res = new int[n];
         const string startCommand = "start";
-        foreach (string log in logs)
+        foreach (var log in logs)
         {
-            string[] data = log.Split(':');
-            int index = int.Parse(data[0]);
-            int timestamp = int.Parse(data[2]);
+            var data = log.Split(':');
+            var index = int.Parse(data[0]);
+            var timestamp = int.Parse(data[2]);
             if (data[1] == startCommand)
             {
                 if (stack.Count > 0)
@@ -5457,11 +5453,11 @@ public class Solution
                     res[stack.Peek()[0]] += timestamp - stack.Peek()[1];
                 }
 
-                stack.Push(new int[] {index, timestamp});
+                stack.Push(new int[] { index, timestamp });
             }
             else
             {
-                int[] pair = stack.Pop();
+                var pair = stack.Pop();
                 res[pair[0]] += timestamp - pair[1] + 1;
                 if (stack.Count > 0)
                 {
@@ -5482,7 +5478,7 @@ public class Solution
     {
         Array.Sort(pairs, (a, b) => a[1] - b[1]);
         int curr = int.MinValue, res = 0;
-        foreach (int[] pair in pairs)
+        foreach (var pair in pairs)
         {
             if (curr < pair[0])
             {
@@ -5501,9 +5497,9 @@ public class Solution
     /// <returns></returns>
     public IList<TreeNode> FindDuplicateSubtrees(TreeNode root)
     {
-        Dictionary<string, (TreeNode, int)> seen = new Dictionary<string, (TreeNode, int)>();
-        HashSet<TreeNode> repeat = new HashSet<TreeNode>();
-        int index = 0;
+        var seen = new Dictionary<string, (TreeNode, int)>();
+        var repeat = new HashSet<TreeNode>();
+        var index = 0;
 
         int DFS(TreeNode node)
         {
@@ -5513,10 +5509,10 @@ public class Solution
             }
 
             (int, int, int) triple = (node.val, DFS(node.left), DFS(node.right));
-            string key = triple.ToString();
+            var key = triple.ToString();
             if (seen.ContainsKey(key))
             {
-                (TreeNode, int) pair = seen[key];
+                var pair = seen[key];
                 repeat.Add(pair.Item1);
                 return pair.Item2;
             }
@@ -5541,8 +5537,8 @@ public class Solution
     {
         TreeNode GetLeft(Stack<TreeNode> stack)
         {
-            TreeNode root = stack.Pop();
-            TreeNode node = root.right;
+            var root = stack.Pop();
+            var node = root.right;
             while (node != null)
             {
                 stack.Push(node);
@@ -5554,8 +5550,8 @@ public class Solution
 
         TreeNode GetRight(Stack<TreeNode> stack)
         {
-            TreeNode root = stack.Pop();
-            TreeNode node = root.left;
+            var root = stack.Pop();
+            var node = root.left;
             while (node != null)
             {
                 stack.Push(node);
@@ -5566,8 +5562,8 @@ public class Solution
         }
 
         TreeNode left = root, right = root;
-        Stack<TreeNode> leftStack = new Stack<TreeNode>();
-        Stack<TreeNode> rightStack = new Stack<TreeNode>();
+        var leftStack = new Stack<TreeNode>();
+        var rightStack = new Stack<TreeNode>();
         leftStack.Push(left);
         while (left.left != null)
         {
@@ -5609,10 +5605,10 @@ public class Solution
     /// <returns></returns>
     public TreeNode ConstructMaximumBinaryTree(int[] nums)
     {
-        int n = nums.Length;
-        List<int> stack = new List<int>();
-        TreeNode[] trees = new TreeNode[n];
-        for (int i = 0; i < n; i++)
+        var n = nums.Length;
+        var stack = new List<int>();
+        var trees = new TreeNode[n];
+        for (var i = 0; i < n; i++)
         {
             trees[i] = new TreeNode(nums[i]);
             while (stack.Count > 0 && nums[i] > nums[stack[stack.Count - 1]])
@@ -5646,7 +5642,7 @@ public class Solution
             int low = 0, high = nums.Length - 1;
             while (low < high)
             {
-                int mid = low + (high - low) / 2;
+                var mid = low + (high - low) / 2;
                 if (nums[mid] >= target)
                 {
                     high = mid;
@@ -5660,9 +5656,9 @@ public class Solution
             return low;
         }
 
-        int right = BinarySearch(arr, x);
-        int left = right - 1;
-        int n = arr.Length;
+        var right = BinarySearch(arr, x);
+        var left = right - 1;
+        var n = arr.Length;
         while (k-- > 0)
         {
             if (left < 0)
@@ -5689,7 +5685,7 @@ public class Solution
     /// <returns></returns>
     public int WidthOfBinaryTree(TreeNode root)
     {
-        Dictionary<int, int> levelMin = new Dictionary<int, int>();
+        var levelMin = new Dictionary<int, int>();
 
         int DFS(TreeNode node, int depth, int index)
         {
@@ -5716,7 +5712,7 @@ public class Solution
     public bool CheckPossibility(int[] nums)
     {
         int n = nums.Length, count = 0;
-        for (int i = 0; i < n - 1; i++)
+        for (var i = 0; i < n - 1; i++)
         {
             int x = nums[i], y = nums[i + 1];
             if (x > y)
@@ -5745,9 +5741,9 @@ public class Solution
     /// <returns></returns>
     public int[] ConstructArray(int n, int k)
     {
-        int[] res = new int[n];
-        int index = 0;
-        for (int i = 1; i < n - k; ++i)
+        var res = new int[n];
+        var index = 0;
+        for (var i = 1; i < n - k; ++i)
         {
             res[index++] = i;
         }
@@ -5807,7 +5803,7 @@ public class Solution
             return null;
         }
 
-        for (TreeNode node = root; node.left is not null;)
+        for (var node = root; node.left is not null;)
         {
             if (node.left.val < low)
             {
@@ -5819,7 +5815,7 @@ public class Solution
             }
         }
 
-        for (TreeNode node = root; node.right is not null;)
+        for (var node = root; node.right is not null;)
         {
             if (node.right.val > high)
             {
@@ -5841,10 +5837,10 @@ public class Solution
     /// <returns></returns>
     public int MaximumSwap(int num)
     {
-        char[] chars = num.ToString().ToCharArray();
-        int n = chars.Length;
+        var chars = num.ToString().ToCharArray();
+        var n = chars.Length;
         int maxIndex = n - 1, index1 = -1, index2 = -1;
-        for (int i = n - 1; i >= 0; i--)
+        for (var i = n - 1; i >= 0; i--)
         {
             if (chars[i] > chars[maxIndex])
             {
@@ -5874,19 +5870,19 @@ public class Solution
     /// <returns></returns>
     public int FlipLights(int n, int presses)
     {
-        HashSet<int> seen = new HashSet<int>();
-        for (int i = 0; i < 1 << 4; i++)
+        var seen = new HashSet<int>();
+        for (var i = 0; i < 1 << 4; i++)
         {
-            int[] pressArray = new int[4];
-            for (int j = 0; j < 4; j++)
+            var pressArray = new int[4];
+            for (var j = 0; j < 4; j++)
             {
                 pressArray[j] = i >> j & 1;
             }
 
-            int sum = pressArray.Sum();
+            var sum = pressArray.Sum();
             if (sum % 2 == presses % 2 && sum <= presses)
             {
-                int status = pressArray[0] ^ pressArray[1] ^ pressArray[3];
+                var status = pressArray[0] ^ pressArray[1] ^ pressArray[3];
                 if (n >= 2)
                 {
                     status |= (pressArray[0] ^ pressArray[1]) << 1;
@@ -5916,7 +5912,7 @@ public class Solution
     /// <returns></returns>
     public bool JudgePoint24(int[] nums)
     {
-        List<double> A = nums.Select(item => System.Convert.ToDouble(item)).ToList();
+        var A = nums.Select(item => System.Convert.ToDouble(item)).ToList();
         return Solve(A);
 
         bool Solve(List<double> data)
@@ -5929,17 +5925,17 @@ public class Solution
                     return Math.Abs(data[0] - 24) < 1e-6;
             }
 
-            for (int i = 0; i < data.Count; i++)
+            for (var i = 0; i < data.Count; i++)
             {
-                for (int j = 0; j < data.Count; j++)
+                for (var j = 0; j < data.Count; j++)
                 {
                     if (i == j)
                     {
                         continue;
                     }
 
-                    List<double> nums2 = data.Where((_, k) => k != i && k != j).ToList();
-                    for (int k = 0; k < 4; k++)
+                    var nums2 = data.Where((_, k) => k != i && k != j).ToList();
+                    for (var k = 0; k < 4; k++)
                     {
                         switch (k)
                         {
@@ -5982,11 +5978,11 @@ public class Solution
     /// <returns></returns>
     public int CalPoints(string[] ops)
     {
-        int ret = 0;
-        List<int> points = new List<int>();
-        foreach (string op in ops)
+        var ret = 0;
+        var points = new List<int>();
+        foreach (var op in ops)
         {
-            int n = points.Count;
+            var n = points.Count;
             switch (op[0])
             {
                 case '+':
@@ -6018,7 +6014,7 @@ public class Solution
     /// <returns></returns>
     public int LongestUnivaluePath(TreeNode root)
     {
-        int res = 0;
+        var res = 0;
 
         int DFS(TreeNode node)
         {
@@ -6054,18 +6050,18 @@ public class Solution
     /// <returns></returns>
     public int MaxAreaOfIsland(int[][] grid)
     {
-        int ans = 0;
-        int rowLength = grid.Length;
-        int colLength = grid[0].Length;
-        int[] di = new int[] {0, 0, 1, -1};
-        int[] dj = new int[] {1, -1, 0, 0};
-        for (int row = 0; row < rowLength; row++)
+        var ans = 0;
+        var rowLength = grid.Length;
+        var colLength = grid[0].Length;
+        var di = new int[] { 0, 0, 1, -1 };
+        var dj = new int[] { 1, -1, 0, 0 };
+        for (var row = 0; row < rowLength; row++)
         {
-            for (int col = 0; col < colLength; col++)
+            for (var col = 0; col < colLength; col++)
             {
-                int curr = 0;
-                Queue<int> queueRow = new Queue<int>();
-                Queue<int> queueCol = new Queue<int>();
+                var curr = 0;
+                var queueRow = new Queue<int>();
+                var queueCol = new Queue<int>();
                 queueRow.Enqueue(row);
                 queueCol.Enqueue(col);
                 while (queueRow.Count != 0)
@@ -6079,7 +6075,7 @@ public class Solution
 
                     ++curr;
                     grid[currRow][currCol] = 0;
-                    for (int index = 0; index != 4; ++index)
+                    for (var index = 0; index != 4; ++index)
                     {
                         int nextRow = currRow + di[index], nextCol = currCol + dj[index];
                         queueRow.Enqueue(nextRow);
@@ -6102,31 +6098,31 @@ public class Solution
     /// <returns></returns>
     public bool CanPartitionKSubsets(int[] nums, int k)
     {
-        int sum = nums.Sum();
+        var sum = nums.Sum();
         if (sum % k != 0)
         {
             return false;
         }
 
-        int average = sum / k;
+        var average = sum / k;
         Array.Sort(nums);
-        int len = nums.Length;
+        var len = nums.Length;
         if (nums[len - 1] > average)
         {
             return false;
         }
 
-        bool[] dp = new bool[1 << len];
-        int[] currSum = new int[1 << len];
+        var dp = new bool[1 << len];
+        var currSum = new int[1 << len];
         dp[0] = true;
-        for (int i = 0; i < 1 << len; i++)
+        for (var i = 0; i < 1 << len; i++)
         {
             if (!dp[i])
             {
                 continue;
             }
 
-            for (int j = 0; j < len; j++)
+            for (var j = 0; j < len; j++)
             {
                 if (currSum[i] + nums[j] > average)
                 {
@@ -6135,7 +6131,7 @@ public class Solution
 
                 if (((i >> j) & 1) == 0)
                 {
-                    int next = i | (1 << j);
+                    var next = i | (1 << j);
                     if (!dp[next])
                     {
                         currSum[next] = (currSum[i] + nums[j]) % average;
@@ -6180,7 +6176,7 @@ public class Solution
             return new TreeNode(val);
         }
 
-        TreeNode currentNode = root;
+        var currentNode = root;
         while (true)
         {
             if (currentNode.val >= val)
@@ -6241,11 +6237,11 @@ public class Solution
         //}
         //return -1;
 
-        int left = 0;
-        int right = nums.Length;
+        var left = 0;
+        var right = nums.Length;
         while (left < right)
         {
-            int mid = left + (right - left) / 2;
+            var mid = left + (right - left) / 2;
             if (nums[mid] > target)
             {
                 right = mid;
@@ -6270,8 +6266,8 @@ public class Solution
     /// <returns></returns>
     public string ToLowerCase(string str)
     {
-        StringBuilder sb = new StringBuilder();
-        foreach (char r in str.Select(c => (char)(c | 32)))
+        var sb = new StringBuilder();
+        foreach (var r in str.Select(c => (char)(c | 32)))
         {
             sb.Append(r);
         }
@@ -6289,14 +6285,14 @@ public class Solution
     /// <returns></returns>
     public string LongestWord(string[] words)
     {
-        Trie trie = new Trie();
-        foreach (string word in words)
+        var trie = new Trie();
+        foreach (var word in words)
         {
             trie.Insert(word);
         }
 
-        string longest = string.Empty;
-        foreach (string word in words)
+        var longest = string.Empty;
+        foreach (var word in words)
         {
             if (trie.Search(word))
             {
@@ -6317,9 +6313,9 @@ public class Solution
     /// <returns></returns>
     public int PivotIndex(int[] nums)
     {
-        int total = nums.Sum();
-        int sum = 0;
-        for (int i = 0; i < nums.Length; i++)
+        var total = nums.Sum();
+        var sum = 0;
+        for (var i = 0; i < nums.Length; i++)
         {
             if (2 * sum + nums[i] == total)
             {
@@ -6342,10 +6338,10 @@ public class Solution
     {
         bool IsSelfDividing(int num)
         {
-            int tmp = num;
+            var tmp = num;
             while (tmp > 0)
             {
-                int digit = tmp % 10;
+                var digit = tmp % 10;
                 if (digit == 0 || num % digit != 0)
                 {
                     return false;
@@ -6358,7 +6354,7 @@ public class Solution
         }
 
         IList<int> ans = new List<int>();
-        for (int i = left; i <= right; i++)
+        for (var i = left; i <= right; i++)
         {
             if (IsSelfDividing(i))
             {
@@ -6379,23 +6375,23 @@ public class Solution
     /// <returns></returns>
     public int[][] FloodFill(int[][] image, int sr, int sc, int newColor)
     {
-        int[] dx = {1, 0, 0, -1};
-        int[] dy = {0, 1, -1, 0};
-        int currentColor = image[sr][sc];
+        int[] dx = { 1, 0, 0, -1 };
+        int[] dy = { 0, 1, -1, 0 };
+        var currentColor = image[sr][sc];
         if (currentColor == newColor)
         {
             return image;
         }
 
         int n = image.Length, m = image[0].Length;
-        Queue<int[]> queue = new Queue<int[]>();
-        queue.Enqueue(new[] {sr, sc});
+        var queue = new Queue<int[]>();
+        queue.Enqueue(new[] { sr, sc });
         image[sr][sc] = newColor;
         while (queue.Any())
         {
-            int[] pair = queue.Dequeue();
+            var pair = queue.Dequeue();
             int x = pair[0], y = pair[1];
-            for (int i = 0; i < 4; i++)
+            for (var i = 0; i < 4; i++)
             {
                 int mx = x + dx[i], my = y + dy[i];
                 if (mx < 0 || mx >= n || my < 0 || my >= m || image[mx][my] != currentColor)
@@ -6403,7 +6399,7 @@ public class Solution
                     continue;
                 }
 
-                queue.Enqueue(new[] {mx, my});
+                queue.Enqueue(new[] { mx, my });
                 image[mx][my] = newColor;
             }
         }
@@ -6416,14 +6412,14 @@ public class Solution
     /// </summary>
     public int[] DailyTemperatures(int[] T)
     {
-        Stack<int> stack = new Stack<int>();
-        int len = T.Length;
-        int[] ans = new int[len];
-        for (int i = 0; i < len; i++)
+        var stack = new Stack<int>();
+        var len = T.Length;
+        var ans = new int[len];
+        for (var i = 0; i < len; i++)
         {
             while (stack.Count != 0 && T[i] > T[stack.Peek()])
             {
-                int t = stack.Peek();
+                var t = stack.Peek();
                 stack.Pop();
                 ans[t] = i - t;
             }
@@ -6442,7 +6438,7 @@ public class Solution
     public int MaxChunksToSorted(int[] arr)
     {
         int m = 0, res = 0;
-        for (int i = 0; i < arr.Length; i++)
+        for (var i = 0; i < arr.Length; i++)
         {
             m = Math.Max(m, arr[i]);
             if (m == i)
@@ -6453,7 +6449,7 @@ public class Solution
 
         return res++;
     }
-    
+
     /// <summary>
     /// 777. Swap Adjacent in LR String
     /// </summary>
@@ -6462,7 +6458,7 @@ public class Solution
     /// <returns></returns>
     public bool CanTransform(string start, string end)
     {
-        int n = start.Length;
+        var n = start.Length;
         int i = 0, j = 0;
         while (i < n && j < n)
         {
@@ -6478,7 +6474,7 @@ public class Solution
 
             if (i < n && j < n)
             {
-                char c = start[i];
+                var c = start[i];
                 if (c != end[j])
                 {
                     return false;
@@ -6526,7 +6522,7 @@ public class Solution
     public int KthGrammar(int n, int k)
     {
         k--;
-        int res = 0;
+        var res = 0;
         while (k > 0)
         {
             k &= k - 1;
@@ -6542,13 +6538,13 @@ public class Solution
     /// <returns></returns>
     public List<string> LetterCasePermutation(string s)
     {
-        List<StringBuilder> ans = new List<StringBuilder> {new StringBuilder()};
-        foreach (char c in s)
+        var ans = new List<StringBuilder> { new StringBuilder() };
+        foreach (var c in s)
         {
-            int n = ans.Count;
+            var n = ans.Count;
             if (char.IsLetter(c))
             {
-                for (int i = 0; i < n; ++i)
+                for (var i = 0; i < n; ++i)
                 {
                     ans.Add(new StringBuilder(ans[i].ToString()));
                     ans[i].Append(char.ToLower(c));
@@ -6557,7 +6553,7 @@ public class Solution
             }
             else
             {
-                for (int i = 0; i < n; i++)
+                for (var i = 0; i < n; i++)
                 {
                     ans[i].Append(c);
                 }
@@ -6591,7 +6587,7 @@ public class Solution
             long left = 0, right = 5L * k;
             while (left <= right)
             {
-                long mid = (left + right) / 2;
+                var mid = (left + right) / 2;
                 if (Zeta(mid) < k)
                 {
                     left = mid + 1;
@@ -6627,9 +6623,9 @@ public class Solution
     /// <returns></returns>
     public int MinSwap(int[] nums1, int[] nums2)
     {
-        int n = nums1.Length;
+        var n = nums1.Length;
         int a = 0, b = 1;
-        for (int i = 1; i < n; i++)
+        for (var i = 1; i < n; i++)
         {
             int at = a, bt = b;
             a = b = n;
@@ -6655,16 +6651,16 @@ public class Solution
     /// <returns></returns>
     public int UniqueMorseRepresentations(string[] words)
     {
-        string[] morse = new string[]
+        var morse = new string[]
         {
             ".-", "-...", "-.-.", "-..", ".", "..-.", "--.", "....", "..", ".---", "-.-", ".-..", "--", "-.", "---",
             ".--.", "--.-", ".-.", "...", "-", "..-", "...-", ".--", "-..-", "-.--", "--.."
         };
-        HashSet<string> seen = new HashSet<string>();
-        foreach (string word in words)
+        var seen = new HashSet<string>();
+        foreach (var word in words)
         {
-            StringBuilder code = new StringBuilder();
-            foreach (char c in word)
+            var code = new StringBuilder();
+            foreach (var c in word)
             {
                 code.Append(morse[c - 'a']);
             }
@@ -6685,9 +6681,9 @@ public class Solution
     {
         const int maxWidth = 100;
         int lines = 1, width = 0;
-        for (int i = 0; i < s.Length; i++)
+        for (var i = 0; i < s.Length; i++)
         {
-            int need = widths[s[i] - 'a'];
+            var need = widths[s[i] - 'a'];
             width += need;
             if (width > maxWidth)
             {
@@ -6696,7 +6692,7 @@ public class Solution
             }
         }
 
-        return new int[] {lines, width};
+        return new int[] { lines, width };
     }
 
     /// <summary>
@@ -6706,22 +6702,22 @@ public class Solution
     /// <returns></returns>
     public int MaxIncreaseKeepingSkyline(int[][] grid)
     {
-        int n = grid.Length;
-        int[] rowMax = new int[n];
-        int[] colMax = new int[n];
-        for (int i = 0; i < n; i++)
+        var n = grid.Length;
+        var rowMax = new int[n];
+        var colMax = new int[n];
+        for (var i = 0; i < n; i++)
         {
-            for (int j = 0; j < n; j++)
+            for (var j = 0; j < n; j++)
             {
                 rowMax[i] = Math.Max(rowMax[i], grid[i][j]);
                 colMax[j] = Math.Max(colMax[j], grid[i][j]);
             }
         }
 
-        int ans = 0;
-        for (int i = 0; i < n; i++)
+        var ans = 0;
+        for (var i = 0; i < n; i++)
         {
-            for (int j = 0; j < n; j++)
+            for (var j = 0; j < n; j++)
             {
                 ans += Math.Min(rowMax[i], colMax[j]) - grid[i][j];
             }
@@ -6738,23 +6734,23 @@ public class Solution
     public IList<string> SubdomainVisit(string[] cpdomains)
     {
         IList<string> res = new List<string>();
-        Dictionary<string, int> counts = new Dictionary<string, int>();
-        foreach (string cpdomain in cpdomains)
+        var counts = new Dictionary<string, int>();
+        foreach (var cpdomain in cpdomains)
         {
-            int space = cpdomain.IndexOf(' ');
-            int count = int.Parse(cpdomain.Substring(0, space));
-            string domain = cpdomain.Substring(space + 1);
+            var space = cpdomain.IndexOf(' ');
+            var count = int.Parse(cpdomain.Substring(0, space));
+            var domain = cpdomain.Substring(space + 1);
             if (!counts.ContainsKey(domain))
             {
                 counts.Add(domain, 0);
             }
 
             counts[domain] += count;
-            for (int i = 0; i < domain.Length; i++)
+            for (var i = 0; i < domain.Length; i++)
             {
                 if (domain[i] == '.')
                 {
-                    string subdomain = domain.Substring(i + 1);
+                    var subdomain = domain.Substring(i + 1);
                     if (!counts.ContainsKey(subdomain))
                     {
                         counts.Add(subdomain, 0);
@@ -6787,8 +6783,8 @@ public class Solution
             numsSet.Add(num);
         }
 
-        bool inSet = false;
-        int res = 0;
+        var inSet = false;
+        var res = 0;
         while (head is not null)
         {
             if (numsSet.Contains(head.val))
@@ -6809,7 +6805,7 @@ public class Solution
 
         return res;
     }
-    
+
     /// <summary>
     /// 819. Most Common Word
     /// </summary>
@@ -6818,17 +6814,17 @@ public class Solution
     /// <returns></returns>
     public string MostCommonWord(string paragraph, string[] banned)
     {
-        HashSet<string> bannedSet = new HashSet<string>();
-        foreach (string word in banned)
+        var bannedSet = new HashSet<string>();
+        foreach (var word in banned)
         {
             bannedSet.Add(word);
         }
 
-        int maxFrequency = 0;
-        Dictionary<string, int> frequencies = new Dictionary<string, int>();
-        StringBuilder sb = new StringBuilder();
-        int len = paragraph.Length;
-        for (int i = 0; i <= len; i++)
+        var maxFrequency = 0;
+        var frequencies = new Dictionary<string, int>();
+        var sb = new StringBuilder();
+        var len = paragraph.Length;
+        for (var i = 0; i <= len; i++)
         {
             if (i < len && char.IsLetter(paragraph[i]))
             {
@@ -6836,7 +6832,7 @@ public class Solution
             }
             else if (sb.Length > 0)
             {
-                string word = sb.ToString();
+                var word = sb.ToString();
                 if (!bannedSet.Contains(word))
                 {
                     if (!frequencies.ContainsKey(word))
@@ -6855,8 +6851,8 @@ public class Solution
             }
         }
 
-        string mostCommon = "";
-        foreach ((string word, int frequency) in frequencies)
+        var mostCommon = "";
+        foreach ((var word, var frequency) in frequencies)
         {
             if (frequency == maxFrequency)
             {
@@ -6876,10 +6872,10 @@ public class Solution
     /// <returns></returns>
     public int[] ShortestToChar(string s, char c)
     {
-        int n = s.Length;
-        int[] ans = new int[n];
-        int prev = int.MinValue / 2;
-        for (int i = 0; i < n; i++)
+        var n = s.Length;
+        var ans = new int[n];
+        var prev = int.MinValue / 2;
+        for (var i = 0; i < n; i++)
         {
             if (s[i] == c)
             {
@@ -6890,7 +6886,7 @@ public class Solution
         }
 
         prev = int.MaxValue / 2;
-        for (int i = n - 1; i >= 0; i--)
+        for (var i = n - 1; i >= 0; i--)
         {
             if (s[i] == c)
             {
@@ -6910,15 +6906,15 @@ public class Solution
     /// <returns></returns>
     public string ToGoatLatin(string sentence)
     {
-        HashSet<char> vowels = new HashSet<char> {'a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U'};
+        var vowels = new HashSet<char> { 'a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U' };
         if (sentence.Length == 0)
         {
             return string.Empty;
         }
 
-        StringBuilder sb = new StringBuilder("a");
-        string[] words = sentence.Split(' ');
-        for (int i = 0; i < words.Length; i++)
+        var sb = new StringBuilder("a");
+        var words = sentence.Split(' ');
+        for (var i = 0; i < words.Length; i++)
         {
             if (vowels.Contains(words[i][0]))
             {
@@ -6942,24 +6938,24 @@ public class Solution
     /// <returns></returns>
     public int UniqueLetterString(string s)
     {
-        Dictionary<char, IList<int>> index = new Dictionary<char, IList<int>>();
-        for (int i = 0; i < s.Length; i++)
+        var index = new Dictionary<char, IList<int>>();
+        for (var i = 0; i < s.Length; i++)
         {
-            char c = s[i];
+            var c = s[i];
             if (!index.ContainsKey(c))
             {
-                index.Add(c, new List<int> {-1});
+                index.Add(c, new List<int> { -1 });
             }
 
             index[c].Add(i);
         }
 
-        int res = 0;
+        var res = 0;
         foreach (var pair in index)
         {
             var list = pair.Value;
             list.Add(s.Length);
-            for (int i = 1; i < list.Count - 1; i++)
+            for (var i = 1; i < list.Count - 1; i++)
             {
                 res += (list[i] - list[i - 1]) * (list[i + 1] - list[i]);
             }
@@ -6975,18 +6971,18 @@ public class Solution
     /// <returns></returns>
     public string PushDominoes(string dominoes)
     {
-        char[] s = dominoes.ToCharArray();
+        var s = dominoes.ToCharArray();
         int n = s.Length, i = 0;
-        char left = 'L';
+        var left = 'L';
         while (i < n)
         {
-            int j = i;
+            var j = i;
             while (j < n && s[j] == '.')
             {
                 j++;
             }
 
-            char right = j < n ? s[j] : 'R';
+            var right = j < n ? s[j] : 'R';
             if (left == right)
             {
                 while (i < j)
@@ -6996,7 +6992,7 @@ public class Solution
             }
             else if (left == 'R' && right == 'L')
             {
-                int k = j - 1;
+                var k = j - 1;
                 while (i < k)
                 {
                     s[i++] = 'R';
@@ -7089,15 +7085,15 @@ public class Solution
     /// <returns></returns>
     public bool IsNStraightHand(int[] hand, int groupSize)
     {
-        int n = hand.Length;
+        var n = hand.Length;
         if (n % groupSize != 0)
         {
             return false;
         }
 
         Array.Sort(hand);
-        Dictionary<int, int> count = new Dictionary<int, int>();
-        foreach (int x in hand)
+        var count = new Dictionary<int, int>();
+        foreach (var x in hand)
         {
             if (!count.ContainsKey(x))
             {
@@ -7107,16 +7103,16 @@ public class Solution
             count[x]++;
         }
 
-        foreach (int x in hand)
+        foreach (var x in hand)
         {
             if (!count.ContainsKey(x))
             {
                 continue;
             }
 
-            for (int j = 0; j < groupSize; j++)
+            for (var j = 0; j < groupSize; j++)
             {
-                int num = x + j;
+                var num = x + j;
                 if (!count.ContainsKey(num))
                 {
                     return false;
@@ -7143,7 +7139,7 @@ public class Solution
         int l = 0, r = nums.Length - 1;
         while (l < r)
         {
-            int mid = (l + r) / 2;
+            var mid = (l + r) / 2;
             if (nums[mid] < nums[mid + 1])
             {
                 l = mid + 1;
@@ -7165,7 +7161,7 @@ public class Solution
     public int ScoreOfParentheses(string s)
     {
         int bal = 0, n = s.Length, res = 0;
-        for (int i = 0; i < n; i++)
+        for (var i = 0; i < n; i++)
         {
             bal += (s[i] == '(' ? 1 : -1);
             if (s[i] == ')' && s[i - 1] == '(')
@@ -7176,7 +7172,7 @@ public class Solution
 
         return res;
     }
-    
+
     /// <summary>
     /// 857. Minimum Cost to Hire K Workers
     /// </summary>
@@ -7186,9 +7182,9 @@ public class Solution
     /// <returns></returns>
     public double MinCostToHireWorkers(int[] quality, int[] wage, int k)
     {
-        int n = quality.Length;
-        int[] hire = new int[n];
-        for (int i = 0; i < n; i++)
+        var n = quality.Length;
+        var hire = new int[n];
+        for (var i = 0; i < n; i++)
         {
             hire[i] = i;
         }
@@ -7197,21 +7193,21 @@ public class Solution
         {
             return quality[b] * wage[a] - quality[a] * wage[b];
         });
-        double res = 1e9;
-        double totalQuality = 0.0d;
-        PriorityQueue<int, int> queue = new PriorityQueue<int, int>();
-        for (int i = 0; i < k - 1; i++)
+        var res = 1e9;
+        var totalQuality = 0.0d;
+        var queue = new PriorityQueue<int, int>();
+        for (var i = 0; i < k - 1; i++)
         {
             totalQuality += quality[hire[i]];
             queue.Enqueue(quality[hire[i]], -quality[hire[i]]);
         }
 
-        for (int i = k - 1; i < n; i++)
+        for (var i = k - 1; i < n; i++)
         {
-            int index = hire[i];
+            var index = hire[i];
             totalQuality += quality[index];
             queue.Enqueue(quality[index], -quality[index]);
-            double totalCost = ((double)wage[index] / quality[index]) * totalQuality;
+            var totalCost = ((double)wage[index] / quality[index]) * totalQuality;
             res = Math.Min(res, totalCost);
             totalQuality -= queue.Dequeue();
         }
@@ -7227,10 +7223,10 @@ public class Solution
     /// <returns></returns>
     public int[] AdvantageCount(int[] nums1, int[] nums2)
     {
-        int n = nums1.Length;
-        int[] index1 = new int[n];
-        int[] index2 = new int[n];
-        for (int i = 0; i < n; i++)
+        var n = nums1.Length;
+        var index1 = new int[n];
+        var index2 = new int[n];
+        for (var i = 0; i < n; i++)
         {
             index1[i] = i;
             index2[i] = i;
@@ -7238,9 +7234,9 @@ public class Solution
         Array.Sort(index1, (i, j) => nums1[i] - nums1[j]);
         Array.Sort(index2, (i, j) => nums2[i] - nums2[j]);
 
-        int[] res = new int[n];
+        var res = new int[n];
         int left = 0, right = n - 1;
-        for (int i = 0; i < n; i++)
+        for (var i = 0; i < n; i++)
         {
             if (nums1[index1[i]] > nums2[index2[left]])
             {
@@ -7256,7 +7252,7 @@ public class Solution
 
         return res;
     }
-    
+
     /// <summary>
     /// 876. Middle of the Linked List
     /// </summary>
@@ -7264,8 +7260,8 @@ public class Solution
     /// <returns></returns>
     public ListNode MiddleNode(ListNode head)
     {
-        ListNode slow = head;
-        ListNode fast = head;
+        var slow = head;
+        var fast = head;
         while (fast?.next != null)
         {
             slow = slow.next;
@@ -7282,12 +7278,12 @@ public class Solution
     /// <returns></returns>
     public int ProjectionArea(int[][] grid)
     {
-        int ans = 0;
-        for (int x = 0; x < grid.Length; x++)
+        var ans = 0;
+        for (var x = 0; x < grid.Length; x++)
         {
-            int row = 0;
-            int column = 0;
-            for (int y = 0; y < grid[x].Length; y++)
+            var row = 0;
+            var column = 0;
+            for (var y = 0; y < grid[x].Length; y++)
             {
                 if (grid[x][y] != 0)
                 {
@@ -7312,8 +7308,8 @@ public class Solution
     /// <returns></returns>
     public string[] UncommonFromSentences(string s1, string s2)
     {
-        Dictionary<string, int> dic = new Dictionary<string, int>();
-        foreach (string word in s1.Split(' '))
+        var dic = new Dictionary<string, int>();
+        foreach (var word in s1.Split(' '))
         {
             if (dic.ContainsKey(word))
             {
@@ -7325,7 +7321,7 @@ public class Solution
             }
         }
 
-        foreach (string word in s2.Split(' '))
+        foreach (var word in s2.Split(' '))
         {
             if (dic.ContainsKey(word))
             {
@@ -7366,20 +7362,20 @@ public class Solution
             return true;
         }
 
-        int[] color = new int[n + 1];
-        IList<int>[] group = new IList<int>[n + 1];
-        for (int i = 0; i <= n; i++)
+        var color = new int[n + 1];
+        var group = new IList<int>[n + 1];
+        for (var i = 0; i <= n; i++)
         {
             group[i] = new List<int>();
         }
 
-        foreach (int[] p in dislikes)
+        foreach (var p in dislikes)
         {
             group[p[0]].Add(p[1]);
             group[p[1]].Add(p[0]);
         }
 
-        for (int i = 1; i <= n; i++)
+        for (var i = 1; i <= n; i++)
         {
             if (color[i] == 0 && !DFS(i, 1, color, group))
             {
@@ -7398,9 +7394,9 @@ public class Solution
     public int SurfaceArea(int[][] grid)
     {
         int res = 0, n = grid.Length;
-        for (int i = 0; i < n; i++)
+        for (var i = 0; i < n; i++)
         {
-            for (int j = 0; j < n; j++)
+            for (var j = 0; j < n; j++)
             {
                 if (grid[i][j] > 0)
                 {
@@ -7429,11 +7425,11 @@ public class Solution
     /// <returns></returns>
     public int NumSpecialEquivGroups(string[] A)
     {
-        HashSet<string> seen = new HashSet<string>();
-        foreach (string s in A)
+        var seen = new HashSet<string>();
+        foreach (var s in A)
         {
-            int[] count = new int[52];
-            for (int i = 0; i < s.Length; i++)
+            var count = new int[52];
+            for (var i = 0; i < s.Length; i++)
             {
                 count[s[i] - 'a' + 26 * (i % 2)]++;
             }
@@ -7451,10 +7447,10 @@ public class Solution
     /// <returns><c>true</c> if and only if the given array A is monotonic; otherwise, <c>false</c></returns>
     public bool IsMonotonic(int[] nums)
     {
-        int store = 0;
-        for (int i = 0; i < nums.Length - 1; i++)
+        var store = 0;
+        for (var i = 0; i < nums.Length - 1; i++)
         {
-            int c = nums[i].CompareTo(nums[i + 1]);
+            var c = nums[i].CompareTo(nums[i + 1]);
             if (c == 0)
             {
                 continue;
@@ -7478,10 +7474,10 @@ public class Solution
     /// <returns></returns>
     public int TotalFruit(int[] fruits)
     {
-        int n = fruits.Length;
-        Dictionary<int, int> counter = new Dictionary<int, int>();
+        var n = fruits.Length;
+        var counter = new Dictionary<int, int>();
         int left = 0, res = 0;
-        for(int right = 0; right < n; ++right)
+        for (var right = 0; right < n; ++right)
         {
             counter.TryAdd(fruits[right], 0);
             ++counter[fruits[right]];
@@ -7536,8 +7532,8 @@ public class Solution
     /// <returns></returns>
     public int SmallestRangeI(int[] nums, int k)
     {
-        int min = nums.Min();
-        int max = nums.Max();
+        var min = nums.Min();
+        var max = nums.Max();
         return max - min <= 2 * k ? 0 : max - min - 2 * k;
     }
 
@@ -7548,9 +7544,9 @@ public class Solution
     /// <returns></returns>
     public int PartitionDisjoint(int[] nums)
     {
-        int n = nums.Length;
+        var n = nums.Length;
         int leftMax = nums[0], leftPos = 0, curr = nums[0];
-        for (int i = 1; i < n - 1; i++)
+        for (var i = 1; i < n - 1; i++)
         {
             curr = Math.Max(curr, nums[i]);
             if (nums[i] < leftMax)
@@ -7569,7 +7565,7 @@ public class Solution
     /// <returns></returns>
     public string ReverseOnlyLetters(string s)
     {
-        char[] letters = s.ToCharArray();
+        var letters = s.ToCharArray();
         int l = 0, r = s.Length - 1;
         while (true)
         {
@@ -7591,7 +7587,7 @@ public class Solution
             //char tmp = letters[l];
             //letters[l] = letters[r];
             //letters[r] = tmp;
-            Utilities.Swap(letters, l, r);
+            Util.Swap(letters, l, r);
             l++;
             r--;
         }
@@ -7607,10 +7603,10 @@ public class Solution
     public int MinAddToMakeValid(string s)
     {
         int res = 0, leftCount = 0;
-        int n = s.Length;
-        for (int i = 0; i < n; i++)
+        var n = s.Length;
+        for (var i = 0; i < n; i++)
         {
-            char c = s[i];
+            var c = s[i];
             if (c == '(')
             {
                 leftCount++;
@@ -7639,20 +7635,20 @@ public class Solution
     /// <returns></returns>
     public int[] ThreeEqualParts(int[] arr)
     {
-        int sum = arr.Sum();
+        var sum = arr.Sum();
         if (sum % 3 != 0)
         {
-            return new int[] {-1, -1};
+            return new int[] { -1, -1 };
         }
 
         if (sum == 0)
         {
-            return new int[] {0, 2};
+            return new int[] { 0, 2 };
         }
 
-        int partial = sum / 3;
+        var partial = sum / 3;
         int first = 0, second = 0, third = 0, curr = 0;
-        for (int i = 0; i < arr.Length; i++)
+        for (var i = 0; i < arr.Length; i++)
         {
             if (arr[i] == 1)
             {
@@ -7673,24 +7669,24 @@ public class Solution
             }
         }
 
-        int len = arr.Length - third;
+        var len = arr.Length - third;
         if (first + len <= second && second + len <= third)
         {
-            int i = 0;
+            var i = 0;
             while (third + i < arr.Length)
             {
                 if (arr[first + i] != arr[second + i] || arr[first + i] != arr[third + i])
                 {
-                    return new int[] {-1, -1};
+                    return new int[] { -1, -1 };
                 }
 
                 i++;
             }
 
-            return new int[] {first + len - 1, second + len};
+            return new int[] { first + len - 1, second + len };
         }
 
-        return new[] {-1, -1};
+        return new[] { -1, -1 };
     }
 
     /// <summary>
@@ -7714,28 +7710,28 @@ public class Solution
             DFS(x, y + 1, grid, queue);
         }
 
-        int n = grid.Length;
+        var n = grid.Length;
         int[][] dirs = { new int[] { -1, 0 }, new int[] { 1, 0 }, new int[] { 0, 1 }, new int[] { 0, -1 } };
-        for (int i = 0; i < n; i++)
+        for (var i = 0; i < n; i++)
         {
-            for (int j = 0; j < n; j++)
+            for (var j = 0; j < n; j++)
             {
                 if (grid[i][j] == 1)
                 {
-                    Queue<(int, int)> queue = new Queue<(int, int)>();
+                    var queue = new Queue<(int, int)>();
                     DFS(i, j, grid, queue);
-                    int step = 0;
+                    var step = 0;
                     while (queue.Count > 0)
                     {
-                        int size = queue.Count;
-                        for (int k = 0; k < size; k++)
+                        var size = queue.Count;
+                        for (var k = 0; k < size; k++)
                         {
                             var cell = queue.Dequeue();
                             int x = cell.Item1, y = cell.Item2;
-                            for (int d = 0; d < 4; d++)
+                            for (var d = 0; d < 4; d++)
                             {
-                                int nx = x + dirs[d][0];
-                                int ny = y + dirs[d][1];
+                                var nx = x + dirs[d][0];
+                                var ny = y + dirs[d][1];
                                 if (nx >= 0 && ny >= 0 && nx < n && ny < n)
                                 {
                                     if (grid[nx][ny] == 0)
@@ -7779,12 +7775,12 @@ public class Solution
         //return sum;
 
         // Iterative
-        int sum = 0;
-        Stack<TreeNode> stack = new Stack<TreeNode>();
+        var sum = 0;
+        var stack = new Stack<TreeNode>();
         stack.Push(root);
         while (stack.Count > 0)
         {
-            TreeNode currentNode = stack.Pop();
+            var currentNode = stack.Pop();
             if (currentNode == null)
             {
                 continue;
@@ -7811,20 +7807,20 @@ public class Solution
 
     public int DistinctSubseqII(string s)
     {
-        int mod = 1000000007;
-        int[] alphas = new int[26];
+        var mod = 1000000007;
+        var alphas = new int[26];
         int n = s.Length, res = 0;
-        for (int i = 0; i < n; i++)
+        for (var i = 0; i < n; i++)
         {
-            int index = s[i] - 'a';
-            int prev = alphas[index];
+            var index = s[i] - 'a';
+            var prev = alphas[index];
             alphas[index] = (res + 1) % mod;
             res = ((res + alphas[index] - prev) % mod + mod) % mod;
         }
 
         return res;
     }
-    
+
     /// <summary>
     /// 942. DI String Match
     /// </summary>
@@ -7833,8 +7829,8 @@ public class Solution
     public int[] DIStringMatch(string s)
     {
         int n = s.Length, lo = 0, hi = n;
-        int[] perm = new int[n + 1];
-        for (int i = 0; i < n; i++)
+        var perm = new int[n + 1];
+        for (var i = 0; i < n; i++)
         {
             perm[i] = s[i] == 'I' ? lo++ : hi--;
         }
@@ -7850,12 +7846,12 @@ public class Solution
     /// <returns></returns>
     public int MinDeletionSize(string[] strs)
     {
-        int row = strs.Length;
-        int col = strs[0].Length;
-        int ans = 0;
-        for (int j = 0; j < col; j++)
+        var row = strs.Length;
+        var col = strs[0].Length;
+        var ans = 0;
+        for (var j = 0; j < col; j++)
         {
-            for (int i = 1; i < row; i++)
+            for (var i = 1; i < row; i++)
             {
                 if (strs[i - 1][j] > strs[i][j])
                 {
@@ -7876,8 +7872,8 @@ public class Solution
     /// <returns></returns>
     public bool ValidateStackSequences(int[] pushed, int[] popped)
     {
-        Stack<int> stack = new Stack<int>();
-        int n = pushed.Length;
+        var stack = new Stack<int>();
+        var n = pushed.Length;
         for (int i = 0, j = 0; i < n; ++i)
         {
             stack.Push(pushed[i]);
@@ -7899,19 +7895,19 @@ public class Solution
     /// <returns></returns>
     public bool IsAlienSorted(string[] words, string order)
     {
-        int[] index = new int[26];
-        for (int i = 0; i < order.Length; ++i)
+        var index = new int[26];
+        for (var i = 0; i < order.Length; ++i)
         {
             index[order[i] - 'a'] = i;
         }
 
-        for (int i = 1; i < words.Length; ++i)
+        for (var i = 1; i < words.Length; ++i)
         {
-            bool valid = false;
-            for (int j = 0; j < words[i - 1].Length && j < words[i].Length; ++j)
+            var valid = false;
+            for (var j = 0; j < words[i - 1].Length && j < words[i].Length; ++j)
             {
-                int prev = index[words[i - 1][j] - 'a'];
-                int curr = index[words[i][j] - 'a'];
+                var prev = index[words[i - 1][j] - 'a'];
+                var curr = index[words[i][j] - 'a'];
                 if (prev < curr)
                 {
                     valid = true;
@@ -7943,7 +7939,7 @@ public class Solution
     public int RepeatedNTimes(int[] nums)
     {
         ISet<int> found = new HashSet<int>();
-        foreach (int num in nums)
+        foreach (var num in nums)
         {
             if (!found.Add(num))
             {
@@ -7962,7 +7958,7 @@ public class Solution
     public int LargestPerimeter(int[] nums)
     {
         Array.Sort(nums);
-        for (int i = nums.Length - 1; i >= 2; --i)
+        for (var i = nums.Length - 1; i >= 2; --i)
         {
             if (nums[i - 2] + nums[i - 1] > nums[i])
             {
@@ -7980,8 +7976,8 @@ public class Solution
     /// <returns></returns>
     public int[] SortedSquares(int[] nums)
     {
-        int len = nums.Length;
-        int[] ans = new int[len];
+        var len = nums.Length;
+        var ans = new int[len];
         for (int i = 0, j = len - 1, pos = len - 1; i <= j;)
         {
             if (nums[i] * nums[i] > nums[j] * nums[j])
@@ -8008,42 +8004,42 @@ public class Solution
     /// <returns></returns>
     public int OrangeRotting(int[][] grid)
     {
-        int[] dr = new int[] {-1, 0, 1, 0};
-        int[] dc = new int[] {0, -1, 0, 1};
+        var dr = new int[] { -1, 0, 1, 0 };
+        var dc = new int[] { 0, -1, 0, 1 };
         int rowLength = grid.Length, colLength = grid[0].Length;
-        Queue<int> queue = new Queue<int>();
-        Dictionary<int, int> depth = new Dictionary<int, int>();
-        for (int row = 0; row < rowLength; ++row)
+        var queue = new Queue<int>();
+        var depth = new Dictionary<int, int>();
+        for (var row = 0; row < rowLength; ++row)
         {
-            for (int col = 0; col < colLength; ++col)
+            for (var col = 0; col < colLength; ++col)
             {
                 if (grid[row][col] != 2)
                 {
                     continue;
                 }
 
-                int code = row * colLength + col;
+                var code = row * colLength + col;
                 queue.Enqueue(code);
                 depth.Add(code, 0);
             }
         }
 
-        int ans = 0;
+        var ans = 0;
         while (queue.Count != 0)
         {
-            int code = queue.Dequeue();
+            var code = queue.Dequeue();
             int row = code / colLength, col = code % colLength;
-            for (int k = 0; k < 4; k++)
+            for (var k = 0; k < 4; k++)
             {
-                int nr = row + dr[k];
-                int nc = col + dc[k];
+                var nr = row + dr[k];
+                var nc = col + dc[k];
                 if (0 > nr || nr >= rowLength || 0 > nc || nc >= colLength || grid[nr][nc] != 1)
                 {
                     continue;
                 }
 
                 grid[nr][nc] = 2;
-                int nCode = nr * colLength + nc;
+                var nCode = nr * colLength + nc;
                 queue.Enqueue(nCode);
                 depth.Add(nCode, depth[code] + 1);
                 ans = depth[nCode];
@@ -8067,7 +8063,7 @@ public class Solution
     public TreeNode InsertIntoMaxTree(TreeNode root, int val)
     {
         TreeNode parent = null;
-        TreeNode curr = root;
+        var curr = root;
         while (curr != null)
         {
             if (val > curr.val)
@@ -8077,7 +8073,7 @@ public class Solution
                     return new TreeNode(val, root, null);
                 }
 
-                TreeNode node = new TreeNode(val, curr, null);
+                var node = new TreeNode(val, curr, null);
                 parent.right = node;
                 return root;
             }
@@ -8135,17 +8131,17 @@ public class Solution
     /// <returns></returns>
     public int LastStoneWeight(List<int> stones)
     {
-        PriorityQueue<int> pq = new PriorityQueue<int>();
-        foreach (int stone in stones)
+        var pq = new PriorityQueue<int>();
+        foreach (var stone in stones)
         {
             pq.Push(stone);
         }
 
         while (pq.Count > 1)
         {
-            int s1 = pq.Top();
+            var s1 = pq.Top();
             pq.Pop();
-            int s2 = pq.Top();
+            var s2 = pq.Top();
             pq.Pop();
             if (s1 > s2)
             {
@@ -8177,7 +8173,7 @@ public class Solution
         }
 
         var queue = new Queue<(int, int)>();
-        queue.Enqueue((0,0));
+        queue.Enqueue((0, 0));
         dist[0][0] = 1;
         while (queue.Count > 0)
         {
@@ -8221,10 +8217,10 @@ public class Solution
     {
         int BinarySearch(int[][] jobs, int right, int target)
         {
-            int left = 0;
+            var left = 0;
             while (left < right)
             {
-                int mid = left + (right - left) / 2;
+                var mid = left + (right - left) / 2;
                 if (jobs[mid][1] > target)
                 {
                     right = mid;
@@ -8238,24 +8234,24 @@ public class Solution
             return left;
         }
 
-        int n = startTime.Length;
-        int[][] jobs = new int[n][];
-        for (int i = 0; i < n; i++)
+        var n = startTime.Length;
+        var jobs = new int[n][];
+        for (var i = 0; i < n; i++)
         {
-            jobs[i] = new int[] {startTime[i], endTime[i], profit[i]};
+            jobs[i] = new int[] { startTime[i], endTime[i], profit[i] };
         }
 
         Array.Sort(jobs, (a, b) => a[1] - b[1]);
-        int[] dp = new int[n + 1];
-        for (int i = 1; i <= n; i++)
+        var dp = new int[n + 1];
+        for (var i = 1; i <= n; i++)
         {
-            int k = BinarySearch(jobs, i - 1, jobs[i - 1][0]);
+            var k = BinarySearch(jobs, i - 1, jobs[i - 1][0]);
             dp[i] = Math.Max(dp[i - 1], dp[k] + jobs[i - 1][2]);
         }
 
         return dp[n];
     }
-    
+
     /// <summary>
     /// 1249
     /// </summary>
@@ -8263,10 +8259,10 @@ public class Solution
     /// <returns></returns>
     public string MinRemoveToMakeValid(string s)
     {
-        StringBuilder sb = new StringBuilder();
-        int openSeen = 0;
-        int balance = 0;
-        foreach (char c in s)
+        var sb = new StringBuilder();
+        var openSeen = 0;
+        var balance = 0;
+        foreach (var c in s)
         {
             switch (c)
             {
@@ -8284,11 +8280,11 @@ public class Solution
             sb.Append(c);
         }
 
-        StringBuilder res = new StringBuilder();
-        int openToKeep = openSeen - balance;
-        for (int i = 0; i < sb.Length; i++)
+        var res = new StringBuilder();
+        var openToKeep = openSeen - balance;
+        for (var i = 0; i < sb.Length; i++)
         {
-            char c = sb[i];
+            var c = sb[i];
             if (c == '(')
             {
                 openToKeep--;
@@ -8312,7 +8308,7 @@ public class Solution
         int n = grid.Length, m = grid[0].Length;
         // use array 
         IList<IList<int>> res = new int[n][];
-        for (int r = 0; r < n; r++)
+        for (var r = 0; r < n; r++)
         {
             res[r] = new int[m];
         }
@@ -8328,11 +8324,11 @@ public class Solution
         // }
 
         k %= m * n;
-        for (int i = 0; i < n; i++)
+        for (var i = 0; i < n; i++)
         {
-            for (int j = 0; j < m; j++)
+            for (var j = 0; j < m; j++)
             {
-                int index = (i * m + j + k) % (m * n);
+                var index = (i * m + j + k) % (m * n);
                 int x = index / m, y = index % m;
                 res[x][y] = grid[i][j];
             }
@@ -8416,12 +8412,12 @@ public class Solution
     public IList<int> LuckyNumbers(int[][] matrix)
     {
         int m = matrix.Length, n = matrix[0].Length;
-        int[] minRow = new int[m];
+        var minRow = new int[m];
         Array.Fill(minRow, int.MaxValue);
-        int[] maxCol = new int[n];
-        for (int i = 0; i < m; i++)
+        var maxCol = new int[n];
+        for (var i = 0; i < m; i++)
         {
-            for (int j = 0; j < n; j++)
+            for (var j = 0; j < n; j++)
             {
                 minRow[i] = Math.Min(minRow[i], matrix[i][j]);
                 maxCol[j] = Math.Max(maxCol[j], matrix[i][j]);
@@ -8429,9 +8425,9 @@ public class Solution
         }
 
         IList<int> res = new List<int>();
-        for (int i = 0; i < m; i++)
+        for (var i = 0; i < m; i++)
         {
-            for (int j = 0; j < n; j++)
+            for (var j = 0; j < n; j++)
             {
                 if (matrix[i][j] == minRow[i] && matrix[i][j] == maxCol[j])
                 {
@@ -8451,10 +8447,10 @@ public class Solution
     public IList<int> MinSubsequence(int[] nums)
     {
         Array.Sort(nums);
-        int total = nums.Sum();
+        var total = nums.Sum();
         IList<int> ans = new List<int>();
-        int curr = 0;
-        for (int i = nums.Length - 1; i >= 0; --i)
+        var curr = 0;
+        for (var i = nums.Length - 1; i >= 0; --i)
         {
             curr += nums[i];
             ans.Add(nums[i]);
@@ -8475,9 +8471,9 @@ public class Solution
     public IList<string> StringMatching(string[] words)
     {
         IList<string> res = new List<string>();
-        for (int i = 0; i < words.Length; i++)
+        for (var i = 0; i < words.Length; i++)
         {
-            for (int j = 0; j < words.Length; j++)
+            for (var j = 0; j < words.Length; j++)
             {
                 if (i != j && words[j].Contains(words[i]))
                 {
@@ -8497,8 +8493,8 @@ public class Solution
     /// <returns></returns>
     public string Reformat(string s)
     {
-        int sumDigit = 0;
-        foreach (char c in s)
+        var sumDigit = 0;
+        foreach (var c in s)
         {
             if (char.IsDigit(c))
             {
@@ -8506,14 +8502,14 @@ public class Solution
             }
         }
 
-        int sumAlpha = s.Length - sumDigit;
+        var sumAlpha = s.Length - sumDigit;
         if (Math.Abs(sumDigit - sumAlpha) > 1)
         {
             return string.Empty;
         }
 
-        bool flag = sumDigit > sumAlpha;
-        char[] arr = s.ToCharArray();
+        var flag = sumDigit > sumAlpha;
+        var arr = s.ToCharArray();
         for (int i = 0, j = 1; i < arr.Length; i += 2)
         {
             if (char.IsDigit(arr[i]) != flag)
@@ -8539,10 +8535,10 @@ public class Solution
     public IList<string> BuildArray(int[] target, int n)
     {
         IList<string> res = new List<string>();
-        int prev = 0;
+        var prev = 0;
         foreach (var number in target)
         {
-            for (int i = 0; i < number - prev - 1; i++)
+            for (var i = 0; i < number - prev - 1; i++)
             {
                 res.Add("Push");
                 res.Add("Pop");
@@ -8552,8 +8548,8 @@ public class Solution
         }
 
         return res;
-    } 
-    
+    }
+
     /// <summary>
     /// 1447. Simplified Fractions
     /// </summary>
@@ -8562,9 +8558,9 @@ public class Solution
     public IList<string> SimplifiedFractions(int n)
     {
         IList<string> res = new List<string>();
-        for (int denominator = 2; denominator <= n; ++denominator)
+        for (var denominator = 2; denominator <= n; ++denominator)
         {
-            for (int numerator = 1; numerator < denominator; ++numerator)
+            for (var numerator = 1; numerator < denominator; ++numerator)
             {
                 if (Gcd(numerator, denominator) == 1)
                 {
@@ -8591,7 +8587,7 @@ public class Solution
     {
         bool IsPrefix(string input, int start, int end, string target)
         {
-            for (int i = 0; i < target.Length; i++)
+            for (var i = 0; i < target.Length; i++)
             {
                 if (start + i >= end || input[start + i] != target[i])
                 {
@@ -8631,8 +8627,8 @@ public class Solution
     /// <returns></returns>
     public int[] Shuffle(int[] nums, int n)
     {
-        int[] res = new int[n * 2];
-        for (int i = 0; i < n; ++i)
+        var res = new int[n * 2];
+        for (var i = 0; i < n; ++i)
         {
             res[2 * i] = nums[i];
             res[2 * i + 1] = nums[i + n];
@@ -8648,10 +8644,10 @@ public class Solution
     /// <returns></returns>
     public int[] FinalPrices(int[] prices)
     {
-        int n = prices.Length;
-        int[] res = new int[n];
-        Stack<int> stack = new Stack<int>();
-        for (int i = n - 1; i >= 0; --i)
+        var n = prices.Length;
+        var res = new int[n];
+        var stack = new Stack<int>();
+        for (var i = n - 1; i >= 0; --i)
         {
             while (stack.Count > 0 && stack.Peek() > prices[i])
             {
@@ -8674,9 +8670,9 @@ public class Solution
     public int XorOperation(int n, int start)
     {
         // (sumXor(s - 1) ^ sumXor(s + n - 1)) * 2 + e; s = start/2, e = (0 || 1)
-        int s = start >> 1;
-        int e = n & start & 1;
-        int res = SumXor(s - 1) ^ SumXor(s + n - 1);
+        var s = start >> 1;
+        var e = n & start & 1;
+        var res = SumXor(s - 1) ^ SumXor(s + n - 1);
         return res << 1 | e;
 
         int SumXor(int num)
@@ -8699,8 +8695,8 @@ public class Solution
     public double Average(int[] salary)
     {
         int min = int.MaxValue, max = int.MinValue;
-        int sum = 0;
-        foreach (int item in salary)
+        var sum = 0;
+        foreach (var item in salary)
         {
             sum += item;
             max = Math.Max(max, item);
@@ -8734,10 +8730,10 @@ public class Solution
     public int NumSpecial(int[][] mat)
     {
         int row = mat.Length, col = mat[0].Length;
-        for (int i = 0; i < row; i++)
+        for (var i = 0; i < row; i++)
         {
-            int count = 0;
-            for (int j = 0; j < col; j++)
+            var count = 0;
+            for (var j = 0; j < col; j++)
             {
                 if (mat[i][j] == 1)
                 {
@@ -8752,7 +8748,7 @@ public class Solution
 
             if (count > 0)
             {
-                for (int j = 0; j < col; j++)
+                for (var j = 0; j < col; j++)
                 {
                     if (mat[i][j] == 1)
                     {
@@ -8762,7 +8758,7 @@ public class Solution
             }
         }
 
-        int sum = 0;
+        var sum = 0;
         foreach (var item in mat[0])
         {
             if (item == 1)
@@ -8781,11 +8777,11 @@ public class Solution
     /// <returns></returns>
     public string ReorderSpaces(string text)
     {
-        int n = text.Length;
-        int whitespceCount = n;
-        string[] words = text.Trim().Split(" ");
-        int wordCount = 0;
-        foreach (string word in words)
+        var n = text.Length;
+        var whitespceCount = n;
+        var words = text.Trim().Split(" ");
+        var wordCount = 0;
+        foreach (var word in words)
         {
             if (word.Length > 0)
             {
@@ -8794,11 +8790,11 @@ public class Solution
             }
         }
 
-        StringBuilder sb = new StringBuilder();
+        var sb = new StringBuilder();
         if (words.Length == 1)
         {
             sb.Append(words[0]);
-            for (int i = 0; i < whitespceCount; ++i)
+            for (var i = 0; i < whitespceCount; ++i)
             {
                 sb.Append(' ');
             }
@@ -8806,9 +8802,9 @@ public class Solution
             return sb.ToString();
         }
 
-        int spacePerCount = whitespceCount / (wordCount - 1);
-        int restSpaceCount = whitespceCount % (wordCount - 1);
-        for (int i = 0; i < words.Length; i++)
+        var spacePerCount = whitespceCount / (wordCount - 1);
+        var restSpaceCount = whitespceCount % (wordCount - 1);
+        for (var i = 0; i < words.Length; i++)
         {
             if (words[i].Length == 0)
             {
@@ -8817,7 +8813,7 @@ public class Solution
 
             if (sb.Length > 0)
             {
-                for (int j = 0; j < spacePerCount; ++j)
+                for (var j = 0; j < spacePerCount; ++j)
                 {
                     sb.Append(' ');
                 }
@@ -8826,7 +8822,7 @@ public class Solution
             sb.Append(words[i]);
         }
 
-        for (int i = 0; i < restSpaceCount; ++i)
+        for (var i = 0; i < restSpaceCount; ++i)
         {
             sb.Append(' ');
         }
@@ -8841,7 +8837,7 @@ public class Solution
     /// <returns></returns>
     public int MinOperations(string[] logs)
     {
-        int depth = 0;
+        var depth = 0;
         foreach (var log in logs)
         {
             if (log == "./")
@@ -8872,8 +8868,8 @@ public class Solution
     public int SpecialArray(int[] nums)
     {
         Array.Sort(nums, (a, b) => b - a);
-        int n = nums.Length;
-        for (int i = 1; i <= n; i++)
+        var n = nums.Length;
+        for (var i = 1; i <= n; i++)
         {
             if (nums[i - 1] >= i && (i == n || nums[i] < i))
             {
@@ -8891,10 +8887,10 @@ public class Solution
     /// <returns></returns>
     public double TrimMean(int[] arr)
     {
-        int n = arr.Length;
+        var n = arr.Length;
         Array.Sort(arr);
-        int sum = 0;
-        for (int i = n / 20; i < 19 * n / 20; i++)
+        var sum = 0;
+        for (var i = n / 20; i < 19 * n / 20; i++)
         {
             sum += arr[i];
         }
@@ -8909,10 +8905,10 @@ public class Solution
     /// <returns></returns>
     public int MaxLengthBetweenEqualCharacters(string s)
     {
-        int n = s.Length;
+        var n = s.Length;
         var dic = new Dictionary<char, int>();
-        int res = -1;
-        for (int i = 0; i < n; i++)
+        var res = -1;
+        for (var i = 0; i < n; i++)
         {
             if (!dic.ContainsKey(s[i]))
             {
@@ -8957,26 +8953,31 @@ public class Solution
     /// <returns></returns>
     public int MinOperations(int[] nums, int x)
     {
-        int n = nums.Length;
-        int sum = nums.Sum();
+        var n = nums.Length;
+        var sum = nums.Sum();
 
-        if (sum < x) {
+        if (sum < x)
+        {
             return -1;
         }
 
-        int right = 0;
+        var right = 0;
         int leftSum = 0, rightSum = sum;
-        int res = n + 1;
+        var res = n + 1;
 
-        for (int left = -1; left < n; ++left) {
-            if (left != -1) {
+        for (var left = -1; left < n; ++left)
+        {
+            if (left != -1)
+            {
                 leftSum += nums[left];
             }
-            while (right < n && leftSum + rightSum > x) {
+            while (right < n && leftSum + rightSum > x)
+            {
                 rightSum -= nums[right];
                 ++right;
             }
-            if (leftSum + rightSum == x) {
+            if (leftSum + rightSum == x)
+            {
                 res = Math.Min(res, (left + 1) + (n - right));
             }
         }
@@ -9001,7 +9002,7 @@ public class Solution
     /// <returns></returns>
     public string ReformatNumber(string number)
     {
-        StringBuilder sb = new StringBuilder();
+        var sb = new StringBuilder();
         foreach (var ch in number)
         {
             if (char.IsDigit(ch))
@@ -9010,10 +9011,10 @@ public class Solution
             }
         }
 
-        string digits = sb.ToString();
-        int n = digits.Length;
-        int pt = 0;
-        StringBuilder res = new StringBuilder();
+        var digits = sb.ToString();
+        var n = digits.Length;
+        var pt = 0;
+        var res = new StringBuilder();
         while (n > 0)
         {
             if (n > 4)
@@ -9048,9 +9049,9 @@ public class Solution
     /// <returns></returns>
     public int CountStudents(int[] students, int[] sandwiches)
     {
-        int square = students.Sum();
-        int circular = students.Length - square;
-        for (int i = 0; i < sandwiches.Length; i++)
+        var square = students.Sum();
+        var circular = students.Length - square;
+        for (var i = 0; i < sandwiches.Length; i++)
         {
             if (sandwiches[i] == 0 && circular > 0)
             {
@@ -9075,11 +9076,11 @@ public class Solution
     /// <returns></returns>
     public int MinimumLength(string s)
     {
-        int n = s.Length;
+        var n = s.Length;
         int left = 0, right = n - 1;
         while (left < right && s[left] == s[right])
         {
-            char c = s[left];
+            var c = s[left];
             while (left <= right && s[left] == c)
             {
                 left++;
@@ -9102,7 +9103,7 @@ public class Solution
     {
         int m = word1.Length, n = word2.Length;
         int i = 0, j = 0;
-        StringBuilder sb = new StringBuilder();
+        var sb = new StringBuilder();
         while (i < m || j < n)
         {
             if (i < m)
@@ -9118,7 +9119,7 @@ public class Solution
 
         return sb.ToString();
     }
-    
+
     /// <summary>
     /// 1779. Find Nearest Point That Has the Same X or Y Coordinate
     /// </summary>
@@ -9128,13 +9129,13 @@ public class Solution
     /// <returns></returns>
     public int NearestValidPoint(int x, int y, int[][] points)
     {
-        int minDistance = int.MaxValue;
-        int ans = -1;
-        for (int i = 0; i < points.Length; i++)
+        var minDistance = int.MaxValue;
+        var ans = -1;
+        for (var i = 0; i < points.Length; i++)
         {
             if (points[i][0] == x || points[i][1] == y)
             {
-                int distance = Math.Abs(points[i][0] - x) + Math.Abs(points[i][1] - y);
+                var distance = Math.Abs(points[i][0] - x) + Math.Abs(points[i][1] - y);
                 if (distance < minDistance)
                 {
                     minDistance = distance;
@@ -9161,9 +9162,9 @@ public class Solution
     /// <returns></returns>
     public bool AreAlmostEqual(string s1, string s2)
     {
-        int n = s1.Length;
+        var n = s1.Length;
         IList<int> diff = new List<int>();
-        for (int i = 0; i < n; i++)
+        for (var i = 0; i < n; i++)
         {
             if (s1[i] != s2[i])
             {
@@ -9187,7 +9188,7 @@ public class Solution
 
         return s1[diff[0]] == s2[diff[1]] && s1[diff[1]] == s2[diff[0]];
     }
-    
+
     /// <summary>
     /// 1791. Find Center of Star Graph
     /// </summary>
@@ -9205,13 +9206,13 @@ public class Solution
     /// <returns></returns>
     public int MaxAscendingSum(int[] nums)
     {
-        int res = 0;
-        int i = 0;
-        int n = nums.Length;
+        var res = 0;
+        var i = 0;
+        var n = nums.Length;
         while (i < n)
         {
-            int currSum = nums[i++];
-            while (i < n && nums[i] > nums[i-1])
+            var currSum = nums[i++];
+            while (i < n && nums[i] > nums[i - 1])
             {
                 currSum += nums[i++];
             }
@@ -9233,33 +9234,38 @@ public class Solution
     {
         double left = index;
         double right = n - index - 1;
-        if (left > right) {
-            double temp = left;
+        if (left > right)
+        {
+            var temp = left;
             left = right;
             right = temp;
         }
 
-        double upper = ((left + 1) * (left + 1) - 3 * (left + 1)) / 2 + left + 1 + (left + 1) + ((left + 1) * (left + 1) - 3 * (left + 1)) / 2 + right + 1;
-        if (upper >= maxSum) {
+        var upper = ((left + 1) * (left + 1) - 3 * (left + 1)) / 2 + left + 1 + (left + 1) + ((left + 1) * (left + 1) - 3 * (left + 1)) / 2 + right + 1;
+        if (upper >= maxSum)
+        {
             double a = 1;
             double b = -2;
-            double c = left + right + 2 - maxSum;
-            return (int) Math.Floor((-b + Math.Sqrt(b * b - 4 * a * c)) / (2 * a));
+            var c = left + right + 2 - maxSum;
+            return (int)Math.Floor((-b + Math.Sqrt(b * b - 4 * a * c)) / (2 * a));
         }
 
         upper = (2 * (right + 1) - left - 1) * left / 2 + (right + 1) + ((right + 1) * (right + 1) - 3 * (right + 1)) / 2 + right + 1;
-        if (upper >= maxSum) {
-            double a = 1.0 / 2;
-            double b = left + 1 - 3.0 / 2;
-            double c = right + 1 + (-left - 1) * left / 2 - maxSum;
-            return (int) Math.Floor((-b + Math.Sqrt(b * b - 4 * a * c)) / (2 * a));
-        } else {
-            double a = left + right + 1;;
-            double b = (-left * left - left - right * right - right) / 2 - maxSum;
-            return (int) Math.Floor(-b / a);
+        if (upper >= maxSum)
+        {
+            var a = 1.0 / 2;
+            var b = left + 1 - 3.0 / 2;
+            var c = right + 1 + (-left - 1) * left / 2 - maxSum;
+            return (int)Math.Floor((-b + Math.Sqrt(b * b - 4 * a * c)) / (2 * a));
+        }
+        else
+        {
+            var a = left + right + 1; ;
+            var b = (-left * left - left - right * right - right) / 2 - maxSum;
+            return (int)Math.Floor(-b / a);
         }
     }
-    
+
     /// <summary>
     /// 1823. Find the Winner of the Circular Game
     /// </summary>
@@ -9268,8 +9274,8 @@ public class Solution
     /// <returns></returns>
     public int FindTheWinner(int n, int k)
     {
-        int winner = 1;
-        for (int i = 2; i <= n; i++)
+        var winner = 1;
+        for (var i = 2; i <= n; i++)
         {
             winner = (k + winner - 1) % i + 1;
         }
@@ -9284,8 +9290,8 @@ public class Solution
     /// <returns></returns>
     public int MinOperations(int[] nums)
     {
-        int prev = nums[0] - 1;
-        int res = 0;
+        var prev = nums[0] - 1;
+        var res = 0;
         foreach (var num in nums)
         {
             prev = Math.Max(prev + 1, num);
@@ -9294,7 +9300,7 @@ public class Solution
 
         return res;
     }
-    
+
     /// <summary>
     /// 1945. Sum of Digits of String After Convert
     /// </summary>
@@ -9303,16 +9309,16 @@ public class Solution
     /// <returns></returns>
     public int GetLucky(string s, int k)
     {
-        StringBuilder sb = new StringBuilder();
+        var sb = new StringBuilder();
         foreach (var ch in s)
         {
             sb.Append(ch - 'a' + 1);
         }
 
-        string digits = sb.ToString();
-        for (int i = 1; i <= k && digits.Length > 1; i++)
+        var digits = sb.ToString();
+        for (var i = 1; i <= k && digits.Length > 1; i++)
         {
-            int sum = 0;
+            var sum = 0;
             foreach (var ch in digits)
             {
                 sum += ch - '0';
@@ -9332,10 +9338,10 @@ public class Solution
     /// <returns></returns>
     public int MinimumDifference(int[] nums, int k)
     {
-        int n = nums.Length;
+        var n = nums.Length;
         Array.Sort(nums);
-        int res = int.MaxValue;
-        for (int i = 0; i + k - 1 < n; ++i)
+        var res = int.MaxValue;
+        for (var i = 0; i + k - 1 < n; ++i)
         {
             res = Math.Min(res, nums[i + k - 1] - nums[i]);
         }
@@ -9350,9 +9356,9 @@ public class Solution
     /// <returns></returns>
     public int FindMiddleIndex(int[] nums)
     {
-        int total = nums.Sum();
-        int sum = 0;
-        for (int i = 0; i < nums.Length; i++)
+        var total = nums.Sum();
+        var sum = 0;
+        for (var i = 0; i < nums.Length; i++)
         {
             if ((2 * sum + nums[i]) == total)
             {
@@ -9372,14 +9378,14 @@ public class Solution
     /// <returns></returns>
     public int CountQuadruplets(int[] nums)
     {
-        int n = nums.Length;
-        int ans = 0;
-        Dictionary<int, int> cnt = new Dictionary<int, int>();
-        for (int b = n - 3; b >= 1; --b)
+        var n = nums.Length;
+        var ans = 0;
+        var cnt = new Dictionary<int, int>();
+        for (var b = n - 3; b >= 1; --b)
         {
-            for (int d = b + 2; d < n; ++d)
+            for (var d = b + 2; d < n; ++d)
             {
-                int difference = nums[d] - nums[b + 1];
+                var difference = nums[d] - nums[b + 1];
                 if (!cnt.ContainsKey(difference))
                 {
                     cnt.Add(difference, 1);
@@ -9390,9 +9396,9 @@ public class Solution
                 }
             }
 
-            for (int a = 0; a < b; ++a)
+            for (var a = 0; a < b; ++a)
             {
-                int sum = nums[a] + nums[b];
+                var sum = nums[a] + nums[b];
                 if (cnt.ContainsKey(sum))
                 {
                     ans += cnt[sum];
@@ -9412,8 +9418,8 @@ public class Solution
     public int CountKDifference(int[] nums, int k)
     {
         int ans = 0, n = nums.Length;
-        Dictionary<int, int> cnt = new Dictionary<int, int>();
-        for (int j = 0; j < n; j++)
+        var cnt = new Dictionary<int, int>();
+        for (var j = 0; j < n; j++)
         {
             ans += (cnt.ContainsKey(nums[j] - k) ? cnt[nums[j] - k] : 0)
                    + (cnt.ContainsKey(nums[j] + k) ? cnt[nums[j] + k] : 0);
@@ -9437,7 +9443,7 @@ public class Solution
     {
         return operations.Select(op => op[1] == '+' ? 1 : -1).Sum();
     }
-    
+
     /// <summary>
     /// 2016. Maximum Difference Between Increasing Elements
     /// </summary>
@@ -9445,9 +9451,9 @@ public class Solution
     /// <returns></returns>
     public int MaximumDifference(int[] nums)
     {
-        int n = nums.Length;
+        var n = nums.Length;
         int ans = -1, preMin = nums[0];
-        for (int i = 1; i < n; i++)
+        for (var i = 1; i < n; i++)
         {
             if (nums[i] > preMin)
             {
@@ -9469,9 +9475,9 @@ public class Solution
     /// <returns></returns>
     public int MinimumMoves(string s)
     {
-        int res = 0;
-        int count = -1;
-        for(int i = 0; i < s.Length; i++)
+        var res = 0;
+        var count = -1;
+        for (var i = 0; i < s.Length; i++)
         {
             if (s[i] == 'X' && i > count)
             {
@@ -9547,7 +9553,7 @@ public class Solution
         {
             if (char.IsDigit(s[pos]))
             {
-                int curr = 0;
+                var curr = 0;
                 while (pos < s.Length && char.IsDigit(s[pos]))
                 {
                     curr = curr * 10 + s[pos] - '0';
@@ -9608,10 +9614,10 @@ public class Solution
     /// <returns></returns>
     public int[] PlatesBetweenCandles(string s, int[][] queries)
     {
-        int n = s.Length;
-        int[] preSum = new int[n];
-        int sum = 0;
-        for (int i = 0; i < n; i++)
+        var n = s.Length;
+        var preSum = new int[n];
+        var sum = 0;
+        for (var i = 0; i < n; i++)
         {
             if (s[i] == '*')
             {
@@ -9621,7 +9627,7 @@ public class Solution
             preSum[i] = sum;
         }
 
-        int[] left = new int[n];
+        var left = new int[n];
         for (int i = 0, l = -1; i < n; i++)
         {
             if (s[i] == '|')
@@ -9632,7 +9638,7 @@ public class Solution
             left[i] = l;
         }
 
-        int[] right = new int[n];
+        var right = new int[n];
         for (int i = n - 1, r = -1; i >= 0; i--)
         {
             if (s[i] == '|')
@@ -9643,10 +9649,10 @@ public class Solution
             right[i] = r;
         }
 
-        int[] ans = new int[queries.Length];
-        for (int i = 0; i < queries.Length; i++)
+        var ans = new int[queries.Length];
+        for (var i = 0; i < queries.Length; i++)
         {
-            int[] query = queries[i];
+            var query = queries[i];
             int x = right[query[0]], y = left[query[1]];
             ans[i] = x == -1 || y == -1 || x >= y ? 0 : preSum[y] - preSum[x];
         }
@@ -9685,7 +9691,7 @@ public class Solution
     {
         return words.Where(x => x.StartsWith(pref)).Count();
     }
-    
+
     /// <summary>
     /// 2351. First Letter to Appear Twice
     /// </summary>
@@ -9693,10 +9699,10 @@ public class Solution
     /// <returns></returns>
     public char RepeatedCharacter(string s)
     {
-        int[] map = new int[26];
-        foreach (char c in s)
+        var map = new int[26];
+        foreach (var c in s)
         {
-            int index = c - 'a';
+            var index = c - 'a';
             if (map[index] > 0)
             {
                 return c;
@@ -9715,9 +9721,9 @@ public class Solution
     /// <returns></returns>
     public int RearrageCharacters(string s, string target)
     {
-        Dictionary<char, int> sDic = new Dictionary<char, int>();
-        Dictionary<char, int> targetDic = new Dictionary<char, int>();
-        foreach (char ch in s)
+        var sDic = new Dictionary<char, int>();
+        var targetDic = new Dictionary<char, int>();
+        foreach (var ch in s)
         {
             if (sDic.ContainsKey(ch))
             {
@@ -9729,7 +9735,7 @@ public class Solution
             }
         }
 
-        foreach (char ch in target)
+        foreach (var ch in target)
         {
             if (targetDic.ContainsKey(ch))
             {
@@ -9741,10 +9747,10 @@ public class Solution
             }
         }
 
-        int ans = int.MaxValue;
-        foreach (char ch in target)
+        var ans = int.MaxValue;
+        foreach (var ch in target)
         {
-            int sValue = 0;
+            var sValue = 0;
             sDic.TryGetValue(ch, out sValue);
             ans = Math.Min(ans, sValue / targetDic[ch]);
         }

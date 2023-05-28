@@ -21,13 +21,13 @@ public class NumComponentsUnitTest
     {
         yield return new object[]
         {
-            Utilities.CreateListNode(new int[]{ 0, 1, 2, 3 }),
+            Util.CreateListNode(new int[]{ 0, 1, 2, 3 }),
             new int[]{ 0, 1, 3 },
             2
         };
         yield return new object[]
         {
-            Utilities.CreateListNode(new int[]{ 0, 1, 2, 3, 4 }),
+            Util.CreateListNode(new int[]{ 0, 1, 2, 3, 4 }),
             new int[]{ 0, 3, 1, 4 },
             2
         };

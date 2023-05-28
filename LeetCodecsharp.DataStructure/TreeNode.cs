@@ -36,14 +36,14 @@ public class TreeNodeComparer : IEqualityComparer<TreeNode>
         {
             return false;
         }
-        Queue<TreeNode> q1 = new Queue<TreeNode>();
-        Queue<TreeNode> q2 = new Queue<TreeNode>();
+        var q1 = new Queue<TreeNode>();
+        var q2 = new Queue<TreeNode>();
         q1.Enqueue(x);
         q2.Enqueue(y);
         while (q1.Count != 0 && q2.Count != 0)
         {
-            TreeNode node1 = q1.Dequeue();
-            TreeNode node2 = q2.Dequeue();
+            var node1 = q1.Dequeue();
+            var node2 = q2.Dequeue();
             if (node1.val != node2.val)
             {
                 return false;

@@ -21,30 +21,30 @@ public class FindDuplicateSubtreesUnitTest
     {
         yield return new object[]
         {
-            Utilities.CreateTreeNode(new List<int?>{ 1, 2, 3, 4, null, 2, 4, null, null, 4 }),
+            Util.CreateTreeNode(new List<int?>{ 1, 2, 3, 4, null, 2, 4, null, null, 4 }),
             new List<TreeNode>
             {
-                Utilities.CreateTreeNode(new List<int?>{ 4 }),
-                Utilities.CreateTreeNode(new List<int?>{ 2, 4 }),
+                Util.CreateTreeNode(new List<int?>{ 4 }),
+                Util.CreateTreeNode(new List<int?>{ 2, 4 }),
             }
         };
 
         yield return new object[]
         {
-            Utilities.CreateTreeNode(new List<int?>{ 2, 1, 1 }),
+            Util.CreateTreeNode(new List<int?>{ 2, 1, 1 }),
             new List<TreeNode>
             {
-                Utilities.CreateTreeNode(new List<int?>{ 1 })
+                Util.CreateTreeNode(new List<int?>{ 1 })
             }
         };
 
         yield return new object[]
         {
-            Utilities.CreateTreeNode(new List<int?>{ 2, 2, 2, 3, null, 3, null }),
+            Util.CreateTreeNode(new List<int?>{ 2, 2, 2, 3, null, 3, null }),
             new List<TreeNode>
             {
-                Utilities.CreateTreeNode(new List<int?>{ 3 }),
-                Utilities.CreateTreeNode(new List<int?>{ 2, 3 }),
+                Util.CreateTreeNode(new List<int?>{ 3 }),
+                Util.CreateTreeNode(new List<int?>{ 2, 3 }),
             }
         };
     }

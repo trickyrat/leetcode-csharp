@@ -20,13 +20,13 @@ public class PathSumIIUnitTest
     {
         yield return new object[]
         {
-           Utilities.CreateTreeNode(new List<int?>{1,2,3 }),
+           Util.CreateTreeNode(new List<int?>{1,2,3 }),
            5,
            new List<List<int>>()
         };
         yield return new object[]
         {
-            Utilities.CreateTreeNode(new List<int?>{5,4,8,11,null,13,4,7,2,null,null,5,1 }),
+            Util.CreateTreeNode(new List<int?>{5,4,8,11,null,13,4,7,2,null,null,5,1 }),
             22,
             new List<List<int>>()
             {

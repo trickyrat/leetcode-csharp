@@ -1,8 +1,6 @@
 ﻿// Licensed to the Trickyrat under one or more agreements.
 // The Trickyrat licenses this file to you under the MIT license.
 
-using LeetCodecsharp.DataStructure;
-
 using Xunit;
 
 namespace LeetCodecsharp.Test.SolutionTests;
@@ -20,7 +18,7 @@ public class IsPalindromeUnitTest
     public void Test(int[] nums, bool expected)
     {
 
-        var head = Utilities.CreateListNode(nums);
+        var head = Util.CreateListNode(nums);
         var actual = _solution.IsPalindrome(head);
         Assert.Equal(expected, actual);
     }

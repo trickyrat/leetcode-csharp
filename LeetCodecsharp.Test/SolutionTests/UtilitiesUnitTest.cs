@@ -1,4 +1,7 @@
-﻿using System;
+﻿// Licensed to the Trickyrat under one or more agreements.
+// The Trickyrat licenses this file to you under the MIT license.
+
+using System;
 using System.Collections.Generic;
 
 using LeetCodecsharp.DataStructure;
@@ -62,7 +65,7 @@ public class UtilitiesUnitTest
     [MemberData(nameof(GetTreeNodeData))]
     public void Test_CreateTreeNode_Should_OK(List<int?> nums, TreeNode expected)
     {
-        var actual = Utilities.CreateTreeNode(nums);
+        var actual = Util.CreateTreeNode(nums);
         Assert.Equal(expected, actual, new TreeNodeComparer());
     }
 
@@ -71,7 +74,7 @@ public class UtilitiesUnitTest
     [MemberData(nameof(GetMatrixData))]
     public void Test_ConvertMatrixToString_Should_OK(int[][] matrix, string expected)
     {
-        var actual = Utilities.ConvertMatrixToString(matrix);
+        var actual = Util.ConvertMatrixToString(matrix);
         Assert.Equal(expected, actual);
     }
 
@@ -84,7 +87,7 @@ public class UtilitiesUnitTest
     [InlineData(int.MaxValue, int.MinValue, int.MinValue, int.MaxValue)]
     public void Test_SwapByRef_Should_OK(int lhs, int rhs, int expectedLHS, int expectedRHS)
     {
-        Utilities.Swap(ref lhs, ref rhs);
+        Util.Swap(ref lhs, ref rhs);
         Assert.Equal(expectedLHS, lhs);
         Assert.Equal(expectedRHS, rhs);
     }
@@ -95,7 +98,7 @@ public class UtilitiesUnitTest
     [InlineData(new int[] { 1, 2, 3, 4 }, 0, 3, new int[] { 4, 2, 3, 1 })]
     public void Test_SwapByArray_Should_OK(int[] input, int lhs, int rhs, int[] expected)
     {
-        Utilities.Swap(input, lhs, rhs);
+        Util.Swap(input, lhs, rhs);
         Assert.Equal(expected, input);
     }
 
@@ -104,7 +107,7 @@ public class UtilitiesUnitTest
     [InlineData(new int[] { 1, 2, 3, 4 }, -1, 3)]
     public void Test_SwapByArray_Should_ThrowIndexOutOfRangeException(int[] input, int lhs, int rhs)
     {
-        Assert.Throws<IndexOutOfRangeException>(() => Utilities.Swap(input, lhs, rhs));
+        Assert.Throws<IndexOutOfRangeException>(() => Util.Swap(input, lhs, rhs));
     }
 
 }

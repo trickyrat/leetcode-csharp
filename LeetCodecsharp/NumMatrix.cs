@@ -8,15 +8,15 @@ public class NumMatrix
     private int[,] sum;
     public NumMatrix(int[][] matrix)
     {
-        int m = matrix.Length;
+        var m = matrix.Length;
         if (m > 0)
         {
-            int n = matrix[0].Length;
+            var n = matrix[0].Length;
             sum = new int[m + 1, n + 1];
-            for (int i = 0; i < m; i++)
+            for (var i = 0; i < m; i++)
             {
 
-                for (int j = 0; j < n; j++)
+                for (var j = 0; j < n; j++)
                 {
                     sum[i + 1, j + 1] = sum[i, j + 1] + sum[i + 1, j] - sum[i, j] + matrix[i][j];
                 }

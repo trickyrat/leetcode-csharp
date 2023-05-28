@@ -7,13 +7,19 @@ namespace LeetCodecsharp;
 
 public class KthLargest
 {
-    public PriorityQueue<int, int> PQ { get; set; }
-    public int K { get; set; }
+    public PriorityQueue<int, int> PQ
+    {
+        get; set;
+    }
+    public int K
+    {
+        get; set;
+    }
     public KthLargest(int k, int[] nums)
     {
         PQ = new PriorityQueue<int, int>();
         K = k;
-        foreach (int num in nums)
+        foreach (var num in nums)
         {
             Add(num);
         }

@@ -15,12 +15,12 @@ namespace LeetCodecsharp.Test.SolutionTests
         {
             yield return new object[]
             {
-                Utilities.CreateTreeNode(new List<int?>{ 1,0,1,0,1,0,1}),
+                Util.CreateTreeNode(new List<int?>{ 1,0,1,0,1,0,1}),
                 22
             };
             yield return new object[]
             {
-                Utilities.CreateTreeNode(new List<int?>{ 0 }),
+                Util.CreateTreeNode(new List<int?>{ 0 }),
                 0
             };
         }

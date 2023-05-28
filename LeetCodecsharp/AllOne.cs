@@ -7,8 +7,14 @@ namespace LeetCodecsharp;
 
 public class AllOne
 {
-    AllOneNode Root { get; set; }
-    Dictionary<string, AllOneNode> Nodes { get; set; }
+    AllOneNode Root
+    {
+        get; set;
+    }
+    Dictionary<string, AllOneNode> Nodes
+    {
+        get; set;
+    }
     public AllOne()
     {
         Root = new AllOneNode();
@@ -20,8 +26,8 @@ public class AllOne
     {
         if (Nodes.ContainsKey(key))
         {
-            AllOneNode curr = Nodes[key];
-            AllOneNode next = curr.Next;
+            var curr = Nodes[key];
+            var next = curr.Next;
             if (next == Root || next.Count > curr.Count + 1)
             {
                 Nodes[key] = curr.Insert(new AllOneNode(key, curr.Count + 1));
@@ -53,14 +59,14 @@ public class AllOne
 
     public void Dec(string key)
     {
-        AllOneNode curr = Nodes[key];
+        var curr = Nodes[key];
         if (curr.Count == 1)
         {
             Nodes.Remove(key);
         }
         else
         {
-            AllOneNode prev = curr.Prev;
+            var prev = curr.Prev;
             if (prev == Root || prev.Count < curr.Count - 1)
             {
                 Nodes[key] = curr.Prev.Insert(new AllOneNode(key, curr.Count - 1));
@@ -84,8 +90,8 @@ public class AllOne
         {
             return string.Empty;
         }
-        string maxKey = string.Empty;
-        foreach (string key in Root.Prev.Keys)
+        var maxKey = string.Empty;
+        foreach (var key in Root.Prev.Keys)
         {
             maxKey = key;
             break;
@@ -99,8 +105,8 @@ public class AllOne
         {
             return string.Empty;
         }
-        string minKey = string.Empty;
-        foreach (string key in Root.Next.Keys)
+        var minKey = string.Empty;
+        foreach (var key in Root.Next.Keys)
         {
             minKey = key;
             break;
@@ -111,10 +117,22 @@ public class AllOne
 
 class AllOneNode
 {
-    public AllOneNode Prev { get; set; }
-    public AllOneNode Next { get; set; }
-    public ISet<string> Keys { get; set; }
-    public int Count { get; set; }
+    public AllOneNode Prev
+    {
+        get; set;
+    }
+    public AllOneNode Next
+    {
+        get; set;
+    }
+    public ISet<string> Keys
+    {
+        get; set;
+    }
+    public int Count
+    {
+        get; set;
+    }
 
     public AllOneNode() : this(string.Empty, 0)
     {

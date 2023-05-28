@@ -20,7 +20,7 @@ public class MinimumMovesUnitTest
     [InlineData("OOOO", 0)]
     public void MultipleDataTest(string s, int expected)
     {
-        int actual = _solution.MinimumMoves(s);
+        var actual = _solution.MinimumMoves(s);
         Assert.Equal(expected, actual);
     }
 

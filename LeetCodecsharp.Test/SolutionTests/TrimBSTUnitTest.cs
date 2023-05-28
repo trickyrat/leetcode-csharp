@@ -21,18 +21,18 @@ public class TrimBSTUnitTest
     {
         yield return new object[]
         {
-            Utilities.CreateTreeNode(new List<int?>{ 1,0,2}),
+            Util.CreateTreeNode(new List<int?>{ 1,0,2}),
             1,
             2,
-            Utilities.CreateTreeNode(new List<int?>{ 1,null,2}),
+            Util.CreateTreeNode(new List<int?>{ 1,null,2}),
         };
 
         yield return new object[]
         {
-             Utilities.CreateTreeNode(new List<int?>{ 3,0,4,null,2,null,null,1}),
+             Util.CreateTreeNode(new List<int?>{ 3,0,4,null,2,null,null,1}),
              1,
              3,
-             Utilities.CreateTreeNode(new List<int?>{ 3,2,null,1}),
+             Util.CreateTreeNode(new List<int?>{ 3,2,null,1}),
         };
     }
 

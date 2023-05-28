@@ -20,7 +20,7 @@ public class RandomNode
     public int GetRandom()
     {
         int i = 1, ans = 0;
-        for (ListNode curr = _head; curr != null; curr = curr.next)
+        for (var curr = _head; curr != null; curr = curr.next)
         {
             if (_random.Next(i) == 0)
             {

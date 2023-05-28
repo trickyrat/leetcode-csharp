@@ -21,21 +21,21 @@ public class InsertIntoMaxTreeUnitTest
     {
         yield return new object[]
         {
-            Utilities.CreateTreeNode(new List<int?>{ 4,1,3,null,null,2 }),
+            Util.CreateTreeNode(new List<int?>{ 4,1,3,null,null,2 }),
             5,
-            Utilities.CreateTreeNode(new List<int?>{ 5,4,null,1,3,null,null,2 })
+            Util.CreateTreeNode(new List<int?>{ 5,4,null,1,3,null,null,2 })
         };
         yield return new object[]
         {
-            Utilities.CreateTreeNode(new List<int?>{ 5,2,4,null,1 }),
+            Util.CreateTreeNode(new List<int?>{ 5,2,4,null,1 }),
             3,
-            Utilities.CreateTreeNode(new List<int?>{ 5,2,4,null,1,null,3 })
+            Util.CreateTreeNode(new List<int?>{ 5,2,4,null,1,null,3 })
         };
         yield return new object[]
         {
-            Utilities.CreateTreeNode(new List<int?>{ 5,2,3,null,1 }),
+            Util.CreateTreeNode(new List<int?>{ 5,2,3,null,1 }),
             4,
-            Utilities.CreateTreeNode(new List<int?>{ 5,2,4,null,1,3 })
+            Util.CreateTreeNode(new List<int?>{ 5,2,4,null,1,3 })
         };
     }
 

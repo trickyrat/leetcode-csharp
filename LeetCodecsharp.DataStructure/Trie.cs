@@ -8,7 +8,10 @@ namespace LeetCodecsharp.DataStructure;
 /// </summary>
 public class Trie
 {
-    TrieNode Root { get; set; }
+    TrieNode Root
+    {
+        get; set;
+    }
     public Trie()
     {
         Root = new TrieNode();
@@ -16,10 +19,10 @@ public class Trie
 
     public void Insert(string word)
     {
-        TrieNode node = Root;
-        for (int i = 0; i < word.Length; i++)
+        var node = Root;
+        for (var i = 0; i < word.Length; i++)
         {
-            char currentChar = word[i];
+            var currentChar = word[i];
             if (!node.ContainsKey(currentChar))
             {
                 node.Put(currentChar, new TrieNode());
@@ -32,15 +35,15 @@ public class Trie
 
     public bool Search(string word)
     {
-        TrieNode node = SearchPrefix(word);
+        var node = SearchPrefix(word);
         return node != null && node.IsEnd;
     }
     private TrieNode SearchPrefix(string word)
     {
-        TrieNode node = Root;
-        for (int i = 0; i < word.Length; i++)
+        var node = Root;
+        for (var i = 0; i < word.Length; i++)
         {
-            char currLetter = word[i];
+            var currLetter = word[i];
             if (node.ContainsKey(currLetter))
                 node = node.Get(currLetter);
             else
@@ -51,7 +54,7 @@ public class Trie
 
     public bool StartWith(string prefix)
     {
-        TrieNode node = SearchPrefix(prefix);
+        var node = SearchPrefix(prefix);
         return node != null;
     }
 }
@@ -60,13 +63,19 @@ public class Trie
 /// </summary>
 public class TrieNode
 {
-    public string Word { get; set; }
+    public string Word
+    {
+        get; set;
+    }
     public TrieNode[] Links;
 
     // a-z lowercase
     private static readonly int R = 26;
 
-    public bool IsEnd { get; set; }
+    public bool IsEnd
+    {
+        get; set;
+    }
 
     public TrieNode()
     {

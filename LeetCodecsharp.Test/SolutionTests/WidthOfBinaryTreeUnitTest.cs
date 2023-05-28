@@ -21,17 +21,17 @@ public class WidthOfBinaryTreeUnitTest
     {
         yield return new object[]
         {
-            Utilities.CreateTreeNode(new List<int?>{ 1,3,2,5,3,null,9}),
+            Util.CreateTreeNode(new List<int?>{ 1,3,2,5,3,null,9}),
             4
         };
         yield return new object[]
         {
-            Utilities.CreateTreeNode(new List<int?>{ 1,3,2,5,null,null,9,6,null,7}),
+            Util.CreateTreeNode(new List<int?>{ 1,3,2,5,null,null,9,6,null,7}),
             7
         };
         yield return new object[]
         {
-            Utilities.CreateTreeNode(new List<int?>{ 1,3,2,5}),
+            Util.CreateTreeNode(new List<int?>{ 1,3,2,5}),
             2
         };
     }

@@ -22,18 +22,18 @@ public class SwapPairsUnitTest
     {
         yield return new object[]
         {
-            Utilities.CreateListNode(new int[]{ 1, 2, 3, 4}),
-            Utilities.CreateListNode(new int[]{ 2, 1, 4, 3})
+            Util.CreateListNode(new int[]{ 1, 2, 3, 4}),
+            Util.CreateListNode(new int[]{ 2, 1, 4, 3})
         };
         yield return new object[]
         {
-            Utilities.CreateListNode(new int[]{ }),
-            Utilities.CreateListNode(new int[]{ })
+            Util.CreateListNode(new int[]{ }),
+            Util.CreateListNode(new int[]{ })
         };
         yield return new object[]
         {
-            Utilities.CreateListNode(new int[]{ 1 }),
-            Utilities.CreateListNode(new int[]{ 1 })
+            Util.CreateListNode(new int[]{ 1 }),
+            Util.CreateListNode(new int[]{ 1 })
         };
     }
 

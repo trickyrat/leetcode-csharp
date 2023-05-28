@@ -21,9 +21,9 @@ public class RotateRightUnitTest
     {
         yield return new object[]
         {
-            Utilities.CreateListNode(new int[]{ 1,2,3,4,5 }),
+            Util.CreateListNode(new int[]{ 1, 2, 3, 4, 5 }),
             2,
-            Utilities.CreateListNode(new int[]{ 4,5,1,2,3 })
+            Util.CreateListNode(new int[]{ 4, 5, 1, 2, 3 })
         };
     }
 

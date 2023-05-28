@@ -9,10 +9,19 @@ namespace LeetCodecsharp;
 
 public class RandomizedSet
 {
-    protected List<int> Nums { get; set; }
-    protected Dictionary<int, int> Indices { get; set; }
+    protected List<int> Nums
+    {
+        get; set;
+    }
+    protected Dictionary<int, int> Indices
+    {
+        get; set;
+    }
 
-    protected Random Random { get; set; }
+    protected Random Random
+    {
+        get; set;
+    }
 
     public RandomizedSet()
     {
@@ -39,8 +48,8 @@ public class RandomizedSet
             return false;
         }
 
-        int index = Indices[val];
-        int last = Nums.Last();
+        var index = Indices[val];
+        var last = Nums.Last();
         Nums[index] = last;
         Indices[last] = index;
         Nums.RemoveAt(Nums.Count - 1);
