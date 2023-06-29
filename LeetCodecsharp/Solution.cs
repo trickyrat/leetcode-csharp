@@ -1099,13 +1099,42 @@ public class Solution
     /// <returns></returns>
     public int StrStr(string haystack, string needle)
     {
+        List<int> KmpProcess(string s)
+        {
+            var n = needle.Length;
+            var lps = new List<int>();
+            for (var i = 0; i < n; i++)
+            {
+                lps.Add(0);
+            }
+
+            for (int i = 1, len = 0; i < n;)
+            {
+                if (s[i] == s[len])
+                {
+                    lps[i] = ++len;
+                    i++;
+                }
+                else if (len > 0)
+                {
+                    len = lps[len - 1];
+                }
+                else
+                {
+                    lps[i++] = 0;
+                }
+            }
+
+            return lps;
+        }
+
         int m = haystack.Length, n = needle.Length;
         if (n < 1)
         {
             return 0;
         }
 
-        var lps = KMPProcess(needle);
+        var lps = KmpProcess(needle);
         for (int i = 0, j = 0; i < m;)
         {
             if (haystack[i] == needle[j])
@@ -1135,35 +1164,6 @@ public class Solution
         }
 
         return -1;
-
-        List<int> KMPProcess(string s)
-        {
-            var n = needle.Length;
-            var lps = new List<int>();
-            for (var i = 0; i < n; i++)
-            {
-                lps.Add(0);
-            }
-
-            for (int i = 1, len = 0; i < n;)
-            {
-                if (s[i] == s[len])
-                {
-                    lps[i] = ++len;
-                    i++;
-                }
-                else if (len > 0)
-                {
-                    len = lps[len - 1];
-                }
-                else
-                {
-                    lps[i++] = 0;
-                }
-            }
-
-            return lps;
-        }
     }
 
     /// <summary>
@@ -2012,15 +2012,15 @@ public class Solution
         double QuickMul(double x, long N)
         {
             var ans = 1.0d;
-            var x_contribute = x;
+            var xContribute = x;
             while (N > 0)
             {
                 if (N % 2 == 1)
                 {
-                    ans *= x_contribute;
+                    ans *= xContribute;
                 }
 
-                x_contribute *= x_contribute;
+                xContribute *= xContribute;
                 N /= 2;
             }
 
@@ -2440,6 +2440,28 @@ public class Solution
     /// <returns></returns>
     public IList<string> FullJustify(string[] words, int maxWidth)
     {
+        string Blank(int n)
+        {
+            var sb = new StringBuilder();
+            for (var i = 0; i < n; i++)
+            {
+                sb.Append(' ');
+            }
+
+            return sb.ToString();
+        }
+
+        StringBuilder Join(string[] words, int left, int right, string seperator)
+        {
+            var sb = new StringBuilder(words[left]);
+            for (var i = left + 1; i < right; i++)
+            {
+                sb.Append(seperator);
+                sb.Append(words[i]);
+            }
+
+            return sb;
+        }
         IList<string> ans = new List<string>();
         int right = 0, n = words.Length;
         while (true)
@@ -2476,29 +2498,6 @@ public class Solution
             curr.Append(Blank(avgSpaces));
             curr.Append(Join(words, left + extraSpaces + 1, right, Blank(avgSpaces)));
             ans.Add(curr.ToString());
-        }
-
-        string Blank(int n)
-        {
-            var sb = new StringBuilder();
-            for (var i = 0; i < n; i++)
-            {
-                sb.Append(' ');
-            }
-
-            return sb.ToString();
-        }
-
-        StringBuilder Join(string[] words, int left, int right, string seperator)
-        {
-            var sb = new StringBuilder(words[left]);
-            for (var i = left + 1; i < right; i++)
-            {
-                sb.Append(seperator);
-                sb.Append(words[i]);
-            }
-
-            return sb;
         }
     }
 
