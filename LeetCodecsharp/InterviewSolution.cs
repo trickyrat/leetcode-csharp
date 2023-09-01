@@ -14,7 +14,7 @@ public class InterviewSolution
     /// <param name="first"></param>
     /// <param name="second"></param>
     /// <returns></returns>
-    public bool OneEditAway(string first, string second)
+    public static bool OneEditAway(string first, string second)
     {
         bool OneInsert(string shorter, string longer)
         {
@@ -75,7 +75,7 @@ public class InterviewSolution
     /// <param name="s1"></param>
     /// <param name="s2"></param>
     /// <returns></returns>
-    public bool CheckPermutation(string s1, string s2)
+    public static bool CheckPermutation(string s1, string s2)
     {
         int len1 = s1.Length, len2 = s2.Length;
         if (len1 != len2)
@@ -102,7 +102,7 @@ public class InterviewSolution
     /// 面试题 01.07. Rotate Matrix LCCI
     /// </summary>
     /// <param name="matrix"></param>
-    public void Rotate(int[][] matrix)
+    public static void Rotate(int[][] matrix)
     {
         var n = matrix.Length;
         for (var i = 0; i < n; i++)
@@ -125,7 +125,7 @@ public class InterviewSolution
     /// <param name="s1"></param>
     /// <param name="s2"></param>
     /// <returns></returns>
-    public bool IsFlippedString(string s1, string s2)
+    public static bool IsFlippedString(string s1, string s2)
     {
         return s1.Length == s2.Length && (s1 + s1).Contains(s2);
     }
@@ -135,7 +135,7 @@ public class InterviewSolution
     /// </summary>
     /// <param name="nums"></param>
     /// <returns></returns>
-    public int FindMagicIndex(int[] nums)
+    public static int FindMagicIndex(int[] nums)
     {
         var right = nums.Length - 1;
         const int left = 0;
@@ -164,7 +164,7 @@ public class InterviewSolution
     /// </summary>
     /// <param name="k"></param>
     /// <returns></returns>
-    public int GetKthMagicNumber(int k)
+    public static int GetKthMagicNumber(int k)
     {
         var dp = new int[k + 1];
         dp[1] = 1;
@@ -196,7 +196,7 @@ public class InterviewSolution
     /// <param name="word1"></param>
     /// <param name="word2"></param>
     /// <returns></returns>
-    public int FindClosest(string[] words, string word1, string word2)
+    public static int FindClosest(string[] words, string word1, string word2)
     {
         var ans = words.Length;
         int index1 = -1, index2 = -1;
