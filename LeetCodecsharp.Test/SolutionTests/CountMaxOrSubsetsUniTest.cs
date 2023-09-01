@@ -7,20 +7,13 @@ namespace LeetCodecsharp.Test.SolutionTests;
 
 public class CountMaxOrSubsetsUniTest
 {
-    private readonly Solution _solution;
-
-    public CountMaxOrSubsetsUniTest()
-    {
-        _solution = new Solution();
-    }
-
     [Theory]
     [InlineData(new int[] { 3, 1 }, 2)]
     [InlineData(new int[] { 2, 2, 2 }, 7)]
     [InlineData(new int[] { 3, 2, 1, 5 }, 6)]
     public void MultipleDataTest(int[] input, int expect)
     {
-        var actual = _solution.CountMaxOrSubsets(input);
+        var actual = Solution.CountMaxOrSubsets(input);
         Assert.Equal(expect, actual);
     }
 }

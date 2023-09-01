@@ -7,18 +7,13 @@ namespace LeetCodecsharp.Test.SolutionTests;
 
 public class PushDominoesUnitTest
 {
-    private readonly Solution _solution;
-    public PushDominoesUnitTest()
-    {
-        _solution = new Solution();
-    }
     [Theory]
     [InlineData("RR.L", "RR.L")]
     [InlineData(".L.R...LR..L..", "LL.RR.LLRRLL..")]
     public void Test(string input, string expected)
     {
 
-        var actual = _solution.PushDominoes(input);
+        var actual = Solution.PushDominoes(input);
         Assert.Equal(expected, actual);
     }
 }

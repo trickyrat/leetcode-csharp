@@ -7,11 +7,6 @@ namespace LeetCodecsharp.Test.SolutionTests;
 
 public class MaxDifferenceUnitTest
 {
-    private readonly Solution _solution;
-    public MaxDifferenceUnitTest()
-    {
-        _solution = new Solution();
-    }
     [Theory]
     [InlineData(new int[] { 7, 1, 5, 4 }, 4)]
     [InlineData(new int[] { 9, 4, 3, 2 }, -1)]
@@ -19,7 +14,7 @@ public class MaxDifferenceUnitTest
     public void Test(int[] input, int expected)
     {
 
-        var actual = _solution.MaximumDifference(input);
+        var actual = Solution.MaximumDifference(input);
         Assert.Equal(expected, actual);
     }
 }

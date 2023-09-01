@@ -9,13 +9,6 @@ namespace LeetCodecsharp.Test.SolutionTests;
 
 public class SolveSudokuUnitTest
 {
-    private readonly Solution _solution;
-
-    public SolveSudokuUnitTest()
-    {
-        _solution = new Solution();
-    }
-
     public static IEnumerable<object[]> GetData()
     {
         yield return new object[]
@@ -52,7 +45,7 @@ public class SolveSudokuUnitTest
     [MemberData(nameof(GetData))]
     public void MultipleDataTest(char[][] board, char[][] expected)
     {
-        _solution.SolveSudoku(board);
+        Solution.SolveSudoku(board);
         Assert.Equal(expected, board);
     }
 }

@@ -11,11 +11,6 @@ namespace LeetCodecsharp.Test.SolutionTests;
 
 public class PathSumIIUnitTest
 {
-    private readonly Solution _solution;
-    public PathSumIIUnitTest()
-    {
-        _solution = new Solution();
-    }
     public static IEnumerable<object[]> GetData()
     {
         yield return new object[]
@@ -41,7 +36,7 @@ public class PathSumIIUnitTest
     public void Test(TreeNode input, int targetNum, IList<List<int>> expected)
     {
 
-        var actual = _solution.PathSum(input, targetNum);
+        var actual = Solution.PathSum(input, targetNum);
         Assert.Equal(expected, actual);
     }
 }

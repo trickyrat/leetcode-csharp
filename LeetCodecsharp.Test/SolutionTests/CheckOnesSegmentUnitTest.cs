@@ -6,20 +6,12 @@ using Xunit;
 namespace LeetCodecsharp.Test.SolutionTests;
 public class CheckOnesSegmentUnitTest
 {
-    private readonly Solution _solution;
-
-    public CheckOnesSegmentUnitTest()
-    {
-        _solution = new Solution();
-    }
-
-
     [Theory]
     [InlineData("1001", false)]
     [InlineData("110", true)]
     public void MultipleDataTest(string s, bool expected)
     {
-        var actual = _solution.CheckOnesSegment(s);
+        var actual = Solution.CheckOnesSegment(s);
         Assert.Equal(expected, actual);
     }
 }

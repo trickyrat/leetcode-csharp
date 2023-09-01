@@ -7,18 +7,13 @@ namespace LeetCodecsharp.Test.SolutionTests;
 
 public class ReverseWordsUnitTest
 {
-    private readonly Solution _solution;
-    public ReverseWordsUnitTest()
-    {
-        _solution = new Solution();
-    }
     [Theory]
     [InlineData("Let's take LeetCode contest", "s'teL ekat edoCteeL tsetnoc")]
     [InlineData("God Ding", "doG gniD")]
     public void Test1(string s, string expected)
     {
 
-        var actual = _solution.ReverseWords(s);
+        var actual = Solution.ReverseWords(s);
         Assert.Equal(expected, actual);
     }
 }

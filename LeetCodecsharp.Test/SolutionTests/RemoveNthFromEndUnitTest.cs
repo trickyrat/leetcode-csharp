@@ -11,12 +11,6 @@ namespace LeetCodecsharp.Test.SolutionTests;
 
 public class RemoveNthFromEndUnitTest
 {
-    private readonly Solution _solution;
-    public RemoveNthFromEndUnitTest()
-    {
-        _solution = new Solution();
-    }
-
     public static IEnumerable<object[]> GetData()
     {
         yield return new object[]
@@ -45,7 +39,7 @@ public class RemoveNthFromEndUnitTest
     public void Test_Input_Normal_Nodes_Should_OK(ListNode input, int n, ListNode expected)
     {
 
-        var actual = _solution.RemoveNthFromEnd(input, n);
+        var actual = Solution.RemoveNthFromEnd(input, n);
         Assert.Equal(expected, actual, new ListNodeComparer());
     }
 }

@@ -7,11 +7,6 @@ namespace LeetCodecsharp.Test.SolutionTests;
 
 public class SimplifyPathUnitTest
 {
-    private readonly Solution _solution;
-    public SimplifyPathUnitTest()
-    {
-        _solution = new Solution();
-    }
     [Theory]
     [InlineData("/home/", "/home")]
     [InlineData("/../", "/")]
@@ -20,7 +15,7 @@ public class SimplifyPathUnitTest
     public void Test(string path, string expected)
     {
 
-        var actual = _solution.SimplifyPath(path);
+        var actual = Solution.SimplifyPath(path);
         Assert.Equal(expected, actual);
     }
 }

@@ -6,20 +6,12 @@ using Xunit;
 namespace LeetCodecsharp.Test.SolutionTests;
 public class MinAddToMakeValidUnitTest
 {
-    private readonly Solution _solution;
-
-    public MinAddToMakeValidUnitTest()
-    {
-        _solution = new Solution();
-    }
-
-
     [Theory]
     [InlineData("())", 1)]
     [InlineData("(((", 3)]
     public void MultipleDataTest(string s, int expected)
     {
-        var actual = _solution.MinAddToMakeValid(s);
+        var actual = Solution.MinAddToMakeValid(s);
         Assert.Equal(expected, actual);
     }
 }

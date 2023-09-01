@@ -9,13 +9,6 @@ namespace LeetCodecsharp.Test.SolutionTests
 {
     public class CalculateMinimumHPUnitTest
     {
-        private readonly Solution _solution;
-
-        public CalculateMinimumHPUnitTest()
-        {
-            _solution = new Solution();
-        }
-
         public static IEnumerable<object[]> GetData()
         {
             yield return new object[]
@@ -42,7 +35,7 @@ namespace LeetCodecsharp.Test.SolutionTests
         [MemberData(nameof(GetData))]
         public void MultipleDataTest(int[][] dungeon, int expected)
         {
-            var actual = _solution.CalculateMinimumHP(dungeon);
+            var actual = Solution.CalculateMinimumHP(dungeon);
             Assert.Equal(expected, actual);
         }
     }

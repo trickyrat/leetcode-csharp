@@ -9,13 +9,6 @@ namespace LeetCodecsharp.Test.SolutionTests
 {
     public class CombinationSum2UnitTest
     {
-        private readonly Solution _solution;
-
-        public CombinationSum2UnitTest()
-        {
-            _solution = new Solution();
-        }
-
         public static IEnumerable<object[]> GetData()
         {
             yield return new object[]
@@ -47,7 +40,7 @@ namespace LeetCodecsharp.Test.SolutionTests
         [MemberData(nameof(GetData))]
         public void MultipleDataTest(int[] candidates, int target, IList<IList<int>> expected)
         {
-            var actual = _solution.CombinationSum2(candidates, target);
+            var actual = Solution.CombinationSum2(candidates, target);
             Assert.Equal(expected, actual);
         }
 

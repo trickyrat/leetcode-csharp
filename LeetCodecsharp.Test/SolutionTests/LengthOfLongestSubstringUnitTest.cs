@@ -7,11 +7,6 @@ namespace LeetCodecsharp.Test.SolutionTests;
 
 public class LengthOfLongestSubstringUnitTest
 {
-    private readonly Solution _solution;
-    public LengthOfLongestSubstringUnitTest()
-    {
-        _solution = new Solution();
-    }
     [Theory]
     [InlineData("abcabcbb", 3)]
     [InlineData("bbbbb", 1)]
@@ -20,7 +15,7 @@ public class LengthOfLongestSubstringUnitTest
     public void Test_Input_Palindromic_Alphas_Should_OK(string s, int expected)
     {
 
-        var actual = _solution.LengthOfLongestSubstring(s);
+        var actual = Solution.LengthOfLongestSubstring(s);
         Assert.Equal(expected, actual);
     }
 }

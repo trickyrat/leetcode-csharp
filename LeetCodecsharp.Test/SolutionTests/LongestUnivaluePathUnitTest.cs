@@ -10,13 +10,6 @@ using Xunit;
 namespace LeetCodecsharp.Test.SolutionTests;
 public class LongestUnivaluePathUnitTest
 {
-    private readonly Solution _solution;
-
-    public LongestUnivaluePathUnitTest()
-    {
-        _solution = new Solution();
-    }
-
     public static IEnumerable<object[]> GetData()
     {
         yield return new object[]
@@ -35,7 +28,7 @@ public class LongestUnivaluePathUnitTest
     [MemberData(nameof(GetData))]
     public void MultipleDataTest(TreeNode root, int expected)
     {
-        var actual = _solution.LongestUnivaluePath(root);
+        var actual = Solution.LongestUnivaluePath(root);
         Assert.Equal(expected, actual);
     }
 }

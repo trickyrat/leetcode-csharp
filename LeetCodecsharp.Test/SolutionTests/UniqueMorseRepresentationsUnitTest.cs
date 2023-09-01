@@ -8,18 +8,12 @@ namespace LeetCodecsharp.Test.SolutionTests;
 public class UniqueMorseRepresentationsUnitTest
 
 {
-    private readonly Solution _solution;
-    public UniqueMorseRepresentationsUnitTest()
-    {
-        _solution = new Solution();
-    }
-
     [Theory]
     [InlineData(new string[] { "gin", "zen", "gig", "msg" }, 2)]
     [InlineData(new string[] { "a" }, 1)]
     public void MultipleDataTest(string[] words, int expected)
     {
-        var actual = _solution.UniqueMorseRepresentations(words);
+        var actual = Solution.UniqueMorseRepresentations(words);
         Assert.Equal(expected, actual);
     }
 }

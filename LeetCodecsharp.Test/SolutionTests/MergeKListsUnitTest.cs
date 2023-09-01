@@ -11,11 +11,6 @@ namespace LeetCodecsharp.Test.SolutionTests;
 
 public class MergeKListsUnitTest
 {
-    private readonly Solution _solution;
-    public MergeKListsUnitTest()
-    {
-        _solution = new Solution();
-    }
     public static IEnumerable<object[]> GetData()
     {
         yield return new object[]
@@ -45,7 +40,7 @@ public class MergeKListsUnitTest
     [MemberData(nameof(GetData))]
     public void MultipleDataTest(ListNode[] lists, ListNode expected)
     {
-        var actual = _solution.MergeKLists(lists);
+        var actual = Solution.MergeKLists(lists);
         Assert.Equal(expected, actual, new ListNodeComparer());
     }
 }

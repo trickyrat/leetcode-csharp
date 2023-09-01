@@ -45,18 +45,11 @@ public class RotateMatrixUnitTest
         };
     }
 
-    private readonly InterviewSolution _solution;
-
-    public RotateMatrixUnitTest()
-    {
-        _solution = new InterviewSolution();
-    }
-
     [Theory]
     [MemberData(nameof(GetData))]
     public void MultipleDataTest(int[][] nums, int[][] expected)
     {
-        _solution.Rotate(nums);
+        InterviewSolution.Rotate(nums);
         Assert.Equal(expected, nums);
     }
 }

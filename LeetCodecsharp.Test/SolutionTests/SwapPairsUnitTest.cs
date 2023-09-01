@@ -11,13 +11,6 @@ namespace LeetCodecsharp.Test.SolutionTests;
 
 public class SwapPairsUnitTest
 {
-    private readonly Solution _solution;
-
-    public SwapPairsUnitTest()
-    {
-        _solution = new Solution();
-    }
-
     public static IEnumerable<object[]> GetData()
     {
         yield return new object[]
@@ -42,7 +35,7 @@ public class SwapPairsUnitTest
     [MemberData(nameof(GetData))]
     public void MultipleDataTest(ListNode head, ListNode expected)
     {
-        var actual = _solution.SwapPairs(head);
+        var actual = Solution.SwapPairs(head);
         Assert.Equal(expected, actual, new ListNodeComparer());
     }
 }

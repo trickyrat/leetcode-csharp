@@ -9,11 +9,6 @@ namespace LeetCodecsharp.Test.SolutionTests;
 
 public class MinPathSumUnitTest
 {
-    private readonly Solution _solution;
-    public MinPathSumUnitTest()
-    {
-        _solution = new Solution();
-    }
     public static IEnumerable<object[]> GetData()
     {
         yield return new object[] {
@@ -50,7 +45,7 @@ public class MinPathSumUnitTest
     public void Test(int[][] grid, int expected)
     {
 
-        var actual = _solution.MinPathSum(grid);
+        var actual = Solution.MinPathSum(grid);
         Assert.Equal(expected, actual);
     }
 }

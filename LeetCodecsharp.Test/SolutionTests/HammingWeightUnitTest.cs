@@ -7,12 +7,6 @@ namespace LeetCodecsharp.Test.SolutionTests;
 
 public class HammingWeightUnitTest
 {
-
-    private readonly Solution _solution;
-    public HammingWeightUnitTest()
-    {
-        _solution = new Solution();
-    }
     [Theory]
     [InlineData(11, 3)]
     [InlineData(128, 1)]
@@ -20,7 +14,7 @@ public class HammingWeightUnitTest
     public void Test(uint n, int expected)
     {
 
-        var actual = _solution.HammingWeight(n);
+        var actual = Solution.HammingWeight(n);
         Assert.Equal(expected, actual);
     }
 }

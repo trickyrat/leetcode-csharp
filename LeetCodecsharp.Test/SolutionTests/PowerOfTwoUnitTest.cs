@@ -7,11 +7,6 @@ namespace LeetCodecsharp.Test.SolutionTests;
 
 public class PowerOfTwoUnitTest
 {
-    private readonly Solution _solution;
-    public PowerOfTwoUnitTest()
-    {
-        _solution = new Solution();
-    }
     [Theory]
     [InlineData(1, true)]
     [InlineData(16, true)]
@@ -20,7 +15,7 @@ public class PowerOfTwoUnitTest
     public void Test(int num, bool expected)
     {
 
-        var actual = _solution.IsPowerOfTwo(num);
+        var actual = Solution.IsPowerOfTwo(num);
         Assert.Equal(expected, actual);
     }
 }

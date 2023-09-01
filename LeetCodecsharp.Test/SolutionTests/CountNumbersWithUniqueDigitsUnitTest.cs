@@ -7,19 +7,12 @@ namespace LeetCodecsharp.Test.SolutionTests;
 
 public class CountNumbersWithUniqueDigitsUnitTest
 {
-    private readonly Solution _solution;
-
-    public CountNumbersWithUniqueDigitsUnitTest()
-    {
-        _solution = new Solution();
-    }
-
     [Theory]
     [InlineData(2, 91)]
     [InlineData(0, 1)]
     public void MultipleDataTest(int n, int expected)
     {
-        var actual = _solution.CountNumbersWithUniqueDigits(n);
+        var actual = Solution.CountNumbersWithUniqueDigits(n);
         Assert.Equal(expected, actual);
     }
 }

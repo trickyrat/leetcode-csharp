@@ -7,11 +7,6 @@ namespace LeetCodecsharp.Test.SolutionTests;
 
 public class PivotIndexUnitTest
 {
-    private readonly Solution _solution;
-    public PivotIndexUnitTest()
-    {
-        _solution = new Solution();
-    }
     [Theory]
     [InlineData(new int[] { 1, 7, 3, 6, 5, 6 }, 3)]
     [InlineData(new int[] { 1, 2, 3 }, -1)]
@@ -19,7 +14,7 @@ public class PivotIndexUnitTest
     public void MultipleDataTest(int[] nums, int expect)
     {
 
-        var actual = _solution.PivotIndex(nums);
+        var actual = Solution.PivotIndex(nums);
         Assert.Equal(expect, actual);
     }
 }

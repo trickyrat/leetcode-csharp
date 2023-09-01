@@ -6,21 +6,13 @@ using Xunit;
 namespace LeetCodecsharp.Test.SolutionTests;
 public class GenerateTheStringUnitTest
 {
-    private readonly Solution _solution;
-
-    public GenerateTheStringUnitTest()
-    {
-        _solution = new Solution();
-    }
-
-
     [Theory]
     [InlineData(4, "aaab")]
     [InlineData(2, "ab")]
     [InlineData(3, "aaa")]
     public void MultipleDataTest(int input, string expected)
     {
-        var actual = _solution.GenerateTheString(input);
+        var actual = Solution.GenerateTheString(input);
         Assert.Equal(expected, actual);
     }
 }

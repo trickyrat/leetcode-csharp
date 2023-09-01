@@ -7,20 +7,13 @@ namespace LeetCodecsharp.Test.SolutionTests;
 
 public class FindLUSLengthUnitTest
 {
-    private readonly Solution _solution;
-
-    public FindLUSLengthUnitTest()
-    {
-        _solution = new Solution();
-    }
-
     [Theory]
     [InlineData("aba", "cdc", 3)]
     [InlineData("aaa", "bbb", 3)]
     [InlineData("aaa", "aaa", -1)]
     public void MultipleDataTest(string a, string b, int expected)
     {
-        var actual = _solution.FindLUSLength(a, b);
+        var actual = Solution.FindLUSLength(a, b);
         Assert.Equal(expected, actual);
     }
 }

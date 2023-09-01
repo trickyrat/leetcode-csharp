@@ -11,11 +11,6 @@ namespace LeetCodecsharp.Test.SolutionTests;
 
 public class FindTargetUnitTest
 {
-    private readonly Solution _solution;
-    public FindTargetUnitTest()
-    {
-        _solution = new Solution();
-    }
     public static IEnumerable<object[]> GetData()
     {
         yield return new object[]
@@ -38,7 +33,7 @@ public class FindTargetUnitTest
     public void Test(TreeNode root, int target, bool expected)
     {
 
-        var actual = _solution.FindTarget(root, target);
+        var actual = Solution.FindTarget(root, target);
         Assert.Equal(expected, actual);
     }
 }

@@ -10,13 +10,6 @@ using Xunit;
 namespace LeetCodecsharp.Test.SolutionTests;
 public class NumComponentsUnitTest
 {
-    private readonly Solution _solution;
-
-    public NumComponentsUnitTest()
-    {
-        _solution = new Solution();
-    }
-
     public static IEnumerable<object[]> GetData()
     {
         yield return new object[]
@@ -38,7 +31,7 @@ public class NumComponentsUnitTest
     [MemberData(nameof(GetData))]
     public void MultipleDataTest(ListNode head, int[] nums, int expected)
     {
-        var actual = _solution.NumComponents(head, nums);
+        var actual = Solution.NumComponents(head, nums);
         Assert.Equal(expected, actual);
     }
 

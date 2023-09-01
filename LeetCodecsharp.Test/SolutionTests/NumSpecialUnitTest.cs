@@ -8,13 +8,6 @@ using Xunit;
 namespace LeetCodecsharp.Test.SolutionTests;
 public class NumSpecialUnitTest
 {
-    private readonly Solution _solution;
-
-    public NumSpecialUnitTest()
-    {
-        _solution = new Solution();
-    }
-
     public static IEnumerable<object[]> GetData()
     {
         yield return new object[]
@@ -44,7 +37,7 @@ public class NumSpecialUnitTest
     [MemberData(nameof(GetData))]
     public void MultipleDataTest(int[][] mat, int expected)
     {
-        var actual = _solution.NumSpecial(mat);
+        var actual = Solution.NumSpecial(mat);
         Assert.Equal(expected, actual);
     }
 }

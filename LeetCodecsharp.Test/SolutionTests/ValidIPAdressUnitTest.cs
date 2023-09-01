@@ -8,13 +8,6 @@ namespace LeetCodecsharp.Test.SolutionTests;
 
 public class ValidIPAdressUnitTest
 {
-    private readonly Solution _solution;
-
-    public ValidIPAdressUnitTest()
-    {
-        _solution = new Solution();
-    }
-
     [Theory]
     [InlineData("172.16.254.1", "IPv4")]
     [InlineData("2001:0db8:85a3:0:0:8A2E:0370:7334", "IPv6")]
@@ -29,7 +22,7 @@ public class ValidIPAdressUnitTest
     [InlineData("0a:12:12:12::123:23:0A", "Neither")]
     public void Test(string address, string expected)
     {
-        var actual = _solution.ValidIPAddress(address);
+        var actual = Solution.ValidIPAddress(address);
         Assert.Equal(expected, actual);
     }
 

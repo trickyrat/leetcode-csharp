@@ -9,11 +9,6 @@ namespace LeetCodecsharp.Test.SolutionTests;
 
 public class OrangeRottingUnitTest
 {
-    private readonly Solution _solution;
-    public OrangeRottingUnitTest()
-    {
-        _solution = new Solution();
-    }
     public static IEnumerable<object[]> GetData()
     {
         yield return new object[]
@@ -41,7 +36,7 @@ public class OrangeRottingUnitTest
     public void Test(int[][] grid, int expected)
     {
 
-        var actual = _solution.OrangeRotting(grid);
+        var actual = Solution.OrangeRotting(grid);
         Assert.Equal(expected, actual);
     }
 }

@@ -9,13 +9,6 @@ namespace LeetCodecsharp.Test.SolutionTests;
 
 public class MaxIncreaseKeepingSkylineUnitTest
 {
-    private readonly Solution _solution;
-
-    public MaxIncreaseKeepingSkylineUnitTest()
-    {
-        _solution = new Solution();
-    }
-
     public static IEnumerable<object[]> GetData()
     {
         yield return new object[]
@@ -35,7 +28,7 @@ public class MaxIncreaseKeepingSkylineUnitTest
     [MemberData(nameof(GetData))]
     public void Test(int[][] grid, int expected)
     {
-        var actual = _solution.MaxIncreaseKeepingSkyline(grid);
+        var actual = Solution.MaxIncreaseKeepingSkyline(grid);
         Assert.Equal(expected, actual);
     }
 }

@@ -7,13 +7,6 @@ namespace LeetCodecsharp.Test.SolutionTests;
 
 public class IsMatchUnitTest
 {
-    private readonly Solution _solution;
-
-    public IsMatchUnitTest()
-    {
-        _solution = new Solution();
-    }
-
     [Theory]
     [InlineData("aa", "a", false)]
     [InlineData("aa", "a*", true)]
@@ -21,7 +14,7 @@ public class IsMatchUnitTest
     public void MultipleDataTest(string s, string p, bool expected)
     {
 
-        var actual = _solution.IsMatch(s, p);
+        var actual = Solution.IsMatch(s, p);
         Assert.Equal(expected, actual);
     }
 }

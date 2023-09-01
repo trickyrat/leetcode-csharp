@@ -10,13 +10,6 @@ using Xunit;
 namespace LeetCodecsharp.Test.SolutionTests;
 public class FindDuplicateSubtreesUnitTest
 {
-    private readonly Solution _solution;
-
-    public FindDuplicateSubtreesUnitTest()
-    {
-        _solution = new Solution();
-    }
-
     public static IEnumerable<object[]> GetData()
     {
         yield return new object[]
@@ -53,7 +46,7 @@ public class FindDuplicateSubtreesUnitTest
     [MemberData(nameof(GetData))]
     public void MultipleDataTest(TreeNode root, IList<TreeNode> expected)
     {
-        var actual = _solution.FindDuplicateSubtrees(root);
+        var actual = Solution.FindDuplicateSubtrees(root);
         Assert.Equal(expected, actual, new TreeNodeComparer());
     }
 

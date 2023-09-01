@@ -10,13 +10,6 @@ using Xunit;
 namespace LeetCodecsharp.Test.SolutionTests;
 public class RotateRightUnitTest
 {
-    private readonly Solution _solution;
-
-    public RotateRightUnitTest()
-    {
-        _solution = new Solution();
-    }
-
     public static IEnumerable<object[]> GetData()
     {
         yield return new object[]
@@ -31,7 +24,7 @@ public class RotateRightUnitTest
     [MemberData(nameof(GetData))]
     public void MultipleDataTest(ListNode head, int k, ListNode expected)
     {
-        var actual = _solution.RotateRight(head, k);
+        var actual = Solution.RotateRight(head, k);
         Assert.Equal(expected, actual, new ListNodeComparer());
     }
 }

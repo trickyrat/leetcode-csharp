@@ -7,20 +7,13 @@ namespace LeetCodecsharp.Test.SolutionTests;
 
 public class FindSubstringInWraparoundStringUnitTest
 {
-    private readonly Solution _solution;
-
-    public FindSubstringInWraparoundStringUnitTest()
-    {
-        _solution = new Solution();
-    }
-
     [Theory]
     [InlineData("a", 1)]
     [InlineData("cac", 2)]
     [InlineData("zab", 6)]
     public void Test(string p, int expected)
     {
-        var actual = _solution.FindSubstringInWraparoundString(p);
+        var actual = Solution.FindSubstringInWraparoundString(p);
         Assert.Equal(expected, actual);
     }
 }

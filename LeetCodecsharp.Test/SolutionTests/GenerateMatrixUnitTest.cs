@@ -8,13 +8,6 @@ using Xunit;
 namespace LeetCodecsharp.Test.SolutionTests;
 public class GenerateMatrixUnitTest
 {
-    private readonly Solution _solution;
-
-    public GenerateMatrixUnitTest()
-    {
-        _solution = new Solution();
-    }
-
     public static IEnumerable<object[]> GetData()
     {
         yield return new object[]
@@ -41,7 +34,7 @@ public class GenerateMatrixUnitTest
     [MemberData(nameof(GetData))]
     public void MultipleDataTest(int n, int[][] expected)
     {
-        var actual = _solution.GenerateMatrix(n);
+        var actual = Solution.GenerateMatrix(n);
         Assert.Equal(expected, actual);
     }
 

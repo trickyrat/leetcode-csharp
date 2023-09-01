@@ -8,13 +8,6 @@ using Xunit;
 namespace LeetCodecsharp.Test.SolutionTests;
 public class PermuteUnitTest
 {
-    private readonly Solution _solution;
-
-    public PermuteUnitTest()
-    {
-        _solution = new Solution();
-    }
-
     public static IEnumerable<object[]> GetData()
     {
         yield return new object[]
@@ -55,7 +48,7 @@ public class PermuteUnitTest
     [MemberData(nameof(GetData))]
     public void MultipleDataTest(int[] nums, IList<IList<int>> expected)
     {
-        var actual = _solution.Permute(nums);
+        var actual = Solution.Permute(nums);
         Assert.Equal(expected, actual);
     }
 }

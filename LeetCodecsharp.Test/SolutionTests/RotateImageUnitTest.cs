@@ -45,18 +45,12 @@ public class RotateImageUnitTest
         };
     }
 
-    private readonly Solution _solution;
-
-    public RotateImageUnitTest()
-    {
-        _solution = new Solution();
-    }
 
     [Theory]
     [MemberData(nameof(GetData))]
     public void MultipleDataTest(int[][] nums, int[][] expected)
     {
-        _solution.Rotate(nums);
+        Solution.Rotate(nums);
         Assert.Equal(expected, nums);
     }
 }

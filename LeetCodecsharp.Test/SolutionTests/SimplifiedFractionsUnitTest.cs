@@ -9,18 +9,12 @@ namespace LeetCodecsharp.Test.SolutionTests;
 
 public class SimplifiedFractionsUnitTest
 {
-    private readonly Solution _solution;
-    public SimplifiedFractionsUnitTest()
-    {
-        _solution = new Solution();
-
-    }
     [Theory]
     [InlineData(2, new string[] { "1/2" })]
     public void Test(int n, string[] expected)
     {
 
-        var list = _solution.SimplifiedFractions(n);
+        var list = Solution.SimplifiedFractions(n);
         var actual = list.ToArray();
         Assert.Equal(expected, actual);
     }

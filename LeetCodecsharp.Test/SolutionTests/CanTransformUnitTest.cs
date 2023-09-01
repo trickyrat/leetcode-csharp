@@ -6,19 +6,12 @@ using Xunit;
 namespace LeetCodecsharp.Test.SolutionTests;
 public class CanTransformUnitTest
 {
-    private readonly Solution _solution;
-
-    public CanTransformUnitTest()
-    {
-        _solution = new Solution();
-    }
-
     [Theory]
     [InlineData("RXXLRXRXL", "XRLXXRRLX", true)]
     [InlineData("R", "L", false)]
     public void MultipleDataTest(string start, string end, bool expected)
     {
-        var actual = _solution.CanTransform(start, end);
+        var actual = Solution.CanTransform(start, end);
         Assert.Equal(expected, actual);
     }
 }

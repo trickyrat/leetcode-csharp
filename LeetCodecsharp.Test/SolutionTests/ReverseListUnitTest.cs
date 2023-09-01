@@ -11,11 +11,6 @@ namespace LeetCodecsharp.Test.SolutionTests;
 
 public class ReverseListUnitTest
 {
-    private readonly Solution _solution;
-    public ReverseListUnitTest()
-    {
-        _solution = new Solution();
-    }
     public static IEnumerable<object[]> GetNodes()
     {
         yield return new object[]
@@ -40,7 +35,7 @@ public class ReverseListUnitTest
     [MemberData(nameof(GetNodes))]
     public void Test(ListNode head, ListNode expectedNode)
     {
-        var actualNode = _solution.ReverseList(head);
+        var actualNode = Solution.ReverseList(head);
         var actual = actualNode?.ToString();
         var expected = expectedNode?.ToString();
         Assert.Equal(expected, actual);

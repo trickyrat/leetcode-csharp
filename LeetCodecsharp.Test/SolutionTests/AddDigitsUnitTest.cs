@@ -7,15 +7,13 @@ namespace LeetCodecsharp.Test.SolutionTests;
 
 public class AddDigitsUnitTest
 {
-    private readonly Solution _solution = new();
-
     [Theory]
     [InlineData(38, 2)]
     [InlineData(0, 0)]
     [InlineData(int.MaxValue, 1)]
     public void MultipleDataTest(int input, int expected)
     {
-        var actual = _solution.AddDigits(input);
+        var actual = Solution.AddDigits(input);
         Assert.Equal(expected, actual);
     }
 }

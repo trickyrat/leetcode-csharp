@@ -6,13 +6,8 @@ using Xunit;
 namespace LeetCodecsharp.Test.SolutionTests;
 public class StockSpannerUnitTest
 {
-    private readonly StockSpanner _stockSpanner;
-
-    public StockSpannerUnitTest()
-    {
-        _stockSpanner = new StockSpanner();
-    }
-
+    private readonly StockSpanner _stockSpanner = new();
+    
     [Fact]
     public void MultipleDataTest()
     {

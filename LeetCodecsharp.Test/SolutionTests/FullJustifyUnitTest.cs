@@ -9,11 +9,6 @@ namespace LeetCodecsharp.Test.SolutionTests;
 
 public class FullJustifyUnitTest
 {
-    private readonly Solution _solution;
-    public FullJustifyUnitTest()
-    {
-        _solution = new Solution();
-    }
     [Fact]
     public void FullJustifyTest1()
     {
@@ -26,7 +21,7 @@ public class FullJustifyUnitTest
                                                     "everything  else  we",
                                                     "do                  "};
         var maxWidth = 20;
-        var actual = _solution.FullJustify(words, maxWidth);
+        var actual = Solution.FullJustify(words, maxWidth);
         Assert.Equal(expected, actual);
     }
 }

@@ -7,18 +7,12 @@ namespace LeetCodecsharp.Test.SolutionTests;
 
 public class LetterCasePermutationUnitTest
 {
-    private readonly Solution _solution;
-    public LetterCasePermutationUnitTest()
-    {
-        _solution = new Solution();
-    }
-
     [Theory]
     [InlineData("a1b2", new string[] { "a1b2", "A1b2", "a1B2", "A1B2" })]
     [InlineData("3z4", new string[] { "3z4", "3Z4" })]
     public void Test(string input, string[] expected)
     {
-        var actual = _solution.LetterCasePermutation(input);
+        var actual = Solution.LetterCasePermutation(input);
         Assert.Equal(expected, actual);
     }
 }

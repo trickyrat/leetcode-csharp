@@ -7,12 +7,6 @@ namespace LeetCodecsharp.Test.SolutionTests;
 
 public class BackspaceCompareUnitTest
 {
-    private readonly Solution _solution;
-    public BackspaceCompareUnitTest()
-    {
-        _solution = new Solution();
-    }
-
     [Theory]
     [InlineData("ab#c", "ad#c", true)]
     [InlineData("ab##", "c#d#", true)]
@@ -20,7 +14,7 @@ public class BackspaceCompareUnitTest
     [InlineData("a#c", "b", false)]
     public void Test(string s, string t, bool expected)
     {
-        var actual = _solution.BackspaceCompare(s, t);
+        var actual = Solution.BackspaceCompare(s, t);
         Assert.Equal(expected, actual);
     }
 }

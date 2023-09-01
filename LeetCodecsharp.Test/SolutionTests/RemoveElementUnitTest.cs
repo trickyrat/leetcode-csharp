@@ -7,20 +7,12 @@ namespace LeetCodecsharp.Test.SolutionTests;
 
 public class RemoveElementUnitTest
 {
-    private readonly Solution _solution;
-
-    public RemoveElementUnitTest()
-    {
-        _solution = new Solution();
-    }
-
-
     [Theory]
     [InlineData(new int[] { 3, 2, 2, 3 }, 3, 2)]
     [InlineData(new int[] { 0, 1, 2, 2, 3, 0, 4, 2 }, 2, 5)]
     public void MultipleDataTest(int[] nums, int value, int expected)
     {
-        var actual = _solution.RemoveElement(nums, value);
+        var actual = Solution.RemoveElement(nums, value);
         Assert.Equal(expected, actual);
     }
 }

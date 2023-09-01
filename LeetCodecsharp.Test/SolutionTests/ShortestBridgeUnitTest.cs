@@ -8,13 +8,6 @@ using Xunit;
 namespace LeetCodecsharp.Test.SolutionTests;
 public class ShortestBridgeUnitTest
 {
-    private readonly Solution _solution;
-
-    public ShortestBridgeUnitTest()
-    {
-        _solution = new Solution();
-    }
-
     public static IEnumerable<object[]> GetData()
     {
         yield return new object[]
@@ -54,7 +47,7 @@ public class ShortestBridgeUnitTest
     [MemberData(nameof(GetData))]
     public void MultipleDataTest(int[][] grid, int expected)
     {
-        var actual = _solution.ShortestBridge(grid);
+        var actual = Solution.ShortestBridge(grid);
         Assert.Equal(expected, actual);
     }
 

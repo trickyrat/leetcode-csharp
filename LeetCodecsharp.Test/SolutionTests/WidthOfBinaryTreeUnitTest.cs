@@ -10,13 +10,6 @@ using Xunit;
 namespace LeetCodecsharp.Test.SolutionTests;
 public class WidthOfBinaryTreeUnitTest
 {
-    private readonly Solution _solution;
-
-    public WidthOfBinaryTreeUnitTest()
-    {
-        _solution = new Solution();
-    }
-
     public static IEnumerable<object[]> GetData()
     {
         yield return new object[]
@@ -40,7 +33,7 @@ public class WidthOfBinaryTreeUnitTest
     [MemberData(nameof(GetData))]
     public void MultipleDataTest(TreeNode root, int expected)
     {
-        var actual = _solution.WidthOfBinaryTree(root);
+        var actual = Solution.WidthOfBinaryTree(root);
         Assert.Equal(expected, actual);
     }
 }

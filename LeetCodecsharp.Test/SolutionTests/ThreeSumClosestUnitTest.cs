@@ -7,18 +7,13 @@ namespace LeetCodecsharp.Test.SolutionTests;
 
 public class ThreeSumClosestUnitTest
 {
-    private readonly Solution _solution;
-    public ThreeSumClosestUnitTest()
-    {
-        _solution = new Solution();
-    }
     [Theory]
     [InlineData(new int[] { -1, 2, 1, -4 }, 1, 2)]
     [InlineData(new int[] { 0, 0, 0 }, 1, 0)]
     public void MultipleDataTest(int[] nums, int target, int expected)
     {
 
-        var actual = _solution.ThreeSumClosest(nums, target);
+        var actual = Solution.ThreeSumClosest(nums, target);
         Assert.Equal(expected, actual);
     }
 

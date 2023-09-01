@@ -27,19 +27,12 @@ public class GetAllElementsUnitTest
         };
     }
 
-    private readonly Solution _solution;
-
-    public GetAllElementsUnitTest()
-    {
-        _solution = new Solution();
-    }
-
 
     [Theory]
     [MemberData(nameof(GetData))]
     public void MultipleDataTest(TreeNode root1, TreeNode root2, IList<int> expected)
     {
-        var actual = _solution.GetAllElements(root1, root2);
+        var actual = Solution.GetAllElements(root1, root2);
         Assert.Equal(expected, expected);
     }
 }

@@ -11,11 +11,6 @@ namespace LeetCodecsharp.Test.SolutionTests;
 
 public class MergeTwoListsUnitTest
 {
-    private readonly Solution _solution;
-    public MergeTwoListsUnitTest()
-    {
-        _solution = new Solution();
-    }
     public static IEnumerable<object[]> GetData()
     {
         yield return new object[]
@@ -44,7 +39,7 @@ public class MergeTwoListsUnitTest
     public void Test(ListNode l1, ListNode l2, List<int> expected)
     {
 
-        var actualNode = _solution.MergeTwoLists(l1, l2);
+        var actualNode = Solution.MergeTwoLists(l1, l2);
         var actual = Util.ConvertListNodeToList(actualNode);
         Assert.Equal(expected, actual);
     }

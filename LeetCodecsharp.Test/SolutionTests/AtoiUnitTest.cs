@@ -7,18 +7,13 @@ namespace LeetCodecsharp.Test.SolutionTests;
 
 public class AtoiUnitTest
 {
-    private readonly Solution _solution;
-    public AtoiUnitTest()
-    {
-        _solution = new Solution();
-    }
     [Theory]
     [InlineData("42", 42)]
     [InlineData("   -42", -42)]
     [InlineData("4193 with words", 4193)]
     public void MultipleDataTest(string input, int expected)
     {
-        var actual = _solution.Atoi(input);
+        var actual = Solution.Atoi(input);
         Assert.Equal(expected, actual);
     }
 }

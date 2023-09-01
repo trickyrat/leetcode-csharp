@@ -8,20 +8,12 @@ using Xunit;
 namespace LeetCodecsharp.Test.SolutionTests;
 public class FindClosestElementsUnitTest
 {
-    private readonly Solution _solution;
-
-    public FindClosestElementsUnitTest()
-    {
-        _solution = new Solution();
-    }
-
-
     [Theory]
     [InlineData(new int[] { 1, 2, 3, 4, 5 }, 4, 3, new int[] { 1, 2, 3, 4 })]
     [InlineData(new int[] { 1, 2, 3, 4, 5 }, 4, -1, new int[] { 1, 2, 3, 4 })]
     public void MultipleDataTest(int[] arr, int k, int x, IList<int> expected)
     {
-        var actual = _solution.FindClosestElements(arr, k, x);
+        var actual = Solution.FindClosestElements(arr, k, x);
         Assert.Equal(expected, actual);
     }
 }

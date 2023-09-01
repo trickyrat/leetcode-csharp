@@ -8,13 +8,6 @@ using Xunit;
 namespace LeetCodecsharp.Test.SolutionTests;
 public class SpiralOrderUnitTest
 {
-    private readonly Solution _solution;
-
-    public SpiralOrderUnitTest()
-    {
-        _solution = new Solution();
-    }
-
     public static IEnumerable<object[]> GetData()
     {
         yield return new object[]
@@ -43,7 +36,7 @@ public class SpiralOrderUnitTest
     [MemberData(nameof(GetData))]
     public void MultipleDataTest(int[][] matrix, IList<int> expected)
     {
-        var actual = _solution.SpiralOrder(matrix);
+        var actual = Solution.SpiralOrder(matrix);
         Assert.Equal(expected, actual);
     }
 

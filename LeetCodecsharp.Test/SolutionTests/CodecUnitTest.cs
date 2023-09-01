@@ -25,12 +25,8 @@ public class CodecUnitTest
        };
     }
 
-    private readonly Codec _codec;
-
-    public CodecUnitTest()
-    {
-        _codec = new Codec();
-    }
+    private readonly Codec _codec = new();
+    
 
     [Theory]
     [MemberData(nameof(GetData))]

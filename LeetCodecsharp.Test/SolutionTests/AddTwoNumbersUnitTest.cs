@@ -11,11 +11,6 @@ namespace LeetCodecsharp.Test.SolutionTests;
 
 public class AddTwoNumbersUnitTest
 {
-    private readonly Solution _solution;
-    public AddTwoNumbersUnitTest()
-    {
-        _solution = new Solution();
-    }
     public static IEnumerable<object[]> GetData()
     {
         yield return new object[]
@@ -42,7 +37,7 @@ public class AddTwoNumbersUnitTest
     [MemberData(nameof(GetData))]
     public void Test(ListNode l1, ListNode l2, ListNode expected)
     {
-        var actual = _solution.AddTwoNumbers(l1, l2);
+        var actual = Solution.AddTwoNumbers(l1, l2);
         Assert.Equal(expected, actual, new ListNodeComparer());
     }
 }

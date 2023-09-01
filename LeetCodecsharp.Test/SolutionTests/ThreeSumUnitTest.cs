@@ -9,12 +9,6 @@ namespace LeetCodecsharp.Test.SolutionTests;
 
 public class ThreeSumUnitTest
 {
-    private readonly Solution _solution;
-
-    public ThreeSumUnitTest()
-    {
-        _solution = new Solution();
-    }
     public static IEnumerable<object[]> GetData()
     {
         yield return new object[]
@@ -46,7 +40,7 @@ public class ThreeSumUnitTest
     public void MultipleDataTest(int[] nums, IList<IList<int>> expected)
     {
 
-        var actual = _solution.ThreeSum(nums);
+        var actual = Solution.ThreeSum(nums);
         Assert.Equal(expected, actual);
     }
 }

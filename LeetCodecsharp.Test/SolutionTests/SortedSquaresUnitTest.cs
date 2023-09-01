@@ -7,11 +7,6 @@ namespace LeetCodecsharp.Test.SolutionTests;
 
 public class SortedSquaresUnitTest
 {
-    private readonly Solution _solution;
-    public SortedSquaresUnitTest()
-    {
-        _solution = new Solution();
-    }
     [Theory]
     [InlineData(new int[] { -4, -1, 0, 3, 10 }, new int[] { 0, 1, 9, 16, 100 })]
     [InlineData(new int[] { 0, 3, 4, 6, 10 }, new int[] { 0, 9, 16, 36, 100 })]
@@ -20,7 +15,7 @@ public class SortedSquaresUnitTest
     public void Test_Should_Ok(int[] nums, int[] expected)
     {
 
-        var actual = _solution.SortedSquares(nums);
+        var actual = Solution.SortedSquares(nums);
         Assert.Equal(expected, actual);
     }
 }

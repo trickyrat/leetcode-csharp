@@ -9,13 +9,6 @@ namespace LeetCodecsharp.Test.SolutionTests;
 
 public class FindDiagonalOrderUnitTest
 {
-    private readonly Solution _solution;
-
-    public FindDiagonalOrderUnitTest()
-    {
-        _solution = new Solution();
-    }
-
     public static IEnumerable<object[]> GetData()
     {
         yield return new object[]
@@ -43,7 +36,7 @@ public class FindDiagonalOrderUnitTest
     [MemberData(nameof(GetData))]
     public void MultipleDataTest(int[][] matrix, int[] expected)
     {
-        var actual = _solution.FindDiagonalOrder(matrix);
+        var actual = Solution.FindDiagonalOrder(matrix);
         Assert.Equal(expected, actual);
     }
 }

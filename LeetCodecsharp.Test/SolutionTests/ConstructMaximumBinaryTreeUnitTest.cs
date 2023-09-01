@@ -10,13 +10,6 @@ using Xunit;
 namespace LeetCodecsharp.Test.SolutionTests;
 public class ConstructMaximumBinaryTreeUnitTest
 {
-    private readonly Solution _solution;
-
-    public ConstructMaximumBinaryTreeUnitTest()
-    {
-        _solution = new Solution();
-    }
-
     public static IEnumerable<object[]> GetData()
     {
         yield return new object[]
@@ -35,7 +28,7 @@ public class ConstructMaximumBinaryTreeUnitTest
     [MemberData(nameof(GetData))]
     public void MultipleDataTest(int[] nums, TreeNode expected)
     {
-        var actual = _solution.ConstructMaximumBinaryTree(nums);
+        var actual = Solution.ConstructMaximumBinaryTree(nums);
         Assert.Equal(expected, actual, new TreeNodeComparer());
     }
 }
