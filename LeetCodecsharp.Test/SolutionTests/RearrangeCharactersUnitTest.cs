@@ -20,7 +20,7 @@ namespace LeetCodecsharp.Test.SolutionTests
         [InlineData("abbaccaddaeea", "aaaaa", 1)]
         public void MultipleDataTest(string s, string target, int expected)
         {
-            var actual = _solution.RearrageCharacters(s, target);
+            var actual = _solution.RearrangeCharacters(s, target);
             Assert.Equal(expected, actual);
         }
     }

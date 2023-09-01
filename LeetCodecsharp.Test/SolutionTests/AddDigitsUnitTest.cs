@@ -7,11 +7,7 @@ namespace LeetCodecsharp.Test.SolutionTests;
 
 public class AddDigitsUnitTest
 {
-    private readonly Solution _solution;
-    public AddDigitsUnitTest()
-    {
-        _solution = new Solution();
-    }
+    private readonly Solution _solution = new();
 
     [Theory]
     [InlineData(38, 2)]
