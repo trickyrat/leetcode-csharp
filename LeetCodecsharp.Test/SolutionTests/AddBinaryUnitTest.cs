@@ -4,11 +4,7 @@ namespace LeetCodecsharp.Test.SolutionTests;
 
 public class AddBinaryUnitTest
 {
-    private readonly Solution _solution;
-    public AddBinaryUnitTest()
-    {
-        _solution = new Solution();
-    }
+    private readonly Solution _solution = new();
 
     [Theory]
     [InlineData("11", "1", "100")]

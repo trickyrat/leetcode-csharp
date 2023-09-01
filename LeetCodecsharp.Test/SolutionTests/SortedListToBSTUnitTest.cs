@@ -18,7 +18,7 @@ public class SortedListToBSTUnitTest
     public void Test()
     {
 
-        var actualNode = _solution.SortedArrayToBST(new int[] { -10, -3, 0, 5, 9 });
+        var actualNode = _solution.SortedArrayToBst(new int[] { -10, -3, 0, 5, 9 });
         var expectedNode = Util.CreateTreeNode(new List<int?> { 0, -10, 5, null, -3, null, 9 });
         var actual = Util.PreorderTraversal(actualNode);
         var expected = Util.PreorderTraversal(expectedNode);

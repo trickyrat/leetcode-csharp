@@ -20,7 +20,7 @@ public class PreimageSizeFZFUnitTest
     [InlineData(3, 5)]
     public void MultipleDataTest(int k, int expected)
     {
-        var actual = _solution.PreimageSizeFZF(k);
+        var actual = _solution.PreimageSizeFzf(k);
         Assert.Equal(expected, actual);
     }
 }

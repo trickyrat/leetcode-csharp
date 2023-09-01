@@ -40,7 +40,7 @@ public class TrimBSTUnitTest
     [MemberData(nameof(GetData))]
     public void MultipleDataTest(TreeNode root, int low, int high, TreeNode expected)
     {
-        var actual = _solution.TrimBST(root, low, high);
+        var actual = _solution.TrimBst(root, low, high);
         Assert.Equal(expected, actual, new TreeNodeComparer());
     }
 
