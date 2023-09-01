@@ -10,13 +10,6 @@ using Xunit;
 namespace LeetCodecsharp.Test.SolutionTests;
 public class InsertIntoMaxTreeUnitTest
 {
-    private readonly Solution _solution;
-
-    public InsertIntoMaxTreeUnitTest()
-    {
-        _solution = new Solution();
-    }
-
     public static IEnumerable<object[]> GetData()
     {
         yield return new object[]
@@ -43,7 +36,7 @@ public class InsertIntoMaxTreeUnitTest
     [MemberData(nameof(GetData))]
     public void MultipleDataTest(TreeNode root, int val, TreeNode expected)
     {
-        var actual = _solution.InsertIntoMaxTree(root, val);
+        var actual = Solution.InsertIntoMaxTree(root, val);
         Assert.Equal(expected, actual, new TreeNodeComparer());
     }
 

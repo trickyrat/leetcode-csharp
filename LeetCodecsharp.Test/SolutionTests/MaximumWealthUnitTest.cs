@@ -9,11 +9,6 @@ namespace LeetCodecsharp.Test.SolutionTests;
 
 public class MaximumWealthUnitTest
 {
-    private readonly Solution _solution;
-    public MaximumWealthUnitTest()
-    {
-        _solution = new Solution();
-    }
     public static IEnumerable<object[]> GetData()
     {
         yield return new object[]
@@ -52,7 +47,7 @@ public class MaximumWealthUnitTest
     public void MultipleDataTest(int[][] accounts, int expected)
     {
 
-        var actual = _solution.MaximumWealth(accounts);
+        var actual = Solution.MaximumWealth(accounts);
         Assert.Equal(expected, actual);
     }
 }

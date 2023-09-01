@@ -8,20 +8,13 @@ using Xunit;
 namespace LeetCodecsharp.Test.SolutionTests;
 public class MinSubsequenceUnitTest
 {
-    private readonly Solution _solution;
-
-    public MinSubsequenceUnitTest()
-    {
-        _solution = new Solution();
-    }
-
     [Theory]
     [InlineData(new int[] { 4, 3, 10, 9, 8 }, new int[] { 10, 9 })]
     [InlineData(new int[] { 4, 4, 7, 6, 7 }, new int[] { 7, 7, 6 })]
     [InlineData(new int[] { 6 }, new int[] { 6 })]
     public void MultipleDataTest(int[] input, IList<int> expected)
     {
-        var actual = _solution.MinSubsequence(input);
+        var actual = Solution.MinSubsequence(input);
         Assert.Equal(expected, actual);
     }
 }

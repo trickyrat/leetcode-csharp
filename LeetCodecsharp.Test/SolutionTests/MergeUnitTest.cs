@@ -9,11 +9,6 @@ namespace LeetCodecsharp.Test.SolutionTests;
 
 public class MergeUnitTest
 {
-    private readonly Solution _solution;
-    public MergeUnitTest()
-    {
-        _solution = new Solution();
-    }
     public static IEnumerable<object[]> GetData()
     {
         yield return new object[]
@@ -51,7 +46,7 @@ public class MergeUnitTest
     public void MultipleDataTest(int[][] input, int[][] expected)
     {
 
-        var actual = _solution.Merge(input);
+        var actual = Solution.Merge(input);
         Assert.Equal(expected, actual);
     }
 }

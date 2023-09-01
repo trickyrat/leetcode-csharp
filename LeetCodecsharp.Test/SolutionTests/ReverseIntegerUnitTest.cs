@@ -7,12 +7,6 @@ namespace LeetCodecsharp.Test.SolutionTests;
 
 public class ReverseIntegerUnitTest
 {
-    private readonly Solution _solution;
-    public ReverseIntegerUnitTest()
-    {
-        _solution = new Solution();
-    }
-
     [Theory]
     [InlineData(123, 321)]
     [InlineData(-123, -321)]
@@ -21,7 +15,7 @@ public class ReverseIntegerUnitTest
     public void MultipleDataTest(int input, int expected)
     {
 
-        var actual = _solution.Reverse(input);
+        var actual = Solution.ReverseInteger(input);
         Assert.Equal(expected, actual);
     }
 }

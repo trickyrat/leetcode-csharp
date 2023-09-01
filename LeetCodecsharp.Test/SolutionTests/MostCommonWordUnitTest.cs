@@ -7,19 +7,12 @@ namespace LeetCodecsharp.Test.SolutionTests;
 
 public class MostCommonWordUnitTest
 {
-    private readonly Solution _solution;
-
-    public MostCommonWordUnitTest()
-    {
-        _solution = new Solution();
-    }
-
     [Theory]
     [InlineData("Bob hit a ball, the hit BALL flew far after it was hit.", new string[] { "hit" }, "ball")]
     public void Test(string paragraph, string[] banned, string expected)
     {
 
-        var actual = _solution.MostCommonWord(paragraph, banned);
+        var actual = Solution.MostCommonWord(paragraph, banned);
         Assert.Equal(expected, actual);
     }
 

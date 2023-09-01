@@ -11,13 +11,6 @@ namespace LeetCodecsharp.Test.SolutionTests;
 
 public class ReverseKGroupUnitTest
 {
-    private readonly Solution _solution;
-
-    public ReverseKGroupUnitTest()
-    {
-        _solution = new Solution();
-    }
-
     public static IEnumerable<object[]> GetData()
     {
         yield return new object[]
@@ -39,7 +32,7 @@ public class ReverseKGroupUnitTest
     [MemberData(nameof(GetData))]
     public void MultipleDataTest(ListNode head, int k, ListNode expected)
     {
-        var actual = _solution.ReverseKGroup(head, k);
+        var actual = Solution.ReverseKGroup(head, k);
         Assert.Equal(expected, actual, new ListNodeComparer());
     }
 }

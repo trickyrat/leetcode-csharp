@@ -9,11 +9,6 @@ namespace LeetCodecsharp.Test.SolutionTests;
 
 public class SearchMatrixUnitTest
 {
-    private readonly Solution _solution;
-    public SearchMatrixUnitTest()
-    {
-        _solution = new Solution();
-    }
     public static IEnumerable<object[]> GetData()
     {
         yield return new object[]
@@ -45,7 +40,7 @@ public class SearchMatrixUnitTest
     public void Test(int[][] matrix, int target, bool expected)
     {
 
-        var actual = _solution.SearchMatrix(matrix, target);
+        var actual = Solution.SearchMatrix(matrix, target);
         Assert.Equal(expected, actual);
     }
 }

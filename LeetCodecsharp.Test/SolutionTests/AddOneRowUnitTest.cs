@@ -10,13 +10,6 @@ using Xunit;
 namespace LeetCodecsharp.Test.SolutionTests;
 public class AddOneRowUnitTest
 {
-    private readonly Solution _solution;
-
-    public AddOneRowUnitTest()
-    {
-        _solution = new Solution();
-    }
-
     public static IEnumerable<object[]> GetData()
     {
         yield return new object[]
@@ -39,7 +32,7 @@ public class AddOneRowUnitTest
     [MemberData(nameof(GetData))]
     public void MultipleDataTest(TreeNode root, int val, int depth, TreeNode expectedNode)
     {
-        var actualNode = _solution.AddOneRow(root, val, depth);
+        var actualNode = Solution.AddOneRow(root, val, depth);
         var actual = Util.PreorderTraversal(actualNode);
         var expected = Util.PreorderTraversal(expectedNode);
         Assert.Equal(expected, actual);

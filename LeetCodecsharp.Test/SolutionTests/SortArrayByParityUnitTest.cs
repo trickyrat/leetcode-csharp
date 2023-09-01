@@ -7,20 +7,12 @@ namespace LeetCodecsharp.Test.SolutionTests;
 
 public class SortArrayByParityUnitTest
 {
-    private readonly Solution _solution;
-
-    public SortArrayByParityUnitTest()
-    {
-        _solution = new Solution();
-    }
-
-
     [Theory]
     [InlineData(new int[] { 3, 1, 2, 4 }, new int[] { 4, 2, 1, 3 })]
     [InlineData(new int[] { 0 }, new int[] { 0 })]
     public void MultipleDataTest(int[] nums, int[] expected)
     {
-        var actual = _solution.SortArrayByParity(nums);
+        var actual = Solution.SortArrayByParity(nums);
         Assert.Equal(expected, actual);
     }
 }

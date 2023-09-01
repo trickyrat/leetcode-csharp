@@ -9,12 +9,6 @@ namespace LeetCodecsharp.Test.SolutionTests;
 
 public class FindCenterUnitTest
 {
-    private readonly Solution _solution;
-
-    public FindCenterUnitTest()
-    {
-        _solution = new Solution();
-    }
     public static IEnumerable<object[]> GetEdges()
     {
         yield return new object[]
@@ -44,7 +38,7 @@ public class FindCenterUnitTest
     [MemberData(nameof(GetEdges))]
     public void Test((int[][] edges, int expected) input)
     {
-        var actual = _solution.FindCenter(input.edges);
+        var actual = Solution.FindCenter(input.edges);
         Assert.Equal(input.expected, actual);
     }
 }

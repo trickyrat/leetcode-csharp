@@ -9,11 +9,6 @@ namespace LeetCodecsharp.Test.SolutionTests;
 
 public class FloodFillUnitTest
 {
-    private readonly Solution _solution;
-    public FloodFillUnitTest()
-    {
-        _solution = new Solution();
-    }
     public static IEnumerable<object[]> GetData()
     {
         yield return new object[]
@@ -58,7 +53,7 @@ public class FloodFillUnitTest
     public void Test(int[][] input, int sr, int sc, int newColor, int[][] expected)
     {
 
-        var actual = _solution.FloodFill(input, sr, sc, newColor);
+        var actual = Solution.FloodFill(input, sr, sc, newColor);
         Assert.Equal(expected, actual);
     }
 }

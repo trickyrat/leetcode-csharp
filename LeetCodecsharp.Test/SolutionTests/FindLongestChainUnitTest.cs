@@ -8,13 +8,6 @@ using Xunit;
 namespace LeetCodecsharp.Test.SolutionTests;
 public class FindLongestChainUnitTest
 {
-    private readonly Solution _solution;
-
-    public FindLongestChainUnitTest()
-    {
-        _solution = new Solution();
-    }
-
     public static IEnumerable<object[]> GetData()
     {
         yield return new object[]
@@ -43,7 +36,7 @@ public class FindLongestChainUnitTest
     [MemberData(nameof(GetData))]
     public void MultipleDataTest(int[][] pairs, int expected)
     {
-        var actual = _solution.FindLongestChain(pairs);
+        var actual = Solution.FindLongestChain(pairs);
         Assert.Equal(expected, actual);
     }
 

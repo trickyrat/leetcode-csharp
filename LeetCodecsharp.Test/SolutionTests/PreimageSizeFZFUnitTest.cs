@@ -6,21 +6,13 @@ using Xunit;
 namespace LeetCodecsharp.Test.SolutionTests;
 public class PreimageSizeFZFUnitTest
 {
-    private readonly Solution _solution;
-
-    public PreimageSizeFZFUnitTest()
-    {
-        _solution = new Solution();
-    }
-
-
     [Theory]
     [InlineData(0, 5)]
     [InlineData(5, 0)]
     [InlineData(3, 5)]
     public void MultipleDataTest(int k, int expected)
     {
-        var actual = _solution.PreimageSizeFzf(k);
+        var actual = Solution.PreimageSizeFzf(k);
         Assert.Equal(expected, actual);
     }
 }

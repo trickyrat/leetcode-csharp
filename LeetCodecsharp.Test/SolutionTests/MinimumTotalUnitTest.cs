@@ -9,11 +9,6 @@ namespace LeetCodecsharp.Test.SolutionTests;
 
 public class MinimumTotalUnitTest
 {
-    private readonly Solution _solution;
-    public MinimumTotalUnitTest()
-    {
-        _solution = new Solution();
-    }
     [Fact]
     public void Test()
     {
@@ -24,7 +19,7 @@ public class MinimumTotalUnitTest
             new List<int>{ 6, 5, 7 },
             new List<int>{ 4, 1, 8, 3 },
         };
-        var actual = _solution.MinimumTotal(data);
+        var actual = Solution.MinimumTotal(data);
         var expected = 11;
         Assert.Equal(expected, actual);
     }

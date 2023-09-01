@@ -8,21 +8,13 @@ using Xunit;
 namespace LeetCodecsharp.Test.SolutionTests;
 public class FindSubstringUnitTest
 {
-    private readonly Solution _solution;
-
-    public FindSubstringUnitTest()
-    {
-        _solution = new Solution();
-    }
-
-
     [Theory]
     [InlineData("barfoothefoobarman", new string[] { "foo", "bar" }, new int[] { 0, 9 })]
     [InlineData("wordgoodgoodgoodbestword", new string[] { "word", "good", "best", "word" }, new int[] { })]
     [InlineData("barfoofoobarthefoobarman", new string[] { "bar", "foo", "the" }, new int[] { 6, 9, 12 })]
     public void MultipleDataTest(string s, string[] words, IList<int> expected)
     {
-        var actual = _solution.FindSubstring(s, words);
+        var actual = Solution.FindSubstring(s, words);
         Assert.Equal(expected, actual);
     }
 }

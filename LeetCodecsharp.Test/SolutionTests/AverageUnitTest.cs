@@ -7,19 +7,12 @@ namespace LeetCodecsharp.Test.SolutionTests;
 
 public class AverageUnitTest
 {
-    private readonly Solution _solution;
-
-    public AverageUnitTest()
-    {
-        _solution = new Solution();
-    }
-
     [Theory]
     [InlineData(new int[] { 4000, 3000, 1000, 2000 }, 2500.00000)]
     [InlineData(new int[] { 1000, 2000, 3000 }, 2000.00000)]
     public void MultipleDataTest(int[] salary, double expected)
     {
-        var actual = _solution.Average(salary);
+        var actual = Solution.Average(salary);
         Assert.Equal(expected, actual);
     }
 

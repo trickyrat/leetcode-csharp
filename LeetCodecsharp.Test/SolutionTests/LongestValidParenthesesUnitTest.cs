@@ -7,11 +7,6 @@ namespace LeetCodecsharp.Test.SolutionTests;
 
 public class LongestValidParenthesesUnitTest
 {
-    private readonly Solution _solution;
-    public LongestValidParenthesesUnitTest()
-    {
-        _solution = new Solution();
-    }
     [Theory]
     [InlineData("()()()(()", 6)]
     [InlineData("(()", 2)]
@@ -19,7 +14,7 @@ public class LongestValidParenthesesUnitTest
     public void Test(string s, int expected)
     {
 
-        var actual = _solution.LongestValidParentheses(s);
+        var actual = Solution.LongestValidParentheses(s);
         Assert.Equal(expected, actual);
     }
 }

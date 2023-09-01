@@ -6,21 +6,13 @@ using Xunit;
 namespace LeetCodecsharp.Test.SolutionTests;
 public class ReformatUnitTest
 {
-    private readonly Solution _solution;
-
-    public ReformatUnitTest()
-    {
-        _solution = new Solution();
-    }
-
-
     [Theory]
     [InlineData("a0b1c2", "a0b1c2")]
     [InlineData("leetcode", "")]
     [InlineData("1229857369", "")]
     public void MultipleDataTest(string input, string expected)
     {
-        var actual = _solution.Reformat(input);
+        var actual = Solution.Reformat(input);
         Assert.Equal(expected, actual);
     }
 }

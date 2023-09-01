@@ -10,11 +10,6 @@ namespace LeetCodecsharp.Test.SolutionTests;
 
 public class LuckyNumbersUnitTest
 {
-    private readonly Solution _solution;
-    public LuckyNumbersUnitTest()
-    {
-        _solution = new Solution();
-    }
     public static IEnumerable<object[]> GetMatrix()
     {
         yield return new object[]
@@ -51,7 +46,7 @@ public class LuckyNumbersUnitTest
     public void Test1((int[][] matrix, List<int> expected) input)
     {
 
-        var actual = _solution.LuckyNumbers(input.matrix).ToList();
+        var actual = Solution.LuckyNumbers(input.matrix).ToList();
         Assert.Equal(input.expected, actual);
     }
 }

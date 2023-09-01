@@ -9,13 +9,6 @@ namespace LeetCodecsharp.Test.SolutionTests;
 
 public class IsValidSudokuUnitTest
 {
-    private readonly Solution _solution;
-
-    public IsValidSudokuUnitTest()
-    {
-        _solution = new Solution();
-    }
-
     public static IEnumerable<object[]> GetData()
     {
         yield return new object[]
@@ -56,7 +49,7 @@ public class IsValidSudokuUnitTest
     [MemberData(nameof(GetData))]
     public void MultipleDataTest(char[][] board, bool expected)
     {
-        var actual = _solution.IsValidSudoku(board);
+        var actual = Solution.IsValidSudoku(board);
         Assert.Equal(expected, actual);
     }
 }

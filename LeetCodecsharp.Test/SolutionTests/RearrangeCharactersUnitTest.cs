@@ -7,20 +7,13 @@ namespace LeetCodecsharp.Test.SolutionTests
 {
     public class RearrangeCharactersUnitTest
     {
-        private readonly Solution _solution;
-
-        public RearrangeCharactersUnitTest()
-        {
-            _solution = new Solution();
-        }
-
         [Theory]
         [InlineData("ilovecodingonleetcode", "code", 2)]
         [InlineData("abcba", "abc", 1)]
         [InlineData("abbaccaddaeea", "aaaaa", 1)]
         public void MultipleDataTest(string s, string target, int expected)
         {
-            var actual = _solution.RearrangeCharacters(s, target);
+            var actual = Solution.RearrangeCharacters(s, target);
             Assert.Equal(expected, actual);
         }
     }

@@ -11,12 +11,6 @@ namespace LeetCodecsharp.Test.SolutionTests;
 
 public class MiddleNodeUnitTest
 {
-    private readonly Solution _solution;
-    public MiddleNodeUnitTest()
-    {
-        _solution = new Solution();
-    }
-
     public static IEnumerable<object[]> GetData()
     {
         yield return new object[]
@@ -35,7 +29,7 @@ public class MiddleNodeUnitTest
     [MemberData(nameof(GetData))]
     public void Test_Input_Even_Data_Should_OK(ListNode input, ListNode expected)
     {
-        var actual = _solution.MiddleNode(input);
+        var actual = Solution.MiddleNode(input);
         Assert.Equal(expected, actual, new ListNodeComparer());
     }
 }

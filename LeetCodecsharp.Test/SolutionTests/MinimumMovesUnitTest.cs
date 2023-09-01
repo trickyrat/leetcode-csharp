@@ -6,21 +6,13 @@ using Xunit;
 namespace LeetCodecsharp.Test.SolutionTests;
 public class MinimumMovesUnitTest
 {
-    private readonly Solution _solution;
-
-    public MinimumMovesUnitTest()
-    {
-        _solution = new Solution();
-    }
-
-
     [Theory]
     [InlineData("XXX", 1)]
     [InlineData("XXOX", 2)]
     [InlineData("OOOO", 0)]
     public void MultipleDataTest(string s, int expected)
     {
-        var actual = _solution.MinimumMoves(s);
+        var actual = Solution.MinimumMoves(s);
         Assert.Equal(expected, actual);
     }
 

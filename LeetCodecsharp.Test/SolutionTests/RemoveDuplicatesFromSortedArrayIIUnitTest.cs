@@ -7,18 +7,12 @@ namespace LeetCodecsharp.Test.SolutionTests;
 
 public class RemoveDuplicatesFromSortedArrayIIUnitTest
 {
-    private readonly Solution _solution;
-    public RemoveDuplicatesFromSortedArrayIIUnitTest()
-    {
-        _solution = new Solution();
-    }
-
     [Theory]
     [InlineData(new int[] { 1, 1, 1, 2, 2, 3 }, 5)]
     [InlineData(new int[] { 0, 0, 1, 1, 1, 1, 2, 3, 3 }, 7)]
     public void Test(int[] nums, int expected)
     {
-        var actual = _solution.RemoveDuplicatesV2(nums);
+        var actual = Solution.RemoveDuplicatesV2(nums);
         Assert.Equal(expected, actual);
     }
 }

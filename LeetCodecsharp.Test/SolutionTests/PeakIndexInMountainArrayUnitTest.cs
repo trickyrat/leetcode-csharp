@@ -7,11 +7,6 @@ namespace LeetCodecsharp.Test.SolutionTests;
 
 public class PeakIndexInMountainArrayUnitTest
 {
-    private readonly Solution _solution;
-    public PeakIndexInMountainArrayUnitTest()
-    {
-        _solution = new Solution();
-    }
     [Theory]
     [InlineData(new int[] { 18, 29, 38, 59, 98, 100, 99, 98, 90 }, 5)]
     [InlineData(new int[] { 0, 1, 0 }, 1)]
@@ -20,7 +15,7 @@ public class PeakIndexInMountainArrayUnitTest
     public void Test(int[] arr, int expected)
     {
 
-        var actual = _solution.PeakIndexInMountainArray(arr);
+        var actual = Solution.PeakIndexInMountainArray(arr);
         Assert.Equal(expected, actual);
     }
 }

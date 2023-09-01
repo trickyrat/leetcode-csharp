@@ -9,11 +9,6 @@ namespace LeetCodecsharp.Test.SolutionTests;
 
 public class FourSumUnitTest
 {
-    private readonly Solution _solution;
-    public FourSumUnitTest()
-    {
-        _solution = new Solution();
-    }
     public static IEnumerable<object[]> GetData()
     {
         yield return new object[]
@@ -42,7 +37,7 @@ public class FourSumUnitTest
     [MemberData(nameof(GetData))]
     public void MultipleDataTest(int[] nums, int target, IList<IList<int>> expected)
     {
-        var actual = _solution.FourSum(nums, target);
+        var actual = Solution.FourSum(nums, target);
         Assert.Equal(expected, actual);
     }
 

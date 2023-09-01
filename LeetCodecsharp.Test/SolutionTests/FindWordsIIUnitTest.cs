@@ -9,13 +9,6 @@ namespace LeetCodecsharp.Test.SolutionTests
 {
     public class FindWordsIIUnitTest
     {
-        private readonly Solution _solution;
-
-        public FindWordsIIUnitTest()
-        {
-            _solution = new Solution();
-        }
-
         public static IEnumerable<object[]> GetData()
         {
             yield return new object[]
@@ -46,7 +39,7 @@ namespace LeetCodecsharp.Test.SolutionTests
         [MemberData(nameof(GetData))]
         public void MultipleDataTest(char[][] board, string[] words, IList<string> expected)
         {
-            var actual = _solution.FindWords(board, words);
+            var actual = Solution.FindWords(board, words);
             Assert.Equal(expected, actual);
         }
     }

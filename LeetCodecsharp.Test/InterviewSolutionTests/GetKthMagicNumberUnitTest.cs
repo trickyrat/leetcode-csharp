@@ -6,19 +6,11 @@ using Xunit;
 namespace LeetCodecsharp.Test.InterviewSolutionTests;
 public class GetKthMagicNumberUnitTest
 {
-    private readonly InterviewSolution _solution;
-
-    public GetKthMagicNumberUnitTest()
-    {
-        _solution = new InterviewSolution();
-    }
-
-
     [Theory]
     [InlineData(5, 9)]
     public void MultipleDataTest(int k, int expected)
     {
-        var actual = _solution.GetKthMagicNumber(k);
+        var actual = InterviewSolution.GetKthMagicNumber(k);
         Assert.Equal(expected, actual);
     }
 }

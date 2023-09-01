@@ -7,11 +7,6 @@ namespace LeetCodecsharp.Test.SolutionTests;
 
 public class NumberOfLinesUnitTest
 {
-    private readonly Solution _solution;
-    public NumberOfLinesUnitTest()
-    {
-        _solution = new Solution();
-    }
     [Theory]
     [InlineData(new int[] { 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10 },
         "abcdefghijklmnopqrstuvwxyz",
@@ -22,7 +17,7 @@ public class NumberOfLinesUnitTest
     public void MultipleDataTest(int[] widths, string s, int[] expected)
     {
 
-        var actual = _solution.NumberOfLines(widths, s);
+        var actual = Solution.NumberOfLines(widths, s);
         Assert.Equal(expected, actual);
     }
 

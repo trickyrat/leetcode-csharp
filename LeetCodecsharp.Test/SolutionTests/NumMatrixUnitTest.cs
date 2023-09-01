@@ -8,7 +8,7 @@ namespace LeetCodecsharp.Test.SolutionTests;
 public class NumMatrixUnitTest
 {
 
-    private readonly int[][] matrix =
+    private readonly int[][] _matrix =
     {
         new int[5]{ 3,0,1,4,2},
         new int[5]{ 5,6,3,2,1},
@@ -23,7 +23,7 @@ public class NumMatrixUnitTest
     [InlineData(new int[] { 1, 2, 2, 4 }, 12)]
     public void Test(int[] points, int expected)
     {
-        NumMatrix nm = new(matrix);
+        NumMatrix nm = new(_matrix);
         var actual = nm.SumRange(points[0], points[1], points[2], points[3]);
         Assert.Equal(expected, actual);
     }

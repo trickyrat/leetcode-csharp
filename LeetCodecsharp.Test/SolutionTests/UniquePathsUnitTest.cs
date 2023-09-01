@@ -6,19 +6,12 @@ using Xunit;
 namespace LeetCodecsharp.Test.SolutionTests;
 public class UniquePathsUnitTest
 {
-    private readonly Solution _solution;
-
-    public UniquePathsUnitTest()
-    {
-        _solution = new Solution();
-    }
-
     [Theory]
     [InlineData(3, 7, 28)]
     [InlineData(3, 2, 3)]
     public void MultipleDataTest(int m, int n, int expected)
     {
-        var actual = _solution.UniquePaths(m, n);
+        var actual = Solution.UniquePaths(m, n);
         Assert.Equal(expected, actual);
     }
 }

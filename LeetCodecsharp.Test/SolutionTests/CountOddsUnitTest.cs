@@ -7,20 +7,12 @@ namespace LeetCodecsharp.Test.SolutionTests;
 
 public class CountOddsUnitTest
 {
-    private readonly Solution _solution;
-
-    public CountOddsUnitTest()
-    {
-        _solution = new Solution();
-    }
-
-
     [Theory]
     [InlineData(3, 7, 3)]
     [InlineData(8, 10, 1)]
     public void MultipleDataTest(int low, int high, int expected)
     {
-        var actual = _solution.CountOdds(low, high);
+        var actual = Solution.CountOdds(low, high);
         Assert.Equal(expected, actual);
     }
 

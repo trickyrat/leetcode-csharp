@@ -9,13 +9,6 @@ namespace LeetCodecsharp.Test.SolutionTests;
 
 public class ShortestPathBinaryMatrixUnitTest
 {
-    private readonly Solution _solution;
-
-    public ShortestPathBinaryMatrixUnitTest()
-    {
-        _solution = new Solution();
-    }
-
     public static IEnumerable<object[]> GetData()
     {
         yield return new object[]
@@ -53,7 +46,7 @@ public class ShortestPathBinaryMatrixUnitTest
     [MemberData(nameof(GetData))]
     public void MultipleDataTest(int[][] grid, int expected)
     {
-        var actual = _solution.ShortestPathBinaryMatrix(grid);
+        var actual = Solution.ShortestPathBinaryMatrix(grid);
         Assert.Equal(expected, actual);
     }
 }

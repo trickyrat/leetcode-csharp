@@ -13,11 +13,9 @@ public class MyQueueUnitTest
         var queue = new MyQueue();
         queue.Push(1);
         var actual = queue.Pop();
-        var booleanActual = queue.Empty();
+        var actualResult = queue.Empty();
 
-        var expected = 1;
-        var booleanExpected = true;
-        Assert.Equal(expected, actual);
-        Assert.Equal(booleanExpected, booleanActual);
+        Assert.Equal(1, actual);
+        Assert.True(actualResult);
     }
 }

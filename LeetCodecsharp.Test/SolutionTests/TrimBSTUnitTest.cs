@@ -10,13 +10,6 @@ using Xunit;
 namespace LeetCodecsharp.Test.SolutionTests;
 public class TrimBSTUnitTest
 {
-    private readonly Solution _solution;
-
-    public TrimBSTUnitTest()
-    {
-        _solution = new Solution();
-    }
-
     public static IEnumerable<object[]> GetData()
     {
         yield return new object[]
@@ -40,7 +33,7 @@ public class TrimBSTUnitTest
     [MemberData(nameof(GetData))]
     public void MultipleDataTest(TreeNode root, int low, int high, TreeNode expected)
     {
-        var actual = _solution.TrimBst(root, low, high);
+        var actual = Solution.TrimBst(root, low, high);
         Assert.Equal(expected, actual, new TreeNodeComparer());
     }
 

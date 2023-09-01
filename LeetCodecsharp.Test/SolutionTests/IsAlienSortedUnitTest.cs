@@ -7,19 +7,13 @@ namespace LeetCodecsharp.Test.SolutionTests;
 
 public class IsAlienSortedUnitTest
 {
-    private readonly Solution _solution;
-    public IsAlienSortedUnitTest()
-    {
-        _solution = new Solution();
-    }
-
     [Theory]
     [InlineData(new string[] { "hello", "leetcode" }, "hlabcdefgijkmnopqrstuvwxyz", true)]
     [InlineData(new string[] { "word", "world", "row" }, "worldabcefghijkmnpqstuvxyz", false)]
     [InlineData(new string[] { "apple", "app" }, "abcdefghijklmnopqrstuvwxyz", false)]
     public void Test(string[] words, string order, bool expected)
     {
-        var actual = _solution.IsAlienSorted(words, order);
+        var actual = Solution.IsAlienSorted(words, order);
         Assert.Equal(expected, actual);
     }
 }

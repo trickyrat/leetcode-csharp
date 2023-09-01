@@ -10,14 +10,6 @@ using Xunit;
 namespace LeetCodecsharp.Test.SolutionTests;
 public class PreorderUnitTest
 {
-    private readonly Solution _solution;
-
-    public PreorderUnitTest()
-    {
-        _solution = new Solution();
-    }
-
-
     [Fact]
     public void Test()
     {
@@ -59,8 +51,8 @@ public class PreorderUnitTest
         root2.children.Add(root2ChildNode4);
         root2.children.Add(root2ChildNode5);
 
-        var actual1 = _solution.PreOrder(root1);
-        var actual2 = _solution.PreOrder(root2);
+        var actual1 = Solution.PreOrder(root1);
+        var actual2 = Solution.PreOrder(root2);
 
         Assert.Equal(new int[] { 1, 3, 5, 6, 2, 4 }, actual1);
         Assert.Equal(new int[] { 1, 2, 3, 6, 7, 11, 14, 4, 8, 12, 5, 9, 13, 10 }, actual2);

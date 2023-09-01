@@ -9,11 +9,6 @@ namespace LeetCodecsharp.Test.SolutionTests;
 
 public class SetZeroesUnitTest
 {
-    private readonly Solution _solution;
-    public SetZeroesUnitTest()
-    {
-        _solution = new Solution();
-    }
     public static IEnumerable<object[]> GetData()
     {
         yield return new object[]
@@ -38,7 +33,7 @@ public class SetZeroesUnitTest
     public void MultipleDataTest(int[][] input, int[][] expected)
     {
 
-        _solution.SetZeroes(input);
+        Solution.SetZeroes(input);
         Assert.Equal(input, expected);
     }
 }

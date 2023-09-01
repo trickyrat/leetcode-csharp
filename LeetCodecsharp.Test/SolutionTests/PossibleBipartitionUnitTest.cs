@@ -9,13 +9,6 @@ namespace LeetCodecsharp.Test.SolutionTests;
 
 public class PossibleBipartitionUnitTest
 {
-    private readonly Solution _solution;
-
-    public PossibleBipartitionUnitTest()
-    {
-        _solution = new Solution();
-    }
-
     public static IEnumerable<object[]> GetData()
     {
         yield return new object[]
@@ -60,7 +53,7 @@ public class PossibleBipartitionUnitTest
     [MemberData(nameof(GetData))]
     public void Test(int n, int[][] dislikes, bool expected)
     {
-        var actual = _solution.PossibleBipartition(n, dislikes);
+        var actual = Solution.PossibleBipartition(n, dislikes);
         Assert.Equal(expected, actual);
     }
 }

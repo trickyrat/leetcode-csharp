@@ -47,18 +47,12 @@ namespace LeetCodecsharp.Test.SolutionTests
             };
         }
 
-        private readonly Solution _solution;
-
-        public NearestValidPointUnitTest()
-        {
-            _solution = new Solution();
-        }
 
         [Theory]
         [MemberData(nameof(GetData))]
         public void MultipleDataTest(int x, int y, int[][] points, int expected)
         {
-            var actual = _solution.NearestValidPoint(x, y, points);
+            var actual = Solution.NearestValidPoint(x, y, points);
             Assert.Equal(expected, actual);
         }
     }

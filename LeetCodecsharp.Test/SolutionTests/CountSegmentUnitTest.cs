@@ -7,13 +7,6 @@ namespace LeetCodecsharp.Test.SolutionTests;
 
 public class CountSegmentUnitTest
 {
-    private readonly Solution _solution;
-
-    public CountSegmentUnitTest()
-    {
-        _solution = new Solution();
-    }
-
     [Theory]
     [InlineData("Hello, my name is John", 5)]
     [InlineData("Hello", 1)]
@@ -21,7 +14,7 @@ public class CountSegmentUnitTest
     [InlineData("", 0)]
     public void Test(string s, int expected)
     {
-        var actual = _solution.CountSegments(s);
+        var actual = Solution.CountSegments(s);
         Assert.Equal(expected, actual);
     }
 }

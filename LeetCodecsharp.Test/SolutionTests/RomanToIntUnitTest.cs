@@ -7,12 +7,6 @@ namespace LeetCodecsharp.Test.SolutionTests;
 
 public class RomanToIntUnittest
 {
-    private readonly Solution _solution;
-    public RomanToIntUnittest()
-    {
-        _solution = new Solution();
-    }
-
     [Theory]
     [InlineData("III", 3)]
     [InlineData("IV", 4)]
@@ -22,7 +16,7 @@ public class RomanToIntUnittest
     public void MultipleDataTest(string s, int expected)
     {
 
-        var actual = _solution.RomanToInt(s);
+        var actual = Solution.RomanToInt(s);
         Assert.Equal(expected, actual);
     }
 }

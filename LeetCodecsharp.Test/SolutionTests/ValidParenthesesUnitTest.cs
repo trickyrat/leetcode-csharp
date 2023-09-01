@@ -7,13 +7,6 @@ namespace LeetCodecsharp.Test.SolutionTests;
 
 public class ValidParenthesesUnitTest
 {
-    private readonly Solution _solution;
-
-    public ValidParenthesesUnitTest()
-    {
-        _solution = new Solution();
-    }
-
     [Theory]
     [InlineData("()", true)]
     [InlineData("()[]{}", true)]
@@ -22,7 +15,7 @@ public class ValidParenthesesUnitTest
     [InlineData("{[]}", true)]
     public void MultipleDataTest(string s, bool expected)
     {
-        var actual = _solution.IsValid(s);
+        var actual = Solution.IsValid(s);
         Assert.Equal(expected, actual);
     }
 }

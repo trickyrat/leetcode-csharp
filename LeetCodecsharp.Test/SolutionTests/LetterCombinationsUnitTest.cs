@@ -7,11 +7,6 @@ namespace LeetCodecsharp.Test.SolutionTests;
 
 public class LetterCombinationsUnitTest
 {
-    private readonly Solution _solution;
-    public LetterCombinationsUnitTest()
-    {
-        _solution = new Solution();
-    }
     [Theory]
     [InlineData("23", new string[] { "ad", "ae", "af", "bd", "be", "bf", "cd", "ce", "cf" })]
     [InlineData("", new string[] { })]
@@ -19,7 +14,7 @@ public class LetterCombinationsUnitTest
     public void MultipleDataTest(string digits, string[] expected)
     {
 
-        var actual = _solution.LetterCombinations(digits);
+        var actual = Solution.LetterCombinations(digits);
         Assert.Equal(expected, actual);
     }
 }

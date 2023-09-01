@@ -7,11 +7,6 @@ namespace LeetCodecsharp.Test.SolutionTests;
 
 public class PalindromeNumberUnitTest
 {
-    private readonly Solution _solution;
-    public PalindromeNumberUnitTest()
-    {
-        _solution = new Solution();
-    }
     [Theory]
     [InlineData(121, true)]
     [InlineData(-121, false)]
@@ -19,7 +14,7 @@ public class PalindromeNumberUnitTest
     public void MultipleDataTest(int input, bool expected)
     {
 
-        var actual = _solution.IsPalindrome(input);
+        var actual = Solution.IsPalindrome(input);
         Assert.Equal(expected, actual);
     }
 }

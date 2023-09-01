@@ -25,18 +25,12 @@ namespace LeetCodecsharp.Test.SolutionTests
             };
         }
 
-        private readonly Solution _solution;
-
-        public SumRootToLeafUnitTest()
-        {
-            _solution = new Solution();
-        }
 
         [Theory]
         [MemberData(nameof(GetData))]
         public void MultipleDataTest(TreeNode root, int expected)
         {
-            var actual = _solution.SumRootToLeaf(root);
+            var actual = Solution.SumRootToLeaf(root);
             Assert.Equal(expected, actual);
         }
     }

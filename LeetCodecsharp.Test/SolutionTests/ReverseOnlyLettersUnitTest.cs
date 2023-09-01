@@ -7,11 +7,6 @@ namespace LeetCodecsharp.Test.SolutionTests;
 
 public class ReverseOnlyLettersUnitTest
 {
-    private readonly Solution _solution;
-    public ReverseOnlyLettersUnitTest()
-    {
-        _solution = new Solution();
-    }
     [Theory]
     [InlineData("ab-cd", "dc-ba")]
     [InlineData("a-bC-dEf-ghIj", "j-Ih-gfE-dCba")]
@@ -19,7 +14,7 @@ public class ReverseOnlyLettersUnitTest
     public void Test(string s, string expected)
     {
 
-        var actual = _solution.ReverseOnlyLetters(s);
+        var actual = Solution.ReverseOnlyLetters(s);
         Assert.Equal(expected, actual);
     }
 }

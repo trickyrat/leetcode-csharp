@@ -7,19 +7,13 @@ namespace LeetCodecsharp.Test.SolutionTests;
 
 public class CalPointsUnitTest
 {
-    private readonly Solution _solution;
-    public CalPointsUnitTest()
-    {
-        _solution = new Solution();
-    }
-
     [Theory]
     [InlineData(new string[] { "5", "2", "C", "D", "+" }, 30)]
     [InlineData(new string[] { "5", "-2", "4", "C", "D", "9", "+", "+" }, 27)]
     [InlineData(new string[] { "1" }, 1)]
     public void Test(string[] input, int expected)
     {
-        var actual = _solution.CalPoints(input);
+        var actual = Solution.CalPoints(input);
         Assert.Equal(expected, actual);
     }
 }

@@ -9,18 +9,13 @@ namespace LeetCodecsharp.Test.SolutionTests;
 
 public class GenerateParenthesisUnitTest
 {
-    private readonly Solution _solution;
-    public GenerateParenthesisUnitTest()
-    {
-        _solution = new Solution();
-    }
     [Theory]
     [InlineData(3, new string[] { "((()))", "(()())", "(())()", "()(())", "()()()" })]
     [InlineData(1, new string[] { "()" })]
     public void MultipleDataTest(int n, string[] expected)
     {
 
-        var actual = _solution.GenerateParenthesis(n).ToArray();
+        var actual = Solution.GenerateParenthesis(n).ToArray();
         Assert.Equal(expected, actual);
     }
 }

@@ -9,11 +9,6 @@ namespace LeetCodecsharp.Test.SolutionTests;
 
 public class PlatesBetweenCandlesUnitTest
 {
-    private readonly Solution _solution;
-    public PlatesBetweenCandlesUnitTest()
-    {
-        _solution = new Solution();
-    }
     public static IEnumerable<object[]> GetData()
     {
         yield return new object[]
@@ -45,7 +40,7 @@ public class PlatesBetweenCandlesUnitTest
     public void Test(string s, int[][] queries, int[] expected)
     {
 
-        var actual = _solution.PlatesBetweenCandles(s, queries);
+        var actual = Solution.PlatesBetweenCandles(s, queries);
         Assert.Equal(expected, actual);
     }
 }

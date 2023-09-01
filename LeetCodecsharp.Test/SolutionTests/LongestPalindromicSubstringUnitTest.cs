@@ -7,18 +7,13 @@ namespace LeetCodecsharp.Test.SolutionTests;
 
 public class LongestPalindromicSubstringUnitTest
 {
-    private readonly Solution _solution;
-    public LongestPalindromicSubstringUnitTest()
-    {
-        _solution = new Solution();
-    }
     [Theory]
     [InlineData("babad", new string[] { "bab", "aba" })]
     [InlineData("cbbd", new string[] { "bb" })]
     public void Test(string input, string[] expected)
     {
 
-        var actual = _solution.LongestPalindrome(input);
+        var actual = Solution.LongestPalindrome(input);
         Assert.Contains(actual, expected);
     }
 }
