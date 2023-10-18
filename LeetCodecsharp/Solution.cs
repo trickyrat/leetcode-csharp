@@ -59,19 +59,15 @@ public static class Solution
         var curr = dummyHead;
         while (l1 != null || l2 != null)
         {
+            var sum = carry;
             var num1 = l1?.val ?? 0;
+            l1 = l1?.next;
             var num2 = l2?.val ?? 0;
-            var sum = num1 + num2 + carry;
+            l2 = l2?.next;
+            sum += (num1 + num2);
             curr.next = new ListNode(sum % 10);
             curr = curr.next;
-            carry = sum / 10;
-            l1 = l1?.next;
-            l2 = l2?.next;
-        }
-
-        if (carry != 0)
-        {
-            curr.next = new ListNode(carry);
+            carry = sum / 10;    
         }
 
         return dummyHead.next;
