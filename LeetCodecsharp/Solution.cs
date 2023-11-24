@@ -1,12 +1,12 @@
 ﻿// Licensed to the Trickyrat under one or more agreements.
 // The Trickyrat licenses this file to you under the MIT license.
 
+using LeetCodecsharp.DataStructure;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using JetBrains.Annotations;
-using LeetCodecsharp.DataStructure;
 
 namespace LeetCodecsharp;
 
@@ -48,7 +48,7 @@ public static class Solution
     /// <returns></returns>
     public static ListNode AddTwoNumbers(ListNode l1, ListNode l2)
     {
-        // 116ms
+
         var dummyHead = new ListNode(0);
         if (l1 == null && l2 == null)
         {
@@ -67,24 +67,10 @@ public static class Solution
             sum += (num1 + num2);
             curr.next = new ListNode(sum % 10);
             curr = curr.next;
-            carry = sum / 10;    
+            carry = sum / 10;
         }
 
         return dummyHead.next;
-
-        // 148ms
-        // ListNode r = new ListNode(-1);
-        // ListNode n = r;
-        // int carry = 0;
-        // while (carry > 0 || l1 != null || l2 != null)
-        // {
-        //     int v = (l1?.val ?? 0) + (l2?.val ?? 0) + carry;
-        //     carry = v / 10;
-        //     n = n.next = new ListNode(v % 10);
-        //     l1 = l1?.next;
-        //     l2 = l2?.next;
-        // }
-        // return r.next;
     }
 
     /// <summary>
@@ -1434,7 +1420,7 @@ public static class Solution
     /// </summary>
     public static int[] SearchRange(int[] nums, int target)
     {
-        var missingResult = new [] { -1, -1 };
+        var missingResult = new[] { -1, -1 };
         //int[] res = new int[] { 0, 0 };
         //if (nums.Length < 1)
         //{
@@ -5990,7 +5976,7 @@ public static class Solution
 
         Dfs(root);
         return res;
-        
+
         int Dfs(TreeNode node)
         {
             if (node is null)
@@ -8615,7 +8601,7 @@ public static class Solution
     /// </summary>
     /// <param name="salary"></param>
     /// <returns></returns>
-    public static double Average([NotNull]int[] salary)
+    public static double Average(int[] salary)
     {
         int min = int.MaxValue, max = int.MinValue;
         var sum = 0;
@@ -8670,7 +8656,7 @@ public static class Solution
             }
 
             if (count <= 0) continue;
-            
+
             for (var j = 0; j < col; j++)
             {
                 if (mat[i][j] == 1)
@@ -8756,14 +8742,14 @@ public static class Solution
                 case "./":
                     continue;
                 case "../":
-                {
-                    if (depth > 0)
                     {
-                        depth--;
-                    }
+                        if (depth > 0)
+                        {
+                            depth--;
+                        }
 
-                    break;
-                }
+                        break;
+                    }
                 default:
                     depth++;
                     break;
