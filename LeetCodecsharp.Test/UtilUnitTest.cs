@@ -1,16 +1,13 @@
-﻿// Licensed to the Trickyrat under one or more agreements.
-// The Trickyrat licenses this file to you under the MIT license.
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using LeetCodecsharp.DataStructure;
 using Xunit;
 
-namespace LeetCodecsharp.Test.SolutionTests;
+namespace LeetCodecsharp.Test;
 
-public class UtilitiesUnitTest
+public class UtilUnitTest
 {
-    public static IEnumerable<object[]> GetTreeNodeData()
+     public static IEnumerable<object[]> GetTreeNodeData()
     {
         yield return new object[]
         {
@@ -57,6 +54,25 @@ public class UtilitiesUnitTest
             },
             "[[1,2,3]\n [4,5,6]]"
         };
+        
+        yield return new object[]
+        {
+            new[]
+            {
+                new[] { 1 },
+                new[] { 2 },
+                new[] { 3 },
+            },
+            "[[1]\n [2]\n [3]]"
+        };
+        yield return new object[]
+        {
+            new[]
+            {
+                new[] { 1, 2, 3 },
+            },
+            "[[1,2,3]]"
+        };
     }
 
     [Theory]
@@ -70,7 +86,7 @@ public class UtilitiesUnitTest
 
     [Theory]
     [MemberData(nameof(GetMatrixData))]
-    public void Test_ConvertMatrixToString_Should_OK(int[][] matrix, string expected)
+    public void Test_ConvertMatrixToString_ShouldBe_OK(int[][] matrix, string expected)
     {
         var actual = Util.ConvertMatrixToString(matrix);
         Assert.Equal(expected, actual);

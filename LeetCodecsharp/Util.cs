@@ -47,7 +47,8 @@ public static class Util
     {
         var sb = new StringBuilder();
         var n = matrix.Length;
-        char openSign = '[', closeSign = ']';
+        const char openSign = '[';
+        const char closeSign = ']';
         sb.Append(openSign);
         for (var i = 0; i < n; i++)
         {
