@@ -263,7 +263,7 @@ public static class Solution
     }
 
     /// <summary>
-    /// <para>6. ZigZag Conversion</para>
+    /// 6. ZigZag Conversion
     /// </summary>
     /// <param name="s"></param>
     /// <param name="numRows"></param>
@@ -1726,7 +1726,7 @@ public static class Solution
             var size = freq.Count;
             if (freq.Count == 0 || num != freq[size - 1][0])
             {
-                freq.Add(new int[] { num, 1 });
+                freq.Add([num, 1]);
             }
             else
             {
@@ -3031,8 +3031,6 @@ public static class Solution
     public static TreeNode SortedListToBst(ListNode head)
     {
         var size = FindSize(head);
-        var dummyHead = head;
-        //Solution.head = head;
         return ConvertListToBst(0, size - 1);
 
         int FindSize(ListNode node)
@@ -3514,10 +3512,10 @@ public static class Solution
         {
             if (index == -1 || index == data.Length)
             {
-                return new[] { 0, 0 };
+                return [0, 0];
             }
 
-            return new[] { 1, data[index] };
+            return [1, data[index]];
         }
 
         int Compare(int[] data, int index1, int index2)
@@ -3552,7 +3550,7 @@ public static class Solution
             var sum = numbers[left] + numbers[right];
             if (sum == target)
             {
-                return new int[] { left + 1, right + 1 };
+                return new[] { left + 1, right + 1 };
             }
             else if (sum > target)
             {
@@ -4817,7 +4815,7 @@ public static class Solution
                     return "Neither";
                 }
 
-                if (System.Convert.ToInt32(chunk) > 255)
+                if (Convert.ToInt32(chunk) > 255)
                 {
                     return "Neither";
                 }
@@ -4950,17 +4948,17 @@ public static class Solution
     /// <summary>
     /// 509. Fibonacci Number
     /// </summary>
-    public static int Fib(int N)
+    public static int Fib(int n)
     {
-        if (N < 2)
+        if (n < 2)
         {
-            return N;
+            return n;
         }
 
         var f0 = 0;
         var f1 = 1;
         var res = 0;
-        for (var i = 1; i < N; i++)
+        for (var i = 1; i < n; i++)
         {
             res = f0 + f1;
             f0 = f1;
@@ -5373,12 +5371,12 @@ public static class Solution
 
         if (depth == 1)
         {
-            return new TreeNode(val, root, null);
+            return new TreeNode(val, root);
         }
 
         if (depth == 2)
         {
-            root.left = new TreeNode(val, root.left, null);
+            root.left = new TreeNode(val, root.left);
             root.right = new TreeNode(val, null, root.right);
         }
         else
@@ -5413,7 +5411,7 @@ public static class Solution
                     res[stack.Peek()[0]] += timestamp - stack.Peek()[1];
                 }
 
-                stack.Push(new int[] { index, timestamp });
+                stack.Push([index, timestamp]);
             }
             else
             {
@@ -5457,7 +5455,7 @@ public static class Solution
     /// <returns></returns>
     public static IList<TreeNode> FindDuplicateSubtrees(TreeNode root)
     {
-        Dictionary<string, (TreeNode, int)> seen = new();
+        var seen = new Dictionary<string, (TreeNode, int)>();
         var repeat = new HashSet<TreeNode>();
         var index = 0;
         Dfs(root);
@@ -5869,7 +5867,7 @@ public static class Solution
     public static bool JudgePoint24(int[] nums)
     {
         var doubleNumbers = nums
-            .Select(System.Convert.ToDouble)
+            .Select(Convert.ToDouble)
             .ToList();
         return Solve(doubleNumbers);
 
@@ -6011,8 +6009,8 @@ public static class Solution
         var ans = 0;
         var rowLength = grid.Length;
         var colLength = grid[0].Length;
-        var di = new int[] { 0, 0, 1, -1 };
-        var dj = new int[] { 1, -1, 0, 0 };
+        var di = new[] { 0, 0, 1, -1 };
+        var dj = new[] { 1, -1, 0, 0 };
         for (var row = 0; row < rowLength; row++)
         {
             for (var col = 0; col < colLength; col++)
@@ -6604,7 +6602,7 @@ public static class Solution
     /// <returns></returns>
     public static int UniqueMorseRepresentations(string[] words)
     {
-        var morse = new string[]
+        var morse = new[]
         {
             ".-", "-...", "-.-.", "-..", ".", "..-.", "--.", "....", "..", ".---", "-.-", ".-..", "--", "-.", "---",
             ".--.", "--.-", ".-.", "...", "-", "..-", "...-", ".--", "-..-", "-.--", "--.."
@@ -6645,7 +6643,7 @@ public static class Solution
             }
         }
 
-        return new int[] { lines, width };
+        return [lines, width];
     }
 
     /// <summary>
@@ -6855,11 +6853,11 @@ public static class Solution
         {
             if (vowels.Contains(words[i][0]))
             {
-                words[i] = words[i] + "ma" + sb.ToString();
+                words[i] = words[i] + "ma" + sb;
             }
             else
             {
-                words[i] = words[i][1..^0] + words[i][0] + "ma" + sb.ToString();
+                words[i] = words[i][1..^0] + words[i][0] + "ma" + sb;
             }
 
             sb.Append('a');
@@ -7354,12 +7352,12 @@ public static class Solution
     /// <summary>
     /// 893. Groups of Special-Equivalent Strings
     /// </summary>
-    /// <param name="A"></param>
+    /// <param name="a"></param>
     /// <returns></returns>
-    public static int NumSpecialEquivGroups(string[] A)
+    public static int NumSpecialEquivGroups(string[] a)
     {
         var seen = new HashSet<string>();
-        foreach (var s in A)
+        foreach (var s in a)
         {
             var count = new int[52];
             for (var i = 0; i < s.Length; i++)
@@ -7571,12 +7569,12 @@ public static class Solution
         var sum = arr.Sum();
         if (sum % 3 != 0)
         {
-            return new int[] { -1, -1 };
+            return new[] { -1, -1 };
         }
 
         if (sum == 0)
         {
-            return new int[] { 0, 2 };
+            return new[] { 0, 2 };
         }
 
         var partial = sum / 3;
@@ -7610,16 +7608,16 @@ public static class Solution
             {
                 if (arr[first + i] != arr[second + i] || arr[first + i] != arr[third + i])
                 {
-                    return new int[] { -1, -1 };
+                    return [-1, -1];
                 }
 
                 i++;
             }
 
-            return new int[] { first + len - 1, second + len };
+            return [first + len - 1, second + len];
         }
 
-        return new[] { -1, -1 };
+        return [-1, -1];
     }
 
     /// <summary>
@@ -7630,7 +7628,7 @@ public static class Solution
     public static int ShortestBridge(int[][] grid)
     {
         var n = grid.Length;
-        int[][] dirs = { new int[] { -1, 0 }, new int[] { 1, 0 }, new int[] { 0, 1 }, new int[] { 0, -1 } };
+        int[][] dirs = { new[] { -1, 0 }, new[] { 1, 0 }, new[] { 0, 1 }, new[] { 0, -1 } };
         for (var i = 0; i < n; i++)
         {
             for (var j = 0; j < n; j++)
@@ -7864,7 +7862,7 @@ public static class Solution
     /// <returns></returns>
     public static int RepeatedNTimes(int[] nums)
     {
-        ISet<int> found = new HashSet<int>();
+        var found = new HashSet<int>();
         foreach (var num in nums)
         {
             if (!found.Add(num))
@@ -7930,8 +7928,8 @@ public static class Solution
     /// <returns></returns>
     public static int OrangeRotting(int[][] grid)
     {
-        var dr = new int[] { -1, 0, 1, 0 };
-        var dc = new int[] { 0, -1, 0, 1 };
+        var dr = new[] { -1, 0, 1, 0 };
+        var dc = new[] { 0, -1, 0, 1 };
         int rowLength = grid.Length, colLength = grid[0].Length;
         var queue = new Queue<int>();
         var depth = new Dictionary<int, int>();
@@ -7996,10 +7994,10 @@ public static class Solution
             {
                 if (parent is null)
                 {
-                    return new TreeNode(val, root, null);
+                    return new TreeNode(val, root);
                 }
 
-                var node = new TreeNode(val, curr, null);
+                var node = new TreeNode(val, curr);
                 parent.right = node;
                 return root;
             }
@@ -8089,22 +8087,22 @@ public static class Solution
         }
 
         var n = grid.Length;
-        var dist = new int[n][];
+        var distance = new int[n][];
         for (var i = 0; i < n; i++)
         {
-            dist[i] = new int[n];
-            Array.Fill(dist[i], int.MaxValue);
+            distance[i] = new int[n];
+            Array.Fill(distance[i], int.MaxValue);
         }
 
         var queue = new Queue<(int, int)>();
         queue.Enqueue((0, 0));
-        dist[0][0] = 1;
+        distance[0][0] = 1;
         while (queue.Count > 0)
         {
             var (x, y) = queue.Dequeue();
             if (x == n - 1 && y == n - 1)
             {
-                return dist[x][y];
+                return distance[x][y];
             }
 
             for (var dx = -1; dx < 2; dx++)
@@ -8116,12 +8114,12 @@ public static class Solution
                         continue;
                     }
 
-                    if (grid[x + dx][y + dy] == 1 || dist[x + dx][y + dy] <= dist[x][y] + 1)
+                    if (grid[x + dx][y + dy] == 1 || distance[x + dx][y + dy] <= distance[x][y] + 1)
                     {
                         continue;
                     }
 
-                    dist[x + dx][y + dy] = dist[x][y] + 1;
+                    distance[x + dx][y + dy] = distance[x][y] + 1;
                     queue.Enqueue((x + dx, y + dy));
                 }
             }
@@ -8162,7 +8160,7 @@ public static class Solution
         var jobs = new int[n][];
         for (var i = 0; i < n; i++)
         {
-            jobs[i] = new int[] { startTime[i], endTime[i], profit[i] };
+            jobs[i] = [startTime[i], endTime[i], profit[i]];
         }
 
         Array.Sort(jobs, (a, b) => a[1] - b[1]);
@@ -9143,7 +9141,7 @@ public static class Solution
         }
         else
         {
-            var a = left + right + 1; ;
+            var a = left + right + 1;
             var b = (-left * left - left - right * right - right) / 2 - maxSum;
             return (int)Math.Floor(-b / a);
         }
