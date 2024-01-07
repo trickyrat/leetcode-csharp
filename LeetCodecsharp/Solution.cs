@@ -4360,6 +4360,34 @@ public static class Solution
     }
 
     /// <summary>
+    /// 383. Ransom Note
+    /// </summary>
+    /// <param name="ransomNote"></param>
+    /// <param name="magazine"></param>
+    /// <returns></returns>
+    public static bool CanConstruct(string ransomNote, string magazine)
+    {
+        if (ransomNote.Length > magazine.Length)
+        {
+            return false;
+        }
+        var counter = new int[26];
+        foreach (var ch in magazine)
+        {
+            counter[ch - 'a']++;
+        }
+        foreach (var ch in ransomNote)
+        {
+            counter[ch - 'a']--;
+            if (counter[ch - 'a'] < 0)
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /// <summary>
     /// 386. Lexicographical Numbers
     /// </summary>
     /// <param name="n"></param>
