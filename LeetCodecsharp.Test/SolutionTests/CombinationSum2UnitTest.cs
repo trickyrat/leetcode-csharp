@@ -11,9 +11,9 @@ namespace LeetCodecsharp.Test.SolutionTests
     {
         public static IEnumerable<object[]> GetData()
         {
-            yield return new object[]
-            {
-                new int[]{ 10, 1, 2, 7, 6, 1, 5 },
+            yield return
+            [
+                new []{ 10, 1, 2, 7, 6, 1, 5 },
                 8,
                 new List<IList<int>>
                 {
@@ -22,18 +22,18 @@ namespace LeetCodecsharp.Test.SolutionTests
                     new List<int> { 1, 2, 5 },
                     new List<int> { 1, 1, 6 },
                 }
-            };
+            ];
 
-            yield return new object[]
-            {
-                new int[]{ 2, 5, 2, 1, 2 },
+            yield return
+            [
+                new []{ 2, 5, 2, 1, 2 },
                 5,
                 new List<IList<int>>
                 {
                     new List<int> { 5 },
                     new List<int> { 1, 2, 2 }
                 }
-            };
+            ];
         }
 
         [Theory]

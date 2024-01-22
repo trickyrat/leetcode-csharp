@@ -1,16 +1,34 @@
 ﻿// Licensed to the Trickyrat under one or more agreements.
 // The Trickyrat licenses this file to you under the MIT license.
 
+using System.Collections.Generic;
 using Xunit;
 
 namespace LeetCodecsharp.Test.SolutionTests;
 
 public class FindMiddleIndexUnitTest
 {
+    public static IEnumerable<object[]> GetData()
+    {
+        yield return
+        [
+            new[] { 2, 3, -1, 8, 4 }, 3
+        ];
+
+        yield return
+        [
+            new[] { 1, -1, 4 }, 2
+        ];
+
+        yield return
+        [
+            new[] { 2, 5 }, -1
+        ];
+    }
+
+
     [Theory]
-    [InlineData(new int[] { 2, 3, -1, 8, 4 }, 3)]
-    [InlineData(new int[] { 1, -1, 4 }, 2)]
-    [InlineData(new int[] { 2, 5 }, -1)]
+    [MemberData(nameof(GetData))]
     public void MultipleDataTest(int[] nums, int expected)
     {
         var actual = Solution.FindMiddleIndex(nums);

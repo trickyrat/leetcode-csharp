@@ -2,29 +2,27 @@
 // The Trickyrat licenses this file to you under the MIT license.
 
 using System.Collections.Generic;
-
 using LeetCodecsharp.DataStructure;
-
 using Xunit;
 
 namespace LeetCodecsharp.Test.SolutionTests;
+
 public class NumComponentsUnitTest
 {
     public static IEnumerable<object[]> GetData()
     {
-        yield return new object[]
-        {
-            Util.CreateListNode(new int[]{ 0, 1, 2, 3 }),
-            new int[]{ 0, 1, 3 },
+        yield return
+        [
+            Util.CreateListNode([0, 1, 2, 3]),
+            new[] { 0, 1, 3 },
             2
-        };
-        yield return new object[]
-        {
-            Util.CreateListNode(new int[]{ 0, 1, 2, 3, 4 }),
-            new int[]{ 0, 3, 1, 4 },
+        ];
+        yield return
+        [
+            Util.CreateListNode([0, 1, 2, 3, 4]),
+            new[] { 0, 3, 1, 4 },
             2
-        };
-
+        ];
     }
 
     [Theory]
@@ -34,6 +32,4 @@ public class NumComponentsUnitTest
         var actual = Solution.NumComponents(head, nums);
         Assert.Equal(expected, actual);
     }
-
 }
-

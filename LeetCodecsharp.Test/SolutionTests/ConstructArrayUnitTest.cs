@@ -1,15 +1,28 @@
 ﻿// Licensed to the Trickyrat under one or more agreements.
 // The Trickyrat licenses this file to you under the MIT license.
 
+using System.Collections.Generic;
 using Xunit;
 
 namespace LeetCodecsharp.Test.SolutionTests;
 
 public class ConstructArrayUnitTest
 {
+    public static IEnumerable<object[]> GetData()
+    {
+        yield return
+        [
+            3, 1, new[] { 1, 2, 3 }
+        ];
+
+        yield return
+        [
+            3, 2, new[] { 1, 3, 2 }
+        ];
+    }
+
     [Theory]
-    [InlineData(3, 1, new int[] { 1, 2, 3 })]
-    [InlineData(3, 2, new int[] { 1, 3, 2 })]
+    [MemberData(nameof(GetData))]
     public void Test(int n, int k, int[] expected)
     {
         var actual = Solution.ConstructArray(n, k);

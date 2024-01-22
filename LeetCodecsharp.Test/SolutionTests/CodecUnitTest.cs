@@ -13,16 +13,16 @@ public class CodecUnitTest
 {
     public static IEnumerable<object[]> GetData()
     {
-        yield return new object[]
-        {
-            Util.CreateTreeNode(new List<int?> { 2, 1, 3 }),
-            Util.CreateTreeNode(new List<int?> { 2, 1, 3 })
-        };
-        yield return new object[]
-       {
+        yield return
+        [
+            Util.CreateTreeNode([2, 1, 3]),
+            Util.CreateTreeNode([2, 1, 3])
+        ];
+        yield return
+        [
             null,
             null
-       };
+        ];
     }
 
     private readonly Codec _codec = new();

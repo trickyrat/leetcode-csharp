@@ -13,24 +13,24 @@ public class MergeTwoListsUnitTest
 {
     public static IEnumerable<object[]> GetData()
     {
-        yield return new object[]
-        {
+        yield return
+        [
             Util.CreateListNode(new List<int> { 1, 2, 4 }),
             Util.CreateListNode(new List<int> { 1, 3, 4 }),
             new List<int> { 1, 1, 2, 3, 4, 4 }
-        };
-        yield return new object[]
-         {
-              null,
+        ];
+        yield return
+        [
+            null,
               null,
               new List<int>()
-         };
-        yield return new object[]
-        {
-               null,
+        ];
+        yield return
+        [
+            null,
                Util.CreateListNode(new List<int> { 0 }),
                new List<int>{ 0 }
-        };
+        ];
     }
 
 

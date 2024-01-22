@@ -1,20 +1,37 @@
 ﻿// Licensed to the Trickyrat under one or more agreements.
 // The Trickyrat licenses this file to you under the MIT license.
 
+using System.Collections.Generic;
 using Xunit;
 
 namespace LeetCodecsharp.Test.SolutionTests;
 
 public class PeakIndexInMountainArrayUnitTest
 {
+    public static IEnumerable<object[]> GetData()
+    {
+        yield return
+        [
+            new[] { 18, 29, 38, 59, 98, 100, 99, 98, 90 }, 5
+        ];
+        yield return
+        [
+            new[] { 0, 1, 0 }, 1
+        ];
+        yield return
+        [
+            new[] { 1, 3, 5, 4, 2 }, 2
+        ];
+        yield return
+        [
+            new[] { 0, 10, 5, 2 }, 1
+        ];
+    }
+
     [Theory]
-    [InlineData(new int[] { 18, 29, 38, 59, 98, 100, 99, 98, 90 }, 5)]
-    [InlineData(new int[] { 0, 1, 0 }, 1)]
-    [InlineData(new int[] { 1, 3, 5, 4, 2 }, 2)]
-    [InlineData(new int[] { 0, 10, 5, 2 }, 1)]
+    [MemberData(nameof(GetData))]
     public void Test(int[] arr, int expected)
     {
-
         var actual = Solution.PeakIndexInMountainArray(arr);
         Assert.Equal(expected, actual);
     }

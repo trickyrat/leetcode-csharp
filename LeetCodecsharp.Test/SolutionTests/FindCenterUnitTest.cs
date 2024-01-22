@@ -2,7 +2,6 @@
 // The Trickyrat licenses this file to you under the MIT license.
 
 using System.Collections.Generic;
-
 using Xunit;
 
 namespace LeetCodecsharp.Test.SolutionTests;
@@ -11,26 +10,25 @@ public class FindCenterUnitTest
 {
     public static IEnumerable<object[]> GetEdges()
     {
-        yield return new object[]
-        {
-            (new int[][]
+        yield return
+        [
+            (new[]
             {
-                new int[]{1,2 },
-                new int[]{2,3 },
-                new int[]{4,2 },
+                new[] { 1, 2 },
+                new[] { 2, 3 },
+                new[] { 4, 2 },
             }, 2)
-        };
-        yield return new object[]
-        {
-            (new int[][]
+        ];
+        yield return
+        [
+            (new[]
             {
-                new int[]{1,2 },
-                new int[]{5,1 },
-                new int[]{1,3 },
-                new int[]{1,4 },
+                new[] { 1, 2 },
+                new[] { 5, 1 },
+                new[] { 1, 3 },
+                new[] { 1, 4 },
             }, 1)
-        };
-
+        ];
     }
 
 

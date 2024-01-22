@@ -2,22 +2,21 @@
 // The Trickyrat licenses this file to you under the MIT license.
 
 using System.Collections.Generic;
-
 using LeetCodecsharp.DataStructure;
-
 using Xunit;
 
 namespace LeetCodecsharp.Test.SolutionTests;
+
 public class RotateRightUnitTest
 {
     public static IEnumerable<object[]> GetData()
     {
-        yield return new object[]
-        {
-            Util.CreateListNode(new int[]{ 1, 2, 3, 4, 5 }),
+        yield return
+        [
+            Util.CreateListNode([1, 2, 3, 4, 5]),
             2,
-            Util.CreateListNode(new int[]{ 4, 5, 1, 2, 3 })
-        };
+            Util.CreateListNode([4, 5, 1, 2, 3])
+        ];
     }
 
     [Theory]
@@ -28,4 +27,3 @@ public class RotateRightUnitTest
         Assert.Equal(expected, actual, new ListNodeComparer());
     }
 }
-

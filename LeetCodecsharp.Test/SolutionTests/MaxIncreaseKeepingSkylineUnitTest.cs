@@ -11,17 +11,17 @@ public class MaxIncreaseKeepingSkylineUnitTest
 {
     public static IEnumerable<object[]> GetData()
     {
-        yield return new object[]
-        {
+        yield return
+        [
             new int[][]
             {
-                new int[] {3, 0, 8, 4},
-                new int[] {2, 4, 5, 7},
-                new int[] {9, 2, 6, 3},
-                new int[] {0, 3, 1, 0},
+                [3, 0, 8, 4],
+                [2, 4, 5, 7],
+                [9, 2, 6, 3],
+                [0, 3, 1, 0],
             },
             35
-        };
+        ];
     }
 
     [Theory]

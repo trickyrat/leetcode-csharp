@@ -14,7 +14,6 @@ public class SimplifyPathUnitTest
     [InlineData("/a/./b/../../c/", "/c")]
     public void Test(string path, string expected)
     {
-
         var actual = Solution.SimplifyPath(path);
         Assert.Equal(expected, actual);
     }

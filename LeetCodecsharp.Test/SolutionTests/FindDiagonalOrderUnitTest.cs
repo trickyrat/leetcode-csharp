@@ -2,7 +2,6 @@
 // The Trickyrat licenses this file to you under the MIT license.
 
 using System.Collections.Generic;
-
 using Xunit;
 
 namespace LeetCodecsharp.Test.SolutionTests;
@@ -11,25 +10,25 @@ public class FindDiagonalOrderUnitTest
 {
     public static IEnumerable<object[]> GetData()
     {
-        yield return new object[]
-        {
-            new int[][]
+        yield return
+        [
+            new[]
             {
-                new int[]{ 1, 2, 3 },
-                new int[]{ 4, 5, 6 },
-                new int[]{ 7, 8, 9 },
+                new[] { 1, 2, 3 },
+                new[] { 4, 5, 6 },
+                new[] { 7, 8, 9 },
             },
-            new int[] { 1, 2, 4, 7, 5, 3, 6, 8, 9 }
-        };
-        yield return new object[]
-        {
-            new int[][]
+            new[] { 1, 2, 4, 7, 5, 3, 6, 8, 9 }
+        ];
+        yield return
+        [
+            new[]
             {
-                new int[]{ 1, 2 },
-                new int[]{ 3, 4 },
+                new[] { 1, 2 },
+                new[] { 3, 4 },
             },
-            new int[] { 1, 2, 3, 4 }
-        };
+            new[] { 1, 2, 3, 4 }
+        ];
     }
 
     [Theory]

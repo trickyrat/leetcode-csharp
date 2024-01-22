@@ -7,72 +7,72 @@ namespace LeetCodecsharp.Test;
 
 public class UtilUnitTest
 {
-     public static IEnumerable<object[]> GetTreeNodeData()
+    public static IEnumerable<object[]> GetTreeNodeData()
     {
-        yield return new object[]
-        {
+        yield return
+        [
             new List<int?> { 1, 2, 3 },
             new TreeNode(1, new TreeNode(2), new TreeNode(3))
-        };
-        yield return new object[]
-        {
+        ];
+        yield return
+        [
             new List<int?> { 1, null, 3 },
             new TreeNode(1, null, new TreeNode(3))
-        };
+        ];
     }
 
     public static IEnumerable<object[]> GetMatrixData()
     {
-        yield return new object[]
-        {
+        yield return
+        [
             new[]
             {
-                new[] { 1, 2, 3 },
-                new[] { 4, 5, 6 },
+                [1, 2, 3],
+                [4, 5, 6],
                 new[] { 7, 8, 9 },
             },
             "[[1,2,3]\n [4,5,6]\n [7,8,9]]"
-        };
+        ];
 
-        yield return new object[]
-        {
+        yield return
+        [
             new[]
             {
-                new[] { 1, 2 },
-                new[] { 4, 5 },
+                [1, 2],
+                [4, 5],
                 new[] { 7, 8 },
             },
             "[[1,2]\n [4,5]\n [7,8]]"
-        };
+        ];
 
-        yield return new object[]
-        {
+        yield return
+        [
             new[]
             {
-                new[] { 1, 2, 3 },
+                [1, 2, 3],
                 new[] { 4, 5, 6 }
             },
             "[[1,2,3]\n [4,5,6]]"
-        };
-        
-        yield return new object[]
-        {
+        ];
+
+        yield return
+        [
             new[]
             {
-                new[] { 1 },
-                new[] { 2 },
+                [1],
+                [2],
                 new[] { 3 },
             },
             "[[1]\n [2]\n [3]]"
-        };
-        yield return new object[]
-        {
+        ];
+        yield return
+        [
             new[]
             {
                 new[] { 1, 2, 3 },
             },
             "[[1,2,3]]"
-        };
+        ];
     }
 
     [Theory]

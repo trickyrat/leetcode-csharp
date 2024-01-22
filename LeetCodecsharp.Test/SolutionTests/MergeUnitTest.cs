@@ -11,34 +11,34 @@ public class MergeUnitTest
 {
     public static IEnumerable<object[]> GetData()
     {
-        yield return new object[]
-        {
+        yield return
+        [
             new int[][]
             {
-                new int[] { 1, 3 },
-                new int[] { 2, 6 },
-                new int[] { 8, 10 },
-                new int[] { 15, 18 }
+                [1, 3],
+                [2, 6],
+                [8, 10],
+                [15, 18]
             },
             new int[][]
             {
-                new int[] { 1, 6 },
-                new int[] { 8, 10 },
-                new int[] { 15, 18 }
+                [1, 6],
+                [8, 10],
+                [15, 18]
             }
-        };
-        yield return new object[]
-        {
+        ];
+        yield return
+        [
             new int[][]
             {
-                new int[] { 1, 4 },
-                new int[] { 4, 5 },
+                [1, 4],
+                [4, 5],
             },
             new int[][]
             {
-                new int[] { 1, 5 }
+                [1, 5]
             }
-        };
+        ];
     }
 
     [Theory]

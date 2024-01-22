@@ -5,7 +5,6 @@ using Xunit;
 
 namespace LeetCodecsharp.Test.SolutionTests;
 
-
 public class ValidIPAdressUnitTest
 {
     [Theory]
@@ -25,5 +24,4 @@ public class ValidIPAdressUnitTest
         var actual = Solution.ValidIPAddress(address);
         Assert.Equal(expected, actual);
     }
-
 }

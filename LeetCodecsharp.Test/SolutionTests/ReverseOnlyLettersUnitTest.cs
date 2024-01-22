@@ -13,7 +13,6 @@ public class ReverseOnlyLettersUnitTest
     [InlineData("Test1ng-Leet=code-Q!", "Qedo1ct-eeLg=ntse-T!")]
     public void Test(string s, string expected)
     {
-
         var actual = Solution.ReverseOnlyLetters(s);
         Assert.Equal(expected, actual);
     }

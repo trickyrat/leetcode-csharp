@@ -13,14 +13,15 @@ public class FullJustifyUnitTest
     public void FullJustifyTest1()
     {
 
-        string[] words = { "Science", "is", "what", "we", "understand", "well", "enough", "to", "explain", "to", "a", "computer.", "Art", "is", "everything", "else", "we", "do" };
+        string[] words = ["Science", "is", "what", "we", "understand", "well", "enough", "to", "explain", "to", "a", "computer.", "Art", "is", "everything", "else", "we", "do"
+        ];
         IList<string> expected = new List<string> { "Science  is  what we",
                                                     "understand      well",
                                                     "enough to explain to",
                                                     "a  computer.  Art is",
                                                     "everything  else  we",
                                                     "do                  "};
-        var maxWidth = 20;
+        const int maxWidth = 20;
         var actual = Solution.FullJustify(words, maxWidth);
         Assert.Equal(expected, actual);
     }

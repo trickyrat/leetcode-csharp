@@ -2,20 +2,36 @@
 // The Trickyrat licenses this file to you under the MIT license.
 
 using System.Collections.Generic;
-
 using Xunit;
 
 namespace LeetCodecsharp.Test.SolutionTests;
+
 public class MinSubsequenceUnitTest
 {
+    public static IEnumerable<object[]> GetData()
+    {
+        yield return
+        [
+            new[] { 4, 3, 10, 9, 8 }, new[] { 10, 9 }
+        ];
+
+        yield return
+        [
+            new[] { 4, 4, 7, 6, 7 }, new[] { 7, 7, 6 }
+        ];
+
+        yield return
+        [
+            new[] { 6 }, new[] { 6 }
+        ];
+    }
+
+
     [Theory]
-    [InlineData(new int[] { 4, 3, 10, 9, 8 }, new int[] { 10, 9 })]
-    [InlineData(new int[] { 4, 4, 7, 6, 7 }, new int[] { 7, 7, 6 })]
-    [InlineData(new int[] { 6 }, new int[] { 6 })]
+    [MemberData(nameof(GetData))]
     public void MultipleDataTest(int[] input, IList<int> expected)
     {
         var actual = Solution.MinSubsequence(input);
         Assert.Equal(expected, actual);
     }
 }
-

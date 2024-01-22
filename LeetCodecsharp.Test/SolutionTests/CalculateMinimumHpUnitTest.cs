@@ -2,33 +2,32 @@
 // The Trickyrat licenses this file to you under the MIT license.
 
 using System.Collections.Generic;
-
 using Xunit;
 
 namespace LeetCodecsharp.Test.SolutionTests
 {
-    public class CalculateMinimumHPUnitTest
+    public class CalculateMinimumHpUnitTest
     {
         public static IEnumerable<object[]> GetData()
         {
-            yield return new object[]
-            {
-                new int[][]
+            yield return
+            [
+                new[]
                 {
-                    new int[]{ -2, -3, 3 },
-                    new int[]{ -5, -10, 1 },
-                    new int[]{ 10, 30, -5 },
+                    new[] { -2, -3, 3 },
+                    new[] { -5, -10, 1 },
+                    new[] { 10, 30, -5 },
                 },
                 7
-            };
-            yield return new object[]
-            {
-                new int[][]
+            ];
+            yield return
+            [
+                new[]
                 {
-                    new int[]{ 0 }
+                    new[] { 0 }
                 },
                 1
-            };
+            ];
         }
 
         [Theory]

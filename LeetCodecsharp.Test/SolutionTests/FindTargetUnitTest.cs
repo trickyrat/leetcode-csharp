@@ -13,18 +13,18 @@ public class FindTargetUnitTest
 {
     public static IEnumerable<object[]> GetData()
     {
-        yield return new object[]
-        {
-            Util.CreateTreeNode(new List<int?>{ 5, 3, 6, 2, 4, null, 7 }),
+        yield return
+        [
+            Util.CreateTreeNode([5, 3, 6, 2, 4, null, 7]),
             9,
             true
-        };
-        yield return new object[]
-        {
-            Util.CreateTreeNode(new List<int?>{ 5, 3, 6, 2, 4, null, 7 }),
+        ];
+        yield return
+        [
+            Util.CreateTreeNode([5, 3, 6, 2, 4, null, 7]),
             28,
             false
-        };
+        ];
     }
 
 

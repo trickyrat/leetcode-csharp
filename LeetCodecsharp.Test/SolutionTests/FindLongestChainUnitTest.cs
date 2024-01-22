@@ -10,26 +10,26 @@ public class FindLongestChainUnitTest
 {
     public static IEnumerable<object[]> GetData()
     {
-        yield return new object[]
-        {
-            new int[][]
+        yield return
+        [
+            new[]
             {
-                new int[] { 1, 2 },
-                new int[] { 2, 3 },
-                new int[] { 3, 4 },
+                new[] { 1, 2 },
+                new[] { 2, 3 },
+                new[] { 3, 4 },
             },
             2
-        };
-        yield return new object[]
-        {
-            new int[][]
+        ];
+        yield return
+        [
+            new[]
             {
-                new int[] { 1, 2 },
-                new int[] { 7, 8 },
-                new int[] { 4, 5 },
+                new[] { 1, 2 },
+                new[] { 7, 8 },
+                new[] { 4, 5 },
             },
             3
-        };
+        ];
     }
 
     [Theory]

@@ -12,20 +12,20 @@ public class AddOneRowUnitTest
 {
     public static IEnumerable<object[]> GetData()
     {
-        yield return new object[]
-        {
-            Util.CreateTreeNode(new List<int?>{ 4,2,6,3,1,5}),
+        yield return
+        [
+            Util.CreateTreeNode([4, 2, 6, 3, 1, 5]),
             1,
             2,
-            Util.CreateTreeNode(new List<int?>{ 4,1,1,2,null,null,6,3,1,5})
-        };
-        yield return new object[]
-        {
-            Util.CreateTreeNode(new List<int?>{4,2,null,3,1}),
+            Util.CreateTreeNode([4, 1, 1, 2, null, null, 6, 3, 1, 5])
+        ];
+        yield return
+        [
+            Util.CreateTreeNode([4, 2, null, 3, 1]),
             1,
             3,
-            Util.CreateTreeNode(new List<int?>{4,2,null,1,1,3,null,null,1 })
-        };
+            Util.CreateTreeNode([4, 2, null, 1, 1, 3, null, null, 1])
+        ];
     }
 
     [Theory]

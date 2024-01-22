@@ -11,9 +11,9 @@ public class CombinationSumUnitTest
 {
     public static IEnumerable<object[]> GetData()
     {
-        yield return new object[]
-        {
-            new int[] { 2, 3, 6, 7 },
+        yield return
+        [
+            new[] { 2, 3, 6, 7 },
             7,
             new List<IList<int>>
             {
@@ -21,16 +21,16 @@ public class CombinationSumUnitTest
                 new List<int>{ 2, 2, 3},
             }
 
-        };
-        yield return new object[]
-        {
-            new int[] { 2 },
+        ];
+        yield return
+        [
+            new[] { 2 },
             1,
             new List<IList<int>>()
-        };
-        yield return new object[]
-        {
-            new int[] { 2, 3, 5 },
+        ];
+        yield return
+        [
+            new[] { 2, 3, 5 },
             8,
             new List<IList<int>>
             {
@@ -38,25 +38,25 @@ public class CombinationSumUnitTest
                 new List<int>{ 2, 3, 3 },
                 new List<int>{ 2, 2, 2, 2 },
             }
-        };
-        yield return new object[]
-        {
-            new int[] { 1 },
+        ];
+        yield return
+        [
+            new[] { 1 },
             1,
             new List<IList<int>>
             {
                 new List<int>{ 1 },
             }
-        };
-        yield return new object[]
-        {
-            new int[] { 1 },
+        ];
+        yield return
+        [
+            new[] { 1 },
             2,
             new List<IList<int>>
             {
                 new List<int>{ 1, 1 },
             }
-        };
+        ];
     }
 
     [Theory]

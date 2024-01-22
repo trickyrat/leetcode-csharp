@@ -20,7 +20,7 @@ public class MinimumTotalUnitTest
             new List<int>{ 4, 1, 8, 3 },
         };
         var actual = Solution.MinimumTotal(data);
-        var expected = 11;
+        const int expected = 11;
         Assert.Equal(expected, actual);
     }
 }

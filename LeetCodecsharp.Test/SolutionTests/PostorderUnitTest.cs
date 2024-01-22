@@ -11,7 +11,7 @@ namespace LeetCodecsharp.Test.SolutionTests;
 public class PostorderUnitTest
 {
     [Fact]
-    public void SingleTest()
+    public void Test()
     {
         var root1 = new Node(1, new List<Node>());
         var root1ChildNode3 = new Node(3, new List<Node>());
@@ -20,8 +20,7 @@ public class PostorderUnitTest
         root1.children.Add(root1ChildNode3);
         root1.children.Add(new Node(2, new List<Node>()));
         root1.children.Add(new Node(4, new List<Node>()));
-
-
+        
         var root2 = new Node(1, new List<Node>());
 
         root2.children.Add(new Node(2, new List<Node>()));

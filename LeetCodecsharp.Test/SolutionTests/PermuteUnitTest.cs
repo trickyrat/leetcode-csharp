@@ -10,9 +10,9 @@ public class PermuteUnitTest
 {
     public static IEnumerable<object[]> GetData()
     {
-        yield return new object[]
-        {
-            new int[]{ 1,2,3},
+        yield return
+        [
+            new[]{ 1,2,3},
             new List<IList<int>>
             {
                 new List<int> { 1, 2, 3 },
@@ -22,26 +22,26 @@ public class PermuteUnitTest
                 new List<int> { 2, 3, 1 },
                 new List<int> { 3, 2, 1 }
             }
-        };
+        ];
 
-        yield return new object[]
-        {
-            new int[]{ 0, 1 },
+        yield return
+        [
+            new[]{ 0, 1 },
             new List<IList<int>>
             {
                 new List<int> { 0, 1 },
                 new List<int> { 1, 0 }
             }
-        };
+        ];
 
-        yield return new object[]
-        {
-            new int[]{ 1 },
+        yield return
+        [
+            new[]{ 1 },
             new List<IList<int>>
             {
                 new List<int> { 1 }
             }
-        };
+        ];
     }
 
     [Theory]

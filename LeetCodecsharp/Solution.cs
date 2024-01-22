@@ -4814,14 +4814,8 @@ public static class Solution
         {
             return ValidIPv4(queryIp);
         }
-        else if (queryIp.Count(c => c == ':') == 7)
-        {
-            return ValidIPv6(queryIp);
-        }
-        else
-        {
-            return "Neither";
-        }
+
+        return queryIp.Count(c => c == ':') == 7 ? ValidIPv6(queryIp) : "Neither";
 
         string ValidIPv4(string ip)
         {

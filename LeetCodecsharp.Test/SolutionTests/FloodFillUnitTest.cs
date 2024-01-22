@@ -11,40 +11,40 @@ public class FloodFillUnitTest
 {
     public static IEnumerable<object[]> GetData()
     {
-        yield return new object[]
-        {
+        yield return
+        [
             new int[][]
             {
-                new int[] { 1, 1, 1 },
-                new int[] { 1, 1, 0 },
-                new int[] { 1, 0, 1 },
+                [1, 1, 1],
+                [1, 1, 0],
+                [1, 0, 1],
             },
             1,
             1,
             2,
             new int[][]
             {
-                new int[] { 2, 2, 2 },
-                new int[] { 2, 2, 0 },
-                new int[] { 2, 0, 1 },
+                [2, 2, 2],
+                [2, 2, 0],
+                [2, 0, 1],
             }
-        };
-        yield return new object[]
-        {
+        ];
+        yield return
+        [
             new int[][]
             {
-                new int[] { 0, 0, 0 },
-                new int[] { 0, 0, 0 }
+                [0, 0, 0],
+                [0, 0, 0]
             },
             0,
             0,
             2,
             new int[][]
             {
-                new int[] { 2, 2, 2 },
-                new int[] { 2, 2, 2 }
+                [2, 2, 2],
+                [2, 2, 2]
             }
-        };
+        ];
     }
 
 

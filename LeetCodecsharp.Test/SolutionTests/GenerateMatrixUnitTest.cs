@@ -10,24 +10,24 @@ public class GenerateMatrixUnitTest
 {
     public static IEnumerable<object[]> GetData()
     {
-        yield return new object[]
-        {
+        yield return
+        [
             3,
             new int[][]
             {
-                new int[] { 1, 2, 3 },
-                new int[] { 8, 9, 4 },
-                new int[] { 7, 6, 5 }
+                [1, 2, 3],
+                [8, 9, 4],
+                [7, 6, 5]
             }
-        };
-        yield return new object[]
-        {
+        ];
+        yield return
+        [
             1,
             new int[][]
             {
-                new int[] { 1 }
+                [1]
             }
-        };
+        ];
     }
 
     [Theory]

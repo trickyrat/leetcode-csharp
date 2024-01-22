@@ -1,19 +1,34 @@
 ﻿// Licensed to the Trickyrat under one or more agreements.
 // The Trickyrat licenses this file to you under the MIT license.
 
+using System.Collections.Generic;
 using Xunit;
 
 namespace LeetCodecsharp.Test.SolutionTests;
+
 public class SpecialArrayUnitTest
 {
+    public static IEnumerable<object[]> GetData()
+    {
+        yield return
+        [
+            new[] { 3, 5 }, 2
+        ];
+        yield return
+        [
+            new[] { 0, 0 }, -1
+        ];
+        yield return
+        [
+            new[] { 0, 4, 3, 0, 4 }, 3
+        ];
+    }
+
     [Theory]
-    [InlineData(new int[] { 3, 5 }, 2)]
-    [InlineData(new int[] { 0, 0 }, -1)]
-    [InlineData(new int[] { 0, 4, 3, 0, 4 }, 3)]
+    [MemberData(nameof(GetData))]
     public void MultipleDataTest(int[] nums, int expected)
     {
         var actual = Solution.SpecialArray(nums);
         Assert.Equal(expected, actual);
     }
 }
-

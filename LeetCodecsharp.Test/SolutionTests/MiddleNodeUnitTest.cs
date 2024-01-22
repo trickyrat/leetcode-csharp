@@ -2,9 +2,7 @@
 // The Trickyrat licenses this file to you under the MIT license.
 
 using System.Collections.Generic;
-
 using LeetCodecsharp.DataStructure;
-
 using Xunit;
 
 namespace LeetCodecsharp.Test.SolutionTests;
@@ -13,16 +11,16 @@ public class MiddleNodeUnitTest
 {
     public static IEnumerable<object[]> GetData()
     {
-        yield return new object[]
-        {
-            Util.CreateListNode(new List<int> { 1, 2, 3, 4, 5, 6 }),
-            Util.CreateListNode(new List<int> { 4, 5, 6 })
-        };
-        yield return new object[]
-        {
-            Util.CreateListNode(new List<int> { 1, 2, 3, 4, 5,  }),
-            Util.CreateListNode(new List<int> { 3, 4, 5 })
-        };
+        yield return
+        [
+            Util.CreateListNode([1, 2, 3, 4, 5, 6]),
+            Util.CreateListNode([4, 5, 6])
+        ];
+        yield return
+        [
+            Util.CreateListNode([1, 2, 3, 4, 5,]),
+            Util.CreateListNode([3, 4, 5])
+        ];
     }
 
     [Theory]

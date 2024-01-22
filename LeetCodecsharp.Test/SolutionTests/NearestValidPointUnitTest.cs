@@ -11,40 +11,40 @@ namespace LeetCodecsharp.Test.SolutionTests
     {
         public static IEnumerable<object[]> GetData()
         {
-            yield return new object[]
-            {
+            yield return
+            [
                 3,
                 4,
                 new int[][]
                 {
-                    new int[] { 1, 2 },
-                    new int[] { 3, 1 },
-                    new int[] { 2, 4 },
-                    new int[] { 2, 3 },
-                    new int[] { 4, 4 },
+                    [1, 2],
+                    [3, 1],
+                    [2, 4],
+                    [2, 3],
+                    [4, 4],
                 },
                 2
-            };
-            yield return new object[]
-            {
+            ];
+            yield return
+            [
                 3,
                 4,
                 new int[][]
                 {
-                    new int[] { 3, 4 }
+                    [3, 4]
                 },
                 0
-            };
-            yield return new object[]
-            {
+            ];
+            yield return
+            [
                 3,
                 4,
                 new int[][]
                 {
-                    new int[] { 2, 3 }
+                    [2, 3]
                 },
                 -1
-            };
+            ];
         }
 
 

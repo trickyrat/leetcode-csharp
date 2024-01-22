@@ -2,9 +2,7 @@
 // The Trickyrat licenses this file to you under the MIT license.
 
 using System.Collections.Generic;
-
 using LeetCodecsharp.DataStructure;
-
 using Xunit;
 
 namespace LeetCodecsharp.Test.SolutionTests;
@@ -13,18 +11,18 @@ public class GetAllElementsUnitTest
 {
     public static IEnumerable<object[]> GetData()
     {
-        yield return new object[]
-        {
-            Util.CreateTreeNode(new List<int?> { 2, 1, 4 }),
-            Util.CreateTreeNode(new List<int?> { 1, 0, 3 }),
+        yield return
+        [
+            Util.CreateTreeNode([2, 1, 4]),
+            Util.CreateTreeNode([1, 0, 3]),
             new List<int> { 0, 1, 1, 2, 3, 4 }
-        };
-        yield return new object[]
-        {
-            Util.CreateTreeNode(new List<int?> { 1, null, 8 }),
-            Util.CreateTreeNode(new List<int?> { 8, 1 }),
+        ];
+        yield return
+        [
+            Util.CreateTreeNode([1, null, 8]),
+            Util.CreateTreeNode([8, 1]),
             new List<int> { 1, 1, 8, 8 }
-        };
+        ];
     }
 
 

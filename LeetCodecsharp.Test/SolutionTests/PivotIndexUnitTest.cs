@@ -1,16 +1,31 @@
 ﻿// Licensed to the Trickyrat under one or more agreements.
 // The Trickyrat licenses this file to you under the MIT license.
 
+using System.Collections.Generic;
 using Xunit;
 
 namespace LeetCodecsharp.Test.SolutionTests;
 
 public class PivotIndexUnitTest
 {
+    public static IEnumerable<object[]> GetData()
+    {
+        yield return
+        [
+            new[] { 1, 7, 3, 6, 5, 6 }, 3
+        ];
+        yield return
+        [
+            new[] { 1, 2, 3 }, -1
+        ];
+        yield return
+        [
+            new[] { 2, 1, -1 }, 0
+        ];
+    }
+    
     [Theory]
-    [InlineData(new int[] { 1, 7, 3, 6, 5, 6 }, 3)]
-    [InlineData(new int[] { 1, 2, 3 }, -1)]
-    [InlineData(new int[] { 2, 1, -1 }, 0)]
+    [MemberData(nameof(GetData))]
     public void MultipleDataTest(int[] nums, int expect)
     {
 

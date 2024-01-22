@@ -6,29 +6,31 @@ using Xunit;
 
 namespace LeetCodecsharp.Test.SolutionTests;
 
-public class TotalFruitUnitTest
+public class DiStringMatchUnitTest
 {
     public static IEnumerable<object[]> GetData()
     {
         yield return
         [
-            new[] { 1, 2, 1 }, 3
+            "IDID", new[] { 0, 4, 1, 3, 2 }
         ];
+
         yield return
         [
-            new[] { 0, 1, 2, 2 }, 3
+            "III", new[] { 0, 1, 2, 3 }
         ];
+
         yield return
         [
-            new[] { 1, 2, 3, 2, 2 }, 4
+            "DDI", new[] { 3, 2, 0, 1 }
         ];
     }
 
     [Theory]
     [MemberData(nameof(GetData))]
-    public void MultipleDataTest(int[] fruits, int expected)
+    public void MultipleDataTest(string s, int[] expected)
     {
-        var actual = Solution.TotalFruit(fruits);
+        var actual = Solution.DIStringMatch(s);
         Assert.Equal(expected, actual);
     }
 }

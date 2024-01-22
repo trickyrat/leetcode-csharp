@@ -3,19 +3,17 @@
 
 using Xunit;
 
-namespace LeetCodecsharp.Test.SolutionTests
-{
-    public class TitleToNumberUnitTest
-    {
-        [Theory]
-        [InlineData("A", 1)]
-        [InlineData("AB", 28)]
-        [InlineData("ZY", 701)]
-        public void MultipleDataTest(string columnTitle, int expected)
-        {
-            var actual = Solution.TitleToNumber(columnTitle);
-            Assert.Equal(expected, actual);
-        }
+namespace LeetCodecsharp.Test.SolutionTests;
 
+public class TitleToNumberUnitTest
+{
+    [Theory]
+    [InlineData("A", 1)]
+    [InlineData("AB", 28)]
+    [InlineData("ZY", 701)]
+    public void MultipleDataTest(string columnTitle, int expected)
+    {
+        var actual = Solution.TitleToNumber(columnTitle);
+        Assert.Equal(expected, actual);
     }
 }

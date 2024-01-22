@@ -1,6 +1,7 @@
 ﻿// Licensed to the Trickyrat under one or more agreements.
 // The Trickyrat licenses this file to you under the MIT license.
 
+using System;
 using System.Collections.Generic;
 
 using Xunit;
@@ -11,28 +12,28 @@ namespace LeetCodecsharp.Test.SolutionTests
     {
         public static IEnumerable<object[]> GetData()
         {
-            yield return new object[]
-            {
+            yield return
+            [
                 new char[][]
                 {
-                    new char[]{ 'o', 'a', 'a', 'n' },
-                    new char[]{ 'e', 't', 'a', 'e' },
-                    new char[]{ 'i', 'h', 'k', 'r' },
-                    new char[]{ 'i', 'f', 'l', 'v' },
+                    ['o', 'a', 'a', 'n'],
+                    ['e', 't', 'a', 'e'],
+                    ['i', 'h', 'k', 'r'],
+                    ['i', 'f', 'l', 'v'],
                 },
-                new string[]{ "oath", "pea", "eat", "rain" },
-                new string[]{ "oath", "eat" }
-            };
-            yield return new object[]
-          {
+                new[]{ "oath", "pea", "eat", "rain" },
+                new[]{ "oath", "eat" }
+            ];
+            yield return
+            [
                 new char[][]
                 {
-                    new char[]{ 'a', 'b' },
-                    new char[]{ 'c', 'd' }
+                    ['a', 'b'],
+                    ['c', 'd']
                 },
-                new string[]{ "abcb" },
-                new string[]{ }
-          };
+                new []{ "abcb" },
+                Array.Empty<string>()
+            ];
         }
 
         [Theory]

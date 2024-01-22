@@ -10,10 +10,10 @@ public class KthGrammarUnitTest
     [InlineData(1, 1, 0)]
     [InlineData(2, 1, 0)]
     [InlineData(2, 2, 1)]
-    public void MultipleDataTest(int n, int k, int expcted)
+    public void MultipleDataTest(int n, int k, int expected)
     {
         var actual = Solution.KthGrammar(n, k);
-        Assert.Equal(expcted, actual);
+        Assert.Equal(expected, actual);
     }
 }
 

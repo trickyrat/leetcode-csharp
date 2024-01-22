@@ -11,35 +11,35 @@ public class ShortestPathBinaryMatrixUnitTest
 {
     public static IEnumerable<object[]> GetData()
     {
-        yield return new object[]
-        {
+        yield return
+        [
             new int[][]
             {
-                new int[]{ 0, 1 },
-                new int[]{ 1, 0 }
+                [0, 1],
+                [1, 0]
             },
             2
-        };
-        yield return new object[]
-        {
+        ];
+        yield return
+        [
             new int[][]
             {
-                new int[]{ 0, 0, 0 },
-                new int[]{ 1, 1, 0 },
-                new int[]{ 1, 1, 0 }
+                [0, 0, 0],
+                [1, 1, 0],
+                [1, 1, 0]
             },
             4
-        };
-        yield return new object[]
-        {
+        ];
+        yield return
+        [
             new int[][]
             {
-                new int[]{ 1, 0, 0 },
-                new int[]{ 1, 1, 0 },
-                new int[]{ 1, 1, 0 }
+                [1, 0, 0],
+                [1, 1, 0],
+                [1, 1, 0]
             },
             -1
-        };
+        ];
     }
 
     [Theory]

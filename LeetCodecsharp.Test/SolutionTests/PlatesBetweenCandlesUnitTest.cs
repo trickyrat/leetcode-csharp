@@ -11,29 +11,29 @@ public class PlatesBetweenCandlesUnitTest
 {
     public static IEnumerable<object[]> GetData()
     {
-        yield return new object[]
-        {
+        yield return
+        [
             "**|**|***|",
             new int[][]
             {
-                new int[] { 2,5 },
-                new int[] { 5,9 }
+                [2,5],
+                [5,9]
             },
-            new int[] { 2,3 }
-        };
-        yield return new object[]
-        {
+            new[] { 2,3 }
+        ];
+        yield return
+        [
             "***|**|*****|**||**|*",
             new int[][]
             {
-                new int[] { 1, 17 },
-                new int[] { 4, 5 },
-                new int[] { 14, 17 },
-                new int[] { 5, 11 },
-                new int[] { 15, 16 },
+                [1, 17],
+                [4, 5],
+                [14, 17],
+                [5, 11],
+                [15, 16],
             },
-            new int[] { 9,0,0,0,0 }
-        };
+            new[] { 9,0,0,0,0 }
+        ];
     }
     [Theory]
     [MemberData(nameof(GetData))]

@@ -10,19 +10,12 @@ using Microsoft.Extensions.Logging;
 
 namespace LeetCodecsharp;
 
-public class Worker : BackgroundService
+public class Worker(ILogger<Worker> logger
+    , IHost host) : BackgroundService
 {
-    private readonly ILogger _logger;
-    private readonly IHost _host;
+    private readonly ILogger _logger = logger;
+    private readonly IHost _host = host;
     private int _exitCode = 0;
-
-    public Worker(ILogger<Worker> logger
-    , IHost host)
-    {
-        _logger = logger;
-        _host = host;
-    }
-
 
     protected async override Task ExecuteAsync(CancellationToken stoppingToken)
     {
@@ -33,7 +26,7 @@ public class Worker : BackgroundService
         }
         catch (Exception ex)
         {
-            _logger.LogError("Exception: {0}", ex.Message);
+            _logger.LogError("Exception: {Message}", ex.Message);
             _exitCode = -1;
             throw;
         }

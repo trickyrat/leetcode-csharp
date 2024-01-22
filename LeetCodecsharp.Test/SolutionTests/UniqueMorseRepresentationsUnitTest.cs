@@ -1,16 +1,28 @@
 ﻿// Licensed to the Trickyrat under one or more agreements.
 // The Trickyrat licenses this file to you under the MIT license.
 
+using System.Collections.Generic;
 using Xunit;
 
 namespace LeetCodecsharp.Test.SolutionTests;
 
 public class UniqueMorseRepresentationsUnitTest
-
 {
+    public static IEnumerable<object[]> GetData()
+    {
+        yield return
+        [
+            new[] { "gin", "zen", "gig", "msg" }, 2
+        ];
+        yield return
+        [
+            new[] { "a" }, 1
+        ];
+    }
+
+
     [Theory]
-    [InlineData(new string[] { "gin", "zen", "gig", "msg" }, 2)]
-    [InlineData(new string[] { "a" }, 1)]
+    [MemberData(nameof(GetData))]
     public void MultipleDataTest(string[] words, int expected)
     {
         var actual = Solution.UniqueMorseRepresentations(words);

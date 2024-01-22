@@ -8,7 +8,7 @@ namespace LeetCodecsharp.Test.SolutionTests;
 public class KthLargestUnitTest
 {
     [Fact]
-    public void Test1()
+    public void Test()
     {
         var nums = new int[4] { 4, 5, 8, 2 };
         var kthLargest = new KthLargest(3, nums);
