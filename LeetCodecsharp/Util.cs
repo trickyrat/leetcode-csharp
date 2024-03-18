@@ -3,7 +3,6 @@
 
 using System.Collections.Generic;
 using System.Text;
-
 using LeetCodecsharp.DataStructure;
 
 namespace LeetCodecsharp;
@@ -26,10 +25,11 @@ public static class Util
         var dummy = head;
         foreach (var item in data)
         {
-            dummy.next = new ListNode(item);
-            dummy = dummy.next;
+            dummy.Next = new ListNode(item);
+            dummy = dummy.Next;
         }
-        return head.next;
+
+        return head.Next;
     }
 
     public static List<int> ConvertListNodeToList(ListNode head)
@@ -37,9 +37,10 @@ public static class Util
         var res = new List<int>();
         while (head is not null)
         {
-            res.Add(head.val);
-            head = head.next;
+            res.Add(head.Val);
+            head = head.Next;
         }
+
         return res;
     }
 
@@ -56,6 +57,7 @@ public static class Util
             {
                 sb.Append(' ');
             }
+
             sb.Append(openSign);
             sb.Append(string.Join(',', matrix[i]));
             sb.Append(closeSign);
@@ -64,6 +66,7 @@ public static class Util
                 sb.Append('\n');
             }
         }
+
         sb.Append(closeSign);
         return sb.ToString();
     }
@@ -74,60 +77,84 @@ public static class Util
         var stack = new Stack<TreeNode>();
         while (root != null)
         {
-            res.Add(root.val);
-            if (root.right != null)
-                stack.Push(root.right);
-            root = root.left;
+            res.Add(root.Val);
+            if (root.Right != null)
+                stack.Push(root.Right);
+            root = root.Left;
             if (root == null && stack.Count > 0)
             {
                 root = stack.Pop();
             }
         }
+
         return res;
     }
-
+    
     public static TreeNode CreateTreeNode(List<int?> nums)
     {
-        if (nums[0] == null)
+        if (nums is null || nums.Count == 0 || nums[0] is null)
         {
             return null;
         }
+
         var root = new TreeNode(nums[0].Value);
         var queue = new Queue<TreeNode>();
         queue.Enqueue(root);
-        var cursor = 1;
-        var n = nums.Count;
-        while (cursor < nums.Count)
+        
+        var fillLeft = true;
+        for (var i = 1; i < nums.Count; i++)
         {
-            var node = queue.Dequeue();
+            var node = nums[i] is not null ? new TreeNode(nums[i].Value) : null;
 
-            if (cursor > n - 1 || nums[cursor] == null)
+            if (fillLeft)
             {
-                node.left = null;
+                queue.Peek().Left = node;
+                fillLeft = false;
             }
             else
             {
-                var left = new TreeNode(nums[cursor].Value);
-                if (node is not null)
-                {
-                    node.left = left;
-                }
-                queue.Enqueue(left);
+                queue.Peek().Right = node;
+                fillLeft = true;
             }
-            if (cursor + 1 > n - 1 || nums[cursor + 1] == null)
+
+            if (node is not null)
             {
-                node.right = null;
+                queue.Enqueue(node);
+            }
+
+            if (fillLeft) queue.Dequeue();
+        }
+        return root;
+    }
+
+    public static Node CreateNTree(List<int?> nums)
+    {
+        if (nums is null || nums.Count == 0 || nums[0] is null)
+        {
+            return null;
+        }
+
+        var root = new Node(nums[0].Value);
+        var queue = new Queue<Node>();
+        queue.Enqueue(root);
+        
+        for (var i = 1; i < nums.Count; i++)
+        {
+            var parent = queue.Peek();
+            if (nums[i].HasValue)
+            {
+                var child = new Node(nums[i].Value);
+                parent.Children.Add(child);
+                queue.Enqueue(child);
+            }
+            else if (!nums[i].HasValue && queue.Count < 2)
+            {
+                continue;
             }
             else
             {
-                var right = new TreeNode(nums[cursor + 1].Value);
-                if (node is not null)
-                {
-                    node.right = right;
-                }
-                queue.Enqueue(right);
+                queue.Dequeue();
             }
-            cursor += 2;
         }
 
         return root;
