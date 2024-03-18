@@ -1,30 +1,27 @@
 ﻿// Licensed to the Trickyrat under one or more agreements.
 // The Trickyrat licenses this file to you under the MIT license.
 
-using System.Collections.Generic;
 using Xunit;
 
 namespace LeetCodecsharp.Test.SolutionTests;
 
 public class AverageUnitTest
 {
-    public static IEnumerable<object[]> GetData()
+    public static TheoryData<int[], double> Data
     {
-        yield return
-        [
-            new[] { 4000, 3000, 1000, 2000 },
-            2500.00000
-        ];
-
-        yield return
-        [
-            new[] { 1000, 2000, 3000 },
-            2000.00000
-        ];
+        get
+        {
+            var data = new TheoryData<int[], double>
+            {
+                { [4000, 3000, 1000, 2000], 2500.00000 },
+                { [1000, 2000, 3000], 2000.00000 }
+            };
+            return data;
+        }
     }
 
     [Theory]
-    [MemberData(nameof(GetData))]
+    [MemberData(nameof(Data))]
     public void MultipleDataTest(int[] salary, double expected)
     {
         var actual = Solution.Average(salary);

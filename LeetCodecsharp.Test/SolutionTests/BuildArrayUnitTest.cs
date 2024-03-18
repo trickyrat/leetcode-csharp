@@ -8,28 +8,23 @@ namespace LeetCodecsharp.Test.SolutionTests;
 
 public class BuildArrayUnitTest
 {
-    public static IEnumerable<object[]> GetData()
+    public static TheoryData<int[], int, IList<string>> Data
     {
-        yield return
-        [
-            new[] { 1, 3 }, 3,
-            new[] { "Push", "Push", "Pop", "Push" }
-        ];
-
-        yield return
-        [
-            new[] { 1, 2, 3 }, 3, new[] { "Push", "Push", "Push" }
-        ];
-
-        yield return
-        [
-            new[] { 1, 2 }, 4, new[] { "Push", "Push" }
-        ];
+        get
+        {
+            var data = new TheoryData<int[], int, IList<string>>
+            {
+                { [1, 3], 3, ["Push", "Push", "Pop", "Push"] },
+                { [1, 2, 3], 3, ["Push", "Push", "Push"] },
+                { [1, 2], 4, ["Push", "Push"] }
+            };
+            return data;
+        }
     }
 
 
     [Theory]
-    [MemberData(nameof(GetData))]
+    [MemberData(nameof(Data))]
     public void Test(int[] targets, int n, IList<string> expected)
     {
         var actual = Solution.BuildArray(targets, n);

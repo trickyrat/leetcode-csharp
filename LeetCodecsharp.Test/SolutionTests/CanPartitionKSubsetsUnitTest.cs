@@ -1,28 +1,27 @@
 ﻿// Licensed to the Trickyrat under one or more agreements.
 // The Trickyrat licenses this file to you under the MIT license.
 
-using System.Collections.Generic;
 using Xunit;
 
 namespace LeetCodecsharp.Test.SolutionTests;
 
 public class CanPartitionKSubsetsUnitTest
 {
-    public static IEnumerable<object[]> GetData()
+    public static TheoryData<int[], int, bool> Data
     {
-        yield return
-        [
-            new [] { 4, 3, 2, 3, 5, 2, 1 }, 4, true
-        ];
-
-        yield return
-        [
-            new [] { 1, 2, 3, 4 }, 3, false
-        ];
+        get
+        {
+            var data = new TheoryData<int[], int, bool>
+            {
+                { [4, 3, 2, 3, 5, 2, 1], 4, true },
+                { [1, 2, 3, 4], 3, false }
+            };
+            return data;
+        }
     }
 
     [Theory]
-    [MemberData(nameof(GetData))]
+    [MemberData(nameof(Data))]
     public void Test(int[] nums, int k, bool expected)
     {
         var actual = Solution.CanPartitionKSubsets(nums, k);

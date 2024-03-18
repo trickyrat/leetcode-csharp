@@ -15,40 +15,40 @@ public class PostorderUnitTest
     {
         var root1 = new Node(1, new List<Node>());
         var root1ChildNode3 = new Node(3, new List<Node>());
-        root1ChildNode3.children.Add(new Node(5, new List<Node>()));
-        root1ChildNode3.children.Add(new Node(6, new List<Node>()));
-        root1.children.Add(root1ChildNode3);
-        root1.children.Add(new Node(2, new List<Node>()));
-        root1.children.Add(new Node(4, new List<Node>()));
+        root1ChildNode3.Children.Add(new Node(5, new List<Node>()));
+        root1ChildNode3.Children.Add(new Node(6, new List<Node>()));
+        root1.Children.Add(root1ChildNode3);
+        root1.Children.Add(new Node(2, new List<Node>()));
+        root1.Children.Add(new Node(4, new List<Node>()));
         
         var root2 = new Node(1, new List<Node>());
 
-        root2.children.Add(new Node(2, new List<Node>()));
+        root2.Children.Add(new Node(2, new List<Node>()));
 
         var root2ChildNode3 = new Node(3, new List<Node>());
         var root2ChildNode7 = new Node(7, new List<Node>());
         var root2ChildNode11 = new Node(11, new List<Node>());
-        root2ChildNode11.children.Add(new Node(14, new List<Node>()));
-        root2ChildNode7.children.Add(root2ChildNode11);
-        root2ChildNode3.children.Add(new Node(6, new List<Node>()));
-        root2ChildNode3.children.Add(root2ChildNode7);
+        root2ChildNode11.Children.Add(new Node(14, new List<Node>()));
+        root2ChildNode7.Children.Add(root2ChildNode11);
+        root2ChildNode3.Children.Add(new Node(6, new List<Node>()));
+        root2ChildNode3.Children.Add(root2ChildNode7);
 
         var root2ChildNode8 = new Node(8, new List<Node>());
-        root2ChildNode8.children.Add(new Node(12, new List<Node>()));
+        root2ChildNode8.Children.Add(new Node(12, new List<Node>()));
 
         var root2ChildNode9 = new Node(9, new List<Node>());
-        root2ChildNode9.children.Add(new Node(13, new List<Node>()));
+        root2ChildNode9.Children.Add(new Node(13, new List<Node>()));
 
         var root2ChildNode4 = new Node(4, new List<Node>());
-        root2ChildNode4.children.Add(root2ChildNode8);
+        root2ChildNode4.Children.Add(root2ChildNode8);
 
         var root2ChildNode5 = new Node(5, new List<Node>());
-        root2ChildNode5.children.Add(root2ChildNode9);
-        root2ChildNode5.children.Add(new Node(10, new List<Node>()));
+        root2ChildNode5.Children.Add(root2ChildNode9);
+        root2ChildNode5.Children.Add(new Node(10, new List<Node>()));
 
-        root2.children.Add(root2ChildNode3);
-        root2.children.Add(root2ChildNode4);
-        root2.children.Add(root2ChildNode5);
+        root2.Children.Add(root2ChildNode3);
+        root2.Children.Add(root2ChildNode4);
+        root2.Children.Add(root2ChildNode5);
 
         var actual1 = Solution.PostOrder(root1);
         var actual2 = Solution.PostOrder(root2);
