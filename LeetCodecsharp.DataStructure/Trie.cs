@@ -8,27 +8,21 @@ namespace LeetCodecsharp.DataStructure;
 /// </summary>
 public class Trie
 {
-    TrieNode Root
-    {
-        get; set;
-    }
-    public Trie()
-    {
-        Root = new TrieNode();
-    }
+    TrieNode Root { get; } = new();
 
     public void Insert(string word)
     {
         var node = Root;
-        for (var i = 0; i < word.Length; i++)
+        foreach (var currentChar in word)
         {
-            var currentChar = word[i];
             if (!node.ContainsKey(currentChar))
             {
                 node.Put(currentChar, new TrieNode());
             }
+
             node = node.Get(currentChar);
         }
+
         node.IsEnd = true;
     }
 
@@ -36,19 +30,20 @@ public class Trie
     public bool Search(string word)
     {
         var node = SearchPrefix(word);
-        return node != null && node.IsEnd;
+        return node is { IsEnd: true };
     }
+
     private TrieNode SearchPrefix(string word)
     {
         var node = Root;
-        for (var i = 0; i < word.Length; i++)
+        foreach (var currLetter in word)
         {
-            var currLetter = word[i];
             if (node.ContainsKey(currLetter))
                 node = node.Get(currLetter);
             else
                 return null;
         }
+
         return node;
     }
 
@@ -58,29 +53,19 @@ public class Trie
         return node != null;
     }
 }
+
 /// <summary>
 /// Trie Node
 /// </summary>
 public class TrieNode
 {
-    public string Word
-    {
-        get; set;
-    }
-    public TrieNode[] Links;
+    public string Word { get; set; }
+    public TrieNode[] Links { get; } = new TrieNode[R];
 
     // a-z lowercase
     private static readonly int R = 26;
 
-    public bool IsEnd
-    {
-        get; set;
-    }
-
-    public TrieNode()
-    {
-        Links = new TrieNode[R];
-    }
+    public bool IsEnd { get; set; }
 
     public bool ContainsKey(char ch)
     {

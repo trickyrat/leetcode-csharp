@@ -9,17 +9,14 @@ namespace LeetCodecsharp.DataStructure;
 
 public class PriorityQueue<T> where T : IComparable, IComparable<T>
 {
-    protected SortedSet<T> Values
-    {
-        get;
-    }
+    private SortedSet<T> Values { get; }
 
     /// <summary>
     /// Default constructor
     /// </summary>
     public PriorityQueue()
     {
-        Values = new SortedSet<T>();
+        Values = [];
     }
 
     public PriorityQueue(IComparer<T> comparer)
@@ -28,7 +25,7 @@ public class PriorityQueue<T> where T : IComparable, IComparable<T>
     }
 
     /// <summary>
-    /// Constructor with an IEnumerble parameter
+    /// Constructor with an IEnumerable parameter
     /// </summary>
     /// <param name="elements"></param>
     public PriorityQueue(IEnumerable<T> elements)
@@ -37,7 +34,7 @@ public class PriorityQueue<T> where T : IComparable, IComparable<T>
     }
 
     /// <summary>
-    /// Constructor with a customed comparer and IEnumerable parameters
+    /// Constructor with a custom comparer and IEnumerable parameters
     /// </summary>
     /// <param name="comparer"></param>
     /// <param name="elements"></param>
@@ -83,5 +80,4 @@ public class PriorityQueue<T> where T : IComparable, IComparable<T>
     /// </summary>
     /// <returns></returns>
     public List<T> ToList() => Values.ToList();
-
 }

@@ -7,35 +7,30 @@ namespace LeetCodecsharp;
 
 public class MyStack
 {
-
-    private Queue<int> queue;
-    public MyStack()
-    {
-        queue = new Queue<int>();
-    }
+    private readonly Queue<int> _queue = new();
 
     public void Push(int x)
     {
-        var n = queue.Count;
-        queue.Enqueue(x);
+        var n = _queue.Count;
+        _queue.Enqueue(x);
         for (var i = 0; i < n; i++)
         {
-            queue.Enqueue(queue.Dequeue());
+            _queue.Enqueue(_queue.Dequeue());
         }
     }
 
     public int Pop()
     {
-        return queue.Dequeue();
+        return _queue.Dequeue();
     }
 
     public int Top()
     {
-        return queue.Peek();
+        return _queue.Peek();
     }
 
     public bool Empty()
     {
-        return queue.Count == 0;
+        return _queue.Count == 0;
     }
 }

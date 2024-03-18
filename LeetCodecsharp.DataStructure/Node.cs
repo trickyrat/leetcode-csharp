@@ -10,19 +10,21 @@ namespace LeetCodecsharp.DataStructure;
 /// </summary>
 public class Node
 {
-    public int val;
-    public IList<Node> children;
+    public int Val { get; }
+    public IList<Node> Children { get; } = new List<Node>();
+
     public Node()
     {
+    }
 
-    }
-    public Node(int _val)
+    public Node(int val)
     {
-        val = _val;
+        Val = val;
     }
-    public Node(int _val, IList<Node> _children)
+
+    public Node(int val, IList<Node> children)
     {
-        val = _val;
-        children = _children;
+        Val = val;
+        Children = children;
     }
 }

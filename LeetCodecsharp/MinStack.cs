@@ -5,16 +5,12 @@ using System;
 using System.Collections.Generic;
 
 namespace LeetCodecsharp;
+
 public class MinStack
 {
-    public Stack<int> Min
-    {
-        get; protected set;
-    }
-    public Stack<int> X
-    {
-        get; protected set;
-    }
+    private Stack<int> Min { get; }
+
+    private Stack<int> X { get; }
 
     public MinStack()
     {

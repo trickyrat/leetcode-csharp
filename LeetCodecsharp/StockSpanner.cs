@@ -4,16 +4,13 @@
 using System.Collections.Generic;
 
 namespace LeetCodecsharp;
+
 public class StockSpanner
 {
-    public int Index
-    {
-        get; private set;
-    }
-    public Stack<(int day, int price)> Stack
-    {
-        get; set;
-    }
+    private int Index { get; set; }
+
+    private Stack<(int day, int price)> Stack { get; }
+
     public StockSpanner()
     {
         Stack = new Stack<(int day, int price)>();
@@ -28,6 +25,7 @@ public class StockSpanner
         {
             Stack.Pop();
         }
+
         var res = Index - Stack.Peek().day;
         Stack.Push((Index, price));
         return res;

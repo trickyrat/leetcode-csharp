@@ -15,20 +15,20 @@ public class BSTIterator
         while (root != null)
         {
             stack.Push(root);
-            root = root.left;
+            root = root.Left;
         }
     }
 
     public int Next()
     {
         var tmp = stack.Pop();
-        var right = tmp.right;
+        var right = tmp.Right;
         while (right != null)
         {
             stack.Push(right);
-            right = right.left;
+            right = right.Left;
         }
-        return tmp.val;
+        return tmp.Val;
     }
 
     public bool HasNext()

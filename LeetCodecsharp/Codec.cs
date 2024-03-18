@@ -41,9 +41,9 @@ public class Codec
         {
             return;
         }
-        PostOrder(root.left, list);
-        PostOrder(root.right, list);
-        list.Add(root.val);
+        PostOrder(root.Left, list);
+        PostOrder(root.Right, list);
+        list.Add(root.Val);
     }
 
     private TreeNode Build(int lower, int upper, Stack<int> stack)
@@ -53,9 +53,11 @@ public class Codec
             return null;
         }
         var val = stack.Pop();
-        var root = new TreeNode(val);
-        root.right = Build(val, upper, stack);
-        root.left = Build(lower, val, stack);
+        var root = new TreeNode(val)
+        {
+            Right = Build(val, upper, stack),
+            Left = Build(lower, val, stack)
+        };
         return root;
     }
 }

@@ -7,8 +7,8 @@ using System.Threading;
 namespace LeetCodecsharp;
 public class Foo
 {
-  private SemaphoreSlim _firstSemaphore;
-  private SemaphoreSlim _secondSemaphore;
+  private readonly SemaphoreSlim _firstSemaphore;
+  private readonly SemaphoreSlim _secondSemaphore;
   public Foo()
   {
     _firstSemaphore = new SemaphoreSlim(0, 1);

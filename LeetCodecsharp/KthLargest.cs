@@ -7,17 +7,13 @@ namespace LeetCodecsharp;
 
 public class KthLargest
 {
-    public PriorityQueue<int, int> PQ
-    {
-        get; set;
-    }
-    public int K
-    {
-        get; set;
-    }
+    private PriorityQueue<int, int> Pq { get; }
+
+    private int K { get; }
+
     public KthLargest(int k, int[] nums)
     {
-        PQ = new PriorityQueue<int, int>();
+        Pq = new PriorityQueue<int, int>();
         K = k;
         foreach (var num in nums)
         {
@@ -27,11 +23,12 @@ public class KthLargest
 
     public int Add(int val)
     {
-        PQ.Enqueue(val, val);
-        if (PQ.Count > K)
+        Pq.Enqueue(val, val);
+        if (Pq.Count > K)
         {
-            PQ.Dequeue();
+            Pq.Dequeue();
         }
-        return PQ.Peek();
+
+        return Pq.Peek();
     }
 }

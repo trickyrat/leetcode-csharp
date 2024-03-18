@@ -7,24 +7,18 @@ using LeetCodecsharp.DataStructure;
 
 namespace LeetCodecsharp;
 
-public class RandomNode
+public class RandomNode(ListNode head)
 {
-    private readonly ListNode _head;
-    private readonly Random _random;
-    public RandomNode(ListNode head)
-    {
-        _head = head;
-        _random = new Random();
-    }
+    private readonly Random _random = new();
 
     public int GetRandom()
     {
         int i = 1, ans = 0;
-        for (var curr = _head; curr != null; curr = curr.next)
+        for (var curr = head; curr != null; curr = curr.Next)
         {
             if (_random.Next(i) == 0)
             {
-                ans = curr.val;
+                ans = curr.Val;
             }
 
             ++i;

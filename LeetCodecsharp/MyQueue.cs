@@ -6,48 +6,42 @@ using System.Collections.Generic;
 namespace LeetCodecsharp;
 public class MyQueue
 {
-    private Stack<int> inStack, outStack;
-
-
-    public MyQueue()
-    {
-        inStack = new Stack<int>();
-        outStack = new Stack<int>();
-    }
+    private readonly Stack<int> _inStack = new();
+    private readonly Stack<int> _outStack = new();
 
     private void In2Out()
     {
-        while (inStack.Count != 0)
+        while (_inStack.Count != 0)
         {
-            outStack.Push(inStack.Pop());
+            _outStack.Push(_inStack.Pop());
         }
     }
 
     public void Push(int x)
     {
-        inStack.Push(x);
+        _inStack.Push(x);
     }
 
     public int Pop()
     {
-        if (outStack.Count == 0)
+        if (_outStack.Count == 0)
         {
             In2Out();
         }
-        return outStack.Pop();
+        return _outStack.Pop();
     }
 
     public int Peek()
     {
-        if (outStack.Count == 0)
+        if (_outStack.Count == 0)
         {
             In2Out();
         }
-        return outStack.Peek();
+        return _outStack.Peek();
     }
 
     public bool Empty()
     {
-        return inStack.Count == 0 && outStack.Count == 0;
+        return _inStack.Count == 0 && _outStack.Count == 0;
     }
 }

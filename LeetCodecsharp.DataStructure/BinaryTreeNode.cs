@@ -5,22 +5,10 @@ namespace LeetCodecsharp.DataStructure;
 
 public class BinaryTreeNode
 {
-    public int Val
-    {
-        get; set;
-    }
-    public BinaryTreeNode Left
-    {
-        get; set;
-    }
-    public BinaryTreeNode Right
-    {
-        get; set;
-    }
-    public BinaryTreeNode Next
-    {
-        get; set;
-    }
+    public int Val { get; set; }
+    public BinaryTreeNode Left { get; set; }
+    public BinaryTreeNode Right { get; set; }
+    public BinaryTreeNode Next { get; set; }
 
     public BinaryTreeNode()
     {
@@ -38,6 +26,4 @@ public class BinaryTreeNode
         Right = right;
         Next = next;
     }
-
 }
-

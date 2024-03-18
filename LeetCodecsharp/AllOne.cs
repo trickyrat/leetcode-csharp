@@ -7,14 +7,9 @@ namespace LeetCodecsharp;
 
 public class AllOne
 {
-    AllOneNode Root
-    {
-        get; set;
-    }
-    Dictionary<string, AllOneNode> Nodes
-    {
-        get; set;
-    }
+    private AllOneNode Root { get; }
+    private Dictionary<string, AllOneNode> Nodes { get; }
+
     public AllOne()
     {
         Root = new AllOneNode();
@@ -22,25 +17,26 @@ public class AllOne
         Root.Next = Root;
         Nodes = new Dictionary<string, AllOneNode>();
     }
+
     public void Inc(string key)
     {
-        if (Nodes.ContainsKey(key))
+        if (Nodes.TryGetValue(key, out var value))
         {
-            var curr = Nodes[key];
-            var next = curr.Next;
-            if (next == Root || next.Count > curr.Count + 1)
+            var next = value.Next;
+            if (next == Root || next.Count > value.Count + 1)
             {
-                Nodes[key] = curr.Insert(new AllOneNode(key, curr.Count + 1));
+                Nodes[key] = value.Insert(new AllOneNode(key, value.Count + 1));
             }
             else
             {
                 next.Keys.Add(key);
                 Nodes[key] = next;
             }
-            curr.Keys.Remove(key);
-            if (curr.Keys.Count == 0)
+
+            value.Keys.Remove(key);
+            if (value.Keys.Count == 0)
             {
-                curr.Remove();
+                value.Remove();
             }
         }
         else
@@ -77,6 +73,7 @@ public class AllOne
                 Nodes[key] = prev;
             }
         }
+
         curr.Keys.Remove(key);
         if (curr.Keys.Count == 0)
         {
@@ -90,12 +87,14 @@ public class AllOne
         {
             return string.Empty;
         }
+
         var maxKey = string.Empty;
         foreach (var key in Root.Prev.Keys)
         {
             maxKey = key;
             break;
         }
+
         return maxKey;
     }
 
@@ -105,60 +104,48 @@ public class AllOne
         {
             return string.Empty;
         }
+
         var minKey = string.Empty;
         foreach (var key in Root.Next.Keys)
         {
             minKey = key;
             break;
         }
+
         return minKey;
     }
-}
 
-class AllOneNode
-{
-    public AllOneNode Prev
+    private class AllOneNode
     {
-        get; set;
-    }
-    public AllOneNode Next
-    {
-        get; set;
-    }
-    public ISet<string> Keys
-    {
-        get; set;
-    }
-    public int Count
-    {
-        get; set;
-    }
+        public AllOneNode Prev { get; set; }
+        public AllOneNode Next { get; set; }
+        public ISet<string> Keys { get; set; }
+        public int Count { get; set; }
 
-    public AllOneNode() : this(string.Empty, 0)
-    {
+        public AllOneNode() : this(string.Empty, 0)
+        {
+        }
 
-    }
+        public AllOneNode(string key, int count)
+        {
+            Count = count;
+            Keys = new HashSet<string>();
+            Keys.Add(key);
+        }
 
-    public AllOneNode(string key, int count)
-    {
-        Count = count;
-        Keys = new HashSet<string>();
-        Keys.Add(key);
-    }
+        public AllOneNode Insert(AllOneNode node)
+        {
+            node.Prev = this;
+            node.Next = Next;
+            node.Prev.Next = node;
+            node.Next.Prev = node;
+            return node;
+        }
 
-    public AllOneNode Insert(AllOneNode node)
-    {
-        node.Prev = this;
-        node.Next = Next;
-        node.Prev.Next = node;
-        node.Next.Prev = node;
-        return node;
-    }
-
-    public void Remove()
-    {
-        Prev.Next = Next;
-        Next.Prev = Prev;
+        public void Remove()
+        {
+            Prev.Next = Next;
+            Next.Prev = Prev;
+        }
     }
 }
-

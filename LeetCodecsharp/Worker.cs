@@ -17,7 +17,7 @@ public class Worker(ILogger<Worker> logger
     private readonly IHost _host = host;
     private int _exitCode = 0;
 
-    protected async override Task ExecuteAsync(CancellationToken stoppingToken)
+    protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
         try
         {

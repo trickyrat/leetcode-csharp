@@ -9,26 +9,11 @@ namespace LeetCodecsharp;
 
 public class RandomizedSet
 {
-    protected List<int> Nums
-    {
-        get; set;
-    }
-    protected Dictionary<int, int> Indices
-    {
-        get; set;
-    }
+    private List<int> Nums { get; } = [];
 
-    protected Random Random
-    {
-        get; set;
-    }
+    private Dictionary<int, int> Indices { get; } = new();
 
-    public RandomizedSet()
-    {
-        Nums = new List<int>();
-        Indices = new Dictionary<int, int>();
-        Random = new Random();
-    }
+    private Random Random { get; } = new();
 
     public bool Insert(int val)
     {

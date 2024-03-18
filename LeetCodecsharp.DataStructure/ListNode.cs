@@ -10,18 +10,10 @@ namespace LeetCodecsharp.DataStructure;
 /// <summary>
 /// Definition for singly-linked list.
 /// </summary>
-public class ListNode
+public class ListNode(int x, ListNode next = null)
 {
-    public int val;
-    public ListNode next;
-
-    public ListNode(int x) => val = x;
-    public ListNode(int x, ListNode next)
-    {
-        val = x;
-        this.next = next;
-    }
-
+    public int Val { get; } = x;
+    public ListNode Next { get; set; } = next;
 }
 
 public class ListNodeComparer : IEqualityComparer<ListNode>
@@ -32,12 +24,12 @@ public class ListNodeComparer : IEqualityComparer<ListNode>
         var sentinel2 = y;
         while (sentinel1 is not null && sentinel2 is not null)
         {
-            if (sentinel1.val != sentinel2.val)
+            if (sentinel1.Val != sentinel2.Val)
             {
                 return true;
             }
-            sentinel1 = sentinel1.next;
-            sentinel2 = sentinel2.next;
+            sentinel1 = sentinel1.Next;
+            sentinel2 = sentinel2.Next;
         }
         return true;
     }

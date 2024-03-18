@@ -9,17 +9,14 @@ namespace LeetCodecsharp.DataStructure;
 /// <summary>
 /// Definition for a binary tree node.
 /// </summary>
-public class TreeNode
+public class TreeNode(int val = 0, TreeNode left = null, TreeNode right = null)
 {
-    public int val;
-    public TreeNode left;
-    public TreeNode right;
-    public TreeNode(int x) => val = x;
-    public TreeNode(int val = 0, TreeNode left = null, TreeNode right = null)
+    public int Val { get; set; } = val;
+    public TreeNode Left { get; set; } = left;
+    public TreeNode Right { get; set; } = right;
+
+    public TreeNode(int x) : this(x, null)
     {
-        this.val = val;
-        this.left = left;
-        this.right = right;
     }
 }
 
@@ -44,11 +41,11 @@ public class TreeNodeComparer : IEqualityComparer<TreeNode>
         {
             var node1 = q1.Dequeue();
             var node2 = q2.Dequeue();
-            if (node1.val != node2.val)
+            if (node1.Val != node2.Val)
             {
                 return false;
             }
-            TreeNode left1 = node1.left, right1 = node1.right, left2 = node2.left, right2 = node2.right;
+            TreeNode left1 = node1.Left, right1 = node1.Right, left2 = node2.Left, right2 = node2.Right;
             if ((left1 is null ^ left2 is null) || (right1 is null ^ right2 is null))
             {
                 return false;

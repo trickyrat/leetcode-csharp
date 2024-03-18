@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace LeetCodecsharp;
 
-public class InterviewSolution
+public static class InterviewSolution
 {
     /// <summary>
     /// 面试题 01.05. One Away LCCI
@@ -16,6 +16,33 @@ public class InterviewSolution
     /// <returns></returns>
     public static bool OneEditAway(string first, string second)
     {
+        int m = first.Length, n = second.Length;
+        if (n - m == 1)
+        {
+            return OneInsert(first, second);
+        }
+
+        if (m - n == 1)
+        {
+            return OneInsert(second, first);
+        }
+
+        if (m != n) return false;
+        var foundDifference = false;
+        for (var i = 0; i < m; i++)
+        {
+            if (first[i] == second[i]) continue;
+            if (!foundDifference)
+            {
+                foundDifference = true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        return true;
+
         bool OneInsert(string shorter, string longer)
         {
             int len1 = shorter.Length, len2 = longer.Length;
@@ -33,39 +60,6 @@ public class InterviewSolution
                 }
             }
             return true;
-        }
-
-        int m = first.Length, n = second.Length;
-        if (n - m == 1)
-        {
-            return OneInsert(first, second);
-        }
-        else if (m - n == 1)
-        {
-            return OneInsert(second, first);
-        }
-        else if (m == n)
-        {
-            var foundDifference = false;
-            for (var i = 0; i < m; i++)
-            {
-                if (first[i] != second[i])
-                {
-                    if (!foundDifference)
-                    {
-                        foundDifference = true;
-                    }
-                    else
-                    {
-                        return false;
-                    }
-                }
-            }
-            return true;
-        }
-        else
-        {
-            return false;
         }
     }
 

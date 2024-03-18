@@ -43,6 +43,6 @@ public class MyCircularQueue
 
   public bool IsFull() => ((_rear + 1) % _capacity) == _front;
 
-  public bool IsEmpty() => _rear == _front;
+  private bool IsEmpty() => _rear == _front;
 
 }

@@ -14,28 +14,13 @@ public class ExamRoomComparer : IComparer<(int first, int second)>
     }
 }
 
-public class ExamRoom
+public class ExamRoom(int n)
 {
-    public PriorityQueue<(int first, int second), (int first, int second)> PQ
-    {
-        get; private set;
-    }
+    private PriorityQueue<(int first, int second), (int first, int second)> Pq { get; } = new(new ExamRoomComparer());
 
-    public SortedSet<int> Seats
-    {
-        get; private set;
-    }
+    private SortedSet<int> Seats { get; } = [];
 
-    public int N
-    {
-        get; private set;
-    }
-    public ExamRoom(int n)
-    {
-        N = n;
-        Seats = new();
-        PQ = new(new ExamRoomComparer());
-    }
+    private int N { get; } = n;
 
     public int Seat()
     {
@@ -44,38 +29,40 @@ public class ExamRoom
             Seats.Add(0);
             return 0;
         }
+
         int left = Seats.Min, right = N - 1 - Seats.Max;
         while (Seats.Count >= 2)
         {
-            var p = PQ.Peek();
+            var p = Pq.Peek();
             if (Seats.Contains(p.first) && Seats.Contains(p.second)
-                && Seats.GetViewBetween(p.first + 1, Seats.Max).Min == p.second)
+                                        && Seats.GetViewBetween(p.first + 1, Seats.Max).Min == p.second)
             {
                 var d = p.second - p.first;
                 if (d / 2 < right || d / 2 <= left)
                 {
                     break;
                 }
-                PQ.Dequeue();
-                PQ.Enqueue((p.first, p.first + d / 2), (p.first, p.first + d / 2));
-                PQ.Enqueue((p.first + d / 2, p.second), (p.first + d / 2, p.second));
+
+                Pq.Dequeue();
+                Pq.Enqueue((p.first, p.first + d / 2), (p.first, p.first + d / 2));
+                Pq.Enqueue((p.first + d / 2, p.second), (p.first + d / 2, p.second));
                 Seats.Add(p.first + d / 2);
                 return p.first + d / 2;
             }
-            PQ.Dequeue();
+
+            Pq.Dequeue();
         }
+
         if (right > left)
         {
-            PQ.Enqueue((Seats.Max, N - 1), (Seats.Max, N - 1));
+            Pq.Enqueue((Seats.Max, N - 1), (Seats.Max, N - 1));
             Seats.Add(N - 1);
             return N - 1;
         }
-        else
-        {
-            PQ.Enqueue((0, Seats.Min), (0, Seats.Min));
-            Seats.Add(0);
-            return 0;
-        }
+
+        Pq.Enqueue((0, Seats.Min), (0, Seats.Min));
+        Seats.Add(0);
+        return 0;
     }
 
     public void Leave(int p)
@@ -83,8 +70,9 @@ public class ExamRoom
         if (p != Seats.Max && p != Seats.Min)
         {
             int prev = Seats.GetViewBetween(Seats.Min, p - 1).Max, next = Seats.GetViewBetween(p + 1, Seats.Max).Min;
-            PQ.Enqueue((prev, next), (prev, next));
+            Pq.Enqueue((prev, next), (prev, next));
         }
+
         Seats.Remove(p);
     }
 }

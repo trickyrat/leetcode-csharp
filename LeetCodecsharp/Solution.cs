@@ -23,21 +23,18 @@ public static class Solution
     /// <returns></returns>
     public static int[] TwoSum(int[] nums, int target)
     {
-        var res = new int[2];
         var dic = new Dictionary<int, int>();
 
         for (var i = 0; i < nums.Length; i++)
         {
             if (dic.TryGetValue(target - nums[i], out var value))
             {
-                res[1] = i;
-                res[0] = value;
-                break;
+                return [value, i];
             }
             _ = dic.TryAdd(nums[i], i);
         }
 
-        return res;
+        return [];
     }
 
     /// <summary>
@@ -60,17 +57,17 @@ public static class Solution
         while (l1 != null || l2 != null)
         {
             var sum = carry;
-            var num1 = l1?.val ?? 0;
-            l1 = l1?.next;
-            var num2 = l2?.val ?? 0;
-            l2 = l2?.next;
+            var num1 = l1?.Val ?? 0;
+            l1 = l1?.Next;
+            var num2 = l2?.Val ?? 0;
+            l2 = l2?.Next;
             sum += (num1 + num2);
-            curr.next = new ListNode(sum % 10);
-            curr = curr.next;
+            curr.Next = new ListNode(sum % 10);
+            curr = curr.Next;
             carry = sum / 10;
         }
 
-        return dummyHead.next;
+        return dummyHead.Next;
     }
 
     /// <summary>
@@ -461,10 +458,10 @@ public static class Solution
     /// <returns></returns>
     public static string IntToRoman(int num)
     {
-        string[] m = { "", "M", "MM", "MMM" };
-        string[] c = { "", "C", "CC", "CCC", "CD", "D", "DC", "DCC", "DCCC", "CM" };
-        string[] x = { "", "X", "XX", "XXX", "XL", "L", "LX", "LXX", "LXXX", "XC" };
-        string[] I = { "", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX" };
+        string[] m = ["", "M", "MM", "MMM"];
+        string[] c = ["", "C", "CC", "CCC", "CD", "D", "DC", "DCC", "DCCC", "CM"];
+        string[] x = ["", "X", "XX", "XXX", "XL", "L", "LX", "LXX", "LXXX", "XC"];
+        string[] I = ["", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX"];
         return m[num / 1000] + c[(num % 1000) / 100] + x[(num % 100) / 10] + I[num % 10];
     }
 
@@ -677,7 +674,7 @@ public static class Solution
     /// <returns></returns>
     public static IList<string> LetterCombinations(string digits)
     {
-        string[] map = { "0", "1", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz" };
+        string[] map = ["0", "1", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"];
         if (string.IsNullOrEmpty(digits))
         {
             return new List<string>();
@@ -793,17 +790,17 @@ public static class Solution
         var second = dummy;
         for (var i = 0; i <= n; i++)
         {
-            first = first.next;
+            first = first.Next;
         }
 
         while (first is not null)
         {
-            first = first.next;
-            second = second.next;
+            first = first.Next;
+            second = second.Next;
         }
 
-        second.next = second.next.next;
-        return dummy.next;
+        second.Next = second.Next.Next;
+        return dummy.Next;
     }
 
     /// <summary>
@@ -854,22 +851,22 @@ public static class Solution
         var head = dummyHead;
         while (l1 != null && l2 != null)
         {
-            if (l1.val <= l2.val)
+            if (l1.Val <= l2.Val)
             {
-                head.next = l1;
-                l1 = l1.next;
+                head.Next = l1;
+                l1 = l1.Next;
             }
             else
             {
-                head.next = l2;
-                l2 = l2.next;
+                head.Next = l2;
+                l2 = l2.Next;
             }
 
-            head = head.next;
+            head = head.Next;
         }
 
-        head.next = l1 ?? l2;
-        return dummyHead.next;
+        head.Next = l1 ?? l2;
+        return dummyHead.Next;
 
         //if (l1 == null) { return l2; }
         //if (l2 == null) { return l1; }
@@ -955,20 +952,20 @@ public static class Solution
     {
         var dummy = new ListNode(0)
         {
-            next = head
+            Next = head
         };
         var curr = dummy;
-        while (curr.next?.next != null)
+        while (curr.Next?.Next != null)
         {
-            var a = curr.next;
-            var b = curr.next.next;
-            a.next = b.next;
-            curr.next = b;
-            curr.next.next = a;
-            curr = curr.next.next;
+            var a = curr.Next;
+            var b = curr.Next.Next;
+            a.Next = b.Next;
+            curr.Next = b;
+            curr.Next.Next = a;
+            curr = curr.Next.Next;
         }
 
-        return dummy.next;
+        return dummy.Next;
     }
 
     /// <summary>
@@ -981,28 +978,28 @@ public static class Solution
         for (var i = head; i != null;)
         {
             n++;
-            i = i.next;
+            i = i.Next;
         }
 
         var dummy = new ListNode(0)
         {
-            next = head
+            Next = head
         };
         for (ListNode prev = dummy, tail = head; n >= k; n -= k)
         {
             for (var i = 1; i < k; i++)
             {
-                var next = tail.next.next;
-                tail.next.next = prev.next;
-                prev.next = tail.next;
-                tail.next = next;
+                var next = tail.Next.Next;
+                tail.Next.Next = prev.Next;
+                prev.Next = tail.Next;
+                tail.Next = next;
             }
 
             prev = tail;
-            tail = tail.next;
+            tail = tail.Next;
         }
 
-        return dummy.next;
+        return dummy.Next;
 
         // Recursive
         // ListNode curr = head;
@@ -1295,7 +1292,7 @@ public static class Solution
     /// <returns></returns>
     public static int LongestValidParentheses(string s)
     {
-        //int maxans = 0;
+        //int maxAns = 0;
         //int len = s.Length;
         //int[] dp = new int[len];
         //for (int i = 1; i < len; i++)
@@ -1310,10 +1307,10 @@ public static class Solution
         //        {
         //            dp[i] = dp[i - 1] + ((i - dp[i - 1]) >= 2 ? dp[i - dp[i - 1] - 2] : 0) + 2;
         //        }
-        //        maxans = Math.Max(maxans, dp[i]);
+        //        maxAns = Math.Max(maxAns, dp[i]);
         //    }
         //}
-        //return maxans;
+        //return maxAns;
         var len = s.Length;
         int left = 0, right = 0, maxLen = 0;
         for (var i = 0; i < len; i++)
@@ -1465,7 +1462,7 @@ public static class Solution
         var rightIndex = BinarySearchHelper(nums, target, false) - 1;
         if (leftIndex <= rightIndex && rightIndex < nums.Length && nums[leftIndex] == nums[rightIndex])
         {
-            return new[] { leftIndex, rightIndex };
+            return [leftIndex, rightIndex];
         }
 
         return missingResult;
@@ -2133,7 +2130,7 @@ public static class Solution
             int l = t[0], r = t[1];
             if (n == 0 || merged[n - 1][1] < l)
             {
-                merged.Add(new[] { l, r });
+                merged.Add([l, r]);
             }
             else
             {
@@ -2176,7 +2173,7 @@ public static class Solution
     {
         if (n == 0)
         {
-            return new[] { new[] { 0 } };
+            return [[0]];
         }
 
         int startRow = 0, startColumn = 0;
@@ -2245,27 +2242,27 @@ public static class Solution
     /// </summary>
     public static ListNode RotateRight(ListNode head, int k)
     {
-        if (head == null || k == 0 || head.next == null)
+        if (head == null || k == 0 || head.Next == null)
         {
             return head;
         }
 
         var oldTail = head;
         int n;
-        for (n = 1; oldTail.next != null; n++)
+        for (n = 1; oldTail.Next != null; n++)
         {
-            oldTail = oldTail.next;
+            oldTail = oldTail.Next;
         }
 
-        oldTail.next = head;
+        oldTail.Next = head;
         var newTail = head;
         for (var i = 0; i < n - k % n - 1; i++)
         {
-            newTail = newTail.next;
+            newTail = newTail.Next;
         }
 
-        var newHead = newTail.next;
-        newTail.next = null;
+        var newHead = newTail.Next;
+        newTail.Next = null;
         return newHead;
     }
 
@@ -2723,15 +2720,15 @@ public static class Solution
     public static ListNode DeleteDuplicates(ListNode head)
     {
         var current = head;
-        while (current?.next != null)
+        while (current?.Next != null)
         {
-            if (current.val == current.next.val)
+            if (current.Val == current.Next.Val)
             {
-                current.next = current.next.next;
+                current.Next = current.Next.Next;
             }
             else
             {
-                current = current.next;
+                current = current.Next;
             }
         }
 
@@ -2784,12 +2781,12 @@ public static class Solution
             while (curr != null)
             {
                 stack.Push(curr);
-                curr = curr.left;
+                curr = curr.Left;
             }
 
             curr = stack.Pop();
-            ret.Add(curr.val);
-            curr = curr.right;
+            ret.Add(curr.Val);
+            curr = curr.Right;
         }
 
         return ret;
@@ -2818,17 +2815,17 @@ public static class Solution
             while (root != null)
             {
                 stack.Push(root);
-                root = root.left;
+                root = root.Left;
             }
 
             root = stack.Pop();
-            if (root.val <= inorder)
+            if (root.Val <= inorder)
             {
                 return false;
             }
 
-            inorder = root.val;
-            root = root.right;
+            inorder = root.Val;
+            root = root.Right;
         }
 
         return true;
@@ -2844,7 +2841,7 @@ public static class Solution
             return p == q;
         }
 
-        return p.val == q.val && IsSameTree(p.left, q.right) && IsSameTree(q.left, q.right);
+        return p.Val == q.Val && IsSameTree(p.Left, q.Right) && IsSameTree(q.Left, q.Right);
     }
 
     /// <summary>
@@ -2875,15 +2872,15 @@ public static class Solution
                 return false;
             }
 
-            if (t1.val != t2.val)
+            if (t1.Val != t2.Val)
             {
                 return false;
             }
 
-            queue.Enqueue(t1.left);
-            queue.Enqueue(t2.right);
-            queue.Enqueue(t1.right);
-            queue.Enqueue(t2.left);
+            queue.Enqueue(t1.Left);
+            queue.Enqueue(t2.Right);
+            queue.Enqueue(t1.Right);
+            queue.Enqueue(t2.Left);
         }
 
         return true;
@@ -2931,14 +2928,14 @@ public static class Solution
             {
                 var p = queue.Peek();
                 queue.Dequeue();
-                if (p.left != null)
+                if (p.Left != null)
                 {
-                    queue.Enqueue(p.left);
+                    queue.Enqueue(p.Left);
                 }
 
-                if (p.right != null)
+                if (p.Right != null)
                 {
-                    queue.Enqueue(p.right);
+                    queue.Enqueue(p.Right);
                 }
             }
         }
@@ -2973,15 +2970,15 @@ public static class Solution
             while (nodeCount > 0)
             {
                 var dataNode = que.Dequeue();
-                subList.Add(dataNode.val);
-                if (dataNode.left != null)
+                subList.Add(dataNode.Val);
+                if (dataNode.Left != null)
                 {
-                    que.Enqueue(dataNode.left);
+                    que.Enqueue(dataNode.Left);
                 }
 
-                if (dataNode.right != null)
+                if (dataNode.Right != null)
                 {
-                    que.Enqueue(dataNode.right);
+                    que.Enqueue(dataNode.Right);
                 }
 
                 nodeCount--;
@@ -3018,8 +3015,8 @@ public static class Solution
             var mid = start + (end - start) / 2;
             var root = new TreeNode(data[mid])
             {
-                left = SubProcess(data, start, mid - 1),
-                right = SubProcess(data, mid + 1, end)
+                Left = SubProcess(data, start, mid - 1),
+                Right = SubProcess(data, mid + 1, end)
             };
             return root;
         }
@@ -3039,7 +3036,7 @@ public static class Solution
             var c = 0;
             while (ptr != null)
             {
-                ptr = ptr.next;
+                ptr = ptr.Next;
                 c += 1;
             }
 
@@ -3055,12 +3052,12 @@ public static class Solution
 
             var mid = (l + r) / 2;
             var left = ConvertListToBst(l, mid - 1);
-            var node = new TreeNode(head.val)
+            var node = new TreeNode(head.Val)
             {
-                left = left
+                Left = left
             };
-            head = head.next;
-            node.right = ConvertListToBst(mid + 1, r);
+            head = head.Next;
+            node.Right = ConvertListToBst(mid + 1, r);
             return node;
         }
     }
@@ -3081,13 +3078,13 @@ public static class Solution
                 return 0;
             }
 
-            var leftHeight = Dfs(node.left);
+            var leftHeight = Dfs(node.Left);
             if (leftHeight == -1)
             {
                 return -1;
             }
 
-            var rightHeight = Dfs(node.right);
+            var rightHeight = Dfs(node.Right);
             if (rightHeight == -1)
             {
                 return -1;
@@ -3114,7 +3111,7 @@ public static class Solution
             return 0;
         }
 
-        int l = MinDepth(root.left), r = MinDepth(root.right);
+        int l = MinDepth(root.Left), r = MinDepth(root.Right);
         return 1 + (l < r && l > 0 || r < 1 ? l : r);
     }
 
@@ -3131,12 +3128,12 @@ public static class Solution
             return false;
         }
 
-        if (root.val == sum && root.left == null && root.right == null)
+        if (root.Val == sum && root.Left == null && root.Right == null)
         {
             return true;
         }
 
-        return HasPathSum(root.left, sum - root.val) || HasPathSum(root.right, sum - root.val);
+        return HasPathSum(root.Left, sum - root.Val) || HasPathSum(root.Right, sum - root.Val);
     }
 
     /// <summary>
@@ -3159,15 +3156,15 @@ public static class Solution
                 return;
             }
 
-            path.Add(node.val);
-            sum -= node.val;
-            if (node.left is null && node.right is null && sum == 0)
+            path.Add(node.Val);
+            sum -= node.Val;
+            if (node.Left is null && node.Right is null && sum == 0)
             {
                 res.Add(new List<int>(path));
             }
 
-            Dfs(node.left, sum);
-            Dfs(node.right, sum);
+            Dfs(node.Left, sum);
+            Dfs(node.Right, sum);
             path.RemoveAt(path.Count - 1);
         }
     }
@@ -3357,22 +3354,22 @@ public static class Solution
     /// <returns></returns>
     public static bool HasCycle(ListNode head)
     {
-        if (head?.next == null)
+        if (head?.Next == null)
         {
             return false;
         }
 
         var slow = head;
-        var fast = head.next;
+        var fast = head.Next;
         while (slow != fast)
         {
-            if (fast?.next == null)
+            if (fast?.Next == null)
             {
                 return false;
             }
 
-            slow = slow.next;
-            fast = fast.next.next;
+            slow = slow.Next;
+            fast = fast.Next.Next;
         }
 
         return true;
@@ -3389,13 +3386,13 @@ public static class Solution
         var stack = new Stack<TreeNode>();
         while (root != null)
         {
-            res.Add(root.val);
-            if (root.right != null)
+            res.Add(root.Val);
+            if (root.Right != null)
             {
-                stack.Push(root.right);
+                stack.Push(root.Right);
             }
 
-            root = root.left;
+            root = root.Left;
             if (root == null && stack.Count > 0)
             {
                 root = stack.Pop();
@@ -3412,20 +3409,20 @@ public static class Solution
     /// <returns></returns>
     public static ListNode SortList(ListNode head)
     {
-        if (head?.next == null)
+        if (head?.Next == null)
         {
             return head;
         }
 
         ListNode prev = null, left = head, right = head;
-        while (right?.next != null)
+        while (right?.Next != null)
         {
             prev = left;
-            left = left.next;
-            right = right.next.next;
+            left = left.Next;
+            right = right.Next.Next;
         }
 
-        prev!.next = null;
+        prev!.Next = null;
 
         var l1 = SortList(head);
         var l2 = SortList(left);
@@ -3550,7 +3547,7 @@ public static class Solution
             var sum = numbers[left] + numbers[right];
             if (sum == target)
             {
-                return new[] { left + 1, right + 1 };
+                return [left + 1, right + 1];
             }
             else if (sum > target)
             {
@@ -3562,7 +3559,7 @@ public static class Solution
             }
         }
 
-        return new[] { -1, -1 };
+        return [-1, -1];
     }
 
     /// <summary>
@@ -3887,8 +3884,8 @@ public static class Solution
         var curr = head;
         while (curr is not null)
         {
-            var next = curr.next;
-            curr.next = prev;
+            var next = curr.Next;
+            curr.Next = prev;
             prev = curr;
             curr = next;
         }
@@ -4051,21 +4048,21 @@ public static class Solution
         }
 
         var firstHalfEnd = EndOfFirstHalf(head);
-        var secondHalfStart = ReverseListHelper(firstHalfEnd.next);
+        var secondHalfStart = ReverseListHelper(firstHalfEnd.Next);
         var p1 = head;
         var p2 = secondHalfStart;
         while (p2 != null)
         {
-            if (p1.val != p2.val)
+            if (p1.Val != p2.Val)
             {
                 return false;
             }
 
-            p1 = p1.next;
-            p2 = p2.next;
+            p1 = p1.Next;
+            p2 = p2.Next;
         }
 
-        firstHalfEnd.next = ReverseListHelper(secondHalfStart);
+        firstHalfEnd.Next = ReverseListHelper(secondHalfStart);
         return true;
 
         ListNode ReverseListHelper(ListNode node)
@@ -4074,8 +4071,8 @@ public static class Solution
             var curr = node;
             while (curr != null)
             {
-                var tmp = curr.next;
-                curr.next = prev;
+                var tmp = curr.Next;
+                curr.Next = prev;
                 prev = curr;
                 curr = tmp;
             }
@@ -4087,10 +4084,10 @@ public static class Solution
         {
             var fast = node;
             var slow = node;
-            while (fast.next?.next != null)
+            while (fast.Next?.Next != null)
             {
-                fast = fast.next.next;
-                slow = slow.next;
+                fast = fast.Next.Next;
+                slow = slow.Next;
             }
 
             return slow;
@@ -4156,7 +4153,7 @@ public static class Solution
             }
         }
 
-        return new[] { type1, type2 };
+        return [type1, type2];
     }
 
     /// <summary>
@@ -4240,11 +4237,11 @@ public static class Solution
                 return new int[2];
             }
 
-            var left = SubRob(node.left);
-            var right = SubRob(node.right);
+            var left = SubRob(node.Left);
+            var right = SubRob(node.Right);
             var ret = new int[2];
             ret[0] = Math.Max(left[0], left[1]) + Math.Max(right[0], right[1]);
-            ret[1] = node.val + left[0] + right[0];
+            ret[1] = node.Val + left[0] + right[0];
             return ret;
         }
     }
@@ -4609,8 +4606,8 @@ public static class Solution
             for (var i = 0; i < size; i++)
             {
                 var curr = queue.Peek();
-                tmp.Add(curr.val);
-                foreach (var child in curr.children)
+                tmp.Add(curr.Val);
+                foreach (var child in curr.Children)
                 {
                     queue.Enqueue(child);
                 }
@@ -4644,38 +4641,38 @@ public static class Solution
             return null;
         }
 
-        if (root.val > key)
+        if (root.Val > key)
         {
-            root.left = DeleteNode(root.left, key);
+            root.Left = DeleteNode(root.Left, key);
         }
-        else if (root.val < key)
+        else if (root.Val < key)
         {
-            root.right = DeleteNode(root.right, key);
+            root.Right = DeleteNode(root.Right, key);
         }
         else
         {
-            if (root.left == null)
+            if (root.Left == null)
             {
-                return root.right;
+                return root.Right;
             }
 
-            if (root.right == null)
+            if (root.Right == null)
             {
-                return root.left;
+                return root.Left;
             }
 
-            var minNode = FindMinHelper(root.right);
-            root.val = minNode.val;
-            root.right = DeleteNode(root.right, root.val);
+            var minNode = FindMinHelper(root.Right);
+            root.Val = minNode.Val;
+            root.Right = DeleteNode(root.Right, root.Val);
         }
 
         return root;
 
         TreeNode FindMinHelper(TreeNode node)
         {
-            while (node.left != null)
+            while (node.Left != null)
             {
-                node = node.left;
+                node = node.Left;
             }
 
             return node;
@@ -5250,8 +5247,8 @@ public static class Solution
                 return;
             }
 
-            ans.Add(node.val);
-            foreach (var ch in node.children)
+            ans.Add(node.Val);
+            foreach (var ch in node.Children)
             {
                 Dfs(ch);
             }
@@ -5276,12 +5273,12 @@ public static class Solution
                 return;
             }
 
-            foreach (var ch in node.children)
+            foreach (var ch in node.Children)
             {
                 Dfs(ch);
             }
 
-            ans.Add(node.val);
+            ans.Add(node.Val);
         }
     }
 
@@ -5345,7 +5342,7 @@ public static class Solution
         }
 
         var stack = new Stack<TreeNode[]>();
-        stack.Push(new[] { t1, t2 });
+        stack.Push([t1, t2]);
         while (stack.Count > 0)
         {
             var t = stack.Pop();
@@ -5354,23 +5351,23 @@ public static class Solution
                 continue;
             }
 
-            t[0].val += t[1].val;
-            if (t[0].left == null)
+            t[0].Val += t[1].Val;
+            if (t[0].Left == null)
             {
-                t[0].left = t[1].left;
+                t[0].Left = t[1].Left;
             }
             else
             {
-                stack.Push(new[] { t[0].left, t[1].left });
+                stack.Push([t[0].Left, t[1].Left]);
             }
 
-            if (t[0].right == null)
+            if (t[0].Right == null)
             {
-                t[0].right = t[1].right;
+                t[0].Right = t[1].Right;
             }
             else
             {
-                stack.Push(new[] { t[0].right, t[1].right });
+                stack.Push([t[0].Right, t[1].Right]);
             }
         }
 
@@ -5398,13 +5395,13 @@ public static class Solution
 
         if (depth == 2)
         {
-            root.left = new TreeNode(val, root.left);
-            root.right = new TreeNode(val, null, root.right);
+            root.Left = new TreeNode(val, root.Left);
+            root.Right = new TreeNode(val, null, root.Right);
         }
         else
         {
-            root.left = AddOneRow(root.left, val, depth - 1);
-            root.right = AddOneRow(root.right, val, depth - 1);
+            root.Left = AddOneRow(root.Left, val, depth - 1);
+            root.Right = AddOneRow(root.Right, val, depth - 1);
         }
 
         return root;
@@ -5477,9 +5474,9 @@ public static class Solution
     /// <returns></returns>
     public static IList<TreeNode> FindDuplicateSubtrees(TreeNode root)
     {
-        var seen = new Dictionary<string, (TreeNode, int)>();
+        Dictionary<string, (TreeNode, int)> seen = new Dictionary<string, (TreeNode, int)>();
         var repeat = new HashSet<TreeNode>();
-        var index = 0;
+        int index = 0;
         Dfs(root);
         return new List<TreeNode>(repeat);
 
@@ -5490,7 +5487,7 @@ public static class Solution
                 return 0;
             }
 
-            (int, int, int) triple = (node.val, Dfs(node.left), Dfs(node.right));
+            (int, int, int) triple = (node.Val, Dfs(node.Left), Dfs(node.Right));
             var key = triple.ToString();
             if (seen.TryGetValue(key, out var pair))
             {
@@ -5515,27 +5512,27 @@ public static class Solution
         var leftStack = new Stack<TreeNode>();
         var rightStack = new Stack<TreeNode>();
         leftStack.Push(left);
-        while (left.left != null)
+        while (left.Left != null)
         {
-            leftStack.Push(left.left);
-            left = left.left;
+            leftStack.Push(left.Left);
+            left = left.Left;
         }
 
         rightStack.Push(right);
-        while (right.right != null)
+        while (right.Right != null)
         {
-            rightStack.Push(right.right);
-            right = right.right;
+            rightStack.Push(right.Right);
+            right = right.Right;
         }
 
         while (left != right)
         {
-            if (left.val + right.val == k)
+            if (left.Val + right.Val == k)
             {
                 return true;
             }
 
-            if (left.val + right.val < k)
+            if (left.Val + right.Val < k)
             {
                 left = GetLeft(leftStack);
             }
@@ -5550,11 +5547,11 @@ public static class Solution
         TreeNode GetRight(Stack<TreeNode> stack)
         {
             var currentNode = stack.Pop();
-            var node = currentNode.left;
+            var node = currentNode.Left;
             while (node != null)
             {
                 stack.Push(node);
-                node = node.right;
+                node = node.Right;
             }
 
             return currentNode;
@@ -5563,11 +5560,11 @@ public static class Solution
         TreeNode GetLeft(Stack<TreeNode> stack)
         {
             var currentNode = stack.Pop();
-            var node = currentNode.right;
+            var node = currentNode.Right;
             while (node != null)
             {
                 stack.Push(node);
-                node = node.left;
+                node = node.Left;
             }
 
             return currentNode;
@@ -5587,15 +5584,15 @@ public static class Solution
         for (var i = 0; i < n; i++)
         {
             trees[i] = new TreeNode(nums[i]);
-            while (stack.Count > 0 && nums[i] > nums[stack[stack.Count - 1]])
+            while (stack.Count > 0 && nums[i] > nums[stack[^1]])
             {
-                trees[i].left = trees[stack[stack.Count - 1]];
+                trees[i].Left = trees[stack[^1]];
                 stack.RemoveAt(stack.Count - 1);
             }
 
             if (stack.Count > 0)
             {
-                trees[stack[stack.Count - 1]].right = trees[i];
+                trees[stack[^1]].Right = trees[i];
             }
 
             stack.Add(i);
@@ -5673,8 +5670,8 @@ public static class Solution
             levelMin.TryAdd(depth, index);
             return Math.Max(index - levelMin[depth] + 1,
                 Math.Max(
-                    Dfs(node.left, depth + 1, index * 2),
-                    Dfs(node.right, depth + 1, index * 2 + 1)));
+                    Dfs(node.Left, depth + 1, index * 2),
+                    Dfs(node.Right, depth + 1, index * 2 + 1)));
         }
 
         return Dfs(root, 1, 1);
@@ -5762,16 +5759,9 @@ public static class Solution
         //return root;
 
         // iteratively
-        while (root is not null && (root.val < low || root.val > high))
+        while (root is not null && (root.Val < low || root.Val > high))
         {
-            if (root.val < low)
-            {
-                root = root.right;
-            }
-            else
-            {
-                root = root.left;
-            }
+            root = root.Val < low ? root.Right : root.Left;
         }
 
         if (root is null)
@@ -5779,27 +5769,27 @@ public static class Solution
             return null;
         }
 
-        for (var node = root; node.left is not null;)
+        for (var node = root; node.Left is not null;)
         {
-            if (node.left.val < low)
+            if (node.Left.Val < low)
             {
-                node.left = node.left.right;
+                node.Left = node.Left.Right;
             }
             else
             {
-                node = node.left;
+                node = node.Left;
             }
         }
 
-        for (var node = root; node.right is not null;)
+        for (var node = root; node.Right is not null;)
         {
-            if (node.right.val > high)
+            if (node.Right.Val > high)
             {
-                node.right = node.right.left;
+                node.Right = node.Right.Left;
             }
             else
             {
-                node = node.right;
+                node = node.Right;
             }
         }
 
@@ -6004,14 +5994,14 @@ public static class Solution
                 return 0;
             }
 
-            int left = Dfs(node.left), right = Dfs(node.right);
+            int left = Dfs(node.Left), right = Dfs(node.Right);
             int left1 = 0, right1 = 0;
-            if (node.left is not null && node.left.val == node.val)
+            if (node.Left is not null && node.Left.Val == node.Val)
             {
                 left1 = left + 1;
             }
 
-            if (node.right is not null && node.right.val == node.val)
+            if (node.Right is not null && node.Right.Val == node.Val)
             {
                 right1 = right + 1;
             }
@@ -6127,9 +6117,9 @@ public static class Solution
     /// </summary>
     public static TreeNode SearchBst(TreeNode root, int val)
     {
-        while (root != null && root.val != val)
+        while (root != null && root.Val != val)
         {
-            root = val < root.val ? root.left : root.right;
+            root = val < root.Val ? root.Left : root.Right;
         }
 
         return root;
@@ -6157,27 +6147,27 @@ public static class Solution
         var currentNode = root;
         while (true)
         {
-            if (currentNode.val >= val)
+            if (currentNode.Val >= val)
             {
-                if (currentNode.left != null)
+                if (currentNode.Left != null)
                 {
-                    currentNode = currentNode.left;
+                    currentNode = currentNode.Left;
                 }
                 else
                 {
-                    currentNode.left = new TreeNode(val);
+                    currentNode.Left = new TreeNode(val);
                     break;
                 }
             }
             else
             {
-                if (currentNode.right != null)
+                if (currentNode.Right != null)
                 {
-                    currentNode = currentNode.right;
+                    currentNode = currentNode.Right;
                 }
                 else
                 {
-                    currentNode.right = new TreeNode(val);
+                    currentNode.Right = new TreeNode(val);
                     break;
                 }
             }
@@ -6351,8 +6341,8 @@ public static class Solution
     /// <returns></returns>
     public static int[][] FloodFill(int[][] image, int sr, int sc, int newColor)
     {
-        int[] dx = { 1, 0, 0, -1 };
-        int[] dy = { 0, 1, -1, 0 };
+        int[] dx = [1, 0, 0, -1];
+        int[] dy = [0, 1, -1, 0];
         var currentColor = image[sr][sc];
         if (currentColor == newColor)
         {
@@ -6361,7 +6351,7 @@ public static class Solution
 
         int n = image.Length, m = image[0].Length;
         var queue = new Queue<int[]>();
-        queue.Enqueue(new[] { sr, sc });
+        queue.Enqueue([sr, sc]);
         image[sr][sc] = newColor;
         while (queue.Any())
         {
@@ -6375,7 +6365,7 @@ public static class Solution
                     continue;
                 }
 
-                queue.Enqueue(new[] { mx, my });
+                queue.Enqueue([mx, my]);
                 image[mx][my] = newColor;
             }
         }
@@ -6654,15 +6644,12 @@ public static class Solution
     {
         const int maxWidth = 100;
         int lines = 1, width = 0;
-        for (var i = 0; i < s.Length; i++)
+        foreach (var need in s.Select(t => widths[t - 'a']))
         {
-            var need = widths[s[i] - 'a'];
             width += need;
-            if (width > maxWidth)
-            {
-                lines++;
-                width = need;
-            }
+            if (width <= maxWidth) continue;
+            lines++;
+            width = need;
         }
 
         return [lines, width];
@@ -6746,7 +6733,7 @@ public static class Solution
         var res = 0;
         while (head is not null)
         {
-            if (numsSet.Contains(head.val))
+            if (numsSet.Contains(head.Val))
             {
                 if (!inSet)
                 {
@@ -6759,7 +6746,7 @@ public static class Solution
                 inSet = false;
             }
 
-            head = head.next;
+            head = head.Next;
         }
 
         return res;
@@ -7142,10 +7129,7 @@ public static class Solution
             hire[i] = i;
         }
 
-        Array.Sort(hire, (a, b) =>
-        {
-            return quality[b] * wage[a] - quality[a] * wage[b];
-        });
+        Array.Sort(hire, (a, b) => quality[b] * wage[a] - quality[a] * wage[b]);
         var res = 1e9;
         var totalQuality = 0.0d;
         var queue = new PriorityQueue<int, int>();
@@ -7215,10 +7199,10 @@ public static class Solution
     {
         var slow = head;
         var fast = head;
-        while (fast?.next != null)
+        while (fast?.Next != null)
         {
-            slow = slow.next;
-            fast = fast.next.next;
+            slow = slow.Next;
+            fast = fast.Next.Next;
         }
 
         return slow;
@@ -7591,12 +7575,12 @@ public static class Solution
         var sum = arr.Sum();
         if (sum % 3 != 0)
         {
-            return new[] { -1, -1 };
+            return [-1, -1];
         }
 
         if (sum == 0)
         {
-            return new[] { 0, 2 };
+            return [0, 2];
         }
 
         var partial = sum / 3;
@@ -7650,7 +7634,7 @@ public static class Solution
     public static int ShortestBridge(int[][] grid)
     {
         var n = grid.Length;
-        int[][] dirs = { new[] { -1, 0 }, new[] { 1, 0 }, new[] { 0, 1 }, new[] { 0, -1 } };
+        int[][] dirs = [[-1, 0], [1, 0], [0, 1], [0, -1]];
         for (var i = 0; i < n; i++)
         {
             for (var j = 0; j < n; j++)
@@ -7736,19 +7720,19 @@ public static class Solution
                 continue;
             }
 
-            if (left <= currentNode.val && currentNode.val <= right)
+            if (left <= currentNode.Val && currentNode.Val <= right)
             {
-                sum += currentNode.val;
+                sum += currentNode.Val;
             }
 
-            if (left < currentNode.val)
+            if (left < currentNode.Val)
             {
-                stack.Push(currentNode.left);
+                stack.Push(currentNode.Left);
             }
 
-            if (currentNode.val < right)
+            if (currentNode.Val < right)
             {
-                stack.Push(currentNode.right);
+                stack.Push(currentNode.Right);
             }
         }
 
@@ -8012,7 +7996,7 @@ public static class Solution
         var curr = root;
         while (curr != null)
         {
-            if (val > curr.val)
+            if (val > curr.Val)
             {
                 if (parent is null)
                 {
@@ -8020,15 +8004,15 @@ public static class Solution
                 }
 
                 var node = new TreeNode(val, curr);
-                parent.right = node;
+                parent.Right = node;
                 return root;
             }
 
             parent = curr;
-            curr = curr.right;
+            curr = curr.Right;
         }
 
-        parent!.right = new TreeNode(val);
+        parent!.Right = new TreeNode(val);
         return root;
     }
 
@@ -8048,13 +8032,13 @@ public static class Solution
                 return 0;
             }
 
-            val = (val << 1) | node.val;
-            if (node.left is null && node.right is null)
+            val = (val << 1) | node.Val;
+            if (node.Left is null && node.Right is null)
             {
                 return val;
             }
 
-            return Dfs(node.left, val) + Dfs(node.right, val);
+            return Dfs(node.Left, val) + Dfs(node.Right, val);
         }
     }
 
@@ -8159,7 +8143,24 @@ public static class Solution
     /// <returns></returns>
     public static int JobScheduling(int[] startTime, int[] endTime, int[] profit)
     {
-        int BinarySearch(int[][] jobs, int right, int target)
+        var n = startTime.Length;
+        var jobs = new int[n][];
+        for (var i = 0; i < n; i++)
+        {
+            jobs[i] = [startTime[i], endTime[i], profit[i]];
+        }
+
+        Array.Sort(jobs, (a, b) => a[1] - b[1]);
+        var dp = new int[n + 1];
+        for (var i = 1; i <= n; i++)
+        {
+            var k = BinarySearchCore(jobs, i - 1, jobs[i - 1][0]);
+            dp[i] = Math.Max(dp[i - 1], dp[k] + jobs[i - 1][2]);
+        }
+
+        return dp[n];
+
+        int BinarySearchCore(int[][] jobs, int right, int target)
         {
             var left = 0;
             while (left < right)
@@ -8177,23 +8178,6 @@ public static class Solution
 
             return left;
         }
-
-        var n = startTime.Length;
-        var jobs = new int[n][];
-        for (var i = 0; i < n; i++)
-        {
-            jobs[i] = [startTime[i], endTime[i], profit[i]];
-        }
-
-        Array.Sort(jobs, (a, b) => a[1] - b[1]);
-        var dp = new int[n + 1];
-        for (var i = 1; i <= n; i++)
-        {
-            var k = BinarySearch(jobs, i - 1, jobs[i - 1][0]);
-            dp[i] = Math.Max(dp[i - 1], dp[k] + jobs[i - 1][2]);
-        }
-
-        return dp[n];
     }
 
     /// <summary>
@@ -8332,9 +8316,9 @@ public static class Solution
             {
                 if (node != null)
                 {
-                    Inorder(node.left, res);
-                    res.Add((node.val));
-                    node = node.right;
+                    Inorder(node.Left, res);
+                    res.Add((node.Val));
+                    node = node.Right;
                     continue;
                 }
 
