@@ -7,7 +7,7 @@
       "type": "process",
       "args": [
         "build",
-        "${workspaceFolder}/Leetcode/Leetcode.csproj",
+        "${workspaceFolder}/LeetCode/LeetCode.csproj",
         "/property:GenerateFullPaths=true",
         "/consoleloggerparameters:NoSummary"
       ],
@@ -19,7 +19,7 @@
       "type": "process",
       "args": [
         "publish",
-        "${workspaceFolder}/Leetcode/Leetcode.csproj",
+        "${workspaceFolder}/LeetCode/LeetCode.csproj",
         "/property:GenerateFullPaths=true",
         "/consoleloggerparameters:NoSummary"
       ],
@@ -33,7 +33,7 @@
         "watch",
         "run",
         "--project",
-        "${workspaceFolder}/Leetcode/Leetcode.csproj"
+        "${workspaceFolder}/LeetCode/LeetCode.csproj"
       ],
       "problemMatcher": "$msCompile"
     }
