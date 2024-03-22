@@ -24,7 +24,7 @@ steps:
 - task: UseDotNet@2
   inputs:
     packageType: 'sdk'
-    version: '7.0.x'
+    version: '8.0.x'
 
 - task: VSBuild@1
   inputs:
@@ -37,7 +37,7 @@ steps:
     command: test
     arguments: '--configuration $(buildConfiguration) --collect:"XPlat Code coverage" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=cobertura'
     publishTestResults: true
-    projects: '**/*.Test/*.csproj'
+    projects: '**/*.Tests/*.csproj'
 
 - task: PublishCodeCoverageResults@1
   displayName: 'Publish code coverage report'
