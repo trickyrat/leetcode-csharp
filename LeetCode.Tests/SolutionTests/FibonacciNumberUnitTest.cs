@@ -1,6 +1,4 @@
-﻿using Xunit;
-
-namespace LeetCode.Tests.SolutionTests;
+﻿namespace LeetCode.Tests.SolutionTests;
 
 public class FibonacciNumberUnitTest
 {

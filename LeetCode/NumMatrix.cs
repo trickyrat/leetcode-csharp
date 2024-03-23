@@ -5,7 +5,7 @@ namespace LeetCode;
 
 public class NumMatrix
 {
-    private int[,] _sum;
+    private readonly int[,] _sum;
     public NumMatrix(int[][] matrix)
     {
         var m = matrix.Length;

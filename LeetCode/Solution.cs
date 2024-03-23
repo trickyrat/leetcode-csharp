@@ -1,13 +1,6 @@
 ﻿// Licensed to the Trickyrat under one or more agreements.
 // The Trickyrat licenses this file to you under the MIT license.
 
-using LeetCode.DataStructure;
-
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
 namespace LeetCode;
 
 /// <summary>
