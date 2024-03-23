@@ -1,10 +1,6 @@
 ﻿// Licensed to the Trickyrat under one or more agreements.
 // The Trickyrat licenses this file to you under the MIT license.
 
-using System;
-
-using LeetCode.DataStructure;
-
 namespace LeetCode;
 
 public class RandomNode(ListNode head)

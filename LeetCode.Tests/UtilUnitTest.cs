@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using LeetCode.DataStructure;
-using Xunit;
-
-namespace LeetCode.Tests;
+﻿namespace LeetCode.Tests;
 
 public class UtilUnitTest
 {
