@@ -9583,6 +9583,34 @@ public static class Solution
     }
 
     /// <summary>
+    /// 2580. Count Ways to Group Overlapping Ranges
+    /// </summary>
+    /// <param name="ranges"></param>
+    /// <returns></returns>
+    public static int CountWays(int[][] ranges)
+    {
+        const int mod = 1_000_000_007;
+        Array.Sort(ranges, (a, b) => a[0] - b[0]);
+        var n = ranges.Length;
+        var res = 1;
+        for (var i = 0; i < n;)
+        {
+            var r = ranges[i][1];
+            var j = i + 1;
+            while (j < n && ranges[j][0] <= r)
+            {
+                r = Math.Max(r, ranges[j][1]);
+                j++;
+            }
+
+            res = res * 2 % mod;
+            i = j;
+        }
+
+        return res;
+    }
+
+    /// <summary>
     /// 6078. Rearrange Characters to Make Target String
     /// </summary>
     /// <param name="s"></param>
