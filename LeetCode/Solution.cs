@@ -9286,6 +9286,31 @@ public static class Solution
     }
 
     /// <summary>
+    /// 1997. First Day Where You Have Been in All the Rooms
+    /// </summary>
+    /// <param name="nextVisit"></param>
+    /// <returns></returns>
+    public static int FirstDayBeenInAllRooms(int[] nextVisit)
+    {
+        const int mod = 1_000_000_007;
+        var n = nextVisit.Length;
+        var dp = new int[n];
+        dp[0] = 2;
+        for (var i = 1; i < n; i++)
+        {
+            var to = nextVisit[i];
+            dp[i] = 2 + dp[i - 1];
+            if (to != 0)
+            {
+                dp[i] = (dp[i] - dp[to - 1] + mod) % mod;
+            }
+
+            dp[i] = (dp[i] + dp[i - 1]) % mod;
+        }
+        return dp[n - 2];
+    }
+    
+    /// <summary>
     /// 2006. Count Number of Pairs With Absolute Difference K
     /// </summary>
     /// <param name="nums"></param>
