@@ -1,9 +1,6 @@
 ﻿// Licensed to the Trickyrat under one or more agreements.
 // The Trickyrat licenses this file to you under the MIT license.
 
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-
 namespace LeetCode;
 
 public class Worker(ILogger<Worker> logger
