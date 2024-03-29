@@ -9636,6 +9636,36 @@ public static class Solution
     }
 
     /// <summary>
+    /// 2908. Minimum Sum of Mountain Triplets I
+    /// </summary>
+    /// <param name="nums"></param>
+    /// <returns></returns>  
+    public static int MinimumSum(int[] nums)
+    {
+        var n = nums.Length;
+        var res = 1000;
+        var mini = 1000;
+        var left = new int[n];
+        var right = nums[n - 1];
+
+        for (var i = 1; i < n; i++) 
+        {
+            mini = Math.Min(nums[i-1], mini);
+            left[i] = mini;
+        }
+
+        for (var i = n - 2; i > 0; i--)
+        {
+            if (left[i] < nums[i] && nums[i] > right)
+            {
+                res = Math.Min(res, left[i] + nums[i] + right);
+            }
+            right = Math.Min(right, nums[i]);
+        }
+        return res < 1000 ? res : -1;
+    }
+
+    /// <summary>
     /// 6078. Rearrange Characters to Make Target String
     /// </summary>
     /// <param name="s"></param>
