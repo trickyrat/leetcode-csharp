@@ -9666,6 +9666,37 @@ public static class Solution
     }
 
     /// <summary>
+    /// 2952. Minimum Number of Coins to be Added
+    /// </summary>
+    /// <param name="coins"></param>
+    /// <param name="target"></param>
+    /// <returns></returns>
+    public static int MinimumAddedCoins(int[] coins, int target)
+    {
+        var n = coins.Length;
+        var index = 0;
+        var res = 0;
+        var x = 1;
+        Array.Sort(coins);
+
+        while (x <= target)
+        {
+            if (index < n && coins[index] <= x)
+            {
+                x += coins[index];
+                index++;
+            }
+            else
+            {
+                x *= 2;
+                res += 1;
+            }
+        }
+
+        return res;
+    }
+
+    /// <summary>
     /// 6078. Rearrange Characters to Make Target String
     /// </summary>
     /// <param name="s"></param>
