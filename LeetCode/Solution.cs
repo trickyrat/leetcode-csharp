@@ -4214,6 +4214,44 @@ public static class Solution
     }
 
     /// <summary>
+    /// 331. Verify Preorder Serialization of a Binary Tree
+    /// </summary>
+    /// <param name="preorder"></param>
+    /// <returns></returns>
+    public static bool IsValidSerialization(string preorder)
+    {
+        int n = preorder.Length, i = 0, slots = 1;
+        while (i < n)
+        {
+            if (slots == 0)
+            {
+                return false;
+            }
+
+            if (preorder[i] == ',')
+            {
+                i++;
+            }
+            else if (preorder[i] == '#')
+            {
+                slots--;
+                i++;
+            }
+            else
+            {
+                while (i < n && preorder[i] != ',')
+                {
+                    i++;
+                }
+
+                slots++;
+            }
+        }
+
+        return slots == 0;
+    }
+    
+    /// <summary>
     /// 337. House Robber III 
     /// </summary>
     /// <param name="root"></param>
