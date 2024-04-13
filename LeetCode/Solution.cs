@@ -9673,6 +9673,48 @@ public static class Solution
         return res;
     }
 
+    public static string FinalString(string s)
+    {
+        var q = new LinkedList<char>();
+        bool head = false;
+        foreach (var ch in s)
+        {
+            if (ch != 'i')
+            {
+                if (head)
+                {
+                    q.AddFirst(ch);
+                }
+                else
+                {
+                    q.AddLast(ch);
+                }
+            }
+            else
+            {
+                head = !head;
+            }
+        }
+        var sb = new StringBuilder();
+        if (head)
+        {
+            while(q.Count > 0)
+            {
+                sb.Append(q.Last.Value);
+                q.RemoveLast();
+            }
+        }
+        else
+        {
+            while(q.Count > 0)
+            {
+                sb.Append(q.First.Value);
+                q.RemoveFirst();
+            }
+        }
+        return sb.ToString();
+    }
+
     /// <summary>
     /// 2908. Minimum Sum of Mountain Triplets I
     /// </summary>
