@@ -8999,6 +8999,38 @@ public static class Solution
     }
 
     /// <summary>
+    /// 1702. Maximum Binary String After Change
+    /// </summary>
+    /// <param name="binary"></param>
+    /// <returns></returns>
+    public static string MaximumBinaryString(string binary)
+    {
+        int n = binary.Length;
+        int zeroIndex = n;
+        int zeroCount = 0;
+        char[] res = binary.ToCharArray();
+        for (int i = 0; i < n; i++)
+        {
+            if (binary[i] == '0')
+            {
+                if (zeroIndex == n)
+                {
+                    zeroIndex = i;
+                }
+                zeroCount++;
+            }
+            res[i] = '1';
+        }
+
+        if (zeroCount == 0)
+        {
+            return binary;
+        }
+        res[zeroIndex + zeroCount - 1] = '0';
+        return string.Join("", res);
+    }
+
+    /// <summary>
     /// 1750. Minimum Length of String After Deleting Similar Ends
     /// </summary>
     /// <param name="s"></param>
@@ -9622,6 +9654,12 @@ public static class Solution
         return res - 1;
     }
 
+    /// <summary>
+    /// 2185.Counting Words With a Given Prefix
+    /// </summary>
+    /// <param name="words"></param>
+    /// <param name="pref"></param>
+    /// <returns></returns>
     public static int PrefixCount(string[] words, string pref) => words.Count(x => x.StartsWith(pref));
 
     /// <summary>
@@ -9673,6 +9711,11 @@ public static class Solution
         return res;
     }
 
+    /// <summary>
+    /// 2810. Faulty Keyboard
+    /// </summary>
+    /// <param name="s"></param>
+    /// <returns></returns>
     public static string FinalString(string s)
     {
         var q = new LinkedList<char>();
