@@ -8,12 +8,12 @@ public class AddTwoNumbersUnitTest
     public static TheoryData<ListNode, ListNode, ListNode> Data =>
         new()
         {
-            { Util.CreateListNode([2, 4, 3]), Util.CreateListNode([5, 6, 4]), Util.CreateListNode([7, 0, 8]) },
-            { Util.CreateListNode([0]), Util.CreateListNode([0]), Util.CreateListNode([0]) },
+            { Util.GenerateListNode([2, 4, 3]), Util.GenerateListNode([5, 6, 4]), Util.GenerateListNode([7, 0, 8]) },
+            { Util.GenerateListNode([0]), Util.GenerateListNode([0]), Util.GenerateListNode([0]) },
             {
-                Util.CreateListNode([9, 9, 9, 9, 9, 9, 9]),
-                Util.CreateListNode([9, 9, 9, 9]),
-                Util.CreateListNode([8, 9, 9, 9, 0, 0, 0, 1])
+                Util.GenerateListNode([9, 9, 9, 9, 9, 9, 9]),
+                Util.GenerateListNode([9, 9, 9, 9]),
+                Util.GenerateListNode([8, 9, 9, 9, 0, 0, 0, 1])
             }
         };
 

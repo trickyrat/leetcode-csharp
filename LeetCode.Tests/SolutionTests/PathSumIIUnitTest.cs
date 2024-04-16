@@ -9,13 +9,13 @@ public class PathSumIIUnitTest
     {
         yield return
         [
-            Util.CreateTreeNode([1, 2, 3]),
+            Util.GenerateTreeNode([1, 2, 3]),
             5,
             new List<List<int>>()
         ];
         yield return
         [
-            Util.CreateTreeNode([5, 4, 8, 11, null, 13, 4, 7, 2, null, null, 5, 1]),
+            Util.GenerateTreeNode([5, 4, 8, 11, null, 13, 4, 7, 2, null, null, 5, 1]),
             22,
             new List<List<int>>
             {

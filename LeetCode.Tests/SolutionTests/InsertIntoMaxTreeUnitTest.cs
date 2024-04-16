@@ -8,21 +8,21 @@ public class InsertIntoMaxTreeUnitTest
     {
         yield return
         [
-            Util.CreateTreeNode([4, 1, 3, null, null, 2]),
+            Util.GenerateTreeNode([4, 1, 3, null, null, 2]),
             5,
-            Util.CreateTreeNode([5, 4, null, 1, 3, null, null, 2])
+            Util.GenerateTreeNode([5, 4, null, 1, 3, null, null, 2])
         ];
         yield return
         [
-            Util.CreateTreeNode([5, 2, 4, null, 1]),
+            Util.GenerateTreeNode([5, 2, 4, null, 1]),
             3,
-            Util.CreateTreeNode([5, 2, 4, null, 1, null, 3])
+            Util.GenerateTreeNode([5, 2, 4, null, 1, null, 3])
         ];
         yield return
         [
-            Util.CreateTreeNode([5, 2, 3, null, 1]),
+            Util.GenerateTreeNode([5, 2, 3, null, 1]),
             4,
-            Util.CreateTreeNode([5, 2, 4, null, 1, 3])
+            Util.GenerateTreeNode([5, 2, 4, null, 1, 3])
         ];
     }
 

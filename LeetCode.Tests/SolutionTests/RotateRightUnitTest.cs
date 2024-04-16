@@ -9,9 +9,9 @@ public class RotateRightUnitTest
     {
         yield return
         [
-            Util.CreateListNode([1, 2, 3, 4, 5]),
+            Util.GenerateListNode([1, 2, 3, 4, 5]),
             2,
-            Util.CreateListNode([4, 5, 1, 2, 3])
+            Util.GenerateListNode([4, 5, 1, 2, 3])
         ];
     }
 

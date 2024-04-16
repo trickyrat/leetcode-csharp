@@ -23,7 +23,7 @@ public class IsPalindromeUnitTest
     [MemberData(nameof(GetData))]
     public void Test(int[] nums, bool expected)
     {
-        var head = Util.CreateListNode(nums);
+        var head = Util.GenerateListNode(nums);
         var actual = Solution.IsPalindrome(head);
         Assert.Equal(expected, actual);
     }

@@ -15,7 +15,7 @@ public static class Util
         (array[index2], array[index1]) = (array[index1], array[index2]);
     }
 
-    public static ListNode CreateListNode(IEnumerable<int> data)
+    public static ListNode GenerateListNode(IEnumerable<int> data)
     {
         var head = new ListNode(0);
         var dummy = head;
@@ -86,7 +86,7 @@ public static class Util
         return res;
     }
     
-    public static TreeNode CreateTreeNode(List<int?> nums)
+    public static TreeNode GenerateTreeNode(List<int?> nums)
     {
         if (nums is null || nums.Count == 0 || nums[0] is null)
         {
@@ -123,7 +123,7 @@ public static class Util
         return root;
     }
 
-    public static Node CreateNTree(List<int?> nums)
+    public static Node GenerateNTree(List<int?> nums)
     {
         if (nums is null || nums.Count == 0 || nums[0] is null)
         {
@@ -153,6 +153,42 @@ public static class Util
             }
         }
 
+        return root;
+    }
+
+    public static BinaryTreeNode GenerateBinaryTreeNode(List<int> nums)
+    {
+        if (nums is null || nums.Count == 0)
+        {
+            return null;
+        }
+        var root = new BinaryTreeNode(val: nums[0]);
+        var queue = new Queue<BinaryTreeNode>();
+        queue.Enqueue(root);
+        
+        var fillLeft = true;
+        for (var i = 1; i < nums.Count; i++)
+        {
+            var node = new BinaryTreeNode(nums[i]);
+
+            if (fillLeft)
+            {
+                queue.Peek().Left = node;
+                fillLeft = false;
+            }
+            else
+            {
+                queue.Peek().Right = node;
+                fillLeft = true;
+            }
+
+            if (node is not null)
+            {
+                queue.Enqueue(node);
+            }
+
+            if (fillLeft) queue.Dequeue();
+        }
         return root;
     }
 }

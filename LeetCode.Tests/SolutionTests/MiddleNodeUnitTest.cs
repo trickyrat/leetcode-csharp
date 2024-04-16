@@ -9,13 +9,13 @@ public class MiddleNodeUnitTest
     {
         yield return
         [
-            Util.CreateListNode([1, 2, 3, 4, 5, 6]),
-            Util.CreateListNode([4, 5, 6])
+            Util.GenerateListNode([1, 2, 3, 4, 5, 6]),
+            Util.GenerateListNode([4, 5, 6])
         ];
         yield return
         [
-            Util.CreateListNode([1, 2, 3, 4, 5,]),
-            Util.CreateListNode([3, 4, 5])
+            Util.GenerateListNode([1, 2, 3, 4, 5,]),
+            Util.GenerateListNode([3, 4, 5])
         ];
     }
 

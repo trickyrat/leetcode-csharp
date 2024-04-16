@@ -9,13 +9,13 @@ public class NumComponentsUnitTest
     {
         yield return
         [
-            Util.CreateListNode([0, 1, 2, 3]),
+            Util.GenerateListNode([0, 1, 2, 3]),
             new[] { 0, 1, 3 },
             2
         ];
         yield return
         [
-            Util.CreateListNode([0, 1, 2, 3, 4]),
+            Util.GenerateListNode([0, 1, 2, 3, 4]),
             new[] { 0, 3, 1, 4 },
             2
         ];

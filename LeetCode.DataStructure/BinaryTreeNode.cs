@@ -27,3 +27,32 @@ public class BinaryTreeNode
         Next = next;
     }
 }
+
+public class BinaryTreeNodeComparer : IEqualityComparer<BinaryTreeNode>
+{
+    public bool Equals(BinaryTreeNode x, BinaryTreeNode y)
+    {
+        if (x is null && y is null)
+        {
+            return true;
+        }
+
+        if (x is null || y is null)
+        {
+            return false;
+        }
+
+        if (x.Next != y.Next)
+        {
+            return false;
+        }
+
+        return Equals(x.Left, y.Left) && Equals(x.Right, y.Right);
+
+    }
+
+    public int GetHashCode([DisallowNull] BinaryTreeNode obj)
+    {
+        throw new NotImplementedException();
+    }
+}
