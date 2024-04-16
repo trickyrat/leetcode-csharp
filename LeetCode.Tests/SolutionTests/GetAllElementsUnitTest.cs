@@ -9,14 +9,14 @@ public class GetAllElementsUnitTest
     {
         yield return
         [
-            Util.CreateTreeNode([2, 1, 4]),
-            Util.CreateTreeNode([1, 0, 3]),
+            Util.GenerateTreeNode([2, 1, 4]),
+            Util.GenerateTreeNode([1, 0, 3]),
             new List<int> { 0, 1, 1, 2, 3, 4 }
         ];
         yield return
         [
-            Util.CreateTreeNode([1, null, 8]),
-            Util.CreateTreeNode([8, 1]),
+            Util.GenerateTreeNode([1, null, 8]),
+            Util.GenerateTreeNode([8, 1]),
             new List<int> { 1, 1, 8, 8 }
         ];
     }

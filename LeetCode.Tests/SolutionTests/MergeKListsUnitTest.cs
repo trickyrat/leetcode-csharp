@@ -11,11 +11,11 @@ public class MergeKListsUnitTest
         [
             new[]
             {
-                Util.CreateListNode([1, 4, 5]),
-                Util.CreateListNode([1, 3, 4]),
-                Util.CreateListNode([2, 6])
+                Util.GenerateListNode([1, 4, 5]),
+                Util.GenerateListNode([1, 3, 4]),
+                Util.GenerateListNode([2, 6])
             },
-            Util.CreateListNode([1, 1, 2, 3, 4, 4, 5, 6])
+            Util.GenerateListNode([1, 1, 2, 3, 4, 4, 5, 6])
         ];
         yield return
         [

@@ -9,8 +9,8 @@ public class MergeTwoListsUnitTest
     {
         yield return
         [
-            Util.CreateListNode(new List<int> { 1, 2, 4 }),
-            Util.CreateListNode(new List<int> { 1, 3, 4 }),
+            Util.GenerateListNode(new List<int> { 1, 2, 4 }),
+            Util.GenerateListNode(new List<int> { 1, 3, 4 }),
             new List<int> { 1, 1, 2, 3, 4, 4 }
         ];
         yield return
@@ -22,7 +22,7 @@ public class MergeTwoListsUnitTest
         yield return
         [
             null,
-               Util.CreateListNode(new List<int> { 0 }),
+               Util.GenerateListNode(new List<int> { 0 }),
                new List<int>{ 0 }
         ];
     }

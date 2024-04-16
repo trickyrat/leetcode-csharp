@@ -13,11 +13,11 @@ public class ConstructMaximumBinaryTreeUnitTest
             {
                 {
                     [3, 2, 1, 6, 0, 5],
-                    Util.CreateTreeNode([6, 3, 5, null, 2, 0, null, null, 1])
+                    Util.GenerateTreeNode([6, 3, 5, null, 2, 0, null, null, 1])
                 },
                 {
                     [3, 2, 1],
-                    Util.CreateTreeNode([3, null, 2, null, 1])
+                    Util.GenerateTreeNode([3, null, 2, null, 1])
                 }
             };
             return data;

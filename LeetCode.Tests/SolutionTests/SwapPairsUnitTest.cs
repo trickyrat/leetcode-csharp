@@ -9,18 +9,18 @@ public class SwapPairsUnitTest
     {
         yield return
         [
-            Util.CreateListNode([1, 2, 3, 4]),
-            Util.CreateListNode([2, 1, 4, 3])
+            Util.GenerateListNode([1, 2, 3, 4]),
+            Util.GenerateListNode([2, 1, 4, 3])
         ];
         yield return
         [
-            Util.CreateListNode(Array.Empty<int>()),
-            Util.CreateListNode(Array.Empty<int>())
+            Util.GenerateListNode(Array.Empty<int>()),
+            Util.GenerateListNode(Array.Empty<int>())
         ];
         yield return
         [
-            Util.CreateListNode([1]),
-            Util.CreateListNode([1])
+            Util.GenerateListNode([1]),
+            Util.GenerateListNode([1])
         ];
     }
 

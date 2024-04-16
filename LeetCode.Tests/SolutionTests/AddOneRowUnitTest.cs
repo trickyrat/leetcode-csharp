@@ -8,16 +8,16 @@ public class AddOneRowUnitTest
         new()
         {
             {
-                Util.CreateTreeNode([4, 2, 6, 3, 1, 5]),
+                Util.GenerateTreeNode([4, 2, 6, 3, 1, 5]),
                 1,
                 2,
-                Util.CreateTreeNode([4, 1, 1, 2, null, null, 6, 3, 1, 5])
+                Util.GenerateTreeNode([4, 1, 1, 2, null, null, 6, 3, 1, 5])
             },
             {
-                Util.CreateTreeNode([4, 2, null, 3, 1]),
+                Util.GenerateTreeNode([4, 2, null, 3, 1]),
                 1,
                 3,
-                Util.CreateTreeNode([4, 2, null, 1, 1, 3, null, null, 1])
+                Util.GenerateTreeNode([4, 2, null, 1, 1, 3, null, null, 1])
             }
         };
 

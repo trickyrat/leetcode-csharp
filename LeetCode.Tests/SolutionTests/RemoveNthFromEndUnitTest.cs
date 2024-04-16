@@ -9,21 +9,21 @@ public class RemoveNthFromEndUnitTest
     {
         yield return
         [
-            Util.CreateListNode([1, 2, 3, 4, 5]),
+            Util.GenerateListNode([1, 2, 3, 4, 5]),
             2,
-            Util.CreateListNode([1, 2, 3, 5])
+            Util.GenerateListNode([1, 2, 3, 5])
         ];
         yield return
         [
-            Util.CreateListNode([1]),
+            Util.GenerateListNode([1]),
             1,
-            Util.CreateListNode([])
+            Util.GenerateListNode([])
         ];
         yield return
         [
-            Util.CreateListNode([1, 2]),
+            Util.GenerateListNode([1, 2]),
             1,
-            Util.CreateListNode([1])
+            Util.GenerateListNode([1])
         ];
     }
 
