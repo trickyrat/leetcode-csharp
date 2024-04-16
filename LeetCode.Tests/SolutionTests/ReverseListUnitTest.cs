@@ -9,13 +9,13 @@ public class ReverseListUnitTest
     {
         yield return
         [
-            Util.CreateListNode(new List<int> { 1, 2, 3, 4, 5 }),
-            Util.CreateListNode(new List<int> { 5, 4, 3, 2, 1 })
+            Util.GenerateListNode(new List<int> { 1, 2, 3, 4, 5 }),
+            Util.GenerateListNode(new List<int> { 5, 4, 3, 2, 1 })
         ];
         yield return
         [
-            Util.CreateListNode(new List<int> { 1, 2 }),
-            Util.CreateListNode(new List<int> { 2, 1 })
+            Util.GenerateListNode(new List<int> { 1, 2 }),
+            Util.GenerateListNode(new List<int> { 2, 1 })
         ];
         yield return
         [

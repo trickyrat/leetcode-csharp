@@ -8,12 +8,12 @@ public class LongestUnivaluePathUnitTest
     {
         yield return
         [
-            Util.CreateTreeNode([5, 4, 5, 1, 1, null, 5]),
+            Util.GenerateTreeNode([5, 4, 5, 1, 1, null, 5]),
             2
         ];
         yield return
         [
-            Util.CreateTreeNode([1, 4, 5, 4, 4, null, 5]),
+            Util.GenerateTreeNode([1, 4, 5, 4, 4, null, 5]),
             2
         ];
     }

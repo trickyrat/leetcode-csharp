@@ -9,17 +9,17 @@ public class WidthOfBinaryTreeUnitTest
     {
         yield return
         [
-            Util.CreateTreeNode([1, 3, 2, 5, 3, null, 9]),
+            Util.GenerateTreeNode([1, 3, 2, 5, 3, null, 9]),
             4
         ];
         yield return
         [
-            Util.CreateTreeNode([1, 3, 2, 5, null, null, 9, 6, null, 7]),
+            Util.GenerateTreeNode([1, 3, 2, 5, null, null, 9, 6, null, 7]),
             7
         ];
         yield return
         [
-            Util.CreateTreeNode([1, 3, 2, 5]),
+            Util.GenerateTreeNode([1, 3, 2, 5]),
             2
         ];
     }

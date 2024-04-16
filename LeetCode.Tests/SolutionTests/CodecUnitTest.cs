@@ -9,8 +9,8 @@ public class CodecUnitTest
     {
         yield return
         [
-            Util.CreateTreeNode([2, 1, 3]),
-            Util.CreateTreeNode([2, 1, 3])
+            Util.GenerateTreeNode([2, 1, 3]),
+            Util.GenerateTreeNode([2, 1, 3])
         ];
         yield return
         [
@@ -28,7 +28,6 @@ public class CodecUnitTest
     {
         var treeNodeString = _codec.Serialize(root);
         var actual = _codec.Deserialize(treeNodeString);
-        var comparer = new TreeNodeComparer();
-        Assert.True(comparer.Equals(expected, actual));
+        Assert.Equal(expected, actual, new TreeNodeComparer());
     }
 }

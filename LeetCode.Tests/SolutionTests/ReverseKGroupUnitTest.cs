@@ -9,15 +9,15 @@ public class ReverseKGroupUnitTest
     {
         yield return
         [
-            Util.CreateListNode([1, 2, 3, 4, 5]),
+            Util.GenerateListNode([1, 2, 3, 4, 5]),
             2,
-            Util.CreateListNode([2, 1, 4, 3, 5])
+            Util.GenerateListNode([2, 1, 4, 3, 5])
         ];
         yield return
         [
-            Util.CreateListNode([1, 2, 3, 4, 5]),
+            Util.GenerateListNode([1, 2, 3, 4, 5]),
             3,
-            Util.CreateListNode([3, 2, 1, 4, 5])
+            Util.GenerateListNode([3, 2, 1, 4, 5])
         ];
     }
 

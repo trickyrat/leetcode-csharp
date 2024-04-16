@@ -9,12 +9,12 @@ namespace LeetCode.Tests.SolutionTests
         {
             yield return
             [
-                Util.CreateTreeNode([1, 0, 1, 0, 1, 0, 1]),
+                Util.GenerateTreeNode([1, 0, 1, 0, 1, 0, 1]),
                 22
             ];
             yield return
             [
-                Util.CreateTreeNode([0]),
+                Util.GenerateTreeNode([0]),
                 0
             ];
         }

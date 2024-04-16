@@ -9,13 +9,13 @@ public class FindTargetUnitTest
     {
         yield return
         [
-            Util.CreateTreeNode([5, 3, 6, 2, 4, null, 7]),
+            Util.GenerateTreeNode([5, 3, 6, 2, 4, null, 7]),
             9,
             true
         ];
         yield return
         [
-            Util.CreateTreeNode([5, 3, 6, 2, 4, null, 7]),
+            Util.GenerateTreeNode([5, 3, 6, 2, 4, null, 7]),
             28,
             false
         ];
