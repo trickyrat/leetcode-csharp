@@ -9712,6 +9712,17 @@ public static class Solution
     }
 
     /// <summary>
+    /// 2739. Total Distance Traveled
+    /// </summary>
+    /// <param name="mainTank"></param>
+    /// <param name="additionalTank"></param>
+    /// <returns></returns>
+    public static int DistanceTraveled(int mainTank, int additionalTank)
+    {
+        return 10 * (mainTank + Math.Min((mainTank - 1) / 4, additionalTank));
+    }
+
+    /// <summary>
     /// 2810. Faulty Keyboard
     /// </summary>
     /// <param name="s"></param>
