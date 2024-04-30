@@ -2,85 +2,61 @@
 
 public class UtilUnitTest
 {
-    public static IEnumerable<object[]> GetTreeNodeData()
+    public static TheoryData<List<int?>, TreeNode> TreeNodeData => new()
     {
-        yield return
-        [
+
+        {
             new List<int?> { 1, 2, 3 },
             new TreeNode(1, new TreeNode(2), new TreeNode(3))
-        ];
-        yield return
-        [
+        },
+        {
             new List<int?> { 1, null, 3 },
             new TreeNode(1, null, new TreeNode(3))
-        ];
-    }
+        }
+    };
 
-    public static IEnumerable<object[]> GetMatrixData()
+    public static TheoryData<int[][], string> MatrixData => new()
     {
-        yield return
-        [
-            new[]
-            {
-                [1, 2, 3],
-                [4, 5, 6],
-                new[] { 7, 8, 9 },
-            },
+        {
+            [[1, 2, 3],
+             [4, 5, 6],
+             [ 7, 8, 9]],
             "[[1,2,3]\n [4,5,6]\n [7,8,9]]"
-        ];
+        },
 
-        yield return
-        [
-            new[]
-            {
-                [1, 2],
-                [4, 5],
-                new[] { 7, 8 },
-            },
+        {
+            [[1, 2],
+             [4, 5],
+             [ 7, 8]],
             "[[1,2]\n [4,5]\n [7,8]]"
-        ];
+        },
 
-        yield return
-        [
-            new[]
-            {
-                [1, 2, 3],
-                new[] { 4, 5, 6 }
-            },
+        {
+            [[1, 2, 3], [4, 5, 6]],
             "[[1,2,3]\n [4,5,6]]"
-        ];
+        },
 
-        yield return
-        [
-            new[]
-            {
-                [1],
-                [2],
-                new[] { 3 },
-            },
+        {
+            [[1], [2], [3]],
             "[[1]\n [2]\n [3]]"
-        ];
-        yield return
-        [
-            new[]
-            {
-                new[] { 1, 2, 3 },
-            },
+        },
+        {
+            [[1, 2, 3]],
             "[[1,2,3]]"
-        ];
-    }
+        }
+    };
 
     [Theory]
-    [MemberData(nameof(GetTreeNodeData))]
-    public void Test_CreateTreeNode_Should_OK(List<int?> nums, TreeNode expected)
+    [MemberData(nameof(TreeNodeData))]
+    public void Test_CreateTreeNode_Should_OK(List<int?> numbers, TreeNode expected)
     {
-        var actual = Util.GenerateTreeNode(nums);
+        var actual = Util.GenerateTreeNode(numbers);
         Assert.Equal(expected, actual, new TreeNodeComparer());
     }
 
 
     [Theory]
-    [MemberData(nameof(GetMatrixData))]
+    [MemberData(nameof(MatrixData))]
     public void Test_ConvertMatrixToString_ShouldBe_OK(int[][] matrix, string expected)
     {
         var actual = Util.ConvertMatrixToString(matrix);
