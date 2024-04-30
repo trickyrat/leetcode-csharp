@@ -2367,13 +2367,15 @@ public static class Solution
         var n = digits.Length;
         for (var i = n - 1; i >= 0; i--)
         {
-            if (digits[i] < 9)
+            if (digits[i] != 9)
             {
                 digits[i]++;
+                for (var j = i + 1; j < n; j++)
+                {
+                    digits[j] = 0;
+                }
                 return digits;
             }
-
-            digits[i] = 0;
         }
 
         var newNumber = new int[n + 1];
@@ -3328,7 +3330,7 @@ public static class Solution
     /// </summary>
     /// <param name="nums"></param>
     /// <returns></returns>
-    public static int SingleNumberII(int[] nums)
+    public static int SingleNumberV2(int[] nums)
     {
         int ones = 0, twos = 0;
         foreach (var t in nums)
@@ -4129,7 +4131,7 @@ public static class Solution
     /// </summary>
     /// <param name="nums"></param>
     /// <returns></returns>
-    public static int[] SingleNumberIII(int[] nums)
+    public static int[] SingleNumberV3(int[] nums)
     {
         var xorSum = nums.Aggregate(0, (current, num) => current ^ num);
         var lsb = (xorSum == int.MinValue ? xorSum : xorSum & (-xorSum));
