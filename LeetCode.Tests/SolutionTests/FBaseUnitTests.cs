@@ -8,7 +8,7 @@ public class FibonacciNumberUnitTest
     [InlineData(4, 3)]
     public void Test(int n, int expected)
     {
-        var actual = Solution.Fib(n);
+        int actual = Solution.Fib(n);
         Assert.Equal(expected, actual);
     }
 }
@@ -17,16 +17,14 @@ public class FinalPricesUnitTest
 {
     public static TheoryData<int[], int[]> Data => new()
     {
-        { [8, 4, 6, 2, 3], [4, 2, 4, 2, 3] },
-        { [1, 2, 3, 4, 5], [1, 2, 3, 4, 5] },
-        { [10, 1, 1, 6], [9, 0, 1, 6] },
+        { [8, 4, 6, 2, 3], [4, 2, 4, 2, 3] }, { [1, 2, 3, 4, 5], [1, 2, 3, 4, 5] }, { [10, 1, 1, 6], [9, 0, 1, 6] },
     };
 
     [Theory]
     [MemberData(nameof(Data))]
     public void Test(int[] prices, int[] expected)
     {
-        var actual = Solution.FinalPrices(prices);
+        int[] actual = Solution.FinalPrices(prices);
         Assert.Equal(expected, actual);
     }
 }
@@ -38,7 +36,7 @@ public class FinalStringUnitTest
     [InlineData("poiinter", "ponter")]
     public void Test(string input, string expected)
     {
-        var actual = Solution.FinalString(input);
+        string actual = Solution.FinalString(input);
         Assert.Equal(expected, actual);
     }
 }
@@ -47,16 +45,14 @@ public class FinalValueAfterOperationsUnitTest
 {
     public static TheoryData<string[], int> Data => new()
     {
-        { ["--X", "X++", "X++"], 1 },
-        { ["++X", "++X", "X++"], 3 },
-        { ["X++", "++X", "--X", "X--"], 0 }
+        { ["--X", "X++", "X++"], 1 }, { ["++X", "++X", "X++"], 3 }, { ["X++", "++X", "--X", "X--"], 0 }
     };
 
     [Theory]
     [MemberData(nameof(Data))]
     public void Test(string[] operations, int expected)
     {
-        var actual = Solution.FinalValueAfterOperations(operations);
+        int actual = Solution.FinalValueAfterOperations(operations);
         Assert.Equal(expected, actual);
     }
 }
@@ -65,16 +61,15 @@ public class FindCenterUnitTest
 {
     public static TheoryData<int[][], int> Edges => new()
     {
-        { [[1, 2], [2, 3], [4, 2]], 2 },
-        { [[1, 2], [5, 1], [1, 3], [1, 4]], 1 }
+        { [[1, 2], [2, 3], [4, 2]], 2 }, { [[1, 2], [5, 1], [1, 3], [1, 4]], 1 }
     };
 
 
     [Theory]
     [MemberData(nameof(Edges))]
-    public void Test(int[][] edges, int expected )
+    public void Test(int[][] edges, int expected)
     {
-        var actual = Solution.FindCenter(edges);
+        int actual = Solution.FindCenter(edges);
         Assert.Equal(expected, actual);
     }
 }
@@ -83,8 +78,7 @@ public class FindClosestElementsUnitTest
 {
     public static TheoryData<int[], int, int, IList<int>> Data => new()
     {
-        { [1, 2, 3, 4, 5], 4, 3, [1, 2, 3, 4] },
-        { [1, 2, 3, 4, 5], 4, -1, [1, 2, 3, 4] }
+        { [1, 2, 3, 4, 5], 4, 3, [1, 2, 3, 4] }, { [1, 2, 3, 4, 5], 4, -1, [1, 2, 3, 4] }
     };
 
     [Theory]
@@ -100,21 +94,14 @@ public class FindDiagonalOrderUnitTest
 {
     public static TheoryData<int[][], int[]> Data => new()
     {
-        {
-            [[1, 2, 3], [4, 5, 6], [7, 8, 9]],
-            [1, 2, 4, 7, 5, 3, 6, 8, 9]
-        },
-        {
-            [[1, 2], [3, 4]],
-            [1, 2, 3, 4]
-        }
+        { [[1, 2, 3], [4, 5, 6], [7, 8, 9]], [1, 2, 4, 7, 5, 3, 6, 8, 9] }, { [[1, 2], [3, 4]], [1, 2, 3, 4] }
     };
 
     [Theory]
     [MemberData(nameof(Data))]
     public void MultipleDataTest(int[][] matrix, int[] expected)
     {
-        var actual = Solution.FindDiagonalOrder(matrix);
+        int[] actual = Solution.FindDiagonalOrder(matrix);
         Assert.Equal(expected, actual);
     }
 }
@@ -125,26 +112,12 @@ public class FindDuplicateSubtreesUnitTest
     {
         {
             Util.GenerateTreeNode([1, 2, 3, 4, null, 2, 4, null, null, 4]),
-            new List<TreeNode>
-            {
-                Util.GenerateTreeNode([4]),
-                Util.GenerateTreeNode([2, 4]),
-            }
+            new List<TreeNode> { Util.GenerateTreeNode([4]), Util.GenerateTreeNode([2, 4]), }
         },
-        {
-            Util.GenerateTreeNode([2, 1, 1]),
-            new List<TreeNode>
-            {
-                Util.GenerateTreeNode([1])
-            }
-        },
+        { Util.GenerateTreeNode([2, 1, 1]), new List<TreeNode> { Util.GenerateTreeNode([1]) } },
         {
             Util.GenerateTreeNode([2, 2, 2, 3, null, 3, null]),
-            new List<TreeNode>
-            {
-                Util.GenerateTreeNode([3]),
-                Util.GenerateTreeNode([2, 3]),
-            }
+            new List<TreeNode> { Util.GenerateTreeNode([3]), Util.GenerateTreeNode([2, 3]), }
         }
     };
 
@@ -161,24 +134,16 @@ public class FindLongestChainUnitTest
 {
     public static TheoryData<int[][], int> Data => new()
     {
-        {
-            [[1, 2], [2, 3], [3, 4]],
-            2
-        },
-        {
-            [[1, 2], [7, 8], [4, 5]],
-            3
-        }
+        { [[1, 2], [2, 3], [3, 4]], 2 }, { [[1, 2], [7, 8], [4, 5]], 3 }
     };
 
     [Theory]
     [MemberData(nameof(Data))]
     public void MultipleDataTest(int[][] pairs, int expected)
     {
-        var actual = Solution.FindLongestChain(pairs);
+        int actual = Solution.FindLongestChain(pairs);
         Assert.Equal(expected, actual);
     }
-
 }
 
 public class FindLusLengthUnitTest
@@ -189,7 +154,7 @@ public class FindLusLengthUnitTest
     [InlineData("aaa", "aaa", -1)]
     public void MultipleDataTest(string a, string b, int expected)
     {
-        var actual = Solution.FindLusLength(a, b);
+        int actual = Solution.FindLusLength(a, b);
         Assert.Equal(expected, actual);
     }
 }
@@ -198,50 +163,40 @@ public class FindMedianSortedArraysUnitTest
 {
     public static TheoryData<int[], int[], double> Data => new()
     {
-        { [1, 3], [2], 2.00000 },
-        { [1, 2], [3, 4], 2.50000 }
+        { [1, 3], [2], 2.00000 }, { [1, 2], [3, 4], 2.50000 }
     };
 
     [Theory]
     [MemberData(nameof(Data))]
     public void MultipleDataTest(int[] numbers1, int[] numbers2, double expected)
     {
-        var actual = Solution.FindMedianSortedArrays(numbers1, numbers2);
+        double actual = Solution.FindMedianSortedArrays(numbers1, numbers2);
         Assert.Equal(expected, actual);
     }
 }
 
 public class FindMiddleIndexUnitTest
 {
-    public static TheoryData<int[], int> Data => new()
-    {
-        { [2, 3, -1, 8, 4], 3 },
-        { [1, -1, 4], 2 },
-        { [2, 5], -1 }
-    };
+    public static TheoryData<int[], int> Data => new() { { [2, 3, -1, 8, 4], 3 }, { [1, -1, 4], 2 }, { [2, 5], -1 } };
 
     [Theory]
     [MemberData(nameof(Data))]
     public void MultipleDataTest(int[] nums, int expected)
     {
-        var actual = Solution.FindMiddleIndex(nums);
+        int actual = Solution.FindMiddleIndex(nums);
         Assert.Equal(expected, actual);
     }
 }
 
 public class FindPeakElementUnitTest
 {
-    public static TheoryData<int[], int> Data => new()
-    {
-        { [1, 2, 3, 1], 2 },
-        { [1, 2, 1, 3, 5, 6, 4], 5 }
-    };
+    public static TheoryData<int[], int> Data => new() { { [1, 2, 3, 1], 2 }, { [1, 2, 1, 3, 5, 6, 4], 5 } };
 
     [Theory]
     [MemberData(nameof(Data))]
     public void Test(int[] arr, int expected)
     {
-        var actual = Solution.FindPeakElement(arr);
+        int actual = Solution.FindPeakElement(arr);
         Assert.Equal(expected, actual);
     }
 }
@@ -252,20 +207,16 @@ public class FindRestaurantUnitTest
     {
         {
             ["Shogun", "Tapioca Express", "Burger King", "KFC"],
-            ["Piatti", "The Grill at Torrey Pines", "Hungry Hunter Steakhouse", "Shogun"],
-            ["Shogun"]
+            ["Piatti", "The Grill at Torrey Pines", "Hungry Hunter Steakhouse", "Shogun"], ["Shogun"]
         },
-        {
-            ["Shogun", "Tapioca Express", "Burger King", "KFC"],
-            ["KFC", "Shogun", "Burger King"], ["Shogun"]
-        }
+        { ["Shogun", "Tapioca Express", "Burger King", "KFC"], ["KFC", "Shogun", "Burger King"], ["Shogun"] }
     };
 
     [Theory]
     [MemberData(nameof(Data))]
     public void Test(string[] list1, string[] list2, string[] expect)
     {
-        var actual = Solution.FindRestaurant(list1, list2);
+        string[] actual = Solution.FindRestaurant(list1, list2);
         Assert.Equal(expect, actual);
     }
 }
@@ -278,7 +229,7 @@ public class FindSubstringInWraparoundStringUnitTest
     [InlineData("zab", 6)]
     public void Test(string p, int expected)
     {
-        var actual = Solution.FindSubstringInWraparoundString(p);
+        int actual = Solution.FindSubstringInWraparoundString(p);
         Assert.Equal(expected, actual);
     }
 }
@@ -287,21 +238,9 @@ public class FindSubstringUnitTest
 {
     public static TheoryData<string, string[], IList<int>> Data => new()
     {
-        {
-            "barfoothefoobarman",
-            ["foo", "bar"],
-            [0, 9]
-        },
-        {
-            "wordgoodgoodgoodbestword",
-            ["word", "good", "best", "word"],
-            []
-        },
-        {
-            "barfoofoobarthefoobarman",
-            ["bar", "foo", "the"],
-            [6, 9, 12]
-        }
+        { "barfoothefoobarman", ["foo", "bar"], [0, 9] },
+        { "wordgoodgoodgoodbestword", ["word", "good", "best", "word"], [] },
+        { "barfoofoobarthefoobarman", ["bar", "foo", "the"], [6, 9, 12] }
     };
 
     [Theory]
@@ -317,16 +256,8 @@ public class FindTargetUnitTest
 {
     public static TheoryData<TreeNode, int, bool> Data => new()
     {
-        {
-            Util.GenerateTreeNode([5, 3, 6, 2, 4, null, 7]),
-            9,
-            true
-        },
-        {
-            Util.GenerateTreeNode([5, 3, 6, 2, 4, null, 7]),
-            28,
-            false
-        }
+        { Util.GenerateTreeNode([5, 3, 6, 2, 4, null, 7]), 9, true },
+        { Util.GenerateTreeNode([5, 3, 6, 2, 4, null, 7]), 28, false }
     };
 
 
@@ -334,8 +265,7 @@ public class FindTargetUnitTest
     [MemberData(nameof(Data))]
     public void Test(TreeNode root, int target, bool expected)
     {
-
-        var actual = Solution.FindTarget(root, target);
+        bool actual = Solution.FindTarget(root, target);
         Assert.Equal(expected, actual);
     }
 }
@@ -347,10 +277,9 @@ public class FindTheWinnerUnitTest
     [InlineData(6, 5, 1)]
     public void MultipleDataTest(int n, int k, int expected)
     {
-        var actual = Solution.FindTheWinner(n, k);
+        int actual = Solution.FindTheWinner(n, k);
         Assert.Equal(expected, actual);
     }
-
 }
 
 public class FindWordsIIUnitTest
@@ -364,17 +293,14 @@ public class FindWordsIIUnitTest
                 ['i', 'h', 'k', 'r'],
                 ['i', 'f', 'l', 'v']
             ],
-            ["oath", "pea", "eat", "rain"],
-            ["oath", "eat"]
+            ["oath", "pea", "eat", "rain"], ["oath", "eat"]
         },
-
         {
             [
                 ['a', 'b'],
                 ['c', 'd']
             ],
-            ["abcb"],
-            []
+            ["abcb"], []
         }
     };
 
@@ -390,18 +316,13 @@ public class FindWordsIIUnitTest
 public class FirstDayBeenInAllRoomsUnitTest
 {
     public static TheoryData<int[], int> Data =>
-        new()
-        {
-            { [0, 0], 2 },
-            { [0, 0, 2], 6 },
-            { [0, 1, 2, 0], 6 },
-        };
+        new() { { [0, 0], 2 }, { [0, 0, 2], 6 }, { [0, 1, 2, 0], 6 }, };
 
     [Theory]
     [MemberData(nameof(Data))]
     public void Test(int[] nextVisit, int expected)
     {
-        var actual = Solution.FirstDayBeenInAllRooms(nextVisit);
+        int actual = Solution.FirstDayBeenInAllRooms(nextVisit);
         Assert.Equal(expected, actual);
     }
 }
@@ -410,16 +331,14 @@ public class FirstMissingPositiveUnitTest
 {
     public static TheoryData<int[], int> Data => new()
     {
-        { [1, 2, 0], 3 },
-        { [3, 4, -1, 1], 2 },
-        { [7, 8, 9, 11, 12], 1 }
+        { [1, 2, 0], 3 }, { [3, 4, -1, 1], 2 }, { [7, 8, 9, 11, 12], 1 }
     };
 
     [Theory]
     [MemberData(nameof(Data))]
     public void MultipleDataTest(int[] nums, int expected)
     {
-        var actual = Solution.FirstMissingPositive(nums);
+        int actual = Solution.FirstMissingPositive(nums);
         Assert.Equal(expected, actual);
     }
 }
@@ -454,10 +373,9 @@ public class FlipLightsUnitTest
     [InlineData(3, 1, 4)]
     public void Test(int n, int presses, int expected)
     {
-        var actual = Solution.FlipLights(n, presses);
+        int actual = Solution.FlipLights(n, presses);
         Assert.Equal(expected, actual);
     }
-
 }
 
 public class FloodFillUnitTest
@@ -470,26 +388,14 @@ public class FloodFillUnitTest
                 [1, 1, 0],
                 [1, 0, 1],
             ],
-            1,
-            1,
-            2,
-            new int[][]
-            {
-                [2, 2, 2],
-                [2, 2, 0],
-                [2, 0, 1],
-            }
+            1, 1, 2, new int[][] { [2, 2, 2], [2, 2, 0], [2, 0, 1], }
         },
-
         {
             [
                 [0, 0, 0],
                 [0, 0, 0]
             ],
-            0,
-            0,
-            2,
-            [
+            0, 0, 2, [
                 [2, 2, 2],
                 [2, 2, 2]
             ]
@@ -501,8 +407,7 @@ public class FloodFillUnitTest
     [MemberData(nameof(Data))]
     public void Test(int[][] input, int sr, int sc, int newColor, int[][] expected)
     {
-
-        var actual = Solution.FloodFill(input, sr, sc, newColor);
+        int[][] actual = Solution.FloodFill(input, sr, sc, newColor);
         Assert.Equal(expected, actual);
     }
 }
@@ -510,12 +415,7 @@ public class FloodFillUnitTest
 public class FooBarUnitTest
 {
     public static TheoryData<int, string> Data =>
-        new()
-        {
-            { 1, "foobar" },
-            { 2, "foobarfoobar" },
-            { 4, "foobarfoobarfoobarfoobar" },
-        };
+        new() { { 1, "foobar" }, { 2, "foobarfoobar" }, { 4, "foobarfoobarfoobarfoobar" }, };
 
 
     [Theory]
@@ -538,19 +438,13 @@ public class FourSumUnitTest
     public static TheoryData<int[], int, IList<IList<int>>> Data => new()
     {
         {
-            [1, 0, -1, 0, -2, 2],
-            0,
-            [
+            [1, 0, -1, 0, -2, 2], 0, [
                 [-2, -1, 1, 2],
                 [-2, 0, 0, 2],
                 [-1, 0, 0, 1]
             ]
         },
-        {
-            [2, 2, 2, 2, 2],
-            8,
-            [[2, 2, 2, 2],]
-        }
+        { [2, 2, 2, 2, 2], 8, [[2, 2, 2, 2],] }
     };
 
     [Theory]
@@ -560,7 +454,6 @@ public class FourSumUnitTest
         var actual = Solution.FourSum(nums, target);
         Assert.Equal(expected, actual);
     }
-
 }
 
 public class FrequencySortUnitTest
@@ -577,7 +470,7 @@ public class FrequencySortUnitTest
     [MemberData(nameof(Data))]
     public void Test(int[] nums, int[] expected)
     {
-        var actual = Solution.FrequencySort(nums);
+        int[] actual = Solution.FrequencySort(nums);
         Assert.Equal(expected, actual);
     }
 }
@@ -587,15 +480,20 @@ public class FullJustifyUnitTest
     [Fact]
     public void FullJustifyTest1()
     {
-
-        string[] words = ["Science", "is", "what", "we", "understand", "well", "enough", "to", "explain", "to", "a", "computer.", "Art", "is", "everything", "else", "we", "do"
+        string[] words =
+        [
+            "Science", "is", "what", "we", "understand", "well", "enough", "to", "explain", "to", "a", "computer.",
+            "Art", "is", "everything", "else", "we", "do"
         ];
-        IList<string> expected = new List<string> { "Science  is  what we",
-                                                    "understand      well",
-                                                    "enough to explain to",
-                                                    "a  computer.  Art is",
-                                                    "everything  else  we",
-                                                    "do                  "};
+        IList<string> expected = new List<string>
+        {
+            "Science  is  what we",
+            "understand      well",
+            "enough to explain to",
+            "a  computer.  Art is",
+            "everything  else  we",
+            "do                  "
+        };
         const int maxWidth = 20;
         var actual = Solution.FullJustify(words, maxWidth);
         Assert.Equal(expected, actual);

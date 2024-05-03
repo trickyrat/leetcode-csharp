@@ -1,19 +1,14 @@
 ﻿namespace LeetCode;
 
-public class FooBar
+public class FooBar(int count)
 {
-    private int _n;
+    private int Count { get; } = count;
     private readonly AutoResetEvent _foo = new(true);
     private readonly AutoResetEvent _bar = new(false);
 
-    public FooBar(int n)
-    {
-        _n = n;
-    }
-
     public void Foo(Action printFoo)
     {
-        for (int i = 0; i < _n; i++)
+        for (int i = 0; i < Count; i++)
         {
             _foo.WaitOne();
             printFoo();
@@ -23,7 +18,7 @@ public class FooBar
 
     public void Bar(Action printBar)
     {
-        for (int i = 0; i < _n; i++)
+        for (int i = 0; i < Count; i++)
         {
             _bar.WaitOne();
             printBar();

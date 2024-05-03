@@ -8,29 +8,20 @@ public class PalindromeNumberUnitTest
     [InlineData(10, false)]
     public void MultipleDataTest(int input, bool expected)
     {
-
-        var actual = Solution.IsPalindrome(input);
+        bool actual = Solution.IsPalindrome(input);
         Assert.Equal(expected, actual);
     }
 }
 
 public class PartitionDisjointUnitTest
 {
-    public static TheoryData<int[], int> Data => new()
-    {
-        {
-            [5, 0, 3, 8, 6], 3
-        },
-        {
-            [1, 1, 1, 0, 6, 12], 4
-        }
-    };
+    public static TheoryData<int[], int> Data => new() { { [5, 0, 3, 8, 6], 3 }, { [1, 1, 1, 0, 6, 12], 4 } };
 
     [Theory]
     [MemberData(nameof(Data))]
     public void MultipleDataTest(int[] nums, int expected)
     {
-        var actual = Solution.PartitionDisjoint(nums);
+        int actual = Solution.PartitionDisjoint(nums);
         Assert.Equal(expected, actual);
     }
 }
@@ -39,15 +30,9 @@ public class PathSumIiUnitTest
 {
     public static TheoryData<TreeNode, int, IList<List<int>>> Data => new()
     {
+        { Util.GenerateTreeNode([1, 2, 3]), 5, [] },
         {
-            Util.GenerateTreeNode([1, 2, 3]),
-            5,
-            []
-        },
-        {
-            Util.GenerateTreeNode([5, 4, 8, 11, null, 13, 4, 7, 2, null, null, 5, 1]),
-            22,
-            [
+            Util.GenerateTreeNode([5, 4, 8, 11, null, 13, 4, 7, 2, null, null, 5, 1]), 22, [
                 [5, 4, 11, 2],
                 [5, 8, 4, 5],
             ]
@@ -67,25 +52,14 @@ public class PeakIndexInMountainArrayUnitTest
 {
     public static TheoryData<int[], int> Data => new()
     {
-        {
-            [18, 29, 38, 59, 98, 100, 99, 98, 90], 5
-        },
-        {
-            [0, 1, 0], 1
-        },
-        {
-            [1, 3, 5, 4, 2], 2
-        },
-        {
-            [0, 10, 5, 2], 1
-        }
+        { [18, 29, 38, 59, 98, 100, 99, 98, 90], 5 }, { [0, 1, 0], 1 }, { [1, 3, 5, 4, 2], 2 }, { [0, 10, 5, 2], 1 }
     };
 
     [Theory]
     [MemberData(nameof(Data))]
     public void Test(int[] arr, int expected)
     {
-        var actual = Solution.PeakIndexInMountainArray(arr);
+        int actual = Solution.PeakIndexInMountainArray(arr);
         Assert.Equal(expected, actual);
     }
 }
@@ -94,29 +68,10 @@ public class PermuteUnitTest
 {
     public static TheoryData<int[], IList<IList<int>>> Data => new()
     {
-        {
-            [1, 2, 3],
-            [
-                [1, 2, 3 ],
-                [1, 3, 2 ],
-                [3, 1, 2 ],
-                [2, 1, 3 ],
-                [2, 3, 1 ],
-                [3, 2, 1 ]
-            ]
-        },
-        {
-            [0, 1],
-            [
-                [ 0, 1 ],
-                [ 1, 0 ]
-            ]
-        },
-    {
-        [1],
-        [[1]]
-    }
-};
+        { [1, 2, 3], [[1, 2, 3], [1, 3, 2], [3, 1, 2], [2, 1, 3], [2, 3, 1], [3, 2, 1]] },
+        { [0, 1], [[0, 1], [1, 0]] },
+        { [1], [[1]] }
+    };
 
     [Theory]
     [MemberData(nameof(Data))]
@@ -131,17 +86,14 @@ public class PivotIndexUnitTest
 {
     public static TheoryData<int[], int> Data => new()
     {
-        { [1, 7, 3, 6, 5, 6], 3 },
-        { [1, 2, 3], -1 },
-        { [2, 1, -1], 0 }
+        { [1, 7, 3, 6, 5, 6], 3 }, { [1, 2, 3], -1 }, { [2, 1, -1], 0 }
     };
-    
+
     [Theory]
     [MemberData(nameof(Data))]
     public void MultipleDataTest(int[] nums, int expect)
     {
-
-        var actual = Solution.PivotIndex(nums);
+        int actual = Solution.PivotIndex(nums);
         Assert.Equal(expect, actual);
     }
 }
@@ -150,54 +102,29 @@ public class PlatesBetweenCandlesUnitTest
 {
     public static TheoryData<string, int[][], int[]> Data => new()
     {
-        {
-            "**|**|***|",
-            new int[][]
-            {
-                [2, 5],
-                [5, 9]
-            },
-            [2, 3]
-        },
-        {
-            "***|**|*****|**||**|*",
-            [
-                [1, 17],
-                [4, 5],
-                [14, 17],
-                [5, 11],
-                [15, 16],
-            ],
-            [9, 0, 0, 0, 0]
-        }
+        { "**|**|***|", new int[][] { [2, 5], [5, 9] }, [2, 3] },
+        { "***|**|*****|**||**|*", [[1, 17], [4, 5], [14, 17], [5, 11], [15, 16],], [9, 0, 0, 0, 0] }
     };
-    
+
     [Theory]
     [MemberData(nameof(Data))]
     public void Test(string s, int[][] queries, int[] expected)
     {
-
-        var actual = Solution.PlatesBetweenCandles(s, queries);
+        int[] actual = Solution.PlatesBetweenCandles(s, queries);
         Assert.Equal(expected, actual);
     }
 }
 
-
 public class PlusOneUnitTest
 {
-    public static TheoryData<int[], int[]> Data
-        => new()
-        {
-            {[1, 2, 3 ], [1, 2, 4]},
-            {[4, 3, 2, 1], [4, 3, 2, 2] },
-            {[9], [1, 0] },
-        };
+    public static TheoryData<int[], int[]> Data =>
+        new() { { [1, 2, 3], [1, 2, 4] }, { [4, 3, 2, 1], [4, 3, 2, 2] }, { [9], [1, 0] } };
 
     [Theory]
     [MemberData(nameof(Data))]
     public void Test(int[] digits, int[] expected)
     {
-        var actual = Solution.PlusOne(digits);
+        int[] actual = Solution.PlusOne(digits);
         Assert.Equal(expected, actual);
     }
 }
@@ -206,42 +133,16 @@ public class PossibleBipartitionUnitTest
 {
     public static TheoryData<int, int[][], bool> Data => new()
     {
-        {
-            4,
-            [
-                [1, 2],
-                [1, 3],
-                [2, 4]
-            ],
-            true
-        },
-        {
-            3,
-            [
-                [1, 2],
-                [1, 3],
-                [2, 3]
-            ],
-            false
-        },
-        {
-            5,
-            [
-                [1, 2],
-                [2, 3],
-                [3, 4],
-                [4, 5],
-                [1, 5],
-            ],
-            false
-        }
+        { 4, [[1, 2], [1, 3], [2, 4]], true },
+        { 3, [[1, 2], [1, 3], [2, 3]], false },
+        { 5, [[1, 2], [2, 3], [3, 4], [4, 5], [1, 5],], false }
     };
 
     [Theory]
     [MemberData(nameof(Data))]
     public void Test(int n, int[][] dislikes, bool expected)
     {
-        var actual = Solution.PossibleBipartition(n, dislikes);
+        bool actual = Solution.PossibleBipartition(n, dislikes);
         Assert.Equal(expected, actual);
     }
 }
@@ -258,7 +159,7 @@ public class PostorderUnitTest
         root1.Children.Add(root1ChildNode3);
         root1.Children.Add(new Node(2, new List<Node>()));
         root1.Children.Add(new Node(4, new List<Node>()));
-        
+
         var root2 = new Node(1, new List<Node>());
 
         root2.Children.Add(new Node(2, new List<Node>()));
@@ -296,8 +197,6 @@ public class PostorderUnitTest
     }
 }
 
-
-
 public class PowerOfTwoUnitTest
 {
     [Theory]
@@ -307,12 +206,10 @@ public class PowerOfTwoUnitTest
     [InlineData(3, false)]
     public void Test(int num, bool expected)
     {
-
-        var actual = Solution.IsPowerOfTwo(num);
+        bool actual = Solution.IsPowerOfTwo(num);
         Assert.Equal(expected, actual);
     }
 }
-
 
 public class PrefixCountUnitTest
 {
@@ -321,11 +218,9 @@ public class PrefixCountUnitTest
     [InlineData(new[] { "leetcode", "win", "loops", "success" }, "code", 0)]
     public void MultipleDataTest(string[] words, string pref, int expected)
     {
-        var actual = Solution.PrefixCount(words, pref);
+        int actual = Solution.PrefixCount(words, pref);
         Assert.Equal(expected, actual);
     }
-
-
 }
 
 public class PreimageSizeFzfUnitTest
@@ -336,27 +231,24 @@ public class PreimageSizeFzfUnitTest
     [InlineData(3, 5)]
     public void MultipleDataTest(int k, int expected)
     {
-        var actual = Solution.PreimageSizeFzf(k);
+        int actual = Solution.PreimageSizeFzf(k);
         Assert.Equal(expected, actual);
     }
 }
 
-
-
 public class PreorderUnitTest
 {
-    public static TheoryData<Node, IList<int>> Data =>
-        new()
+    public static TheoryData<Node, IList<int>> Data => new()
+    {
+        { Util.GenerateNTree([1, null, 3, 2, 4, null, 5, 6]), [1, 3, 5, 6, 2, 4] },
         {
-            { Util.GenerateNTree([1, null, 3, 2, 4, null, 5, 6]), [1, 3, 5, 6, 2, 4] },
-            {
-                Util.GenerateNTree([
-                    1, null, 2, 3, 4, 5, null, null, 6, 7, null, 8, null, 9, 10, null, null, 11, null, 12, null, 13,
-                    null, null, 14
-                ]),
-                [1, 2, 3, 6, 7, 11, 14, 4, 8, 12, 5, 9, 13, 10]
-            }
-        };
+            Util.GenerateNTree([
+                1, null, 2, 3, 4, 5, null, null, 6, 7, null, 8, null, 9, 10, null, null, 11, null, 12, null, 13,
+                null, null, 14
+            ]),
+            [1, 2, 3, 6, 7, 11, 14, 4, 8, 12, 5, 9, 13, 10]
+        }
+    };
 
     [Theory]
     [MemberData(nameof(Data))]
@@ -370,18 +262,17 @@ public class PreorderUnitTest
 
 public class PrintOrderUnitTest
 {
-    public static TheoryData<List<int>, string> Data =>
-        new()
-        {
-            { [1, 2, 3], "firstsecondthird"},
-            { [1, 3, 2], "firstsecondthird"},
-            { [2, 1, 3], "firstsecondthird"},
-            { [2, 3, 1], "firstsecondthird"},
-            { [3, 1, 2], "firstsecondthird"},
-            { [3, 2, 1], "firstsecondthird"}
-        };
-    
-    
+    public static TheoryData<List<int>, string> Data => new()
+    {
+        { [1, 2, 3], "firstsecondthird" },
+        { [1, 3, 2], "firstsecondthird" },
+        { [2, 1, 3], "firstsecondthird" },
+        { [2, 3, 1], "firstsecondthird" },
+        { [3, 1, 2], "firstsecondthird" },
+        { [3, 2, 1], "firstsecondthird" }
+    };
+
+
     [Theory]
     [MemberData(nameof(Data))]
     public async Task Test(List<int> sequences, string expected)
@@ -416,10 +307,12 @@ public class PrintOrderUnitTest
         {
             actual += "first";
         }
+
         void PrintSecond()
         {
             actual += "second";
         }
+
         void PrintThird()
         {
             actual += "third";
@@ -434,10 +327,7 @@ public class PushDominoesUnitTest
     [InlineData(".L.R...LR..L..", "LL.RR.LLRRLL..")]
     public void Test(string input, string expected)
     {
-
-        var actual = Solution.PushDominoes(input);
+        string actual = Solution.PushDominoes(input);
         Assert.Equal(expected, actual);
     }
 }
-
-

@@ -8,7 +8,7 @@ public class KthGrammarUnitTest
     [InlineData(2, 2, 1)]
     public void MultipleDataTest(int n, int k, int expected)
     {
-        var actual = Solution.KthGrammar(n, k);
+        int actual = Solution.KthGrammar(n, k);
         Assert.Equal(expected, actual);
     }
 }
@@ -22,8 +22,8 @@ public class KthLargestUnitTest
     {
         int[] nums = [4, 5, 8, 2];
         var kthLargest = new KthLargest(3, nums);
-        var actual = kthLargest.Add(3);
-        var expected = 4;
+        int actual = kthLargest.Add(3);
+        int expected = 4;
         Assert.Equal(expected, actual);
 
         actual = kthLargest.Add(5);

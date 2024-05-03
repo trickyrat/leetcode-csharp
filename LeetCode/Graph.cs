@@ -2,7 +2,7 @@
 
 public class Graph
 {
-    public IList<int[]>[] Nodes { get; private set; }
+    private IList<int[]>[] Nodes { get; }
 
     public Graph(int n, int[][] edges)
     {
@@ -12,7 +12,7 @@ public class Graph
             Nodes[i] = [];
         }
 
-        foreach (var edge in edges)
+        foreach (int[] edge in edges)
         {
             AddEdgeCore(edge);
         }
@@ -34,21 +34,21 @@ public class Graph
     public int ShortestPath(int node1, int node2)
     {
         var pq = new PriorityQueue<int[], int>();
-        var distances = new int[Nodes.Length];
+        int[] distances = new int[Nodes.Length];
         Array.Fill(distances, int.MaxValue);
         distances[node1] = 0;
         pq.Enqueue([0, node1], 0);
 
         while (pq.Count > 0)
         {
-            var arr = pq.Dequeue();
+            int[] arr = pq.Dequeue();
             int cost = arr[0], currentNode = arr[1];
             if (currentNode == node2)
             {
                 return cost;
             }
 
-            foreach (var nextArr in Nodes[currentNode])
+            foreach (int[] nextArr in Nodes[currentNode])
             {
                 int next = nextArr[0], nextCost = nextArr[1];
                 int currentCost = cost + nextCost;

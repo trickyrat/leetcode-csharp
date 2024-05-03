@@ -5,20 +5,10 @@ public class InsertIntoMaxTreeUnitTest
     public static TheoryData<TreeNode, int, TreeNode> Data => new()
     {
         {
-            Util.GenerateTreeNode([4, 1, 3, null, null, 2]),
-            5,
-            Util.GenerateTreeNode([5, 4, null, 1, 3, null, null, 2])
+            Util.GenerateTreeNode([4, 1, 3, null, null, 2]), 5, Util.GenerateTreeNode([5, 4, null, 1, 3, null, null, 2])
         },
-        {
-            Util.GenerateTreeNode([5, 2, 4, null, 1]),
-            3,
-            Util.GenerateTreeNode([5, 2, 4, null, 1, null, 3])
-        },
-        {
-            Util.GenerateTreeNode([5, 2, 3, null, 1]),
-            4,
-            Util.GenerateTreeNode([5, 2, 4, null, 1, 3])
-        }
+        { Util.GenerateTreeNode([5, 2, 4, null, 1]), 3, Util.GenerateTreeNode([5, 2, 4, null, 1, null, 3]) },
+        { Util.GenerateTreeNode([5, 2, 3, null, 1]), 4, Util.GenerateTreeNode([5, 2, 4, null, 1, 3]) }
     };
 
     [Theory]
@@ -28,7 +18,6 @@ public class InsertIntoMaxTreeUnitTest
         var actual = Solution.InsertIntoMaxTree(root, val);
         Assert.Equal(expected, actual, new TreeNodeComparer());
     }
-
 }
 
 public class IntToRomanUnitTest
@@ -41,11 +30,9 @@ public class IntToRomanUnitTest
     [InlineData(1994, "MCMXCIV")]
     public void MultipleDataTest(int num, string expected)
     {
-
-        var actual = Solution.IntToRoman(num);
+        string actual = Solution.IntToRoman(num);
         Assert.Equal(expected, actual);
     }
-
 }
 
 public class IsAlienSortedUnitTest
@@ -61,7 +48,7 @@ public class IsAlienSortedUnitTest
     [MemberData(nameof(Data))]
     public void Test(string[] words, string order, bool expected)
     {
-        var actual = Solution.IsAlienSorted(words, order);
+        bool actual = Solution.IsAlienSorted(words, order);
         Assert.Equal(expected, actual);
     }
 }
@@ -74,19 +61,14 @@ public class IsMatchUnitTest
     [InlineData("ab", ".*", true)]
     public void MultipleDataTest(string s, string p, bool expected)
     {
-
-        var actual = Solution.IsMatch(s, p);
+        bool actual = Solution.IsMatch(s, p);
         Assert.Equal(expected, actual);
     }
 }
 
 public class IsPalindromeUnitTest
 {
-    public static TheoryData<int[], bool> Data => new()
-    {
-        { [1, 2, 2, 1], true },
-        { [1, 2], false }
-    };
+    public static TheoryData<int[], bool> Data => new() { { [1, 2, 2, 1], true }, { [1, 2], false } };
 
 
     [Theory]
@@ -94,7 +76,7 @@ public class IsPalindromeUnitTest
     public void Test(int[] nums, bool expected)
     {
         var head = Util.GenerateListNode(nums);
-        var actual = Solution.IsPalindrome(head);
+        bool actual = Solution.IsPalindrome(head);
         Assert.Equal(expected, actual);
     }
 }
@@ -107,7 +89,7 @@ public class IsPrefixOfWordUnitTest
     [InlineData("i am tired", "you", -1)]
     public void Test(string sentence, string searchWord, int expected)
     {
-        var actual = Solution.IsPrefixOfWord(sentence, searchWord);
+        int actual = Solution.IsPrefixOfWord(sentence, searchWord);
         Assert.Equal(expected, actual);
     }
 }
@@ -115,18 +97,13 @@ public class IsPrefixOfWordUnitTest
 public class IsValidSerializationUnitTest
 {
     public static TheoryData<string, bool> Data =>
-        new()
-        {
-            { "9,3,4,#,#,1,#,#,2,#,6,#,#", true },
-            { "1,#", false },
-            { "9,#,#,1", false },
-        };
+        new() { { "9,3,4,#,#,1,#,#,2,#,6,#,#", true }, { "1,#", false }, { "9,#,#,1", false }, };
 
     [Theory]
     [MemberData(nameof(Data))]
     public void Test(string preorder, bool expected)
     {
-        var actual = Solution.IsValidSerialization(preorder);
+        bool actual = Solution.IsValidSerialization(preorder);
         Assert.Equal(expected, actual);
     }
 }
@@ -169,8 +146,7 @@ public class IsValidSudokuUnitTest
     [MemberData(nameof(Data))]
     public void Test(char[][] board, bool expected)
     {
-        var actual = Solution.IsValidSudoku(board);
+        bool actual = Solution.IsValidSudoku(board);
         Assert.Equal(expected, actual);
     }
 }
-

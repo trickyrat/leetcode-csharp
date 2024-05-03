@@ -5,25 +5,25 @@ namespace LeetCode.DataStructure;
 
 public class BSTIterator
 {
-    private Stack<TreeNode> stack;
+    private Stack<TreeNode> Stack { get; }
 
     public BSTIterator(TreeNode root)
     {
-        stack = new Stack<TreeNode>();
+        Stack = new Stack<TreeNode>();
         while (root != null)
         {
-            stack.Push(root);
+            Stack.Push(root);
             root = root.Left;
         }
     }
 
     public int Next()
     {
-        var tmp = stack.Pop();
+        var tmp = Stack.Pop();
         var right = tmp.Right;
         while (right != null)
         {
-            stack.Push(right);
+            Stack.Push(right);
             right = right.Left;
         }
         return tmp.Val;
@@ -31,7 +31,7 @@ public class BSTIterator
 
     public bool HasNext()
     {
-        return stack.Count > 0;
+        return Stack.Count > 0;
     }
 }
 

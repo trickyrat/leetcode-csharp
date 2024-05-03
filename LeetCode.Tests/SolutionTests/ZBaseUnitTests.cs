@@ -2,20 +2,14 @@ namespace LeetCode.Tests.SolutionTests;
 
 public class ZeroEvenOddUnitTest
 {
-    public static TheoryData<int, string> Data =>
-        new()
-        {
-            {1, "01" },
-            {2, "0102" },
-            {5, "0102030405" }
-        };
+    public static TheoryData<int, string> Data => new() { { 1, "01" }, { 2, "0102" }, { 5, "0102030405" } };
 
     [Theory]
     [MemberData(nameof(Data))]
     public async Task Test(int n, string expected)
     {
         var zeroEvenOdd = new ZeroEvenOdd(n);
-        var actual = "";
+        string actual = "";
         var zeroTask = Task.Run(() => zeroEvenOdd.Zero((int n) => actual += n));
         var evenTask = Task.Run(() => zeroEvenOdd.Even((int n) => actual += n));
         var oddTask = Task.Run(() => zeroEvenOdd.Odd((int n) => actual += n));
@@ -26,7 +20,6 @@ public class ZeroEvenOddUnitTest
     }
 }
 
-
 public class ZigZagConvertUnitTest
 {
     [Theory]
@@ -35,8 +28,7 @@ public class ZigZagConvertUnitTest
     [InlineData("A", 1, "A")]
     public void Test(string s, int numRows, string expected)
     {
-        var actual = Solution.ZipZagConvert(s, numRows);
+        string actual = Solution.ZipZagConvert(s, numRows);
         Assert.Equal(expected, actual);
     }
 }
-

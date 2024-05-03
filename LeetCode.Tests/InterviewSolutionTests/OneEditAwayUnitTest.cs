@@ -10,7 +10,7 @@ public class OneEditAwayUnitTest
     [InlineData("pales", "pal", false)]
     public void MultipleDataTest(string first, string second, bool expected)
     {
-        var actual = InterviewSolution.OneEditAway(first, second);
+        bool actual = InterviewSolution.OneEditAway(first, second);
         Assert.Equal(expected, actual);
     }
 }

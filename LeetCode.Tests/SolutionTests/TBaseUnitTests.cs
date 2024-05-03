@@ -8,7 +8,7 @@ public class ThreeEqualPartsUnitTest
     [InlineData(new[] { 1, 1, 0, 0, 1 }, new[] { 0, 2 })]
     public void Test(int[] arr, int[] expected)
     {
-        var actual = Solution.ThreeEqualParts(arr);
+        int[] actual = Solution.ThreeEqualParts(arr);
         Assert.Equal(expected, actual);
     }
 }
@@ -20,8 +20,7 @@ public class ThreeSumClosestUnitTest
     [InlineData(new[] { 0, 0, 0 }, 1, 0)]
     public void MultipleDataTest(int[] nums, int target, int expected)
     {
-
-        var actual = Solution.ThreeSumClosest(nums, target);
+        int actual = Solution.ThreeSumClosest(nums, target);
         Assert.Equal(expected, actual);
     }
 }
@@ -30,15 +29,7 @@ public class ThreeSumUnitTest
 {
     public static TheoryData<int[], IList<IList<int>>> Data => new()
     {
-        {
-            [-1, 0, 1, 2, -1, -4],
-            [
-                [-1, -1, 2],
-                [-1, 0, 1]
-            ]
-        },
-        { [], [] },
-        { [0], [] }
+        { [-1, 0, 1, 2, -1, -4], [[-1, -1, 2], [-1, 0, 1]] }, { [], [] }, { [0], [] }
     };
 
 
@@ -59,7 +50,7 @@ public class TitleToNumberUnitTest
     [InlineData("ZY", 701)]
     public void MultipleDataTest(string columnTitle, int expected)
     {
-        var actual = Solution.TitleToNumber(columnTitle);
+        int actual = Solution.TitleToNumber(columnTitle);
         Assert.Equal(expected, actual);
     }
 }
@@ -68,53 +59,37 @@ public class ToGoatLatinUnitTest
 {
     [Theory]
     [InlineData("I speak Goat Latin", "Imaa peaksmaaa oatGmaaaa atinLmaaaaa")]
-    [InlineData("The quick brown fox jumped over the lazy dog", "heTmaa uickqmaaa rownbmaaaa oxfmaaaaa umpedjmaaaaaa overmaaaaaaa hetmaaaaaaaa azylmaaaaaaaaa ogdmaaaaaaaaaa")]
+    [InlineData("The quick brown fox jumped over the lazy dog",
+        "heTmaa uickqmaaa rownbmaaaa oxfmaaaaa umpedjmaaaaaa overmaaaaaaa hetmaaaaaaaa azylmaaaaaaaaa ogdmaaaaaaaaaa")]
     public void MultipleDataTest(string sentence, string expected)
     {
-
-        var actual = Solution.ToGoatLatin(sentence);
+        string actual = Solution.ToGoatLatin(sentence);
         Assert.Equal(expected, actual);
     }
 }
 
 public class TotalFruitUnitTest
 {
-    public static TheoryData<int[], int> Data => new()
-    {
-            { [1, 2, 1], 3},
-            { [0, 1, 2, 2], 3},
-            { [1, 2, 3, 2, 2], 4}
-    };
+    public static TheoryData<int[], int> Data => new() { { [1, 2, 1], 3 }, { [0, 1, 2, 2], 3 }, { [1, 2, 3, 2, 2], 4 } };
 
     [Theory]
     [MemberData(nameof(Data))]
     public void MultipleDataTest(int[] fruits, int expected)
     {
-        var actual = Solution.TotalFruit(fruits);
+        int actual = Solution.TotalFruit(fruits);
         Assert.Equal(expected, actual);
     }
 }
 
 public class TotalHammingDistanceUnitTest
 {
-    public static IEnumerable<object[]> GetData()
-    {
-        yield return
-        [
-            new[] { 4, 14, 2 }, 6
-        ];
-        yield return
-        [
-            new[] { 4, 14, 4 }, 4
-        ];
-    }
-
+    public static TheoryData<int[], int> Data => new() { { [4, 14, 2], 6 }, { [4, 14, 4], 4 }, };
 
     [Theory]
-    [MemberData(nameof(GetData))]
+    [MemberData(nameof(Data))]
     public void Test(int[] nums, int expected)
     {
-        var actual = Solution.TotalHammingDistance(nums);
+        int actual = Solution.TotalHammingDistance(nums);
         Assert.Equal(expected, actual);
     }
 }
@@ -123,15 +98,14 @@ public class TrapUnitTest
 {
     public static TheoryData<int[], int> Data => new()
     {
-        { [0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1], 6 },
-        { [4, 2, 0, 3, 2, 5], 9 }
+        { [0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1], 6 }, { [4, 2, 0, 3, 2, 5], 9 }
     };
 
     [Theory]
     [MemberData(nameof(Data))]
     public void MultipleDataTest(int[] nums, int expected)
     {
-        var actual = Solution.Trap(nums);
+        int actual = Solution.Trap(nums);
         Assert.Equal(expected, actual);
     }
 }
@@ -140,19 +114,8 @@ public class TrimBstUnitTest
 {
     public static TheoryData<TreeNode, int, int, TreeNode> Data => new()
     {
-        {
-            Util.GenerateTreeNode([1, 0, 2]),
-            1,
-            2,
-            Util.GenerateTreeNode([1, null, 2])
-        },
-
-        {
-            Util.GenerateTreeNode([3, 0, 4, null, 2, null, null, 1]),
-            1,
-            3,
-            Util.GenerateTreeNode([3, 2, null, 1])
-        }
+        { Util.GenerateTreeNode([1, 0, 2]), 1, 2, Util.GenerateTreeNode([1, null, 2]) },
+        { Util.GenerateTreeNode([3, 0, 4, null, 2, null, null, 1]), 1, 3, Util.GenerateTreeNode([3, 2, null, 1]) }
     };
 
     [Theory]
@@ -168,13 +131,8 @@ public class TrimMeanUnitTest
 {
     public static TheoryData<int[], double, double> Data => new()
     {
-        {
-            [1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3], 2.00000d, 2.00001d
-        },
-
-        {
-            [6, 2, 7, 5, 1, 2, 0, 3, 10, 2, 5, 0, 5, 5, 0, 8, 7, 6, 8, 0], 4.00000d, 4.00001d
-        },
+        { [1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3], 2.00000d, 2.00001d },
+        { [6, 2, 7, 5, 1, 2, 0, 3, 10, 2, 5, 0, 5, 5, 0, 8, 7, 6, 8, 0], 4.00000d, 4.00001d },
         {
             [
                 6, 0, 7, 0, 7, 5, 7, 8, 3, 4, 0, 7, 8, 1, 6, 8, 1, 1, 2, 4, 8, 1, 9, 5, 4, 3, 8, 5, 10, 8, 6, 6, 1, 0,
@@ -188,7 +146,7 @@ public class TrimMeanUnitTest
     [MemberData(nameof(Data))]
     public void MultipleDataTest(int[] arr, double low, double high)
     {
-        var actual = Solution.TrimMean(arr);
+        double actual = Solution.TrimMean(arr);
         Assert.InRange(actual, low, high);
     }
 }
@@ -221,34 +179,23 @@ public class TwoSumIiUnitTest
     [InlineData(new[] { -1, 0 }, -1, new[] { 1, 2 })]
     public void Test1(int[] numbers, int target, int[] expected)
     {
-        var actual = Solution.TwoSumIi(numbers, target);
+        int[] actual = Solution.TwoSumIi(numbers, target);
         Assert.Equal(expected, actual);
     }
 }
 
-
 public class TwoSumUnitTest
 {
-    public static TheoryData<int[], int, int[]> Data
+    public static TheoryData<int[], int, int[]> Data => new()
     {
-        get
-        {
-            var data = new TheoryData<int[], int, int[]>
-            {
-                { [2, 7, 11, 15], 9, [0, 1] },
-                { [3, 2, 4], 6, [1, 2] },
-                { [3, 3], 6, [0, 1] }
-            };
-            return data;
-        }
-    }
+        { [2, 7, 11, 15], 9, [0, 1] }, { [3, 2, 4], 6, [1, 2] }, { [3, 3], 6, [0, 1] }
+    };
 
     [Theory]
     [MemberData(nameof(Data))]
     public void TwoSumTest(int[] nums, int target, int[] expected)
     {
-        var actual = Solution.TwoSum(nums, target);
+        int[] actual = Solution.TwoSum(nums, target);
         Assert.Equal(expected, actual);
     }
 }
-
