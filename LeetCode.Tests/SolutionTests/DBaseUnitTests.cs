@@ -20,7 +20,7 @@ public class DistinctSubseqIIUnitTest
     [InlineData("aaa", 3)]
     public void MultipleDataTest(string s, int expected)
     {
-        var actual = Solution.DistinctSubseqII(s);
+        var actual = Solution.DistinctSubseqIi(s);
         Assert.Equal(expected, actual);
     }
 }
@@ -39,7 +39,7 @@ public class DiStringMatchUnitTest
     [MemberData(nameof(Data))]
     public void MultipleDataTest(string s, int[] expected)
     {
-        var actual = Solution.DIStringMatch(s);
+        var actual = Solution.DiStringMatch(s);
         Assert.Equal(expected, actual);
     }
 }
