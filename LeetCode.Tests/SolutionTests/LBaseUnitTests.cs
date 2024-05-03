@@ -2,21 +2,13 @@ namespace LeetCode.Tests.SolutionTests;
 
 public class LargestPerimeterUnitTest
 {
-    public static TheoryData<int[], int> Data => new()
-    {
-        {
-            [2, 1, 2], 5
-        },
-        {
-            [1, 2, 1], 0
-        }
-    };
+    public static TheoryData<int[], int> Data => new() { { [2, 1, 2], 5 }, { [1, 2, 1], 0 } };
 
     [Theory]
     [MemberData(nameof(Data))]
     public void MultipleDataTest(int[] nums, int expected)
     {
-        var actual = Solution.LargestPerimeter(nums);
+        int actual = Solution.LargestPerimeter(nums);
         Assert.Equal(expected, actual);
     }
 }
@@ -29,12 +21,10 @@ public class LengthOfLastWordUnitTest
     [InlineData("luffy is still joyboy", 6)]
     public void MultipleDataTest(string s, int expected)
     {
-        var actual = Solution.LengthOfLastWord(s);
+        int actual = Solution.LengthOfLastWord(s);
         Assert.Equal(expected, actual);
     }
 }
-
-
 
 public class LengthOfLongestSubstringUnitTest
 {
@@ -45,24 +35,16 @@ public class LengthOfLongestSubstringUnitTest
     [InlineData("", 0)]
     public void Test_Input_Palindromic_Alphas_Should_OK(string s, int expected)
     {
-
-        var actual = Solution.LengthOfLongestSubstring(s);
+        int actual = Solution.LengthOfLongestSubstring(s);
         Assert.Equal(expected, actual);
     }
 }
-
 
 public class LetterCasePermutationUnitTest
 {
     public static TheoryData<string, string[]> Data => new()
     {
-
-        {
-            "a1b2", ["a1b2", "A1b2", "a1B2", "A1B2"]
-        },
-        {
-            "3z4", ["3z4", "3Z4"]
-        }
+        { "a1b2", ["a1b2", "A1b2", "a1B2", "A1B2"] }, { "3z4", ["3z4", "3Z4"] }
     };
 
     [Theory]
@@ -78,12 +60,9 @@ public class LetterCombinationsUnitTest
 {
     public static TheoryData<string, string[]> Data => new()
     {
-
-        { "23", ["ad", "ae", "af", "bd", "be", "bf", "cd", "ce", "cf"] },
-        { "", [] },
-        { "2", ["a", "b", "c"] }
+        { "23", ["ad", "ae", "af", "bd", "be", "bf", "cd", "ce", "cf"] }, { "", [] }, { "2", ["a", "b", "c"] }
     };
-    
+
     [Theory]
     [MemberData(nameof(Data))]
     public void MultipleDataTest(string digits, string[] expected)
@@ -97,8 +76,7 @@ public class LexicalOrderUnitTest
 {
     public static TheoryData<int, IList<int>> Data => new()
     {
-        { 13, [1, 10, 11, 12, 13, 2, 3, 4, 5, 6, 7, 8, 9] },
-        { 2, [1, 2] }
+        { 13, [1, 10, 11, 12, 13, 2, 3, 4, 5, 6, 7, 8, 9] }, { 2, [1, 2] }
     };
 
     [Theory]
@@ -114,15 +92,14 @@ public class LongestCommonPrefixUnitTest
 {
     public static TheoryData<string[], string> Data => new()
     {
-        { ["flower", "flow", "flight"], "fl" },
-        { ["dog", "racecar", "car"], "" }
+        { ["flower", "flow", "flight"], "fl" }, { ["dog", "racecar", "car"], "" }
     };
 
     [Theory]
     [MemberData(nameof(Data))]
     public void MultipleDataTest(string[] strs, string expected)
     {
-        var actual = Solution.LongestCommonPrefix(strs);
+        string actual = Solution.LongestCommonPrefix(strs);
         Assert.Equal(expected, actual);
     }
 }
@@ -134,38 +111,27 @@ public class LongestPalindromicSubstringUnitTest
     [InlineData("cbbd", new[] { "bb" })]
     public void Test(string input, string[] expected)
     {
-
-        var actual = Solution.LongestPalindrome(input);
+        string actual = Solution.LongestPalindrome(input);
         Assert.Contains(actual, expected);
     }
 }
-
 
 public class LongestUnivaluePathUnitTest
 {
     public static TheoryData<TreeNode, int> Data => new()
     {
-        {
-            Util.GenerateTreeNode([5, 4, 5, 1, 1, null, 5]),
-            2
-        },
-
-        {
-            Util.GenerateTreeNode([1, 4, 5, 4, 4, null, 5]),
-            2
-        }
+        { Util.GenerateTreeNode([5, 4, 5, 1, 1, null, 5]), 2 },
+        { Util.GenerateTreeNode([1, 4, 5, 4, 4, null, 5]), 2 }
     };
 
     [Theory]
     [MemberData(nameof(Data))]
     public void MultipleDataTest(TreeNode root, int expected)
     {
-        var actual = Solution.LongestUnivaluePath(root);
+        int actual = Solution.LongestUnivaluePath(root);
         Assert.Equal(expected, actual);
     }
 }
-
-
 
 public class LongestValidParenthesesUnitTest
 {
@@ -175,12 +141,10 @@ public class LongestValidParenthesesUnitTest
     [InlineData("()()()(())", 10)]
     public void Test(string s, int expected)
     {
-
-        var actual = Solution.LongestValidParentheses(s);
+        int actual = Solution.LongestValidParentheses(s);
         Assert.Equal(expected, actual);
     }
 }
-
 
 public class LuckyNumbersUnitTest
 {
@@ -216,10 +180,7 @@ public class LuckyNumbersUnitTest
     [MemberData(nameof(Matrix))]
     public void Test1(int[][] matrix, List<int> expected)
     {
-
         var actual = Solution.LuckyNumbers(matrix).ToList();
         Assert.Equal(expected, actual);
     }
 }
-
-

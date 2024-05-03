@@ -25,8 +25,8 @@ public static class InterviewSolution
         }
 
         if (m != n) return false;
-        var foundDifference = false;
-        for (var i = 0; i < m; i++)
+        bool foundDifference = false;
+        for (int i = 0; i < m; i++)
         {
             if (first[i] == second[i]) continue;
             if (!foundDifference)
@@ -73,12 +73,12 @@ public static class InterviewSolution
         {
             return false;
         }
-        var map = new int[128];
-        for (var i = 0; i < len1; i++)
+        int[] map = new int[128];
+        for (int i = 0; i < len1; i++)
         {
             map[s1[i]]++;
         }
-        for (var i = 0; i < len2; i++)
+        for (int i = 0; i < len2; i++)
         {
             map[s2[i]]--;
             if (map[s2[i]] < 0)
@@ -95,16 +95,16 @@ public static class InterviewSolution
     /// <param name="matrix"></param>
     public static void Rotate(int[][] matrix)
     {
-        var n = matrix.Length;
-        for (var i = 0; i < n; i++)
+        int n = matrix.Length;
+        for (int i = 0; i < n; i++)
         {
-            for (var j = 0; j < i; j++)
+            for (int j = 0; j < i; j++)
             {
                 (matrix[i][j], matrix[j][i]) = (matrix[j][i], matrix[i][j]);
             }
         }
 
-        for (var i = 0; i < n; i++)
+        for (int i = 0; i < n; i++)
         {
             matrix[i] = matrix[i].Reverse().ToArray();
         }
@@ -128,7 +128,7 @@ public static class InterviewSolution
     /// <returns></returns>
     public static int FindMagicIndex(int[] nums)
     {
-        var right = nums.Length - 1;
+        int right = nums.Length - 1;
         const int left = 0;
         return FindMagicIndexHelper(nums, left, right);
 
@@ -139,8 +139,8 @@ public static class InterviewSolution
                 return -1;
             }
 
-            var mid = (rightIndex - leftIndex) / 2 + leftIndex;
-            var leftAns = FindMagicIndexHelper(data, leftIndex, mid - 1);
+            int mid = (rightIndex - leftIndex) / 2 + leftIndex;
+            int leftAns = FindMagicIndexHelper(data, leftIndex, mid - 1);
             if (leftAns != -1)
             {
                 return leftAns;
@@ -157,10 +157,10 @@ public static class InterviewSolution
     /// <returns></returns>
     public static int GetKthMagicNumber(int k)
     {
-        var dp = new int[k + 1];
+        int[] dp = new int[k + 1];
         dp[1] = 1;
         int p3 = 1, p5 = 1, p7 = 1;
-        for (var i = 2; i <= k; i++)
+        for (int i = 2; i <= k; i++)
         {
             int num3 = dp[p3] * 3, num5 = dp[p5] * 5, num7 = dp[p7] * 7;
             dp[i] = Math.Min(Math.Min(num3, num5), num7);
@@ -189,11 +189,11 @@ public static class InterviewSolution
     /// <returns></returns>
     public static int FindClosest(string[] words, string word1, string word2)
     {
-        var ans = words.Length;
+        int ans = words.Length;
         int index1 = -1, index2 = -1;
-        for (var i = 0; i < words.Length; i++)
+        for (int i = 0; i < words.Length; i++)
         {
-            var word = words[i];
+            string word = words[i];
             if (word == word1)
             {
                 index1 = i;

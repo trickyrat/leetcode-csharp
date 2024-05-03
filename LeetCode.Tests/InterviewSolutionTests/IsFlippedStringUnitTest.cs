@@ -9,7 +9,7 @@ public class IsFlippedStringUnitTest
     [InlineData("aa", "aba", false)]
     public void MultipleDataTest(string s1, string s2, bool expected)
     {
-        var actual = InterviewSolution.IsFlippedString(s1, s2);
+        bool actual = InterviewSolution.IsFlippedString(s1, s2);
         Assert.Equal(expected, actual);
     }
 }

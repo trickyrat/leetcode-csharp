@@ -25,7 +25,7 @@ public class MagicIndexUnitTest
     [MemberData(nameof(Data))]
     public void MagicIndexTest1(int[] nums, int expected)
     {
-        var actual = InterviewSolution.FindMagicIndex(nums);
+        int actual = InterviewSolution.FindMagicIndex(nums);
         Assert.Equal(expected, actual);
     }
 }

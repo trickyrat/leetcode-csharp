@@ -8,7 +8,7 @@ public class ScoreOfParenthesesUnitTest
     [InlineData("()()", 2)]
     public void Test(string s, int expected)
     {
-        var actual = Solution.ScoreOfParentheses(s);
+        int actual = Solution.ScoreOfParentheses(s);
         Assert.Equal(expected, actual);
     }
 }
@@ -21,35 +21,23 @@ public class SearchInRotatedSortedArrayUnitTest
     [InlineData(new[] { 1 }, 0, -1)]
     public void MultipleDataTest(int[] nums, int target, int expected)
     {
-        var actual = Solution.Search(nums, target);
+        int actual = Solution.Search(nums, target);
         Assert.Equal(expected, actual);
     }
-
 }
 
 public class SearchInsertUnitTest
 {
     public static TheoryData<int[], int, int> Data => new()
     {
-        {
-            [1, 3, 5, 6],
-            5, 2
-        },
-        {
-            [1, 3, 5, 6],
-            2, 1
-        },
-        {
-            [1, 3, 5, 6],
-            7, 4
-        }
+        { [1, 3, 5, 6], 5, 2 }, { [1, 3, 5, 6], 2, 1 }, { [1, 3, 5, 6], 7, 4 }
     };
 
     [Theory]
     [MemberData(nameof(Data))]
     public void MultipleDataTest(int[] nums, int target, int expected)
     {
-        var actual = Solution.SearchInsert(nums, target);
+        int actual = Solution.SearchInsert(nums, target);
         Assert.Equal(expected, actual);
     }
 }
@@ -58,31 +46,15 @@ public class SearchMatrixUnitTest
 {
     public static TheoryData<int[][], int, bool> Data => new()
     {
-        {
-            [
-                [1, 3, 5, 7],
-                [10, 11, 16, 20],
-                [23, 30, 34, 60]
-            ],
-            3,
-            true
-        },
-        {
-            [
-                [1, 3, 5, 7],
-                [10, 11, 16, 20],
-                [23, 30, 34, 60]
-            ],
-            13,
-            false
-        }
+        { [[1, 3, 5, 7], [10, 11, 16, 20], [23, 30, 34, 60]], 3, true },
+        { [[1, 3, 5, 7], [10, 11, 16, 20], [23, 30, 34, 60]], 13, false }
     };
 
     [Theory]
     [MemberData(nameof(Data))]
     public void Test(int[][] matrix, int target, bool expected)
     {
-        var actual = Solution.SearchMatrix(matrix, target);
+        bool actual = Solution.SearchMatrix(matrix, target);
         Assert.Equal(expected, actual);
     }
 }
@@ -91,16 +63,14 @@ public class SearchRangeUnitTest
 {
     public static TheoryData<int[], int, int[]> Data => new()
     {
-        { [5, 7, 7, 8, 8, 10], 8, [3, 4] },
-        { [5, 7, 7, 8, 8, 10], 6, [-1, -1] },
-        { [], 0, [-1, -1] }
+        { [5, 7, 7, 8, 8, 10], 8, [3, 4] }, { [5, 7, 7, 8, 8, 10], 6, [-1, -1] }, { [], 0, [-1, -1] }
     };
 
     [Theory]
     [MemberData(nameof(Data))]
     public void Test(int[] nums, int target, int[] expected)
     {
-        var actual = Solution.SearchRange(nums, target);
+        int[] actual = Solution.SearchRange(nums, target);
         Assert.Equal(expected, actual);
     }
 }
@@ -109,8 +79,7 @@ public class SelfDividingNumberUnitTest
 {
     public static TheoryData<int, int, int[]> Data => new()
     {
-        { 1, 22, [1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 12, 15, 22] },
-        { 47, 85, [48, 55, 66, 77] }
+        { 1, 22, [1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 12, 15, 22] }, { 47, 85, [48, 55, 66, 77] }
     };
 
     [Theory]
@@ -126,18 +95,7 @@ public class SetZeroesUnitTest
 {
     public static TheoryData<int[][], int[][]> Data => new()
     {
-        {
-            [
-                [1, 1, 1],
-                [1, 0, 1],
-                [1, 1, 1]
-            ],
-            [
-                [1, 0, 1],
-                [0, 0, 0],
-                [1, 0, 1]
-            ]
-        }
+        { [[1, 1, 1], [1, 0, 1], [1, 1, 1]], [[1, 0, 1], [0, 0, 0], [1, 0, 1]] }
     };
 
     [Theory]
@@ -153,77 +111,32 @@ public class ShortestBridgeUnitTest
 {
     public static TheoryData<int[][], int> Data => new()
     {
-        {
-            [
-                [0, 1],
-                [1, 0]
-            ],
-            1
-        },
-        {
-            [
-                [0, 1, 0],
-                [0, 0, 0],
-                [0, 0, 1]
-            ],
-            2
-        },
-        {
-            [
-                [1, 1, 1, 1, 1],
-                [1, 0, 0, 0, 1],
-                [1, 0, 1, 0, 1],
-                [1, 0, 0, 0, 1],
-                [1, 1, 1, 1, 1],
-            ],
-            1
-        }
+        { [[0, 1], [1, 0]], 1 },
+        { [[0, 1, 0], [0, 0, 0], [0, 0, 1]], 2 },
+        { [[1, 1, 1, 1, 1], [1, 0, 0, 0, 1], [1, 0, 1, 0, 1], [1, 0, 0, 0, 1], [1, 1, 1, 1, 1],], 1 }
     };
 
     [Theory]
     [MemberData(nameof(Data))]
     public void MultipleDataTest(int[][] grid, int expected)
     {
-        var actual = Solution.ShortestBridge(grid);
+        int actual = Solution.ShortestBridge(grid);
         Assert.Equal(expected, actual);
     }
-
 }
 
 public class ShortestPathBinaryMatrixUnitTest
 {
     public static TheoryData<int[][], int> Data => new()
     {
-        {
-            [
-                [0, 1],
-                [1, 0]
-            ],
-            2
-        },
-        {
-            [
-                [0, 0, 0],
-                [1, 1, 0],
-                [1, 1, 0]
-            ],
-            4
-        },
-        {
-            [
-                [1, 0, 0],
-                [1, 1, 0],
-                [1, 1, 0]
-            ],
-            -1
-        }
+        { [[0, 1], [1, 0]], 2 }, { [[0, 0, 0], [1, 1, 0], [1, 1, 0]], 4 }, { [[1, 0, 0], [1, 1, 0], [1, 1, 0]], -1 }
     };
 
     [Theory]
     [MemberData(nameof(Data))]
     public void MultipleDataTest(int[][] grid, int expected)
     {
-        var actual = Solution.ShortestPathBinaryMatrix(grid);
+        int actual = Solution.ShortestPathBinaryMatrix(grid);
         Assert.Equal(expected, actual);
     }
 }
@@ -232,39 +145,30 @@ public class ShuffleUnitTest
 {
     public static TheoryData<int[], int, int[]> Data => new()
     {
-        {
-            [2, 5, 1, 3, 4, 7], 3, [2, 3, 5, 4, 1, 7]
-        },
-        {
-            [1, 2, 3, 4, 4, 3, 2, 1], 4, [1, 4, 2, 3, 3, 2, 4, 1]
-        },
-        {
-            [1, 1, 2, 2], 2, [1, 2, 1, 2]
-        }
+        { [2, 5, 1, 3, 4, 7], 3, [2, 3, 5, 4, 1, 7] },
+        { [1, 2, 3, 4, 4, 3, 2, 1], 4, [1, 4, 2, 3, 3, 2, 4, 1] },
+        { [1, 1, 2, 2], 2, [1, 2, 1, 2] }
     };
 
     [Theory]
     [MemberData(nameof(Data))]
     public void Test(int[] nums, int n, int[] expected)
     {
-        var actual = Solution.Shuffle(nums, n);
+        int[] actual = Solution.Shuffle(nums, n);
         Assert.Equal(expected, actual);
     }
 }
 
 public class SimplifiedFractionsUnitTest
 {
-    public static TheoryData<int, string[]> Data => new()
-    {
-        { 2, ["1/2"] }
-    };
+    public static TheoryData<int, string[]> Data => new() { { 2, ["1/2"] } };
 
     [Theory]
     [MemberData(nameof(Data))]
     public void Test(int n, string[] expected)
     {
         var list = Solution.SimplifiedFractions(n);
-        var actual = list.ToArray();
+        string[] actual = list.ToArray();
         Assert.Equal(expected, actual);
     }
 }
@@ -278,7 +182,7 @@ public class SimplifyPathUnitTest
     [InlineData("/a/./b/../../c/", "/c")]
     public void Test(string path, string expected)
     {
-        var actual = Solution.SimplifyPath(path);
+        string actual = Solution.SimplifyPath(path);
         Assert.Equal(expected, actual);
     }
 }
@@ -290,12 +194,10 @@ public class SingleNonDuplicateUnitTest
     [InlineData(new[] { 3, 3, 7, 7, 10, 11, 11 }, 10)]
     public void Test(int[] nums, int expected)
     {
-
-        var actual = Solution.SingleNonDuplicate(nums);
+        int actual = Solution.SingleNonDuplicate(nums);
         Assert.Equal(expected, actual);
     }
 }
-
 
 public class SingleNumberUnitTest
 {
@@ -305,7 +207,7 @@ public class SingleNumberUnitTest
     [InlineData(new[] { 1 }, 1)]
     public void Test_SingleNumber(int[] nums, int expected)
     {
-        var actual = Solution.SingleNumber(nums);
+        int actual = Solution.SingleNumber(nums);
         Assert.Equal(expected, actual);
     }
 
@@ -314,7 +216,7 @@ public class SingleNumberUnitTest
     [InlineData(new[] { 0, 1, 0, 1, 0, 1, 99 }, 99)]
     public void Test_SingleNumber_V2(int[] nums, int expected)
     {
-        var actual = Solution.SingleNumberV2(nums);
+        int actual = Solution.SingleNumberV2(nums);
         Assert.Equal(expected, actual);
     }
 
@@ -324,7 +226,7 @@ public class SingleNumberUnitTest
     [InlineData(new[] { 0, 1 }, new[] { 1, 0 })]
     public void Test_SingleNumber_V3(int[] nums, int[] expected)
     {
-        var actual = Solution.SingleNumberV3(nums);
+        int[] actual = Solution.SingleNumberV3(nums);
         Assert.Equal(expected, actual);
     }
 }
@@ -337,7 +239,7 @@ public class SmallestRangeIUnitTest
     [InlineData(new[] { 1, 3, 6 }, 3, 0)]
     public void Test(int[] nums, int k, int expected)
     {
-        var actual = Solution.SmallestRangeI(nums, k);
+        int actual = Solution.SmallestRangeI(nums, k);
         Assert.Equal(expected, actual);
     }
 }
@@ -389,7 +291,7 @@ public class SortArrayByParityUnitTest
     [InlineData(new[] { 0 }, new[] { 0 })]
     public void MultipleDataTest(int[] nums, int[] expected)
     {
-        var actual = Solution.SortArrayByParity(nums);
+        int[] actual = Solution.SortArrayByParity(nums);
         Assert.Equal(expected, actual);
     }
 }
@@ -411,46 +313,30 @@ public class SortedSquaresUnitTest
 {
     public static TheoryData<int[], int[]> Data => new()
     {
-        {
-            [-4, -1, 0, 3, 10], [0, 1, 9, 16, 100]
-        },
-        {
-            [0, 3, 4, 6, 10],
-            [0, 9, 16, 36, 100]
-        },
-        {
-            [-10, -6, -5, -4, -3],
-            [9, 16, 25, 36, 100]
-        },
-        {
-            [-7, -3, 2, 3, 11],
-            [4, 9, 9, 49, 121]
-        }
+        { [-4, -1, 0, 3, 10], [0, 1, 9, 16, 100] },
+        { [0, 3, 4, 6, 10], [0, 9, 16, 36, 100] },
+        { [-10, -6, -5, -4, -3], [9, 16, 25, 36, 100] },
+        { [-7, -3, 2, 3, 11], [4, 9, 9, 49, 121] }
     };
 
     [Theory]
     [MemberData(nameof(Data))]
     public void Test_Should_Ok(int[] nums, int[] expected)
     {
-        var actual = Solution.SortedSquares(nums);
+        int[] actual = Solution.SortedSquares(nums);
         Assert.Equal(expected, actual);
     }
 }
 
 public class SpecialArrayUnitTest
 {
-    public static TheoryData<int[], int> Data => new()
-    {
-        { [3, 5], 2 },
-        { [0, 0], -1 },
-        { [0, 4, 3, 0, 4], 3 }
-    };
+    public static TheoryData<int[], int> Data => new() { { [3, 5], 2 }, { [0, 0], -1 }, { [0, 4, 3, 0, 4], 3 } };
 
     [Theory]
     [MemberData(nameof(Data))]
     public void MultipleDataTest(int[] nums, int expected)
     {
-        var actual = Solution.SpecialArray(nums);
+        int actual = Solution.SpecialArray(nums);
         Assert.Equal(expected, actual);
     }
 }
@@ -459,22 +345,8 @@ public class SpiralOrderUnitTest
 {
     public static TheoryData<int[][], IList<int>> Data => new()
     {
-        {
-            [
-                [1, 2, 3, 4],
-                [5, 6, 7, 8],
-                [9, 10, 11, 12]
-            ],
-            [1, 2, 3, 4, 8, 12, 11, 10, 9, 5, 6, 7]
-        },
-        {
-            [
-                [1, 2, 3],
-                [4, 5, 6],
-                [7, 8, 9]
-            ],
-            [1, 2, 3, 6, 9, 8, 7, 4, 5]
-        }
+        { [[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12]], [1, 2, 3, 4, 8, 12, 11, 10, 9, 5, 6, 7] },
+        { [[1, 2, 3], [4, 5, 6], [7, 8, 9]], [1, 2, 3, 6, 9, 8, 7, 4, 5] }
     };
 
     [Theory]
@@ -503,8 +375,6 @@ public class StockSpannerUnitTest
     }
 }
 
-
-
 public class StringMatchingUnitTest
 {
     public static TheoryData<string[], IList<string>> Data => new()
@@ -530,23 +400,18 @@ public class StrStrUnitTest
     [InlineData("aaaaa", "bba", -1)]
     public void MultipleDataTest(string haystack, string needle, int expected)
     {
-        var actual = Solution.StrStr(haystack, needle);
+        int actual = Solution.StrStr(haystack, needle);
         Assert.Equal(expected, actual);
     }
-
 }
 
 public class SubdomainVisitsUnitTest
 {
     public static TheoryData<string[], IList<string>> Data => new()
     {
+        { ["9001 discuss.leetcode.com"], ["9001 leetcode.com", "9001 discuss.leetcode.com", "9001 com"] },
         {
-            ["9001 discuss.leetcode.com"],
-            ["9001 leetcode.com", "9001 discuss.leetcode.com", "9001 com"]
-        },
-        {
-            ["900 google.mail.com", "50 yahoo.com", "1 intel.mail.com", "5 wiki.org"],
-            [
+            ["900 google.mail.com", "50 yahoo.com", "1 intel.mail.com", "5 wiki.org"], [
                 "901 mail.com", "50 yahoo.com", "900 google.mail.com", "5 wiki.org", "5 org", "1 intel.mail.com",
                 "951 com"
             ]
@@ -568,14 +433,7 @@ public class SumRootToLeafUnitTest
 {
     public static TheoryData<TreeNode, int> Data => new()
     {
-        {
-            Util.GenerateTreeNode([1, 0, 1, 0, 1, 0, 1]),
-            22
-        },
-        {
-            Util.GenerateTreeNode([0]),
-            0
-        }
+        { Util.GenerateTreeNode([1, 0, 1, 0, 1, 0, 1]), 22 }, { Util.GenerateTreeNode([0]), 0 }
     };
 
 
@@ -583,7 +441,7 @@ public class SumRootToLeafUnitTest
     [MemberData(nameof(Data))]
     public void MultipleDataTest(TreeNode root, int expected)
     {
-        var actual = Solution.SumRootToLeaf(root);
+        int actual = Solution.SumRootToLeaf(root);
         Assert.Equal(expected, actual);
     }
 }
@@ -592,18 +450,9 @@ public class SwapPairsUnitTest
 {
     public static TheoryData<ListNode, ListNode> Data => new()
     {
-        {
-            Util.GenerateListNode([1, 2, 3, 4]),
-            Util.GenerateListNode([2, 1, 4, 3])
-        },
-        {
-            Util.GenerateListNode(Array.Empty<int>()),
-            Util.GenerateListNode(Array.Empty<int>())
-        },
-        {
-            Util.GenerateListNode([1]),
-            Util.GenerateListNode([1])
-        }
+        { Util.GenerateListNode([1, 2, 3, 4]), Util.GenerateListNode([2, 1, 4, 3]) },
+        { Util.GenerateListNode(Array.Empty<int>()), Util.GenerateListNode(Array.Empty<int>()) },
+        { Util.GenerateListNode([1]), Util.GenerateListNode([1]) }
     };
 
 
@@ -615,4 +464,3 @@ public class SwapPairsUnitTest
         Assert.Equal(expected, actual, new ListNodeComparer());
     }
 }
-

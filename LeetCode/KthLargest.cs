@@ -5,15 +5,15 @@ namespace LeetCode;
 
 public class KthLargest
 {
-    private PriorityQueue<int, int> Pq { get; }
+    private PriorityQueue<int, int> Queue { get; }
 
     private int K { get; }
 
     public KthLargest(int k, int[] nums)
     {
-        Pq = new PriorityQueue<int, int>();
+        Queue = new PriorityQueue<int, int>();
         K = k;
-        foreach (var num in nums)
+        foreach (int num in nums)
         {
             Add(num);
         }
@@ -21,12 +21,12 @@ public class KthLargest
 
     public int Add(int val)
     {
-        Pq.Enqueue(val, val);
-        if (Pq.Count > K)
+        Queue.Enqueue(val, val);
+        if (Queue.Count > K)
         {
-            Pq.Dequeue();
+            Queue.Dequeue();
         }
 
-        return Pq.Peek();
+        return Queue.Peek();
     }
 }

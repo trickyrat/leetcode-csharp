@@ -7,12 +7,12 @@ public class DistanceTraveledUnitTest
     [InlineData(1, 2, 10)]
     public void Test(int mainTank, int additionalTank, int expected)
     {
-        var actual = Solution.DistanceTraveled(mainTank, additionalTank);
+        int actual = Solution.DistanceTraveled(mainTank, additionalTank);
         Assert.Equal(expected, actual);
     }
 }
 
-public class DistinctSubseqIIUnitTest
+public class DistinctSubseqIiUnitTest
 {
     [Theory]
     [InlineData("abc", 7)]
@@ -20,26 +20,23 @@ public class DistinctSubseqIIUnitTest
     [InlineData("aaa", 3)]
     public void MultipleDataTest(string s, int expected)
     {
-        var actual = Solution.DistinctSubseqIi(s);
+        int actual = Solution.DistinctSubseqIi(s);
         Assert.Equal(expected, actual);
     }
 }
 
 public class DiStringMatchUnitTest
 {
-    public static TheoryData<string, int[]> Data =>
-        new()
-        {
-            { "IDID", [0, 4, 1, 3, 2] },
-            { "III", [0, 1, 2, 3] },
-            { "DDI", [3, 2, 0, 1] },
-        };
+    public static TheoryData<string, int[]> Data => new()
+    {
+        { "IDID", [0, 4, 1, 3, 2] }, { "III", [0, 1, 2, 3] }, { "DDI", [3, 2, 0, 1] },
+    };
 
     [Theory]
     [MemberData(nameof(Data))]
     public void MultipleDataTest(string s, int[] expected)
     {
-        var actual = Solution.DiStringMatch(s);
+        int[] actual = Solution.DiStringMatch(s);
         Assert.Equal(expected, actual);
     }
 }
@@ -53,7 +50,7 @@ public class DivideUnitTest
     [InlineData(1, 1, 1)]
     public void Test(int dividend, int divisor, int expected)
     {
-        var actual = Solution.Divide(dividend, divisor);
+        int actual = Solution.Divide(dividend, divisor);
         Assert.Equal(expected, actual);
     }
 }

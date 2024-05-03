@@ -10,7 +10,7 @@ public class AddBinaryUnitTest
     [InlineData("1010", "1011", "10101")]
     public void MultipleDataTest(string a, string b, string expected)
     {
-        var actual = Solution.AddBinary(a, b);
+        string actual = Solution.AddBinary(a, b);
         Assert.Equal(expected, actual);
     }
 }
@@ -23,29 +23,20 @@ public class AddDigitsUnitTest
     [InlineData(int.MaxValue, 1)]
     public void MultipleDataTest(int input, int expected)
     {
-        var actual = Solution.AddDigits(input);
+        int actual = Solution.AddDigits(input);
         Assert.Equal(expected, actual);
     }
 }
 
 public class AddOneRowUnitTest
 {
-    public static TheoryData<TreeNode, int, int, TreeNode> Data =>
-        new()
+    public static TheoryData<TreeNode, int, int, TreeNode> Data => new()
+    {
         {
-            {
-                Util.GenerateTreeNode([4, 2, 6, 3, 1, 5]),
-                1,
-                2,
-                Util.GenerateTreeNode([4, 1, 1, 2, null, null, 6, 3, 1, 5])
-            },
-            {
-                Util.GenerateTreeNode([4, 2, null, 3, 1]),
-                1,
-                3,
-                Util.GenerateTreeNode([4, 2, null, 1, 1, 3, null, null, 1])
-            }
-        };
+            Util.GenerateTreeNode([4, 2, 6, 3, 1, 5]), 1, 2, Util.GenerateTreeNode([4, 1, 1, 2, null, null, 6, 3, 1, 5])
+        },
+        { Util.GenerateTreeNode([4, 2, null, 3, 1]), 1, 3, Util.GenerateTreeNode([4, 2, null, 1, 1, 3, null, null, 1]) }
+    };
 
     [Theory]
     [MemberData(nameof(Data))]
@@ -64,26 +55,24 @@ public class AddStringsUnitTest
     [InlineData("1345", "8656", "10001")]
     [InlineData("245", "356", "601")]
     [InlineData("999", "1231", "2230")]
-    public void AddStringsTest1(string num1, string num2, string expected)
+    public void AddStringsTest1(string number1, string number2, string expected)
     {
-        var actual = Solution.AddStrings(num1, num2);
+        string actual = Solution.AddStrings(number1, number2);
         Assert.Equal(expected, actual);
     }
 }
 
 public class AddTwoNumbersUnitTest
 {
-    public static TheoryData<ListNode, ListNode, ListNode> Data =>
-        new()
+    public static TheoryData<ListNode, ListNode, ListNode> Data => new()
+    {
+        { Util.GenerateListNode([2, 4, 3]), Util.GenerateListNode([5, 6, 4]), Util.GenerateListNode([7, 0, 8]) },
+        { Util.GenerateListNode([0]), Util.GenerateListNode([0]), Util.GenerateListNode([0]) },
         {
-            { Util.GenerateListNode([2, 4, 3]), Util.GenerateListNode([5, 6, 4]), Util.GenerateListNode([7, 0, 8]) },
-            { Util.GenerateListNode([0]), Util.GenerateListNode([0]), Util.GenerateListNode([0]) },
-            {
-                Util.GenerateListNode([9, 9, 9, 9, 9, 9, 9]),
-                Util.GenerateListNode([9, 9, 9, 9]),
-                Util.GenerateListNode([8, 9, 9, 9, 0, 0, 0, 1])
-            }
-        };
+            Util.GenerateListNode([9, 9, 9, 9, 9, 9, 9]), Util.GenerateListNode([9, 9, 9, 9]),
+            Util.GenerateListNode([8, 9, 9, 9, 0, 0, 0, 1])
+        }
+    };
 
     [Theory]
     [MemberData(nameof(Data))]
@@ -96,25 +85,17 @@ public class AddTwoNumbersUnitTest
 
 public class AdvantageCountUnitTest
 {
-    public static TheoryData<int[], int[], int[]> Data
+    public static TheoryData<int[], int[], int[]> Data => new()
     {
-        get
-        {
-            var data = new TheoryData<int[], int[], int[]>
-            {
-                { [2, 7, 11, 15], [1, 10, 4, 11], [2, 11, 7, 15] },
-                { [12, 24, 8, 32], [13, 25, 32, 11], [24, 32, 8, 12] }
-            };
-            return data;
-        }
-    }
+        { [2, 7, 11, 15], [1, 10, 4, 11], [2, 11, 7, 15] }, { [12, 24, 8, 32], [13, 25, 32, 11], [24, 32, 8, 12] }
+    };
 
 
     [Theory]
     [MemberData(nameof(Data))]
     public void Test(int[] nums1, int[] nums2, int[] expected)
     {
-        var actual = Solution.AdvantageCount(nums1, nums2);
+        int[] actual = Solution.AdvantageCount(nums1, nums2);
         Assert.Equal(expected, actual);
     }
 }
@@ -127,17 +108,16 @@ public class AllOneUnitTest
         var allOne = new AllOne();
         allOne.Inc("hello");
         allOne.Inc("hello");
-        var actualMaxKey1 = allOne.GetMaxKey();
-        var actualMinKey1 = allOne.GetMinKey();
+        string actualMaxKey1 = allOne.GetMaxKey();
+        string actualMinKey1 = allOne.GetMinKey();
         Assert.Equal("hello", actualMaxKey1);
         Assert.Equal("hello", actualMinKey1);
         allOne.Inc("leet");
-        var actualMaxKey2 = allOne.GetMaxKey();
-        var actualMinKey2 = allOne.GetMinKey();
+        string actualMaxKey2 = allOne.GetMaxKey();
+        string actualMinKey2 = allOne.GetMinKey();
         Assert.Equal("hello", actualMaxKey2);
         Assert.Equal("leet", actualMinKey2);
     }
-
 
 
     [Fact]
@@ -151,12 +131,11 @@ public class AllOneUnitTest
         allOne.Inc("b");
         allOne.Dec("b");
         allOne.Dec("b");
-        var actualMaxKey1 = allOne.GetMaxKey();
-        var actualMinKey1 = allOne.GetMinKey();
+        string actualMaxKey1 = allOne.GetMaxKey();
+        string actualMinKey1 = allOne.GetMinKey();
         Assert.Equal("b", actualMaxKey1);
         Assert.Equal("a", actualMinKey1);
     }
-
 }
 
 public class AreAlmostEqualUnitTest
@@ -167,7 +146,7 @@ public class AreAlmostEqualUnitTest
     [InlineData("kelb", "kelb", true)]
     public void MultipleDataTest(string s1, string s2, bool expected)
     {
-        var actual = Solution.AreAlmostEqual(s1, s2);
+        bool actual = Solution.AreAlmostEqual(s1, s2);
         Assert.Equal(expected, actual);
     }
 }
@@ -180,10 +159,9 @@ public class AreNumberAscendingUnitTest
     [InlineData("sunset is at 7 51 pm overnight lows will be in the low 50 and 60 s", false)]
     public void MultipleDataTest(string s, bool expected)
     {
-        var actual = Solution.AreNumberAscending(s);
+        bool actual = Solution.AreNumberAscending(s);
         Assert.Equal(expected, actual);
     }
-
 }
 
 public class AtoiUnitTest
@@ -194,7 +172,7 @@ public class AtoiUnitTest
     [InlineData("4193 with words", 4193)]
     public void MultipleDataTest(string input, int expected)
     {
-        var actual = Solution.Atoi(input);
+        int actual = Solution.Atoi(input);
         Assert.Equal(expected, actual);
     }
 }
@@ -207,8 +185,7 @@ public class AverageUnitTest
         {
             var data = new TheoryData<int[], double>
             {
-                { [4000, 3000, 1000, 2000], 2500.00000 },
-                { [1000, 2000, 3000], 2000.00000 }
+                { [4000, 3000, 1000, 2000], 2500.00000 }, { [1000, 2000, 3000], 2000.00000 }
             };
             return data;
         }
@@ -218,7 +195,7 @@ public class AverageUnitTest
     [MemberData(nameof(Data))]
     public void MultipleDataTest(int[] salary, double expected)
     {
-        var actual = Solution.Average(salary);
+        double actual = Solution.Average(salary);
         Assert.Equal(expected, actual);
     }
 }

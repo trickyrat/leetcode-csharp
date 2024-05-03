@@ -8,7 +8,7 @@ public class GetKthMagicNumberUnitTest
     [InlineData(5, 9)]
     public void MultipleDataTest(int k, int expected)
     {
-        var actual = InterviewSolution.GetKthMagicNumber(k);
+        int actual = InterviewSolution.GetKthMagicNumber(k);
         Assert.Equal(expected, actual);
     }
 }

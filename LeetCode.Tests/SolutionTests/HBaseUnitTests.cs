@@ -9,7 +9,7 @@ public class HammingWeightUnitTest
     public void Test(uint n, int expected)
     {
 
-        var actual = Solution.HammingWeight(n);
+        int actual = Solution.HammingWeight(n);
         Assert.Equal(expected, actual);
     }
 }

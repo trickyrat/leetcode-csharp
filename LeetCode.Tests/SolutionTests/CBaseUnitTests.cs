@@ -2,53 +2,32 @@
 
 public class CalculateMinimumHpUnitTest
 {
-    public static TheoryData<int[][], int> Data
+    public static TheoryData<int[][], int> Data => new()
     {
-        get
-        {
-            var data = new TheoryData<int[][], int>
-            {
-                {
-                    [[-2, -3, 3], [-5, -10, 1], [10, 30, -5]], 7
-                },
-                {
-                    [[0]], 1
-                }
-            };
-            return data;
-        }
-    }
+        { [[-2, -3, 3], [-5, -10, 1], [10, 30, -5]], 7 }, { [[0]], 1 }
+    };
 
     [Theory]
     [MemberData(nameof(Data))]
     public void MultipleDataTest(int[][] dungeon, int expected)
     {
-        var actual = Solution.CalculateMinimumHp(dungeon);
+        int actual = Solution.CalculateMinimumHp(dungeon);
         Assert.Equal(expected, actual);
     }
 }
 
 public class CalPointsUnitTest
 {
-    public static TheoryData<string[], int> Data
+    public static TheoryData<string[], int> Data => new()
     {
-        get
-        {
-            var data = new TheoryData<string[], int>
-            {
-                { ["5", "2", "C", "D", "+"], 30 },
-                { ["5", "-2", "4", "C", "D", "9", "+", "+"], 27 },
-                { ["1"], 1 }
-            };
-            return data;
-        }
-    }
+        { ["5", "2", "C", "D", "+"], 30 }, { ["5", "-2", "4", "C", "D", "9", "+", "+"], 27 }, { ["1"], 1 }
+    };
 
     [Theory]
     [MemberData(nameof(Data))]
     public void Test(string[] input, int expected)
     {
-        var actual = Solution.CalPoints(input);
+        int actual = Solution.CalPoints(input);
         Assert.Equal(expected, actual);
     }
 }
@@ -61,48 +40,36 @@ public class CanConstructUnitTest
     [InlineData("aa", "aab", true)]
     public void Test(string ransomNote, string magazine, bool expected)
     {
-        var actual = Solution.CanConstruct(ransomNote, magazine);
+        bool actual = Solution.CanConstruct(ransomNote, magazine);
         Assert.Equal(expected, actual);
     }
 }
 
 public class CanJumpUnitTest
 {
-    public static TheoryData<int[], bool> Data => new()
-    {
-        { [2, 3, 1, 1, 4], true },
-        { [3, 2, 1, 0, 4], false }
-    };
+    public static TheoryData<int[], bool> Data => new() { { [2, 3, 1, 1, 4], true }, { [3, 2, 1, 0, 4], false } };
 
     [Theory]
     [MemberData(nameof(Data))]
     public void MultipleDataTest(int[] nums, bool expected)
     {
-        var actual = Solution.CanJump(nums);
+        bool actual = Solution.CanJump(nums);
         Assert.Equal(expected, actual);
     }
 }
 
 public class CanPartitionKSubsetsUnitTest
 {
-    public static TheoryData<int[], int, bool> Data
+    public static TheoryData<int[], int, bool> Data => new()
     {
-        get
-        {
-            var data = new TheoryData<int[], int, bool>
-            {
-                { [4, 3, 2, 3, 5, 2, 1], 4, true },
-                { [1, 2, 3, 4], 3, false }
-            };
-            return data;
-        }
-    }
+        { [4, 3, 2, 3, 5, 2, 1], 4, true }, { [1, 2, 3, 4], 3, false }
+    };
 
     [Theory]
     [MemberData(nameof(Data))]
     public void Test(int[] nums, int k, bool expected)
     {
-        var actual = Solution.CanPartitionKSubsets(nums, k);
+        bool actual = Solution.CanPartitionKSubsets(nums, k);
         Assert.Equal(expected, actual);
     }
 }
@@ -114,7 +81,7 @@ public class CanTransformUnitTest
     [InlineData("R", "L", false)]
     public void MultipleDataTest(string start, string end, bool expected)
     {
-        var actual = Solution.CanTransform(start, end);
+        bool actual = Solution.CanTransform(start, end);
         Assert.Equal(expected, actual);
     }
 }
@@ -126,7 +93,7 @@ public class CheckInclusionUnitTest
     [InlineData("ab", "eidboaoo", false)]
     public void Test_Should_Return_True(string s1, string s2, bool expected)
     {
-        var actual = Solution.CheckInclusion(s1, s2);
+        bool actual = Solution.CheckInclusion(s1, s2);
         Assert.Equal(expected, actual);
     }
 }
@@ -138,37 +105,29 @@ public class CheckOnesSegmentUnitTest
     [InlineData("110", true)]
     public void MultipleDataTest(string s, bool expected)
     {
-        var actual = Solution.CheckOnesSegment(s);
+        bool actual = Solution.CheckOnesSegment(s);
         Assert.Equal(expected, actual);
     }
 }
 
 public class CheckPossibilityUnitTest
 {
-    public static TheoryData<int[], bool> Data
-     => new()
-     {
-        {[ 4, 2, 3 ], true},
-        {[4, 2, 1], false }
-     };
+    public static TheoryData<int[], bool> Data => new() { { [4, 2, 3], true }, { [4, 2, 1], false } };
 
     [Theory]
     [MemberData(nameof(Data))]
     public void Test(int[] nums, bool expected)
     {
-        var actual = Solution.CheckPossibility(nums);
+        bool actual = Solution.CheckPossibility(nums);
         Assert.Equal(expected, actual);
     }
 }
 
 public class CodecUnitTest
 {
-    public static TheoryData<TreeNode, TreeNode> Data
-     => new()
-     {
-         { Util.GenerateTreeNode([2, 1, 3]), Util.GenerateTreeNode([2, 1, 3]) },
-         { null, null }
-
+    public static TheoryData<TreeNode, TreeNode> Data => new()
+    {
+        { Util.GenerateTreeNode([2, 1, 3]), Util.GenerateTreeNode([2, 1, 3]) }, { null, null }
     };
 
     private readonly Codec _codec = new();
@@ -178,7 +137,7 @@ public class CodecUnitTest
     [MemberData(nameof(Data))]
     public void MultipleDataTest(TreeNode root, TreeNode expected)
     {
-        var treeNodeString = _codec.Serialize(root);
+        string treeNodeString = _codec.Serialize(root);
         var actual = _codec.Deserialize(treeNodeString);
         Assert.Equal(expected, actual, new TreeNodeComparer());
     }
@@ -186,14 +145,10 @@ public class CodecUnitTest
 
 public class CombinationSum2UnitTest
 {
-    public static TheoryData<int[], int, IList<IList<int>>> Data
-     => new()
-     {
-         {
-            [10, 1, 2, 7, 6, 1, 5], 8,
-            [[ 2, 6 ], [1, 7 ], [1, 2, 5 ], [1, 1, 6 ]]
-         },
-         { [2, 5, 2, 1, 2 ], 5, [[5], [1, 2, 2]]}
+    public static TheoryData<int[], int, IList<IList<int>>> Data => new()
+    {
+        { [10, 1, 2, 7, 6, 1, 5], 8, [[2, 6], [1, 7], [1, 2, 5], [1, 1, 6]] },
+        { [2, 5, 2, 1, 2], 5, [[5], [1, 2, 2]] }
     };
 
     [Theory]
@@ -203,61 +158,18 @@ public class CombinationSum2UnitTest
         var actual = Solution.CombinationSum2(candidates, target);
         Assert.Equal(expected, actual);
     }
-
 }
 
 public class CombinationSumUnitTest
 {
-    public static TheoryData<int[], int, IList<IList<int>>> Data
+    public static TheoryData<int[], int, IList<IList<int>>> Data => new()
     {
-        get
-        {
-            var data = new TheoryData<int[], int, IList<IList<int>>>
-            {
-                {
-                    [2, 3, 6, 7],
-                    7,
-                    new List<IList<int>>
-                    {
-                        new List<int> { 7 },
-                        new List<int> { 2, 2, 3 },
-                    }
-                },
-                {
-                    [2],
-                    1,
-                    new List<IList<int>>()
-                },
-                {
-                    [2, 3, 5],
-                    8,
-                    new List<IList<int>>
-                    {
-                        new List<int> { 3, 5 },
-                        new List<int> { 2, 3, 3 },
-                        new List<int> { 2, 2, 2, 2 },
-                    }
-                },
-                {
-                    [1],
-                    1,
-                    new List<IList<int>>
-                    {
-                        new List<int> { 1 },
-                    }
-                },
-                {
-                    [1],
-                    2,
-                    new List<IList<int>>
-                    {
-                        new List<int> { 1, 1 },
-                    }
-                }
-            };
-            return data;
-        }
-    }
+        { [2, 3, 6, 7], 7, [[7], [2, 2, 3]] },
+        { [2], 1, [] },
+        { [2, 3, 5], 8, [[3, 5], [2, 3, 3], [2, 2, 2, 2]] },
+        { [1], 1, [[1]] },
+        { [1], 2, [[1, 1]] }
+    };
 
     [Theory]
     [MemberData(nameof(Data))]
@@ -275,55 +187,31 @@ public class ComplexNumberMultiplyUnitTest
     [InlineData("1+-1i", "1+-1i", "0+-2i")]
     public void MultipleDataTest(string num1, string num2, string expected)
     {
-        var actual = Solution.ComplexNumberMultiply(num1, num2);
+        string actual = Solution.ComplexNumberMultiply(num1, num2);
         Assert.Equal(expected, actual);
     }
 }
 
 public class ConstructArrayUnitTest
 {
-    public static TheoryData<int, int, int[]> Data
-    {
-        get
-        {
-            var data = new TheoryData<int, int, int[]>
-            {
-                { 3, 1, [1, 2, 3] },
-                { 3, 2, [1, 3, 2] }
-            };
-            return data;
-        }
-    }
+    public static TheoryData<int, int, int[]> Data => new() { { 3, 1, [1, 2, 3] }, { 3, 2, [1, 3, 2] } };
 
     [Theory]
     [MemberData(nameof(Data))]
     public void Test(int n, int k, int[] expected)
     {
-        var actual = Solution.ConstructArray(n, k);
+        int[] actual = Solution.ConstructArray(n, k);
         Assert.Equal(expected, actual);
     }
 }
 
 public class ConstructMaximumBinaryTreeUnitTest
 {
-    public static TheoryData<int[], TreeNode> Data
+    public static TheoryData<int[], TreeNode> Data => new()
     {
-        get
-        {
-            var data = new TheoryData<int[], TreeNode>
-            {
-                {
-                    [3, 2, 1, 6, 0, 5],
-                    Util.GenerateTreeNode([6, 3, 5, null, 2, 0, null, null, 1])
-                },
-                {
-                    [3, 2, 1],
-                    Util.GenerateTreeNode([3, null, 2, null, 1])
-                }
-            };
-            return data;
-        }
-    }
+        { [3, 2, 1, 6, 0, 5], Util.GenerateTreeNode([6, 3, 5, null, 2, 0, null, null, 1]) },
+        { [3, 2, 1], Util.GenerateTreeNode([3, null, 2, null, 1]) }
+    };
 
     [Theory]
     [MemberData(nameof(Data))]
@@ -341,7 +229,7 @@ public class ConvertToBase7UnitTest
     [InlineData(-7, "-10")]
     public void MultipleDataTest(int input, string expected)
     {
-        var actual = Solution.ConvertToBase7(input);
+        string actual = Solution.ConvertToBase7(input);
         Assert.Equal(expected, actual);
     }
 }
@@ -354,45 +242,33 @@ public class ConvertToTitle
     [InlineData(701, "ZY")]
     public void MultipleDataTest(int columnNumber, string expected)
     {
-        var actual = Solution.ConvertToTitle(columnNumber);
+        string actual = Solution.ConvertToTitle(columnNumber);
         Assert.Equal(expected, actual);
     }
 }
 
 public class CountKDifferenceUnitTest
 {
-    public static TheoryData<int[], int, int> Data
-     => new()
-     {
-         {[ 1, 2, 2, 1 ], 1, 4 },
-         {[ 1, 3 ], 3, 0 },
-         {[ 3, 2, 1, 5, 4 ], 2, 3 }
-    };
+    public static TheoryData<int[], int, int> Data => new() { { [1, 2, 2, 1], 1, 4 }, { [1, 3], 3, 0 }, { [3, 2, 1, 5, 4], 2, 3 } };
 
     [Theory]
     [MemberData(nameof(Data))]
     public void MultipleDataTest(int[] nums, int k, int expected)
     {
-        var actual = Solution.CountKDifference(nums, k);
+        int actual = Solution.CountKDifference(nums, k);
         Assert.Equal(expected, actual);
     }
 }
 
 public class CountMaxOrSubsetsUniTest
 {
-    public static TheoryData<int[], int> Data
-     => new()
-     {
-         {[3, 1 ], 2},
-         {[2, 2, 2 ], 7},
-         {[3, 2, 1, 5 ], 6}
-    };
+    public static TheoryData<int[], int> Data => new() { { [3, 1], 2 }, { [2, 2, 2], 7 }, { [3, 2, 1, 5], 6 } };
 
     [Theory]
     [MemberData(nameof(Data))]
     public void MultipleDataTest(int[] input, int expect)
     {
-        var actual = Solution.CountMaxOrSubsets(input);
+        int actual = Solution.CountMaxOrSubsets(input);
         Assert.Equal(expect, actual);
     }
 }
@@ -404,7 +280,7 @@ public class CountEvenUnitTest
     [InlineData(30, 14)]
     public void Test(int num, int expected)
     {
-        var actual = Solution.CountEven(num);
+        int actual = Solution.CountEven(num);
         Assert.Equal(expected, actual);
     }
 }
@@ -416,7 +292,7 @@ public class CountAndSayUnitTest
     [InlineData(4, "1211")]
     public void Test(int n, string expected)
     {
-        var actual = Solution.CountAndSay(n);
+        string actual = Solution.CountAndSay(n);
         Assert.Equal(expected, actual);
     }
 }
@@ -428,7 +304,7 @@ public class CountNumbersWithUniqueDigitsUnitTest
     [InlineData(0, 1)]
     public void MultipleDataTest(int n, int expected)
     {
-        var actual = Solution.CountNumbersWithUniqueDigits(n);
+        int actual = Solution.CountNumbersWithUniqueDigits(n);
         Assert.Equal(expected, actual);
     }
 }
@@ -440,10 +316,9 @@ public class CountOddsUnitTest
     [InlineData(8, 10, 1)]
     public void MultipleDataTest(int low, int high, int expected)
     {
-        var actual = Solution.CountOdds(low, high);
+        int actual = Solution.CountOdds(low, high);
         Assert.Equal(expected, actual);
     }
-
 }
 
 public class CountSegmentUnitTest
@@ -455,7 +330,7 @@ public class CountSegmentUnitTest
     [InlineData("", 0)]
     public void Test(string s, int expected)
     {
-        var actual = Solution.CountSegments(s);
+        int actual = Solution.CountSegments(s);
         Assert.Equal(expected, actual);
     }
 }
@@ -464,15 +339,14 @@ public class CountStudentsUnitTest
 {
     public static TheoryData<int[], int[], int> Data => new()
     {
-        { [1, 1, 0, 0], [0, 1, 0, 1], 0 },
-        { [1, 1, 1, 0, 0, 1], [1, 0, 0, 0, 1, 1], 3 }
+        { [1, 1, 0, 0], [0, 1, 0, 1], 0 }, { [1, 1, 1, 0, 0, 1], [1, 0, 0, 0, 1, 1], 3 }
     };
 
     [Theory]
     [MemberData(nameof(Data))]
     public void MultipleDataTest(int[] students, int[] sandwiches, int expected)
     {
-        var actual = Solution.CountStudents(students, sandwiches);
+        int actual = Solution.CountStudents(students, sandwiches);
         Assert.Equal(expected, actual);
     }
 }
@@ -481,15 +355,14 @@ public class CountWaysUnitTest
 {
     public static TheoryData<int[][], int> Data => new()
     {
-        { [[6,10],[5,15]], 2 },
-        { [[1,3],[10,20],[2,5],[4,8]], 4}
+        { [[6, 10], [5, 15]], 2 }, { [[1, 3], [10, 20], [2, 5], [4, 8]], 4 }
     };
 
     [Theory]
     [MemberData(nameof(Data))]
     public void Test(int[][] ranges, int expected)
     {
-        var actual = Solution.CountWays(ranges);
+        int actual = Solution.CountWays(ranges);
         Assert.Equal(expected, actual);
     }
 }

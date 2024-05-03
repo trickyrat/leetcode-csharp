@@ -21,7 +21,7 @@ public class FindClosestUnitTest
     [MemberData(nameof(Data))]
     public void MultipleDataTest(string[] words, string word1, string word2, int expected)
     {
-        var actual = InterviewSolution.FindClosest(words, word1, word2);
+        int actual = InterviewSolution.FindClosest(words, word1, word2);
         Assert.Equal(expected, actual);
     }
 }

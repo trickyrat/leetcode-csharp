@@ -14,7 +14,7 @@ public class ExamRoomComparer : IComparer<(int first, int second)>
 
 public class ExamRoom(int n)
 {
-    private PriorityQueue<(int first, int second), (int first, int second)> Pq { get; } = new(new ExamRoomComparer());
+    private PriorityQueue<(int first, int second), (int first, int second)> Queue { get; } = new(new ExamRoomComparer());
 
     private SortedSet<int> Seats { get; } = [];
 
@@ -31,34 +31,34 @@ public class ExamRoom(int n)
         int left = Seats.Min, right = N - 1 - Seats.Max;
         while (Seats.Count >= 2)
         {
-            var p = Pq.Peek();
+            var p = Queue.Peek();
             if (Seats.Contains(p.first) && Seats.Contains(p.second)
                                         && Seats.GetViewBetween(p.first + 1, Seats.Max).Min == p.second)
             {
-                var d = p.second - p.first;
+                int d = p.second - p.first;
                 if (d / 2 < right || d / 2 <= left)
                 {
                     break;
                 }
 
-                Pq.Dequeue();
-                Pq.Enqueue((p.first, p.first + d / 2), (p.first, p.first + d / 2));
-                Pq.Enqueue((p.first + d / 2, p.second), (p.first + d / 2, p.second));
+                Queue.Dequeue();
+                Queue.Enqueue((p.first, p.first + d / 2), (p.first, p.first + d / 2));
+                Queue.Enqueue((p.first + d / 2, p.second), (p.first + d / 2, p.second));
                 Seats.Add(p.first + d / 2);
                 return p.first + d / 2;
             }
 
-            Pq.Dequeue();
+            Queue.Dequeue();
         }
 
         if (right > left)
         {
-            Pq.Enqueue((Seats.Max, N - 1), (Seats.Max, N - 1));
+            Queue.Enqueue((Seats.Max, N - 1), (Seats.Max, N - 1));
             Seats.Add(N - 1);
             return N - 1;
         }
 
-        Pq.Enqueue((0, Seats.Min), (0, Seats.Min));
+        Queue.Enqueue((0, Seats.Min), (0, Seats.Min));
         Seats.Add(0);
         return 0;
     }
@@ -68,7 +68,7 @@ public class ExamRoom(int n)
         if (p != Seats.Max && p != Seats.Min)
         {
             int prev = Seats.GetViewBetween(Seats.Min, p - 1).Max, next = Seats.GetViewBetween(p + 1, Seats.Max).Min;
-            Pq.Enqueue((prev, next), (prev, next));
+            Queue.Enqueue((prev, next), (prev, next));
         }
 
         Seats.Remove(p);

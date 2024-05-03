@@ -1,37 +1,32 @@
 ﻿namespace LeetCode;
 
-public class ZeroEvenOdd
+public class ZeroEvenOdd(int count)
 {
-    private int _n;
+    private int Count { get; } = count;
     private readonly SemaphoreSlim _zeroSemaphore = new(1, 1);
     private readonly SemaphoreSlim _evenSemaphore = new(0, 1);
     private readonly SemaphoreSlim _oddSemaphore = new(0, 1);
 
-    public ZeroEvenOdd(int n)
+    public void Zero(Action<int> printNumber)
     {
-        _n = n;
-    }
-
-    public void Zero(Action<int> printNumber) 
-    {
-        for (int i = 1; i <= _n; i++) 
+        for (int i = 1; i <= Count; i++)
         {
             _zeroSemaphore.Wait();
             printNumber(0);
-            if (i % 2 == 0) 
+            if (i % 2 == 0)
             {
                 _evenSemaphore.Release();
-            } 
-            else 
+            }
+            else
             {
                 _oddSemaphore.Release();
             }
         }
     }
 
-    public void Even(Action<int> printNumber) 
+    public void Even(Action<int> printNumber)
     {
-        for (int i = 2; i <= _n; i += 2) 
+        for (int i = 2; i <= Count; i += 2)
         {
             _evenSemaphore.Wait();
             printNumber(i);
@@ -39,9 +34,9 @@ public class ZeroEvenOdd
         }
     }
 
-    public void Odd(Action<int> printNumber) 
+    public void Odd(Action<int> printNumber)
     {
-        for (int i = 1; i <= _n; i += 2) 
+        for (int i = 1; i <= Count; i += 2)
         {
             _oddSemaphore.Wait();
             printNumber(i);
