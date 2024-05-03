@@ -43,6 +43,6 @@ public class TreeNodeComparer : IEqualityComparer<TreeNode>
 
     public int GetHashCode([DisallowNull] TreeNode obj)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 }

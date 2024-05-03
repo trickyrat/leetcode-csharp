@@ -24,13 +24,12 @@ public class RandomizedSet
 
     public bool Remove(int val)
     {
-        if (!Indices.ContainsKey(val))
+        if (!Indices.TryGetValue(val, out int index))
         {
             return false;
         }
 
-        var index = Indices[val];
-        var last = Nums.Last();
+        int last = Nums.Last();
         Nums[index] = last;
         Indices[last] = index;
         Nums.RemoveAt(Nums.Count - 1);

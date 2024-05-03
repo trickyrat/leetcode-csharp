@@ -86,8 +86,8 @@ public class AllOne
             return string.Empty;
         }
 
-        var maxKey = string.Empty;
-        foreach (var key in Root.Prev.Keys)
+        string maxKey = string.Empty;
+        foreach (string key in Root.Prev.Keys)
         {
             maxKey = key;
             break;
@@ -103,8 +103,8 @@ public class AllOne
             return string.Empty;
         }
 
-        var minKey = string.Empty;
-        foreach (var key in Root.Next.Keys)
+        string minKey = string.Empty;
+        foreach (string key in Root.Next.Keys)
         {
             minKey = key;
             break;

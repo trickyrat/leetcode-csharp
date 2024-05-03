@@ -9,9 +9,9 @@ public class MyStack
 
     public void Push(int x)
     {
-        var n = _queue.Count;
+        int n = _queue.Count;
         _queue.Enqueue(x);
-        for (var i = 0; i < n; i++)
+        for (int i = 0; i < n; i++)
         {
             _queue.Enqueue(_queue.Dequeue());
         }

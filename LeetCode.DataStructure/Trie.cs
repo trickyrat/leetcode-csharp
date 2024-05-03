@@ -13,7 +13,7 @@ public class Trie
     public void Insert(string word)
     {
         var node = Root;
-        foreach (var currentChar in word)
+        foreach (char currentChar in word)
         {
             if (!node.ContainsKey(currentChar))
             {
@@ -36,7 +36,7 @@ public class Trie
     private TrieNode SearchPrefix(string word)
     {
         var node = Root;
-        foreach (var currLetter in word)
+        foreach (char currLetter in word)
         {
             if (node.ContainsKey(currLetter))
                 node = node.Get(currLetter);

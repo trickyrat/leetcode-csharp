@@ -7,7 +7,7 @@ public class ValidAnagramUnitTest
     [InlineData("rat", "car", false)]
     public void Test(string s, string t, bool expected)
     {
-        var actual = Solution.IsAnagram(s, t);
+        bool actual = Solution.IsAnagram(s, t);
         Assert.Equal(expected, actual);
     }
 }
@@ -16,15 +16,14 @@ public class ValidateStackSequencesUnitTest
 {
     public static TheoryData<int[], int[], bool> Data => new()
     {
-        { [1, 2, 3, 4, 5], [4, 5, 3, 2, 1], true },
-        { [1, 2, 3, 4, 5], [4, 3, 5, 1, 2], false }
+        { [1, 2, 3, 4, 5], [4, 5, 3, 2, 1], true }, { [1, 2, 3, 4, 5], [4, 3, 5, 1, 2], false }
     };
 
     [Theory]
     [MemberData(nameof(Data))]
     public void MultipleDataTest(int[] pushed, int[] popped, bool expected)
     {
-        var actual = Solution.ValidateStackSequences(pushed, popped);
+        bool actual = Solution.ValidateStackSequences(pushed, popped);
         Assert.Equal(expected, actual);
     }
 }
@@ -45,7 +44,7 @@ public class ValidIpAddressUnitTest
     [InlineData("0a:12:12:12::123:23:0A", "Neither")]
     public void Test(string address, string expected)
     {
-        var actual = Solution.ValidIpAddress(address);
+        string actual = Solution.ValidIpAddress(address);
         Assert.Equal(expected, actual);
     }
 }
@@ -60,7 +59,7 @@ public class ValidParenthesesUnitTest
     [InlineData("{[]}", true)]
     public void MultipleDataTest(string s, bool expected)
     {
-        var actual = Solution.IsValid(s);
+        bool actual = Solution.IsValid(s);
         Assert.Equal(expected, actual);
     }
 }

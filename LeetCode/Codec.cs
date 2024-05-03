@@ -22,11 +22,11 @@ public class Codec
         {
             return null;
         }
-        var nums = data.Split(',');
+        string[] numbers = data.Split(',');
         var stack = new Stack<int>();
-        foreach (var num in nums)
+        foreach (string number in numbers)
         {
-            stack.Push(int.Parse(num));
+            stack.Push(int.Parse(number));
         }
         return Build(int.MinValue, int.MaxValue, stack);
     }
@@ -48,7 +48,7 @@ public class Codec
         {
             return null;
         }
-        var val = stack.Pop();
+        int val = stack.Pop();
         var root = new TreeNode(val)
         {
             Right = Build(val, upper, stack),

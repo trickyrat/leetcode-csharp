@@ -7,16 +7,16 @@ namespace LeetCode;
 /// </summary>
 public class NumArray
 {
-    private int[] _sum;
+    private List<int> Sum { get; }
     public NumArray(int[] nums)
     {
-        var len = nums.Length;
-        _sum = new int[len + 1];
-        for (var i = 0; i < len; i++)
+        int len = nums.Length;
+        Sum = [len + 1];
+        for (int i = 0; i < len; i++)
         {
-            _sum[i + 1] = _sum[i] + nums[i];
+            Sum[i + 1] = Sum[i] + nums[i];
         }
     }
 
-    public int SumRange(int i, int j) => _sum[j + 1] - _sum[i];
+    public int SumRange(int i, int j) => Sum[j + 1] - Sum[i];
 }

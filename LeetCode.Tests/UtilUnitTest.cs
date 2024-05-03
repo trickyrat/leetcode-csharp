@@ -4,46 +4,31 @@ public class UtilUnitTest
 {
     public static TheoryData<List<int?>, TreeNode> TreeNodeData => new()
     {
-
-        {
-            new List<int?> { 1, 2, 3 },
-            new TreeNode(1, new TreeNode(2), new TreeNode(3))
-        },
-        {
-            new List<int?> { 1, null, 3 },
-            new TreeNode(1, null, new TreeNode(3))
-        }
+        { [1, 2, 3], new TreeNode(1, new TreeNode(2), new TreeNode(3)) },
+        { [1, null, 3], new TreeNode(1, null, new TreeNode(3)) }
     };
 
     public static TheoryData<int[][], string> MatrixData => new()
     {
         {
-            [[1, 2, 3],
-             [4, 5, 6],
-             [ 7, 8, 9]],
+            [
+                [1, 2, 3],
+                [4, 5, 6],
+                [7, 8, 9]
+            ],
             "[[1,2,3]\n [4,5,6]\n [7,8,9]]"
         },
-
         {
-            [[1, 2],
-             [4, 5],
-             [ 7, 8]],
+            [
+                [1, 2],
+                [4, 5],
+                [7, 8]
+            ],
             "[[1,2]\n [4,5]\n [7,8]]"
         },
-
-        {
-            [[1, 2, 3], [4, 5, 6]],
-            "[[1,2,3]\n [4,5,6]]"
-        },
-
-        {
-            [[1], [2], [3]],
-            "[[1]\n [2]\n [3]]"
-        },
-        {
-            [[1, 2, 3]],
-            "[[1,2,3]]"
-        }
+        { [[1, 2, 3], [4, 5, 6]], "[[1,2,3]\n [4,5,6]]" },
+        { [[1], [2], [3]], "[[1]\n [2]\n [3]]" },
+        { [[1, 2, 3]], "[[1,2,3]]" }
     };
 
     [Theory]
@@ -59,7 +44,7 @@ public class UtilUnitTest
     [MemberData(nameof(MatrixData))]
     public void Test_ConvertMatrixToString_ShouldBe_OK(int[][] matrix, string expected)
     {
-        var actual = Util.ConvertMatrixToString(matrix);
+        string actual = Util.ConvertMatrixToString(matrix);
         Assert.Equal(expected, actual);
     }
 

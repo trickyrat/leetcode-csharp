@@ -19,7 +19,7 @@ public static class Util
     {
         var head = new ListNode(0);
         var dummy = head;
-        foreach (var item in data)
+        foreach (int item in data)
         {
             dummy.Next = new ListNode(item);
             dummy = dummy.Next;
@@ -43,11 +43,11 @@ public static class Util
     public static string ConvertMatrixToString(int[][] matrix)
     {
         var sb = new StringBuilder();
-        var n = matrix.Length;
+        int n = matrix.Length;
         const char openSign = '[';
         const char closeSign = ']';
         sb.Append(openSign);
-        for (var i = 0; i < n; i++)
+        for (int i = 0; i < n; i++)
         {
             if (i != 0)
             {
@@ -85,7 +85,7 @@ public static class Util
 
         return res;
     }
-    
+
     public static TreeNode GenerateTreeNode(List<int?> nums)
     {
         if (nums is null || nums.Count == 0 || nums[0] is null)
@@ -96,9 +96,9 @@ public static class Util
         var root = new TreeNode(nums[0].Value);
         var queue = new Queue<TreeNode>();
         queue.Enqueue(root);
-        
-        var fillLeft = true;
-        for (var i = 1; i < nums.Count; i++)
+
+        bool fillLeft = true;
+        for (int i = 1; i < nums.Count; i++)
         {
             var node = nums[i] is not null ? new TreeNode(nums[i].Value) : null;
 
@@ -133,8 +133,8 @@ public static class Util
         var root = new Node(nums[0].Value);
         var queue = new Queue<Node>();
         queue.Enqueue(root);
-        
-        for (var i = 1; i < nums.Count; i++)
+
+        for (int i = 1; i < nums.Count; i++)
         {
             var parent = queue.Peek();
             if (nums[i].HasValue)
@@ -165,9 +165,9 @@ public static class Util
         var root = new BinaryTreeNode(val: nums[0]);
         var queue = new Queue<BinaryTreeNode>();
         queue.Enqueue(root);
-        
-        var fillLeft = true;
-        for (var i = 1; i < nums.Count; i++)
+
+        bool fillLeft = true;
+        for (int i = 1; i < nums.Count; i++)
         {
             var node = new BinaryTreeNode(nums[i]);
 
@@ -182,10 +182,7 @@ public static class Util
                 fillLeft = true;
             }
 
-            if (node is not null)
-            {
-                queue.Enqueue(node);
-            }
+            queue.Enqueue(node);
 
             if (fillLeft) queue.Dequeue();
         }

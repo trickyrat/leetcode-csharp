@@ -2,45 +2,29 @@ namespace LeetCode.Tests.SolutionTests;
 
 public class GenerateMatrixUnitTest
 {
-    public static TheoryData<int, int[][]> Data => new()
-    {
-        {
-            3,
-            [
-                [1, 2, 3],
-                [8, 9, 4],
-                [7, 6, 5]
-            ]
-        },
-        {
-            1,
-            [[1]]
-        }
-    };
+    public static TheoryData<int, int[][]> Data => new() { { 3, [[1, 2, 3], [8, 9, 4], [7, 6, 5]] }, { 1, [[1]] } };
 
     [Theory]
     [MemberData(nameof(Data))]
     public void MultipleDataTest(int n, int[][] expected)
     {
-        var actual = Solution.GenerateMatrix(n);
+        int[][] actual = Solution.GenerateMatrix(n);
         Assert.Equal(expected, actual);
     }
-
 }
 
 public class GenerateParenthesisUnitTest
 {
     public static TheoryData<int, string[]> Data => new()
     {
-        { 3, ["((()))", "(()())", "(())()", "()(())", "()()()"] },
-        { 1, ["()"] }
+        { 3, ["((()))", "(()())", "(())()", "()(())", "()()()"] }, { 1, ["()"] }
     };
 
     [Theory]
     [MemberData(nameof(Data))]
     public void MultipleDataTest(int n, string[] expected)
     {
-        var actual = Solution.GenerateParenthesis(n).ToArray();
+        string[] actual = Solution.GenerateParenthesis(n).ToArray();
         Assert.Equal(expected, actual);
     }
 }
@@ -53,7 +37,7 @@ public class GenerateTheStringUnitTest
     [InlineData(3, "aaa")]
     public void MultipleDataTest(int input, string expected)
     {
-        var actual = Solution.GenerateTheString(input);
+        string actual = Solution.GenerateTheString(input);
         Assert.Equal(expected, actual);
     }
 }
@@ -62,16 +46,8 @@ public class GetAllElementsUnitTest
 {
     public static TheoryData<TreeNode, TreeNode, IList<int>> Data => new()
     {
-        {
-            Util.GenerateTreeNode([2, 1, 4]),
-            Util.GenerateTreeNode([1, 0, 3]),
-            [0, 1, 1, 2, 3, 4]
-        },
-        {
-            Util.GenerateTreeNode([1, null, 8]),
-            Util.GenerateTreeNode([8, 1]),
-            [1, 1, 8, 8]
-        }
+        { Util.GenerateTreeNode([2, 1, 4]), Util.GenerateTreeNode([1, 0, 3]), [0, 1, 1, 2, 3, 4] },
+        { Util.GenerateTreeNode([1, null, 8]), Util.GenerateTreeNode([8, 1]), [1, 1, 8, 8] }
     };
 
 
@@ -92,8 +68,7 @@ public class GetSumUnitTest
     [InlineData(1, -2, -1)]
     public void Test_Should_OK(int a, int b, int expected)
     {
-
-        var actual = Solution.GetSum(a, b);
+        int actual = Solution.GetSum(a, b);
         Assert.Equal(expected, actual);
     }
 }

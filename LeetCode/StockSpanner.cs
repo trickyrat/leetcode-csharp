@@ -24,7 +24,7 @@ public class StockSpanner
             Stack.Pop();
         }
 
-        var res = Index - Stack.Peek().day;
+        int res = Index - Stack.Peek().day;
         Stack.Push((Index, price));
         return res;
     }
