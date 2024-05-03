@@ -23,7 +23,7 @@ public class CalculateMinimumHpUnitTest
     [MemberData(nameof(Data))]
     public void MultipleDataTest(int[][] dungeon, int expected)
     {
-        var actual = Solution.CalculateMinimumHP(dungeon);
+        var actual = Solution.CalculateMinimumHp(dungeon);
         Assert.Equal(expected, actual);
     }
 }

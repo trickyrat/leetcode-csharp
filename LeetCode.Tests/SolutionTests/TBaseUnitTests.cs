@@ -221,7 +221,7 @@ public class TwoSumIiUnitTest
     [InlineData(new[] { -1, 0 }, -1, new[] { 1, 2 })]
     public void Test1(int[] numbers, int target, int[] expected)
     {
-        var actual = Solution.TwoSumII(numbers, target);
+        var actual = Solution.TwoSumIi(numbers, target);
         Assert.Equal(expected, actual);
     }
 }
