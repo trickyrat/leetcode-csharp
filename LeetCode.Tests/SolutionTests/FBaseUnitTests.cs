@@ -189,7 +189,7 @@ public class FindLusLengthUnitTest
     [InlineData("aaa", "aaa", -1)]
     public void MultipleDataTest(string a, string b, int expected)
     {
-        var actual = Solution.FindLUSLength(a, b);
+        var actual = Solution.FindLusLength(a, b);
         Assert.Equal(expected, actual);
     }
 }
