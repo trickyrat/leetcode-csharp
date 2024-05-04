@@ -124,7 +124,7 @@ public class RemoveNthFromEndUnitTest
     };
 
     [Theory]
-    [MemberData(nameof(Data))]
+    [MemberData(nameof(Data), MemberType = typeof(RemoveNthFromEndUnitTest))]
     public void Test_Input_Normal_Nodes_Should_OK(ListNode input, int n, ListNode expected)
     {
         var actual = Solution.RemoveNthFromEnd(input, n);
@@ -199,7 +199,7 @@ public class ReverseKGroupUnitTest
 
 
     [Theory]
-    [MemberData(nameof(Data))]
+    [MemberData(nameof(Data), MemberType = typeof(ReverseKGroupUnitTest))]
     public void MultipleDataTest(ListNode head, int k, ListNode expected)
     {
         var actual = Solution.ReverseKGroup(head, k);
@@ -218,7 +218,7 @@ public class ReverseListUnitTest
 
 
     [Theory]
-    [MemberData(nameof(Nodes))]
+    [MemberData(nameof(Nodes), MemberType = typeof(ReverseListUnitTest))]
     public void Test(ListNode head, ListNode expectedNode)
     {
         var actualNode = Solution.ReverseList(head);
@@ -314,7 +314,7 @@ public class RotateRightUnitTest
     };
 
     [Theory]
-    [MemberData(nameof(Data))]
+    [MemberData(nameof(Data), MemberType = typeof(RotateRightUnitTest))]
     public void MultipleDataTest(ListNode head, int k, ListNode expected)
     {
         var actual = Solution.RotateRight(head, k);

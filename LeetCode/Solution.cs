@@ -5507,9 +5507,9 @@ public static class Solution
     /// <returns></returns>
     public static IList<TreeNode> FindDuplicateSubtrees(TreeNode root)
     {
-        Dictionary<string, (TreeNode, int)> seen;
+        Dictionary<string, (TreeNode, int)> seen = new();
         var repeat = new HashSet<TreeNode>();
-        int index;
+        int index = 0;
         Dfs(root);
         return new List<TreeNode>(repeat);
 

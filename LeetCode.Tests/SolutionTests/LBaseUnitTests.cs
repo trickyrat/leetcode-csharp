@@ -80,7 +80,7 @@ public class LexicalOrderUnitTest
     };
 
     [Theory]
-    [MemberData(nameof(Data))]
+    [MemberData(nameof(Data), MemberType = typeof(LexicalOrderUnitTest))]
     public void MultipleDataTest(int n, IList<int> expected)
     {
         var actual = Solution.LexicalOrder(n);
@@ -97,9 +97,9 @@ public class LongestCommonPrefixUnitTest
 
     [Theory]
     [MemberData(nameof(Data))]
-    public void MultipleDataTest(string[] strs, string expected)
+    public void MultipleDataTest(string[] words, string expected)
     {
-        string actual = Solution.LongestCommonPrefix(strs);
+        string actual = Solution.LongestCommonPrefix(words);
         Assert.Equal(expected, actual);
     }
 }
@@ -125,7 +125,7 @@ public class LongestUnivaluePathUnitTest
     };
 
     [Theory]
-    [MemberData(nameof(Data))]
+    [MemberData(nameof(Data), MemberType = typeof(LongestUnivaluePathUnitTest))]
     public void MultipleDataTest(TreeNode root, int expected)
     {
         int actual = Solution.LongestUnivaluePath(root);
@@ -150,34 +150,14 @@ public class LuckyNumbersUnitTest
 {
     public static TheoryData<int[][], List<int>> Matrix => new()
     {
-        {
-            [
-                [3, 7, 8],
-                [9, 11, 13],
-                [15, 16, 17]
-            ],
-            [15]
-        },
-        {
-            [
-                [1, 10, 4, 2],
-                [9, 3, 8, 7],
-                [15, 16, 17, 12]
-            ],
-            [12]
-        },
-        {
-            [
-                [7, 8],
-                [1, 2]
-            ],
-            [7]
-        }
+        { [[3, 7, 8], [9, 11, 13], [15, 16, 17]], [15] },
+        { [[1, 10, 4, 2], [9, 3, 8, 7], [15, 16, 17, 12]], [12] },
+        { [[7, 8], [1, 2]], [7] }
     };
 
 
     [Theory]
-    [MemberData(nameof(Matrix))]
+    [MemberData(nameof(Matrix), MemberType = typeof(LuckyNumbersUnitTest))]
     public void Test1(int[][] matrix, List<int> expected)
     {
         var actual = Solution.LuckyNumbers(matrix).ToList();

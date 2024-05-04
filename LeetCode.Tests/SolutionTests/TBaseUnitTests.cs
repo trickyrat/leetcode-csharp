@@ -2,10 +2,13 @@ namespace LeetCode.Tests.SolutionTests;
 
 public class ThreeEqualPartsUnitTest
 {
+    public static TheoryData<int[], int[]> Data => new()
+    {
+        { [1, 0, 1, 0, 1], [0, 3] }, { [1, 1, 0, 1, 1], [-1, -1] }, { [1, 1, 0, 0, 1], [0, 2] },
+    };
+
     [Theory]
-    [InlineData(new[] { 1, 0, 1, 0, 1 }, new[] { 0, 3 })]
-    [InlineData(new[] { 1, 1, 0, 1, 1 }, new[] { -1, -1 })]
-    [InlineData(new[] { 1, 1, 0, 0, 1 }, new[] { 0, 2 })]
+    [MemberData(nameof(Data))]
     public void Test(int[] arr, int[] expected)
     {
         int[] actual = Solution.ThreeEqualParts(arr);
@@ -15,9 +18,10 @@ public class ThreeEqualPartsUnitTest
 
 public class ThreeSumClosestUnitTest
 {
+    public static TheoryData<int[], int, int> Data => new() { { [-1, 2, 1, -4], 1, 2 }, { [0, 0, 0], 1, 0 } };
+
     [Theory]
-    [InlineData(new[] { -1, 2, 1, -4 }, 1, 2)]
-    [InlineData(new[] { 0, 0, 0 }, 1, 0)]
+    [MemberData(nameof(Data))]
     public void MultipleDataTest(int[] nums, int target, int expected)
     {
         int actual = Solution.ThreeSumClosest(nums, target);
@@ -34,7 +38,7 @@ public class ThreeSumUnitTest
 
 
     [Theory]
-    [MemberData(nameof(Data))]
+    [MemberData(nameof(Data), MemberType = typeof(ThreeSumUnitTest))]
     public void MultipleDataTest(int[] nums, IList<IList<int>> expected)
     {
         var actual = Solution.ThreeSum(nums);
@@ -119,7 +123,7 @@ public class TrimBstUnitTest
     };
 
     [Theory]
-    [MemberData(nameof(Data))]
+    [MemberData(nameof(Data), MemberType = typeof(TrimBstUnitTest))]
     public void MultipleDataTest(TreeNode root, int low, int high, TreeNode expected)
     {
         var actual = Solution.TrimBst(root, low, high);
@@ -161,7 +165,7 @@ public class TwoOutOfThreeUnitTest
     };
 
     [Theory]
-    [MemberData(nameof(Data))]
+    [MemberData(nameof(Data), MemberType = typeof(TwoOutOfThreeUnitTest))]
     public void Test(int[] nums1, int[] nums2, int[] nums3, IList<int> expected)
     {
         var actual = Solution.TwoOutOfThree(nums1, nums2, nums3);
@@ -173,10 +177,13 @@ public class TwoOutOfThreeUnitTest
 
 public class TwoSumIiUnitTest
 {
+    public static TheoryData<int[], int, int[]> Data => new()
+    {
+        { [2, 7, 11, 15], 9, [1, 2] }, { [2, 3, 4], 6, [1, 3] }, { [-1, 0], -1, [1, 2] }
+    };
+
     [Theory]
-    [InlineData(new[] { 2, 7, 11, 15 }, 9, new[] { 1, 2 })]
-    [InlineData(new[] { 2, 3, 4 }, 6, new[] { 1, 3 })]
-    [InlineData(new[] { -1, 0 }, -1, new[] { 1, 2 })]
+    [MemberData(nameof(Data))]
     public void Test1(int[] numbers, int target, int[] expected)
     {
         int[] actual = Solution.TwoSumIi(numbers, target);

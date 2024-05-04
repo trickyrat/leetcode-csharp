@@ -25,7 +25,7 @@ public class BuildArrayUnitTest
 
 
     [Theory]
-    [MemberData(nameof(Data))]
+    [MemberData(nameof(Data), MemberType = typeof(BuildArrayUnitTest))]
     public void Test(int[] targets, int n, IList<string> expected)
     {
         var actual = Solution.BuildArray(targets, n);

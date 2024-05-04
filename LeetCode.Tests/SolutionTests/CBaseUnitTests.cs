@@ -134,7 +134,7 @@ public class CodecUnitTest
 
 
     [Theory]
-    [MemberData(nameof(Data))]
+    [MemberData(nameof(Data), MemberType = typeof(CodecUnitTest))]
     public void MultipleDataTest(TreeNode root, TreeNode expected)
     {
         string treeNodeString = _codec.Serialize(root);
@@ -152,7 +152,7 @@ public class CombinationSum2UnitTest
     };
 
     [Theory]
-    [MemberData(nameof(Data))]
+    [MemberData(nameof(Data), MemberType = typeof(CombinationSum2UnitTest))]
     public void MultipleDataTest(int[] candidates, int target, IList<IList<int>> expected)
     {
         var actual = Solution.CombinationSum2(candidates, target);
@@ -172,7 +172,7 @@ public class CombinationSumUnitTest
     };
 
     [Theory]
-    [MemberData(nameof(Data))]
+    [MemberData(nameof(Data), MemberType = typeof(CombinationSumUnitTest))]
     private void MultipleDataTest(int[] candidates, int target, IList<IList<int>> expected)
     {
         var actual = Solution.CombinationSum(candidates, target);
@@ -214,7 +214,7 @@ public class ConstructMaximumBinaryTreeUnitTest
     };
 
     [Theory]
-    [MemberData(nameof(Data))]
+    [MemberData(nameof(Data), MemberType = typeof(ConstructMaximumBinaryTreeUnitTest))]
     public void MultipleDataTest(int[] nums, TreeNode expected)
     {
         var actual = Solution.ConstructMaximumBinaryTree(nums);

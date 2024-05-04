@@ -82,7 +82,7 @@ public class FindClosestElementsUnitTest
     };
 
     [Theory]
-    [MemberData(nameof(Data))]
+    [MemberData(nameof(Data), MemberType = typeof(FindClosestElementsUnitTest))]
     public void MultipleDataTest(int[] arr, int k, int x, IList<int> expected)
     {
         var actual = Solution.FindClosestElements(arr, k, x);
@@ -122,7 +122,7 @@ public class FindDuplicateSubtreesUnitTest
     };
 
     [Theory]
-    [MemberData(nameof(Data))]
+    [MemberData(nameof(Data), MemberType = typeof(FindDuplicateSubtreesUnitTest))]
     public void MultipleDataTest(TreeNode root, IList<TreeNode> expected)
     {
         var actual = Solution.FindDuplicateSubtrees(root);
@@ -244,7 +244,7 @@ public class FindSubstringUnitTest
     };
 
     [Theory]
-    [MemberData(nameof(Data))]
+    [MemberData(nameof(Data), MemberType = typeof(FindSubstringUnitTest))]
     public void MultipleDataTest(string s, string[] words, IList<int> expected)
     {
         var actual = Solution.FindSubstring(s, words);
@@ -262,7 +262,7 @@ public class FindTargetUnitTest
 
 
     [Theory]
-    [MemberData(nameof(Data))]
+    [MemberData(nameof(Data), MemberType = typeof(FindTargetUnitTest))]
     public void Test(TreeNode root, int target, bool expected)
     {
         bool actual = Solution.FindTarget(root, target);
@@ -282,7 +282,7 @@ public class FindTheWinnerUnitTest
     }
 }
 
-public class FindWordsIIUnitTest
+public class FindWordsIiUnitTest
 {
     public static TheoryData<char[][], string[], IList<string>> Data => new()
     {
@@ -305,7 +305,7 @@ public class FindWordsIIUnitTest
     };
 
     [Theory]
-    [MemberData(nameof(Data))]
+    [MemberData(nameof(Data), MemberType = typeof(FindWordsIiUnitTest))]
     public void MultipleDataTest(char[][] board, string[] words, IList<string> expected)
     {
         var actual = Solution.FindWords(board, words);
@@ -315,8 +315,7 @@ public class FindWordsIIUnitTest
 
 public class FirstDayBeenInAllRoomsUnitTest
 {
-    public static TheoryData<int[], int> Data =>
-        new() { { [0, 0], 2 }, { [0, 0, 2], 6 }, { [0, 1, 2, 0], 6 }, };
+    public static TheoryData<int[], int> Data => new() { { [0, 0], 2 }, { [0, 0, 2], 6 }, { [0, 1, 2, 0], 6 } };
 
     [Theory]
     [MemberData(nameof(Data))]
@@ -329,10 +328,8 @@ public class FirstDayBeenInAllRoomsUnitTest
 
 public class FirstMissingPositiveUnitTest
 {
-    public static TheoryData<int[], int> Data => new()
-    {
-        { [1, 2, 0], 3 }, { [3, 4, -1, 1], 2 }, { [7, 8, 9, 11, 12], 1 }
-    };
+    public static TheoryData<int[], int> Data =>
+        new() { { [1, 2, 0], 3 }, { [3, 4, -1, 1], 2 }, { [7, 8, 9, 11, 12], 1 } };
 
     [Theory]
     [MemberData(nameof(Data))]
@@ -357,7 +354,7 @@ public class FizzBuzzUnitTest
 
 
     [Theory]
-    [MemberData(nameof(Data))]
+    [MemberData(nameof(Data), MemberType = typeof(FizzBuzzUnitTest))]
     public void Test(int n, IList<string> expected)
     {
         var actual = Solution.FizzBuzz(n);
@@ -382,24 +379,8 @@ public class FloodFillUnitTest
 {
     public static TheoryData<int[][], int, int, int, int[][]> Data => new()
     {
-        {
-            [
-                [1, 1, 1],
-                [1, 1, 0],
-                [1, 0, 1],
-            ],
-            1, 1, 2, new int[][] { [2, 2, 2], [2, 2, 0], [2, 0, 1], }
-        },
-        {
-            [
-                [0, 0, 0],
-                [0, 0, 0]
-            ],
-            0, 0, 2, [
-                [2, 2, 2],
-                [2, 2, 2]
-            ]
-        }
+        { [[1, 1, 1], [1, 1, 0], [1, 0, 1],], 1, 1, 2, [[2, 2, 2], [2, 2, 0], [2, 0, 1]] },
+        { [[0, 0, 0], [0, 0, 0]], 0, 0, 2, [[2, 2, 2], [2, 2, 2]] }
     };
 
 
@@ -437,18 +418,12 @@ public class FourSumUnitTest
 {
     public static TheoryData<int[], int, IList<IList<int>>> Data => new()
     {
-        {
-            [1, 0, -1, 0, -2, 2], 0, [
-                [-2, -1, 1, 2],
-                [-2, 0, 0, 2],
-                [-1, 0, 0, 1]
-            ]
-        },
+        { [1, 0, -1, 0, -2, 2], 0, [[-2, -1, 1, 2], [-2, 0, 0, 2], [-1, 0, 0, 1]] },
         { [2, 2, 2, 2, 2], 8, [[2, 2, 2, 2],] }
     };
 
     [Theory]
-    [MemberData(nameof(Data))]
+    [MemberData(nameof(Data), MemberType = typeof(FourSumUnitTest))]
     public void MultipleDataTest(int[] nums, int target, IList<IList<int>> expected)
     {
         var actual = Solution.FourSum(nums, target);
@@ -477,24 +452,29 @@ public class FrequencySortUnitTest
 
 public class FullJustifyUnitTest
 {
-    [Fact]
-    public void FullJustifyTest1()
+    public static TheoryData<string[], int, IList<string>> Data => new()
     {
-        string[] words =
-        [
-            "Science", "is", "what", "we", "understand", "well", "enough", "to", "explain", "to", "a", "computer.",
-            "Art", "is", "everything", "else", "we", "do"
-        ];
-        IList<string> expected = new List<string>
         {
-            "Science  is  what we",
-            "understand      well",
-            "enough to explain to",
-            "a  computer.  Art is",
-            "everything  else  we",
-            "do                  "
-        };
-        const int maxWidth = 20;
+            [
+                "Science", "is", "what", "we", "understand", "well", "enough", "to", "explain", "to", "a", "computer.",
+                "Art", "is", "everything", "else", "we", "do"
+            ],
+            20,
+            [
+                "Science  is  what we",
+                "understand      well",
+                "enough to explain to",
+                "a  computer.  Art is",
+                "everything  else  we",
+                "do                  "
+            ]
+        }
+    };
+
+    [Theory]
+    [MemberData(nameof(Data), MemberType = typeof(FullJustifyUnitTest))]
+    public void Test(string[] words, int maxWidth, IList<string> expected)
+    {
         var actual = Solution.FullJustify(words, maxWidth);
         Assert.Equal(expected, actual);
     }
