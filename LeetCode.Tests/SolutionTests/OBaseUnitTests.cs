@@ -2,12 +2,16 @@ namespace LeetCode.Tests.SolutionTests;
 
 public class OptimalDivisionUnitTest
 {
-    [Fact]
-    public void SingleTest()
+    public static TheoryData<int[], string> Data => new()
     {
-        int[] nums = [1000, 100, 10, 2];
+        { [1000, 100, 10, 2], "1000/(100/10/2)" }, { [2, 3, 4], "2/(3/4)" }
+    };
+
+    [Theory]
+    [MemberData(nameof(Data))]
+    public void Test(int[] nums, string expected)
+    {
         string actual = Solution.OptimalDivision(nums);
-        string expected = "1000/(100/10/2)";
         Assert.Equal(actual, expected);
     }
 }

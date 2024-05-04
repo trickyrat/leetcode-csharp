@@ -12,7 +12,7 @@ public class InsertIntoMaxTreeUnitTest
     };
 
     [Theory]
-    [MemberData(nameof(Data))]
+    [MemberData(nameof(Data), MemberType = typeof(InsertIntoMaxTreeUnitTest))]
     public void MultipleDataTest(TreeNode root, int val, TreeNode expected)
     {
         var actual = Solution.InsertIntoMaxTree(root, val);

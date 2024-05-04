@@ -7,7 +7,6 @@ public class NearestValidPointUnitTest
         { 3, 4, [[1, 2], [3, 1], [2, 4], [2, 3], [4, 4]], 2 }, { 3, 4, [[3, 4]], 0 }, { 3, 4, [[2, 3]], -1 }
     };
 
-
     [Theory]
     [MemberData(nameof(Data))]
     public void MultipleDataTest(int x, int y, int[][] points, int expected)

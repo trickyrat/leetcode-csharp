@@ -32,7 +32,7 @@ public class UtilUnitTest
     };
 
     [Theory]
-    [MemberData(nameof(TreeNodeData))]
+    [MemberData(nameof(TreeNodeData), MemberType = typeof(UtilUnitTest))]
     public void Test_CreateTreeNode_Should_OK(List<int?> numbers, TreeNode expected)
     {
         var actual = Util.GenerateTreeNode(numbers);
@@ -62,19 +62,23 @@ public class UtilUnitTest
         Assert.Equal(expectedRhs, rhs);
     }
 
+    public static TheoryData<int[], int, int, int[]> SwapPassTestData => new()
+    {
+        { [1, 2], 0, 1, [2, 1] }, { [1, 2, 3, 4], 0, 3, [4, 2, 3, 1] }
+    };
 
     [Theory]
-    [InlineData(new[] { 1, 2 }, 0, 1, new[] { 2, 1 })]
-    [InlineData(new[] { 1, 2, 3, 4 }, 0, 3, new[] { 4, 2, 3, 1 })]
+    [MemberData(nameof(SwapPassTestData))]
     public void Test_SwapByArray_Should_OK(int[] input, int lhs, int rhs, int[] expected)
     {
         Util.Swap(input, lhs, rhs);
         Assert.Equal(expected, input);
     }
 
+    public static TheoryData<int[], int, int> SwapFailedTestData => new() { { [1, 2], 1, 2 }, { [1, 2, 3, 4], -1, 3 } };
+
     [Theory]
-    [InlineData(new[] { 1, 2 }, 1, 2)]
-    [InlineData(new[] { 1, 2, 3, 4 }, -1, 3)]
+    [MemberData(nameof(SwapFailedTestData))]
     public void Test_SwapByArray_Should_ThrowIndexOutOfRangeException(int[] input, int lhs, int rhs)
     {
         Assert.Throws<IndexOutOfRangeException>(() => Util.Swap(input, lhs, rhs));

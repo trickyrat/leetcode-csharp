@@ -27,7 +27,7 @@ public class ExclusiveTimeUnitTest
     };
 
     [Theory]
-    [MemberData(nameof(Data))]
+    [MemberData(nameof(Data), MemberType = typeof(ExclusiveTimeUnitTest))]
     public void MultipleDataTest(int n, IList<string> logs, int[] expected)
     {
         int[] actual = Solution.ExclusiveTime(n, logs);

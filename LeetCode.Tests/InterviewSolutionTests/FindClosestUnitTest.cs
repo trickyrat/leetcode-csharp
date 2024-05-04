@@ -5,17 +5,10 @@ namespace LeetCode.Tests.InterviewSolutionTests;
 
 public class FindClosestUnitTest
 {
-    public static TheoryData<string[], string, string, int> Data
+    public static TheoryData<string[], string, string, int> Data => new()
     {
-        get
-        {
-            var data = new TheoryData<string[], string, string, int>
-            {
-                { ["I", "am", "a", "student", "from", "a", "university", "in", "a", "city"], "a", "student", 1}
-            };
-            return data;
-        }
-    }
+        { ["I", "am", "a", "student", "from", "a", "university", "in", "a", "city"], "a", "student", 1 }
+    };
 
     [Theory]
     [MemberData(nameof(Data))]

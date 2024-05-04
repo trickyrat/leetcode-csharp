@@ -216,7 +216,7 @@ public class MergeKListsUnitTest
 
 
     [Theory]
-    [MemberData(nameof(Data))]
+    [MemberData(nameof(Data), MemberType = typeof(MergeKListsUnitTest))]
     public void MultipleDataTest(ListNode[] lists, ListNode expected)
     {
         var actual = Solution.MergeKLists(lists);
@@ -238,7 +238,7 @@ public class MergeTwoListsUnitTest
 
 
     [Theory]
-    [MemberData(nameof(Data))]
+    [MemberData(nameof(Data), MemberType = typeof(MergeTwoListsUnitTest))]
     public void Test(ListNode l1, ListNode l2, List<int> expected)
     {
         var actualNode = Solution.MergeTwoLists(l1, l2);
@@ -273,7 +273,7 @@ public class MiddleNodeUnitTest
     };
 
     [Theory]
-    [MemberData(nameof(Data))]
+    [MemberData(nameof(Data), MemberType = typeof(MiddleNodeUnitTest))]
     public void Test_Input_Even_Data_Should_OK(ListNode input, ListNode expected)
     {
         var actual = Solution.MiddleNode(input);
@@ -539,7 +539,7 @@ public class MinSubsequenceUnitTest
 
 
     [Theory]
-    [MemberData(nameof(Data))]
+    [MemberData(nameof(Data), MemberType = typeof(MinSubsequenceUnitTest))]
     public void MultipleDataTest(int[] input, IList<int> expected)
     {
         var actual = Solution.MinSubsequence(input);
@@ -586,7 +586,7 @@ public class MoveZeroUnitTest
         {[0, 1, 0, 3, 12],[1, 3, 12, 0, 0]},
         {[0],[0]}
     };
-    
+
     [Theory]
     [MemberData(nameof(Data))]
     public void Test(int[] nums, int[] expected)

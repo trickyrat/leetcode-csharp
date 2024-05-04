@@ -10,7 +10,7 @@ public class WidthOfBinaryTreeUnitTest
     };
 
     [Theory]
-    [MemberData(nameof(Data))]
+    [MemberData(nameof(Data), MemberType = typeof(WidthOfBinaryTreeUnitTest))]
     public void MultipleDataTest(TreeNode root, int expected)
     {
         int actual = Solution.WidthOfBinaryTree(root);
