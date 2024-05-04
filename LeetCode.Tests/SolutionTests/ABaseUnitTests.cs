@@ -39,7 +39,7 @@ public class AddOneRowUnitTest
     };
 
     [Theory]
-    [MemberData(nameof(Data))]
+    [MemberData(nameof(Data), MemberType = typeof(AddOneRowUnitTest))]
     public void MultipleDataTest(TreeNode root, int val, int depth, TreeNode expectedNode)
     {
         var actualNode = Solution.AddOneRow(root, val, depth);
@@ -75,7 +75,7 @@ public class AddTwoNumbersUnitTest
     };
 
     [Theory]
-    [MemberData(nameof(Data))]
+    [MemberData(nameof(Data), MemberType = typeof(AddTwoNumbersUnitTest))]
     public void Test(ListNode l1, ListNode l2, ListNode expected)
     {
         var actual = Solution.AddTwoNumbers(l1, l2);
@@ -179,17 +179,10 @@ public class AtoiUnitTest
 
 public class AverageUnitTest
 {
-    public static TheoryData<int[], double> Data
+    public static TheoryData<int[], double> Data => new()
     {
-        get
-        {
-            var data = new TheoryData<int[], double>
-            {
-                { [4000, 3000, 1000, 2000], 2500.00000 }, { [1000, 2000, 3000], 2000.00000 }
-            };
-            return data;
-        }
-    }
+        { [4000, 3000, 1000, 2000], 2500.00000 }, { [1000, 2000, 3000], 2000.00000 }
+    };
 
     [Theory]
     [MemberData(nameof(Data))]

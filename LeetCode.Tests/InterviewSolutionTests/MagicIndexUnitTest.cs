@@ -5,21 +5,14 @@ namespace LeetCode.Tests.InterviewSolutionTests;
 
 public class MagicIndexUnitTest
 {
-    public static TheoryData<int[], int> Data
+    public static TheoryData<int[], int> Data => new()
     {
-        get
-        {
-            var data = new TheoryData<int[], int>
-            {
-                { [0, 1, 2, 3, 4], 0 },
-                { [0, 1, 3, 3, 4], 0 },
-                { [0, 2, 3, 3, 4], 0 },
-                { [1, 2, 2, 3, 4], 2 },
-                { [1, 2, 3, 4, 4], 4 },
-            };
-            return data;
-        }
-    }
+        { [0, 1, 2, 3, 4], 0 },
+        { [0, 1, 3, 3, 4], 0 },
+        { [0, 2, 3, 3, 4], 0 },
+        { [1, 2, 2, 3, 4], 2 },
+        { [1, 2, 3, 4, 4], 4 },
+    };
 
     [Theory]
     [MemberData(nameof(Data))]

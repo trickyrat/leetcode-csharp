@@ -52,7 +52,7 @@ public class GetAllElementsUnitTest
 
 
     [Theory]
-    [MemberData(nameof(Data))]
+    [MemberData(nameof(Data), MemberType = typeof(GetAllElementsUnitTest))]
     public void MultipleDataTest(TreeNode root1, TreeNode root2, IList<int> expected)
     {
         var actual = Solution.GetAllElements(root1, root2);

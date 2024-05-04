@@ -189,9 +189,13 @@ public class SimplifyPathUnitTest
 
 public class SingleNonDuplicateUnitTest
 {
+    public static TheoryData<int[], int> Data => new()
+    {
+        { [1, 1, 2, 3, 3, 4, 4, 8, 8], 2 }, { [3, 3, 7, 7, 10, 11, 11], 10 }
+    };
+
     [Theory]
-    [InlineData(new[] { 1, 1, 2, 3, 3, 4, 4, 8, 8 }, 2)]
-    [InlineData(new[] { 3, 3, 7, 7, 10, 11, 11 }, 10)]
+    [MemberData(nameof(Data))]
     public void Test(int[] nums, int expected)
     {
         int actual = Solution.SingleNonDuplicate(nums);
@@ -201,10 +205,16 @@ public class SingleNonDuplicateUnitTest
 
 public class SingleNumberUnitTest
 {
+    public static TheoryData<int[], int> DataV1 = new() { { [2, 2, 1], 1 }, { [4, 1, 2, 1, 2], 4 }, { [1], 1 } };
+    public static TheoryData<int[], int> DataV2 = new() { { [2, 2, 3, 2], 3 }, { [0, 1, 0, 1, 0, 1, 99], 99 } };
+
+    public static TheoryData<int[], int[]> DataV3 = new()
+    {
+        { [1, 2, 1, 3, 2, 5], [3, 5] }, { [-1, 0], [-1, 0] }, { [0, 1], [1, 0] }
+    };
+
     [Theory]
-    [InlineData(new[] { 2, 2, 1 }, 1)]
-    [InlineData(new[] { 4, 1, 2, 1, 2 }, 4)]
-    [InlineData(new[] { 1 }, 1)]
+    [MemberData(nameof(DataV1))]
     public void Test_SingleNumber(int[] nums, int expected)
     {
         int actual = Solution.SingleNumber(nums);
@@ -212,8 +222,7 @@ public class SingleNumberUnitTest
     }
 
     [Theory]
-    [InlineData(new[] { 2, 2, 3, 2 }, 3)]
-    [InlineData(new[] { 0, 1, 0, 1, 0, 1, 99 }, 99)]
+    [MemberData(nameof(DataV2))]
     public void Test_SingleNumber_V2(int[] nums, int expected)
     {
         int actual = Solution.SingleNumberV2(nums);
@@ -221,9 +230,7 @@ public class SingleNumberUnitTest
     }
 
     [Theory]
-    [InlineData(new[] { 1, 2, 1, 3, 2, 5 }, new[] { 3, 5 })]
-    [InlineData(new[] { -1, 0 }, new[] { -1, 0 })]
-    [InlineData(new[] { 0, 1 }, new[] { 1, 0 })]
+    [MemberData(nameof(DataV3))]
     public void Test_SingleNumber_V3(int[] nums, int[] expected)
     {
         int[] actual = Solution.SingleNumberV3(nums);
@@ -233,10 +240,10 @@ public class SingleNumberUnitTest
 
 public class SmallestRangeIUnitTest
 {
+    public static TheoryData<int[], int, int> Data => new() { { [1], 0, 0 }, { [0, 10], 2, 6 }, { [1, 3, 6], 3, 0 } };
+
     [Theory]
-    [InlineData(new[] { 1 }, 0, 0)]
-    [InlineData(new[] { 0, 10 }, 2, 6)]
-    [InlineData(new[] { 1, 3, 6 }, 3, 0)]
+    [MemberData(nameof(Data))]
     public void Test(int[] nums, int k, int expected)
     {
         int actual = Solution.SmallestRangeI(nums, k);
@@ -286,9 +293,10 @@ public class SolveSudokuUnitTest
 
 public class SortArrayByParityUnitTest
 {
+    public static TheoryData<int[], int[]> Data => new() { { [3, 1, 2, 4], [4, 2, 1, 3] }, { [0], [0] } };
+
     [Theory]
-    [InlineData(new[] { 3, 1, 2, 4 }, new[] { 4, 2, 1, 3 })]
-    [InlineData(new[] { 0 }, new[] { 0 })]
+    [MemberData(nameof(Data))]
     public void MultipleDataTest(int[] nums, int[] expected)
     {
         int[] actual = Solution.SortArrayByParity(nums);
@@ -298,11 +306,18 @@ public class SortArrayByParityUnitTest
 
 public class SortedListToBstUnitTest
 {
-    [Fact]
-    public void Test()
+    public static TheoryData<int[], List<int?>> Data => new()
     {
-        var actualNode = Solution.SortedArrayToBst(new[] { -10, -3, 0, 5, 9 });
-        var expectedNode = Util.GenerateTreeNode([0, -10, 5, null, -3, null, 9]);
+        {[-10, -3, 0, 5, 9],[0, -10, 5, null, -3, null, 9]}
+    };
+
+
+    [Theory]
+    [MemberData(nameof(Data), MemberType = typeof(SortedListToBstUnitTest))]
+    public void Test(int[] nums, List<int?> expectedNodes)
+    {
+        var actualNode = Solution.SortedArrayToBst(nums);
+        var expectedNode = Util.GenerateTreeNode(expectedNodes);
         var actual = Util.PreorderTraversal(actualNode);
         var expected = Util.PreorderTraversal(expectedNode);
         Assert.Equal(expected, actual);
@@ -350,7 +365,7 @@ public class SpiralOrderUnitTest
     };
 
     [Theory]
-    [MemberData(nameof(Data))]
+    [MemberData(nameof(Data), MemberType = typeof(SpiralOrderUnitTest))]
     public void MultipleDataTest(int[][] matrix, IList<int> expected)
     {
         var actual = Solution.SpiralOrder(matrix);
@@ -360,18 +375,17 @@ public class SpiralOrderUnitTest
 
 public class StockSpannerUnitTest
 {
-    private readonly StockSpanner _stockSpanner = new();
-
     [Fact]
     public void MultipleDataTest()
     {
-        Assert.Equal(1, _stockSpanner.Next(100));
-        Assert.Equal(1, _stockSpanner.Next(80));
-        Assert.Equal(1, _stockSpanner.Next(60));
-        Assert.Equal(2, _stockSpanner.Next(70));
-        Assert.Equal(1, _stockSpanner.Next(60));
-        Assert.Equal(4, _stockSpanner.Next(75));
-        Assert.Equal(6, _stockSpanner.Next(85));
+        StockSpanner stockSpanner = new();
+        Assert.Equal(1, stockSpanner.Next(100));
+        Assert.Equal(1, stockSpanner.Next(80));
+        Assert.Equal(1, stockSpanner.Next(60));
+        Assert.Equal(2, stockSpanner.Next(70));
+        Assert.Equal(1, stockSpanner.Next(60));
+        Assert.Equal(4, stockSpanner.Next(75));
+        Assert.Equal(6, stockSpanner.Next(85));
     }
 }
 
@@ -385,7 +399,7 @@ public class StringMatchingUnitTest
     };
 
     [Theory]
-    [MemberData(nameof(Data))]
+    [MemberData(nameof(Data), MemberType = typeof(StringMatchingUnitTest))]
     public void MultipleDataTest(string[] words, IList<string> expected)
     {
         var actual = Solution.StringMatching(words);
@@ -419,7 +433,7 @@ public class SubdomainVisitsUnitTest
     };
 
     [Theory]
-    [MemberData(nameof(Data))]
+    [MemberData(nameof(Data), MemberType = typeof(SubdomainVisitsUnitTest))]
     public void Test(string[] cpdomains, IList<string> expected)
     {
         var actual = Solution.SubdomainVisit(cpdomains);
@@ -438,7 +452,7 @@ public class SumRootToLeafUnitTest
 
 
     [Theory]
-    [MemberData(nameof(Data))]
+    [MemberData(nameof(Data), MemberType = typeof(SumRootToLeafUnitTest))]
     public void MultipleDataTest(TreeNode root, int expected)
     {
         int actual = Solution.SumRootToLeaf(root);
@@ -455,9 +469,8 @@ public class SwapPairsUnitTest
         { Util.GenerateListNode([1]), Util.GenerateListNode([1]) }
     };
 
-
     [Theory]
-    [MemberData(nameof(Data))]
+    [MemberData(nameof(Data), MemberType = typeof(SwapPairsUnitTest))]
     public void MultipleDataTest(ListNode head, ListNode expected)
     {
         var actual = Solution.SwapPairs(head);

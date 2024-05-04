@@ -274,7 +274,7 @@ public class PrintOrderUnitTest
 
 
     [Theory]
-    [MemberData(nameof(Data))]
+    [MemberData(nameof(Data), MemberType = typeof(PrintOrderUnitTest))]
     public async Task Test(List<int> sequences, string expected)
     {
         string actual = "";
