@@ -3876,6 +3876,41 @@ public partial class Solution
     }
 
     /// <summary>
+    /// 2903. Find Indices With Index and Value Difference I
+    /// </summary>
+    /// <param name="nums"></param>
+    /// <param name="indexDifference"></param>
+    /// <param name="valueDifference"></param>
+    /// <returns></returns>
+    public static int[] FindIndices(int[] nums, int indexDifference, int valueDifference)
+    {
+        int minIndex = 0, maxIndex = 0;
+        for (int j = indexDifference; j < nums.Length; j++)
+        {
+            int i = j - indexDifference;
+            if (nums[i] < nums[minIndex])
+            {
+                minIndex = i;
+            }
+
+            if (nums[j] - nums[minIndex] >= valueDifference)
+            {
+                return [minIndex, j];
+            }
+
+            if (nums[i] > nums[maxIndex])
+            {
+                maxIndex = i;
+            }
+            if (nums[maxIndex] - nums[j] >= valueDifference)
+            {
+                return [maxIndex, j];
+            }
+        }
+        return [-1, -1];
+    }
+
+    /// <summary>
     /// 2908. Minimum Sum of Mountain Triplets I
     /// </summary>
     /// <param name="nums"></param>

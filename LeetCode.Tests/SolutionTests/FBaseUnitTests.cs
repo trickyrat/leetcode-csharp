@@ -74,6 +74,22 @@ public class FindCenterUnitTest
     }
 }
 
+public class FindIndicesUnitTest
+{
+    public static TheoryData<int[], int, int, int[]> Data => new()
+    {
+        { [5,1,4,1], 2, 4, [0, 3] }, { [2, 1], 0, 0, [0, 0] }, { [1, 2, 3], 2, 4, [-1, -1] }
+    };
+
+    [Theory]
+    [MemberData(nameof(Data), MemberType = typeof(FindIndicesUnitTest))]
+    public void MultipleDataTest(int[] nums, int indexDifference, int valueDifference, int[] expected)
+    {
+        int[] actual = Solution.FindIndices(nums, indexDifference, valueDifference);
+        Assert.Equal(expected, actual);
+    }
+}
+
 public class FindClosestElementsUnitTest
 {
     public static TheoryData<int[], int, int, IList<int>> Data => new()
