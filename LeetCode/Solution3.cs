@@ -29,7 +29,7 @@ public partial class Solution
         stack.Push([t1, t2]);
         while (stack.Count > 0)
         {
-            var t = stack.Pop();
+            TreeNode[] t = stack.Pop();
             if (t[0] == null || t[1] == null)
             {
                 continue;
@@ -173,7 +173,7 @@ public partial class Solution
 
             (int, int, int) triple = (node.Val, Dfs(node.Left), Dfs(node.Right));
             string key = triple.ToString();
-            if (seen.TryGetValue(key, out var pair))
+            if (seen.TryGetValue(key, out (TreeNode, int) pair))
             {
                 repeat.Add(pair.Item1);
                 return pair.Item2;
@@ -230,8 +230,8 @@ public partial class Solution
 
         TreeNode GetRight(Stack<TreeNode> stack)
         {
-            var currentNode = stack.Pop();
-            var node = currentNode.Left;
+            TreeNode currentNode = stack.Pop();
+            TreeNode node = currentNode.Left;
             while (node != null)
             {
                 stack.Push(node);
@@ -243,8 +243,8 @@ public partial class Solution
 
         TreeNode GetLeft(Stack<TreeNode> stack)
         {
-            var currentNode = stack.Pop();
-            var node = currentNode.Right;
+            TreeNode currentNode = stack.Pop();
+            TreeNode node = currentNode.Right;
             while (node != null)
             {
                 stack.Push(node);
@@ -453,7 +453,7 @@ public partial class Solution
             return null;
         }
 
-        for (var node = root; node.Left is not null;)
+        for (TreeNode node = root; node.Left is not null;)
         {
             if (node.Left.Val < low)
             {
@@ -465,7 +465,7 @@ public partial class Solution
             }
         }
 
-        for (var node = root; node.Right is not null;)
+        for (TreeNode node = root; node.Right is not null;)
         {
             if (node.Right.Val > high)
             {
@@ -828,7 +828,7 @@ public partial class Solution
             return new TreeNode(val);
         }
 
-        var currentNode = root;
+        TreeNode currentNode = root;
         while (true)
         {
             if (currentNode.Val >= val)

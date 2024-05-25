@@ -46,7 +46,7 @@ public partial class Solution
         }
 
         int carry = 0;
-        var curr = dummyHead;
+        ListNode curr = dummyHead;
         while (l1 != null || l2 != null)
         {
             int sum = carry;
@@ -779,8 +779,8 @@ public partial class Solution
     public static ListNode RemoveNthFromEnd(ListNode head, int n)
     {
         var dummy = new ListNode(0, head);
-        var first = dummy;
-        var second = dummy;
+        ListNode first = dummy;
+        ListNode second = dummy;
         for (int i = 0; i <= n; i++)
         {
             first = first.Next;
@@ -841,7 +841,7 @@ public partial class Solution
     public static ListNode MergeTwoLists(ListNode l1, ListNode l2)
     {
         var dummyHead = new ListNode(0);
-        var head = dummyHead;
+        ListNode head = dummyHead;
         while (l1 != null && l2 != null)
         {
             if (l1.Val <= l2.Val)
@@ -947,11 +947,11 @@ public partial class Solution
         {
             Next = head
         };
-        var curr = dummy;
+        ListNode curr = dummy;
         while (curr.Next?.Next != null)
         {
-            var a = curr.Next;
-            var b = curr.Next.Next;
+            ListNode a = curr.Next;
+            ListNode b = curr.Next.Next;
             a.Next = b.Next;
             curr.Next = b;
             curr.Next.Next = a;
@@ -968,7 +968,7 @@ public partial class Solution
     {
         // Non-recursive
         int n = 0;
-        for (var i = head; i != null;)
+        for (ListNode i = head; i != null;)
         {
             n++;
             i = i.Next;
@@ -982,7 +982,7 @@ public partial class Solution
         {
             for (int i = 1; i < k; i++)
             {
-                var next = tail.Next.Next;
+                ListNode next = tail.Next.Next;
                 tail.Next.Next = prev.Next;
                 prev.Next = tail.Next;
                 tail.Next = next;
@@ -1102,7 +1102,7 @@ public partial class Solution
             return 0;
         }
 
-        var lps = KmpProcess(needle);
+        List<int> lps = KmpProcess(needle);
         for (int i = 0, j = 0; i < m;)
         {
             if (haystack[i] == needle[j])
@@ -1929,7 +1929,7 @@ public partial class Solution
             int size = q.Count;
             while (size-- > 0)
             {
-                var list = q.Dequeue();
+                IList<int> list = q.Dequeue();
                 for (int j = 0; j <= list.Count; j++)
                 {
                     var tmp = new List<int>(list);
@@ -2240,7 +2240,7 @@ public partial class Solution
             return head;
         }
 
-        var oldTail = head;
+        ListNode oldTail = head;
         int n;
         for (n = 1; oldTail.Next != null; n++)
         {
@@ -2248,13 +2248,13 @@ public partial class Solution
         }
 
         oldTail.Next = head;
-        var newTail = head;
+        ListNode newTail = head;
         for (int i = 0; i < n - k % n - 1; i++)
         {
             newTail = newTail.Next;
         }
 
-        var newHead = newTail.Next;
+        ListNode newHead = newTail.Next;
         newTail.Next = null;
         return newHead;
     }
@@ -2425,7 +2425,7 @@ public partial class Solution
 
             if (right == n)
             {
-                var sb = Join(words, left, n, " ");
+                StringBuilder sb = Join(words, left, n, " ");
                 sb.Append(Blank(maxWidth - sb.Length));
                 ans.Add(sb.ToString());
                 return ans;
@@ -2714,7 +2714,7 @@ public partial class Solution
     /// <returns></returns>
     public static ListNode DeleteDuplicates(ListNode head)
     {
-        var current = head;
+        ListNode current = head;
         while (current?.Next != null)
         {
             if (current.Val == current.Next.Val)
@@ -2770,7 +2770,7 @@ public partial class Solution
 
         // iteratively
         var stack = new Stack<TreeNode>();
-        var curr = root;
+        TreeNode curr = root;
         while (curr != null || stack.Count > 0)
         {
             while (curr != null)
@@ -2855,8 +2855,8 @@ public partial class Solution
         queue.Enqueue(root);
         while (queue.Count > 0)
         {
-            var t1 = queue.Dequeue();
-            var t2 = queue.Dequeue();
+            TreeNode t1 = queue.Dequeue();
+            TreeNode t2 = queue.Dequeue();
             if (t1 == null & t2 == null)
             {
                 continue;
@@ -2921,7 +2921,7 @@ public partial class Solution
             res++;
             for (int i = 0, n = queue.Count; i < n; i++)
             {
-                var p = queue.Peek();
+                TreeNode p = queue.Peek();
                 queue.Dequeue();
                 if (p.Left != null)
                 {
@@ -2964,7 +2964,7 @@ public partial class Solution
             var subList = new List<int>();
             while (nodeCount > 0)
             {
-                var dataNode = que.Dequeue();
+                TreeNode dataNode = que.Dequeue();
                 subList.Add(dataNode.Val);
                 if (dataNode.Left != null)
                 {
@@ -3027,7 +3027,7 @@ public partial class Solution
 
         int FindSize(ListNode node)
         {
-            var ptr = node;
+            ListNode ptr = node;
             int c = 0;
             while (ptr != null)
             {
@@ -3046,7 +3046,7 @@ public partial class Solution
             }
 
             int mid = (l + r) / 2;
-            var left = ConvertListToBst(l, mid - 1);
+            TreeNode left = ConvertListToBst(l, mid - 1);
             var node = new TreeNode(head.Val)
             {
                 Left = left
@@ -3176,10 +3176,10 @@ public partial class Solution
             return null;
         }
 
-        var leftmost = root;
+        BinaryTreeNode leftmost = root;
         while (leftmost.Left != null)
         {
-            var head = leftmost;
+            BinaryTreeNode head = leftmost;
             while (head != null)
             {
                 head.Left.Next = head.Right;
@@ -3354,8 +3354,8 @@ public partial class Solution
             return false;
         }
 
-        var slow = head;
-        var fast = head.Next;
+        ListNode slow = head;
+        ListNode fast = head.Next;
         while (slow != fast)
         {
             if (fast?.Next == null)
@@ -3419,8 +3419,8 @@ public partial class Solution
 
         prev!.Next = null;
 
-        var l1 = SortList(head);
-        var l2 = SortList(left);
+        ListNode l1 = SortList(head);
+        ListNode l2 = SortList(left);
 
         return MergeTwoLists(l1, l2);
     }

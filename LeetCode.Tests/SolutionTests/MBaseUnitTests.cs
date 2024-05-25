@@ -219,7 +219,7 @@ public class MergeKListsUnitTest
     [MemberData(nameof(Data), MemberType = typeof(MergeKListsUnitTest))]
     public void MultipleDataTest(ListNode[] lists, ListNode expected)
     {
-        var actual = Solution.MergeKLists(lists);
+        ListNode actual = Solution.MergeKLists(lists);
         Assert.Equal(expected, actual, new ListNodeComparer());
     }
 }
@@ -241,8 +241,8 @@ public class MergeTwoListsUnitTest
     [MemberData(nameof(Data), MemberType = typeof(MergeTwoListsUnitTest))]
     public void Test(ListNode l1, ListNode l2, List<int> expected)
     {
-        var actualNode = Solution.MergeTwoLists(l1, l2);
-        var actual = Util.ConvertListNodeToList(actualNode);
+        ListNode actualNode = Solution.MergeTwoLists(l1, l2);
+        List<int> actual = Util.ConvertListNodeToList(actualNode);
         Assert.Equal(expected, actual);
     }
 }
@@ -276,7 +276,7 @@ public class MiddleNodeUnitTest
     [MemberData(nameof(Data), MemberType = typeof(MiddleNodeUnitTest))]
     public void Test_Input_Even_Data_Should_OK(ListNode input, ListNode expected)
     {
-        var actual = Solution.MiddleNode(input);
+        ListNode actual = Solution.MiddleNode(input);
         Assert.Equal(expected, actual, new ListNodeComparer());
     }
 }
@@ -542,7 +542,7 @@ public class MinSubsequenceUnitTest
     [MemberData(nameof(Data), MemberType = typeof(MinSubsequenceUnitTest))]
     public void MultipleDataTest(int[] input, IList<int> expected)
     {
-        var actual = Solution.MinSubsequence(input);
+        IList<int> actual = Solution.MinSubsequence(input);
         Assert.Equal(expected, actual);
     }
 }

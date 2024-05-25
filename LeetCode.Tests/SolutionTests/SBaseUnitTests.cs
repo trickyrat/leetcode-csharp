@@ -86,7 +86,7 @@ public class SelfDividingNumberUnitTest
     [MemberData(nameof(Data))]
     public void MultipleDataTest(int left, int right, int[] expected)
     {
-        var actual = Solution.SelfDividingNumbers(left, right);
+        IList<int> actual = Solution.SelfDividingNumbers(left, right);
         Assert.Equal(expected, actual.ToArray());
     }
 }
@@ -167,7 +167,7 @@ public class SimplifiedFractionsUnitTest
     [MemberData(nameof(Data))]
     public void Test(int n, string[] expected)
     {
-        var list = Solution.SimplifiedFractions(n);
+        IList<string> list = Solution.SimplifiedFractions(n);
         string[] actual = list.ToArray();
         Assert.Equal(expected, actual);
     }
@@ -316,10 +316,10 @@ public class SortedListToBstUnitTest
     [MemberData(nameof(Data), MemberType = typeof(SortedListToBstUnitTest))]
     public void Test(int[] nums, List<int?> expectedNodes)
     {
-        var actualNode = Solution.SortedArrayToBst(nums);
-        var expectedNode = Util.GenerateTreeNode(expectedNodes);
-        var actual = Util.PreorderTraversal(actualNode);
-        var expected = Util.PreorderTraversal(expectedNode);
+        TreeNode actualNode = Solution.SortedArrayToBst(nums);
+        TreeNode expectedNode = Util.GenerateTreeNode(expectedNodes);
+        List<int> actual = Util.PreorderTraversal(actualNode);
+        List<int> expected = Util.PreorderTraversal(expectedNode);
         Assert.Equal(expected, actual);
     }
 }
@@ -368,7 +368,7 @@ public class SpiralOrderUnitTest
     [MemberData(nameof(Data), MemberType = typeof(SpiralOrderUnitTest))]
     public void MultipleDataTest(int[][] matrix, IList<int> expected)
     {
-        var actual = Solution.SpiralOrder(matrix);
+        IList<int> actual = Solution.SpiralOrder(matrix);
         Assert.Equal(expected, actual);
     }
 }
@@ -402,7 +402,7 @@ public class StringMatchingUnitTest
     [MemberData(nameof(Data), MemberType = typeof(StringMatchingUnitTest))]
     public void MultipleDataTest(string[] words, IList<string> expected)
     {
-        var actual = Solution.StringMatching(words);
+        IList<string> actual = Solution.StringMatching(words);
         Assert.Equal(expected, actual);
     }
 }
@@ -436,7 +436,7 @@ public class SubdomainVisitsUnitTest
     [MemberData(nameof(Data), MemberType = typeof(SubdomainVisitsUnitTest))]
     public void Test(string[] cpdomains, IList<string> expected)
     {
-        var actual = Solution.SubdomainVisit(cpdomains);
+        IList<string> actual = Solution.SubdomainVisit(cpdomains);
         actual = actual.OrderBy(x => x).ToList();
         expected = expected.OrderBy(x => x).ToList();
         Assert.Equal(expected, actual);
@@ -473,7 +473,7 @@ public class SwapPairsUnitTest
     [MemberData(nameof(Data), MemberType = typeof(SwapPairsUnitTest))]
     public void MultipleDataTest(ListNode head, ListNode expected)
     {
-        var actual = Solution.SwapPairs(head);
+        ListNode actual = Solution.SwapPairs(head);
         Assert.Equal(expected, actual, new ListNodeComparer());
     }
 }

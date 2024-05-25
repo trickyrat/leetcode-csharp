@@ -42,9 +42,9 @@ public class AddOneRowUnitTest
     [MemberData(nameof(Data), MemberType = typeof(AddOneRowUnitTest))]
     public void MultipleDataTest(TreeNode root, int val, int depth, TreeNode expectedNode)
     {
-        var actualNode = Solution.AddOneRow(root, val, depth);
-        var actual = Util.PreorderTraversal(actualNode);
-        var expected = Util.PreorderTraversal(expectedNode);
+        TreeNode actualNode = Solution.AddOneRow(root, val, depth);
+        List<int> actual = Util.PreorderTraversal(actualNode);
+        List<int> expected = Util.PreorderTraversal(expectedNode);
         Assert.Equal(expected, actual);
     }
 }
@@ -78,7 +78,7 @@ public class AddTwoNumbersUnitTest
     [MemberData(nameof(Data), MemberType = typeof(AddTwoNumbersUnitTest))]
     public void Test(ListNode l1, ListNode l2, ListNode expected)
     {
-        var actual = Solution.AddTwoNumbers(l1, l2);
+        ListNode actual = Solution.AddTwoNumbers(l1, l2);
         Assert.Equal(expected, actual, new ListNodeComparer());
     }
 }

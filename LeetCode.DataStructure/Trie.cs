@@ -12,7 +12,7 @@ public class Trie
 
     public void Insert(string word)
     {
-        var node = Root;
+        TrieNode node = Root;
         foreach (char currentChar in word)
         {
             if (!node.ContainsKey(currentChar))
@@ -29,13 +29,13 @@ public class Trie
 
     public bool Search(string word)
     {
-        var node = SearchPrefix(word);
+        TrieNode node = SearchPrefix(word);
         return node is { IsEnd: true };
     }
 
     private TrieNode SearchPrefix(string word)
     {
-        var node = Root;
+        TrieNode node = Root;
         foreach (char currLetter in word)
         {
             if (node.ContainsKey(currLetter))
@@ -49,7 +49,7 @@ public class Trie
 
     public bool StartWith(string prefix)
     {
-        var node = SearchPrefix(prefix);
+        TrieNode node = SearchPrefix(prefix);
         return node != null;
     }
 }

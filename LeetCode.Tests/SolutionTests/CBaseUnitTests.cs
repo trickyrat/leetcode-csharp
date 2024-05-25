@@ -138,7 +138,7 @@ public class CodecUnitTest
     public void MultipleDataTest(TreeNode root, TreeNode expected)
     {
         string treeNodeString = _codec.Serialize(root);
-        var actual = _codec.Deserialize(treeNodeString);
+        TreeNode actual = _codec.Deserialize(treeNodeString);
         Assert.Equal(expected, actual, new TreeNodeComparer());
     }
 }
@@ -155,7 +155,7 @@ public class CombinationSum2UnitTest
     [MemberData(nameof(Data), MemberType = typeof(CombinationSum2UnitTest))]
     public void MultipleDataTest(int[] candidates, int target, IList<IList<int>> expected)
     {
-        var actual = Solution.CombinationSum2(candidates, target);
+        IList<IList<int>> actual = Solution.CombinationSum2(candidates, target);
         Assert.Equal(expected, actual);
     }
 }
@@ -175,7 +175,7 @@ public class CombinationSumUnitTest
     [MemberData(nameof(Data), MemberType = typeof(CombinationSumUnitTest))]
     private void MultipleDataTest(int[] candidates, int target, IList<IList<int>> expected)
     {
-        var actual = Solution.CombinationSum(candidates, target);
+        IList<IList<int>> actual = Solution.CombinationSum(candidates, target);
         Assert.Equal(expected, actual);
     }
 }
@@ -217,7 +217,7 @@ public class ConstructMaximumBinaryTreeUnitTest
     [MemberData(nameof(Data), MemberType = typeof(ConstructMaximumBinaryTreeUnitTest))]
     public void MultipleDataTest(int[] nums, TreeNode expected)
     {
-        var actual = Solution.ConstructMaximumBinaryTree(nums);
+        TreeNode actual = Solution.ConstructMaximumBinaryTree(nums);
         Assert.Equal(expected, actual, new TreeNodeComparer());
     }
 }

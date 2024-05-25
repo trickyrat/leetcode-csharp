@@ -15,7 +15,7 @@ public class InsertIntoMaxTreeUnitTest
     [MemberData(nameof(Data), MemberType = typeof(InsertIntoMaxTreeUnitTest))]
     public void MultipleDataTest(TreeNode root, int val, TreeNode expected)
     {
-        var actual = Solution.InsertIntoMaxTree(root, val);
+        TreeNode actual = Solution.InsertIntoMaxTree(root, val);
         Assert.Equal(expected, actual, new TreeNodeComparer());
     }
 }
@@ -75,7 +75,7 @@ public class IsPalindromeUnitTest
     [MemberData(nameof(Data))]
     public void Test(int[] nums, bool expected)
     {
-        var head = Util.GenerateListNode(nums);
+        ListNode head = Util.GenerateListNode(nums);
         bool actual = Solution.IsPalindrome(head);
         Assert.Equal(expected, actual);
     }

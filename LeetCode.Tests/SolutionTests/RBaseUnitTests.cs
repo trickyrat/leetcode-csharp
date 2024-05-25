@@ -27,7 +27,7 @@ public class ReadBinaryWatchUnitTest
     [MemberData(nameof(Data))]
     public void Test(int turnedOn, string[] expected)
     {
-        var actual = Solution.ReadBinaryWatch(turnedOn);
+        IList<string> actual = Solution.ReadBinaryWatch(turnedOn);
         Assert.Equal(expected.ToList(), actual);
     }
 }
@@ -127,7 +127,7 @@ public class RemoveNthFromEndUnitTest
     [MemberData(nameof(Data), MemberType = typeof(RemoveNthFromEndUnitTest))]
     public void Test_Input_Normal_Nodes_Should_OK(ListNode input, int n, ListNode expected)
     {
-        var actual = Solution.RemoveNthFromEnd(input, n);
+        ListNode actual = Solution.RemoveNthFromEnd(input, n);
         Assert.Equal(expected, actual, new ListNodeComparer());
     }
 }
@@ -202,7 +202,7 @@ public class ReverseKGroupUnitTest
     [MemberData(nameof(Data), MemberType = typeof(ReverseKGroupUnitTest))]
     public void MultipleDataTest(ListNode head, int k, ListNode expected)
     {
-        var actual = Solution.ReverseKGroup(head, k);
+        ListNode actual = Solution.ReverseKGroup(head, k);
         Assert.Equal(expected, actual, new ListNodeComparer());
     }
 }
@@ -221,7 +221,7 @@ public class ReverseListUnitTest
     [MemberData(nameof(Nodes), MemberType = typeof(ReverseListUnitTest))]
     public void Test(ListNode head, ListNode expectedNode)
     {
-        var actualNode = Solution.ReverseList(head);
+        ListNode actualNode = Solution.ReverseList(head);
         string actual = actualNode?.ToString();
         string expected = expectedNode?.ToString();
         Assert.Equal(expected, actual);
@@ -317,7 +317,7 @@ public class RotateRightUnitTest
     [MemberData(nameof(Data), MemberType = typeof(RotateRightUnitTest))]
     public void MultipleDataTest(ListNode head, int k, ListNode expected)
     {
-        var actual = Solution.RotateRight(head, k);
+        ListNode actual = Solution.RotateRight(head, k);
         Assert.Equal(expected, actual, new ListNodeComparer());
     }
 }

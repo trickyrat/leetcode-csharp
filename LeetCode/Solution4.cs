@@ -313,7 +313,7 @@ public partial class Solution
         for (int i = 0; i < s.Length; i++)
         {
             char c = s[i];
-            if (!index.TryGetValue(c, out var value))
+            if (!index.TryGetValue(c, out IList<int> value))
             {
                 value = new List<int> { -1 };
                 index.Add(c, value);
@@ -323,7 +323,7 @@ public partial class Solution
         }
 
         int res = 0;
-        foreach (var list in index.Select(pair => pair.Value))
+        foreach (IList<int> list in index.Select(pair => pair.Value))
         {
             list.Add(s.Length);
             for (int i = 1; i < list.Count - 1; i++)
@@ -624,8 +624,8 @@ public partial class Solution
     /// <returns></returns>
     public static ListNode MiddleNode(ListNode head)
     {
-        var slow = head;
-        var fast = head;
+        ListNode slow = head;
+        ListNode fast = head;
         while (fast?.Next != null)
         {
             slow = slow.Next;
@@ -1141,7 +1141,7 @@ public partial class Solution
         stack.Push(root);
         while (stack.Count > 0)
         {
-            var currentNode = stack.Pop();
+            TreeNode currentNode = stack.Pop();
             if (currentNode == null)
             {
                 continue;
@@ -1420,7 +1420,7 @@ public partial class Solution
     public static TreeNode InsertIntoMaxTree(TreeNode root, int val)
     {
         TreeNode parent = null;
-        var curr = root;
+        TreeNode curr = root;
         while (curr != null)
         {
             if (val > curr.Val)

@@ -108,9 +108,9 @@ public partial class Solution
             IList<int> tmp = new List<int>();
             for (int i = 0; i < size; i++)
             {
-                var curr = queue.Peek();
+                Node curr = queue.Peek();
                 tmp.Add(curr.Val);
-                foreach (var child in curr.Children)
+                foreach (Node child in curr.Children)
                 {
                     queue.Enqueue(child);
                 }
@@ -164,7 +164,7 @@ public partial class Solution
                 return root.Left;
             }
 
-            var minNode = FindMinHelper(root.Right);
+            TreeNode minNode = FindMinHelper(root.Right);
             root.Val = minNode.Val;
             root.Right = DeleteNode(root.Right, root.Val);
         }
@@ -751,7 +751,7 @@ public partial class Solution
             }
 
             ans.Add(node.Val);
-            foreach (var ch in node.Children)
+            foreach (Node ch in node.Children)
             {
                 Dfs(ch);
             }
@@ -776,7 +776,7 @@ public partial class Solution
                 return;
             }
 
-            foreach (var ch in node.Children)
+            foreach (Node ch in node.Children)
             {
                 Dfs(ch);
             }
