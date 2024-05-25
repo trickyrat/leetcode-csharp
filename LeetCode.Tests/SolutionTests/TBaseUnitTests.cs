@@ -41,7 +41,7 @@ public class ThreeSumUnitTest
     [MemberData(nameof(Data), MemberType = typeof(ThreeSumUnitTest))]
     public void MultipleDataTest(int[] nums, IList<IList<int>> expected)
     {
-        var actual = Solution.ThreeSum(nums);
+        IList<IList<int>> actual = Solution.ThreeSum(nums);
         Assert.Equal(expected, actual);
     }
 }
@@ -126,7 +126,7 @@ public class TrimBstUnitTest
     [MemberData(nameof(Data), MemberType = typeof(TrimBstUnitTest))]
     public void MultipleDataTest(TreeNode root, int low, int high, TreeNode expected)
     {
-        var actual = Solution.TrimBst(root, low, high);
+        TreeNode actual = Solution.TrimBst(root, low, high);
         Assert.Equal(expected, actual, new TreeNodeComparer());
     }
 }
@@ -168,7 +168,7 @@ public class TwoOutOfThreeUnitTest
     [MemberData(nameof(Data), MemberType = typeof(TwoOutOfThreeUnitTest))]
     public void Test(int[] nums1, int[] nums2, int[] nums3, IList<int> expected)
     {
-        var actual = Solution.TwoOutOfThree(nums1, nums2, nums3);
+        IList<int> actual = Solution.TwoOutOfThree(nums1, nums2, nums3);
         actual = actual.OrderBy(x => x).ToList();
         expected = expected.OrderBy(x => x).ToList();
         Assert.Equal(expected, actual);

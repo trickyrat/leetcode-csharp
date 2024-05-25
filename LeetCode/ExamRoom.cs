@@ -31,7 +31,7 @@ public class ExamRoom(int n)
         int left = Seats.Min, right = N - 1 - Seats.Max;
         while (Seats.Count >= 2)
         {
-            var p = Queue.Peek();
+            (int first, int second) p = Queue.Peek();
             if (Seats.Contains(p.first) && Seats.Contains(p.second)
                                         && Seats.GetViewBetween(p.first + 1, Seats.Max).Min == p.second)
             {

@@ -146,7 +146,7 @@ public partial class Solution
     public static int[] MostCompetitive(int[] nums, int k)
     {
         int n = nums.Length;
-        var res = new int[k];
+        int[] res = new int[k];
         var stack = new Stack<int>();
         for (int i = 0; i < n; i++)
         {

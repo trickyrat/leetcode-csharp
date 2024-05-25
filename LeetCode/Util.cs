@@ -18,7 +18,7 @@ public static class Util
     public static ListNode GenerateListNode(IEnumerable<int> data)
     {
         var head = new ListNode(0);
-        var dummy = head;
+        ListNode dummy = head;
         foreach (int item in data)
         {
             dummy.Next = new ListNode(item);
@@ -100,7 +100,7 @@ public static class Util
         bool fillLeft = true;
         for (int i = 1; i < nums.Count; i++)
         {
-            var node = nums[i] is not null ? new TreeNode(nums[i].Value) : null;
+            TreeNode node = nums[i] is not null ? new TreeNode(nums[i].Value) : null;
 
             if (fillLeft)
             {
@@ -136,7 +136,7 @@ public static class Util
 
         for (int i = 1; i < nums.Count; i++)
         {
-            var parent = queue.Peek();
+            Node parent = queue.Peek();
             if (nums[i].HasValue)
             {
                 var child = new Node(nums[i].Value);

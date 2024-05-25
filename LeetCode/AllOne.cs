@@ -13,14 +13,14 @@ public class AllOne
         Root = new AllOneNode();
         Root.Prev = Root;
         Root.Next = Root;
-        Nodes = new Dictionary<string, AllOneNode>();
+        Nodes = [];
     }
 
     public void Inc(string key)
     {
-        if (Nodes.TryGetValue(key, out var value))
+        if (Nodes.TryGetValue(key, out AllOneNode value))
         {
-            var next = value.Next;
+            AllOneNode next = value.Next;
             if (next == Root || next.Count > value.Count + 1)
             {
                 Nodes[key] = value.Insert(new AllOneNode(key, value.Count + 1));
@@ -53,14 +53,14 @@ public class AllOne
 
     public void Dec(string key)
     {
-        var curr = Nodes[key];
+        AllOneNode curr = Nodes[key];
         if (curr.Count == 1)
         {
             Nodes.Remove(key);
         }
         else
         {
-            var prev = curr.Prev;
+            AllOneNode prev = curr.Prev;
             if (prev == Root || prev.Count < curr.Count - 1)
             {
                 Nodes[key] = curr.Prev.Insert(new AllOneNode(key, curr.Count - 1));
@@ -127,8 +127,10 @@ public class AllOne
         public AllOneNode(string key, int count)
         {
             Count = count;
-            Keys = new HashSet<string>();
-            Keys.Add(key);
+            Keys = new HashSet<string>
+            {
+                key
+            };
         }
 
         public AllOneNode Insert(AllOneNode node)

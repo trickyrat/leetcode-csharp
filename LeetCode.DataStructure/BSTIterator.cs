@@ -19,8 +19,8 @@ public class BSTIterator
 
     public int Next()
     {
-        var tmp = Stack.Pop();
-        var right = tmp.Right;
+        TreeNode tmp = Stack.Pop();
+        TreeNode right = tmp.Right;
         while (right != null)
         {
             Stack.Push(right);

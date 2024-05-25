@@ -51,7 +51,7 @@ public class LetterCasePermutationUnitTest
     [MemberData(nameof(Data))]
     public void Test(string input, string[] expected)
     {
-        var actual = Solution.LetterCasePermutation(input);
+        List<string> actual = Solution.LetterCasePermutation(input);
         Assert.Equal(expected, actual);
     }
 }
@@ -67,7 +67,7 @@ public class LetterCombinationsUnitTest
     [MemberData(nameof(Data))]
     public void MultipleDataTest(string digits, string[] expected)
     {
-        var actual = Solution.LetterCombinations(digits);
+        IList<string> actual = Solution.LetterCombinations(digits);
         Assert.Equal(expected, actual);
     }
 }
@@ -83,7 +83,7 @@ public class LexicalOrderUnitTest
     [MemberData(nameof(Data), MemberType = typeof(LexicalOrderUnitTest))]
     public void MultipleDataTest(int n, IList<int> expected)
     {
-        var actual = Solution.LexicalOrder(n);
+        IList<int> actual = Solution.LexicalOrder(n);
         Assert.Equal(expected, actual);
     }
 }

@@ -43,7 +43,7 @@ public class PathSumIiUnitTest
     [MemberData(nameof(Data))]
     public void Test(TreeNode input, int targetNum, IList<List<int>> expected)
     {
-        var actual = Solution.PathSum(input, targetNum);
+        IList<IList<int>> actual = Solution.PathSum(input, targetNum);
         Assert.Equal(expected, actual);
     }
 }
@@ -77,7 +77,7 @@ public class PermuteUnitTest
     [MemberData(nameof(Data))]
     public void MultipleDataTest(int[] nums, IList<IList<int>> expected)
     {
-        var actual = Solution.Permute(nums);
+        IList<IList<int>> actual = Solution.Permute(nums);
         Assert.Equal(expected, actual);
     }
 }
@@ -189,8 +189,8 @@ public class PostorderUnitTest
         root2.Children.Add(root2ChildNode4);
         root2.Children.Add(root2ChildNode5);
 
-        var actual1 = Solution.PostOrder(root1);
-        var actual2 = Solution.PostOrder(root2);
+        IList<int> actual1 = Solution.PostOrder(root1);
+        IList<int> actual2 = Solution.PostOrder(root2);
 
         Assert.Equal(new[] { 5, 6, 3, 2, 4, 1 }, actual1);
         Assert.Equal(new[] { 2, 6, 14, 11, 7, 3, 12, 8, 4, 13, 9, 10, 5, 1 }, actual2);
@@ -254,7 +254,7 @@ public class PreorderUnitTest
     [MemberData(nameof(Data))]
     public void Test(Node root, IList<int> expected)
     {
-        var actual = Solution.PreOrder(root);
+        IList<int> actual = Solution.PreOrder(root);
 
         Assert.Equal(expected, actual);
     }

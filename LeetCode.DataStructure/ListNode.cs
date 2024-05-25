@@ -16,8 +16,8 @@ public class ListNodeComparer : IEqualityComparer<ListNode>
 {
     public bool Equals(ListNode x, ListNode y)
     {
-        var sentinel1 = x;
-        var sentinel2 = y;
+        ListNode sentinel1 = x;
+        ListNode sentinel2 = y;
         while (sentinel1 is not null && sentinel2 is not null)
         {
             if (sentinel1.Val != sentinel2.Val)

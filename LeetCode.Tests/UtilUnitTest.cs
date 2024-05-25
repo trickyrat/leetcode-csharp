@@ -35,7 +35,7 @@ public class UtilUnitTest
     [MemberData(nameof(TreeNodeData), MemberType = typeof(UtilUnitTest))]
     public void Test_CreateTreeNode_Should_OK(List<int?> numbers, TreeNode expected)
     {
-        var actual = Util.GenerateTreeNode(numbers);
+        TreeNode actual = Util.GenerateTreeNode(numbers);
         Assert.Equal(expected, actual, new TreeNodeComparer());
     }
 

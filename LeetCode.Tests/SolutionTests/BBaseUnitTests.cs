@@ -28,7 +28,7 @@ public class BuildArrayUnitTest
     [MemberData(nameof(Data), MemberType = typeof(BuildArrayUnitTest))]
     public void Test(int[] targets, int n, IList<string> expected)
     {
-        var actual = Solution.BuildArray(targets, n);
+        IList<string> actual = Solution.BuildArray(targets, n);
         Assert.Equal(expected, actual);
     }
 }

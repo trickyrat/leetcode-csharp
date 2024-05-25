@@ -85,7 +85,7 @@ public class FindClosestElementsUnitTest
     [MemberData(nameof(Data), MemberType = typeof(FindClosestElementsUnitTest))]
     public void MultipleDataTest(int[] arr, int k, int x, IList<int> expected)
     {
-        var actual = Solution.FindClosestElements(arr, k, x);
+        IList<int> actual = Solution.FindClosestElements(arr, k, x);
         Assert.Equal(expected, actual);
     }
 }
@@ -125,7 +125,7 @@ public class FindDuplicateSubtreesUnitTest
     [MemberData(nameof(Data), MemberType = typeof(FindDuplicateSubtreesUnitTest))]
     public void MultipleDataTest(TreeNode root, IList<TreeNode> expected)
     {
-        var actual = Solution.FindDuplicateSubtrees(root);
+        IList<TreeNode> actual = Solution.FindDuplicateSubtrees(root);
         Assert.Equal(expected, actual, new TreeNodeComparer());
     }
 }
@@ -247,7 +247,7 @@ public class FindSubstringUnitTest
     [MemberData(nameof(Data), MemberType = typeof(FindSubstringUnitTest))]
     public void MultipleDataTest(string s, string[] words, IList<int> expected)
     {
-        var actual = Solution.FindSubstring(s, words);
+        IList<int> actual = Solution.FindSubstring(s, words);
         Assert.Equal(expected, actual);
     }
 }
@@ -308,7 +308,7 @@ public class FindWordsIiUnitTest
     [MemberData(nameof(Data), MemberType = typeof(FindWordsIiUnitTest))]
     public void MultipleDataTest(char[][] board, string[] words, IList<string> expected)
     {
-        var actual = Solution.FindWords(board, words);
+        IList<string> actual = Solution.FindWords(board, words);
         Assert.Equal(expected, actual);
     }
 }
@@ -357,7 +357,7 @@ public class FizzBuzzUnitTest
     [MemberData(nameof(Data), MemberType = typeof(FizzBuzzUnitTest))]
     public void Test(int n, IList<string> expected)
     {
-        var actual = Solution.FizzBuzz(n);
+        IList<string> actual = Solution.FizzBuzz(n);
         Assert.Equal(expected, actual);
     }
 }
@@ -426,7 +426,7 @@ public class FourSumUnitTest
     [MemberData(nameof(Data), MemberType = typeof(FourSumUnitTest))]
     public void MultipleDataTest(int[] nums, int target, IList<IList<int>> expected)
     {
-        var actual = Solution.FourSum(nums, target);
+        IList<IList<int>> actual = Solution.FourSum(nums, target);
         Assert.Equal(expected, actual);
     }
 }
@@ -475,7 +475,7 @@ public class FullJustifyUnitTest
     [MemberData(nameof(Data), MemberType = typeof(FullJustifyUnitTest))]
     public void Test(string[] words, int maxWidth, IList<string> expected)
     {
-        var actual = Solution.FullJustify(words, maxWidth);
+        IList<string> actual = Solution.FullJustify(words, maxWidth);
         Assert.Equal(expected, actual);
     }
 }

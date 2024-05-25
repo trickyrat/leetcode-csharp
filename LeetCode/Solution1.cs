@@ -113,10 +113,10 @@ public partial class Solution
     {
         // Iteratively Time: O(n) Space O(1)
         ListNode prev = null;
-        var curr = head;
+        ListNode curr = head;
         while (curr is not null)
         {
-            var next = curr.Next;
+            ListNode next = curr.Next;
             curr.Next = prev;
             prev = curr;
             curr = next;
@@ -144,7 +144,7 @@ public partial class Solution
     public static IList<string> FindWords(char[][] board, string[] words)
     {
         IList<string> res = new List<string>();
-        var root = BuildTrie(words);
+        TrieNode root = BuildTrie(words);
         int m = board.Length, n = board[0].Length;
         for (int i = 0; i < m; i++)
         {
@@ -161,7 +161,7 @@ public partial class Solution
             var node = new TrieNode();
             foreach (string item in wordData)
             {
-                var p = node;
+                TrieNode p = node;
                 foreach (char ch in item)
                 {
                     if (p.Get(ch) == null)
@@ -279,10 +279,10 @@ public partial class Solution
             return true;
         }
 
-        var firstHalfEnd = EndOfFirstHalf(head);
-        var secondHalfStart = ReverseListHelper(firstHalfEnd.Next);
-        var p1 = head;
-        var p2 = secondHalfStart;
+        ListNode firstHalfEnd = EndOfFirstHalf(head);
+        ListNode secondHalfStart = ReverseListHelper(firstHalfEnd.Next);
+        ListNode p1 = head;
+        ListNode p2 = secondHalfStart;
         while (p2 != null)
         {
             if (p1.Val != p2.Val)
@@ -300,10 +300,10 @@ public partial class Solution
         ListNode ReverseListHelper(ListNode node)
         {
             ListNode prev = null;
-            var curr = node;
+            ListNode curr = node;
             while (curr != null)
             {
-                var tmp = curr.Next;
+                ListNode tmp = curr.Next;
                 curr.Next = prev;
                 prev = curr;
                 curr = tmp;
@@ -314,8 +314,8 @@ public partial class Solution
 
         ListNode EndOfFirstHalf(ListNode node)
         {
-            var fast = node;
-            var slow = node;
+            ListNode fast = node;
+            ListNode slow = node;
             while (fast.Next?.Next != null)
             {
                 fast = fast.Next.Next;
