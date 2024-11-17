@@ -13,7 +13,10 @@
       "args": [],
       "cwd": "${workspaceFolder}/LeetCode",
       "console": "internalConsole",
-      "stopAtEntry": false
+      "stopAtEntry": false,
+      "logging": {
+        "moduleLoad": false
+      }
     },
     {
       "name": ".NET Core Attach",
