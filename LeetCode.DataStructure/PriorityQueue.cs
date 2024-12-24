@@ -26,7 +26,7 @@ public class PriorityQueue<T> where T : IComparable, IComparable<T>
     /// <param name="elements"></param>
     public PriorityQueue(IEnumerable<T> elements)
     {
-        Values = new SortedSet<T>(elements);
+        Values = [..elements];
     }
 
     /// <summary>
@@ -69,11 +69,11 @@ public class PriorityQueue<T> where T : IComparable, IComparable<T>
     /// Returns whether the queue is empty.
     /// </summary>
     /// <returns>true if the queue's size is 0, false otherwise</returns>
-    public bool IsEmpty() => !Values.Any();
+    public bool IsEmpty() => Values.Count == 0;
 
     /// <summary>
     /// Returns a List from a priority queue.
     /// </summary>
     /// <returns></returns>
-    public List<T> ToList() => Values.ToList();
+    public List<T> ToList() => [..Values];
 }

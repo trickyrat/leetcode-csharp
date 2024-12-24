@@ -286,4 +286,73 @@ public partial class Solution
     /// <param name="pref"></param>
     /// <returns></returns>
     public static int PrefixCount(string[] words, string pref) => words.Count(x => x.StartsWith(pref));
+
+    class ElementIndexPair
+    {
+        public int Element { get; set; }
+        public int Index { get; set; }
+
+        public ElementIndexPair()
+        {
+            
+        }
+
+        public ElementIndexPair(int element, int index)
+        {
+            Element = element;
+            Index = index;
+        }
+    }
+
+    class ElementIndexPairComparer : IComparer<(int element, int index)>
+    {
+        public int Compare((int element, int index) x, (int element, int index) y)
+        {
+            if (x.element < y.element)
+            {
+                return -1;
+            }
+
+            if (x.element > y.element)
+            {
+                return 1;
+            }
+
+            return x.index < y.index ? -1 : 1;
+        }
+
+    }
+
+    /// <summary>
+    /// 3264. Final Array State After K Multiplication Operations I
+    /// </summary>
+    /// <param name="nums"></param>
+    /// <param name="k"></param>
+    /// <param name="multiplier"></param>
+    /// <returns></returns>
+    public static int[] GetFinalState(int[] nums, int k, int multiplier)
+    {
+        var n = nums.Length;
+        var pq = new PriorityQueue<ElementIndexPair, (int element, int index)>(new ElementIndexPairComparer());
+        for (int i = 0; i < n; i++)
+        {
+            pq.Enqueue(new ElementIndexPair(nums[i], i), (nums[i], i));
+        }
+
+        while (k > 0)
+        {
+            ElementIndexPair pair = pq.Dequeue();
+            pair.Element *= multiplier;
+            pq.Enqueue(pair, (pair.Element, pair.Index));
+            k--;
+        }
+
+        int[] res = new int[n];
+        for (int i = 0; i < n; i++)
+        {
+            ElementIndexPair pair = pq.Dequeue();
+            res[pair.Index] = pair.Element;
+        }
+        return res;
+    }
 }
