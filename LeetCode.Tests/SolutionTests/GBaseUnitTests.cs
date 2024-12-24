@@ -85,3 +85,16 @@ public class GraphUnitTest
         Assert.Equal(6, graph.ShortestPath(0, 3));
     }
 }
+
+
+public class GetFinalState
+{
+    [Theory]
+    [InlineData(new int[] { 2, 1, 3, 5, 6 }, 5, 2, new int[] { 8, 4, 6, 5, 6 })]
+    [InlineData(new int[] { 1, 2 }, 3, 4, new int[] { 16, 8 })]
+    public void Test(int[] nums, int k, int multiplier, int[] expected)
+    {
+        var actual = Solution.GetFinalState(nums, k, multiplier);
+        Assert.Equal(expected, actual);
+    }
+}
