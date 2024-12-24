@@ -54,3 +54,18 @@ public class DivideUnitTest
         Assert.Equal(expected, actual);
     }
 }
+
+
+
+public class DistributeCandiesUnitTest
+{
+    [Theory]
+    [InlineData(new[] { 1, 1, 2, 2, 3, 3 }, 3)]
+    [InlineData(new[] { 1, 1, 2, 3 }, 2)]
+    [InlineData(new[] { 6, 6, 6, 6 }, 1)]
+    public void Test(int[] candyType, int expected)
+    {
+        int actual = Solution.DistributeCandies(candyType);
+        Assert.Equal(expected, actual);
+    }
+}

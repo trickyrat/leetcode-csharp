@@ -733,6 +733,17 @@ public partial class Solution
     }
 
     /// <summary>
+    /// 575. Distribute Candies
+    /// </summary>
+    /// <param name="candyType"></param>
+    /// <returns></returns>
+    public static int DistributeCandies(int[] candyType) 
+    {
+        var set = candyType.ToHashSet();
+        return Math.Min(set.Count, candyType.Length / 2);
+    }
+
+    /// <summary>
     /// 589. N-ary Tree Preorder Traversal
     /// </summary>
     /// <param name="root"></param>
