@@ -422,8 +422,8 @@ public class FooBarUnitTest
         var foobar = new FooBar(n);
         string actual = "";
 
-        var fooTask = Task.Run(() => foobar.Foo(() => actual += "foo"));
-        var barTask = Task.Run(() => foobar.Bar(() => actual += "bar"));
+        var fooTask = Task.Run(() => foobar.Foo(() => actual += "foo"), TestContext.Current.CancellationToken);
+        var barTask = Task.Run(() => foobar.Bar(() => actual += "bar"), TestContext.Current.CancellationToken);
         await Task.WhenAll(fooTask, barTask);
 
         Assert.Equal(expected, actual);

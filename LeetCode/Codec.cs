@@ -12,13 +12,13 @@ public class Codec
     /// <returns></returns>
     public string Serialize(TreeNode root)
     {
-        IList<int> list = new List<int>();
+        List<int> list = [];
         PostOrder(root, list);
         return string.Join(",", list);
     }
     public TreeNode Deserialize(string data)
     {
-        if (data.Length == 0)
+        if (string.IsNullOrEmpty(data))
         {
             return null;
         }
@@ -26,12 +26,19 @@ public class Codec
         var stack = new Stack<int>();
         foreach (string number in numbers)
         {
-            stack.Push(int.Parse(number));
+            if (int.TryParse(number, out int num))
+            {
+                stack.Push(num);
+            }
+            else
+            {
+                throw new ArgumentException("Invalid serialized data format");
+            }
         }
         return Build(int.MinValue, int.MaxValue, stack);
     }
 
-    private void PostOrder(TreeNode root, IList<int> list)
+    private void PostOrder(TreeNode root, List<int> list)
     {
         if (root is null)
         {

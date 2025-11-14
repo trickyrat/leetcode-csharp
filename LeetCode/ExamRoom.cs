@@ -31,21 +31,22 @@ public class ExamRoom(int n)
         int left = Seats.Min, right = N - 1 - Seats.Max;
         while (Seats.Count >= 2)
         {
-            (int first, int second) p = Queue.Peek();
-            if (Seats.Contains(p.first) && Seats.Contains(p.second)
-                                        && Seats.GetViewBetween(p.first + 1, Seats.Max).Min == p.second)
+            (int first, int second) = Queue.Peek();
+            if (Seats.Contains(first) && Seats.Contains(second)
+                                        && Seats.GetViewBetween(first + 1, Seats.Max).Min == second)
             {
-                int d = p.second - p.first;
-                if (d / 2 < right || d / 2 <= left)
+                int distance = second - first;
+                int mid = first + distance / 2;
+                if (distance / 2 < right || distance / 2 <= left)
                 {
                     break;
                 }
 
                 Queue.Dequeue();
-                Queue.Enqueue((p.first, p.first + d / 2), (p.first, p.first + d / 2));
-                Queue.Enqueue((p.first + d / 2, p.second), (p.first + d / 2, p.second));
-                Seats.Add(p.first + d / 2);
-                return p.first + d / 2;
+                Queue.Enqueue((first, mid), (first, mid));
+                Queue.Enqueue((mid, second), (mid, second));
+                Seats.Add(mid);
+                return mid;
             }
 
             Queue.Dequeue();
@@ -67,7 +68,8 @@ public class ExamRoom(int n)
     {
         if (p != Seats.Max && p != Seats.Min)
         {
-            int prev = Seats.GetViewBetween(Seats.Min, p - 1).Max, next = Seats.GetViewBetween(p + 1, Seats.Max).Min;
+            int prev = Seats.GetViewBetween(Seats.Min, p - 1).Max;
+            int next = Seats.GetViewBetween(p + 1, Seats.Max).Min;
             Queue.Enqueue((prev, next), (prev, next));
         }
 

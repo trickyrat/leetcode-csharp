@@ -10,9 +10,9 @@ public class ZeroEvenOddUnitTest
     {
         var zeroEvenOdd = new ZeroEvenOdd(n);
         string actual = "";
-        var zeroTask = Task.Run(() => zeroEvenOdd.Zero((int n) => actual += n));
-        var evenTask = Task.Run(() => zeroEvenOdd.Even((int n) => actual += n));
-        var oddTask = Task.Run(() => zeroEvenOdd.Odd((int n) => actual += n));
+        var zeroTask = Task.Run(() => zeroEvenOdd.Zero((int n) => actual += n), TestContext.Current.CancellationToken);
+        var evenTask = Task.Run(() => zeroEvenOdd.Even((int n) => actual += n), TestContext.Current.CancellationToken);
+        var oddTask = Task.Run(() => zeroEvenOdd.Odd((int n) => actual += n), TestContext.Current.CancellationToken);
 
         await Task.WhenAll(zeroTask, evenTask, oddTask);
 
